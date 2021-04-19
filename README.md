@@ -1,1 +1,1 @@
-# https://arpanosso.github.io/estatinfo/
+# https://arpanosso.github.io/estatinfo/slides/Aula01.html
