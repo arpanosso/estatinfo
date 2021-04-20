@@ -280,4 +280,48 @@ Assim, definimos que todo dado coletado refere-se a uma característica da popul
 
 **Ordinal**: é aquela para a qual **existe certa ordem** nos possíveis resultados. Apesar de ordenar, não permite a indicação em termos de quanto mais ou menos.
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_nominal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+<img src="https://arpanosso.github.io/estatinfo/slides/img/var_ordinal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+---
+### Variável Quantitativa 
+
+**Discreta**: os possíveis valores formam um conjunto enumerável resultam, frequentemente, de um **processo  contagem** (os valores podem ser finito ou mesmo infinitos). Exemplos: número de filhos, número de células, número de ovos, número de ácaros ou insetos em uma planta.
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/var_discreta.png" style=" display: block; margin-left: auto; margin-right: auto;width: 90%"></img>
+
+---
+### Variável Quantitativa 
+
+**Contínua**: os possíveis valores formam um intervalo de números reais e que resultam, normalmente, de um processo de medida (mensuração). Exemplos: peso, altura, produção de leite, pressão arterial, teor de nitrogênio no solo ou na folha.
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/var_continua.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+---
+class: middle, center, inverse
+
+# Ferramental
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/excel_R_logo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"></img>
+
+---
+
+### Exercícios Práticos
+
+#### 1) Utilizando o Excel e o R, monte as expressões para resolver as equações:
+
+$$\begin{align*} & a)\; log_5 125 \\
+& b)\; 2 \cdot sen(45°) \\
+& c)\; \frac{1}{\sqrt{2\pi}} \\
+& d)\; \frac{1}{\sqrt{2\pi+1}} \end{align*}$$
+
+
+#### 2) Dados a amostra da variável $X=\{6,8,7\}$, sendo $\Sigma$ a somatória dos elementos de $X$  e $\bar{x}$ a média (amostral) dos elementos de $X$ e $n$ o número total de elementos dessa amostra, calcule:
+
+$$\begin{align*} 
+& a)\;Soma= \sum_{i=1}^n x_i \\
+& b)\; \bar{x} = \frac{\sum_{i=1}^n x_i}{n}\\
+& c)\; \beta = \frac{(\sum_{i=1}^n x_i)^2}{(n-1)\cdot(n-2) } \end{align*}$$
+
+---
+### Excel
+
