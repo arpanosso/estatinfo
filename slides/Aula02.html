@@ -22,9 +22,9 @@ class: center, middle, inverse, title-slide
 
 
 
-class: middle, center
+class: middle, center, inverse
 
-# Introdução
+# INTRODUÇÃO
 
 ---
 ## Porque estudar Estatística
@@ -56,7 +56,7 @@ Seu resultado é determinado pelas condições sob as quais o experimento é exe
 
 ---
 
-&lt;img src="Aula02_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula02_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
 `$$Dados = Modelo$$`
 
@@ -77,7 +77,7 @@ Nesse modelo admitimos que as condições nas quais o ensaio é executado determ
 
 ---
 
-&lt;img src="Aula02_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula02_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 `$$Dados = Modelo + Ruído$$`
 ---
 
@@ -88,9 +88,9 @@ Nesse modelo admitimos que as condições nas quais o ensaio é executado determ
 - Inferência Estatística
 
 ---
-class: meddle, center
+class: middle, center, inverse
 
-# Estatística Descritiva
+# ESTATÍSTICA DESCRITIVA
 
 ---
 ## Estatística Descritiva
@@ -98,12 +98,16 @@ class: meddle, center
 Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de representar dados em tabelas e gráficos, resumi-los por meio de algumas medidas **sem, contudo, tirar conclusões sobre um grupo maior**.
 
 É necessário, portanto, definirmos os nossos termos básicos para podermos nos comunicar durante a disciplina. Assim, serão definidos alguns conceitos.
+--
 
 ### Dados
+--
 
 Considerados o material básico da estatística, são os valores observados de uma característica de interesse de cada amostra, é o registro da característica de interesse. 
+--
 
 **Exemplos**
+--
 
 - Variação de temperatura no processo de secagem de um alimento.
 - Tempo de reabilitação de doentes após determinados tratamentos.
@@ -111,8 +115,12 @@ Considerados o material básico da estatística, são os valores observados de u
 - Peso e alturas de plantas de uma determinada variedade após aplicação de um trato cultural.
 - Número de insetos vivos após a aplicação de um defensivo.
 
+--
+
 Cada número desses constituem os **DADOS** e a característica comum entre eles é a **VARIABILIDADE** ou **VARIAÇÃO**.
+
 ---
+
 **Exemplo de um banco de dados**
 
 [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) `\(\leftarrow\)` Clique para baixar o banco de dados no Excel (**exemplo_dados.xlsx**)
@@ -134,7 +142,103 @@ Onde:
 
 
 
+```r
+# Lendo o Banco de dados
+dados_turmas&lt;-readr::read_rds("../data/dados_turmas.rds")
 
+# Mostrando os 7 primeiro registros
+head(dados_turmas, n=7)
+```
+
+```
+## # A tibble: 7 x 6
+##      id sexo  cor_cabelo GA          altura idade
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+## 1     1 F     CC         mais_social   1.68    19
+## 2     2 F     CE         nao_consome   1.59    20
+## 3     3 F     CC         pouco         1.7     49
+## 4     4 F     CE         socialmente   1.5     20
+## 5     5 M     CE         mais_social   1.76    23
+## 6     6 M     CC         pouco         1.6     28
+## 7     7 M     L          nao_consome   1.84    19
+```
+
+---
+### População
+
+**Populações Comuns**: Uma população é um conjunto de pessoas (ou elementos) que possuem uma característica observável comum, geralmente, de interesse de estudo. Conjunto total de objetos que queremos estudar, para os quais uma decisão deve ser tomada.
+
+&lt;img src="https://images.pexels.com/photos/9816/pexels-photo-9816.jpeg?cs=srgb&amp;dl=pexels-ingo-joseph-9816.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"&gt;&lt;/img&gt;
+
+---
+
+### População
+
+**Populações Estatísticas**: a população estatística se refere a dados, e não às pessoas (elementos) nessa abordagem, a população é composta de características dos elementos, independente de terem sido medidas ou não.
+
+.pull-left[
+- Valores de pressão sanguínea dos indivíduos de uma população.
+
+&lt;img src="https://media0.giphy.com/media/PhaAAKt6a95Qy1Pm7i/giphy.gif?cid=ecf05e47mt3as17yvha04viluavo86fg0sxjy7i31z4ukcq7&amp;rid=giphy.gif&amp;ct=g" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"&gt;&lt;/img&gt;
+]
+
+.pull-right[- Presença ou ausência de doenças na população de cervos do pantanal.
+
+&lt;img src="https://images.pexels.com/photos/6249413/pexels-photo-6249413.jpeg?cs=srgb&amp;dl=pexels-ryutaro-tsukata-6249413.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"&gt;&lt;/img&gt;
+]
+
+---
+
+### População
+
+**Populações Estatísticas**:
+
+.pull-left[
+- Porcentagem de controle de praga por inseto predador em uma parcela experimental.
+
+&lt;img src="https://images.pexels.com/photos/36485/ladybug-flight-beetle-insect.jpg?cs=srgb&amp;dl=pexels-pixabay-36485.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"&gt;&lt;/img&gt;
+]
+
+.pull-right[
+
+- Valores de produção de soja por estados no Brasil.
+
+&lt;img src="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?cs=srgb&amp;dl=pexels-tom-fisk-1595104.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"&gt;&lt;/img&gt;
+]
+
+---
+
+### Amostra
+
+Amostra é qualquer subconjunto da população.
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/pop_amostra.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"&gt;&lt;/img&gt;
+
+- Não conseguimos acessar toda uma população para estudar as características de interesse, tomaremos alguns elementos dessa população para formar um grupo a ser estudado.
+- Impossibilidade de acesso e implicações éticas.
+
+---
+.pull-left[
+### Parâmetro: 
+
+É a medida usada para descrever uma característica da população, por exemplo: média populacional `\((\mu)\)` ou a variância populacional `\((\sigma^2)\)`.]
+
+.pull-right[
+### Estatística
+É a medida usada para descrever uma característica da amostra, em analogia, média amostral `\((\bar{x}\text{ ou } \bar{m} )\)` e a variância amostral `\((s^2)\)`.
+]
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/pop_amostra_parametros.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"&gt;&lt;/img&gt;
+
+---
+
+### Variável
+
+As informações obtidas, sejam com base nos elementos que constituem a população, sejam com base nos elementos que constituem a amostra, são denominadas **dados**. 
+
+Assim, definimos que todo dado coletado refere-se a uma característica da população, agora, para nós  determinada **VARIÁVEL**.
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/var_tipo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"&gt;&lt;/img&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
