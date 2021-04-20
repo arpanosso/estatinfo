@@ -4,9 +4,9 @@
     <title>Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
-    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -16,9 +16,11 @@ class: center, middle, inverse, title-slide
 ## Aula 02 - Introdução (Conceitos Básicos)
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ### Departamento de Engenharia e Ciência Exatas FCAV/UNESP
-### (2021-04-19)
+### (2021-04-20)
 
 ---
+
+
 
 class: middle, center
 
@@ -54,59 +56,68 @@ Seu resultado é determinado pelas condições sob as quais o experimento é exe
 
 ---
 
-![](Aula02_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+&lt;img src="Aula02_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
-
+`$$Dados = Modelo$$`
 
 
 
 
 ---
+## Modelo Matemático 
 
-## Avaliação 
-
-Serão  realizados **02  trabalhos práticos** ( `\(T1\)` e `\(T2\)`) e toda a aula será atribuído uma lista de exercícios referentes ao assunto abordado na semana. Ao final da disciplina as listas serão utilizadas para compor a nota da **Listas Semanais** `\(LS\)`. A  nota  de  aproveitamento da disciplina será  a  média  aritmética  ponderada  das notas dos trabalhos e listas, dada por:
-
-$$
-\text{Nota Final} = \frac{LS+3 \cdot T1 + 4 \cdot T2}{8}
-$$
-
-onde: `\(T1\)` = Nota do 1º trabalho; `\(T2\)` = Nota do 2º trabalho; `\(LS\)` = Nota das listas semanais de exercícios entregues durante a disciplina.
+Para um grande número de situação na natureza, o modelo matemático determinístico apresentado é suficiente, contudo existem fenômenos que requerem um modelo matemático diferente:
 
 
----
+### ModelosEstocásticos (não-determinísticos ou probabilístico): 
 
-## Metodologia de Ensino
+Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento **probabilístico** do resultado observável. 
 
-- Aulas teóricas expositivas realizadas via Google Meet
-
-- Aula teóricas serão gravadas e disponibilizadas no Google Classroom.
-
-- Serão utilizados vídeos gravados pelo professor disponíveis no YouTube &lt;https://www.youtube.com/channel/UCCJBXRV7CbfkcyaIixp0CqQ&gt;
-
-- Utilização de programas computacionais:
-
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/excel_R_logo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"&gt;&lt;/img&gt;
-
-
-- Resolução de listas de exercícios.  
-
-- Material das aulas teórica (slides) e apostila didática [Baixar Apostila](https://www.fcav.unesp.br/Home/departamentos/cienciasexatas/alanrodrigopanosso/apostila_bioestatistica_2019.pdf)
-
-- Consulta a livros.
+**Exemplo:** em fenômenos meteorológicos, não podemos determinar qual a precipitação de chuva que cairá como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
 
 ---
 
-## Bibliografia básica
+&lt;img src="Aula02_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+`$$Dados = Modelo + Ruído$$`
+---
 
-BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**. 5 ed.  São Paulo: Saraiva, 2002.  p. [LINK](https://www.amazon.com.br/Estat%C3%ADstica-B%C3%A1sica-Wilton-Bussab/dp/8547220224/ref=asc_df_8547220224/?tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=379748610448&amp;hvpos=&amp;hvnetw=g&amp;hvrand=13078554075477532168&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031739&amp;hvtargid=pla-811770768458&amp;psc=1)
 
-MAGALHÃES, M. N.; LIMA, A. C. P. **Noções de Probabilidade e Estatística**.  São Paulo: Editora da Universidade de São Paulo, 2005. 392 p. [LINK](https://www.amazon.com.br/No%C3%A7%C3%B5es-Probabilidade-Estat%C3%ADstica-Nascimento-Magalh%C3%A3es/dp/8531406773/ref=asc_df_8531406773/?tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=379712528301&amp;hvpos=&amp;hvnetw=g&amp;hvrand=3043005081199790255&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031739&amp;hvtargid=pla-422923055890&amp;psc=1)
+#### A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
+- Estatística Descritiva
+- Probabilidade
+- Inferência Estatística
 
-BLAIR, R. C.; TAYLOR, R. A. **Bioestatística para ciências da saúde**.  São Paulo: Pearson Education do Brasil, 2013. 469 p. [LINK](https://www.submarino.com.br/produto/1368960931/livro-bioestatistica-para-ciencias-da-saude?WT.srch=1&amp;acc=d47a04c6f99456bc289220d5d0ff208d&amp;epar=bp_pl_00_go_g35177&amp;gclid=Cj0KCQjw1PSDBhDbARIsAPeTqretIWgohh4CuyLOwGdNd-W56zb9kfuDNz9YaVg3KmFtZXGWyZuk1REaAhW-EALw_wcB&amp;i=561e53416ed24cafb5322074&amp;o=5ec29a42f8e95eac3dc7d8f4&amp;opn=XMLGOOGLE&amp;sellerid=03)
+---
+class: meddle, center
 
-BATSCHELET, E. **Introdução à matemática para biocientistas**.  São Paulo: Ed. Da Universidade de São Paulo., 1978. 596 p. [LINK](https://www.amazon.com.br/Introdu%C3%A7%C3%A3o-%C3%A0-Matem%C3%A1tica-Para-Biocientistas/dp/8571930295/ref=asc_df_8571930295/?tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=379751745514&amp;hvpos=&amp;hvnetw=g&amp;hvrand=15178690494420387835&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031739&amp;hvtargid=pla-836184941200&amp;psc=1)
+# Estatística Descritiva
+
+---
+## Estatística Descritiva
+
+Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de representar dados em tabelas e gráficos, resumi-los por meio de algumas medidas **sem, contudo, tirar conclusões sobre um grupo maior**.
+
+É necessário, portanto, definirmos os nossos termos básicos para podermos nos comunicar durante a disciplina. Assim, serão definidos alguns conceitos.
+
+### Dados
+
+Considerados o material básico da estatística, são os valores observados de uma característica de interesse de cada amostra, é o registro da característica de interesse. 
+
+**Exemplos**
+
+- Variação de temperatura no processo de secagem de um alimento.
+- Tempo de reabilitação de doentes após determinados tratamentos.
+- Número de produtos defeituosos em lotes oriundos de uma linha de montagem.
+- Peso e alturas de plantas de uma determinada variedade após aplicação de um trato cultural.
+- Número de insetos vivos após a aplicação de um defensivo.
+
+Cada número desses constituem os **DADOS** e a característica comum entre eles é a **VARIABILIDADE** ou **VARIAÇÃO**.
+---
+**Exemplo de um banco de dados**
+
+[Dados]()
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
