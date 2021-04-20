@@ -271,8 +271,13 @@ Assim, definimos que todo dado coletado refere-se a uma característica da popul
 
 É aquela que apresenta como possíveis realizações uma qualidade (ou atributo) do indivíduo pesquisado.
 
-**Nominal**: é aquela para a qual não existe ordenação alguma das possíveis realizações (característica observados). Em estatística dizemos que os dados são **categóricos**. 
+**Nominal**: é aquela para a qual **não existe ordenação** alguma das possíveis realizações (característica observados). Em estatística dizemos que os dados são **categóricos**. 
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_nominal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 20%"></img>
+<img src="https://arpanosso.github.io/estatinfo/slides/img/var_nominal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
 
 ---
+### Variável Qualitativa
+
+**Ordinal**: é aquela para a qual **existe certa ordem** nos possíveis resultados. Apesar de ordenar, não permite a indicação em termos de quanto mais ou menos.
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/var_nominal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
