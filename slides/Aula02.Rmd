@@ -263,4 +263,16 @@ As informações obtidas, sejam com base nos elementos que constituem a populaç
 
 Assim, definimos que todo dado coletado refere-se a uma característica da população, agora, para nós  determinada **VARIÁVEL**.
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_tipo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
+<img src="https://arpanosso.github.io/estatinfo/slides/img/var_tipo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 70%"></img>
+
+---
+
+### Variável Qualitativa
+
+É aquela que apresenta como possíveis realizações uma qualidade (ou atributo) do indivíduo pesquisado.
+
+**Nominal**: é aquela para a qual não existe ordenação alguma das possíveis realizações (característica observados). Em estatística dizemos que os dados são **categóricos**. 
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/var_nominal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 20%"></img>
+
+---
