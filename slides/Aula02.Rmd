@@ -1,12 +1,12 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula01.html")
+# pagedown::chrome_print("slides/Aula02.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
 subtitle: "Aula 02 - Introdução (Conceitos Básicos)"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciência Exatas FCAV/UNESP"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
 date: "(`r Sys.Date()`)"
 encoding: "UTF-8"
 output:
@@ -140,9 +140,11 @@ Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de representar
 --
 
 Considerados o material básico da estatística, são os valores observados de uma característica de interesse de cada amostra, é o registro da característica de interesse. 
+
 --
 
 **Exemplos**
+
 --
 
 - Variação de temperatura no processo de secagem de um alimento.
@@ -167,7 +169,7 @@ Onde:
 **id** é a identificação do aluno;   
 **sexo**: "M" masculino e "F" feminino;  
 **cor_cabelo**: "P" - Preto, "CC" - Castanho Claro, "CE" - Castanho Escuro, "L" - Loiro, "R - Ruivo";  
-**GA**: é o grau de alcoolismo: "nao_consome" < "pouco" < "socialemnte" < "mais_social";  
+**GA**: é o grau de alcoolismo: "nao_consome" < "pouco" < "socialmente" < "mais_social";  
 **altura**: altura declarada pelo aluno em $m$;  
 **idade**: idade do aluno ao cursar a disciplina (Estatística e Bioestatística).
 ---

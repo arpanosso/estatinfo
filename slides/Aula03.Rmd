@@ -1,0 +1,142 @@
+---
+# Para transformar em PDF, usar: 
+# pagedown::chrome_print("slides/Aula03.html")
+# imagens https://www.pexels.com/pt-br/
+# gifs https://giphy.com/
+title: "Estatística e Informática"
+subtitle: "Aula 03 - Somatório e Combinatório"
+author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+date: "(`r Sys.Date()`)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+```
+class: middle, center, inverse
+
+# SOMATÓRIO
+
+---
+## Definições
+
+**Conjunto de dados**: Uma variável de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas $X$, $Y$, $Z$ e os valores específicos assumidos por estas variáveis (dados ou observações) pelas letras minúsculas $x$, $y$ e $z$, respectivamente. 
+
+Para distinguir um valor do outro, utilizamos um subscrito $i$, ou seja, uma variável auxiliar que representa a posição do valor específico dentro do conjunto de dados.
+
+Assim temos:
+
+$Altura: X = \{x_1, x_2, ..., x_n\}, \text{ com  }i = 1,2,..,n.$
+
+$Idade: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).$
+
+$Peso: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).$
+
+Assim, observamos que um valor típico da variável *Altura*, por exemplo, será designado por $x_i$ e o valor final desta amostra por $x_n$, sendo que $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
+
+---
+
+## Somatória
+
+Ao realizar a análise de uma variável quantitativa (numérica) é necessário somarmos todos os seus valores valores. 
+
+Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
+
+Assim, dado a variável $X$ a soma de todos seus valores será dada pela letra grega sigma maiúscula $\Sigma$:
+
+Dados $X = {x_1, x_2, x_3, x_4, x_5}$, a soma desses 5 valores:
+
+$x_1 + x_2 + x_3 + x_4 + x_5$
+
+será representada pela notação:
+
+$\sum\limits_{i=1}^{n}{x_i} = x_1 + x_2 + x_3 + x_4 + x_5$
+
+onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos valores 5 de $X$
+
+---
+
+
+Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+$\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24$
+
+Ao invés da soma ser com os índices $i$ de 1 a $n$, podemos ter, por exemplo:
+
+$\sum\limits_{i=2}^{4}{y_i} = 3+9+1 = 13$
+
+Observe que:
+
+$\sum\limits_{i=1}^{n}{x_i}^2 \neq \left( \sum\limits_{i=1}^{n}{x_i} \right)^2$
+
+uma vez que:
+
+$3^2+0^2+5^2+9^2+7^2 \neq  (3+0+5+9+7)^2$
+
+$9+0+25+81+49 \neq  (24)^2$
+
+$164 \neq  576$
+
+---
+Qual a soma da multiplicação entre duas variáveis:
+
+Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+$\sum\limits_{i=1}^{n}{x_iy_i}$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= x_1 y_1 + x_2 y_2 + x_3 y_3 + x_4 y_4 + x_5 y_5$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot(2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot(1) + 7 \cdot(2)$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
+
+---
+
+## Propriedades da Somatória
+
+i) A somatória de uma constante $(k)$ é igual a $nk$.
+
+$\sum\limits_{i=1}^{n}{k}= k + k + \cdots + k = n \dot k$
+
+
+ii) A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
+
+$\sum\limits_{i=1}^{n}{kx_i} = kx_1 + kx_2 + \cdots + kx_n = k \cdot  (x_1 + x_2+ \cdots x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
+
+
+iii) A somatória da adição de duas variáveis é igual à adição das somas dessas duas variáveis:
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots x_n + y_n) =(x_1 + x_2 + \cdots x_n) + (y_1 + y_2 + \cdots y_n)$
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}$
+
+---
+
+## Exercícios
+
+iv) Calcular, portanto $\sum\limits_{i=1}^{n}{(kx_i+k)}=?$
+
+
+v) Dado a média sendo: 
+
+$\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+rovar que:
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
+
+---
+
+class: middle, center, inverse
+
+# ANÁLISE COMBINATÓRIA E MÉTODOS DE NUMERAÇÃO

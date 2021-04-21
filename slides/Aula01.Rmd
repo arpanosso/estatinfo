@@ -4,7 +4,7 @@
 title: "Estatística e Informática"
 subtitle: "Aula 01 - Apresentação da disciplina"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciência Exatas FCAV/UNESP"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
 date: "(`r Sys.Date()`)"
 output:
   xaringan::moon_reader:
