@@ -7,7 +7,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 02 - Introdução (Conceitos Básicos)"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(`r Sys.Date()`)"
+date: "22-04-2021"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -43,17 +43,21 @@ class: middle, center, inverse
 - Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
 
 ---
-## Modelo Matemático 
+## Modelos Matemáticos 
 
 ### Modelos Determinísticos: 
 
-Nesse modelo as condições sob as quais um experimento é executado determinam o resultado do experimento. Exemplo: Segunda Lei de Newton:
+Nesse modelo as condições sob as quais um experimento é executado determinam o resultado do experimento. 
+
+**Exemplo**: Segunda Lei de Newton:
 
 $$F = m \cdot a$$
 
 Esse modelo diz que o valor da força $F$ pode ser calculado tão logo os valores da massa do objeto $m$ e sua aceleração $a$ sejam fornecidos. Nesse tipo de modelo, quaisquer desvios que pudessem ocorrer seriam tão pequenos que a descrição acima seria suficiente. 
 
 Seu resultado é determinado pelas condições sob as quais o experimento é executado.
+
+Exemplo de mecânica clássica, astronomia, termodinâmica, circuítos elétricos e química são comuns e abundantes na literatura.
 
 ---
 
@@ -74,16 +78,15 @@ df %>%
   xkcdaxis(xrange=c(0,15),yrange=c(0,30)) +
   labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Determinístico",
        fill="",linetype="")+
+  annotate(geom = "text",x=3,y=30,label = 'bold("aceleração = 2 m/s²")',
+            parse = TRUE) +
    theme_grafico
 ```
 
 $$Dados = Modelo$$
 
-
-
-
 ---
-## Modelo Matemático 
+## Modelos Matemáticos 
 
 Para um grande número de situação na natureza, o modelo matemático determinístico apresentado é suficiente, contudo existem fenômenos que requerem um modelo matemático diferente:
 
@@ -92,7 +95,7 @@ Para um grande número de situação na natureza, o modelo matemático determin�
 
 Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento **probabilístico** do resultado observável. 
 
-**Exemplo:** em fenômenos meteorológicos, não podemos determinar qual a precipitação de chuva que cairá como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
+**Exemplo:** em fenômenos meteorológicos, não podemos determinar qual a precipitação de chuva que cairá como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa do ar podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
 
 ---
 
@@ -118,10 +121,24 @@ $$Dados = Modelo + Ruído$$
 ---
 
 
-#### A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
-- Estatística Descritiva
-- Probabilidade
-- Inferência Estatística
+    A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
+
+--
+##### Estatística Descritiva
+
+Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de **representar dados em tabelas e gráficos**, **resumi-los** por meio de algumas medidas **sem, contudo, tirar conclusões** sobre um grupo maior.
+
+--
+
+##### Probabilidade
+
+Teoria matemática utilizada para se estudar a incerteza oriunda de fenômenos de caráter **aleatório**. 
+
+--
+
+##### Inferência Estatística
+
+Técnicas que possibilitam a extrapolação das informações e conclusões obtidas a partir de subconjuntos de dados, a um grande número de dados. Ou seja, **conclusões aqui serão tomadas**.
 
 ---
 class: middle, center, inverse

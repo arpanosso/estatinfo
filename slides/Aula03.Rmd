@@ -131,7 +131,7 @@ v) Dado a média sendo:
 
 $\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
 
-rovar que:
+Provar que:
 
 $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
 
