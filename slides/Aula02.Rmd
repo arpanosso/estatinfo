@@ -76,7 +76,7 @@ df %>%
   geom_point(aes(x=massa,y=dados,fill="Dados"),color="black",size=3)+
   geom_line(aes(x=massa,y=modelo_de,linetype="Modelo"),color="red")+
   xkcdaxis(xrange=c(0,15),yrange=c(0,30)) +
-  labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Determinístico",
+  labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Deterministico",
        fill="",linetype="")+
   annotate(geom = "text",x=3,y=30,label = 'bold("aceleração = 2 m/s²")',
             parse = TRUE) +
