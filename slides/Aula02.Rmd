@@ -76,7 +76,7 @@ df %>%
   geom_point(aes(x=massa,y=dados,fill="Dados"),color="black",size=3)+
   geom_line(aes(x=massa,y=modelo_de,linetype="Modelo"),color="red")+
   xkcdaxis(xrange=c(0,15),yrange=c(0,30)) +
-  labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Determinístico",
+  labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Deterministico",
        fill="",linetype="")+
   annotate(geom = "text",x=3,y=30,label = 'bold("aceleração = 2 m/s²")',
             parse = TRUE) +
@@ -91,7 +91,7 @@ $$Dados = Modelo$$
 Para um grande número de situação na natureza, o modelo matemático determinístico apresentado é suficiente, contudo existem fenômenos que requerem um modelo matemático diferente:
 
 
-### ModelosEstocásticos (não-determinísticos ou probabilístico): 
+### Modelos Estocásticos (não-determinísticos ou probabilístico): 
 
 Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento **probabilístico** do resultado observável. 
 
@@ -185,7 +185,7 @@ Cada número desses constituem os **DADOS** e a característica comum entre eles
 Onde:  
 **id** é a identificação do aluno;   
 **sexo**: "M" masculino e "F" feminino;  
-**cor_cabelo**: "P" - Preto, "CC" - Castanho Claro, "CE" - Castanho Escuro, "L" - Loiro, "R - Ruivo";  
+**cor_cabelo**: "P" - Preto, "C" - Castanho, "CC" - Castanho Claro, "CE" - Castanho Escuro, "L" - Loiro, "R - Ruivo";  
 **GA**: é o grau de alcoolismo: "nao_consome" < "pouco" < "socialmente" < "mais_social";  
 **altura**: altura declarada pelo aluno em $m$;  
 **idade**: idade do aluno ao cursar a disciplina (Estatística e Bioestatística).

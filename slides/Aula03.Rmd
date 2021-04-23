@@ -7,7 +7,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 03 - Somatório e Combinatório"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(`r Sys.Date()`)"
+date: "(29-04-2021)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -94,9 +94,9 @@ Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
 
 $\sum\limits_{i=1}^{n}{x_iy_i}$
 
-$\sum\limits_{i=1}^{n}{x_i y_i}= x_1 y_1 + x_2 y_2 + x_3 y_3 + x_4 y_4 + x_5 y_5$
+$\sum\limits_{i=1}^{n}{x_i y_i}= x_1 \cdot y_1 + x_2 \cdot y_2 + x_3 \cdot y_3 + x_4 \cdot y_4 + x_5 \cdot y_5$
 
-$\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot(2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot(1) + 7 \cdot(2)$
+$\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot (2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot(1) + 7 \cdot(2)$
 
 $\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
 
@@ -111,12 +111,11 @@ $\sum\limits_{i=1}^{n}{k}= k + k + \cdots + k = n \dot k$
 
 ii) A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
 
-$\sum\limits_{i=1}^{n}{kx_i} = kx_1 + kx_2 + \cdots + kx_n = k \cdot  (x_1 + x_2+ \cdots x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
-
+$\sum\limits_{i=1}^{n}{kx_i} = kx_1 + kx_2 + \cdots + kx_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
 
 iii) A somatória da adição de duas variáveis é igual à adição das somas dessas duas variáveis:
 
-$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots x_n + y_n) =(x_1 + x_2 + \cdots x_n) + (y_1 + y_2 + \cdots y_n)$
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n) =(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)$
 
 $\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}$
 
@@ -124,7 +123,7 @@ $\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=
 
 ## Exercícios
 
-iv) Calcular, portanto $\sum\limits_{i=1}^{n}{(kx_i+k)}=?$
+iv) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
 
 
 v) Dado a média sendo: 
@@ -137,6 +136,47 @@ $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
 
 ---
 
+### Resposta
+
+iv) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+
+--
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{ k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+--
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+--
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = k \cdot \sum\limits_{i=1}^{n}{x_i} + n \cdot k$
+
+
+---
+
+### Resposta
+
+v) Dado: $\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$, 
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}$
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}$
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
+
+
+---
 class: middle, center, inverse
 
 # ANÁLISE COMBINATÓRIA E MÉTODOS DE NUMERAÇÃO

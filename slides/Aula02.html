@@ -70,7 +70,7 @@ Exemplo de mecânica clássica, astronomia, termodinâmica, circuítos elétrico
 Para um grande número de situação na natureza, o modelo matemático determinístico apresentado é suficiente, contudo existem fenômenos que requerem um modelo matemático diferente:
 
 
-### ModelosEstocásticos (não-determinísticos ou probabilístico): 
+### Modelos Estocásticos (não-determinísticos ou probabilístico): 
 
 Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento **probabilístico** do resultado observável. 
 
@@ -147,7 +147,7 @@ Cada número desses constituem os **DADOS** e a característica comum entre eles
 Onde:  
 **id** é a identificação do aluno;   
 **sexo**: "M" masculino e "F" feminino;  
-**cor_cabelo**: "P" - Preto, "CC" - Castanho Claro, "CE" - Castanho Escuro, "L" - Loiro, "R - Ruivo";  
+**cor_cabelo**: "P" - Preto, "C" - Castanho, "CC" - Castanho Claro, "CE" - Castanho Escuro, "L" - Loiro, "R - Ruivo";  
 **GA**: é o grau de alcoolismo: "nao_consome" &lt; "pouco" &lt; "socialmente" &lt; "mais_social";  
 **altura**: altura declarada pelo aluno em `\(m\)`;  
 **idade**: idade do aluno ao cursar a disciplina (Estatística e Bioestatística).
@@ -169,15 +169,15 @@ head(dados_turmas, n=7)
 
 ```
 ## # A tibble: 7 x 6
-##      id sexo  cor_cabelo GA          altura idade
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
-## 1     1 F     CC         mais_social   1.68    19
-## 2     2 F     CE         nao_consome   1.59    20
-## 3     3 F     CC         pouco         1.7     49
-## 4     4 F     CE         socialmente   1.5     20
-## 5     5 M     CE         mais_social   1.76    23
-## 6     6 M     CC         pouco         1.6     28
-## 7     7 M     L          nao_consome   1.84    19
+##      id sexo  cor_cabelo GA          altura idade_anos
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;
+## 1     1 F     CC         mais_social   1.68         19
+## 2     2 F     CE         nao_consome   1.59         20
+## 3     3 F     CC         pouco         1.7          49
+## 4     4 F     CE         socialmente   1.5          20
+## 5     5 M     CE         mais_social   1.76         23
+## 6     6 M     CC         pouco         1.6          28
+## 7     7 M     L          nao_consome   1.84         19
 ```
 
 ---
