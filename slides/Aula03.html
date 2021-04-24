@@ -13,7 +13,7 @@
 class: center, middle, inverse, title-slide
 
 # Estatística e Informática
-## Aula 03 - Somatório e Combinatório
+## Aula 03 - Somatório e Análise Combinatória
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
 ### (29-04-2021)
@@ -105,7 +105,7 @@ Dado `\(X = \{3,0,5,9,7\}\)` e `\(Y = \{2,3,9,1,2\}\)`, calcular:
 
 i) A somatória de uma constante `\((k)\)` é igual a `\(nk\)`.
 
-`\(\sum\limits_{i=1}^{n}{k}= k + k + \cdots + k = n \dot k\)`
+`\(\sum\limits_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k\)`
 
 
 ii) A somatória dos produtos de uma constante `\(k\)` e uma variável `\(X\)` é igual ao produto da constante pela soma dos valores da variável.
@@ -174,11 +174,114 @@ v) Dado: `\(\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}\)`,
 
 `\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0\)`
 
-
 ---
 class: middle, center, inverse
 
 # ANÁLISE COMBINATÓRIA E MÉTODOS DE NUMERAÇÃO
+
+---
+## Probabilidade e Análise Combinatória
+
+A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número 5 sair no lançamento de um dado. Ou no lançamento de 4 moedas, sair pelo menos uma face **Cara**.
+
+.pull-left[
+&lt;img src="https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?cs=srgb&amp;dl=pexels-pixabay-37534.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"&gt;&lt;/img&gt;]
+
+.pull-right[
+&lt;img src="https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?cs=srgb&amp;dl=pexels-pixabay-210600.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"&gt;&lt;/img&gt;]
+
+
+A partir disso, a probabilidade é determinada pela razão entre o número de eventos possíveis e número de eventos favoráveis, sendo apresentada pela seguinte expressão:
+
+`$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}}$$`
+
+onde `\(P(E)\)` é a probabilidade de ocorrência do evento `\(E\)`.
+
+---
+Vamos imaginar a segunte situação: um rebanho é composto por 100 animais, temos 20 indivíduos doentes e 80 sadios. 
+
+&lt;img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&amp;dl=pexels-pixabay-162801.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 25%"&gt;&lt;/img&gt;
+
+Qual a probabilidade de, em uma amostra aleatória simples de 5 animais, selecionarmos 3 animais sadios e 2 animais doentes?
+
+--
+
+Para respondermos essa quetão precisaremos calcular:
+
+--
+
+#### `\(\text{nº de resultados favoráveis}\)`
+
+Ou seja, de quantas maneiras poderemos escolher 3 animais do total de 80 sadios e 2 animais dos 20 doentes.
+
+--
+
+#### `\(\text{nº total de resultados possíveis}\)`
+
+De quantas maneiras poderemos escolher 5 animais (independente de serem sadios ou doentes) em um total de 100 animais.
+
+---
+
+## Análise Combinatória
+
+Portanto, para calcularmos a probabilidade do evento (escolher 3 animais sadios e 2 doentes), faz-se necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (Permutações, Arranjos e Combinações).
+
+### Princípio Fundamental da Contagem
+
+O princípio fundamental da contagem, também chamado de princípio multiplicativo, postula que:
+
+ &gt;“quando um evento é composto por `\(n\)` etapas sucessivas e **independentes**, de tal modo que as possibilidades da primeira etapa é `\(x\)` e as possibilidades da segunda etapa é `\(y\)`, o número total de possibilidades do evento ocorrer é dado pelo produto `\((x) \cdot (y)\)`”.
+
+Em resumo, no princípio fundamental da contagem, multiplica-se o número de opções entre as escolhas que lhe são apresentadas.
+
+---
+
+**Exemplos**
+
+1. Em um restaurante, há 5 aperitivos no menu, 10 entradas principais e 4 sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
+
+2. Suponha que eu lance uma moeda 3 vezes e registre a sequência de cara ($H$) e coroa ($T$) e, em seguida, lance um dado de 6 lados 4 vezes e registre o número lançado. Quantos resultados diferentes são possíveis?
+
+3. Um teste é aplicado com 5 questões de verdadeiro / falso e 20 questões de múltipla escolha (MC), cada uma com 5 respostas possíveis. Se uma pergunta Verdadeiro / Falso pode ser deixada em branco, mas todas as perguntas MC devem ser respondidas, quantas maneiras existem para completar o teste?
+
+4. Quantos códigos numéricos de 5 dígitos são possíveis se:  
+(a) não há restrições?  
+(b) o primeiro dígito não pode ser `\(0\)`?  
+(c) nenhuma repetição é permitida?  
+(d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
+
+5. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média 435 milhões senhas por segundo:   
+(a) qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
+(a) qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com 9 dígitos?
+
+---
+## Permutações
+
+Quando estamos preocupados e responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos `\(n\)` objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
+
+Dado o conjunto de letras `\(L={a, b, c}\)`, de quantas maneiras podemos permutá-las?
+
+-- `\({a,b,c}\)`     
+-- `\({a,c,b}\)`  
+-- `\({b,a,c}\)`     
+-- `\({b,c,a}\)`  
+-- `\({c,a,b}\)`     
+-- `\({c,b,a}\)`  
+
+--
+
+Equivale em colocar os elementos dentro de caixas com `\(n\)` compartimentos em alguma ordenação. E como consequência do princípio da multiplicação, as maneiras com as quais os elementos são dispostos dentro da caixa é multiplicado pelas maneiras possíveis da caixa seguinte, e assim sucessivamente, ou seja:
+
+
+---
+
+## Arranjos
+
+---
+
+## Combinações 
+
+Voltemos ao exemplo 1 do slide anterior, mas agora gostaríamos de calcular quantas maneiras uma refeição pode ser pode ser solicitada por um casal? Ou seja, serão pedidos dois aperitivo, um prato principal e uma sobremesa forem escolhidos?
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
