@@ -262,25 +262,47 @@ Quando estamos preocupados e responder "de quantas maneiras um evento pode ocorr
 
 Dado o conjunto de letras $L={a, b, c}$, de quantas maneiras podemos permutá-las?
 
--- ${a,b,c}$     
--- ${a,c,b}$  
--- ${b,a,c}$     
--- ${b,c,a}$  
--- ${c,a,b}$     
--- ${c,b,a}$  
+--
+
+${a,b,c}$     
+${a,c,b}$  
+${b,a,c}$     
+${b,c,a}$  
+${c,a,b}$     
+${c,b,a}$  
 
 --
 
+
 Equivale em colocar os elementos dentro de caixas com $n$ compartimentos em alguma ordenação. E como consequência do princípio da multiplicação, as maneiras com as quais os elementos são dispostos dentro da caixa é multiplicado pelas maneiras possíveis da caixa seguinte, e assim sucessivamente, ou seja:
-
-```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
-```
-
 
 ---
 
+## Permutações
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
+```
+
+$$n! = n \cdot (n-1) \cdot (n-2) \cdots (2) \cdot (1)$$
+$$3! = 3 \cdot (3-1) \cdot(3-2) = 3 \cdot 2 \cdot 1 = 6$$
+
+Exemplos:
+
+1. Quantos números de 7 algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7?
+
+2. Quantos números de 7 algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo 6 seja imediatamente seguido pelo algarismo 7?
+
+3. Três (03) chineses, 04 americanos e 05 italianos serão dispostos em fila (dispostos em linha reta, respeitando o distanciamento social e todos usando máscaras) de modo que as pessoas da mesma nacionalidade estejam sempre juntas. De quantas maneiras a fila poderá ser formada, de modo que o primeiro da fila sempre seja um italiano?
+
+---
 ## Arranjos
+
+O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ e vamos tomar $r$ elementos desses $n$ (sempre com $r<n$), de quantas maneiras poderesmo **dispor** os $r$ elementos amostrados?
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
+```
 
 ---
 
