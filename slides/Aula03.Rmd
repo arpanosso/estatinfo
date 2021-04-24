@@ -298,14 +298,32 @@ Exemplos:
 ---
 ## Arranjos
 
-O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ e vamos tomar $r$ elementos desses $n$ (sempre com $r<n$), de quantas maneiras poderesmo **dispor** os $r$ elementos amostrados?
+O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ e vamos tomar $r$ elementos desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
+```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png")
 ```
+
+
+$A^n_p= \frac{n!}{(n-r)!}$
+
+--
+
+1) A senha de uma conta bancária é formada de 6 números ou de 4 números dentre os números de 0 a 9, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos,
+
+Quantas senhas podem ser formadas no banco Banco do Brasil que utiliza 6 números, e no banco Santander que utiliza 4 números?
+
+2) Quantos números de 4 algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
 
 ---
 
 ## Combinações 
 
-Voltemos ao exemplo 1 do slide anterior, mas agora gostaríamos de calcular quantas maneiras uma refeição pode ser pode ser solicitada por um casal? Ou seja, serão pedidos dois aperitivo, um prato principal e uma sobremesa forem escolhidos?
+Semelhante aos arranjo, nas **Combinações** temos $n$ elementos e vamos amostrar $r$ elementos ($0<r<n$), e estamos interessados em contar de quantas maneiras poderemos **dispor** os $r$ elementos amostrados de modo que **a ordem** com a qual os elementos serão dispostos **NÃO IMPORTA** para a contagem.
+
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png")
+```
+
+
