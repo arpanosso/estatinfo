@@ -202,7 +202,7 @@ Vamos imaginar a segunte situação: um rebanho é composto por 100 animais, tem
 
 &lt;img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&amp;dl=pexels-pixabay-162801.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 25%"&gt;&lt;/img&gt;
 
-Qual a probabilidade de, em uma amostra aleatória simples de 5 animais, selecionarmos 3 animais sadios e 2 animais doentes?
+Qual a probabilidade de, em uma amostra aleatória simples de 5 animais, selecionarmos 2 animais doentes e 3 animais sadios?
 
 --
 
@@ -218,7 +218,7 @@ Ou seja, de quantas maneiras poderemos escolher 3 animais do total de 80 sadios 
 
 #### `\(\text{nº total de resultados possíveis}\)`
 
-De quantas maneiras poderemos escolher 5 animais (independente de serem sadios ou doentes) em um total de 100 animais.
+De quantas maneiras poderemos escolher 5 animais (independentemente de serem sadios ou doentes) em um total de 100 animais.
 
 ---
 
@@ -268,8 +268,7 @@ Dado o conjunto de letras `\(L={a, b, c}\)`, de quantas maneiras podemos permut�
 
 --
 
-
-Equivale em colocar os elementos dentro de caixas com `\(n\)` compartimentos em alguma ordenação. E como consequência do princípio da multiplicação, as maneiras com as quais os elementos são dispostos dentro da caixa é multiplicado pelas maneiras possíveis da caixa seguinte, e assim sucessivamente, ou seja:
+Equivale em colocar os elementos dentro de caixas com `\(n\)` compartimentos em alguma ordenação. E como consequência do princípio da multiplicação, as possibilidades de inserção dentro dentro da caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente, ou seja:
 
 ---
 
@@ -300,9 +299,9 @@ O arranjo é uma extensão do conceito de fatorial de modo que, se temos `\(n\)`
 
 --
 
-1) A senha de uma conta bancária é formada de 6 números ou de 4 números dentre os números de 0 a 9, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos,
+1) A senha de uma conta bancária é formada de 6 números ou de 4 números dentre os números de 0 a 9, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
 
-Quantas senhas podem ser formadas no banco Banco do Brasil que utiliza 6 números, e no banco Santander que utiliza 4 números?
+Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza 6 números, e no banco Santander que utiliza 4 números?
 
 2) Quantos números de 4 algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
 
@@ -320,24 +319,24 @@ Assim, teremos que descontar dos Arranjos de `\(r\)` elementos as permutações 
 
 ## Combinações
 
-Voltando para o exemplo do rebanho composto por 100 animais, temos 20 indivíduos doentes e 80 sadios, no qual devemos calcular a probabilidade de em uma amostra de 5 animais selecionarmos 3 animais sadios e 2 animais doentes?
+Voltando para o exemplo do rebanho composto por 100 animais, onde temos 20 indivíduos doentes e 80 sadios, vamos calcular a probabilidade de em uma amostra de 5 animais selecionarmos 2 animais doentes e 3 animais sadios:
 
 #### `\(\text{nº de resultados favoráveis}\)`
 
-Ou seja, de quantas maneiras poderemos escolher 3 animais do total de 80 sadios e 2 animais dos 20 doentes.
+Ou seja, de quantas maneiras poderemos escolher 2 animais do total de 20 doentes e 3 animais dos 80 sadios
 
-`\(C^{80}_3 \cdot C^{20}_2 = {80 \choose 3} \cdot {20 \choose 2}\)`
+`\(C^{20}_2 \cdot C^{80}_3 = {20 \choose 2} \cdot {80 \choose 3}\)`
 
-`\(C^{80}_3 \cdot C^{20}_2 = \frac{80!}{3!(80-3)!} \cdot \frac{20!}{3!(20-2)!}\)`
+`\(C^{20}_2 \cdot C^{80}_3  = \frac{20!}{2!(20-2)!} \cdot \frac{80!}{3!(80-3)!}\)`
 
-`\(C^{80}_3 \cdot C^{20}_2 = \frac{80!}{3!(80-3)!} \cdot \frac{20!}{3!(20-2)!} = 82160 \cdot 190\)`
+`\(C^{20}_2 \cdot C^{80}_3  = 190 \cdot 82160\)`
 
-`\(C^{80}_3 \cdot C^{20}_2 = \frac{80!}{3!(80-3)!} \cdot \frac{20!}{3!(20-2)!} = 15610400\)`
+`\(C^{20}_2 \cdot C^{80}_3  = 15610400\)`
 ---
 
 #### `\(\text{nº total de resultados possíveis}\)`
 
-De quantas maneiras poderemos escolher 5 animais (independente de serem sadios ou doentes) em um total de 100 animais.
+Devemos calcular agora de quantas maneiras poderemos escolher 5 animais (independente de serem sadios ou doentes) em um total de 100 animais.
 
 `\(C^{100}_5 = {100 \choose 5}\)`
 
@@ -345,13 +344,13 @@ De quantas maneiras poderemos escolher 5 animais (independente de serem sadios o
 
 `\(C^{100}_5  = 75287520\)`
 
-Finalmente, a probabilidade do evento, amostrar 3 indivíduos sadios e 2 doentes será dada por:
+Finalmente, a probabilidade do evento, amostrar 2 indivíduos doentes e 3 sadios será:
 
-`$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15610400}{75287520}=0,20734 =20,73\%$$`
+`$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15610400}{75287520}=0,20734 \text{ ou } 20,73\%$$`
 
-Agora que temos uma fórmula, podemos calcular a probabilidade de, em uma amostra de 5 animais tomarmos:
+Agora que temos uma fórmula, podemos calcular a probabilidade de nessa amostragem de 5 animais tomarmos:
 
-a) todos saidos.  
+a) todos sadios (nenhum doente).  
 b) 01 doente e 04 sadios.  
 c) 02 doentes e 03 sadios.  
 d) 03 doentes e 01 sadio.  
@@ -363,7 +362,7 @@ e) todos doentes.
 
 Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de probabilidade muito conhecida na estatística, denominada **Distribuição Hipergeométrica**.
 
-Considere uma população com `\(N\)` objetos nos quais `\(M\)` são classificados como do tipo `\(A\)` e `\(N−M\)` são classificados como do tipo `\(B\)`. Tomamos uma amostra ao acaso, sem reposição e não ordenada de `\(r\)` objetos. Seja `\(X\)` a variável que conta o número de objetos classificados como do tipo `\(A\)` na amostra. Então a distribuição de probabilidade de `\(X\)` é dada por:
+Considere uma população com `\(N\)` objetos nos quais `\(M\)` são classificados como do tipo `\(A\)` e `\(N−M\)` são classificados como do tipo `\(B\)`. Tomamos uma amostra ao acaso, sem reposição e não ordenada de `\(r\)` objetos. Seja `\(X\)` a variável que conta o número de objetos classificados como do tipo `\(A\)` na amostra. Então a distribuição de probabilidade de `\(X\)` será dada por:
 
 `$$P(X = x) = \frac{ {M \choose x} \cdot { {N-M} \choose {r - x} } } { {N \choose r}}$$`
 Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
@@ -381,8 +380,33 @@ text(1:length(x),px+.05,round(px*100,2))
 ```
 
 ---
+class: middle, center
+## Distribuição Hipergeométrica
 
+
+
+`$$X \sim Hgeo(20,100,5)$$`
+
+.pull-left[
 &lt;img src="Aula03_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+```
+## # A tibble: 6 x 2
+##       x       px
+##   &lt;int&gt;    &lt;dbl&gt;
+## 1     0 0.319   
+## 2     1 0.420   
+## 3     2 0.207   
+## 4     3 0.0478  
+## 5     4 0.00515 
+## 6     5 0.000206
+```
+
+]
+
 ---
 No Excel, temos:
 
