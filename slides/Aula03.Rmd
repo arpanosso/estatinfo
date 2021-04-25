@@ -372,7 +372,7 @@ Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de pr
 
 Considere uma população com $N$ objetos nos quais $M$ são classificados como do tipo $A$ e $N−M$ são classificados como do tipo $B$. Tomamos uma amostra ao acaso, sem reposição e não ordenada de $r$ objetos. Seja $X$ a variável que conta o número de objetos classificados como do tipo $A$ na amostra. Então a distribuição de probabilidade de $X$ é dada por:
 
-$$P(X = x) = \frac{{M \choose x} \cdot {N-M \choose r - x} }{ N \choose r}$$
+$$P(X = x) = \frac{{M \choose x}} \cdot {N-M \choose r - x} }{ N \choose r}$$
 Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
 
 ```{r,echo=TRUE,eval=FALSE}
