@@ -316,8 +316,82 @@ Quantas senhas podem ser formadas no banco Banco do Brasil que utiliza 6 número
 
 Semelhante aos arranjo, nas **Combinações** temos `\(n\)` elementos e vamos amostrar `\(r\)` elementos ($0&lt;r&lt;n$), e estamos interessados em contar de quantas maneiras poderemos **combinar** os `\(r\)` elementos amostrados, nesse caso **a ordem** com a qual os elementos são amostrados **NÃO IMPORTA** para a contagem.
 
-
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+Assim, teremos que descontar dos Arranjos de `\(r\)` elementos as permutações desses `\(r\)` elementos, para isso, basta dividirmos os Arranjos por `\(r!\)` ou seja `\(C^n_r={n \choose x}\)`.
+
+---
+
+## Combinações
+
+Voltando para o exemplo do rebanho composto por 100 animais, temos 20 indivíduos doentes e 80 sadios, no qual devemos calcular a probabilidade de em uma amostra de 5 animais selecionarmos 3 animais sadios e 2 animais doentes?
+
+#### `\(\text{nº de resultados favoráveis}\)`
+
+Ou seja, de quantas maneiras poderemos escolher 3 animais do total de 80 sadios e 2 animais dos 20 doentes.
+
+`\(C^{80}_3 \cdot C^{20}_2 = {80 \choose 3} \cdot {20 \choose 2}\)`
+
+`\(C^{80}_3 \cdot C^{20}_2 = \frac{80!}{3!(80-3)!} \cdot \frac{20!}{3!(20-2)!}\)`
+
+`\(C^{80}_3 \cdot C^{20}_2 = \frac{80!}{3!(80-3)!} \cdot \frac{20!}{3!(20-2)!} = 82160 \cdot 190\)`
+
+`\(C^{80}_3 \cdot C^{20}_2 = \frac{80!}{3!(80-3)!} \cdot \frac{20!}{3!(20-2)!} = 15610400\)`
+---
+
+#### `\(\text{nº total de resultados possíveis}\)`
+
+De quantas maneiras poderemos escolher 5 animais (independente de serem sadios ou doentes) em um total de 100 animais.
+
+`\(C^{100}_5 = {100 \choose 5}\)`
+
+`\(C^{100}_5 = \frac{100!}{5!(100-5)!}\)`
+
+`\(C^{100}_5  = 75287520\)`
+
+Finalmente, a probabilidade do evento, amostrar 3 indivíduos sadios e 2 doentes será dada por:
+
+`$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15610400}{75287520}=0,20734 =20,73\%$$`
+
+Agora que temos uma fórmula, podemos calcular a probabilidade de, em uma amostra de 5 animais tomarmos:
+
+a) todos saidos.  
+b) 01 doente e 04 sadios.  
+c) 02 doentes e 03 sadios.  
+d) 03 doentes e 01 sadio.  
+e) todos doentes.
+
+---
+
+## Distribuição de Probabilidade 
+
+Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de probabilidade muito conhecida na estatística, denominada **Distribuição Hipergeométrica**.
+
+Considere uma população com `\(N\)` objetos nos quais `\(M\)` são classificados como do tipo `\(A\)` e `\(N−M\)` são classificados como do tipo `\(B\)`. Tomamos uma amostra ao acaso, sem reposição e não ordenada de `\(r\)` objetos. Seja `\(X\)` a variável que conta o número de objetos classificados como do tipo `\(A\)` na amostra. Então a distribuição de probabilidade de `\(X\)` é dada por:
+
+`$$P(X = x) = \frac{{M \choose x} \cdot {N-M \choose r - x} }{ N \choose r}$$`
+Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
+
+
+```r
+N = 100 # número total de elementos
+M = 20 # número total de elementos de interesse (doentes)
+r = 5 # tamamho da amostra
+x=0:r # os possiveis valores de doentes na amostra
+px&lt;-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
+barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.5),
+        xlab="nº de doentes na amostra",ylab="P(X=x")
+text(1:length(x),px+.05,round(px*100,2))
+```
+
+---
+
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+---
+No Excel, temos:
+
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/distri_hypes.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 
     </textarea>
