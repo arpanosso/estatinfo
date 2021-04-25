@@ -240,17 +240,13 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 1. Em um restaurante, há 5 aperitivos no menu, 10 entradas principais e 4 sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
 
-2. Suponha que eu lance uma moeda 3 vezes e registre a sequência de cara ($H$) e coroa ($T$) e, em seguida, lance um dado de 6 lados 4 vezes e registre o número lançado. Quantos resultados diferentes são possíveis?
-
-3. Um teste é aplicado com 5 questões de verdadeiro / falso e 20 questões de múltipla escolha (MC), cada uma com 5 respostas possíveis. Se uma pergunta Verdadeiro / Falso pode ser deixada em branco, mas todas as perguntas MC devem ser respondidas, quantas maneiras existem para completar o teste?
-
-4. Quantos códigos numéricos de 5 dígitos são possíveis se:  
+2. Quantos códigos numéricos de 5 dígitos são possíveis se:  
 (a) não há restrições?  
 (b) o primeiro dígito não pode ser `\(0\)`?  
 (c) nenhuma repetição é permitida?  
 (d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
 
-5. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média 435 milhões senhas por segundo:   
+3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média 435 milhões senhas por segundo:   
 (a) qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
 (a) qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com 9 dígitos?
 
@@ -374,10 +370,10 @@ Assim, vamos construir essa distribuição no R para termos todas as probabilida
 
 
 ```r
-N = 100 # número total de elementos
-M = 20 # número total de elementos de interesse (doentes)
-r = 5 # tamamho da amostra
-x=0:r # os possiveis valores de doentes na amostra
+N = 100 # Número total de elementos na população
+M = 20 # número total de elementos de interesse (doentes) na população
+r = 5 # tamanho da amostra.
+x=0:r # os possiveis valores de doentes na amostra.
 px&lt;-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
 barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.5),
         xlab="nº de doentes na amostra",ylab="P(X=x")
@@ -391,7 +387,7 @@ text(1:length(x),px+.05,round(px*100,2))
 No Excel, temos:
 
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/distri_hypes.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/distri_hyper.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
     </textarea>
