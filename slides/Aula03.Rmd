@@ -62,7 +62,7 @@ será representada pela notação:
 
 $\sum\limits_{i=1}^{n}{x_i} = x_1 + x_2 + x_3 + x_4 + x_5$
 
-onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos valores 5 de $X$
+onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos 5 valores  de $X$
 
 ---
 
@@ -414,7 +414,7 @@ x=0:r # os possiveis valores de doentes na amostra
 px<-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
 barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.5),
         xlab="nº de doentes na amostra",ylab="P(X=x)",main="X~Hgeo(20,100,5)")
-text(1:length(x),px+.05,round(px*100,2))
+text(seq(.7, length(x)+1, 1.2),px+.05,round(px,2))
 ```
 ]
 
