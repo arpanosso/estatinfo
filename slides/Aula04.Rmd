@@ -56,6 +56,9 @@ Quando se estuda uma variável, deve-se conhecer a distribuição de frequência
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ]
 
 ---
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> 
+---
+4.
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
 
@@ -71,3 +74,4 @@ dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
 View(dados_turmas)
 ```
 
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
