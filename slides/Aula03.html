@@ -116,8 +116,7 @@ sum(X*Y)
 
 No Excel
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/somarproduto_excel.png" width="70%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/somarprod_excel.png" width="100%" style="display: block; margin: auto;" /&gt;
 ---
 
 ## Propriedades da Somatória
@@ -272,7 +271,7 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 ---
 ## Permutações
 
-Quando estamos preocupados e responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos `\(n\)` objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
+Quando estamos preocupados em responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos `\(n\)` objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
 
 Dado o conjunto de letras `\(L={a, b, c}\)`, de quantas maneiras podemos permutá-las?
 
@@ -287,7 +286,7 @@ Dado o conjunto de letras `\(L={a, b, c}\)`, de quantas maneiras podemos permut�
 
 --
 
-Equivale em colocar os elementos dentro de caixas com `\(n\)` compartimentos em alguma ordenação. E como consequência do princípio da multiplicação, as possibilidades de inserção dentro dentro da caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente, ou seja:
+Equivale em colocar os elementos dentro de caixas com `\(n\)` compartimentos em alguma ordenação. E como consequência do princípio da multiplicação, as possibilidades de inserção dentro dentro de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente, ou seja:
 
 ---
 
@@ -320,7 +319,7 @@ O arranjo é uma extensão do conceito de fatorial de modo que, se temos `\(n\)`
 
 1) A senha de uma conta bancária é formada de 6 números ou de 4 números dentre os números de 0 a 9, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
 
-Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza 6 números, e no banco Santander que utiliza 4 números?
+Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza 6 números, e no banco Santander que utiliza 4 números, seguindo o conselho dos gerentes?
 
 2) Quantos números de 4 algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
 
@@ -332,7 +331,7 @@ Semelhante aos arranjo, nas **Combinações** temos `\(n\)` elementos e vamos am
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-Assim, teremos que descontar dos Arranjos de `\(r\)` elementos as permutações desses `\(r\)` elementos, para isso, basta dividirmos os Arranjos por `\(r!\)` ou seja `\(C^n_r={n \choose x}\)`.
+Assim, teremos que descontar dos Arranjos de `\(r\)` elementos as permutações desses `\(r\)` elementos, para isso, basta dividirmos os Arranjos por `\(r!\)` ou seja `\(C^n_r={r \choose x}\)`.
 
 ---
 
@@ -367,9 +366,9 @@ Finalmente, a probabilidade do evento, amostrar 2 indivíduos doentes e 3 sadios
 
 `$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15610400}{75287520}=0,20734 \text{ ou } 20,73\%$$`
 
-Agora que temos uma fórmula, podemos calcular a probabilidade de nessa amostragem de 5 animais tomarmos:
+Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de 5 animais tomarmos:
 
-a) todos sadios (nenhum doente).  
+a) nenhum animal doente (todos sadios).  
 b) 01 doente e 04 sadios.  
 c) 02 doentes e 03 sadios.  
 d) 03 doentes e 01 sadio.  
@@ -379,7 +378,7 @@ e) todos doentes.
 
 ## Distribuição de Probabilidade 
 
-Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de probabilidade muito conhecida na estatística, denominada **Distribuição Hipergeométrica**. 
+Essa fórmula que acbamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
 
 Considere uma população com `\(N\)` objetos nos quais `\(M\)` são classificados como do tipo `\(A\)` e `\(N−M\)` são classificados como do tipo `\(B\)`. Tomamos uma amostra ao acaso, sem reposição e não ordenada de `\(r\)` objetos. Seja `\(X\)` a variável que conta o número de objetos classificados como do tipo `\(A\)` na amostra. Então a distribuição de probabilidade de `\(X\)` será dada por:
 
@@ -394,7 +393,7 @@ r = 5 # tamanho da amostra.
 x=0:r # os possiveis valores de doentes na amostra.
 px&lt;-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
 barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.5),
-        xlab="nº de doentes na amostra",ylab="P(X=x)")
+        xlab="nº de doentes na amostra",ylab="P(X=x)",main="X~Hgeo(20,100,5)")
 text(1:length(x),px+.05,round(px*100,2))
 ```
 
@@ -402,9 +401,6 @@ text(1:length(x),px+.05,round(px*100,2))
 class: middle, center
 ## Distribuição Hipergeométrica
 
-
-
-`$$X \sim Hgeo(20,100,5)$$`
 
 .pull-left[
 &lt;img src="Aula03_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
@@ -424,7 +420,7 @@ class: middle, center
 ## 6     5 0.000206
 ```
 
-**OBS**: O número de doentes em uma amostra de 5 animais pode variar de 0 a 5, a essas possibilidades denominamos espaço amostral (letras `\(S\)` ou `\(\omega\)`), e a soma de suas probabilidades é sempre igual a `\(1\)`:
+**OBS**: O número de doentes da amostra de 5 animais pode variar de 0 a 5, ao conjunto dessas possibilidades denominamos espaço amostral (letras `\(\omega\)` ou `\(S\)`), com a soma de suas probabilidades é sempre igual a `\(1\)`:
 
 `\(\sum \limits_{x=0}^r P(x_i) = 1\)`
 
