@@ -100,6 +100,22 @@ $\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot (2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot
 
 $\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
 
+No R
+
+```{r, echo=TRUE}
+X=c(3,0,5,9,7)
+Y=c(2,3,9,1,2)
+sum(X*Y)
+```
+
+---
+
+No Excel
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarproduto_excel.png")
+```
+
 ---
 
 ## Propriedades da Somatória
@@ -367,7 +383,7 @@ e) todos doentes.
 
 ## Distribuição de Probabilidade 
 
-Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de probabilidade muito conhecida na estatística, denominada **Distribuição Hipergeométrica**.
+Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de probabilidade muito conhecida na estatística, denominada **Distribuição Hipergeométrica**. 
 
 Considere uma população com $N$ objetos nos quais $M$ são classificados como do tipo $A$ e $N−M$ são classificados como do tipo $B$. Tomamos uma amostra ao acaso, sem reposição e não ordenada de $r$ objetos. Seja $X$ a variável que conta o número de objetos classificados como do tipo $A$ na amostra. Então a distribuição de probabilidade de $X$ será dada por:
 
@@ -410,6 +426,10 @@ text(1:length(x),px+.05,round(px*100,2))
 ```{r}
 tibble::tibble(x,px)
 ```
+
+**OBS**: O número de doentes em uma amostra de 5 animais pode variar de 0 a 5, a essas possibilidades denominamos espaço amostral (letras $S$ ou $\omega$), e a soma de suas probabilidades é sempre igual a $1$:
+
+$\sum \limits_{x=0}^r P(x_i) = 1$
 
 ]
 

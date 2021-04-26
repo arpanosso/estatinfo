@@ -99,6 +99,25 @@ Dado `\(X = \{3,0,5,9,7\}\)` e `\(Y = \{2,3,9,1,2\}\)`, calcular:
 
 `\(\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74\)`
 
+No R
+
+
+```r
+X=c(3,0,5,9,7)
+Y=c(2,3,9,1,2)
+sum(X*Y)
+```
+
+```
+## [1] 74
+```
+
+---
+
+No Excel
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/somarproduto_excel.png" width="70%" style="display: block; margin: auto;" /&gt;
+
 ---
 
 ## Propriedades da Somatória
@@ -360,7 +379,7 @@ e) todos doentes.
 
 ## Distribuição de Probabilidade 
 
-Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de probabilidade muito conhecida na estatística, denominada **Distribuição Hipergeométrica**.
+Essa fórmula que acamamos de encontrar decreve uma ditribuição discreta de probabilidade muito conhecida na estatística, denominada **Distribuição Hipergeométrica**. 
 
 Considere uma população com `\(N\)` objetos nos quais `\(M\)` são classificados como do tipo `\(A\)` e `\(N−M\)` são classificados como do tipo `\(B\)`. Tomamos uma amostra ao acaso, sem reposição e não ordenada de `\(r\)` objetos. Seja `\(X\)` a variável que conta o número de objetos classificados como do tipo `\(A\)` na amostra. Então a distribuição de probabilidade de `\(X\)` será dada por:
 
@@ -388,7 +407,7 @@ class: middle, center
 `$$X \sim Hgeo(20,100,5)$$`
 
 .pull-left[
-&lt;img src="Aula03_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -404,6 +423,10 @@ class: middle, center
 ## 5     4 0.00515 
 ## 6     5 0.000206
 ```
+
+**OBS**: O número de doentes em uma amostra de 5 animais pode variar de 0 a 5, a essas possibilidades denominamos espaço amostral (letras `\(S\)` ou `\(\omega\)`), e a soma de suas probabilidades é sempre igual a `\(1\)`:
+
+`\(\sum \limits_{x=0}^r P(x_i) = 1\)`
 
 ]
 
