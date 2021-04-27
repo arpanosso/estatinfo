@@ -21,16 +21,17 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
-# Distribuição de Frequência de uma Variável
+# Distribuição de Frequência
 
 ---
-## Distribuição de frequências de uma variável
+## Distribuição de frequência de uma variável
 
-Quando se estuda uma variável (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (dados). Portanto, o objetivo dessa aula será apresentar as prinicpais formas e visualização de variáveis quali e quantitativas.
+Quando se estuda uma variável (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (dados). Portanto, o objetivo dessa aula será apresentar as prinicpais formas e visualização de variáveis quali e quantitativas. 
 
 **Exemplo:** Considerando os [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) (**exemplo_dados.xlsx**) amostrados da turma de Estatística e Informática, temos:
 
@@ -55,11 +56,11 @@ Para carregar o banco de dados da turma no R, siga os passos:
 
 ---
 
-4.Selecione **Browse** (destacado em vermelho no canto direito superior) da janela que abrirá e busque o arquivo da base de dados **dados_turma.xlsx** que salvamos na pasta **Donwloads**.
+4.Selecione **Browse** (destacado em vermelho no canto direito superior).
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> 
 ---
-5.Selecione o arquivo de clique em **Open**.
+5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta **Downloads**Selecione o arquivo de clique em **Open**.
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
 
@@ -69,55 +70,59 @@ Para carregar o banco de dados da turma no R, siga os passos:
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
 
 ---
-7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções **Packages/Install** ou `install.packages("readxl")`.
+7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções da aba **Packages/Install** ou com o código `install.packages("readxl")`.
 
-```{r,echo=TRUE,eval=FALSE}
+```{r, eval=FALSE}
 library(readxl)
 dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
 View(dados_turmas)
 ```
 
-```{r,echo=FALSE,eval=TRUE,message=FALSE}
+```{r,echo=FALSE}
 `%>%` <- magrittr::`%>%`
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(readxl)
-dados_turmas <- read_excel("D:/Users/Usuario/Downloads/dados_turmas.xlsx")
+dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
 ```
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
 
 ---
 ### Tamanho da População $(N)$  
-O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
+O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas veses não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
 ### Tamanho da amostra $(n)$  
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 
-```{r,eval=FALSE, echo=TRUE}
+```{r,eval=TRUE}
 library(tidyverse) # não esqueça de instalar o tidyverse para ter o glimpse
 glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
-```
-
-```{r}
-glimpse(dados_turmas)
 ```
 
 
 ---
 ### Exemplo da base de dados das turmas 
 
-Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas e relativas e a porcentagem para as categoria existentes.
+Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas e relativas e a porcentagem para as categoria existentes. Após isso, realizar uma visualização de dados com gráficos de Colunas, Barras e Setores (Pizza oi *Pie*).
 
-Para isso vamos utilizar o R para contar as frequências absolutas das classes presentes na variável qualitativa nominal `sexo`. Precisaremos fazer algumas operações nos dados das turmas e para isso vamos usar o operador PIPE (`%>%`) feito com o atalho `CTRL + SHIFT + M`
+Para isso vamos utilizar o R para contar as frequências absolutas das classes presentes na variável qualitativa nominal `sexo`. Precisaremos fazer algumas operações nos dados das turmas e para isso vamos usar o operador PIPE (`%>%`) feito com o atalho `CTRL + SHIFT + M`. Vamos utilizar a função `n()` para contar cada ocorrencia das diferentes categorias de `sexo`
 
 
-```{r, echo = TRUE, eval=TRUE}
-tab<-dados_turmas %>%
-        group_by(sexo) %>% 
-        summarise(n=n()) # Frequência Absoluta
+.pull-left[
+```{r}
+tab <- dados_turmas %>%
+        group_by(sexo) %>% #<<
+        summarise(ni=n()) #<<
 tab
 ```
+]
+
+.pull-right[
+- `group_by()` a grupa as categorias da variável `sexo`.
+- `summarise` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria e mostrará em `ni`.
+
+]
 ---
 ### Frequência Absoluta $(n_i)$
 
@@ -125,33 +130,52 @@ tab
 
 Então temos $n_F = 17$ e $n_M = 32$, cuja soma é $n=49$
  
- 
+Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes ($k$) da variável cetegória é igual a $n$. 
+
+$$
+\sum \limits_{i=1}^{k}{n_i} = n
+$$
+
+Onde $k$ é o número de categorias da variável em questão, no caso do `sexo`, temos duas ategorias (M e F).
+
 ---
 
-### Frequência Relativa $(f_i)$
+### Frequência Relativa $(f_i)$ ou proporção
 
 É definida como a proporção de cada realização em relação ao Total de observações $(n)$, ou seja:
 
 $$
-F_i = \frac{n_i}{n}
+f_i = \frac{n_i}{n}
 $$
-Vamos, mais uma vez, utilizar o R para conseguirmos esses cálculos.  
+Vamos, mais uma vez, utilizar o R para esses cálculos
+
+.pull-left[
 ```{r, echo = TRUE, eval=TRUE}
 tab <-dados_turmas %>%
         group_by(sexo) %>% 
-        summarise(ni=n()) %>%      # Frequência Absoluta
-        mutate(fi = ni/sum(ni))    # Frequência relativa
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni)) #<<   
 tab
 ```
+]
+
+.pull-right[
+- `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo, no caso a frequência relativa
+
+
 
 Portanto:
-$f_F = \frac{17}{49}=0,34$ e   $f_M = \frac{32}{49}=0,65$
+$f_F = \frac{17}{49}=0,347$ e   $f_M = \frac{32}{49}=0,653$
 
-Observe agora que a soma das frequências relativas sempre é igual a $1$: $\sum \limits_{i=1}^{n} f_i = 1$.
+Assim, temos que a soma das frequências relativas sempre é igual a $1$: 
 
+$\sum \limits_{i=1}^{k} f_i = 1$
+
+onde $k$ é o número de categorias da variável `sexo`, ou seja, $2$.
+]
 ---
 
-### Porcentagem de frequência $(perc \text{ ou } \%)$
+### Porcentagem de frequência $(perc \text{ ou %})$
 
 Definida como o resultado da multiplicação da frequência relativa (proporção) por 100.
 
@@ -165,96 +189,94 @@ tab<-dados_turmas %>%
 tab
 ```
 
-Observe agora que a soma das Porcentagens de frequência é igual a $100\%$.
+**OBS**: A soma das Porcentagens de frequência é igual a $100\%$.
 
-A partir das tabelas de frequências, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados da variável estudada. Essa etapa é a **visualização** de dados. 
+Agora, a partir das tabelas de frequências, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados da variável estudada. 
+
+Essa etapa é a **Visualização de Dados**. 
 
 ---
 class: middle, center, inverse
 
-# Visualização dos dados
-###(variáveis qualitativas)
+# Visualização de Dados
+###(Variáveis Qualitativas)
 
 ---
 ## Visualização dos dados
 
-Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos gráficos de `Barras`, `Colunas` ou de `Setores`. 
+Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
 
-Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o `tidyverse`, e serão construídos a partir dos códigos anteriores. O ggplot funciona com camadas que são adicionadas à representação por meio do operados de adição `+` ao final da linha
+Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`, e serão construídos a partir da tabela `tab` anterior. 
+
+O ggplot funciona com camadas gráficas de represetação e formatação, que são adicionadas à base gráfica por meio do operador de adição `+` digitado ao final da linha.
 
 ### Gráfico de Colunas para Sexo
 
 Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
 
-```{r, echo = TRUE, eval=FALSE}
+```{r, plot1, eval=FALSE}
 tab %>% 
-  ggplot(aes(x=sexo,y=fi)) + 
+  ggplot(aes(x=sexo, y=fi)) + 
   geom_col()
 ```
 
 ---
 ### Gráfico de Colunas para Sexo
 
-```{r, echo = FALSE, eval=TRUE}
-tab %>% 
-  ggplot(aes(x=sexo,y=fi)) + 
-  geom_col()
-```
----
-### Gráfico de Barras para Sexo
-
-Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias, pois muitas vezes são extensos.
-
-```{r, echo = TRUE, eval=FALSE}
-tab %>% 
-  ggplot(aes(x=fi,y=sexo)) + 
-  geom_col(fill="aquamarine4")
+```{r, plot1, echo = FALSE}
 ```
 
 ---
 ### Gráfico de Barras para Sexo
 
-```{r, echo = FALSE, eval=TRUE}
+Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias, pois muitas vezes esses podem ser  extensos.
+.pull-left[
+```{r, plot2, eval=FALSE}
 tab %>% 
   ggplot(aes(x=fi,y=sexo)) + 
-  geom_col(fill="aquamarine4")
+  geom_col(fill="aquamarine4") #<<
 ```
+- o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra para a cor "aquamarine4", outras cores são possíveis tente algumas [das cores do R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
+
+]
+
+.pull-right[
+```{r, plot2, echo = FALSE}
+```
+]
 
 ---
 ### Gráfico de Setores para Sexo
 
-Também conhecido como gráfico de Pizza, ele representa cada valor de frequência (relativa ou absoluta) das diferentes categoras da variável em uma circunferência.
+Também conhecido como gráfico de Pizza (ou torta em inglês *pie*), ele representa cada valor de frequência (relativa ou absoluta) das diferentes categoras da variável em uma circunferência.
 
-```{r, echo = TRUE, eval=FALSE}
+.pull-left[
+```{r, plot3, eval=FALSE}
 tab %>% 
   ggplot(aes(x="",y=fi, fill=sexo)) + 
-  geom_bar(stat="identity",color="white") +
-  coord_polar("y", start=0) +
-  theme_void()
+  geom_bar(stat="identity") + #<<
+  coord_polar("y", start=0) + #<<
+  theme_void() #<<
 ```
+- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
+-A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
+]
+
+.pull-right[
+```{r, plot3, echo = FALSE}
+```
+]
 
 ---
-### Gráfico de Setores para Sexo
-
-```{r, echo = FALSE, eval=TRUE}
-tab %>% 
-  ggplot(aes(x="",y=fi, fill=sexo)) + 
-  geom_bar(stat="identity",color="white") +
-  coord_polar("y", start=0) +
-  theme_void()
-```
+## Tabela de Frequência e para a variável Cor de cabelo
 
 
----
-## Visualização para a variável GA
+Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. Observe que esse é o mesmo código daquele apresentado no slide 13, mas com o nome da coluna `cor_cabelo` ao invés de `sexo` dentro da função `group_by()`
 
 
-Vamos, mais uma vez, utilizar o R para conseguirmos esses cálculos.  
-
-
-```{r, echo = TRUE, eval=TRUE}
+```{r, eval=TRUE}
 tab<-dados_turmas %>%
-      group_by(GA) %>% 
+      group_by(cor_cabelo) %>% #<< 
       summarise(ni=n()) %>%      
       mutate(fi = ni/sum(ni),    
              perc = fi*100)      
@@ -263,71 +285,350 @@ tab
 
 ---
 
-### Gráfico de Colunas para GA
+### Gráfico de Colunas para Cor de cabelo
 
-Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
-
-```{r, echo = TRUE, eval=FALSE}
+.pull-left[
+```{r, plot4, eval=FALSE}
 tab %>% 
-  ggplot(aes(x=GA,y=fi,fill=GA)) + 
+  ggplot(aes(x=cor_cabelo,y=fi,
+             fill=cor_cabelo)) + #<<
   geom_col()
 ```
+- ao passarmos o argumento `fill=cor_cabelo` dentro da função `aes()` estamos pedindo o mapeamento das cores de cabelo a partir de cores de preeenchimento diferentes.
 
----
-### Gráfico de Colunas para GA
+- `aes()` representa a estética do gráfico, ou seja, quem é x, quem é y e quem deve ser mapeado.
+]
 
-```{r, echo = FALSE, eval=TRUE}
-tab %>% 
-  ggplot(aes(x=GA,y=fi,fill=GA)) + 
-  geom_col()
-```
----
-
-### Gráfico de Barras para GA
-
-Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias, pois muitas vezes são extensos.
-
-```{r, echo = TRUE, eval=FALSE}
-tab %>% 
-  ggplot(aes(x=fi,y=GA,fill=GA)) + 
-  geom_col()
+.pull-right[
+```{r, plot4, echo = FALSE}
 ```
 
+]
 ---
-### Gráfico de Barras para GA
 
-```{r, echo = FALSE, eval=TRUE}
+### Gráfico de Barras para Cor de cabelo
+
+.pull-left[
+```{r, plot5, eval=FALSE}
 tab %>% 
-  ggplot(aes(x=fi,y=GA,fill=GA)) + 
+  ggplot(aes(x=fi, y=cor_cabelo,
+             fill=cor_cabelo)) + 
   geom_col()
 ```
+]
+
+.pull-right[
+```{r, plot5, echo = FALSE}
+```
+]
 
 ---
-### Gráfico de Setores para GA
+### Gráfico de Setores para cor_cabelo
 
-Também conhecido como gráfico de Pizza, ele representa cada valor de frequência (relativa ou absoluta) das diferentes categoras da variável em uma circunferência.
-
-```{r, echo = TRUE, eval=FALSE}
+.pull-left[
+```{r, plot6, eval=FALSE}
 tab %>% 
-  ggplot(aes(x="",y=fi, fill=GA)) + 
-  geom_bar(stat="identity",color="white") +
+  ggplot(aes(x="", y=fi, 
+             fill=cor_cabelo)) + 
+  geom_bar(stat="identity") +
   coord_polar("y", start=0) +
   theme_void()
 ```
+]
 
----
-### Gráfico de Setores para GA
-
-```{r, echo = FALSE, eval=TRUE}
-tab %>% 
-  ggplot(aes(x="",y=fi, fill=GA)) + 
-  geom_bar(stat="identity",color="white") +
-  coord_polar("y", start=0) +
-  theme_void()
+.pull-right[
+```{r, plot6, echo = FALSE}
 ```
+]
+
+
 
 ---
 class: middle, center, inverse
 
 # Visualização dos dados
 ###(variáveis quantitativas)
+
+---
+## Tabela de frequência e visualização para Idade em anos (discreta)
+
+Quando a variável quantitativa for discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, recomendamos a utilização dos gráficos `boxplot` e o `histograma`.
+
+.pull-left[
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+        group_by(idade_anos) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni),    
+             perc = fi*100)    
+View(tab)
+```
+]
+
+.pull-right[
+```{r,echo=FALSE}
+tab<-dados_turmas %>%
+        group_by(idade_anos) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni),    
+             perc = fi*100)  
+kableExtra::kable(tab)
+```
+]
+
+
+---
+## Gráfico Boxplot
+.pull-left[
+Conhecido como gráfico dos 5 números representa um resumos dos valores mínimo, primeiro quartil, mediana, terceiro quartil e máximo de uma variável. É  construído a partir de `geom_boxplot()`. 
+
+Observe que dentro da função `ggplot()` não é necessário passar o `x`, somente é atribuído a `y` a variável discreta `idade_anos`.
+
+```{r, plot7, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(y=idade_anos)) +
+  geom_boxplot()
+```
+]
+
+.pull-right[
+```{r,plot7,echo=FALSE}
+```
+
+]
+
+---
+- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a amplitude interquartil (IIQ). 
+
+- No meio da caixa há uma linha que exibe a mediana, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
+  
+- Pontos visuais que exibem observações são aqueles que cairam em mais do que 1,5 vez o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
+  
+-Uma linha (ou bigode de gato, dai o nome *Box and Whiskers*) que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum **outlier**.
+
+---
+Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`.
+
+.pull-left[
+```{r, plot8, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos)) + #<<
+  geom_boxplot()+
+  coord_cartesian(ylim=c(-1,1)) #<<
+```
+]
+.pull-right[
+```{r,plot8,echo=FALSE}
+```
+]
+
+
+---
+
+Outra alternativa para exibir a distribuição de uma variável quntitativa, é desmembrá-la por uma variável categórica aqui no boxplot.
+
+.pull-left[
+```{r, plot9, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(y=idade_anos, 
+             fill=sexo)) +
+  geom_boxplot()
+```
+]
+.pull-right[
+```{r,plot9,echo=FALSE}
+```
+]
+
+
+---
+## Tabela de frequência e visualização para Altura em m (contínua)
+
+Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot` e o `histograma`. 
+
+Devemos, inicialmente construir a tabela de frequência da variável. Devemos lembrar que seus valores não se repetem, pois não sabemos o valor real da observação e sim temos apenas uma aproximação dada pelo instrumento de medida.
+
+
+
+.pull-left[
+
+Assim, vamos criar 5 classes de alturas a partir da função `cut()`.
+
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) #<<
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100)    
+View(tab)
+```
+]
+
+```{r,echo=FALSE}
+tab <- dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) 
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100)  
+kableExtra::kable(tab)
+```
+
+---
+
+## Amplitude Total
+
+Para entendermos como a função `cut()` funciona, será necessário conhecermos mais algumas medidas para a construção do histograma. Vamos iniciar com a Amplitude total $(\Delta)$, definida como a diferença entre os valores máximo menos o mínimo da variável.
+
+$$\Delta = Máximo - Mínimo$$
+
+Para os dados de altura temos:
+
+$$\Delta = Máximo - Mínimo = 1,91\;m-1,50\;m = 0,41 \;m$$
+
+No R podemos calcular a amplitude total com as funções do pacote `base`, para isso deveremos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
+
+```{r,eval=TRUE}
+altura <- dados_turmas$altura
+```
+
+Agora vamos encontrar o máximo e o mínimo e calcular a diferença.
+
+```{r,eval=TRUE}
+D <- max(altura) - min(altura)
+D
+```
+
+---
+## Número de intervalos de classes $(k)$ 
+
+Definiremos $k$ como sendo o número de **subintervalos** da Amplitude Total, uma boa representação apresenta um $k$ **NUNCA** inferior a $5$ ou superior a $15$, pois com um pequeno número de classes, perde-se informação, e com um grande número de classes, o objetivo de resumir os dados fica prejudicado.
+
+
+```{r, eval=TRUE}
+k <- 5
+```
+
+.pull-left[
+## Amplitude de classe $(\Delta_i)$
+
+É o tamanho de cada um dos $k=5$ subintervalos, dado pela amplitude total dividida pelo número de intervalos.
+
+$$\Delta_i = \frac{\Delta}{k}$$
+Para os dados de altura:
+
+$\Delta_i = \frac{\Delta}{k} = \frac{0.41\;m}{5} = 0,082 \;m$
+]
+
+.pull-right[
+
+```{r,eval=TRUE}
+Di = D/k
+Di
+```
+Cada um dos 5 intervalos terá uma amplitude de 0,082 m. Ou seja, o cálculo dos  limites das classes é feito a partir da adição ao valor Mínimo o valor de $\Delta_i$ $k$ vezes:
+
+```{r}
+limites <- min(altura)+ 0:k * Di
+limites
+```
+]
+
+---
+
+Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
+
+```{r,echo=FALSE}
+kableExtra::kable(tab)
+limites
+```
+
+Agora podemos criar um gráfico de barras para cada uma dessas classes, denominado hitograma:
+
+---
+## Gráfico histograma (frequências absolutas)
+
+.pull-left[
+A partir da tabela anterior, pode-se construir o gráfico de frequência de cada classe de valor de altura, denominado Histograma. 
+
+```{r,plot10,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..count..))+ #<<
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="gray")
+```
+O código acima gera um histograma com $5$ barras onde o eixo `y` será a frequência absoluta, ou seja, a contagem (`..count..`) de quantos valores de altura estão dentro de uma determinada classe.
+
+A opção `breaks = limites` deixa o histograma igual ao observado na tabela anterior.
+]
+
+```{r,plot10,echo=FALSE}
+```
+
+---
+## Gráfico histograma (frequências relativas)
+.pull-left[
+
+Ao longo de nosso curso, vamos estudar que a frequência relativa $f_i$ é uma estimativa empírica da probabilidade $P(X=xi)$, assim é interessante que a área total da figura do histograma seja igual a $1$, correspondendo à soma total das frequências relativas $( f_i )$. 
+
+Então, para construção do histograma, sugere-se usar no eixo das ordenadas os valores de $fi / \Delta_i$ (denominado densidade de frequência), ou seja, da medida que indica qual a concentração por unidade da variável.
+
+```{r,plot11,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..density..))+ #<<
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="gray")
+```
+
+Para isso utilizamos `y=..density..`.
+]
+
+.pull-right[
+```{r,plot11,echo=FALSE}
+```
+]
+
+---
+## Densidade de frequência $(d_i)$
+
+Agora vamos atualizar a tabela com o valor de densidade de frequência, dado por:
+
+$$d_i=\frac{f_i}{\Delta_i}$$
+.pull-left[
+
+
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5)
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di) #<<
+View(tab)
+```
+]
+
+```{r,echo=FALSE}
+tab <- dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) 
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di)  
+kableExtra::kable(tab)
+```
+
+
