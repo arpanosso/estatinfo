@@ -4,7 +4,6 @@
     <title>Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
@@ -29,21 +28,19 @@ class: middle, center, inverse
 ---
 ## Distribuição de frequências de uma variável
 
-Quando se estuda uma variável, deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (dados).
+Quando se estuda uma variável (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (dados). Portanto, o objetivo dessa aula será apresentar as prinicpais formas e visualização de variáveis quali e quantitativas.
 
-**Exemplo:** Considerando os dados amostrados da turma de Estatística, temos:
-
-[Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) `\(\leftarrow\)` Clique para baixar o banco de dados no Excel (**exemplo_dados.xlsx**)
+**Exemplo:** Considerando os [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) (**exemplo_dados.xlsx**) amostrados da turma de Estatística e Informática, temos:
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"&gt;&lt;/img&gt;
 
 ---
 
-## Lendo os dados no R
+## Carregando os dados no R
+Para carregar o banco de dados da turma no R, siga os passos:  
+1.Faça o Download dos [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
 
-1. Faça o Download dos [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).  
-
-2. Salve em uma pasta do seu computador (no exemplo a pasta é "Downloads").
+2.Salve em uma pasta do seu computador (no exemplo a pasta é "Downloads").
 
 .pull-left[
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt; ]
@@ -56,7 +53,7 @@ Quando se estuda uma variável, deve-se conhecer a distribuição de frequência
 
 ---
 
-4.Selecione **Browse** e busque o arquivo da base de dados **dados_turma.xlsx** que salvamos na pasta **Donwloads**.
+4.Selecione **Browse** (destacado em vermelho no canto direito superior) da janela que abrirá e busque o arquivo da base de dados **dados_turma.xlsx** que salvamos na pasta **Donwloads**.
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt; 
 ---
@@ -70,7 +67,7 @@ Quando se estuda uma variável, deve-se conhecer a distribuição de frequência
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt;
 
 ---
-7.Cole o código no seu script do R e os execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções **Packages/Install** ou `install.packages("readxl")`.
+7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções **Packages/Install** ou `install.packages("readxl")`.
 
 
 ```r
@@ -80,8 +77,288 @@ View(dados_turmas)
 ```
 
 
+```
+## Warning: package 'dplyr' was built under R version 4.0.5
+```
+
+```
+## Warning: package 'tidyr' was built under R version 4.0.5
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 4.0.5
+```
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"&gt;&lt;/img&gt;
+
+---
+### Tamanho da População `\((N)\)`  
+O tamanho da população `\(N\)` é o número total dos elementos alvos da pesquisa. Poderíamos entender como `\(N\)` o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
+### Tamanho da amostra `\((n)\)`  
+É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - `\(n\)`) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
+
+
+```r
+library(tidyverse) # não esqueça de instalar o tidyverse para ter o glimpse
+glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
+```
+
+
+```
+## Rows: 49
+## Columns: 6
+## $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ~
+## $ sexo       &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M",~
+## $ cor_cabelo &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "L", "CE", "CC", "C", "~
+## $ GA         &lt;chr&gt; "mais_social", "nao_consome", "pouco", "socialmente", "mais~
+## $ altura     &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68,~
+## $ idade_anos &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 19,~
+```
+
+
+---
+### Exemplo da base de dados das turmas 
+
+Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas e relativas e a porcentagem para as categoria existentes.
+
+Para isso vamos utilizar o R para contar as frequências absolutas das classes presentes na variável qualitativa nominal `sexo`. Precisaremos fazer algumas operações nos dados das turmas e para isso vamos usar o operador PIPE (`%&gt;%`) feito com o atalho `CTRL + SHIFT + M`
+
+
+
+```r
+tab&lt;-dados_turmas %&gt;%
+        group_by(sexo) %&gt;% 
+        summarise(n=n()) # Frequência Absoluta
+tab
+```
+
+```
+## # A tibble: 2 x 2
+##   sexo      n
+##   &lt;chr&gt; &lt;int&gt;
+## 1 F        17
+## 2 M        32
+```
+---
+### Frequência Absoluta `\((n_i)\)`
+
+É definida como o número de realizações no conjunto de dados pertencentes à uma categoria ou classe da variável em questão.
+
+Então temos `\(n_F = 17\)` e `\(n_M = 32\)`, cuja soma é `\(n=49\)`
+ 
+ 
+---
+
+### Frequência Relativa `\((f_i)\)`
+
+É definida como a proporção de cada realização em relação ao Total de observações `\((n)\)`, ou seja:
+
+$$
+F_i = \frac{n_i}{n}
+$$
+Vamos, mais uma vez, utilizar o R para conseguirmos esses cálculos.  
+
+```r
+tab &lt;-dados_turmas %&gt;%
+        group_by(sexo) %&gt;% 
+        summarise(ni=n()) %&gt;%      # Frequência Absoluta
+        mutate(fi = ni/sum(ni))    # Frequência relativa
+tab
+```
+
+```
+## # A tibble: 2 x 3
+##   sexo     ni    fi
+##   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
+## 1 F        17 0.347
+## 2 M        32 0.653
+```
+
+Portanto:
+`\(f_F = \frac{17}{49}=0,34\)` e   `\(f_M = \frac{32}{49}=0,65\)`
+
+Observe agora que a soma das frequências relativas sempre é igual a `\(1\)`: `\(\sum \limits_{i=1}^{n} f_i = 1\)`.
+
+---
+
+### Porcentagem de frequência `\((perc \text{ ou } \%)\)`
+
+Definida como o resultado da multiplicação da frequência relativa (proporção) por 100.
+
+
+
+```r
+tab&lt;-dados_turmas %&gt;%
+      group_by(sexo) %&gt;% 
+      summarise(ni=n()) %&gt;%      # Frequência Absoluta
+      mutate(fi = ni/sum(ni),    # Frequência relativa
+             perc = fi*100)      # Porcentagem de freuqência
+tab
+```
+
+```
+## # A tibble: 2 x 4
+##   sexo     ni    fi  perc
+##   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 F        17 0.347  34.7
+## 2 M        32 0.653  65.3
+```
+
+Observe agora que a soma das Porcentagens de frequência é igual a `\(100\%\)`.
+
+A partir das tabelas de frequências, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados da variável estudada. Essa etapa é a **visualização** de dados. 
+
+---
+class: middle, center, inverse
+
+# Visualização dos dados
+###(variáveis qualitativas)
+
+---
+## Visualização dos dados
+
+Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos gráficos de `Barras`, `Colunas` ou de `Setores`. 
+
+Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o `tidyverse`, e serão construídos a partir dos códigos anteriores. O ggplot funciona com camadas que são adicionadas à representação por meio do operados de adição `+` ao final da linha
+
+### Gráfico de Colunas para Sexo
+
+Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
+
+
+```r
+tab %&gt;% 
+  ggplot(aes(x=sexo,y=fi)) + 
+  geom_col()
+```
+
+---
+### Gráfico de Colunas para Sexo
+
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+---
+### Gráfico de Barras para Sexo
+
+Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias, pois muitas vezes são extensos.
+
+
+```r
+tab %&gt;% 
+  ggplot(aes(x=fi,y=sexo)) + 
+  geom_col(fill="aquamarine4")
+```
+
+---
+### Gráfico de Barras para Sexo
+
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### Gráfico de Setores para Sexo
+
+Também conhecido como gráfico de Pizza, ele representa cada valor de frequência (relativa ou absoluta) das diferentes categoras da variável em uma circunferência.
+
+
+```r
+tab %&gt;% 
+  ggplot(aes(x="",y=fi, fill=sexo)) + 
+  geom_bar(stat="identity",color="white") +
+  coord_polar("y", start=0) +
+  theme_void()
+```
+
+---
+### Gráfico de Setores para Sexo
+
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Visualização para a variável GA
+
+
+Vamos, mais uma vez, utilizar o R para conseguirmos esses cálculos.  
+
+
+
+```r
+tab&lt;-dados_turmas %&gt;%
+      group_by(GA) %&gt;% 
+      summarise(ni=n()) %&gt;%      
+      mutate(fi = ni/sum(ni),    
+             perc = fi*100)      
+tab
+```
+
+```
+## # A tibble: 4 x 4
+##   GA             ni    fi  perc
+##   &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 mais_social     8 0.163  16.3
+## 2 nao_consome     6 0.122  12.2
+## 3 pouco           9 0.184  18.4
+## 4 socialmente    26 0.531  53.1
+```
+
+---
+
+### Gráfico de Colunas para GA
+
+Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
+
+
+```r
+tab %&gt;% 
+  ggplot(aes(x=GA,y=fi,fill=GA)) + 
+  geom_col()
+```
+
+---
+### Gráfico de Colunas para GA
+
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+### Gráfico de Barras para GA
+
+Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias, pois muitas vezes são extensos.
+
+
+```r
+tab %&gt;% 
+  ggplot(aes(x=fi,y=GA,fill=GA)) + 
+  geom_col()
+```
+
+---
+### Gráfico de Barras para GA
+
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### Gráfico de Setores para GA
+
+Também conhecido como gráfico de Pizza, ele representa cada valor de frequência (relativa ou absoluta) das diferentes categoras da variável em uma circunferência.
+
+
+```r
+tab %&gt;% 
+  ggplot(aes(x="",y=fi, fill=GA)) + 
+  geom_bar(stat="identity",color="white") +
+  coord_polar("y", start=0) +
+  theme_void()
+```
+
+---
+### Gráfico de Setores para GA
+
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle, center, inverse
+
+# Visualização dos dados
+###(variáveis quantitativas)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
