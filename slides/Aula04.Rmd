@@ -603,7 +603,6 @@ Agora vamos atualizar a tabela com o valor de densidade de frequência, dado por
 $$d_i=\frac{f_i}{\Delta_i}$$
 .pull-left[
 
-
 ```{r, echo = TRUE, eval=FALSE}
 tab <-dados_turmas %>%
   mutate(
@@ -631,4 +630,102 @@ tab <- dados_turmas %>%
 kableExtra::kable(tab)
 ```
 
+---
 
+## Medidas de Frequências Acumuladas
+
+As medidas acumuladas são interessantes algumas vizualizações:
+
+$N_i$: Frequência Absoluta Acumulada.
+
+$F_i$: Frequência Relativa Acumulada.
+
+$Perc$: Porcentagem de Frequência Acumulada.
+
+
+
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5)
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di,
+         Ni = cumsum(ni), #<<
+         Fi = cumsum(fi), #<<
+         Perc = cumsum(perc)) #<<
+View(tab)
+```
+
+
+---
+
+# Tabela de Frequência completa
+
+```{r,echo=FALSE}
+tab <- dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) 
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di,
+         Ni = cumsum(ni),
+         Fi = cumsum(fi),
+         Perc = cumsum(perc)
+  )
+kableExtra::kable(tab)
+```
+
+
+---
+## Gráfico histograma e Polígono de Frequência
+
+.pull-left[
+
+Obtemos o polígono de frequências unindo por uma poligonal (segmentos de retas) os pontos correspondentes às frequências, das classes, centradas nos pontos médios das classes. 
+
+Para se obter as interseções do polígono com o eixo horizontal, cria-se em cada extremo do histograma uma classe com frequência nula.
+
+No R:
+
+```{r,plot12,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..count..))+ 
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="gray") +
+  geom_freqpoly(breaks=limites,color="red") #<<
+```
+]
+
+.pull-right[
+```{r,plot12,echo=FALSE}
+```
+]
+
+---
+
+## Polígono de frequências acumuladas percentuais (ogiva percentual):
+
+.pull-left[
+É um gráfico poligonal ascendente que representa a frequência acumulada abaixo de qualquer limite superior de classe. No eixo horizontal colocam-se as extremidades de classe, e no eixo vertical, as frequências acumuladas percentuais.
+
+No R:
+
+```{r,plot13,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura))+ 
+  stat_ecdf(geom = "line",color="red")#<<
+```
+]
+
+.pull-right[
+```{r,plot13,echo=FALSE}
+```
+]
