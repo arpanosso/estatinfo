@@ -207,14 +207,14 @@ A Probabilidade permite analisar ou calcular as chances de obter determinado res
 <img src="https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?cs=srgb&dl=pexels-pixabay-210600.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>]
 
 
-A partir disso, a probabilidade é determinada pela razão entre o número de eventos possíveis e número de eventos favoráveis, sendo apresentada pela seguinte expressão:
+A partir disso, a probabilidade é determinada pela razão entre o número de eventos possíveis e o número de eventos favoráveis, sendo apresentada pela seguinte expressão:
 
 $$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}}$$
 
 onde $P(E)$ é a probabilidade de ocorrência do evento $E$.
 
 ---
-Vamos imaginar a segunte situação: um rebanho é composto por 100 animais, temos 20 indivíduos doentes e 80 sadios. 
+Vamos imaginar a situação: um rebanho é composto por 100 animais, temos 20 indivíduos doentes e 80 sadios. 
 
 <img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 25%"></img>
 
@@ -228,7 +228,7 @@ Para respondermos essa quetão precisaremos calcular:
 
 #### $\text{nº de resultados favoráveis}$
 
-Ou seja, de quantas maneiras poderemos escolher 3 animais do total de 80 sadios e 2 animais dos 20 doentes.
+Ou seja, de quantas maneiras poderemos escolher 2 animais do total de 20 doentes e 3 animais dos 80 sadios.
 
 --
 
@@ -240,7 +240,7 @@ De quantas maneiras poderemos escolher 5 animais (independentemente de serem sad
 
 ## Análise Combinatória
 
-Portanto, para calcularmos a probabilidade do evento (escolher 3 animais sadios e 2 doentes), faz-se necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (Permutações, Arranjos e Combinações).
+Portanto, para calcularmos a probabilidade do evento (escolher 2 animais doentes e 3 sadios), faz-se necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (Permutações, Arranjos e Combinações).
 
 ### Princípio Fundamental da Contagem
 
@@ -256,22 +256,24 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 1. Em um restaurante, há 5 aperitivos no menu, 10 entradas principais e 4 sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
 
-2. Quantos códigos numéricos de 5 dígitos são possíveis se:  
+2. Quantos códigos numéricos de 5 caractéres são possíveis se:  
 (a) não há restrições?  
 (b) o primeiro dígito não pode ser $0$?  
 (c) nenhuma repetição é permitida?  
 (d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
 
 3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média 435 milhões senhas por segundo:   
-(a) qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
-(a) qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com 9 dígitos?
+
+  a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
+
+  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com 9 dígitos?
 
 ---
 ## Permutações
 
 Quando estamos preocupados em responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos $n$ objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
 
-Dado o conjunto de letras $L={a, b, c}$, de quantas maneiras podemos permutá-las?
+Dado o conjunto de letras $L=\{a, b, c\}$, de quantas maneiras podemos permutá-las?
 
 --
 
@@ -284,7 +286,9 @@ ${c,b,a}$
 
 --
 
-Equivale em colocar os elementos dentro de caixas com $n$ compartimentos em alguma ordenação. E como consequência do princípio da multiplicação, as possibilidades de inserção dentro dentro de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente, ou seja:
+Equivale em colocar os elementos dentro de caixas com $n$ compartimentos em alguma ordenação. 
+
+E como consequência do princípio da multiplicação, as possibilidades de inserção dentro dentro de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente, ou seja:
 
 ---
 
