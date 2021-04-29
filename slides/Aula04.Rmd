@@ -1,6 +1,6 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula03.html")
+# pagedown::chrome_print("slides/Aula04.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"

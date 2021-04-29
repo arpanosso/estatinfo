@@ -1,0 +1,129 @@
+---
+# Para transformar em PDF, usar: 
+# pagedown::chrome_print("slides/Aula05.html")
+# imagens https://www.pexels.com/pt-br/
+# gifs https://giphy.com/
+title: "Estatística e Informática"
+subtitle: "Aula 05 - Medidas estatísticas"
+author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+date: "(13-05-2021)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+options(dplyr.print_min = 5, dplyr.print_max = 5)
+```
+class: middle, center, inverse
+
+# Medidas de Posição ou de Tendência Central
+
+---
+## Medidas de posição
+
+São respostas breves e rápidas que sintetizam a informação não de uma forma de completa descrição dos dados ou eventual modelagem. 
+
+Essas medidas, portanto, fornecem a posição na reta real, informa sobre a posição de um conjunto de dados. As Principais medidas são: 
+
+1. Média:  
+ - Aritmética
+ - Ponderada
+ - Geométrica (Apostila Apenas)
+ - Harmônica (Apostila Apenas)
+
+2. Mediana 
+
+3. Moda
+
+---
+### Média populacional
+
+Para a população, a média é definida como:
+
+ $$
+ \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, com\; i=1,2,...,N.
+ $$
+ 
+ Onde $N$ é o tamanho da população. 
+
+### Média amostral
+
+ É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da soma dos valores das observações dessa variável. 
+ 
+ $$
+ \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, com\; i=1,2,...,n.
+ $$
+---
+
+**Exemplo**: Para os dados de `altura` e `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+
+### Carregando pacotes e a base
+
+```{r, eval=FALSE}
+library(readxl)
+library(tidyverse)
+dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
+View(dados_turmas)
+```
+
+```{r,echo=FALSE}
+`%>%` <- magrittr::`%>%`
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
+```
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 50%"></img>
+
+---
+
+### Cálculo da Média Aritmética
+
+.pull-left[
+
+$$
+\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+20}{49} = 20,9184\text{ anos} 
+$$
+
+```{r}
+x<-dados_turmas$idade_anos
+mean(x)
+```
+
+### Cálculo da Média Aritmética pela Frequência Relativa
+
+$\bar{x} = \sum_{i=1}^kf_ix_i$
+
+$\bar{x} = 18(0,16)+19(0,28)+ \cdots + 49(0,02)$
+
+$\bar{x} = 20,9184\;anos$
+
+]
+
+.pull-right[
+
+Tabela de Frequência para Idade
+
+```{r,echo=FALSE}
+tab<-dados_turmas %>%
+        group_by(idade_anos) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni))
+kableExtra::kable(tab)
+```
+]
+
+---
+
