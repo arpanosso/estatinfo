@@ -124,6 +124,5 @@ tab<-dados_turmas %>%
 kableExtra::kable(tab)
 ```
 ]
-
 ---
 
