@@ -799,8 +799,8 @@ $F(x) = \sum \limits_{x_i<x} f(x_i)$
 
 ```{r,plot14,eval=FALSE}
 dados_turmas %>% 
-  ggplot(aes(x=altura))+ 
-  stat_ecdf(geom = "line",color="red")#<<
+  ggplot(aes(x=idade_anos))+ #<<
+  stat_ecdf(geom = "line",color="red")
 ```
 ]
 

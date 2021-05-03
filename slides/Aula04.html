@@ -1081,8 +1081,8 @@ No caso da variável aleatória discreta:
 
 ```r
 dados_turmas %&gt;% 
-  ggplot(aes(x=altura))+ 
-* stat_ecdf(geom = "line",color="red")
+* ggplot(aes(x=idade_anos))+
+  stat_ecdf(geom = "line",color="red")
 ```
 ]
 
