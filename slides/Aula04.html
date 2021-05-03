@@ -141,6 +141,24 @@ tab
 
 ]
 ---
+
+Para facilitar o processo de contagem poderíamos ordenar os dados por sexo:
+
+```r
+dados_turmas %&gt;% 
+  arrange(sexo) +
+  View()
+```
+
+
+```r
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png")
+```
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
 ### Frequência Absoluta `\((n_i)\)`
 
 É definida como o número de realizações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
@@ -350,11 +368,14 @@ tab
 tab %&gt;% 
   ggplot(aes(x=cor_cabelo,y=fi,
 *            fill=cor_cabelo)) +
-  geom_col()
+  geom_col(color="black")+
+* theme_bw()
 ```
 - ao passarmos o argumento `fill=cor_cabelo` dentro da função `aes()` estamos pedindo o mapeamento das cores de cabelo a partir de cores de preeenchimento diferentes.
 
 - `aes()` representa a estética do gráfico, ou seja, quem é x, quem é y e quem deve ser mapeado.
+
+- a função `theme_bw()` muda o padrão de cores e de linhas do gráfico. Existem outros padrões como `theme_classic`, `theme_minimal` entre outros.
 ]
 
 .pull-right[
@@ -371,14 +392,15 @@ tab %&gt;%
 tab %&gt;% 
   ggplot(aes(x=fi, y=cor_cabelo,
              fill=cor_cabelo)) + 
-  geom_col()+
+  geom_col(color="black")+
   scale_fill_manual(values = c("salmon4",
                                "burlywood4",
                                "orange4",
                                "gold2",
-                               "black") )
+                               "black"))+
+  theme_minimal()
 ```
-- utilize a função `scale_fill_manual` para alterar as cores dos preenchimentos (`fill`), se ncessário.
+- utilize a função `scale_fill_manual()` para alterar as cores dos preenchimentos, se necessário.
 
 ]
 
@@ -395,7 +417,7 @@ tab %&gt;%
 tab %&gt;% 
   ggplot(aes(x="", y=fi, 
              fill=cor_cabelo)) + 
-  geom_bar(stat="identity") +
+  geom_bar(stat="identity",color="black") +
   coord_polar("y", start=0) +
   theme_void()
 ```
@@ -410,13 +432,15 @@ tab %&gt;%
 ---
 class: middle, center, inverse
 
-# Visualização dos dados
-###(variáveis quantitativas)
+# VISUALIZAÇÃO DE DADOS
+###(Variáveis Quantitativas)
 
 ---
 ## Tabela de frequência e visualização para Idade em anos (discreta)
 
-Quando a variável quantitativa for discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, recomendamos a utilização dos gráficos `boxplot` e o `histograma`.
+Quando a variável  for quantitativa discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, também recomendamos a utilização dos gráficos `boxplot`, `histograma` e `ogiva percentual`.
+
+Pra a variável `idade_anos` vamos criar a tabela de frequência;
 
 .pull-left[
 
@@ -509,7 +533,7 @@ View(tab)
 ---
 ## Gráfico Boxplot
 .pull-left[
-Conhecido como gráfico dos 5 números representa um resumos dos valores mínimo, primeiro quartil, mediana, terceiro quartil e máximo de uma variável. É  construído a partir de `geom_boxplot()`. 
+Conhecido como gráfico dos 5 números representa um resumos dos valores *mínimo*, *primeiro quartil*, *mediana*, *terceiro quartil* e *máximo* de uma variável. É  construído a partir de `geom_boxplot()`. 
 
 Observe que dentro da função `ggplot()` não é necessário passar o `x`, somente é atribuído a `y` a variável discreta `idade_anos`.
 
@@ -527,24 +551,30 @@ dados_turmas %&gt;%
 ]
 
 ---
-- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a amplitude interquartil (IIQ). 
+- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a **amplitude interquartil** (IIQ). 
+- No meio da caixa há uma linha que exibe a **mediana**, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
+- Pontos visuais que exibem observações são aqueles que cairam em mais do que `\(1,5\)` vezes o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
+- Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
 
-- No meio da caixa há uma linha que exibe a mediana, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
-  
-- Pontos visuais que exibem observações são aqueles que cairam em mais do que 1,5 vez o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
-  
--Uma linha (ou bigode de gato, dai o nome *Box and Whiskers*) que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum **outlier**.
+
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`.
+Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`. Utilize `fill` para controlar a cor de preenchimento da caixa, e as opções `outlier.` para controlar tamanhos, formas, cores e preenchimentos dos outliers.
 
 .pull-left[
 
 ```r
 dados_turmas %&gt;% 
-* ggplot(aes(x=idade_anos)) +
-  geom_boxplot()+
-* coord_cartesian(ylim=c(-1,1))
+  ggplot(aes(x=idade_anos)) +
+  geom_boxplot(fill="gold",
+               outlier.size = 4,
+               outlier.shape = 21,
+               outlier.color = "red",
+               outlier.fill = "gray"
+               )+
+* coord_cartesian(ylim=c(-1,1))+
+  theme_classic()
 ```
 ]
 .pull-right[
@@ -554,7 +584,7 @@ dados_turmas %&gt;%
 
 ---
 
-Outra alternativa para exibir a distribuição de uma variável quntitativa, é desmembrá-la por uma variável categórica aqui no boxplot.
+Outra alternativa para exibir a distribuição de uma variável quantitativa, é desmembrá-la por uma variável categórica aqui no boxplot.
 
 .pull-left[
 
@@ -564,6 +594,9 @@ dados_turmas %&gt;%
              fill=sexo)) +
   geom_boxplot()
 ```
+
+Para fazer isso basta passarmos como preenchimento o nome da variável categórica.
+
 ]
 .pull-right[
 &lt;img src="Aula04_files/figure-html/plot9-1.png" style="display: block; margin: auto;" /&gt;
@@ -573,11 +606,9 @@ dados_turmas %&gt;%
 ---
 ## Tabela de frequência e visualização para Altura em m (contínua)
 
-Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot` e o `histograma`. 
+Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot`,`histograma` e `ogiva percentual`. 
 
-Devemos, inicialmente construir a tabela de frequência da variável. Devemos lembrar que seus valores não se repetem, pois não sabemos o valor real da observação e sim temos apenas uma aproximação dada pelo instrumento de medida.
-
-
+Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, devemos lwvar em consideração que seus valores não se repetem, pois não sabemos o valor real da observação e sim temos apenas uma aproximação dada pelo instrumento de medida.
 
 .pull-left[
 
@@ -644,7 +675,7 @@ View(tab)
 
 ## Amplitude Total
 
-Para entendermos como a função `cut()` funciona, será necessário conhecermos mais algumas medidas para a construção do histograma. Vamos iniciar com a Amplitude total `\((\Delta)\)`, definida como a diferença entre os valores máximo menos o mínimo da variável.
+Para melhor entendermos como a função `cut()` funciona, será necessário conhecermos mais algumas medidas para a construção do histograma. Vamos iniciar com a Amplitude total `\((\Delta)\)`, definida como a diferença entre o valor máximo menos o valor mínimo da variável.
 
 `$$\Delta = Máximo - Mínimo$$`
 
@@ -674,7 +705,7 @@ D
 ---
 ## Número de intervalos de classes `\((k)\)` 
 
-Definiremos `\(k\)` como sendo o número de **subintervalos** da Amplitude Total, uma boa representação apresenta um `\(k\)` **NUNCA** inferior a `\(5\)` ou superior a `\(15\)`, pois com um pequeno número de classes, perde-se informação, e com um grande número de classes, o objetivo de resumir os dados fica prejudicado.
+Definiremos `\(k\)` como sendo o número de **sub-intervalos** da Amplitude Total. Uma boa representação apresenta um `\(k\)` **NUNCA** inferior a `\(5\)` ou superior a `\(15\)`, pois com um pequeno número de classes, perde-se informação, e com um grande número de classes, o objetivo de resumir os dados fica prejudicado.
 
 
 
@@ -685,7 +716,7 @@ k &lt;- 5
 .pull-left[
 ## Amplitude de classe `\((\Delta_i)\)`
 
-É o tamanho de cada um dos `\(k=5\)` subintervalos, dado pela amplitude total dividida pelo número de intervalos.
+É o tamanho de cada um dos `\(k=5\)` sub-intervalos, dado pela amplitude total dividida pelo número de intervalos.
 
 `$$\Delta_i = \frac{\Delta}{k}$$`
 Para os dados de altura:
