@@ -29,19 +29,21 @@ class: middle, center, inverse
 ---
 ## Distribuição de frequência de uma variável
 
-Quando se estuda uma variável (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (dados). Portanto, o objetivo dessa aula será apresentar as prinicpais formas e visualização de variáveis quali e quantitativas. 
+Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
 
-**Exemplo:** Considerando os [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) (**exemplo_dados.xlsx**) amostrados da turma de Estatística e Informática, temos:
+Nesse sentido, o objetivo dessa aula será apresentar as principais formas e visualização gráfica de variáveis quali e quantitativas. 
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"&gt;&lt;/img&gt;
+**Exemplo:** Considerando os [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) amostrados das turmas de Estatísticas temos:
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"&gt;&lt;/img&gt;
 
 ---
 
 ## Carregando os dados no R
 Para carregar o banco de dados da turma no R, siga os passos:  
-1.Faça o Download dos [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
+1.Faça o Download dos [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
 
-2.Salve em uma pasta do seu computador (no exemplo a pasta é "Downloads").
+2.Salve em uma pasta do seu computador (no exemplo o documento será salvo na pasta "*Downloads*").
 
 .pull-left[
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt; ]
@@ -58,7 +60,7 @@ Para carregar o banco de dados da turma no R, siga os passos:
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt; 
 ---
-5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta **Downloads**Selecione o arquivo de clique em **Open**.
+5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*Downloads"*,  selecione o arquivo e clique em **Open**.
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt;
 
@@ -68,7 +70,7 @@ Para carregar o banco de dados da turma no R, siga os passos:
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt;
 
 ---
-7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções da aba **Packages/Install** ou com o código `install.packages("readxl")`.
+7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções da aba **Packages/Install** ou com o comando `install.packages("readxl")`.
 
 
 ```r
@@ -96,21 +98,23 @@ glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
 ```
 #&gt; Rows: 49
 #&gt; Columns: 6
-#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ~
-#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M",~
-#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "L", "CE", "CC", "C", "~
-#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "pouco", "socialmente", "mais~
-#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68,~
-#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 19,~
+#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17~
+#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M~
+#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "L", "CE", "CC", "C",~
+#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "pouco", "socialmente", "ma~
+#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.6~
+#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 1~
 ```
 
 
 ---
 ### Exemplo da base de dados das turmas 
 
-Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas e relativas e a porcentagem para as categoria existentes. Após isso, realizar uma visualização de dados com gráficos de Colunas, Barras e Setores (Pizza oi *Pie*).
+Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas `\((n_i)\)`, relativas `\((f_i)\)` e a porcentagem ($perc$) para as categoria existentes. 
 
-Para isso vamos utilizar o R para contar as frequências absolutas das classes presentes na variável qualitativa nominal `sexo`. Precisaremos fazer algumas operações nos dados das turmas e para isso vamos usar o operador PIPE (`%&gt;%`) feito com o atalho `CTRL + SHIFT + M`. Vamos utilizar a função `n()` para contar cada ocorrencia das diferentes categorias de `sexo`
+Após isso, realizar a visualização de dados com gráficos de Colunas, Barras e Setores (Pizza ou *Pie*).
+
+Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%&gt;%`) feito com o atalho `CTRL + SHIFT + M`. Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias de `sexo`
 
 
 .pull-left[
@@ -133,15 +137,19 @@ tab
 
 .pull-right[
 - `group_by()` a grupa as categorias da variável `sexo`.
-- `summarise` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria e mostrará em `ni`.
+- `summarise()` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvara na coluna `ni`.
 
 ]
 ---
 ### Frequência Absoluta `\((n_i)\)`
 
-É definida como o número de realizações no conjunto de dados pertencentes à uma categoria ou classe da variável em questão.
+É definida como o número de realizações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
 
-Então temos `\(n_F = 17\)` e `\(n_M = 32\)`, cuja soma é `\(n=49\)`
+Então temos:
+
+`\(n_F = 17\)` e,
+
+`\(n_M = 32\)`
  
 Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes ($k$) da variável cetegória é igual a `\(n\)`. 
 
@@ -149,18 +157,22 @@ $$
 \sum \limits_{i=1}^{k}{n_i} = n
 $$
 
-Onde `\(k\)` é o número de categorias da variável em questão, no caso do `sexo`, temos duas ategorias (M e F).
+Onde `\(k\)` é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
+
+$$
+\sum \limits_{i=1}^{k}{n_i} = 17+32=49
+$$
 
 ---
 
 ### Frequência Relativa `\((f_i)\)` ou proporção
 
-É definida como a proporção de cada realização em relação ao Total de observações `\((n)\)`, ou seja:
+É definida como a proporção de cada realização em relação ao **Total de observações** `\((n)\)`, ou seja:
 
 $$
 f_i = \frac{n_i}{n}
 $$
-Vamos, mais uma vez, utilizar o R para esses cálculos
+Vamos, mais uma vez, utilizar o R para esses cálculos.
 
 .pull-left[
 
@@ -179,13 +191,12 @@ tab
 #&gt; 1 F        17 0.347
 #&gt; 2 M        32 0.653
 ```
+
+- `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna `\(n_i\)`, no caso a frequência relativa `\(f_i\)`.
+
 ]
 
 .pull-right[
-- `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo, no caso a frequência relativa
-
-
-
 Portanto:
 `\(f_F = \frac{17}{49}=0,347\)` e   `\(f_M = \frac{32}{49}=0,653\)`
 
@@ -207,8 +218,8 @@ Definida como o resultado da multiplicação da frequência relativa (proporçã
 tab&lt;-dados_turmas %&gt;%
       group_by(sexo) %&gt;% 
       summarise(ni=n()) %&gt;%      # Frequência Absoluta
-      mutate(fi = ni/sum(ni),    # Frequência relativa
-             perc = fi*100)      # Porcentagem de freuqência
+      mutate(fi = ni/sum(ni),    # Frequência Relativa
+*            perc = fi*100)
 tab
 ```
 
@@ -222,24 +233,24 @@ tab
 
 **OBS**: A soma das Porcentagens de frequência é igual a `\(100\%\)`.
 
-Agora, a partir das tabelas de frequências, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados da variável estudada. 
+A partir da tabela de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
 
-Essa etapa é a **Visualização de Dados**. 
+Essa etapa é a denominada de **Visualização de Dados**. 
 
 ---
 class: middle, center, inverse
 
-# Visualização de Dados
+# VISUALIZAÇÃO DE DADOS
 ###(Variáveis Qualitativas)
 
 ---
 ## Visualização dos dados
 
-Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
+Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos os gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
 
-Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`, e serão construídos a partir da tabela `tab` anterior. 
+Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. Observe que os gráficos serão construídos a partir do objeto `tab` anteriormente definido. 
 
-O ggplot funciona com camadas gráficas de represetação e formatação, que são adicionadas à base gráfica por meio do operador de adição `+` digitado ao final da linha.
+O ggplot funciona como de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
 
 ### Gráfico de Colunas para Sexo
 
@@ -260,16 +271,18 @@ tab %&gt;%
 ---
 ### Gráfico de Barras para Sexo
 
-Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias, pois muitas vezes esses podem ser  extensos.
+Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias.
+
+
 .pull-left[
 
 ```r
 tab %&gt;% 
   ggplot(aes(x=fi,y=sexo)) + 
-* geom_col(fill="aquamarine4")
+* geom_col(fill="aquamarine4",
+*          color="black")
 ```
-- o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra para a cor "aquamarine4", outras cores são possíveis tente algumas [das cores do R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
-
+- o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra e o argumento `color="black"` permite a alteração da cor o contorno das barras. Outras cores são possíveis tente algumas [das cores no R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
 ]
 
 .pull-right[
@@ -279,7 +292,7 @@ tab %&gt;%
 ---
 ### Gráfico de Setores para Sexo
 
-Também conhecido como gráfico de Pizza (ou torta em inglês *pie*), ele representa cada valor de frequência (relativa ou absoluta) das diferentes categoras da variável em uma circunferência.
+Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categoras da variável em uma circunferência.
 
 .pull-left[
 
@@ -291,7 +304,8 @@ tab %&gt;%
 * theme_void()
 ```
 - A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
--A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
+
+- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
 ]
 
 .pull-right[
@@ -299,10 +313,10 @@ tab %&gt;%
 ]
 
 ---
-## Tabela de Frequência e para a variável Cor de cabelo
+## Tabela de Frequência para a variável Cor de cabelo
 
 
-Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. Observe que esse é o mesmo código daquele apresentado no slide 13, mas com o nome da coluna `cor_cabelo` ao invés de `sexo` dentro da função `group_by()`
+Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. Observe que esse é o mesmo código daquele apresentado no slide 13, mas com o nome da coluna `cor_cabelo` ao invés de `sexo` dentro da função `group_by()`.
 
 
 
@@ -357,8 +371,15 @@ tab %&gt;%
 tab %&gt;% 
   ggplot(aes(x=fi, y=cor_cabelo,
              fill=cor_cabelo)) + 
-  geom_col()
+  geom_col()+
+  scale_fill_manual(values = c("salmon4",
+                               "burlywood4",
+                               "orange4",
+                               "gold2",
+                               "black") )
 ```
+- utilize a função `scale_fill_manual` para alterar as cores dos preenchimentos (`fill`), se ncessário.
+
 ]
 
 .pull-right[
