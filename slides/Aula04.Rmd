@@ -27,7 +27,7 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 class: middle, center, inverse
 
 # Distribuição de Frequência
-# E
+# e
 # Visualização de Dados
 
 ---
@@ -690,7 +690,7 @@ kableExtra::kable(tab)
 
 ## Medidas de Frequências Acumuladas
 
-As medidas acumuladas são interessantes algumas vizualizações:
+As medidas acumuladas são interessantes para compor algumas vizualizações:
 
 $N_i$: Frequência Absoluta Acumulada.
 

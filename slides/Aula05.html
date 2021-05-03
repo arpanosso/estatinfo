@@ -13,7 +13,7 @@
 class: center, middle, inverse, title-slide
 
 # Estatística e Informática
-## Aula 05 - Medidas estatísticas
+## Aula 05 - Medidas Estatísticas
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
 ### (13-05-2021)
@@ -175,9 +175,58 @@ Tabela de Frequência para Idade
 &lt;/tbody&gt;
 &lt;/table&gt;
 ]
+---
+
+## Mediana
+
+É o valor que ocupa a posição central do conjunto ordenado dos dados `\((X' ou X_o)\)`, o valor é precedido e seguido pelo mesmo  número de dados (nem sempre pertence ao conjunto de dados).  
+Exemplo:  
+`$$X = \{50, 60, 20, 50, 30, 90, 70\}$$`   
+O conjunto ordenado será:  
+`$$Xo=\{20, 30, 50, 50, 60, 70 ,90\}$$`  
+O cálculo da media será dados em função do número de observaçõs `\(n\)`, se acaso ele form par ou ímpar:
+
+No caso de `\(n\)` ímpar:  
+`$$Md = Xo_{\left(\frac{n+1}{2}\right)}$$`
+No caso de `\(n\)` par:
+
+`$$Md = \frac{Xo_{\left(\frac{n}{2}\right)}+Xo_{\left(\frac{n}{2}+1\right)}}{2}$$`
 
 ---
 
+**Exemplo**:  
+
+Dado `\(X=\{50, 30, 20, 90, 70, 50\}\)`, teremos a sua versão ordenada `\(X_0\)` dado por:
+
+`\(X0=\{20, 30, 50, 50, 70, 90  \}\)`, então
+
+`\(n=7\)`, portanto n ímpar.
+`$$Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50$$`
+
+.pull-left[
+No R:
+
+```r
+X=c(50, 30, 20, 90, 70, 50)
+median(X)
+```
+
+```
+#&gt; [1] 50
+```
+
+]
+.pull-right[
+No Excel:
+
+
+```r
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarprod_excel.png")
+```
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/somarprod_excel.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

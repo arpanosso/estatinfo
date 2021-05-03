@@ -4,7 +4,7 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
-subtitle: "Aula 05 - Medidas estatísticas"
+subtitle: "Aula 05 - Medidas Estatísticas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
 date: "(13-05-2021)"
@@ -82,7 +82,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(readxl)
-dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
+dados_turmas <- read_excel("../data/dados_turmas.xlsx")
 ```
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 50%"></img>
@@ -126,3 +126,45 @@ kableExtra::kable(tab)
 ]
 ---
 
+## Mediana
+
+É o valor que ocupa a posição central do conjunto ordenado dos dados $(X' ou X_o)$, o valor é precedido e seguido pelo mesmo  número de dados (nem sempre pertence ao conjunto de dados).  
+Exemplo:  
+$$X = \{50, 60, 20, 50, 30, 90, 70\}$$   
+O conjunto ordenado será:  
+$$Xo=\{20, 30, 50, 50, 60, 70 ,90\}$$  
+O cálculo da media será dados em função do número de observaçõs $n$, se acaso ele form par ou ímpar:
+
+No caso de $n$ ímpar:  
+$$Md = Xo_{\left(\frac{n+1}{2}\right)}$$
+No caso de $n$ par:
+
+$$Md = \frac{Xo_{\left(\frac{n}{2}\right)}+Xo_{\left(\frac{n}{2}+1\right)}}{2}$$
+
+---
+
+**Exemplo**:  
+
+Dado $X=\{50, 30, 20, 90, 70, 50\}$, teremos a sua versão ordenada $X_0$ dado por:
+
+$X0=\{20, 30, 50, 50, 70, 90  \}$, então
+
+$n=7$, portanto n ímpar.
+$$Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50$$
+
+.pull-left[
+No R:
+```{r}
+X=c(50, 30, 20, 90, 70, 50)
+median(X)
+```
+
+]
+.pull-right[
+No Excel:
+
+```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarprod_excel.png")
+```
+
+]
