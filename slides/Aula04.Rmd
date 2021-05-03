@@ -27,6 +27,8 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 class: middle, center, inverse
 
 # Distribuição de Frequência
+# E
+# Visualização de Dados
 
 ---
 ## Distribuição de frequência de uma variável
@@ -129,19 +131,21 @@ tab
 ]
 ---
 
-Para facilitar o processo de contagem poderíamos ordenar os dados por sexo:
+No R, para facilitar o processo de contagem poderíamos ordenar os dados por sexo:
 ```{r, eval=FALSE}
 dados_turmas %>% 
   arrange(sexo) +
   View()
 ```
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png")
+
+No Excel, primeiramente selecionamos os dados, clicamos em **Dados\Classificar** e na janela que se segue clicamos em **Adicionar Nível** e em **Classifcar por**, escolhemos `sexo` e em **OK**. 
+
+```{r,echo=FALSE,out.width = "100%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/arrange_sexo.png")
 ```
-
-
 ---
+
 ### Frequência Absoluta $(n_i)$
 
 É definida como o número de realizações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
@@ -391,7 +395,7 @@ class: middle, center, inverse
 ---
 ## Tabela de frequência e visualização para Idade em anos (discreta)
 
-Quando a variável  for quantitativa discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, também recomendamos a utilização dos gráficos `boxplot`, `histograma` e `ogiva percentual`.
+Quando a variável  for quantitativa discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, também recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função distribuição acumulada`.
 
 Pra a variável `idade_anos` vamos criar a tabela de frequência;
 
@@ -459,7 +463,7 @@ Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior 
 ```{r, plot8, eval=FALSE}
 dados_turmas %>% 
   ggplot(aes(x=idade_anos)) +
-  geom_boxplot(fill="gold",
+  geom_boxplot(fill="orange",
                outlier.size = 4,
                outlier.shape = 21,
                outlier.color = "red",
@@ -477,17 +481,17 @@ dados_turmas %>%
 
 ---
 
-Outra alternativa para exibir a distribuição de uma variável quantitativa, é desmembrá-la por uma variável categórica aqui no boxplot.
+Outra alternativa para exibir a distribuição de uma variável quantitativa, no exemplo `altura`, é desmembrá-la por uma variável categórica aqui no boxplot.
 
 .pull-left[
 ```{r, plot9, eval=FALSE}
 dados_turmas %>% 
-  ggplot(aes(y=idade_anos, 
-             fill=sexo)) +
+  ggplot(aes(y=altura, 
+             fill=sexo)) + #<<
   geom_boxplot()
 ```
 
-Para fazer isso basta passarmos como preenchimento o nome da variável categórica.
+Para fazer isso basta passarmos como preenchimento o nome da variável categórica, no exemplo, `sexo`.
 
 ]
 .pull-right[
@@ -497,15 +501,16 @@ Para fazer isso basta passarmos como preenchimento o nome da variável categóri
 
 
 ---
-## Tabela de frequência e visualização para Altura em m (contínua)
+## Tabela de frequência para variável Altura (Quantitativa Contínua)
 
-Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot`,`histograma` e `ogiva percentual`. 
+Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função de distribuição acumulada`. 
 
-Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, devemos lwvar em consideração que seus valores não se repetem, pois não sabemos o valor real da observação e sim temos apenas uma aproximação dada pelo instrumento de medida.
+Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, os valores de uma variável contínua não se repetem, mesmo que isso aparentemente ocorra na base de dados. 
+
+Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurarmos uma variável contínua, temos apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
 
 .pull-left[
-
-Assim, vamos criar 5 classes de alturas a partir da função `cut()`.
+Para exemplificar, vamos criar 5 classes de alturas a partir da função `cut()`.
 
 ```{r, echo = TRUE, eval=FALSE}
 tab <-dados_turmas %>%
@@ -540,11 +545,9 @@ Para melhor entendermos como a função `cut()` funciona, será necessário conh
 
 $$\Delta = Máximo - Mínimo$$
 
-Para os dados de altura temos:
+Para os dados de altura temos, $\Delta = 1,91\;m-1,50\;m = 0,41 \;m$
 
-$$\Delta = Máximo - Mínimo = 1,91\;m-1,50\;m = 0,41 \;m$$
-
-No R podemos calcular a amplitude total com as funções do pacote `base`, para isso deveremos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
+No R podemos calcular a amplitude total com as funções do pacote `base`, para isso devemos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
 
 ```{r,eval=TRUE}
 altura <- dados_turmas$altura
@@ -716,7 +719,7 @@ View(tab)
 
 ---
 
-# Tabela de Frequência completa
+# Tabela de Frequência para Altura
 
 ```{r,echo=FALSE}
 tab <- dados_turmas %>%
@@ -737,11 +740,11 @@ kableExtra::kable(tab)
 
 
 ---
-## Gráfico histograma e Polígono de Frequência
+## Histograma e Polígono de Frequência
 
 .pull-left[
 
-Obtemos o polígono de frequências unindo por uma poligonal (segmentos de retas) os pontos correspondentes às frequências, das classes, centradas nos pontos médios das classes. 
+Obtemos o polígono de frequências unindo por uma poligonal (segmentos de retas) os pontos correspondentes às frequências, das classes, centradas nos pontos médios de cada classe. 
 
 Para se obter as interseções do polígono com o eixo horizontal, cria-se em cada extremo do histograma uma classe com frequência nula.
 
@@ -764,12 +767,14 @@ dados_turmas %>%
 
 ---
 
-## Polígono de frequências acumuladas percentuais (ogiva percentual):
+## Função de Distribuição Acumulada
 
 .pull-left[
-É um gráfico poligonal ascendente que representa a frequência acumulada abaixo de qualquer limite superior de classe. No eixo horizontal colocam-se as extremidades de classe, e no eixo vertical, as frequências acumuladas percentuais.
+A função de distribuição acumulada descreve como probabilidades são associadas aos valores ou aos intervalos de valores de uma variável aleatória. Ela representa a probabilidade de uma variável aleatória ser menor ou igual a um valor real qualquer $x$. 
 
-No R:
+Para uma variável aleatória contínua:
+
+$\int \limits_{- \infty }^x f(x_i) dx$
 
 ```{r,plot13,eval=FALSE}
 dados_turmas %>% 
@@ -780,5 +785,26 @@ dados_turmas %>%
 
 .pull-right[
 ```{r,plot13,echo=FALSE}
+```
+]
+
+---
+## Função de Distribuição Acumulada
+
+.pull-left[
+
+No caso da variável aleatória discreta:
+
+$F(x) = \sum \limits_{x_i<x} f(x_i)$
+
+```{r,plot14,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura))+ 
+  stat_ecdf(geom = "line",color="red")#<<
+```
+]
+
+.pull-right[
+```{r,plot14,echo=FALSE}
 ```
 ]
