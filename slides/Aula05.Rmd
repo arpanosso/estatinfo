@@ -163,8 +163,10 @@ median(X)
 .pull-right[
 No Excel:
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mediana_excel.png")
 ```
-
 ]
+
+---
+
