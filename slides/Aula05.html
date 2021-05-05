@@ -34,7 +34,7 @@ São respostas breves e rápidas que sintetizam a informação não de uma forma
 Essas medidas, portanto, fornecem a posição na reta real, informa sobre a posição de um conjunto de dados. As Principais medidas são: 
 
 1. Média:  
- - Aritmética
+ - **Aritmética**
  - Ponderada
  - Geométrica (Apostila Apenas)
  - Harmônica (Apostila Apenas)
@@ -44,28 +44,32 @@ Essas medidas, portanto, fornecem a posição na reta real, informa sobre a posi
 3. Moda
 
 ---
-### Média populacional
+### Média Populacional
 
 Para a população, a média é definida como:
 
  $$
- \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, com\; i=1,2,...,N.
+ \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, \text{com } i=1,2,...,N.
  $$
  
- Onde `\(N\)` é o tamanho da população. 
+ Onde `\(N\)` é o tamanho da população (e geralmente não a conhecemos). 
+
 
 ### Média amostral
 
- É a mais utilizada das medidas de posição. A média aritmética de um conjunto de `\(n\)` observações da variável aleatória `\(X\)`, é o quociente da divisão por `\(n\)` da soma dos valores das observações dessa variável. 
+ É a mais utilizada das medidas de posição. A média aritmética de um conjunto de `\(n\)` observações da variável aleatória `\(X\)`, é o quociente da divisão por `\(n\)` da soma dos valores das observações dessa variável. A média amostral `\(\bar{x}\)` é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população `\(\mu\)`. 
  
  $$
  \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, com\; i=1,2,...,n.
  $$
+Onde `\(n\)` é o tamanho da amostra.
 ---
 
-**Exemplo**: Para os dados de `altura` e `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+O exemplo abaixo demonstra o cálculo da média da amostra da idade em anos de 49 alunos (`idade_anos`). Observe que a média tem as mesmas unidades de medida que as observações individuais. 
 
-### Carregando pacotes e a base
+**Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+
+**Carregando Pacotes e a Base de Dados**
 
 
 ```r
@@ -77,11 +81,11 @@ View(dados_turmas)
 
 
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 50%"&gt;&lt;/img&gt;
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-### Cálculo da Média Aritmética
+### Cálculo da Média Aritmética 
 
 .pull-left[
 
@@ -176,31 +180,95 @@ Tabela de Frequência para Idade
 &lt;/table&gt;
 ]
 ---
+**Hitograma e média para idade_anos**
+.pull-left[
+
+```r
+dados_turmas %&gt;% 
+  ggplot(aes(x=idade_anos, y=..density..)) +
+  geom_histogram(bins=10, 
+                 color="black", 
+                 fill="gray")+
+* geom_vline(xintercept = 20.9184,
+*            color="blue")
+```
+
+Se os dados são plotados como um histograma a média é o centro de gravidade do histograma (linha azul). 
+
+Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria horizontalmente com o ponto de apoio em `\(\bar{x}\)`. 
+
+A média é aplicável aos dados de quantitativos, e **não deve ser usado para dados ordinais e nominais**.
+
+]
+
+.pull-left[
+
+&lt;img src="Aula05_files/figure-html/plot13_1-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+**Hitograma e média para altura**
+
+.pull-left[
+
+
+```r
+mean(dados_turmas$altura)
+```
+
+```
+#&gt; [1] 1.724286
+```
+
+
+
+```r
+dados_turmas %&gt;% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+*   xintercept = 1.7242,
+*   color="blue")
+```
+
+`\(\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49}\)`
+
+`\(\bar{x} =  1,724\text{ m}\)`
+
+]
+
+.pull-left[
+
+&lt;img src="Aula05_files/figure-html/plot13_2-1.png" style="display: block; margin: auto;" /&gt;
+]
+Observe o histograma e a média para a variável `altura`, e compare sua simetria com o histograma da variável `idade_anos`.
+---
 
 ## Mediana
 
-É o valor que ocupa a posição central do conjunto ordenado dos dados `\((X' \text{ ou } Xo)\)`, o valor da mediana é precedido e seguido pelo mesmo  número de observações e nem sempre pertence ao conjunto de dados.  
+É o valor que ocupa a posição central do conjunto de dados ordenados `\((X' \text{ ou } Xo)\)`. Portanto, inicialmente as observações são ordenadas de acordo com a sua ordem de magnitude.
 
-**Exemplo 1**:  
-`$$X = \{50, 60, 20, 50, 30, 90, 70\}$$`   
-O conjunto ordenado será:  
-`$$Xo=\{20, 30, 50, 50, 60, 70 ,90\}$$`  
+o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número e observações é grande.
+
 A mediana será encontrada ou calculada em função do número de observações `\(n\)` presentes na base de dados, se acaso `\(n\)` for par ou ímpar:
 
-No exemplo, temos `\(n\)` ímpar, a mediana faz parte do conjunto de dados e será encontrada como:  
-`$$Md = Xo_{\left(\frac{n+1}{2}\right)}$$`
+Se `\(n\)` é ímpar: `\(Md = Xo_{\left(\frac{n+1}{2}\right)}\)`
 
+Se `\(n\)` é par: `\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}\)`
 ---
 
 **Exemplo 1**:  
 
-Dado `\(X=\{50, 60, 20, 50, 30, 90, 70\}\)`, teremos a sua versão ordenada `\(X_0\)` dado por:
+Dado `\(X=\{50, 60, 20, 50, 30, 90, 70\}\)`, teremos a sua versão ordenada `\(X_0\)` dada por:
 
 `\(X_o=\{20, 30, 50, 50, 60, 70 ,90 \}\)`, então,
 
 `\(n=7\)`, ímpar.
 
-`$$Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50$$`
+`\(Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50\)`
 
 .pull-left[
 No R:
@@ -213,14 +281,131 @@ median(X)
 ```
 #&gt; [1] 50
 ```
+Observe que a unidade da mediana é a mesma dos dados individuais.
 
 ]
+
 .pull-right[
 No Excel:
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/mediana_excel.png" width="70%" style="display: block; margin: auto;" /&gt;
 ]
+
 ---
+
+### Media e Mediana
+
+Em uma distribuição simétrica (como a da variável `altura`), a mediana amostral também é uma estimativa imparcial e consistente de média populacional `\(\mu\)`, contudo não é tão eficiente como a média amostral `\(\bar{x}\)`.
+
+.pull-left[
+
+
+```r
+median(dados_turmas$altura)
+```
+
+```
+#&gt; [1] 1.74
+```
+
+
+
+```r
+dados_turmas %&gt;% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+*   xintercept = c(1.7242,1.74),
+*   color=c("blue","red"))
+```
+
+`\(Md =  1,74\text{ m}\)`
+
+Se a distribuição de frequência é assimétrica (como a da variável `idade_anos`) a mediana é uma pobre estimativa da média populacional.
+]
+
+.pull-left[
+
+&lt;img src="Aula05_files/figure-html/plot13_3-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+**Exemplo 2**: Calcular a média e a mediana dos dados de salário (nº salário mínimos), que diz respeito à uma amostra de 6 colaboradores de uma empresa.
+
+`$$S=\{ 5, 2, 3, 6, 10, 9\}$$`
+`\(n=6\)`, par.
+
+`$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$`
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: `\(So=\{ 2, 3, 5, 6, 9, 10\}\)`, então a mediana será dada por:
+
+`\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}\)`.
+
+A média será dada por:
+
+`\(\bar{x}= \frac{2+3+5+6+9+10}{6} = 5,83 \text{ salários mínimos}\)`
+
+---
+
+Imagine que, ao ínvés de 10, o verdadeiro valor de ganho do 5º colaborador amostra seja 100, calcule a média e a mediana novamente para essa variável: 
+
+`$$S=\{ 5, 2, 3, 6, 100, 9\}$$`
+`\(n=6\)`, par.
+
+`$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$`
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: `\(So=\{ 2, 3, 5, 6, 9, 100\}\)`, então a mediana será dada por:
+
+`\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}\)`.
+
+A média será dada por:
+
+`\(\bar{x}= \frac{2+3+5+6+9+100}{6} = 20,83 \text{ salários mínimos}\)`
+
+Concluímos então que a mediana não é afetada por observações muito grandes ou muito pequenas, enquanto que a presença de tais extremos tem um significante efeito sobre a média.
+
+---
+
+## Moda
+.pull-left[
+A moda é comumente definida como a medição que ocorre com mais frequência em um conjunto de dados.
+
+Para os dados de `idade_anos` o valor mais presente do conjunto de dados é 19 anos.
+
+Portanto, podemos ter distribuições com mais de um valor mais frequente (plurimodal), ou mesmo sem moda (amodal).
+
+Outra forma de definir a moda como uma medida de concentração relativamente grande, pois algumas distribuições de frequência podem ter mais de um ponto de concetração, embora essas concentrações possam não conter precisamente as mesmas frequências.
+
+]
+
+.pull-right[
+
+&lt;img src="Aula05_files/figure-html/plot13_1-1.png" style="display: block; margin: auto;" /&gt;
+]
+---
+
+
+
+```r
+x&lt;-c(6, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 14)
+tibble(x) %&gt;% 
+  ggplot(aes(x=x,y=..density..)) +
+  geom_histogram(bins = 9,
+                 color="black",
+                 fill="lightgray")
+```
+
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
 
 
     </textarea>
