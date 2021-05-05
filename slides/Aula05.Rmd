@@ -128,34 +128,33 @@ kableExtra::kable(tab)
 
 ## Mediana
 
-É o valor que ocupa a posição central do conjunto ordenado dos dados $(X' ou X_o)$, o valor é precedido e seguido pelo mesmo  número de dados (nem sempre pertence ao conjunto de dados).  
-Exemplo:  
+É o valor que ocupa a posição central do conjunto ordenado dos dados $(X' \text{ ou } Xo)$, o valor da mediana é precedido e seguido pelo mesmo  número de observações e nem sempre pertence ao conjunto de dados.  
+
+**Exemplo 1**:  
 $$X = \{50, 60, 20, 50, 30, 90, 70\}$$   
 O conjunto ordenado será:  
 $$Xo=\{20, 30, 50, 50, 60, 70 ,90\}$$  
-O cálculo da media será dados em função do número de observaçõs $n$, se acaso ele form par ou ímpar:
+A mediana será encontrada ou calculada em função do número de observações $n$ presentes na base de dados, se acaso $n$ for par ou ímpar:
 
-No caso de $n$ ímpar:  
+No exemplo, temos $n$ ímpar, a mediana faz parte do conjunto de dados e será encontrada como:  
 $$Md = Xo_{\left(\frac{n+1}{2}\right)}$$
-No caso de $n$ par:
-
-$$Md = \frac{Xo_{\left(\frac{n}{2}\right)}+Xo_{\left(\frac{n}{2}+1\right)}}{2}$$
 
 ---
 
-**Exemplo**:  
+**Exemplo 1**:  
 
-Dado $X=\{50, 30, 20, 90, 70, 50\}$, teremos a sua versão ordenada $X_0$ dado por:
+Dado $X=\{50, 60, 20, 50, 30, 90, 70\}$, teremos a sua versão ordenada $X_0$ dado por:
 
-$X0=\{20, 30, 50, 50, 70, 90  \}$, então
+$X_o=\{20, 30, 50, 50, 60, 70 ,90 \}$, então,
 
-$n=7$, portanto n ímpar.
+$n=7$, ímpar.
+
 $$Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50$$
 
 .pull-left[
 No R:
 ```{r}
-X=c(50, 30, 20, 90, 70, 50)
+X=c(20, 30, 50, 50, 60, 70 ,90)
 median(X)
 ```
 
@@ -167,6 +166,6 @@ No Excel:
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mediana_excel.png")
 ```
 ]
-
 ---
+
 
