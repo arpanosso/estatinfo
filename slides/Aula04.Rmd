@@ -298,7 +298,26 @@ tab %>%
 ```{r, plot3, echo = FALSE}
 ```
 ]
+---
+#### Vamos Adicionar os valores de $fi$ no gráfico
 
+.pull-left[
+```{r, plot3_1, eval=FALSE}
+tab %>%
+  ggplot(aes(x="",y=fi, fill=sexo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+  geom_text(aes(label = paste0(round(perc), "%")), #<<
+            position = position_stack(vjust = 0.5)) #<<
+```
+
+]
+
+.pull-right[
+```{r, plot3_1, echo = FALSE}
+```
+]
 ---
 ## Tabela de Frequência para a variável Cor de cabelo
 
@@ -384,8 +403,27 @@ tab %>%
 ```
 ]
 
+---
 
+#### Vamos Adicionar os valores de $perc$ no gráfico
 
+.pull-left[
+```{r, plot6_1, eval=FALSE}
+tab %>%
+  ggplot(aes(x="",y=fi, fill=cor_cabelo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+  geom_text(aes(label = paste0(round(perc), "%")), #<<
+            position = position_stack(vjust = 0.5)) #<<
+```
+
+]
+
+.pull-right[
+```{r, plot6_1, echo = FALSE}
+```
+]
 ---
 class: middle, center, inverse
 

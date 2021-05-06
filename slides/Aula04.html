@@ -100,12 +100,12 @@ glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
 ```
 #&gt; Rows: 49
 #&gt; Columns: 6
-#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1~
-#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M"~
-#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "L", "CE", "~
-#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "pouco", "socialme~
-#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, ~
-#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, ~
+#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1~
+#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M", "M~
+#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "L", "CE", "CC",~
+#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "pouco", "socialmente"~
+#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90~
+#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, ~
 ```
 
 
@@ -328,7 +328,26 @@ tab %&gt;%
 .pull-right[
 &lt;img src="Aula04_files/figure-html/plot3-1.png" style="display: block; margin: auto;" /&gt;
 ]
+---
+#### Vamos Adicionar os valores de `\(fi\)` no gráfico
 
+.pull-left[
+
+```r
+tab %&gt;%
+  ggplot(aes(x="",y=fi, fill=sexo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+* geom_text(aes(label = paste0(round(perc), "%")),
+*           position = position_stack(vjust = 0.5))
+```
+
+]
+
+.pull-right[
+&lt;img src="Aula04_files/figure-html/plot3_1-1.png" style="display: block; margin: auto;" /&gt;
+]
 ---
 ## Tabela de Frequência para a variável Cor de cabelo
 
@@ -426,8 +445,27 @@ tab %&gt;%
 &lt;img src="Aula04_files/figure-html/plot6-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
+---
 
+#### Vamos Adicionar os valores de `\(perc\)` no gráfico
 
+.pull-left[
+
+```r
+tab %&gt;%
+  ggplot(aes(x="",y=fi, fill=cor_cabelo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+* geom_text(aes(label = paste0(round(perc), "%")),
+*           position = position_stack(vjust = 0.5))
+```
+
+]
+
+.pull-right[
+&lt;img src="Aula04_files/figure-html/plot6_1-1.png" style="display: block; margin: auto;" /&gt;
+]
 ---
 class: middle, center, inverse
 
