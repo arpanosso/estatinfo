@@ -339,10 +339,11 @@ tab %&gt;%
   geom_bar(stat="identity") +
   coord_polar("y", start=0) +
   theme_void() +
-* geom_text(aes(label = paste0(round(perc), "%")),
-*           position = position_stack(vjust = 0.5))
+  geom_text(
+    aes(
+*     label=paste0(round(perc), "%")),
+*     position=position_stack(vjust = 0.5))
 ```
-
 ]
 
 .pull-right[
@@ -457,8 +458,10 @@ tab %&gt;%
   geom_bar(stat="identity") +
   coord_polar("y", start=0) +
   theme_void() +
-* geom_text(aes(label = paste0(round(perc), "%")),
-*           position = position_stack(vjust = 0.5))
+  geom_text(
+    aes(
+*     label=paste0(round(perc), "%")),
+*     position=position_stack(vjust = 0.5))
 ```
 
 ]
