@@ -95,7 +95,7 @@ dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
 
 ---
 ### Tamanho da População $(N)$  
-O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas veses não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
+O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas vezes não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
 ### Tamanho da amostra $(n)$  
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 

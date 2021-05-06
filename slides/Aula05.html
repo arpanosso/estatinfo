@@ -406,6 +406,30 @@ tibble(x) %&gt;%
 
 &lt;img src="Aula05_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
 
+---
+
+## Quantis
+
+É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
+
+Os Quantis de ordem `\(25\)`, `\(50\)`, `\(75\)` são chamados **quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
+
+Os Decis são os quantis de ordem `\(10\)`, `\(20\)`, ..., `\(90\)`  (D1, D2, ..., D9) 
+
+Os Percentis são os quantis de ordem `\(1\)`, `\(2\)`, ..., `\(99\)` (P1, P2, ..., P99).
+
+
+
+```r
+dados_turmas %&gt;% 
+  pull(altura) %&gt;% 
+  quantile(0.25)
+```
+
+```
+#&gt;  25% 
+#&gt; 1.65
+```
 
 
     </textarea>
