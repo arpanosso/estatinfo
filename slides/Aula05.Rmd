@@ -343,26 +343,113 @@ tibble(x) %>%
 ```
 
 ---
-
 ## Quantis
-
 É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
 
-Os Quantis de ordem $25$, $50$, $75$ são chamados **quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
+- Os Quantis de ordem $25$, $50$, $75$ são chamados **Quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
 
-Os Decis são os quantis de ordem $10$, $20$, ..., $90$  (D1, D2, ..., D9) 
+- Os **Decis** são os quantis de ordem $10$, $20$, ..., $90$  (D1, D2, ..., D9)
 
-Os Percentis são os quantis de ordem $1$, $2$, ..., $99$ (P1, P2, ..., P99).
+- Os **Percentis** são os quantis de ordem $1$, $2$, ..., $99$ (P1, P2, ..., P99).
 
+No R, ele podem ser encontrados por meio da função `quantile()` que tem como algumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor.
 
+.pull-left[
 ```{r}
+altura<-dados_turmas$altura
+q1 <- quantile(altura,0.25)
+q2 <- quantile(altura,0.50)
+q3 <- quantile(altura,0.75)
+```
+A função `geom_vline()`, ao lado, cria as linhas verticais na posição dos respectivos quartis no gráfico a seguir.
+]
 
+.pull-right[
+```{r,plot14,eval=FALSE}
 dados_turmas %>% 
   ggplot(aes(x=altura,y=..density..)) +
   geom_histogram(bins=6,
                  col="black",
-                 fill="gray")+
+                 fill="gray") +
+  geom_vline(xintercept=c(q1,q2,q3), #<<
+             color="red",lwd=1,
+             linetype=2)+ 
   theme_bw()
 ```
+]
+---
+```{r,plot14,echo=FALSE}
+```
 
+---
+class: middle, center, inverse
 
+# Medidas de Dispersão ou de Variabilidade
+
+---
+
+**Medidas de Dispersão**: 
+
+O resumo de um conjunto de dados, por meio de uma única medida representativa de posição central, esconde toda informação sobre a variabilidade do conjunto de valores. 
+
+As medidas de variação medem o grau com que os dados tendem a se distribuir em torno de um valor central. 
+
+- Amplitude total
+- Variância 
+- Desvio Padrão
+- Erro Padrão da Média 
+- Coeficiente de Variação
+
+**Coeficientes de formas de distribuição**:
+- Coeficiente de Assimetria
+- Coeficiente de Curtose 
+
+---
+
+**Exemplo**:
+
+Dados o conjunto de 4 amostras da mesma variável (altura de planta em cm), calcule a média e a Amplitude amplitude total de cada amostra.
+
+```{r,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  kableExtra::kable()
+```
+--
+Tabela de Médias
+
+```{r,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  summarise( 
+    media_x1 = mean(X1),
+    media_x2 = mean(X2),
+    media_x3 = mean(X3),
+    media_x4 = mean(X4)
+  )%>% 
+  kableExtra::kable()
+```
+
+--
+Tabela de Amplitudes Totais
+
+```{r,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  summarise( 
+    Delta_x1 = diff(range(X1)),
+    Delta_x2 = diff(range(X2)),
+    Delta_x3 = diff(range(X3)),
+    Delta_x4 = diff(range(X4))
+  )%>% 
+  kableExtra::kable()
+```

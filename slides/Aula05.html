@@ -407,31 +407,159 @@ tibble(x) %&gt;%
 &lt;img src="Aula05_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-
 ## Quantis
-
 É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
 
-Os Quantis de ordem `\(25\)`, `\(50\)`, `\(75\)` são chamados **quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
+- Os Quantis de ordem `\(25\)`, `\(50\)`, `\(75\)` são chamados **Quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
 
-Os Decis são os quantis de ordem `\(10\)`, `\(20\)`, ..., `\(90\)`  (D1, D2, ..., D9) 
+- Os **Decis** são os quantis de ordem `\(10\)`, `\(20\)`, ..., `\(90\)`  (D1, D2, ..., D9)
 
-Os Percentis são os quantis de ordem `\(1\)`, `\(2\)`, ..., `\(99\)` (P1, P2, ..., P99).
+- Os **Percentis** são os quantis de ordem `\(1\)`, `\(2\)`, ..., `\(99\)` (P1, P2, ..., P99).
 
+No R, ele podem ser encontrados por meio da função `quantile()` que tem como algumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor.
 
+.pull-left[
+
+```r
+altura&lt;-dados_turmas$altura
+q1 &lt;- quantile(altura,0.25)
+q2 &lt;- quantile(altura,0.50)
+q3 &lt;- quantile(altura,0.75)
+```
+A função `geom_vline()`, ao lado, cria as linhas verticais na posição dos respectivos quartis no gráfico a seguir.
+]
+
+.pull-right[
 
 ```r
 dados_turmas %&gt;% 
-  pull(altura) %&gt;% 
-  quantile(0.25)
+  ggplot(aes(x=altura,y=..density..)) +
+  geom_histogram(bins=6,
+                 col="black",
+                 fill="gray") +
+* geom_vline(xintercept=c(q1,q2,q3),
+             color="red",lwd=1,
+             linetype=2)+ 
+  theme_bw()
 ```
+]
+---
+&lt;img src="Aula05_files/figure-html/plot14-1.png" style="display: block; margin: auto;" /&gt;
 
-```
-#&gt;  25% 
-#&gt; 1.65
-```
+---
+class: middle, center, inverse
 
+# Medidas de Dispersão ou de Variabilidade
 
+---
+
+**Medidas de Dispersão**: 
+
+O resumo de um conjunto de dados, por meio de uma única medida representativa de posição central, esconde toda informação sobre a variabilidade do conjunto de valores. 
+
+As medidas de variação medem o grau com que os dados tendem a se distribuir em torno de um valor central. 
+
+- Amplitude total
+- Variância 
+- Desvio Padrão
+- Erro Padrão da Média 
+- Coeficiente de Variação
+
+**Coeficientes de formas de distribuição**:
+- Coeficiente de Assimetria
+- Coeficiente de Curtose 
+
+---
+
+**Exemplo**:
+
+Dados o conjunto de 4 amostras da mesma variável (altura de planta em cm), calcule a média e a Amplitude amplitude total de cada amostra.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+--
+Tabela de Médias
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; media_x1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_x2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_x3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_x4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+Tabela de Amplitudes Totais
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
