@@ -95,7 +95,7 @@ dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
 
 ---
 ### Tamanho da População $(N)$  
-O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas veses não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
+O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas vezes não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
 ### Tamanho da amostra $(n)$  
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 
@@ -108,7 +108,7 @@ glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
 ---
 ### Exemplo da base de dados das turmas 
 
-Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas $(n_i)$, relativas $(f_i)$ e a porcentagem ($perc$) para as categoria existentes. 
+Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas $(n_i)$, relativas $(f_i)$ e a porcentagem $(perc)$ para as categoria existentes. 
 
 Após isso, realizar a visualização de dados com gráficos de Colunas, Barras e Setores (Pizza ou *Pie*).
 
@@ -156,7 +156,7 @@ $n_F = 17$ e,
 
 $n_M = 32$
  
-Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes ($k$) da variável cetegória é igual a $n$. 
+Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes $(k)$ da variável cetegória é igual a $n$. 
 
 $$
 \sum \limits_{i=1}^{k}{n_i} = n
@@ -298,7 +298,27 @@ tab %>%
 ```{r, plot3, echo = FALSE}
 ```
 ]
+---
+#### Vamos Adicionar os valores de $fi$ no gráfico
 
+.pull-left[
+```{r, plot3_1, eval=FALSE}
+tab %>%
+  ggplot(aes(x="",y=fi, fill=sexo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+  geom_text(
+    aes(
+      label=paste0(round(perc), "%")), #<<
+      position=position_stack(vjust = 0.5)) #<<
+```
+]
+
+.pull-right[
+```{r, plot3_1, echo = FALSE}
+```
+]
 ---
 ## Tabela de Frequência para a variável Cor de cabelo
 
@@ -384,8 +404,29 @@ tab %>%
 ```
 ]
 
+---
 
+#### Vamos Adicionar os valores de $perc$ no gráfico
 
+.pull-left[
+```{r, plot6_1, eval=FALSE}
+tab %>%
+  ggplot(aes(x="",y=fi, fill=cor_cabelo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+  geom_text(
+    aes(
+      label=paste0(round(perc), "%")), #<<
+      position=position_stack(vjust = 0.5)) #<<
+```
+
+]
+
+.pull-right[
+```{r, plot6_1, echo = FALSE}
+```
+]
 ---
 class: middle, center, inverse
 
@@ -752,12 +793,14 @@ No R:
 
 ```{r,plot12,eval=FALSE}
 dados_turmas %>% 
-  ggplot(aes(x=altura,y=..count..))+ 
+  ggplot(aes(x=altura, y=..count..))+ #<<
   geom_histogram(breaks = limites,
                  color="black",
                  fill="gray") +
   geom_freqpoly(breaks=limites,color="red") #<<
 ```
+Observe que o histograma foi construído com as frequências absolutas $(n_i)$, ou seja, `y=..count..`.
+
 ]
 
 .pull-right[
@@ -767,12 +810,46 @@ dados_turmas %>%
 
 ---
 
+## Histograma e Estimativas de densidade suavizadas
+
+.pull-left[
+
+Calcula e desenha a estimativa da densidade, que é uma versão suavizada do histograma. Esta é uma alternativa útil para dados contínuos que vêm de uma distribuição suave subjacente. 
+
+```{r,plot12_1,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..density..))+ #<<
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="white") +
+  geom_density(color="red",
+               fill="green",
+               alpha=0.05) #<<
+```
+
+- Observe que o histograma foi construído com as frequências absolutas $(n_i)$, ou seja, `y=..density..`. Utilizamos a função `geom_density()`.  
+- O argumento `alpha=0.05` controla a transparência do preenchimento. 
+
+]
+
+.pull-right[
+```{r,plot12_1,echo=FALSE}
+```
+]
+
+---
+
+
 ## Função de Distribuição Acumulada
 
 .pull-left[
-A função de distribuição acumulada descreve como probabilidades são associadas aos valores ou aos intervalos de valores de uma variável aleatória. Ela representa a probabilidade de uma variável aleatória ser menor ou igual a um valor real qualquer $x$. 
+A função de distribuição acumulada descreve como probabilidades são associadas aos valores ou aos intervalos de valores de uma variável aleatória. Em outras palavras, ela representa a probabilidade de uma variável aleatória ser menor ou igual a um valor real qualquer $x$. 
 
-Para uma variável aleatória contínua:
+$$
+F(x) = P(X \leq x) \in [0,1].
+$$
+
+Para uma variável aleatória contínua (`altura`):
 
 $\int \limits_{- \infty }^x f(x_i) dx$
 
@@ -793,7 +870,7 @@ dados_turmas %>%
 
 .pull-left[
 
-No caso da variável aleatória discreta:
+No caso da variável aleatória discreta (`idade_anos`):
 
 $F(x) = \sum \limits_{x_i<x} f(x_i)$
 

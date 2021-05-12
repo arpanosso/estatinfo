@@ -34,7 +34,7 @@ São respostas breves e rápidas que sintetizam a informação não de uma forma
 Essas medidas, portanto, fornecem a posição na reta real, informa sobre a posição de um conjunto de dados. As Principais medidas são: 
 
 1. Média:  
- - Aritmética
+ - **Aritmética**
  - Ponderada
  - Geométrica (Apostila Apenas)
  - Harmônica (Apostila Apenas)
@@ -44,28 +44,32 @@ Essas medidas, portanto, fornecem a posição na reta real, informa sobre a posi
 3. Moda
 
 ---
-### Média populacional
+### Média Populacional
 
 Para a população, a média é definida como:
 
  $$
- \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, com\; i=1,2,...,N.
+ \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, \text{com } i=1,2,...,N.
  $$
  
- Onde `\(N\)` é o tamanho da população. 
+ Onde `\(N\)` é o tamanho da população (e geralmente não a conhecemos). 
+
 
 ### Média amostral
 
- É a mais utilizada das medidas de posição. A média aritmética de um conjunto de `\(n\)` observações da variável aleatória `\(X\)`, é o quociente da divisão por `\(n\)` da soma dos valores das observações dessa variável. 
+ É a mais utilizada das medidas de posição. A média aritmética de um conjunto de `\(n\)` observações da variável aleatória `\(X\)`, é o quociente da divisão por `\(n\)` da soma dos valores das observações dessa variável. A média amostral `\(\bar{x}\)` é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população `\(\mu\)`. 
  
  $$
  \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, com\; i=1,2,...,n.
  $$
+Onde `\(n\)` é o tamanho da amostra.
 ---
 
-**Exemplo**: Para os dados de `altura` e `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+O exemplo abaixo demonstra o cálculo da média da amostra da idade em anos de 49 alunos (`idade_anos`). Observe que a média tem as mesmas unidades de medida que as observações individuais. 
 
-### Carregando pacotes e a base
+**Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+
+**Carregando Pacotes e a Base de Dados**
 
 
 ```r
@@ -77,11 +81,11 @@ View(dados_turmas)
 
 
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 50%"&gt;&lt;/img&gt;
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-### Cálculo da Média Aritmética
+### Cálculo da Média Aritmética 
 
 .pull-left[
 
@@ -176,46 +180,111 @@ Tabela de Frequência para Idade
 &lt;/table&gt;
 ]
 ---
+**Hitograma e média para idade_anos**
+.pull-left[
 
-## Mediana
+```r
+dados_turmas %&gt;% 
+  ggplot(aes(x=idade_anos, y=..density..)) +
+  geom_histogram(bins=10, 
+                 color="black", 
+                 fill="gray")+
+* geom_vline(xintercept = 20.9184,
+*            color="blue")
+```
 
-É o valor que ocupa a posição central do conjunto ordenado dos dados `\((X' ou X_o)\)`, o valor é precedido e seguido pelo mesmo  número de dados (nem sempre pertence ao conjunto de dados).  
-Exemplo:  
-`$$X = \{50, 60, 20, 50, 30, 90, 70\}$$`   
-O conjunto ordenado será:  
-`$$Xo=\{20, 30, 50, 50, 60, 70 ,90\}$$`  
-O cálculo da media será dados em função do número de observaçõs `\(n\)`, se acaso ele form par ou ímpar:
+Se os dados são plotados como um histograma a média é o centro de gravidade do histograma (linha azul). 
 
-No caso de `\(n\)` ímpar:  
-`$$Md = Xo_{\left(\frac{n+1}{2}\right)}$$`
-No caso de `\(n\)` par:
+Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria horizontalmente com o ponto de apoio em `\(\bar{x}\)`. 
 
-`$$Md = \frac{Xo_{\left(\frac{n}{2}\right)}+Xo_{\left(\frac{n}{2}+1\right)}}{2}$$`
+A média é aplicável aos dados de quantitativos, e **não deve ser usado para dados ordinais e nominais**.
+
+]
+
+.pull-left[
+
+&lt;img src="Aula05_files/figure-html/plot13_1-1.png" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
-**Exemplo**:  
+**Hitograma e média para altura**
 
-Dado `\(X=\{50, 30, 20, 90, 70, 50\}\)`, teremos a sua versão ordenada `\(X_0\)` dado por:
+.pull-left[
 
-`\(X0=\{20, 30, 50, 50, 70, 90  \}\)`, então
 
-`\(n=7\)`, portanto n ímpar.
-`$$Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50$$`
+```r
+mean(dados_turmas$altura)
+```
+
+```
+#&gt; [1] 1.724286
+```
+
+
+
+```r
+dados_turmas %&gt;% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+*   xintercept = 1.7242,
+*   color="blue")
+```
+
+`\(\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49}\)`
+
+`\(\bar{x} =  1,724\text{ m}\)`
+
+]
+
+.pull-left[
+
+&lt;img src="Aula05_files/figure-html/plot13_2-1.png" style="display: block; margin: auto;" /&gt;
+]
+Observe o histograma e a média para a variável `altura`, e compare sua simetria com o histograma da variável `idade_anos`.
+---
+
+## Mediana
+
+É o valor que ocupa a posição central do conjunto de dados ordenados `\((X' \text{ ou } Xo)\)`. Portanto, inicialmente as observações são ordenadas de acordo com a sua ordem de magnitude.
+
+o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número e observações é grande.
+
+A mediana será encontrada ou calculada em função do número de observações `\(n\)` presentes na base de dados, se acaso `\(n\)` for par ou ímpar:
+
+Se `\(n\)` é ímpar: `\(Md = Xo_{\left(\frac{n+1}{2}\right)}\)`
+
+Se `\(n\)` é par: `\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}\)`
+---
+
+**Exemplo 1**:  
+
+Dado `\(X=\{50, 60, 20, 50, 30, 90, 70\}\)`, teremos a sua versão ordenada `\(X_0\)` dada por:
+
+`\(X_o=\{20, 30, 50, 50, 60, 70 ,90 \}\)`, então,
+
+`\(n=7\)`, ímpar.
+
+`\(Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50\)`
 
 .pull-left[
 No R:
 
 ```r
-X=c(50, 30, 20, 90, 70, 50)
+X=c(20, 30, 50, 50, 60, 70 ,90)
 median(X)
 ```
 
 ```
 #&gt; [1] 50
 ```
+Observe que a unidade da mediana é a mesma dos dados individuais.
 
 ]
+
 .pull-right[
 No Excel:
 
@@ -224,6 +293,7 @@ No Excel:
 
 ---
 
+<<<<<<< HEAD
 **Exemplo**:  
 
 
@@ -231,6 +301,275 @@ No Excel:
 
 
 
+=======
+### Media e Mediana
+
+Em uma distribuição simétrica (como a da variável `altura`), a mediana amostral também é uma estimativa imparcial e consistente de média populacional `\(\mu\)`, contudo não é tão eficiente como a média amostral `\(\bar{x}\)`.
+
+.pull-left[
+
+
+```r
+median(dados_turmas$altura)
+```
+
+```
+#&gt; [1] 1.74
+```
+
+
+
+```r
+dados_turmas %&gt;% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+*   xintercept = c(1.7242,1.74),
+*   color=c("blue","red"))
+```
+
+`\(Md =  1,74\text{ m}\)`
+
+Se a distribuição de frequência é assimétrica (como a da variável `idade_anos`) a mediana é uma pobre estimativa da média populacional.
+]
+
+.pull-left[
+
+&lt;img src="Aula05_files/figure-html/plot13_3-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+**Exemplo 2**: Calcular a média e a mediana dos dados de salário (nº salário mínimos), que diz respeito à uma amostra de 6 colaboradores de uma empresa.
+
+`$$S=\{ 5, 2, 3, 6, 10, 9\}$$`
+`\(n=6\)`, par.
+
+`$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$`
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: `\(So=\{ 2, 3, 5, 6, 9, 10\}\)`, então a mediana será dada por:
+
+`\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}\)`.
+
+A média será dada por:
+
+`\(\bar{x}= \frac{2+3+5+6+9+10}{6} = 5,83 \text{ salários mínimos}\)`
+
+---
+
+Imagine que, ao ínvés de 10, o verdadeiro valor de ganho do 5º colaborador amostra seja 100, calcule a média e a mediana novamente para essa variável: 
+
+`$$S=\{ 5, 2, 3, 6, 100, 9\}$$`
+`\(n=6\)`, par.
+
+`$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$`
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: `\(So=\{ 2, 3, 5, 6, 9, 100\}\)`, então a mediana será dada por:
+
+`\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}\)`.
+
+A média será dada por:
+
+`\(\bar{x}= \frac{2+3+5+6+9+100}{6} = 20,83 \text{ salários mínimos}\)`
+
+Concluímos então que a mediana não é afetada por observações muito grandes ou muito pequenas, enquanto que a presença de tais extremos tem um significante efeito sobre a média.
+
+---
+
+## Moda
+.pull-left[
+A moda é comumente definida como a medição que ocorre com mais frequência em um conjunto de dados.
+
+Para os dados de `idade_anos` o valor mais presente do conjunto de dados é 19 anos.
+
+Portanto, podemos ter distribuições com mais de um valor mais frequente (plurimodal), ou mesmo sem moda (amodal).
+
+Outra forma de definir a moda como uma medida de concentração relativamente grande, pois algumas distribuições de frequência podem ter mais de um ponto de concetração, embora essas concentrações possam não conter precisamente as mesmas frequências.
+
+]
+
+.pull-right[
+
+&lt;img src="Aula05_files/figure-html/plot13_1-1.png" style="display: block; margin: auto;" /&gt;
+]
+---
+
+
+
+```r
+x&lt;-c(6, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 14)
+tibble(x) %&gt;% 
+  ggplot(aes(x=x,y=..density..)) +
+  geom_histogram(bins = 9,
+                 color="black",
+                 fill="lightgray")
+```
+
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Quantis
+É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
+
+- Os Quantis de ordem `\(25\)`, `\(50\)`, `\(75\)` são chamados **Quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
+
+- Os **Decis** são os quantis de ordem `\(10\)`, `\(20\)`, ..., `\(90\)`  (D1, D2, ..., D9)
+
+- Os **Percentis** são os quantis de ordem `\(1\)`, `\(2\)`, ..., `\(99\)` (P1, P2, ..., P99).
+
+No R, ele podem ser encontrados por meio da função `quantile()` que tem como algumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor.
+
+.pull-left[
+
+```r
+altura&lt;-dados_turmas$altura
+q1 &lt;- quantile(altura,0.25)
+q2 &lt;- quantile(altura,0.50)
+q3 &lt;- quantile(altura,0.75)
+```
+A função `geom_vline()`, ao lado, cria as linhas verticais na posição dos respectivos quartis no gráfico a seguir.
+]
+
+.pull-right[
+
+```r
+dados_turmas %&gt;% 
+  ggplot(aes(x=altura,y=..density..)) +
+  geom_histogram(bins=6,
+                 col="black",
+                 fill="gray") +
+* geom_vline(xintercept=c(q1,q2,q3),
+             color="red",lwd=1,
+             linetype=2)+ 
+  theme_bw()
+```
+]
+---
+&lt;img src="Aula05_files/figure-html/plot14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle, center, inverse
+
+# Medidas de Dispersão ou de Variabilidade
+
+---
+
+**Medidas de Dispersão**: 
+
+O resumo de um conjunto de dados, por meio de uma única medida representativa de posição central, esconde toda informação sobre a variabilidade do conjunto de valores. 
+
+As medidas de variação medem o grau com que os dados tendem a se distribuir em torno de um valor central. 
+
+- Amplitude total
+- Variância 
+- Desvio Padrão
+- Erro Padrão da Média 
+- Coeficiente de Variação
+
+**Coeficientes de formas de distribuição**:
+- Coeficiente de Assimetria
+- Coeficiente de Curtose 
+
+---
+
+**Exemplo**:
+
+Dados o conjunto de 4 amostras da mesma variável (altura de planta em cm), calcule a média e a Amplitude amplitude total de cada amostra.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+--
+Tabela de Médias
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; media_x1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_x2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_x3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_x4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+Tabela de Amplitudes Totais
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_x4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+>>>>>>> a0327b66e99b7c14176e9f962eb13002270ebb2d
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

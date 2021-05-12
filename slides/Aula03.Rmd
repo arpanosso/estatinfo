@@ -427,7 +427,7 @@ text(seq(.7, length(x)+1, 1.2),px+.05,round(px,2))
 tibble::tibble(x,px)
 ```
 
-**OBS**: O número de doentes da amostra de 5 animais pode variar de 0 a 5, ao conjunto dessas possibilidades denominamos espaço amostral (letras $\omega$ ou $S$), com a soma de suas probabilidades é sempre igual a $1$:
+**OBS**: O número de doentes da amostra de 5 animais pode variar de 0 a 5, ao conjunto dessas possibilidades denominamos espaço amostral (letras $\Omega$ ou $S$), com a soma de suas probabilidades é sempre igual a $1$:
 
 $\sum \limits_{x=0}^r P(x_i) = 1$
 
