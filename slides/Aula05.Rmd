@@ -574,7 +574,7 @@ $SQD = 196,16 \;cm^2$
 
 ---
 
-## Variância $(s^2)$
+## Variância amostral $(s^2)$
 
 Agora podemos definir a mais importante medida de variabilidade, a variância. 
 
@@ -652,9 +652,38 @@ var(X3)
 
 No Excel temos:
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/variancia.png")
 ```
 
 $SQD = 49,04 \;cm^2$
+
+---
+
+## Desvio Padrão amostral $(s)$
+
+A *variância* apresenta a unidade dos dados quadrática, o que dificulta a sua comparação. A raiz quadrada da variância é denominada **desvio padrão**: 
+$s=\sqrt{s^2}$  
+Para a população temos: $\sigma=\sqrt{\sigma^2}$
+
+A vantagem dessa estatística é que ela apresenta a mesma unidade dos dados originais.
+
+.pull-left[
+No R:
+```{r}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+sd(X3)
+```
+]
+
+.pull-right[
+No Excel:
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/desvpad.png")
+```
+
+$SQD = 7,003 \;cm$
+]
+---
 

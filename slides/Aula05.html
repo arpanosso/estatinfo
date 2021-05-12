@@ -757,7 +757,7 @@ No Excel temos:
 
 ---
 
-## Variância `\((s^2)\)`
+## Variância amostral `\((s^2)\)`
 
 Agora podemos definir a mais importante medida de variabilidade, a variância. 
 
@@ -877,9 +877,41 @@ var(X3)
 
 No Excel temos:
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/variancia.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/variancia.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 `\(SQD = 49,04 \;cm^2\)`
+
+---
+
+## Desvio Padrão amostral `\((s)\)`
+
+A *variância* apresenta a unidade dos dados quadrática, o que dificulta a sua comparação. A raiz quadrada da variância é denominada **desvio padrão**: 
+`\(s=\sqrt{s^2}\)`  
+Para a população temos: `\(\sigma=\sqrt{\sigma^2}\)`
+
+A vantagem dessa estatística é que ela apresenta a mesma unidade dos dados originais.
+
+.pull-left[
+No R:
+
+```r
+X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
+sd(X3)
+```
+
+```
+#&gt; [1] 7.002857
+```
+]
+
+.pull-right[
+No Excel:
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/desvpad.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+`\(SQD = 7,003 \;cm\)`
+]
+---
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
