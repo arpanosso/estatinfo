@@ -293,15 +293,6 @@ No Excel:
 
 ---
 
-<<<<<<< HEAD
-**Exemplo**:  
-
-
-
-
-
-
-=======
 ### Media e Mediana
 
 Em uma distribuição simétrica (como a da variável `altura`), a mediana amostral também é uma estimativa imparcial e consistente de média populacional `\(\mu\)`, contudo não é tão eficiente como a média amostral `\(\bar{x}\)`.
@@ -527,15 +518,15 @@ Dados o conjunto de 4 amostras da mesma variável (altura de planta em cm), calc
 &lt;/tbody&gt;
 &lt;/table&gt;
 --
-Tabela de Médias
+Tabela de Médias `\((\sum_{i=1}^nx_i)/n\)`
 
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; media_x1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_x2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_x3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_x4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X4 &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -549,15 +540,16 @@ Tabela de Médias
 &lt;/table&gt;
 
 --
-Tabela de Amplitudes Totais
+Tabela de Amplitudes `\((\Delta = Máximo - Mínimo)\)`
+
 
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Delta_x1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_x2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_x3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_x4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X4 &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -569,7 +561,326 @@ Tabela de Amplitudes Totais
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
->>>>>>> a0327b66e99b7c14176e9f962eb13002270ebb2d
+
+---
+
+Tabela Médias
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; media_X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Tabela Amplitudes
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+- Apesar das amostras apresentarem o mesmo valor médio, a terceira (X3) e quarta (X4) amostras são mais dispersas. 
+
+- As amostras X3 e X4, apesar do mesmo valor de média e amplitude, são bem distintas. Isso corre pois a Amplitude leva em consideração apenas **dois** valores do conjunto de dados, o conveniente seria considerar uma medida que utiliza-se todas as observações.
+
+---
+## Desvios ou erros `\((e_i)\)`
+
+Para resolvermos o problema da amplitude consideramos os desvios ou erros `\((e_i)\)`'s de cada observação em relação a um ponto de referência, no caso, a média aritmética do conjunto de dados, portanto, os desvios de cada observação é dado por:
+
+`$$e_i = x_i - \bar{x}$$`
+
+Para os dados da amostra 3 `\((X3)\)` temos:
+.pull-left[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+Como demosntrado anteriormente, a soma dos erros `\(e_i\)`
+ é sempre igual a zero:
+`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}\)`
+`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}\)`
+`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}\)`
+`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0\)`
+]
+
+---
+## Soma dos Quadrados dos Desvios (SDQ)
+
+Para evitar a inconveniência do somatório dos desvios ser igual a zero, para qualquer conjunto de dados, elevamos ao quadrado cada um dos valores de desvios `\(e_i\)`. 
+  
+`$$e_i^2 = (x_i - \bar{x})^2$$`
+
+e temos
+
+`$$SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2$$`
+
+A `\(SQD\)` leva a unidade dos dados ao quadrado e pode ser calculada no R:
+
+
+```r
+X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
+QD &lt;- (X3-mean(X3))^2
+QD
+```
+
+```
+#&gt; [1] 70.56 31.36  0.64 23.04 70.56
+```
+
+```r
+sum(QD)
+```
+
+```
+#&gt; [1] 196.16
+```
+
+---
+No Excel temos:
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/sqd.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+`\(SQD = 196,16 \;cm^2\)`
+---
+
+## Manipulação Algébrica da SQD:
+
+.pull-left[
+`\(SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2\)`
+`\(SQD = \sum \limits_{i=1}^n(x_i^2 - 2x_i \bar{x} + \bar{x}^2)\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - \sum \limits_{i=1}^n2x_i \bar{x} + \sum \limits_{i=1}^n \bar{x}^2\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i  + n\bar{x}^2\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i \times \frac{n}{n}  + n\bar{x}^2\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\frac{\sum \limits_{i=1}^nx_i}{n}  + n\bar{x}^2\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\bar{x} + n\bar{x}^2\)`
+]
+
+.pull-right[
+
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 - n\bar{x}^2\)`  
+`\(SQD = \sum \limits_{i=1}^nx_i^2 -n \left( \frac{\sum \limits_{i=1}^nx_i}{n} \right)^2\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 -  n\frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n^2}\)`
+`\(SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}\)`
+]
+
+---
+
+Assim, temos outra fórmula para o cálculo da soma dos quadrados dos desvios
+
+
+`$$SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}$$`
+Essa fórmula é mais eficiente e simples do que a anterior pois não passa pelo cálculo dos desvios individuais.
+
+No R:
+
+
+```r
+X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
+QD &lt;- sum(X3^2) - sum(X3)^2/5
+QD
+```
+
+```
+#&gt; [1] 196.16
+```
+
+```r
+sum(QD)
+```
+
+```
+#&gt; [1] 196.16
+```
+
+---
+No Excel temos:
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/sqd2.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+`\(SQD = 196,16 \;cm^2\)`
+
+---
+
+## Variância `\((s^2)\)`
+
+Agora podemos definir a mais importante medida de variabilidade, a variância. 
+
+Ela será definida como a soma de quadrado dos desvios, dividada pelos seus GL **graus de liberdade** ( `\(DF\)` do inglês - *degrees of freedom*).
+
+Ou seja:
+
+`$$s^2 = \frac{SQD}{GL}$$`
+
+**Grau de liberdade** é o número de observações independentes de uma estatística, após aplicada uma restrição. Ou seja, número de maneiras independentes pelas quais um sistema dinâmico pode se mover, sem violar qualquer restrição imposta a ele. Em outras palavras, o número de graus de liberdade pode ser definido como o número mínimo de coordenadas independentes que podem especificar a posição do sistema completamente.
+
+Matematicamente, graus de liberdade é o número de dimensões do domínio de um vetor aleatório, ou essencialmente o número de componentes "livres" (**quantos componentes precisam ser conhecidos antes que o vetor seja totalmente determinado**).
+
+---
+.pull-left[
+Tomemos como exemplo a amostra X3:
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+A média da amostra é dada pela soma dos valores dividido por `\(n\)`, ou seja, não exsite qualquer restrição nesse cálculo pois, matematicamente, precisaremos de `\(n\)` elementos conhecidos para conhecer todo o vetor de dados `\(X3\)`.
+
+`\(\bar{x} = \frac{0,6+3,4+9,8+13,8+17,4}{n} = 9\;cm\)`
+]
+
+.pull-right[
+Agora, tomemos o vetor de desvios de `\(X3\)` em relação à sua média:
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Observe que não precisamos conhecer seus `\(n\)` elementos para conhecermos o vetor **Desvios**, basta conhecermos `\(n-1\)` elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero, como montrado no slide 22:
+`\(\sum_{i=1}^nx_i=0\)`
+Portanto, qualquer elemento do vetor **Desvios** pode ser conhecido pelas somas dos demais elementos multiplicada por `\((-1)\)`, ou seja:
+`\(-8,4= -1 \cdot (-5,6+0,8+4,8+8,4)\)`
+`\(-5,6= -1 \cdot (-8,4+0,8+4,8+8,4)\)`
+`\(+0,8= -1 \cdot (-8,4-5,6+4,8+8,4)\)`
+`\(+4,8= -1 \cdot (-8,4-5,6+0,8+8,4)\)`
+`\(+8,4= -1 \cdot (-8,4-5,6+0,8+4,8)\)`
+]
+
+---
+
+Lebrando que:
+
+`$$SQD = \sum_{i=1}^n (x_i-\bar{x})^2$$`
+
+Então essa estatística tem `\(n-1\)` graus de liberdade, levando o cálculo da variância amostral para:
+
+
+`$$s^2 = \frac{\sum \limits_{i=1}^n (x_i-\bar{x})^2}{n-1}$$`
+
+ou, pela segunda fórmula de SQD:
+
+`$$s^2 = \frac{\sum \limits_{i=1}^n x_i^2-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}$$`
+A variância é a medida de dispersão que leva em conta todos as observações, definida como a média da soma de quadrados dos desvios (SQD) em relação à média aritmética: Para uma população, temos:
+
+`$$\sigma^2 = \frac{\sum \limits_{i=1}^N (x_i-\mu)^2}{N}$$`
+
+---
+Para os dados de X3, podemos calcular a variância como:
+
+No R:
+
+
+```r
+X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
+var(X3)
+```
+
+```
+#&gt; [1] 49.04
+```
+
+No Excel temos:
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/variancia.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+`\(SQD = 49,04 \;cm^2\)`
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
