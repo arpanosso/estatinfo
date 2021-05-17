@@ -830,7 +830,7 @@ dados_turmas %>%
 Se as observações seguem uma distribuição **normal**, então o coeficiente de curtose é zero:
 $g_2 = 0$, nesse caso a distribuição é denominada **mesocúrtica**.
 
-```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mesocurtica.png")
 ```
 ---
@@ -838,6 +838,13 @@ Se o coeficiente de curtose é positivo, $g_2 > 0$, nesse caso o peso das caudas
 
 Se o coeficiente de curtose é negativo, $g_2 < 0$, nesse caso o peso das caudas é alto,  distribuição é denominada **platicúrtica**.
 
-```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/lepto_plati.png")
+```
+---
+
+No Excel, utilizamos a função `CURT()`.
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/curtose.png")
 ```
