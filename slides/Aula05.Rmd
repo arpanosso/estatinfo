@@ -749,17 +749,62 @@ Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
 
 $$g_1 = \frac{n}{(n-1)(n-2)}\frac{\sum_{i=1}^n(x_i-\bar{x})^3}{s^3}$$
 
-No R, vamos utilizar a função `skewness()` do pacote `agricolae` para calcular o coeficiente de assimetria dos dados. A função `pull()` extrai da base `dados_turmas` os valores de  `idade_anos`para ser passados em `skewness()`.
+No R, vamos utilizar a função `skewness()` do pacote `agricolae` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
 
 ```{r}
 library(agricolae)
 dados_turmas %>% 
-  pull(idade_anos) %>% #<<
-  skewness()
+  summarise(
+    g1_idade = skewness(idade_anos),
+    g1_altura = skewness(altura)
+  )
 ```
-No Excel utilizamos a função `=Distorção()`
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+- Se as observações apresentam distribuição simétrica, g1=0, ou próximas a 0 (**ALTURA**).
+- As observações apresentam assimetria positiva $(g_1 > 0)$ se o histograma apresenta uma influência dos valores mais altos, maiores que a média e a mediana (**IDADE_ANOS**).
+- As observações apresentam assimetria negativa $(g_1 < 0)$ se o histograma apresenta uma influência dos valores mais baixos, menores que a média e a mediana.
+
+---
+No Excel utilizamos a função `=DISTORÇÃO()`.
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/assimetria.png")
 ```
 
+---
+
+.pull-left[
+Distribuição **Assimétrica Positiva** $g_1=4.82$
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos, y=..density..)) +
+  geom_histogram(bins=10, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(xintercept = 20.9184, #<<
+             color="blue") #<<
+```
+]
+
+
+.pull-right[
+Distribuição **Simétrica** $g_1=-0,00283$
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+    xintercept = c(1.7242), #<<
+    color=c("blue")) #<<
+```
+]
+
+---
+
+Abaixo segue um exemplo de distribuição **Assimétrica Negativa** da variável teor de Argila ao longo de um transecto em área de produção de cana-de-açúcar na cidade de Jaboticabal-SP.
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/assimetria_negativa.png")
+```

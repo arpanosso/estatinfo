@@ -992,23 +992,52 @@ Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
 
 `$$g_1 = \frac{n}{(n-1)(n-2)}\frac{\sum_{i=1}^n(x_i-\bar{x})^3}{s^3}$$`
 
-No R, vamos utilizar a função `skewness()` do pacote `agricolae` para calcular o coeficiente de assimetria dos dados. A função `pull()` extrai da base `dados_turmas` os valores de  `idade_anos`para ser passados em `skewness()`.
+No R, vamos utilizar a função `skewness()` do pacote `agricolae` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
 
 
 ```r
 library(agricolae)
 dados_turmas %&gt;% 
-* pull(idade_anos) %&gt;%
-  skewness()
+  summarise(
+    g1_idade = skewness(idade_anos),
+    g1_altura = skewness(altura)
+  )
 ```
 
 ```
-#&gt; [1] 4.821286
+#&gt; # A tibble: 1 x 2
+#&gt;   g1_idade g1_altura
+#&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1     4.82  -0.00283
 ```
-No Excel utilizamos a função `=Distorção()`
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/assimetria.png" width="70%" style="display: block; margin: auto;" /&gt;
+- Se as observações apresentam distribuição simétrica, g1=0, ou próximas a 0 (**ALTURA**).
+- As observações apresentam assimetria positiva `\((g_1 &gt; 0)\)` se o histograma apresenta uma influência dos valores mais altos, maiores que a média e a mediana (**IDADE_ANOS**).
+- As observações apresentam assimetria negativa `\((g_1 &lt; 0)\)` se o histograma apresenta uma influência dos valores mais baixos, menores que a média e a mediana.
 
+---
+No Excel utilizamos a função `=DISTORÇÃO()`.
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/assimetria.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+.pull-left[
+Distribuição **Assimétrica Positiva** `\(g_1=4.82\)`
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+Distribuição **Simétrica** `\(g_1=-0,00283\)`
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+Abaixo segue um exemplo de distribuição **Assimétrica Negativa** da variável teor de Argila ao longo de um transecto em área de produção de cana-de-açúcar na cidade de Jaboticabal-SP.
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/assimetria_negativa.png" width="40%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
