@@ -830,7 +830,7 @@ dados_turmas %>%
 Se as observações seguem uma distribuição **normal**, então o coeficiente de curtose é zero:
 $g_2 = 0$, nesse caso a distribuição é denominada **mesocúrtica**.
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mesocurtica.png")
 ```
 ---
@@ -843,8 +843,8 @@ knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/lepto_
 ```
 ---
 
-No Excel, utilizamos a função `CURT()`.
+No Excel, utilizamos a função `=CURT()`.
 
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/curtose.png")
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/curtose.png")
 ```
