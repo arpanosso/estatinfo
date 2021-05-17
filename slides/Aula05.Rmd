@@ -808,3 +808,36 @@ Abaixo segue um exemplo de distribuição **Assimétrica Negativa** da variável
 ```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/assimetria_negativa.png")
 ```
+
+---
+## Coeficiente de Curtose (Kurtosis – G2)
+
+Indica o grau de achatamento de uma distribuição, é a medida do peso das  caudas da distribuição. É formalmente definido a partir do quarto momento.
+
+$$G_2 = \frac{m_4}{s_4} -3\text{, sendo: } m_4=\frac{\sum_{i=1}^N(x_i-\bar{x})^4}{n} \text{, onde } s_4=Var(X)^2$$
+
+A estimativa do Coeficiente de Curtose é dada por $(g_2)$:
+
+$$g_2 = n(n+1) \frac{\frac{\sum \limits_{i=1}^n(x_1-\bar{x})^4}{s^4}}{(n-1)(n-2)(n-3)}-3\frac{(n-1)^2}{(n-2)(n-3)}$$
+```{r}
+dados_turmas %>% 
+  summarise(
+    g2_idade = kurtosis(idade_anos),
+    g2_altura = kurtosis(altura)
+  )
+```
+---
+Se as observações seguem uma distribuição **normal**, então o coeficiente de curtose é zero:
+$g_2 = 0$, nesse caso a distribuição é denominada **mesocúrtica**.
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mesocurtica.png")
+```
+---
+Se o coeficiente de curtose é positivo, $g_2 > 0$, nesse caso o peso das caudas é baixo,  distribuição é denominada **leptocúrtica**.
+
+Se o coeficiente de curtose é negativo, $g_2 < 0$, nesse caso o peso das caudas é alto,  distribuição é denominada **platicúrtica**.
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/lepto_plati.png")
+```
