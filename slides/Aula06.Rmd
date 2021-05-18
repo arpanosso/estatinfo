@@ -547,6 +547,30 @@ $\mho = \{H H, H T, T H, T T\}$.
 
 A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como X que representa o **número de caras**, temos:
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png")
 ```
+
+Ao conjunto $\{x| P(X=x)\}$ denominamos função de probabilidade da variável aleatória X.
+
+---
+class: middle, center, inverse
+
+# Probabilidade como Resultados Elementares Igualmente Prováveis 
+
+---
+
+### Resultados elementares igualmente prováveis 
+
+Conclusões baseadas em dados empíricos, oriundos de uma observação experimental, são encerradas com incerteza que é expressa em termos de probabilidade. Assim, a atribuição é baseada nas características teóricas da realização do fenômeno.
+
+**Definição de Laplace**
+  >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis".
+
+Ao jogarmos uma moeda "não viciada", não podemos afirmar que cairá Cara  (H) ou Coroa (T).
+
+Por assim definimos a Probabilidade de $H$ como:
+
+$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}$$
+
+---
