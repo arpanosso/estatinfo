@@ -459,3 +459,60 @@ d) Quantos animais não consomem A ou não consomem B?
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/aula6_respostas.png")
 ```
 
+---
+class: middle, center, inverse
+
+# Probabilidade
+
+---
+
+**Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados. Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png")
+```
+---
+
+**Fenômeno aleatório:** É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade (**experimento aleatório**). Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controlá-los.
+
+.pull-left[
+Germinação de sementes
+```{r,out.width = "60%",fig.cap="",fig.align = 'left',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/1459331/pexels-photo-1459331.jpeg?cs=srgb&dl=pexels-livier-garcia-1459331.jpg&fm=jpg")
+```
+
+TCH
+```{r,out.width = "60%",fig.cap="",fig.align = 'left',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/7457175/pexels-photo-7457175.jpeg?cs=srgb&dl=pexels-kindel-media-7457175.jpg&fm=jpg")
+```
+]
+
+.pull-right[
+Ganho de peso bovino
+```{r,out.width = "55%",fig.cap="",fig.align = 'left',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/3214973/pexels-photo-3214973.jpeg?cs=srgb&dl=pexels-alex-azabache-3214973.jpg&fm=jpg")
+```
+]
+
+---
+
+**Espaço amostral $(\mho$ ou $S)$**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra ômega $\mho$ ou pelo $S$. 
+
+Assim, no lançamento de um dado, o espaço amostral é:
+
+$$\mho = \{1, 2, 3, 4, 5, 6\}$$
+
+No lançamento de uma moeda, o espaço amostral é:
+
+$$\mho = \{H, T\}$$
+Onde $H$ representa Cara e $T$ representa Coroa.
+
+No lançamento de duas moedas o espaço amostral é:
+
+$$\mho = \{HH, HT,TH,TT\}$$
+
+**Evento simples (ponto amostral ou evento elementar)**: É cada resultado possível, ou seja, é o conjunto de resultados possíveis. Assim, para o lançamento de duas modeas,  temos: 
+
+```{r,out.width = "30%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/duas_moedas.png")
+```
