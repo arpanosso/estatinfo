@@ -425,9 +425,22 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 $\bar{(A \cup B)} = \bar{A} \cap \bar{B}$
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_11.png")
-
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_12.png")
 ```
 
+---
 
+1) Numa escola mista há 30 meninas, 21 crianças ruivas, 13 meninos não ruivos e 4 meninas ruivas. Pergunta-se:  
+a)Quantos são os meninos ruivos?  
+b)Quantas são as meninas não ruivas?  
+c)Quantas crianças há na escola?  
+d)Quantas crianças são ruivas ou meninas?  
+e)Quantas crianças não são ruivas ou meninas?  
+f)Quantas crianças não são, ruivas ou meninas?  
+
+2) Numa comunidade de animais são consumidas 3 espécies de plantas A, B e C. Uma pesquisa apresentou os seguintes resultados:
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ex2_aula6.png")
+```
