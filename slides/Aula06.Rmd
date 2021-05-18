@@ -511,8 +511,42 @@ No lançamento de duas moedas o espaço amostral é:
 
 $$\mho = \{HH, HT,TH,TT\}$$
 
-**Evento simples (ponto amostral ou evento elementar)**: É cada resultado possível, ou seja, é o conjunto de resultados possíveis. Assim, para o lançamento de duas modeas,  temos: 
+**Evento simples ou evento elementar $(e)$**: É cada resultado possível, ou seja, é o conjunto de resultados possíveis. Assim, para o lançamento de duas modeas,  temos: 
+--
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/duas_modeas.png")
+```
 
-```{r,out.width = "30%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/duas_moedas.png")
+---
+
+**Evento (E)**: Qualquer subconjunto do espaço amostral. 
+
+Assim, para o lançamento de um dado,  temos os eventos:
+
+a) sair um número par:  
+	R: $E_1 = \{2, 4, 6\}$
+
+b) sair um número menor que 3:  
+	R: $E_2 = \{x| x< 3 \} = \{1, 2\}$ 
+
+c) sair um número menor que 3 ou primo:  
+	R: $E = \{x| x< 3 \text{ ou } x = \text{ primo }\} = \{ 1,2,3,5\}$
+
+---
+
+### Probabilidade de um evento $( P(E) )$
+
+A probabilidade é uma função $P(.)$ que atribuí valores numéricos a um determinado evento $(E)$. 
+
+É uma medida numérica de **"quão provável"** é a ocorrência do evento na excussão do experimento, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
+
+A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado.
+
+Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
+$\mho = \{H H, H T, T H, T T\}$.
+
+A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como X que representa o **número de caras**, temos:
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png")
 ```
