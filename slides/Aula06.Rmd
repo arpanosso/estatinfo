@@ -354,12 +354,27 @@ $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
 $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
 
 ---
+
 1) Primeira Lei Distributiva
 Dados 3 conjuntos, A, B e C, podemos demonstrar que:
 $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
 
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_07.png")
+```
 
 ---
+
 2) Segunda Lei Distributiva 
 Dados 3 conjuntos, A, B e C, podemos demonstrar que:
 $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_08.png")
+```
+
+---
+## Conjunto Complementar
+
+**Conjunto Complementar**: Seja $A$ um subconjunto de $U$ , isto é $A \in U$. Então estamos interessados nos elementos de $U$ que não pertencem a $A$. Ele formam um novo conjunto, que é chamado **"o complementar de A em U"**. Representado por: $\bar{A}$ ou $A^c$.
+
