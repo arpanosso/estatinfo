@@ -415,13 +415,19 @@ $b) \bar{(A \cup B)} = \bar{A} \cap \bar{B}$
 
 ---
 
+$\bar{(A \cap B)} = \bar{A} \cup \bar{B}$
+
 ```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_10.png")
 ```
 
 ---
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+$\bar{(A \cup B)} = \bar{A} \cap \bar{B}$
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_11.png")
 
 ```
+
+
