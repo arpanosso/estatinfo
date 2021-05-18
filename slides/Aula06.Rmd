@@ -3,6 +3,7 @@
 # pagedown::chrome_print("slides/Aula05.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
+# https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
 subtitle: "Aula 06 - Probabilidade"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
