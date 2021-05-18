@@ -248,6 +248,7 @@ $$A \cup B = A$$
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/venn_02.png")
 ```
 
+$$A \cup B = \{x| x \in A \text{ ou  } x \in B  \text{ ou }  (x \in A, x \in B)  \}$$
 ---
 
 ```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
@@ -257,4 +258,59 @@ knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/venn_0
 $$A \cup B = \{x| x \in A \text{ ou  } x \in B  \text{ ou }  (x \in A, x \in B)  \}$$
 
 ---
+
+$$A \cup A = A \text{ e se } B \subset A,\text{ então: } A \cup B = A$$
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_04.png")
+```
+
+---
+
+### Propriedades da União
+
+i) Comutativa:
+
+$A \cup B = B \cup A$
+
+--
+
+ii) Associativa
+
+$A \cup (B \cup C) = (A \cup B) \cup C = (A \cup B \cup C)$
+
+--
+
+
+iii) $A \cup \phi = \phi \cup A = A, \forall A$
+
+--
+
+
+iv) $A \cup U = U \cup A = U, \forall A$
+
+---
+
+### Interseção (E)
+
+Em analogia, imaginemos duas retas que se interceptam, as duas retas podem ser consideradas como conjuntos infinitos de pontos. Os dois conjuntos têm um ponto em comum o ponto de interseção. 
+
+```{r,echo=FALSE}
+x<-1:100
+y<- x*1+3
+z<- -x*1 + 100
+plot(x,y,type="l",col="red",las=1)
+points(x,z,type="l",col="blue")
+```
+
+---
+
+Generalizando, sejam $A$ e $B$ dois conjunto quaisquer, podemos estar interessados em saber  se os dois conjuntos estão sobrepostos, isto é, se os dois conjuntos possuem elementos em comum, seja ele vazio ou não, a interseção de $A$ e $B$ escrevemos: 
+
+$$D = A \cap B $$
+
+Lemos **"D é igual a A interseção B"**, ou **"A inter B"**.
+
+
+
 
