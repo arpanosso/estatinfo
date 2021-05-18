@@ -311,6 +311,18 @@ $$D = A \cap B $$
 
 Lemos **"D é igual a A interseção B"**, ou **"A inter B"**.
 
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_05.png")
+```
 
+$$A  \cap B = \{x|x \in A, x \in B \}$$
+
+---
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_06.png")
+```
+
+Neste caso, quando dois conjuntos não possuem elementos em comum, então D é um conjunto vazio, os dois conjuntos são então chamados de **disjuntos**.
 
 
