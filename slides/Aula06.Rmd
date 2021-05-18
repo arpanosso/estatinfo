@@ -319,10 +319,47 @@ $$A  \cap B = \{x|x \in A, x \in B \}$$
 
 ---
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_06.png")
 ```
 
-Neste caso, quando dois conjuntos não possuem elementos em comum, então D é um conjunto vazio, os dois conjuntos são então chamados de **disjuntos**.
+
+Neste caso, quando dois conjuntos não possuem elementos em comum, então $D$ é um conjunto vazio, os dois conjuntos são então chamados de **disjuntos**.
+
+---
+
+### Propriedades da Interseção
+
+i) Comutativa:
+
+$A \cap B = B \cap A$
+
+ii) Associativa
+
+$A \cap (B \cap C) = (A \cap B) \cap C = (A \cap B \cap C)$
+
+iii) $A \cap \phi = \phi \cap A = \phi, \forall A$
+
+iv) $A \cap U = U \cap A = A, \forall A$
 
 
+**Operações com conjuntos**
+
+1) Primeira Lei Distributiva
+
+$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+
+2) Segunda Lei Distributiva 
+
+$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
+---
+1) Primeira Lei Distributiva
+Dados 3 conjuntos, A, B e C, podemos demonstrar que:
+$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+
+
+---
+2) Segunda Lei Distributiva 
+Dados 3 conjuntos, A, B e C, podemos demonstrar que:
+$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
