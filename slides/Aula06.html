@@ -37,1060 +37,151 @@ class: middle, center, inverse
 - Conjunto de números pares.
 - Conjunto de árvores nessa sala.
 
----
+--
 
 **Elemento (ou membro)**: é o nome que se dá a cada objeto do conjunto. 
+
+--
 
 **Conjunto finito**: contém um número finito de elementos. 
 	Conjunto dos números 2,3,5,7.
 	Conjunto de alunos dessa sala.
 	Conjunto de meses que se iniciam pela letra J.
 
+--
+
 **Conjunto infinito**: contém um número infinito de elementos. 
 	Conjunto de números pares.
+
+--
 
 **Conjunto vazio**: não contém elementos
 	Conjunto de árvores assistindo essa aula no Google Meet.
 
-
-
----
-### Média Populacional
-
-Para a população, a média é definida como:
-
- $$
- \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, \text{com } i=1,2,...,N.
- $$
- 
- Onde `\(N\)` é o tamanho da população (e geralmente não a conhecemos). 
-
-
-### Média amostral
-
- É a mais utilizada das medidas de posição. A média aritmética de um conjunto de `\(n\)` observações da variável aleatória `\(X\)`, é o quociente da divisão por `\(n\)` da soma dos valores das observações dessa variável. A média amostral `\(\bar{x}\)` é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população `\(\mu\)`. 
- 
- $$
- \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, com\; i=1,2,...,n.
- $$
-Onde `\(n\)` é o tamanho da amostra.
 ---
 
-O exemplo abaixo demonstra o cálculo da média da amostra da idade em anos de 49 alunos (`idade_anos`). Observe que a média tem as mesmas unidades de medida que as observações individuais. 
+## Notações e Símbolos
 
-**Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+**Conjuntos**: São representados por letras maiúsculas tais como `\(A, B, C,...\)` .
 
-**Carregando Pacotes e a Base de Dados**
+**Elementos**: São representados por letras minúsculas tais como `\(a, b, c,...\)` .
 
+**Conjunto vazio**: é representado pelo zero cortado por uma barra, é o símbolo padrão `\(\phi\)` ou `\(\{\}\)`.  É aquele desprovido de elementos.
 
-```r
-library(readxl)
-library(tidyverse)
-dados_turmas &lt;- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
-View(dados_turmas)
-```
+Os elementos de um conjunto são reunidos por chaves. 
+Conjunto dos números 2,3,5,7:
+    
+`\(A=\{2,3,5,7\}\)` `\(\to\)` Forma Tabular.
 
-
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" width="50%" style="display: block; margin: auto;" /&gt;
-
+`\(A=\{x|x \text{ é nº primo menor que 10} \} \to\)` Forma Construção. 
 ---
 
-### Cálculo da Média Aritmética 
+**Forma de construção**: Para conjuntos grandes devemos caracterizar seus elementos por meio de afirmações matemáticas, pois, por exemplo, somos incapazes de relacionar todos os números maiores que 5, uma vez que este conjunto é infinito, assim, introduzimos um elemento variável, `\(x\)`, e definimos como:
 
-.pull-left[
-
-$$
-\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+20}{49} = 20,9184\text{ anos} 
-$$
-
-
-```r
-x&lt;-dados_turmas$idade_anos
-mean(x)
-```
-
-```
-#&gt; [1] 20.91837
-```
-
-### Cálculo da Média Aritmética pela Frequência Relativa
-
-`\(\bar{x} = \sum_{i=1}^kf_ix_i\)`
-
-`\(\bar{x} = 18(0,16)+19(0,28)+ \cdots + 49(0,02)\)`
-
-`\(\bar{x} = 20,9184\;anos\)`
-
-]
-
-.pull-right[
-
-Tabela de Frequência para Idade
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; idade_anos &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2857143 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2244898 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0612245 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0612245 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1224490 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
----
-**Hitograma e média para idade_anos**
-.pull-left[
-
-```r
-dados_turmas %&gt;% 
-  ggplot(aes(x=idade_anos, y=..density..)) +
-  geom_histogram(bins=10, 
-                 color="black", 
-                 fill="gray")+
-* geom_vline(xintercept = 20.9184,
-*            color="blue")
-```
-
-Se os dados são plotados como um histograma a média é o centro de gravidade do histograma (linha azul). 
-
-Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria horizontalmente com o ponto de apoio em `\(\bar{x}\)`. 
-
-A média é aplicável aos dados de quantitativos, e **não deve ser usado para dados ordinais e nominais**.
-
-]
-
-.pull-left[
-
-&lt;img src="Aula06_files/figure-html/plot13_1-1.png" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-**Hitograma e média para altura**
-
-.pull-left[
-
-
-```r
-mean(dados_turmas$altura)
-```
-
-```
-#&gt; [1] 1.724286
-```
-
-
-
-```r
-dados_turmas %&gt;% 
-  ggplot(aes(x=altura, y=..density..)) +
-  geom_histogram(bins=6, 
-                 color="black", 
-                 fill="gray")+
-  geom_vline(
-*   xintercept = 1.7242,
-*   color="blue")
-```
-
-`\(\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49}\)`
-
-`\(\bar{x} =  1,724\text{ m}\)`
-
-]
-
-.pull-left[
-
-&lt;img src="Aula06_files/figure-html/plot13_2-1.png" style="display: block; margin: auto;" /&gt;
-]
-Observe o histograma e a média para a variável `altura`, e compare sua simetria com o histograma da variável `idade_anos`.
----
-
-## Mediana
-
-É o valor que ocupa a posição central do conjunto de dados ordenados `\((X' \text{ ou } Xo)\)`. Portanto, inicialmente as observações são ordenadas de acordo com a sua ordem de magnitude.
-
-o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número e observações é grande.
-
-A mediana será encontrada ou calculada em função do número de observações `\(n\)` presentes na base de dados, se acaso `\(n\)` for par ou ímpar:
-
-Se `\(n\)` é ímpar: `\(Md = Xo_{\left(\frac{n+1}{2}\right)}\)`
-
-Se `\(n\)` é par: `\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}\)`
----
-
-**Exemplo 1**:  
-
-Dado `\(X=\{50, 60, 20, 50, 30, 90, 70\}\)`, teremos a sua versão ordenada `\(X_0\)` dada por:
-
-`\(X_o=\{20, 30, 50, 50, 60, 70 ,90 \}\)`, então,
-
-`\(n=7\)`, ímpar.
-
-`\(Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50\)`
-
-.pull-left[
-No R:
-
-```r
-X=c(20, 30, 50, 50, 60, 70 ,90)
-median(X)
-```
-
-```
-#&gt; [1] 50
-```
-Observe que a unidade da mediana é a mesma dos dados individuais.
-
-]
-
-.pull-right[
-No Excel:
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/mediana_excel.png" width="70%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-### Media e Mediana
-
-Em uma distribuição simétrica (como a da variável `altura`), a mediana amostral também é uma estimativa imparcial e consistente de média populacional `\(\mu\)`, contudo não é tão eficiente como a média amostral `\(\bar{x}\)`.
-
-.pull-left[
-
-
-```r
-median(dados_turmas$altura)
-```
-
-```
-#&gt; [1] 1.74
-```
-
-
-
-```r
-dados_turmas %&gt;% 
-  ggplot(aes(x=altura, y=..density..)) +
-  geom_histogram(bins=6, 
-                 color="black", 
-                 fill="gray")+
-  geom_vline(
-*   xintercept = c(1.7242,1.74),
-*   color=c("blue","red"))
-```
-
-`\(Md =  1,74\text{ m}\)`
-
-Se a distribuição de frequência é assimétrica (como a da variável `idade_anos`) a mediana é uma pobre estimativa da média populacional.
-]
-
-.pull-left[
-
-&lt;img src="Aula06_files/figure-html/plot13_3-1.png" style="display: block; margin: auto;" /&gt;
-
-
-]
-
----
-
-**Exemplo 2**: Calcular a média e a mediana dos dados de salário (nº salário mínimos), que diz respeito à uma amostra de 6 colaboradores de uma empresa.
-
-`$$S=\{ 5, 2, 3, 6, 10, 9\}$$`
-`\(n=6\)`, par.
-
-`$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$`
-
-Assim, para os dados de salários temos:
-
-Vetor ordenado: `\(So=\{ 2, 3, 5, 6, 9, 10\}\)`, então a mediana será dada por:
-
-`\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}\)`.
-
-A média será dada por:
-
-`\(\bar{x}= \frac{2+3+5+6+9+10}{6} = 5,83 \text{ salários mínimos}\)`
-
----
-
-Imagine que, ao ínvés de 10, o verdadeiro valor de ganho do 5º colaborador amostra seja 100, calcule a média e a mediana novamente para essa variável: 
-
-`$$S=\{ 5, 2, 3, 6, 100, 9\}$$`
-`\(n=6\)`, par.
-
-`$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$`
-
-Assim, para os dados de salários temos:
-
-Vetor ordenado: `\(So=\{ 2, 3, 5, 6, 9, 100\}\)`, então a mediana será dada por:
-
-`\(Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}\)`.
-
-A média será dada por:
-
-`\(\bar{x}= \frac{2+3+5+6+9+100}{6} = 20,83 \text{ salários mínimos}\)`
-
-Concluímos então que a mediana não é afetada por observações muito grandes ou muito pequenas, enquanto que a presença de tais extremos tem um significante efeito sobre a média.
-
----
-
-## Moda
-.pull-left[
-A moda é comumente definida como a medição que ocorre com mais frequência em um conjunto de dados.
-
-Para os dados de `idade_anos` o valor mais presente do conjunto de dados é 19 anos.
-
-Portanto, podemos ter distribuições com mais de um valor mais frequente (plurimodal), ou mesmo sem moda (amodal).
-
-Outra forma de definir a moda como uma medida de concentração relativamente grande, pois algumas distribuições de frequência podem ter mais de um ponto de concetração, embora essas concentrações possam não conter precisamente as mesmas frequências.
-
-]
-
-.pull-right[
-
-&lt;img src="Aula06_files/figure-html/plot13_1-1.png" style="display: block; margin: auto;" /&gt;
-]
----
-
-
-
-```r
-x&lt;-c(6, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 14)
-tibble(x) %&gt;% 
-  ggplot(aes(x=x,y=..density..)) +
-  geom_histogram(bins = 9,
-                 color="black",
-                 fill="lightgray")
-```
-
-&lt;img src="Aula06_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Quantis
-É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
-
-- Os Quantis de ordem `\(25\)`, `\(50\)`, `\(75\)` são chamados **Quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
-
-- Os **Decis** são os quantis de ordem `\(10\)`, `\(20\)`, ..., `\(90\)`  (D1, D2, ..., D9)
-
-- Os **Percentis** são os quantis de ordem `\(1\)`, `\(2\)`, ..., `\(99\)` (P1, P2, ..., P99).
-
-No R, ele podem ser encontrados por meio da função `quantile()` que tem como algumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor.
-
-.pull-left[
-
-```r
-altura&lt;-dados_turmas$altura
-q1 &lt;- quantile(altura,0.25)
-q2 &lt;- quantile(altura,0.50)
-q3 &lt;- quantile(altura,0.75)
-```
-A função `geom_vline()`, ao lado, cria as linhas verticais na posição dos respectivos quartis no gráfico a seguir.
-]
-
-.pull-right[
-
-```r
-dados_turmas %&gt;% 
-  ggplot(aes(x=altura,y=..density..)) +
-  geom_histogram(bins=6,
-                 col="black",
-                 fill="gray") +
-* geom_vline(xintercept=c(q1,q2,q3),
-             color="red",lwd=1,
-             linetype=2)+ 
-  theme_bw()
-```
-]
----
-&lt;img src="Aula06_files/figure-html/plot14-1.png" style="display: block; margin: auto;" /&gt;
-
----
-class: middle, center, inverse
-
-# Medidas de Dispersão ou de Variabilidade
-
----
-
-**Medidas de Dispersão**: 
-
-O resumo de um conjunto de dados, por meio de uma única medida representativa de posição central, esconde toda informação sobre a variabilidade do conjunto de valores. 
-
-As medidas de variação medem o grau com que os dados tendem a se distribuir em torno de um valor central. 
-
-- Amplitude total
-- Variância 
-- Desvio Padrão
-- Erro Padrão da Média 
-- Coeficiente de Variação
-
-**Coeficientes de formas de distribuição**:
-- Coeficiente de Assimetria
-- Coeficiente de Curtose 
-
----
-
-**Exemplo**:
-
-Dados o conjunto de 4 amostras da mesma variável (altura de planta em cm), calcule a média e a Amplitude amplitude total de cada amostra.
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
---
-Tabela de Médias `\((\sum_{i=1}^nx_i)/n\)`
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; media_X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+`\(A = \{ x | x &gt; 5\}\)`
 
 --
-Tabela de Amplitudes `\((\Delta = Máximo - Mínimo)\)`
 
+Lê-se "o conjunto de todo os números `\(x\)` tal que, `\(x\)` seja maior que 5".
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+--
 
----
+**Conjunto solução**: A teoria dos conjuntos pode ser utilizada para apresentar as soluções de problemas matemáticos. Por exemplo:
 
-Tabela Médias
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; media_X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+`\(A = \{ x | x^2 = 4\}\)`  
 
-Tabela Amplitudes
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-- Apesar das amostras apresentarem o mesmo valor médio, a terceira (X3) e quarta (X4) amostras são mais dispersas. 
+--
 
-- As amostras X3 e X4, apesar do mesmo valor de média e amplitude, são bem distintas. Isso corre pois a Amplitude leva em consideração apenas **dois** valores do conjunto de dados, o conveniente seria considerar uma medida que utiliza-se todas as observações.
+`\(A = \{ -2, 2 \}\)`
 
----
-## Desvios ou erros `\((e_i)\)`
+--
 
-Para resolvermos o problema da amplitude consideramos os desvios ou erros `\((e_i)\)`'s de cada observação em relação a um ponto de referência, no caso, a média aritmética do conjunto de dados, portanto, os desvios de cada observação é dado por:
+`\(B = \{t | 3t – 4 = 5\}\)`  
 
-`$$e_i = x_i - \bar{x}$$`
+--
 
-Para os dados da amostra 3 `\((X3)\)` temos:
-.pull-left[
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
+`\(B = \{3\}\)`
 
-.pull-right[
-Como demosntrado anteriormente, a soma dos erros `\(e_i\)`
- é sempre igual a zero:
-`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}\)`
-`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}\)`
-`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}\)`
-`\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0\)`
-]
+--
 
----
-## Soma dos Quadrados dos Desvios (SDQ)
+`\(C=\{x | x^2 &lt; 4\}\)`  
 
-Para evitar a inconveniência do somatório dos desvios ser igual a zero, para qualquer conjunto de dados, elevamos ao quadrado cada um dos valores de desvios `\(e_i\)`. 
-  
-`$$e_i^2 = (x_i - \bar{x})^2$$`
+--
 
-e temos
-
-`$$SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2$$`
-
-A `\(SQD\)` leva a unidade dos dados ao quadrado e pode ser calculada no R:
-
-
-```r
-X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
-QD &lt;- (X3-mean(X3))^2
-QD
-```
-
-```
-#&gt; [1] 70.56 31.36  0.64 23.04 70.56
-```
-
-```r
-sum(QD)
-```
-
-```
-#&gt; [1] 196.16
-```
-
----
-No Excel temos:
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/sqd.png" width="80%" style="display: block; margin: auto;" /&gt;
-
-`\(SQD = 196,16 \;cm^2\)`
----
-
-## Manipulação Algébrica da SQD:
-
-.pull-left[
-`\(SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2\)`
-`\(SQD = \sum \limits_{i=1}^n(x_i^2 - 2x_i \bar{x} + \bar{x}^2)\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - \sum \limits_{i=1}^n2x_i \bar{x} + \sum \limits_{i=1}^n \bar{x}^2\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i  + n\bar{x}^2\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i \times \frac{n}{n}  + n\bar{x}^2\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\frac{\sum \limits_{i=1}^nx_i}{n}  + n\bar{x}^2\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\bar{x} + n\bar{x}^2\)`
-]
-
-.pull-right[
-
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 - n\bar{x}^2\)`  
-`\(SQD = \sum \limits_{i=1}^nx_i^2 -n \left( \frac{\sum \limits_{i=1}^nx_i}{n} \right)^2\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 -  n\frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n^2}\)`
-`\(SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}\)`
-]
+`\(C=\{x | -2 &lt; x &lt; 2\}\)`
 
 ---
 
-Assim, temos outra fórmula para o cálculo da soma dos quadrados dos desvios
+## Pertinência
 
+Para indicar que um objeto é elemento de um conjunto, usamos o símbolo de pertinência.
 
-`$$SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}$$`
-Essa fórmula é mais eficiente e simples do que a anterior pois não passa pelo cálculo dos desvios individuais.
+`\(\in\)` (peano). 
 
-No R:
+`$$a \in T$$`
 
+significa que **"a é elemento do conjunto T"** ou **"a pertence a T"**. 
 
-```r
-X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
-QD &lt;- sum(X3^2) - sum(X3)^2/5
-QD
-```
+O oposto pode ser expresso por `\(\notin\)`, significando **"não é elemento"** ou **"não pertence a"**. 
 
-```
-#&gt; [1] 196.16
-```
+$$ 5 \in \aleph$$
 
-```r
-sum(QD)
-```
+`$$\frac{1}{2} \in \Re$$`
 
-```
-#&gt; [1] 196.16
-```
+`$$\frac{1}{2} \notin \aleph$$`
 
 ---
-No Excel temos:
+## Continência
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/sqd2.png" width="60%" style="display: block; margin: auto;" /&gt;
+**Subconjunto**: Para um conjunto `\(A\)` contendo somente elementos de um conjunto `\(B\)`, mas não necessariamente todos os membros de `\(B\)`, A é subconjunto de `\(B\)`.
 
-`\(SQD = 196,16 \;cm^2\)`
+$$ A \subset B$$
+ou
 
----
+`$$B \supset A$$`
 
-## Variância amostral `\((s^2)\)`
+E dizemos que **"A está contido em B"** ou **"B contém A"**. `\(A\)`  é chamado de **subconjunto** de `\(B\)` ou `\(B\)` é um de **superconjunto** A. 
 
-Agora podemos definir a mais importante medida de variabilidade, a variância. 
+Essa definição de subconjunto nos permite dizer que um conjunto é subconjunto de si mesmo:
 
-Ela será definida como a soma de quadrado dos desvios, dividada pelos seus GL **graus de liberdade** ( `\(DF\)` do inglês - *degrees of freedom*).
+`$$B \subset B$$`
+O conjunto vazio é considerado subconjunto de qualquer conjunto, isto é 
 
-Ou seja:
-
-`$$s^2 = \frac{SQD}{GL}$$`
-
-**Grau de liberdade** é o número de observações independentes de uma estatística, após aplicada uma restrição. Ou seja, número de maneiras independentes pelas quais um sistema dinâmico pode se mover, sem violar qualquer restrição imposta a ele. Em outras palavras, o número de graus de liberdade pode ser definido como o número mínimo de coordenadas independentes que podem especificar a posição do sistema completamente.
-
-Matematicamente, graus de liberdade é o número de dimensões do domínio de um vetor aleatório, ou essencialmente o número de componentes "livres" (**quantos componentes precisam ser conhecidos antes que o vetor seja totalmente determinado**).
-
----
-.pull-left[
-Tomemos como exemplo a amostra X3:
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-A média da amostra é dada pela soma dos valores dividido por `\(n\)`, ou seja, não exsite qualquer restrição nesse cálculo pois, matematicamente, precisaremos de `\(n\)` elementos conhecidos para conhecer todo o vetor de dados `\(X3\)`.
-
-`\(\bar{x} = \frac{0,6+3,4+9,8+13,8+17,4}{n} = 9\;cm\)`
-]
-
-.pull-right[
-Agora, tomemos o vetor de desvios de `\(X3\)` em relação à sua média:
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-Observe que não precisamos conhecer seus `\(n\)` elementos para conhecermos o vetor **Desvios**, basta conhecermos `\(n-1\)` elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero, como montrado no slide 22:
-`\(\sum_{i=1}^nx_i=0\)`
-Portanto, qualquer elemento do vetor **Desvios** pode ser conhecido pelas somas dos demais elementos multiplicada por `\((-1)\)`, ou seja:
-`\(-8,4= -1 \cdot (-5,6+0,8+4,8+8,4)\)`
-`\(-5,6= -1 \cdot (-8,4+0,8+4,8+8,4)\)`
-`\(+0,8= -1 \cdot (-8,4-5,6+4,8+8,4)\)`
-`\(+4,8= -1 \cdot (-8,4-5,6+0,8+8,4)\)`
-`\(+8,4= -1 \cdot (-8,4-5,6+0,8+4,8)\)`
-]
+`$$\phi \subset A$$`
 
 ---
 
-Lebrando que:
+**Igualdade entre conjuntos**: Dois conjuntos são ditos iguais, em símbolos:
 
-`$$SQD = \sum_{i=1}^n (x_i-\bar{x})^2$$`
+`$$A = B$$`
 
-Então essa estatística tem `\(n-1\)` graus de liberdade, levando o cálculo da variância amostral para:
+se, e somente se:
 
+$$A \subset B \text{ e } A \supset B $$.
 
-`$$s^2 = \frac{\sum \limits_{i=1}^n (x_i-\bar{x})^2}{n-1}$$`
+Os conjuntos contiverem exatamente os mesmos elementos.
 
-ou, pela segunda fórmula de SQD:
+Se `\(x\)` for um elemento, então `\(x \in A\)` impclica que `\(x \in B\)` e vice-versa.
 
-`$$s^2 = \frac{\sum \limits_{i=1}^n x_i^2-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}$$`
-A variância é a medida de dispersão que leva em conta todos as observações, definida como a média da soma de quadrados dos desvios (SQD) em relação à média aritmética: Para uma população, temos:
+de forma análoga, se `\(x \notin A\)` impclica que `\(x \notin B\)` 
 
-`$$\sigma^2 = \frac{\sum \limits_{i=1}^N (x_i-\mu)^2}{N}$$`
+**Exemplo**
 
----
-Para os dados de X3, podemos calcular a variância como:
+`$$\{1, 2, 3\} = \{3, 1, 2\} = \{1, 2, 2, 3\}$$`
+--
 
-No R:
+**Conjunto Universo ou universal**: Formado por todos os elementos que têm uma característica desejada:
 
+Notação: `\(U\)` ou `\(\mho\)`:
 
-```r
-X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
-var(X3)
-```
-
-```
-#&gt; [1] 49.04
-```
-
-No Excel temos:
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/variancia.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-`\(SQD = 49,04 \;cm^2\)`
-
+`$$U \supset A \supset \phi, \forall  A$$`.
 ---
 
-## Desvio Padrão amostral `\((s)\)`
+**Conjunto potência** ou **conjunto das partes**: Seja `\(A\)` um conjunto finito, define-se o conjunto das partes de `\(A\)` ou conjunto potência como sendo o conjunto cujos elementos são todos os possíveis subconjuntos formados com os elementos de `\(A\)`:
 
-A *variância* apresenta a unidade dos dados quadrática, o que dificulta a sua comparação. A raiz quadrada da variância é denominada **desvio padrão**: 
-`\(s=\sqrt{s^2}\)`  
-Para a população temos: `\(\sigma=\sqrt{\sigma^2}\)`
-
-A vantagem dessa estatística é que ela apresenta a mesma unidade dos dados originais.
-
-.pull-left[
-No R:
-
-```r
-X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
-sd(X3)
-```
-
-```
-#&gt; [1] 7.002857
-```
-]
-
-.pull-right[
-No Excel:
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/desvpad.png" width="70%" style="display: block; margin: auto;" /&gt;
-`\(SQD = 7,003 \;cm\)`
-]
-
----
-## Erro padrão da média `\([s(m)]\)`
-
-Ao tomarmos `\(r\)` amostragens da mesma população, tendo essas amostras individuais com tamanho `\((n)\)`, obteremos diversas estimativas da média, distintas entre si. A partir dessas diversas estimativas da média, podemos estimar a variância, considerando os desvios de cada média, em relação à média de todas as amostras. Temos, portanto, uma estimativa da variância média, denominadas **erro padrão da média**
-
-Essa medida fornece a ideia de precisão da estimativa da média, ou seja, quanto *menor* ela for, **maior** a precisão terá a estimativa da média. E deve ser calculada como:
-
-`$$s(m) = \frac{s}{\sqrt{n}}$$`
-
-Portanto, o aumento de `\(n\)`, implica na diminuição no valor de `\(s(m)\)` e aumento da precisão da estimativa da média amostral.
+Notação `\(P(A) = 2^n = a\)` on de `\(n\)` é o número de elementos do conjunto `\(A\)`:
 
 
-```r
-X3&lt;-c(0.6,3.4,9.8,13.8,17.4)
-sd(X3)/length(X3)
-```
-
-```
-#&gt; [1] 1.400571
-```
-
-`\(s(m) = 1,400 \;cm\)`
----
-## Coeficiente de Variação (CV)
-
-Expressa percentualmente o desvio padrão por unidade de média, observe que a média e o desvio padrão apresentam a mesma unidade, portanto, o coeficiente de variação é um número adimensional.
-
-`$$CV = 100 \cdot \frac{s}{\bar{x}}$$`
-
-é interpretado como a variabilidade dos dados em relação à média.
-
-**Exemplo**: Suponha dois grupos de indivíduos, um deles com idades `\(\{3,1,5\}\)` anos e no outro, têm idades `\({55,57,53}\)` anos. No primeiro grupo, a média de idade é 3 anos e, no segundo grupo e a `\(\bar{x}=55\;anos\)` anos e ambos com `\(s=2\;anos\)`. Onde o desvio padrão é mais importante? Por quê?
-
-
-```r
-cv &lt;- function(x) 100*sd(x)/mean(x)
-g1&lt;-c(3,1,5)
-g2&lt;-c(55,57,53)
-cv(g1)
-```
-
-```
-#&gt; [1] 66.66667
-```
-
-```r
-cv(g2)
-```
-
-```
-#&gt; [1] 3.636364
-```
----
-## Coeficiente de Variação (CV)
-
-Assim, desvios de 2 anos são muito mais importantes para o primeiro grupo que para o segundo, isto é, a dispersão dos dados em torno da média é muito grande no primeiro grupo. 
-
-Deste modo, o CV pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados.
-
----
-class: middle, center, inverse
-
-# Medidas de Forma de Distribuição
-
----
-
-## Coeficiente de Assimetria (Skewness – G1)
-
-A interpretação da diferença entre a média e a mediana é, muitas vezes, subjetiva, então, utilizamos esse coeficiente para resumir a assimetria das observações. 
-
-Este coeficiente indica se os desvios da média são maiores para um lado da distribuição do que para o outro. É formalmente definido a partir do terceiro momento da média (OBS: a variância é o segundo momento *m2* e a média o primeiro momento *m1*).
-
-
-O terceiro momento pode ser computado como:
-
-`$$m_3= \frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^3\text{ assim, }G_1=\frac{m_3}{m_2\sqrt{m_2}}=\frac{m_3}{s^3}$$`
-
----
-Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
-
-`$$g_1 = \frac{n}{(n-1)(n-2)}\frac{\sum_{i=1}^n(x_i-\bar{x})^3}{s^3}$$`
-
-No R, vamos utilizar a função `skewness()` do pacote `agricolae` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
-
-
-```r
-library(agricolae)
-dados_turmas %&gt;% 
-  summarise(
-    g1_idade = skewness(idade_anos),
-    g1_altura = skewness(altura)
-  )
-```
-
-```
-#&gt; # A tibble: 1 x 2
-#&gt;   g1_idade g1_altura
-#&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1     4.82  -0.00283
-```
-
-- Se as observações apresentam distribuição simétrica, g1=0, ou próximas a 0 (**ALTURA**).
-- As observações apresentam assimetria positiva `\((g_1 &gt; 0)\)` se o histograma apresenta uma influência dos valores mais altos, maiores que a média e a mediana (**IDADE_ANOS**).
-- As observações apresentam assimetria negativa `\((g_1 &lt; 0)\)` se o histograma apresenta uma influência dos valores mais baixos, menores que a média e a mediana.
-
----
-No Excel utilizamos a função `=DISTORÇÃO()`.
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/assimetria.png" width="40%" style="display: block; margin: auto;" /&gt;
-
----
-
-.pull-left[
-Distribuição **Assimétrica Positiva** `\(g_1=4.82\)`
-&lt;img src="Aula06_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
-]
-
-
-.pull-right[
-Distribuição **Simétrica** `\(g_1=-0,00283\)`
-&lt;img src="Aula06_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-Abaixo segue um exemplo de distribuição **Assimétrica Negativa** da variável teor de Argila ao longo de um transecto em área de produção de cana-de-açúcar na cidade de Jaboticabal-SP.
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/assimetria_negativa.png" width="40%" style="display: block; margin: auto;" /&gt;
-
----
-## Coeficiente de Curtose (Kurtosis – G2)
-
-Indica o grau de achatamento de uma distribuição, é a medida do peso das  caudas da distribuição. É formalmente definido a partir do quarto momento.
-
-`$$G_2 = \frac{m_4}{s_4} -3\text{, sendo: } m_4=\frac{\sum_{i=1}^N(x_i-\bar{x})^4}{n} \text{, onde } s_4=Var(X)^2$$`
-
-A estimativa do Coeficiente de Curtose é dada por `\((g_2)\)`:
-
-`$$g_2 = n(n+1) \frac{\frac{\sum \limits_{i=1}^n(x_1-\bar{x})^4}{s^4}}{(n-1)(n-2)(n-3)}-3\frac{(n-1)^2}{(n-2)(n-3)}$$`
-
-```r
-dados_turmas %&gt;% 
-  summarise(
-    g2_idade = kurtosis(idade_anos),
-    g2_altura = kurtosis(altura)
-  )
-```
-
-```
-#&gt; # A tibble: 1 x 2
-#&gt;   g2_idade g2_altura
-#&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1     28.1    -0.224
-```
----
-Se as observações seguem uma distribuição **normal**, então o coeficiente de curtose é zero:
-`\(g_2 = 0\)`, nesse caso a distribuição é denominada **mesocúrtica**.
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/mesocurtica.png" width="50%" style="display: block; margin: auto;" /&gt;
----
-Se o coeficiente de curtose é positivo, `\(g_2 &gt; 0\)`, nesse caso o peso das caudas é baixo,  distribuição é denominada **leptocúrtica**.
-
-Se o coeficiente de curtose é negativo, `\(g_2 &lt; 0\)`, nesse caso o peso das caudas é alto,  distribuição é denominada **platicúrtica**.
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/lepto_plati.png" width="80%" style="display: block; margin: auto;" /&gt;
----
-
-No Excel, utilizamos a função `=CURT()`.
-
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/curtose.png" width="50%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
