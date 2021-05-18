@@ -430,8 +430,10 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ```
 
 ---
+### Exercícios
 
 1) Numa escola mista há 30 meninas, 21 crianças ruivas, 13 meninos não ruivos e 4 meninas ruivas. Pergunta-se:  
+
 a)Quantos são os meninos ruivos?  
 b)Quantas são as meninas não ruivas?  
 c)Quantas crianças há na escola?  
@@ -444,3 +446,16 @@ f)Quantas crianças não são, ruivas ou meninas?
 ```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ex2_aula6.png")
 ```
+
+a) Quantos animais foram amostrados?  
+b) Quantos animais consomem somente 2 espécies de plantas?  
+c) Quantos animais não consomem a planta B?  
+d) Quantos animais não consomem A ou não consomem B?  
+
+---
+### Respostas
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/aula6_respostas.png")
+```
+
