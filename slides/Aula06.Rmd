@@ -244,6 +244,17 @@ $A \cup A = A$ e se $B \subset A$, então:
 $$A \cup B = A$$
 ---
 
-```{r,out.width = "30%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/venn_02.png")
 ```
+
+---
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/venn_03.png")
+```
+
+$$A \cup B = \{x| x \in A \text{ ou  } x \in B  \text{ ou }  (x \in A, x \in B)  \}$$
+
+---
+
