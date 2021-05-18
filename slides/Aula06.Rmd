@@ -365,6 +365,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ---
 
+
 2) Segunda Lei Distributiva 
 Dados 3 conjuntos, A, B e C, podemos demonstrar que:
 $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
@@ -378,3 +379,49 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 **Conjunto Complementar**: Seja $A$ um subconjunto de $U$ , isto é $A \in U$. Então estamos interessados nos elementos de $U$ que não pertencem a $A$. Ele formam um novo conjunto, que é chamado **"o complementar de A em U"**. Representado por: $\bar{A}$ ou $A^c$.
 
+
+2) Segunda Lei Distributiva 
+Dados 3 conjuntos, A, B e C, podemos demonstrar que:
+$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_08.png")
+```
+
+---
+
+## Conjunto Complementar
+
+**Conjunto Complementar**: Seja $A$ um subconjunto de $U$ , isto é $A \in U$. Então estamos interessados nos elementos de $U$ que não pertencem a $A$. Ele formam um novo conjunto, que é chamado **"o complementar de A em U"**. Representado por: $\bar{A}$ ou $A^c$.
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_09.png")
+```
+
+$$\bar{A} = \{ x | x \in U, x \notin A \}$$
+---
+
+Definido a operação de interseção, observe que se $A$ for um subconjunto de um conjunto universo $U$ e $\bar{A}$ o  complemento de A, então: 
+
+i) $A \cap \bar{A} = \phi, \forall A$
+
+ii) $A \cup \bar{A} = U, \forall A$
+
+Utilize o diagrama de Venn para provar as propriedades:
+
+$a) \bar{(A \cap B)} = \bar{A} \cup \bar{B}$
+
+$b) \bar{(A \cup B)} = \bar{A} \cap \bar{B}$
+
+---
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_10.png")
+```
+
+---
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_11.png")
+
+```
