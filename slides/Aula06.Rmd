@@ -700,6 +700,6 @@ $P(A \cup B) = P(A) + P(B)$
 
 $P(5 \ cup 6) = P(5)+P(6)$
 
-$P(5 \ cup 6) = \frac{1}{6} + \ frac{1}{6}$
+$P(5 \ cup 6) = \frac{1}{6} + \frac{1}{6}$
 
 $P(5 \ cup 6) = \frac{1}{3}$
