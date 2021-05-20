@@ -49,7 +49,7 @@ class: middle, center, inverse
 **Conjunto finito**: contém um número finito de elementos. 
 	Conjunto dos números 2,3,5,7.
 	Conjunto de alunos dessa sala.
-	Conjunto de meses que se iniciam pela letra "J".
+	Conjunto de meses que se iniciam pela letra J.
 
 --
 
@@ -166,7 +166,7 @@ Os conjuntos contiverem exatamente os mesmos elementos.
 
 Se $x$ for um elemento, então $x \in A$ impclica que $x \in B$ e vice-versa.
 
-de forma análoga, se $x \notin A$ implica que $x \notin B$ 
+de forma análoga, se $x \notin A$ impclica que $x \notin B$ 
 
 **Exemplo**
 
@@ -207,7 +207,6 @@ Podemos dizer que:
  
   
 ---
-
 **Conjuntos Disjuntos**: São aqueles que não têm elementos comum, ou seja, $A \neq B$.
 
 --
@@ -221,7 +220,7 @@ A={2,3} e B={4,3}, assim *A e B não são disjuntos*.
 
 Conjuntos de qualquer tipo de elementos são representados por conjunto de pontos. Para simplificação do desenho, são utilizados pontos em um **círculo** ou em um **retângulo**. 
 
-Tal representação é chama de **Diagrama de Venn-Euler** que são representações geométricas de conjuntos e seus elementos bem como das relações destes conjuntos.
+Tal representação é chama de **diagrama de Venn-Euler** que são representações geométricas de conjuntos e seus elementos bem como das relações destes conjuntos.
 ```{r,out.width = "30%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/venn_01.png")
 ```
@@ -459,3 +458,248 @@ d) Quantos animais não consomem A ou não consomem B?
 ```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/aula6_respostas.png")
 ```
+
+---
+class: middle, center, inverse
+
+# Probabilidade
+
+---
+
+**Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados. Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png")
+```
+---
+
+**Fenômeno aleatório:** É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade (**experimento aleatório**). Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controlá-los.
+
+.pull-left[
+Germinação de sementes
+```{r,out.width = "60%",fig.cap="",fig.align = 'left',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/1459331/pexels-photo-1459331.jpeg?cs=srgb&dl=pexels-livier-garcia-1459331.jpg&fm=jpg")
+```
+
+TCH
+```{r,out.width = "60%",fig.cap="",fig.align = 'left',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/7457175/pexels-photo-7457175.jpeg?cs=srgb&dl=pexels-kindel-media-7457175.jpg&fm=jpg")
+```
+]
+
+.pull-right[
+Ganho de peso bovino
+```{r,out.width = "55%",fig.cap="",fig.align = 'left',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/3214973/pexels-photo-3214973.jpeg?cs=srgb&dl=pexels-alex-azabache-3214973.jpg&fm=jpg")
+```
+]
+
+---
+
+**Espaço amostral $(\mho$ ou $S)$**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra ômega $\mho$ ou pelo $S$. 
+
+Assim, no lançamento de um dado, o espaço amostral é:
+
+$$\mho = \{1, 2, 3, 4, 5, 6\}$$
+
+No lançamento de uma moeda, o espaço amostral é:
+
+$$\mho = \{H, T\}$$
+Onde $H$ representa Cara e $T$ representa Coroa.
+
+No lançamento de duas moedas o espaço amostral é:
+
+$$\mho = \{HH, HT,TH,TT\}$$
+
+**Evento simples ou evento elementar $(e)$**: É cada resultado possível, ou seja, é o conjunto de resultados possíveis. Assim, para o lançamento de duas modeas,  temos: 
+--
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/duas_modeas.png")
+```
+
+---
+
+**Evento (E)**: Qualquer subconjunto do espaço amostral. 
+
+Assim, para o lançamento de um dado,  temos os eventos:
+
+a) sair um número par:  
+	R: $E_1 = \{2, 4, 6\}$
+
+b) sair um número menor que 3:  
+	R: $E_2 = \{x| x< 3 \} = \{1, 2\}$ 
+
+c) sair um número menor que 3 ou primo:  
+	R: $E = \{x| x< 3 \text{ ou } x = \text{ primo }\} = \{ 1,2,3,5\}$
+
+---
+
+### Probabilidade de um evento $( P(E) )$
+
+A probabilidade é uma função $P(.)$ que atribuí valores numéricos a um determinado evento $(E)$. 
+
+É uma medida numérica de **"quão provável"** é a ocorrência do evento na excussão do experimento, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
+
+A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado.
+
+Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
+$\mho = \{H H, H T, T H, T T\}$.
+
+A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como X que representa o **número de caras**, temos:
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png")
+```
+
+Ao conjunto $\{x| P(X=x)\}$ denominamos função de probabilidade da variável aleatória X.
+
+---
+class: middle, center, inverse
+
+# Probabilidade como Resultados Elementares Igualmente Prováveis 
+
+---
+
+### Resultados elementares igualmente prováveis 
+
+Conclusões baseadas em dados empíricos, oriundos de uma observação experimental, são encerradas com incerteza que é expressa em termos de probabilidade. Assim, a atribuição é baseada nas características teóricas da realização do fenômeno.
+
+**Definição de Laplace de Probabilidade**
+  >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis".
+
+Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  ($H$) ou Coroa ($T$).
+
+Por assim definimos a Probabilidade de $H$ como:
+
+$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}$$
+
+---
+
+**Exemplo:** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair Cara, $[P(H) ]$?.
+
+--
+
+$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{0}{6} = 0$$
+
+Chamamos esse tipo de **Evento Impossível**
+
+--
+
+**Exemplo**: No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair um número entre 1 e 6?
+
+--
+
+$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{6}{6}=1$$
+
+Chamamos esse tipo de **Evento Certo**.
+
+---
+
+###  Probabilidade de um Evento
+
+>Assim, a probabilidade de um evento E $[P(E)]$ é um número entre $0$ e $1$, quanto mais próximo a 1, maior a chance de ocorrência. 
+
+A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
+
+Portanto, se $\mho$ consiste de $k$ eventos simples $\{ e_1, e_2, \cdots, e_k\}$ que são **igualmente prováveis**, a probabilidade de cada $e_i$ é $\frac{1}{k}$ se $E$ consiste de $m$ desses $k$ elementos, então temos:
+
+$$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }\mho} = \frac{m}{k}$$
+
+Portanto $P(.)$ é denominada probabilidade se, e somente se: 
+
+$i) \;0 \le 0 \le 1, \forall E \subset \mho$.
+
+$ii) \;P(\mho)= 1$ assim como, $P(\phi) =0$
+
+$iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum \limits_{i=1}^k P(E_i)$ com os eventos $E_is$ **disjuntos**.
+
+---
+
+### Exemplos
+
+1) Descreva o espaço amostral e a probabilidade de sair pelo menos uma face cara no lançamento de uma moeda duas vezes.
+
+2) Em um lote de 20 animais existem 5 doentes, ao escolhermos 4 animais  desse lote ao acaso, de modo que a ordem dos elementos seja irrelevante:
+
+a) Qual a probabilidade de 2 animais doentes na amostra?  
+b) Qual a probabilidade de 4 animais doentes?  
+
+
+---
+
+### Teorema 1
+
+Se $\phi$ for espaço amostral vazio:
+
+$$P(\phi)=0$$
+
+**Demonstração**:
+
+Para qualquer evento $A$, podemos escrever:
+
+$A = A \cup \phi$, com $A$ e $\phi$ disjuntos, apresentado na propriedade (iii), temos:
+
+$P(A)=P(A)+P(\phi)$, como cnclusão imediata, temos:
+
+$P(\phi)=0$, mas se $P(A)=0$, não é verdadeiro que $A=\phi$, existem situações que atribuiremos $P(E)=0$ para um evento que pode ocorrer.
+
+---
+
+### Teorema 2
+
+Se $\bar{A}$ for o evento complementar de $A$, então: 
+
+$$P(A) = 1- P(A)$$
+
+**Demonstração**:
+
+Podemos escrever:
+
+$\mho = A \cup \bar{A}, \forall A$,
+
+Empregando a propriedade 2 e 3, temos:
+
+$P(\phi) = P(A)+P(\bar{A})$  
+
+$1 = P(A)+P(\bar{A})$  
+
+$P(A) = 1-P(\bar{A})$, assim,  $P(\bar{A}) = 1-P(A)$
+
+Essa propriedade é importante, pois, muitas vezes é mais simples calcularmos a $P(\bar{A})$ do que $P(A)$.
+
+---
+
+### Propriedade da multiplicação (E)
+
+Dados dois eventos $A$ e $B$ de interesse, qual a probabilidade de ocorrência de ambos? Se esses eventos são **independentes**, a probabilidade de ocorrência de ambos é dada por:
+
+$$P(A \cap B) = P(A) \cdot P(B)$$
+**Exemplo**: Jogamos duas moedas, honestas, qual a probabilidade de ambas as faces serem cara $(H)$.
+
+$P(H \cap H) = P(H) \cdot P(H)$
+
+$P(H \cap H) = \frac{1}{2} \cdot \frac{1}{2}$
+
+$P(H \cap H) = \frac{1}{4}$
+
+```{r,out.width = "20%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/prob_01.png")
+```
+
+---
+
+### Propriedade da adição (OU)
+
+Se os eventos $A$ e $B$ são **disjuntos**, ou seja: 
+
+$A \cap B = \phi$
+
+$P(A \cup B) = P(A) + P(B)$
+
+**Exemplo**: Jogamos um dado, qual a probabilidade de sair $5$ ou $6$ ?
+
+$P(5 \ cup 6) = P(5)+P(6)$
+
+$P(5 \ cup 6) = \frac{1}{6} + \frac{1}{6}$
+
+$P(5 \ cup 6) = \frac{1}{3}$
