@@ -38,7 +38,7 @@ class: middle, center, inverse
 - Conjunto de alunos dessa sala.
 - Conjunto de meses que se iniciam pela letra "J".
 - Conjunto de números pares.
-- Conjunto de árvores nessa sala.
+- Conjunto de cães nesse meet.
 
 --
 
@@ -59,7 +59,7 @@ class: middle, center, inverse
 --
 
 **Conjunto vazio**: não contém elementos
-	Conjunto de árvores assistindo essa aula no Google Meet.
+	Conjunto de cães assistindo essa aula no Google Meet.
 
 ---
 
@@ -468,7 +468,7 @@ class: middle, center, inverse
 
 **Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados. Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png")
 ```
 ---
