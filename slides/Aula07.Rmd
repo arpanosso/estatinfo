@@ -411,8 +411,10 @@ c) Qual a probabilidade do estudante ser do sexo Feminino **e** Ruivo?
 
 ### c) Qual a probabilidade do estudante ser do sexo Feminino **ou** Ruivo?
 
-Ou seja:
+
 
 **R**: $P(Feminino \cup Ruivo) = \frac{4}{60} = 0,06667$
 
-
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_13.png")
+```
