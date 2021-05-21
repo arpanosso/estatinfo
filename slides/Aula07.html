@@ -348,7 +348,7 @@ Quando `\(n \to \infty\)` os valores de `\(f_i \to P(E) = 0,16667\)`.
 
 ---
 
-### Regra de Adição da Probabilidade
+### Exemplo
 
 Dada a seguinte tabela, referente ao sexo `\((S)\)` e a cor do cabelo `\(CC\)` de crianças em uma escola:
 
@@ -365,7 +365,7 @@ a) Qual a probabilidade do estudante ser Ruivo:
 
 --
 
-**R**: `\(P(Ruivo ) = \frac{39}{60} = 0,65\)`
+**R**: `\(P(Ruivo ) = \frac{21}{60} = 0,35\)`
 
 --
 
@@ -386,15 +386,163 @@ c) Qual a probabilidade do estudante ser do sexo Feminino **e** Ruivo?
 
 ---
 
-### Regra de Adição da Probabilidade
+#### c) Qual a probabilidade do estudante ser do sexo Feminino **ou** Ruivo?
 
-### c) Qual a probabilidade do estudante ser do sexo Feminino **ou** Ruivo?
-
-
-
-**R**: `\(P(Feminino \cup Ruivo) = \frac{4}{60} = 0,06667\)`
+Observe que existe uma região de intersecção entre entre esses conjuntos, então para calcularmos `\(P(F \cup R)\)` devemos somar `\(P(F)\)` com `\(P(R)\)` e subtraírmos uma vez `\(P(F \cap R)\)`.
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_13.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+**R**: `\(P(F \cup R) = P(F)  +P(R) - P(F \cap R) =\frac{21}{60} + \frac{30}{60} -\frac{4}{60} = \frac{47}{60} = 0,7833\)`
+
+---
+
+### Regra de Adição da Probabilidade
+
+No exemplo anterior é simples verificar que somamos duas vezes a interseção dos conjuntos, ou seja, os indivíduos que são do sexo feminino e ruivos, por isso precisamos descontar 1 vez essa probabilidade da soma.
+
+Então temos a regra da adição da probabilidade:
+
+`$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$`
+--
+#### Teorema 3
+ Se A e B forem dois eventos quaisquer, então, `\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)`:
+
+**Demonstração**: A ideia principal dessa demonstração é decompor `\(A \cup B\)` e `\(B\)` em dois eventos disjuntos, e em seguida aplicar a propriedade 3 da definição de probabilidade (slide 11).
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_14.png" width="20%" style="display: block; margin: auto;" /&gt;
+
+---
+#### Demonstração
+.pull-left[
+`\(A \cup B = A \cup (B \cap \bar{A})\)`
+
+Aplicando a função de probabilidade:
+
+`\(P(A \cup B) = P(A) + P(B \cap \bar{A})\)`,
+
+Assim, temos que:
+
+`\(P(B \cap \bar{A}) =P(A \cup B) - P(A)\)`  **(i)**
+
+Agora podemos definir `\(B\)` como a reunião de dois conjuntos disjuntos.
+
+`\(B = (A \cap B) \cup (B \cap \bar{A})\)`
+
+Aplicando a a função de probabilidade:
+
+`\(P(B) = P(A \cap B) + P(B \cap \bar{A})\)`,
+
+Assim, temos:
+
+`\(P(B \cap \bar{A}) = P(B) -  P(A \cap B)\)` **(ii)**
+
+]
+
+.pull-right[
+A partir de **(i)** e **(ii)** temos:
+
+`\(P(A \cup B) - P(A) =  P(B) -  P(A \cap B)\)`
+
+Finalmente, temos:
+
+`\(P(A \cup B) =  P(A)  + P(B) -  P(A \cap B)\)`
+como queríamos demonstrar.
+]
+
+---
+#### Teorema 4
+
+Demonstrar que:
+
+`\(P(A \cup B \cup C) = P(A)+P(B)+P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)\)`
+
+---
+
+#### Resposta
+
+Inicialmente vamos definir: `\(D = B \cup C\)` (i)
+
+Então,
+
+`\(P(A \cup D)\)`
+
+Pela lei da adição de probabilidade:
+
+`\(P(A \cup D) = P(A) + P(D) - P(A \cap D)\)` (ii)
+
+Subistituindo (i) em (ii), temos:
+
+`\(P(A \cup D) = P(A) + P(B \cup C) - P(A \cap (B \cup C))\)`
+
+Ao termo `\(P(B \cup C)\)` podemos aplicar a lei de adição e temos:
+
+`\(P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) - P(A \cap (B \cup C))\)`
+
+Agora devemos aplicar a Primeira lei Distributiva ao termo `\(A \cap (B \cup C)\)` e temos:
+
+`\(P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) - P((A \cap B) \cup (A \cap C))\)`
+
+Observe que ao termo `\(P((A \cap B) \cup (A \cap C))\)` podemos aplicar a lei de acidção de probabilidades:
+
+`\(P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -[ P(A \cap B) + P(A \cap C) - P((A \cap B) \cap (A \cap C) )]\)`
+
+---
+
+`\(P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -[ P(A \cap B) + P(A \cap C) - P((A \cap B) \cap (A \cap C) )]\)`
+
+Temos então que:
+
+`\(P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -P(A \cap B) - P(A \cap C)  P(A \cap B \cap C )\)`
+
+como queríamso demonstrar.
+
+---
+
+### Exercícios 
+
+1) Considere um experimento e os eventos `\(A\)` e `\(B\)` tais que:
+
+`\(P(A) = 1/2\)`, `\(P(B) = 1/3\)` e `\(P(A \cap B) = 1/4\)`
+
+Responda:
+
+a) Qual o probabilidade de A não ocorrer?  
+b) Qual a probabilidade de B não ocorrer?  
+c) Qual a probabilidade de A ou B ocorrer?  
+d) Qual a probabilidade de A e B não ocorrerem?  
+e) Qual a probabilidade de A ou B não ocorrer?  
+f) Qual a probabilidade que ocorra apenas o B, e não ocorra o A?  
+
+---
+
+#### Respostas
+
+a) = 1/2  
+
+b) = 2/3  
+
+c) = 7/12
+
+d) = 5/12  
+
+e) = 3/4 
+
+f) = 1/12
+
+---
+
+class: middle, center, inverse
+
+# Probabilidade Condicional e Independência 
+
+---
+
+
+`\(S\)` `\` `\(CC\)` | Ruivo | Não Ruivo | TOTAL
+---|:---:|:---:|:---:|---:
+Feminino | 4  | 26 | **30**
+Masculino | 17 | 13 | **30** 
+**TOTAL** | **21** | **39** | **60**
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
