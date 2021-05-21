@@ -536,6 +536,9 @@ class: middle, center, inverse
 # Probabilidade Condicional e Independência 
 
 ---
+### Probabilidade Condicional 
+
+Voltando aos dados referentes ao sexo `\((S)\)` e a cor do cabelo `\((CC)\)` de crianças em uma escola:
 
 
 `\(S\)` `\` `\(CC\)` | Ruivo | Não Ruivo | TOTAL
@@ -543,6 +546,32 @@ class: middle, center, inverse
 Feminino | 4  | 26 | **30**
 Masculino | 17 | 13 | **30** 
 **TOTAL** | **21** | **39** | **60**
+
+Agora, sabendo que foi sorteado um aluno do sexo Feminino `\((F)\)`, qual a probabilidade da aluna ter  ruiva `\((R)\)`?
+
+`$$P(R|F) = \frac{4}{30} = 0,1333$$`
+
+Lê-se: "a probabilidade de R dado F".
+
+
+Observe que a informação prévia *"...foi sorteado um aluno do sexo Feminino..."*, restringiu o espaço amostral de 60 aluno para 30 meninas, como base para a divisão da quantidade de `\(F \cap R = 4\)`.
+
+---
+
+### Probabilidade Condicional 
+
+Assim, para dois eventos quaisquer `\(A\)` e `\(B\)`, sendo `\(P(B)&gt;0\)`, definimos a probabilidade condicional de `\(A\)` dado que `\(B\)` ocorreu, temos:
+
+`$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$`
+
+Em analogia, sendo `\(P(A)&gt;0\)`, definimos a probabilidade condicional de `\(B\)` dado `\(A\)` como:
+
+`$$P(B|A) = \frac{P(A \cap B)}{P(A)}$$`
+
+Agora podemos definir a **Regra do Produto de Porbabilidade**:
+
+`$$P(A \cap B) = P(A) \cdot P(B|A) = P(B) \cdot P(A|B)$$`
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
