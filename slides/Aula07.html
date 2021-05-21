@@ -338,6 +338,7 @@ tibble(x) |&gt;
   geom_col(color="black",fill="lightblue") +
   geom_hline(yintercept = 1/6,color="red")
 ```
+Quando `\(n \to \infty\)` os valores de `\(f_i \to P(E) = 0,16667\)`.
 
 ]
 
@@ -346,6 +347,53 @@ tibble(x) |&gt;
 ]
 
 ---
+
+### Regra de Adição da Probabilidade
+
+Dada a seguinte tabela, referente ao sexo `\((S)\)` e a cor do cabelo `\(CC\)` de crianças em uma escola:
+
+
+`\(S\)` `\` `\(CC\)` | Ruivo | Não Ruivo | TOTAL
+---|:---:|:---:|:---:|---:
+Feminino | 4  | 26 | **30**
+Masculino | 17 | 13 | **30** 
+**TOTAL** | **21** | **39** | **60**
+
+Ao selecionarmos um aluno ao acaso, pergunta-se:
+
+a) Qual a probabilidade do estudante ser Ruivo:
+
+--
+
+**R**: `\(P(Ruivo ) = \frac{39}{60} = 0,65\)`
+
+--
+
+b) Qual a probabilidade do estudante ser do sexo Feminino?
+
+--
+
+**R**: `\(P(Feminino) = \frac{30}{60} = 0,50\)`
+
+--
+
+c) Qual a probabilidade do estudante ser do sexo Feminino **e** Ruivo?
+
+--
+
+**R**: `\(P(Feminino \cap Ruivo) = \frac{4}{60} = 0,06667\)`
+
+
+---
+
+### Regra de Adição da Probabilidade
+
+### c) Qual a probabilidade do estudante ser do sexo Feminino **ou** Ruivo?
+
+Ou seja:
+
+**R**: `\(P(Feminino \cup Ruivo) = \frac{4}{60} = 0,06667\)`
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
