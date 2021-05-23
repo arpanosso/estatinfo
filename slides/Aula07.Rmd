@@ -593,7 +593,85 @@ Em analogia, sendo $P(A)>0$, definimos a probabilidade condicional de $B$ dado $
 
 $$P(B|A) = \frac{P(A \cap B)}{P(A)}$$
 
-Agora podemos definir a **Regra do Produto de Porbabilidade**:
+Agora podemos definir a **Regra do Produto de Probabilidade**:
 
 $$P(A \cap B) = P(A) \cdot P(B|A) = P(B) \cdot P(A|B)$$
+---
+
+### Independência entre eventos.
+
+Dizemos que dois eventos $A$ e $B$ são independentes se a ocorrência de $A$ não depende da ocorrência de $B$ e vice-versa. Nessas condições: 
+
+
+$$
+\begin{cases}
+P(A|B) = P(A) \\\
+P(B|A) = P(B)
+\end{cases}
+$$
+
+Ou seja, 
+
+$$P( A \cap B) = P(A) \cdot P(B)$$
+---
+
+**Exemplo** 
+
+Voltando aos dados referentes ao sexo $(S)$ e a cor do cabelo $(CC)$ de crianças em uma escola:, verificar se esses eventos são independentes.
+
+
+$S$ `\` $CC$ | Ruivo | Não Ruivo | TOTAL
+---|:---:|:---:|:---:|---:
+Feminino | 4  | 26 | **30**
+Masculino | 17 | 13 | **30** 
+**TOTAL** | **21** | **39** | **60**
+
+Na independência, a $P(F)$ deve ser igual à $P(F|R)$ e vice- versa.
+
+
+Podemos verificar:
+
+$P(F) = P(F|R)$
+
+$P(F) = \frac{P(F \cap R)}{P(R)}$
+
+$\frac{30}{60} = \frac{4/60}{21/60}$
+
+$0,50 = 0,19$ FALSO, então concluímos que os eventos **NÃO** são independentes.
+
+---
+
+**Exemplo** 
+
+Agora, teste a independência para a segunte condição:
+
+
+$S$ `\` $CC$ | Ruivo | Não Ruivo | TOTAL
+---|:---:|:---:|:---:|---:
+Feminino | 15  | 18 | **33**
+Masculino | 11 | 13 | **24** 
+**TOTAL** | **26** | **31** | **57**
+
+Na independência, a $P(F)$ deve ser igual à $P(F|R)$ e vice- versa.
+
+
+Podemos verificar:
+
+$P(F) = P(F|R)$
+
+$P(F) = \frac{P(F \cap R)}{P(R)}$
+
+$\frac{33}{57} = \frac{15/57}{26/57}$
+
+$0,58 = 0,58$ VERDADEIRO, então concluímos que os eventos **SÃO** independentes.
+
+
+
+---
+
+O exemplo clássico de independência e não infependência entre eventos será apresnetado a seguir. Imagine uma urna contento 2 bolas brancas e 3 bolas vermelhas. Serão sorteados duas bolas com reposição, ou seja, sorteia-se a primeira bola, anotá-se a cor, devolve-se a bola para a urna e realiza-se o segundo sorteio, Nessas condições o espaço amostral desse ensaio segudo de suas respectivas probabilidades de ocorrência, pode ser dado por: $\mho = \{ BB, BV, VB, VV\}$
+
+
+
+
 
