@@ -697,8 +697,9 @@ class: middle, center, inverse
 
 
 ---
+### Exercícios
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7.png")
 ```
 
@@ -710,18 +711,18 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ---
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_2.png")
 ```
 
 ---
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_3.png")
 ```
 
 ---
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_4.png")
 ```
