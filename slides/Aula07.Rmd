@@ -8,7 +8,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 07 - Probabilidade (continuação)"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(20-05-2021)"
+date: "(27-05-2021)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -681,7 +681,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ---
 
-**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, não se devolve a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral reduz de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral $mho = \{ BB, BV, VB, VV\}$ será dados por:
+**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, não se devolve a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral reduz de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral $\mho = \{ BB, BV, VB, VV\}$ será dados por:
 
 
 ```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
