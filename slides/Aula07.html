@@ -665,7 +665,93 @@ class: middle, center, inverse
 # Teorema de Bayes
 
 ---
+#### Teorema de Bayes  
+Considere a incidência de uma doença na população humana  nas diferentes faixas etárias: *jovens*, *adultos* e *idosos*, `\(E_1\)`, `\(E_2\)` e `\(E_3\)`, respectivamente.
 
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/Bayes.png" width="50%" style="display: block; margin: auto;" /&gt;
+Sabe-se que `\(P(E_1) = 0,60\)`, `\(P(E_2) = 0,30\)` e `\(P(E_3) = 0,10\)`, além disso, é conhecido que as incidências da doença nas diferentes faizas etárias são:
+.pull-left[
+`\(P(D|E_1)=0,02\)`  
+`\(P(D|E_2)=0,05\)`  
+`\(P(D|E_3)=0,10\)`  
+Toma-se  uma  pessoa dessa população  ao  acaso  e  verificamos que ela está doente.
+]
+.pull-right[
+   Qual  a probabilidade da pessoa escolhida pertencer à faixa etária `\(E_1\)`, ou seja ?
+`$$P(E_1|D) = ?$$`
+]
+
+---
+
+Aplicando a fórmula da probabilidade condicional, temos que:
+
+`$$P(E_1 | D) = \frac{P(E_1 \cap D)}{P(D)} \;\;\;\;\;(i)$$` 
+
+Assim, podemos isolar `\(P(E_1 \cap D)\)` em (i):
+
+`\(P(E_1 \cap D) = P(E_1|D) \cdot P(D)\)`, da mesma forma que: 
+
+`\(P(E_1 \cap D) = P(D|E_1) \cdot P(E_1)\)`
+
+Assim, podemos reescrever (i) como:
+
+`$$P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D)}$$` 
+
+O evento Doente pode se escrito como a reunião de 3 eventos disjuntos, ou seja:
+
+`$$D = (E_1 \cap D) \cup (E_2 \cap D) \cup (E_3 \cap D)$$`
+Aplicando a função de probabilidade temos:
+
+`$$P(D) = P(E_1 \cap D) + P(E_2 \cap D) + P(E_3 \cap D)$$`
+
+---
+
+Em analogia à passagem anterior:
+
+`$$P(D) = P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)$$`
+Assim, podemos reescrever (i) como:
+
+`$$P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)}$$` 
+
+O Teorema  de  Bayes expressa  uma  probabilidade condicional em termos de outras probabilidades condicionais e marginais. 
+
+Essas probabilidades podem ser teoricamente deduzidas a partir de um modelo representado pelo  espaço  amostral  em  que  esses  eventos  são  definidos, pela expressão:
+
+
+`$$P(E_i | D) = \frac{P(D|E_i) \cdot P(E_i)}{ \sum \limits_{j=1}^k P(D|E_j) \cdot P(E_j)}$$` 
+
+---
+
+Portanto, para o exemplo temos que a probabilidade da pessoa escolhida ser pretencente à faixa etária `\(E_1\)`, dado que ele é `\(D\)` é:
+
+`$$P(E_1 | D) = \frac{0,02 \cdot 0,60}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}$$` 
+
+
+`$$P(E_1 | D) = \frac{0,012}{ 0,037}$$` 
+
+`$$P(E_1 | D) = 0,3243$$` 
+Aplicando a mesma fórmula podemos calcular:
+
+.pull-left[
+`$$P(E_2 | D) = \frac{0,05 \cdot 0,30}{ 0,02  (0,60) + 0,05 (0,30) + 0,10  (0,10)}$$` 
+
+
+`\(P(E_2 | D) = \frac{0,015}{ 0,037}\)` 
+
+`\(P(E_2 | D) = 0,4054\)`
+]
+
+.pull-right[
+
+`$$P(E_3 | D) = \frac{0,10 \cdot 0,10}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}$$` 
+
+
+`\(P(E_3 | D) = \frac{0,015}{ 0,037}\)`
+
+`\(P(E_3 | D) = 0,2703\)`
+
+
+]
 
 ---
 ### Exercícios
