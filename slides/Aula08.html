@@ -59,7 +59,7 @@ Considerando o cruzamento de organismos heterozigotos para o gene `\(A\)`, `\(Aa
 
 Agora vamos definir `\(X\)`, como nossa variável aleatória, que é o número de alelos dominantes `\(A\)`. Assim:
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 Note que para ser discreta, a variável aleatória (v.a.) deve assumir valores em um conjunto finito ou infinito, porém contável.
 
@@ -86,8 +86,8 @@ Votemos ao cruzamento de dois organismos heterozigotos para o gene `\(A\)`, temo
 
 Genótipos | AA | Aa | aa | **Total**
 :---|:---:|:---:|:---:|---:
-`\(X=x_i\)` | 2 | 1| 0| -
-`\(P(X=x_i)\)`| 1/4 | 1/2| 1/4| 1
+`\(X=x_i\)` | `\(2\)` | `\(1\)` |  `\(0\)` | -
+`\(P(X=x_i)\)` | 1/4 | 1/2| 1/4| 1
 
 A distribuição de probabilidade mostra-nos como a probabilidade total `\((1)\)` é distribuída de acordo com os diferentes valores da variável aleatória `\(X\)`.
 
@@ -410,9 +410,107 @@ class: middle, center, inverse
 
 # Distribuição de Bernoulli
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/bernoulli_1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/bernoulli_1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 ---
+### Distribuição de Bernoulli
+
+Essa distribuição é caracterizada por uma única realização de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** e **Fracasso (F)**.
+
+**Exemplos**: 
+
+a) testa-se um antibiótico em um indivíduo, a reação (v.a.) ou é positiva (S) ou é negativa (F);
+
+b) observa-se o sexo (v.a.)  de um animal recém-nascido ou é macho (F) ou é fêmea (S);
+
+c) uma planta é escolhida, ao acaso, em um pomar e observa-se se essa planta é doente (v.a.) (S) ou não (F).
+
+Assim, para cada experimento, podemos definir uma variável aleatória `\(X\)`: o número de sucessos, que assume apenas dois valores, o valor `\(1\)` se ocorre sucesso `\((S)\)` e o valor `\(0\)` (zero) se ocorre fracasso `\((F)\)`, sendo `\(P(S) = p\)`, `\(0 &lt; p &lt;1\)`, ou seja:
+
+
+$$
+X \begin{cases}
+0(F) \\\
+1(S)
+\end{cases}
+$$
+
+com `\(P(X=1) = p\)` e `\(P(X=0) = 1-p = q\)`
+
+---
+
+### Definição
+
+Nestas condições, a variável aleatória `\(X\)` tem a função de probabilidade
+
+`\(X\)` | `\(P(X)\)`
+:---: | :---:
+1 | p 
+0 | q
+
+Com função de probabilidade dada por:
+
+`$$P(X=x) = p^x \cdot q^{1-x}$$`
+.pull-left[
+#### Esperança
+`\(E(X) = \sum x_i P(x_i)\)`
+
+`\(E(X) = 0(q) + 1(p)\)`
+
+`\(E(X) = p\)`
+]
+
+.pull-right[
+#### Variância
+
+`\(Var(X) = E(X^2) - [E(X)]^2\)`
+
+`\(Var(X) = (0^2.q + 1^2.p) - p^2\)`
+
+`\(Var(X) = p - p^2\)`
+
+`\(Var(X) = p(1 - p) = p.q\)`
+]
+
+---
+### Exemplo
+
+.pull-left[
+
+Dado `\(p =0,7\)`, construa a distribuição de probabilidade dessa variável e calcule a esperança e a variância dessa distribuição.
+
+
+```r
+p &lt;- 0.7
+q &lt;- 1-p
+x &lt;- 0:1
+px &lt;- c(q,p)
+tibble(x,px) |&gt; 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightgray")
+```
+`\(E(X) = p = 0,7\)`  e 
+
+`\(Var(X) = p.q = 0,7 . 0,3 = 0,21\)`
+
+]
+
+.pull-right[
+
+&lt;img src="Aula08_files/figure-html/plot_2-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+class: middle, center, inverse
+
+# Distribuição Binomial
+
+---
+
+### Distribuição Binomial
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

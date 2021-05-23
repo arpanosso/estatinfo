@@ -64,7 +64,7 @@ $$\mho = \{AA,Aa,aA,aa\}$$
 
 Agora vamos definir $X$, como nossa variável aleatória, que é o número de alelos dominantes $A$. Assim:
 
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png")
 ```
 
@@ -93,8 +93,8 @@ Votemos ao cruzamento de dois organismos heterozigotos para o gene $A$, temos:
 
 Genótipos | AA | Aa | aa | **Total**
 :---|:---:|:---:|:---:|---:
-$X=x_i$ | 2 | 1| 0| -
-$P(X=x_i)$| 1/4 | 1/2| 1/4| 1
+$X=x_i$ | $2$ | $1$ |  $0$ | -
+$P(X=x_i)$ | 1/4 | 1/2| 1/4| 1
 
 A distribuição de probabilidade mostra-nos como a probabilidade total $(1)$ é distribuída de acordo com os diferentes valores da variável aleatória $X$.
 
@@ -133,7 +133,6 @@ tibble(Genótipo=c("AA","Aa","aa"),
        x=2:0,
        px = c(1/4, 1/2, 1/4) ) |> 
   kableExtra::kable()
-
 ```
 Lembrando que a média pode ser calculada a partir da frequência relativa:
 
@@ -357,9 +356,107 @@ class: middle, center, inverse
 
 # Distribuição de Bernoulli
 
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/bernoulli_1.png")
 ```
 
 ---
+### Distribuição de Bernoulli
+
+Essa distribuição é caracterizada por uma única realização de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** e **Fracasso (F)**.
+
+**Exemplos**: 
+
+a) testa-se um antibiótico em um indivíduo, a reação (v.a.) ou é positiva (S) ou é negativa (F);
+
+b) observa-se o sexo (v.a.)  de um animal recém-nascido ou é macho (F) ou é fêmea (S);
+
+c) uma planta é escolhida, ao acaso, em um pomar e observa-se se essa planta é doente (v.a.) (S) ou não (F).
+
+Assim, para cada experimento, podemos definir uma variável aleatória $X$: o número de sucessos, que assume apenas dois valores, o valor $1$ se ocorre sucesso $(S)$ e o valor $0$ (zero) se ocorre fracasso $(F)$, sendo $P(S) = p$, $0 < p <1$, ou seja:
+
+
+$$
+X \begin{cases}
+0(F) \\\
+1(S)
+\end{cases}
+$$
+
+com $P(X=1) = p$ e $P(X=0) = 1-p = q$
+
+---
+
+### Definição
+
+Nestas condições, a variável aleatória $X$ tem a função de probabilidade
+
+$X$ | $P(X)$
+:---: | :---:
+1 | p 
+0 | q
+
+Com função de probabilidade dada por:
+
+$$P(X=x) = p^x \cdot q^{1-x}$$
+.pull-left[
+#### Esperança
+$E(X) = \sum x_i P(x_i)$
+
+$E(X) = 0(q) + 1(p)$
+
+$E(X) = p$
+]
+
+.pull-right[
+#### Variância
+
+$Var(X) = E(X^2) - [E(X)]^2$
+
+$Var(X) = (0^2.q + 1^2.p) - p^2$
+
+$Var(X) = p - p^2$
+
+$Var(X) = p(1 - p) = p.q$
+]
+
+---
+### Exemplo
+
+.pull-left[
+
+Dado $p =0,7$, construa a distribuição de probabilidade dessa variável e calcule a esperança e a variância dessa distribuição.
+
+```{r,plot_2,eval=FALSE}
+p <- 0.7
+q <- 1-p
+x <- 0:1
+px <- c(q,p)
+tibble(x,px) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightgray")
+```
+$E(X) = p = 0,7$  e 
+
+$Var(X) = p.q = 0,7 . 0,3 = 0,21$
+
+]
+
+.pull-right[
+
+```{r,plot_2,echo=FALSE}
+```
+
+
+]
+
+---
+
+class: middle, center, inverse
+
+# Distribuição Binomial
+
+---
+
+### Distribuição Binomial
 
