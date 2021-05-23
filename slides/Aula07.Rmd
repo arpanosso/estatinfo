@@ -669,9 +669,30 @@ $0,58 = 0,58$ VERDADEIRO, então concluímos que os eventos **SÃO** independent
 
 ---
 
-O exemplo clássico de independência e não infependência entre eventos será apresnetado a seguir. Imagine uma urna contento 2 bolas brancas e 3 bolas vermelhas. Serão sorteados duas bolas com reposição, ou seja, sorteia-se a primeira bola, anotá-se a cor, devolve-se a bola para a urna e realiza-se o segundo sorteio, Nessas condições o espaço amostral desse ensaio segudo de suas respectivas probabilidades de ocorrência, pode ser dado por: $\mho = \{ BB, BV, VB, VV\}$
+O exemplo clássico de independência e não independência entre eventos será apresentado a seguir:
+
+**INDEPENDÊNCIA**: Imagine uma urna contento $2$ bolas brancas e $3$ bolas vermelhas. Serão sorteados duas bolas **COM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, devolve-se a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral desse ensaio seguido de suas respectivas probabilidades de ocorrência, pode ser dado por: $\mho = \{ BB, BV, VB, VV\}$
 
 
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/reposicao.png")
+```
 
+
+---
+
+**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, não se devolve a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral reduz de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral $mho = \{ BB, BV, VB, VV\}$ será dados por:
+
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/sem_reposicao.png")
+```
+
+---
+class: middle, center, inverse
+
+# Teorema de Bayes
+
+---
 
 
