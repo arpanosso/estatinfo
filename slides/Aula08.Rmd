@@ -64,5 +64,302 @@ $$\mho = \{AA,Aa,aA,aa\}$$
 
 Agora vamos definir $X$, como nossa variável aleatória, que é o número de alelos dominantes $A$. Assim:
 
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png")
+```
 
+Note que para ser discreta, a variável aleatória (v.a.) deve assumir valores em um conjunto finito ou infinito, porém contável.
+
+---
+class: middle, center, inverse
+
+# Distribuição de Probabilidade
+
+---
+
+### Distribuiçãod e Probabilidade
+
+É uma relação dos distintos valores $x_i$ da variável aleatória $X$ junto às suas respectivas probabilidades $P(x_i)$, com:
+
+
+$$\sum \limits_{i=1}^nP(x_i) = 1$$
+
+em que: $P(x_i)$ é chamada função de probabilidade, que a cada valor de $x_i$ associa sua probabilidade de ocorrência.
+
+
+#### Exemplo:
+
+Votemos ao cruzamento de dois organismos heterozigotos para o gene $A$, temos:
+
+Genótipos | AA | Aa | aa | **Total**
+:---|:---:|:---:|:---:|---:
+$X=x_i$ | 2 | 1| 0| -
+$P(X=x_i)$| 1/4 | 1/2| 1/4| 1
+
+A distribuição de probabilidade mostra-nos como a probabilidade total $(1)$ é distribuída de acordo com os diferentes valores da variável aleatória $X$.
+
+---
+
+**Representação Gráfica**
+
+.pull-left[
+```{r,plot_1,eval=FALSE}
+library(tidyverse)
+tibble(x=0:2,
+       px = c(1/4, 1/2, 1/4) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",
+           fill="gray")
+```
+]
+
+.pull-right[
+```{r,plot_1,echo=FALSE}
+```
+]
+
+---
+class: middle, center, inverse
+
+# Esperança Matemática
+
+---
+
+Seja uma população finita de $n$ indivíduos, e o evento $E$  denotado pelo número de alelos dominantes $A$. Calcule a frequência relativa para cada categoria.
+
+
+```{r,echo=FALSE}
+tibble(Genótipo=c("AA","Aa","aa"),
+       x=2:0,
+       px = c(1/4, 1/2, 1/4) ) |> 
+  kableExtra::kable()
+
+```
+Lembrando que a média pode ser calculada a partir da frequência relativa:
+
+$$\bar{x} = \sum \limits_{i=1}^k f_i(x_i)$$
+
+Em que $k$ é o número associado ao evento aleatório $X = x_i$.
+
+Agora, pergunta-se: qual o número médio de genes $A$ esperado?
+
+
+$$\bar{x} = \sum \limits_{i=1}^k f_i(x_i) = \frac{n_1}{n}(x_1)+\frac{n_2}{n}(x_2)+\frac{n_3}{n}(x_3)$$
+$$\bar{x} =  \frac{1}{4}(0)+\frac{1}{2}(1)+\frac{1}{4}(2) = 0+\frac{1}{2}+\frac{1}{2} = 1$$
+---
+
+Considerando um modelo de população infinita $(n \to \infty)$ as frequências relativas $n_i/n$ $(i = 1, 2, 3)$ podem se aproximar de limites que são probabilidades $P(X = x_i) = P(x_i)$, onde: $x_i = \{2, 1, 0\}$, e se aproximará de um limite que é chamado **ESPERANÇA DE X** (isto é, o número esperado de genes $A$ em uma população infinita). O resultado pode ser generalizado na seguinte definição:
+
+
+
+$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i)$$
+**Definição**: A média de uma *v.a.* $X$ ou de sua distribuição de probabilidade, também chamada **valor esperado** ou **esperança matemática** ou simplesmente **esperança de $X$**, **E(X)**, é definida como:
+
+$$E(X) = \mu$$
+
+assim:
+
+$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 0. \frac{1}{4} + 1.\frac{1}{2}+ 2.\frac{1}{4} = 1$$
+---
+
+class: middle, center, inverse
+
+# Variância de uma Variável Aleatória
+
+---
+
+### Definição
+
+A variância de uma v.a. $X$ ou a medida de dispersão de sua distribuição de probabilidade, representada por $\sigma^2_X$, é definida por: 
+
+$$\sigma^2 = Var(X) = E[(X - \mu)^2]$$
+
+Podendo ser calculada de dois modos:
+
+$$E[(X - \mu)^2] = \sum_{i=1}^k(x_i - \mu)^{2} . P(x_i)$$
+
+#### ou
+
+$$E[(X - \mu)^2] = E(X^2) - \mu^2 = \sum_{i=1}^n x_i^2 . P(x_i) - [E(X)]^2$$
+
+---
+
+### Exemplo
+
+Qual a variância da distribuição de probabilidade da variáel $X$ (número de alelos dominantes) a partir do cruzamento de dois organismos heterozigotos $Aa \times Aa$.
+
+```{r,echo=FALSE}
+tibble(Genótipo=c("AA","Aa","aa"),
+       x=2:0,
+       px = c("1/4", "1/2", "1/4") ) |> 
+  kableExtra::kable()
+```
+
+Lembrado que a média $\bar{x} = 1$
+
+$$
+Var(X) \begin{cases}
+  E[(X - \mu)^2] = (0-1)^2.\frac{1}{4} + (1-1)^2.\frac{1}{2} +(2-1)^2.\frac{1}{4} = \frac{1}{2}
+ \\\
+E[(X - \mu)^2] = E(X^2) - \mu^2 = \sum_{i=1}^k x_i.P(x_i) - [E(X)]^2 \\\
+E[(X - \mu)^2] =\left( 0^2\frac{1}{4} + 1^2\frac{1}{2} + 2^2\frac{1}{4} \right) - 1^2 =\frac{1}{2}+1-1= \frac{1}{2}
+\end{cases}
+$$
+---
+
+### Propriedades da Variância
+
+Dado a variável aleatória $X$ e a constante $k$ as propriedades das variâncias são:
+
+$i) Var(X)$ não pode ser um número negativo;
+
+$ii) Var(X + k) = Var(X)$;
+
+$iii) Var(k \cdot X) = k^2Var(x)$
+
+$iv) Var(k+k \cdot X) = k^2Var(x)$
+
+---
+
+### Prova da propriedade **(ii)**
+
+Para demonstrar essa propriedade, vamos consider uma variável $Y$ , definida por $(X+k)$ e agora podemos definir a variância de $Y$:
+
+
+$Var(Y) = E[(Y - \mu_Y)^2] = \sum_{i=1}^k(y_i - \mu_y)^{2} . P(y_i)$
+
+$Var(Y) = \sum_{i=1}^n([x_i+k] - \mu_{[X+k]})^{2} . P([x_i + k])$
+
+$Var(Y) = \sum_{i=1}^n(x_i+k - \mu_{x} - k)^{2} . P(x_i)$
+
+$Var(Y) = \sum_{i=1}^n(x_i - \mu_{x} )^{2} . P(x_i) = Var(X)$
+
+---
+
+### Prova da propriedade **(iii)**
+
+Para demonstrar essa propriedade, vamos consider uma variável $Y$ , definida por $(kX)$ e agora podemos definir a variância de $Y$:
+
+
+$Var(Y) = E[(Y - \mu_Y)^2] = \sum_{i=1}^k(y_i - \mu_y)^{2} . P(y_i)$
+
+$Var(Y) = \sum_{i=1}^n([kx_i] - \mu_{[kX]})^{2} . P(kx_i)$
+
+$Var(Y) = \sum_{i=1}^n(kx_i - k\mu_{[X]})^{2} . P(x_i)$
+
+$Var(Y) = \sum_{i=1}^n(k[x_i - \mu_{X}])^{2} . P(x_i)$
+
+$Var(Y) = \sum_{i=1}^nk^2(x_i - \mu_{X})^{2} . P(x_i)$
+
+$Var(Y) = k^2\sum_{i=1}^n(x_i - \mu_{X})^{2} . P(x_i)$
+
+$Var(Y) = k^2\sum_{i=1}^n(x_i - \mu_{X})^{2} . P(x_i)$
+
+$Var(Y) = k^2Var(X)$
+
+---
+
+### Demonstração no R
+
+```{r}
+X<- 0:2
+px<-c(1/4,1/2,1/4)
+
+# Esperança
+E_X <- sum(X*px)
+E_X
+
+# Variância
+Var_X <- sum(X^2*px) - E_X^2
+Var_X
+```
+
+---
+
+Dado $k = 5$, temos agora duas variáveis $Y = X+k$ e $Z = k.X$.
+
+1) Pelas propriedades da variância sabemos que:
+
+$Var(Y) = Var(X) = 0,5$
+
+Prova:
+
+```{r}
+k <- 5
+Y <- k+X
+Var_Y = sum(Y^2*px) - (sum(Y*px))^2
+Var_Y
+```
+
+2) Pelas propriedades da variância sabemos que:
+
+$Var(Z) = k^2Var(X) = 5^2.0,5 = 12,5$
+
+Prova:
+```{r}
+Z <- k*X
+Var_Z = sum(Z^2*px) - (sum(Z*px))^2
+Var_Z
+```
+
+---
+
+### Exercício 
+
+Um revendedor de produtos agropecuários recebe de vários laboratórios certo tipo de antibiótico, que tem custo diferenciado. Levando-se em conta a proporção fornecida e o preço apresentado por cada laboratório, pode-se considerar que o custo de uma dose de antibiótico em reais, escolhida ao acaso, é uma variável aleatória $C$. Admitindo a seguinte distribuição de probabilidade para $C$:
+
+$c_i$ | $1,00$ | $1,10$ | $1,20$ | $1,30$ | $1,40$
+:---|:---:|:---:|:---:|:---:|:---:
+$P(c_i)$| $0,20$ | $0,30$ | $0,20$ | $0,20$ | $0,10$ 
+
+
+a) Determinar a esperança (média) e a variância da variável aleatória $C$:
+
+b) Supondo que o revendedor venda cada um desses antibióticos acrescentando $50\%$ sobre o custo, além de um adicional de `R$` $0,10$ pelo frete, calcular a média e a variância da nova variável aleatória preço de revenda $R$.
+
+---
+
+### Resposta
+
+a)   
+$E(C) = 1,17$ reais
+
+$Var(C) = 0,016$ reais²
+
+
+b)  
+
+$E(R) = 1,855$ reais
+
+$Var(R) = 0,036$ reais²
+
+---
+
+class: middle, center, inverse
+
+# Distribuições Teóricas de Probabilidade de Variáveis Aleatórias Discretas
+
+---
+
+### Definição
+
+O modelo probabilístico da variável aleatória $X$, é a forma específica de função de distribuição de probabilidade que reflete o comportamento de $X$.
+
+1. Distribuição de Bernoulli
+
+2. Distribuição Binomial 
+
+3. Distribuição de Poisson
+
+---
+
+class: middle, center, inverse
+
+# Distribuição de Bernoulli
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/bernoulli_1.png")
+```
+
+---
 
