@@ -475,6 +475,8 @@ Uma característica interessante dos experimentos considerados é que estamos in
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_2.png")
 ```
 
+---
 
-
-
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_3.png")
+```
