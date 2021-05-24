@@ -471,13 +471,13 @@ Há $2 × 2 × 2 = 8$ resultados possíveis, os quais estão relacionados nas co
 ---
 Uma característica interessante dos experimentos considerados é que estamos interessados apenas no número total de sucessos e não na ordem que eles ocorrem. Segue abaixo o diagrama de árvore das probabilidades binomiais no lançamento de 3 moedas, ou seja, $n=3$ e $P(S) = p$ e $P(F) = q$.
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_2.png")
 ```
 
 ---
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_3.png")
 ```
 
@@ -513,3 +513,8 @@ $E(X) = n \cdot p$
 $Var(X) = n \cdot p \cdot q$
 ]
 
+E se, ao invés de 3 moedas, tivéssemos 4 moedas?
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png")
+```
