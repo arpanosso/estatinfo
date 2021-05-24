@@ -662,6 +662,9 @@ class: middle, center, inverse
 ---
 ### Distribuição de Poisson
 
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
+```
 ---
 
 ##Apêndice - Processo e Poisson
