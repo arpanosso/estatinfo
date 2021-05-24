@@ -518,3 +518,5 @@ E se, ao invés de 3 moedas, tivéssemos 4 moedas?
 ```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png")
 ```
+
+Qual a probabilidade do número de caras ser igual ao número de coroas?
