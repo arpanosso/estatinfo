@@ -23,11 +23,6 @@ class: center, middle, inverse, title-slide
 
 
 
-**Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados. Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
-
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png" width="80%" style="display: block; margin: auto;" /&gt;
----
-
 ## Fenômeno aleatório
 
 É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade (experimento aleatório). Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controla-los.
@@ -498,8 +493,6 @@ tibble(x,px) |&gt;
 .pull-right[
 
 &lt;img src="Aula08_files/figure-html/plot_2-1.png" style="display: block; margin: auto;" /&gt;
-
-
 ]
 
 ---
@@ -510,7 +503,18 @@ class: middle, center, inverse
 
 ---
 
-### Distribuição Binomial
+## Distribuição Binomial
+
+### Definição
+
+Quando um número fixo `\(n\)` de ensaios de Bernoulli são repetidos, supondo que as repetições sejam independentes com `\(P(S) = p\)` em cada ensaio, a variável aleatória `\(X\)` representa a contagem do número de sucessos em `\(n\)` ensaios. 
+
+Os possíveis valores de `\(X\)` são os inteiros `\(0, 1, 2,..., n\)`. A distribuição de probabilidade de `\(X\)` é chamada **DISTRIBUIÇÃO BINOMIAL* com `\(n\)` ensaios e probabilidade de sucesso `\(p\)`. 
+
+**Exemplo**: No lançamento de uma moeda, vamos definir como Sucesso o evento *cair a face cara*:
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
