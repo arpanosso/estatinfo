@@ -459,8 +459,17 @@ Os possíveis valores de $X$ são os inteiros $0, 1, 2,..., n$. A distribuição
 
 **Exemplo**: No lançamento de uma moeda, vamos definir como Sucesso o evento *cair a face cara*:
 
-```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_1.png")
 ```
+
+
+
+Para deduzir uma fórmula para $P(X = x)$, consideremos o lançamento de 3 moedas ($n = 3$ ensaios), cada um dos quais podendo resultar em S (cara) ou F (coroa). 
+Há $2 × 2 × 2 = 8$ resultados possíveis, os quais estão relacionados nas colunas de acordo com o número de sucessos $(S)$:
+
+---
+
+
 
 
