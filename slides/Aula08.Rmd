@@ -501,18 +501,15 @@ $$b(n,p) \text{ onde } \sum \limits_{i=0}^n b(n,p) = 1$$
 
 ---
 
-Nestas condições, a variável aleatória $X$ com distribuição Binomial apresenta:
+Se $X$ é uma variável aleatória com distribuição Binomial ela apresenta:
+ 
+**Esperança**:  $E(X) = n \cdot p$ e **Variância**: $Var(X) = n \cdot p \cdot q$
 
-.pull-left[
-### Esperança
-$E(X) = n \cdot p$
-]
+<iframe width="853" height="480" src="https://www.youtube.com/embed/tNRN89z0TYw?t=2356" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-.pull-right[
-### Variância
-$Var(X) = n \cdot p \cdot q$
-]
+[Link do vídeo](https://youtu.be/tNRN89z0TYw?t=2356)
 
+---
 E se, ao invés de 3 moedas, tivéssemos 4 moedas?
 
 ```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
