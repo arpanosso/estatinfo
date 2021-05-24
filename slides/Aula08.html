@@ -563,9 +563,79 @@ Nestas condições, a variável aleatória `\(X\)` com distribuição Binomial a
 
 E se, ao invés de 3 moedas, tivéssemos 4 moedas?
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 Qual a probabilidade do número de caras ser igual ao número de coroas?
+
+**R**: Dado que a moeda é honesta, ou seja, `\(P(H) = \frac{1}{2}\)`, temos que o `\(x=2\)` e `\(n=4\)`, aplicando a função de probabilidade Binomial `\(b(4,\frac{1}{2})\)`:
+
+`\(P(X=x) = {n \choose x}p^x \cdot q^{n-x}\)`
+
+`\(P(X=2) = {4 \choose 2} \left(\frac{1}{2}\right)^2 \cdot \left(\frac{1}{2}\right)^{2-2} = 0,375\)`
+---
+
+No R podemos utilizar a função `dbinon()` com os argumentos `\(x\)`, `\(n\)` e `\(p\)` a probabilidade de sucesso.
+.pull-left[
+
+```r
+n &lt;- 4
+x &lt;- 0:n
+p&lt;-1/2
+px&lt;-dbinom(x,n,p)
+tibble(x,px)
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; x &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; px &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0625 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3750 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0625 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+
+
+```r
+tibble(x,px) |&gt; 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")
+```
+
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+No Excel, podemos utilizar a função `=DISTR.BINOM()`.
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+Observe que o último argumento da função é o valor zero `\(0\)`, que representa que a probabilidade não deve ser acumulada.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -515,8 +515,54 @@ $Var(X) = n \cdot p \cdot q$
 
 E se, ao invés de 3 moedas, tivéssemos 4 moedas?
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png")
 ```
 
 Qual a probabilidade do número de caras ser igual ao número de coroas?
+
+**R**: Dado que a moeda é honesta, ou seja, $P(H) = \frac{1}{2}$, temos que o $x=2$ e $n=4$, aplicando a função de probabilidade Binomial $b(4,\frac{1}{2})$:
+
+$P(X=x) = {n \choose x}p^x \cdot q^{n-x}$
+
+$P(X=2) = {4 \choose 2} \left(\frac{1}{2}\right)^2 \cdot \left(\frac{1}{2}\right)^{2-2} = 0,375$
+---
+
+No R podemos utilizar a função `dbinon()` com os argumentos $x$, $n$ e $p$ a probabilidade de sucesso.
+.pull-left[
+```{r,eval=FALSE}
+n <- 4
+x <- 0:n
+p<-1/2
+px<-dbinom(x,n,p)
+tibble(x,px)
+```
+
+```{r,echo=FALSE}
+n <- 4
+x <- 0:n
+p<-1/2
+px<-dbinom(x,n,p)
+tibble(x,px) |> 
+  kableExtra::kable()
+```
+]
+
+.pull-right[
+
+```{r}
+tibble(x,px) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")
+```
+]
+
+---
+
+No Excel, podemos utilizar a função `=DISTR.BINOM()`.
+
+```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png")
+```
+
+Observe que o último argumento da função é o valor zero $0$, que representa que a probabilidade não deve ser acumulada.
