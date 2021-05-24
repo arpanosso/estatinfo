@@ -633,9 +633,126 @@ tibble(x,px) |&gt;
 
 No Excel, podemos utilizar a função `=DISTR.BINOM()`.
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png" width="100%" style="display: block; margin: auto;" /&gt;
 
-Observe que o último argumento da função é o valor zero `\(0\)`, que representa que a probabilidade não deve ser acumulada.
+Observe que o último argumento da função é o valor zero `\(0\)`, que representa que a probabilidade não deve ser acumulada até o valor x passado no primeiro argumento.
+
+---
+
+### Estudo do parâmetro `\(p\)`
+
+A distribuição binomial é **simétrica** se o valor de `\(p\)` em um histograma tem o mesmo valor de `\(q\)` em outro, as probabilidades são exatamente as mesmas, mas dispostas de forma invertida. 
+
+A propriedade geral da distribuição binomial: quando `\(p\)` e `\(q\)` são alternados, a distribuição de probabilidades é invertida, então:
+
+`$$b(x,n,p) = b(n-x,n,1-p)$$`
+
+---
+.pull-left[
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; 0 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 5 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.00243 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02835 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1323 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3087 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.36015 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.16807 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+]
+
+.pull-right[
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; 0 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 5 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.16807 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.36015 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3087 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1323 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02835 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00243 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+### Exercícios
+
+1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada 6 vezes. Achar a probabilidade de obter cara:  
+ a) exatamente 3 vezes;  
+ b) no máximo 3 vezes;  
+ c) pelo menos 3 vezes;  
+ d) pelo menos 1 vez.  
+
+2) Uma urna contém bolas brancas e pretas na proporção 2 para 3. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de `\(0, 1, 2 e 3\)` sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
+
+3) Uma urna contém 52 bolas sendo 13 brancas e 39 pretas.  
+ a) Qual a probabilidade de se tirarem 6 bolas brancas, uma a uma, retornando a bola à urna após cada retirada?  
+ b) Calcule a esperança e a variância dessa distribuição de probabilidade.  
+ c) Nas mesmas condições da questão anterior, qual a probabilidade de se terem 5 brancas e 1 preta? 
+
+---
+### Respostas:
+
+### 1)
+a) `\(0,3125\)`  
+b) `\(0,6562\)`  
+c) `\(0,6562\)`  
+d) `\(0,9844\)`  
+
+### 2)
+`\(E(X) = 1,2\)` e `\(Var(X) = 0,72\)`
+
+### 3)
+a) `\(0,0002441\)`;  
+b) `\(E(X) = 1,5\)` e `\(Var(X) = 1,125\)`;  
+c) `\(0,0043945\)`
+
+---
+
+class: middle, center, inverse
+
+# Distribuição de Poisson
+
+---
+### Distribuição de Poisson
+
+---
+
+##Apêndice - Processo e Poisson
+
+&lt;iframe width="853" height="480" src="https://www.youtube.com/embed/cEq38h7SzDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+[Link do vídeo](https://www.youtube.com/watch?v=cEq38h7SzDI)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

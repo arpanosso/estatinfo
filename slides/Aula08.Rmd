@@ -561,8 +561,111 @@ tibble(x,px) |>
 
 No Excel, podemos utilizar a função `=DISTR.BINOM()`.
 
-```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png")
 ```
 
-Observe que o último argumento da função é o valor zero $0$, que representa que a probabilidade não deve ser acumulada.
+Observe que o último argumento da função é o valor zero $0$, que representa que a probabilidade não deve ser acumulada até o valor x passado no primeiro argumento.
+
+---
+
+### Estudo do parâmetro $p$
+
+A distribuição binomial é **simétrica** se o valor de $p$ em um histograma tem o mesmo valor de $q$ em outro, as probabilidades são exatamente as mesmas, mas dispostas de forma invertida. 
+
+A propriedade geral da distribuição binomial: quando $p$ e $q$ são alternados, a distribuição de probabilidades é invertida, então:
+
+$$b(x,n,p) = b(n-x,n,1-p)$$
+
+---
+.pull-left[
+```{r,echo=FALSE}
+n <- 5
+x <- 0:n
+p<-.7
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.7)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r,echo=FALSE}
+tibble(x,px) |> 
+  tidyr::pivot_wider(names_from = x,
+                     values_from = px)  |> 
+  kableExtra::kable()
+```
+
+
+]
+
+.pull-right[
+```{r,echo=FALSE}
+n <- 5
+x <- 0:n
+p<-1-p
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.3)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r,echo=FALSE}
+tibble(x,px) |> 
+  tidyr::pivot_wider(names_from = x,
+                     values_from = px)  |> 
+  kableExtra::kable()
+```
+]
+
+---
+### Exercícios
+
+1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada 6 vezes. Achar a probabilidade de obter cara:  
+ a) exatamente 3 vezes;  
+ b) no máximo 3 vezes;  
+ c) pelo menos 3 vezes;  
+ d) pelo menos 1 vez.  
+
+2) Uma urna contém bolas brancas e pretas na proporção 2 para 3. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de $0, 1, 2 e 3$ sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
+
+3) Uma urna contém 52 bolas sendo 13 brancas e 39 pretas.  
+ a) Qual a probabilidade de se tirarem 6 bolas brancas, uma a uma, retornando a bola à urna após cada retirada?  
+ b) Calcule a esperança e a variância dessa distribuição de probabilidade.  
+ c) Nas mesmas condições da questão anterior, qual a probabilidade de se terem 5 brancas e 1 preta? 
+
+---
+### Respostas:
+
+### 1)
+a) $0,3125$  
+b) $0,6562$  
+c) $0,6562$  
+d) $0,9844$  
+
+### 2)
+$E(X) = 1,2$ e $Var(X) = 0,72$
+
+### 3)
+a) $0,0002441$;  
+b) $E(X) = 1,5$ e $Var(X) = 1,125$;  
+c) $0,0043945$
+
+---
+
+class: middle, center, inverse
+
+# Distribuição de Poisson
+
+---
+### Distribuição de Poisson
+
+---
+
+##Apêndice - Processo e Poisson
+
+<iframe width="853" height="480" src="https://www.youtube.com/embed/cEq38h7SzDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://www.youtube.com/watch?v=cEq38h7SzDI)
