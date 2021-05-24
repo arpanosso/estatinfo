@@ -503,11 +503,11 @@ $$b(n,p) \text{ onde } \sum \limits_{i=0}^n b(n,p) = 1$$
 
 Se $X$ é uma variável aleatória com distribuição Binomial ela apresenta:
  
-**Esperança**:  $E(X) = n \cdot p$ e **Variância**: $Var(X) = n \cdot p \cdot q$
+**Esperança**:  $E(X) = n \cdot p$ e **Variância**: $Var(X) = n \cdot p \cdot q$ (demonstração está aos 39min do vídeo abaixo).
 
 <iframe width="853" height="480" src="https://www.youtube.com/embed/tNRN89z0TYw?t=2356" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-[Link do vídeo](https://youtu.be/tNRN89z0TYw?t=2356)
+[Link para o vídeo](https://youtu.be/tNRN89z0TYw?t=2356)
 
 ---
 E se, ao invés de 3 moedas, tivéssemos 4 moedas?
@@ -562,7 +562,8 @@ No Excel, podemos utilizar a função `=DISTR.BINOM()`.
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png")
 ```
 
-Observe que o último argumento da função é o valor zero $0$, que representa que a probabilidade não deve ser acumulada até o valor x passado no primeiro argumento.
+Observe que o último argumento da função é o valor zero $0$, que representa que a probabilidade não deve ser acumulada até o valor $x$ passado no primeiro argumento.
+
 
 ---
 
@@ -659,7 +660,20 @@ class: middle, center, inverse
 ---
 ### Distribuição de Poisson
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+O comportamento de variáveis aleatórias, as quais representam o número de ocorrências de eventos em um intervalo de tempo ou no espaço (superfície ou volume), pode ser descrito pela chamada distribuição de **Poisson**, cuja função de probabilidade é:
+
+### Função de Distribuição Poisson é:
+
+$$P(X=x) = \frac{e^{-\lambda} \lambda^x}{x!}$$
+
+Onde $e = 2,71828$ e $\lambda$ é o parâmetro da distribuição que representa o número médio (taxa) de ocorrências do evento por unidade de tempo ou espaço.
+
+### Denotação
+
+$$X \sim Po(\lambda) \text{ , onde } \sum \limits_{x=0}^\infty Po(\lambda) = 1$$
+
+---
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
 ```
 ---
