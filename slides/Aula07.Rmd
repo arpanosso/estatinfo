@@ -719,7 +719,7 @@ Considere a incidência de uma doença na população humana  nas diferentes fai
 ```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/Bayes.png")
 ```
-Sabe-se que $P(E_1) = 0,60$, $P(E_2) = 0,30$ e $P(E_3) = 0,10$, além disso, é conhecido que as incidências da doença nas diferentes faizas etárias são:
+Sabe-se que $P(E_1) = 0,60$, $P(E_2) = 0,30$ e $P(E_3) = 0,10$, além disso, é conhecido que as incidências da doença nas diferentes faixas etárias são:
 .pull-left[
 $P(D|E_1)=0,02$  
 $P(D|E_2)=0,05$  
@@ -807,7 +807,7 @@ $P(E_3 | D) = 0,2703$
 ---
 ### Exercícios
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7.png")
 ```
 
