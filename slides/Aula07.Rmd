@@ -33,7 +33,11 @@ class: middle, center, inverse
 
 ---
 
-**Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados. Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
+### Conceitos Básicos
+
+**Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados.
+
+Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
 
 ```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png")
@@ -62,6 +66,7 @@ knitr::include_graphics("https://images.pexels.com/photos/3214973/pexels-photo-3
 ]
 
 ---
+
 
 **Espaço amostral $(\mho$ ou $S)$**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra ômega $\mho$ ou pelo $S$. 
 
@@ -101,7 +106,7 @@ c) sair um número menor que 3 ou primo:
 
 ---
 
-### Probabilidade de um evento $( P(E) )$
+### Probabilidade de um evento - $P(E)$
 
 A probabilidade é uma função $P(.)$ que atribuí valores numéricos a um determinado evento $(E)$. 
 
@@ -112,7 +117,7 @@ A determinação das probabilidade de um evento depende da natureza do experimen
 Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
 $\mho = \{H H, H T, T H, T T\}$.
 
-A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como X que representa o **número de caras**, temos:
+A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como $X$ que representa o **número de caras** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
 
 ```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png")
@@ -134,7 +139,7 @@ Conclusões baseadas em dados empíricos, oriundos de uma observação experimen
 **Definição de Laplace de Probabilidade**
   >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis".
 
-Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  ($H$) ou Coroa ($T$).
+Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  $(H)$ ou Coroa $(T)$.
 
 Por assim definimos a Probabilidade de $H$ como:
 
@@ -142,13 +147,13 @@ $$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultad
 
 ---
 
-**Exemplo:** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair Cara, $[P(H) ]$?.
+**Exemplo:** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair Cara, $P(H)$?.
 
 --
 
 $$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{0}{6} = 0$$
 
-Chamamos esse tipo de **Evento Impossível**
+Chamamos esse tipo de **Evento Impossível**.
 
 --
 
@@ -164,13 +169,13 @@ Chamamos esse tipo de **Evento Certo**.
 
 ###  Probabilidade de um Evento
 
->Assim, a probabilidade de um evento E $[P(E)]$ é um número entre $0$ e $1$, quanto mais próximo a 1, maior a chance de ocorrência. 
+>Assim, a probabilidade de um evento E - $[P(E)]$ - é um número entre $0$ e $1$, quanto mais próximo a 1, maior a chance de ocorrência. 
 
 A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
 
 Portanto, se $\mho$ consiste de $k$ eventos simples $\{ e_1, e_2, \cdots, e_k\}$ que são **igualmente prováveis**, a probabilidade de cada $e_i$ é $\frac{1}{k}$ se $E$ consiste de $m$ desses $k$ elementos, então temos:
 
-$$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }\mho} = \frac{m}{k}$$
+$$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }\mho} = \frac{m}{k},$$
 
 Portanto $P(.)$ é denominada probabilidade se, e somente se: 
 
@@ -178,7 +183,7 @@ $i) \;0 \le 0 \le 1, \forall E \subset \mho$.
 
 $ii) \;P(\mho)= 1$ assim como, $P(\phi) =0$
 
-$iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum \limits_{i=1}^k P(E_i)$ com os eventos $E_is$ **disjuntos**.
+$iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum_{i=1}^k P(E_i)$ com os eventos $E_i$ **disjuntos (mutuamente excludentes)**.
 
 ---
 
@@ -226,7 +231,7 @@ $\mho = A \cup \bar{A}, \forall A$,
 
 Empregando a propriedade 2 e 3, temos:
 
-$P(\phi) = P(A)+P(\bar{A})$  
+$P(U) = P(A)+P(\bar{A})$  
 
 $1 = P(A)+P(\bar{A})$  
 
@@ -265,11 +270,11 @@ $P(A \cup B) = P(A) + P(B)$
 
 **Exemplo**: Jogamos um dado, qual a probabilidade de sair $5$ ou $6$ ?
 
-$P(5 \ cup 6) = P(5)+P(6)$
+$P(5 \cup 6) = P(5)+P(6)$
 
-$P(5 \ cup 6) = \frac{1}{6} + \frac{1}{6}$
+$P(5 \cup 6) = \frac{1}{6} + \frac{1}{6}$
 
-$P(5 \ cup 6) = \frac{1}{3}$
+$P(5 \cup 6) = \frac{1}{3}$
 
 ---
 class: middle, center, inverse
@@ -371,13 +376,13 @@ Quando $n \to \infty$ os valores de $f_i \to P(E) = 0,16667$.
 
 ### Exemplo
 
-Dada a seguinte tabela, referente ao sexo $(S)$ e a cor do cabelo $CC$ de crianças em uma escola:
+Dada a seguinte tabela, referente ao sexo $(F, M)$ e a cor do cabelo de crianças em uma escola:
 
 
-$S$ `\` $CC$ | Ruivo | Não Ruivo | TOTAL
+ | Ruivo | Não Ruivo | TOTAL
 ---|:---:|:---:|:---:|---:
-Feminino | 4  | 26 | **30**
-Masculino | 17 | 13 | **30** 
+**Feminino** | 4  | 26 | **30**
+**Masculino** | 17 | 13 | **30** 
 **TOTAL** | **21** | **39** | **60**
 
 Ao selecionarmos um aluno ao acaso, pergunta-se:
@@ -407,13 +412,19 @@ c) Qual a probabilidade do estudante ser do sexo Feminino **e** Ruivo?
 
 ---
 
-#### c) Qual a probabilidade do estudante ser do sexo Feminino **ou** Ruivo?
+### c) Qual a probabilidade do estudante ser do sexo Feminino **ou** Ruivo?
+
+--
 
 Observe que existe uma região de intersecção entre entre esses conjuntos, então para calcularmos $P(F \cup R)$ devemos somar $P(F)$ com $P(R)$ e subtraírmos uma vez $P(F \cap R)$.
+
+--
 
 ```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_13.png")
 ```
+
+--
 
 **R**: $P(F \cup R) = P(F)  +P(R) - P(F \cap R) =\frac{21}{60} + \frac{30}{60} -\frac{4}{60} = \frac{47}{60} = 0,7833$
 
@@ -432,7 +443,7 @@ $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
 
 **Demonstração**: A ideia principal dessa demonstração é decompor $A \cup B$ e $B$ em dois eventos disjuntos, e em seguida aplicar a propriedade 3 da definição de probabilidade (slide 11).
 
-```{r,out.width = "20%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_14.png")
 ```
 
@@ -519,7 +530,7 @@ Temos então que:
 
 $P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -P(A \cap B) - P(A \cap C)  P(A \cap B \cap C )$
 
-como queríamso demonstrar.
+como queríamos demonstrar.
 
 ---
 
@@ -563,23 +574,23 @@ class: middle, center, inverse
 ---
 ### Probabilidade Condicional 
 
-Voltando aos dados referentes ao sexo $(S)$ e a cor do cabelo $(CC)$ de crianças em uma escola:
+Voltando aos dados referentes ao sexo e a cor do cabelo de crianças em uma escola:
 
 
-$S$ `\` $CC$ | Ruivo | Não Ruivo | TOTAL
+| Ruivo | Não Ruivo | TOTAL
 ---|:---:|:---:|:---:|---:
-Feminino | 4  | 26 | **30**
-Masculino | 17 | 13 | **30** 
+**Feminino** | 4  | 26 | **30**
+**Masculino** | 17 | 13 | **30** 
 **TOTAL** | **21** | **39** | **60**
 
 Agora, sabendo que foi sorteado um aluno do sexo Feminino $(F)$, qual a probabilidade da aluna ter  ruiva $(R)$?
 
 $$P(R|F) = \frac{4}{30} = 0,1333$$
 
-Lê-se: "a probabilidade de R dado F".
+Lê-se: **"a probabilidade de R dado F"**.
 
 
-Observe que a informação prévia *"...foi sorteado um aluno do sexo Feminino..."*, restringiu o espaço amostral de 60 aluno para 30 meninas, como base para a divisão da quantidade de $F \cap R = 4$.
+Observe que a informação prévia *"...foi sorteado um aluno do sexo Feminino..."*, restringiu o espaço amostral de $60$ aluno para $30$ meninas, como base para a divisão da quantidade de $(F \cap R) = 4$.
 
 ---
 
@@ -587,13 +598,13 @@ Observe que a informação prévia *"...foi sorteado um aluno do sexo Feminino..
 
 Assim, para dois eventos quaisquer $A$ e $B$, sendo $P(B)>0$, definimos a probabilidade condicional de $A$ dado que $B$ ocorreu, temos:
 
-$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+$$P(A|B) = \frac{P(A \cap B)}{P(B)} (i)$$
 
 Em analogia, sendo $P(A)>0$, definimos a probabilidade condicional de $B$ dado $A$ como:
 
-$$P(B|A) = \frac{P(A \cap B)}{P(A)}$$
+$$P(B|A) = \frac{P(A \cap B)}{P(A)} (ii)$$
 
-Agora podemos definir a **Regra do Produto de Probabilidade**:
+Observe que o termo $(A \cap B)$ está presente em **(i)** e **(ii)**, então, podemos isolá-lo e igualar as duas expressões e, portanto, definimos a **Regra do Produto de Probabilidade**:
 
 $$P(A \cap B) = P(A) \cdot P(B|A) = P(B) \cdot P(A|B)$$
 ---
@@ -620,14 +631,13 @@ $$P( A \cap B) = P(A) \cdot P(B)$$
 Voltando aos dados referentes ao sexo $(S)$ e a cor do cabelo $(CC)$ de crianças em uma escola:, verificar se esses eventos são independentes.
 
 
-$S$ `\` $CC$ | Ruivo | Não Ruivo | TOTAL
+| Ruivo | Não Ruivo | TOTAL
 ---|:---:|:---:|:---:|---:
-Feminino | 4  | 26 | **30**
-Masculino | 17 | 13 | **30** 
+**Feminino** | 4  | 26 | **30**
+**Masculino** | 17 | 13 | **30** 
 **TOTAL** | **21** | **39** | **60**
 
 Na independência, a $P(F)$ deve ser igual à $P(F|R)$ e vice- versa.
-
 
 Podemos verificar:
 
@@ -637,19 +647,19 @@ $P(F) = \frac{P(F \cap R)}{P(R)}$
 
 $\frac{30}{60} = \frac{4/60}{21/60}$
 
-$0,50 = 0,19$ FALSO, então concluímos que os eventos **NÃO** são independentes.
+$0,50 = 0,19$ FALSO, então concluímos que os eventos **NÃO** são independentes, ou seja a cordo do cabelo depende do sexo.
 
 ---
 
 **Exemplo** 
 
-Agora, teste a independência para a segunte condição:
+Agora, teste a independência para a seguinte condição:
 
 
-$S$ `\` $CC$ | Ruivo | Não Ruivo | TOTAL
+| **Ruivo** | **Não Ruivo** | **TOTAL**
 ---|:---:|:---:|:---:|---:
-Feminino | 15  | 18 | **33**
-Masculino | 11 | 13 | **24** 
+**Feminino** | 15  | 18 | **33**
+**Masculino** | 11 | 13 | **24** 
 **TOTAL** | **26** | **31** | **57**
 
 Na independência, a $P(F)$ deve ser igual à $P(F|R)$ e vice- versa.
@@ -663,9 +673,7 @@ $P(F) = \frac{P(F \cap R)}{P(R)}$
 
 $\frac{33}{57} = \frac{15/57}{26/57}$
 
-$0,58 = 0,58$ VERDADEIRO, então concluímos que os eventos **SÃO** independentes.
-
-
+$0,58 = 0,58$ VERDADEIRO, então concluímos que os eventos **SÃO** independentes, ou seja, a cor do cableo não depende do sexo.
 
 ---
 
@@ -714,7 +722,7 @@ $$P(E_1|D) = ?$$
 
 ---
 
-Aplicando a fórmula da probabilidade condicional, temos que:
+Aplicando a expressão da probabilidade condicional, temos que:
 
 $$P(E_1 | D) = \frac{P(E_1 \cap D)}{P(D)} \;\;\;\;\;(i)$$ 
 
@@ -728,7 +736,7 @@ Assim, podemos reescrever (i) como:
 
 $$P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D)}$$ 
 
-O evento Doente pode se escrito como a reunião de 3 eventos disjuntos, ou seja:
+O evento Doente $(D)$ pode se escrito como a reunião de 3 eventos disjuntos, ou seja:
 
 $$D = (E_1 \cap D) \cup (E_2 \cap D) \cup (E_3 \cap D)$$
 Aplicando a função de probabilidade temos:
@@ -761,6 +769,7 @@ $$P(E_1 | D) = \frac{0,02 \cdot 0,60}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10
 $$P(E_1 | D) = \frac{0,012}{ 0,037}$$ 
 
 $$P(E_1 | D) = 0,3243$$ 
+
 Aplicando a mesma fórmula podemos calcular:
 
 .pull-left[
