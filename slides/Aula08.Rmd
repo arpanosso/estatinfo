@@ -26,13 +26,6 @@ knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>
 options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 
-**Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados. Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
-
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png")
-```
----
-
 ## Fenômeno aleatório
 
 É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade (experimento aleatório). Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controla-los.
@@ -446,8 +439,6 @@ $Var(X) = p.q = 0,7 . 0,3 = 0,21$
 
 ```{r,plot_2,echo=FALSE}
 ```
-
-
 ]
 
 ---
@@ -458,5 +449,237 @@ class: middle, center, inverse
 
 ---
 
-### Distribuição Binomial
+## Distribuição Binomial
 
+### Definição
+
+Quando um número fixo $n$ de ensaios de Bernoulli são repetidos, supondo que as repetições sejam independentes com $P(S) = p$ em cada ensaio, a variável aleatória $X$ representa a contagem do número de sucessos em $n$ ensaios. 
+
+Os possíveis valores de $X$ são os inteiros $0, 1, 2,..., n$. A distribuição de probabilidade de $X$ é chamada **DISTRIBUIÇÃO BINOMIAL* com $n$ ensaios e probabilidade de sucesso $p$. 
+
+**Exemplo**: No lançamento de uma moeda, vamos definir como Sucesso o evento *cair a face cara*:
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_1.png")
+```
+
+
+
+Para deduzir uma fórmula para $P(X = x)$, consideremos o lançamento de 3 moedas ($n = 3$ ensaios), cada um dos quais podendo resultar em S (cara) ou F (coroa). 
+Há $2 × 2 × 2 = 8$ resultados possíveis, os quais estão relacionados nas colunas de acordo com o número de sucessos $(S)$:
+
+---
+Uma característica interessante dos experimentos considerados é que estamos interessados apenas no número total de sucessos e não na ordem que eles ocorrem. Segue abaixo o diagrama de árvore das probabilidades binomiais no lançamento de 3 moedas, ou seja, $n=3$ e $P(S) = p$ e $P(F) = q$.
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_2.png")
+```
+
+---
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_3.png")
+```
+
+---
+
+### Obtenção das sequências
+
+Como os ensaios são independentes, com $P(S) =p$ e $P(F) = q$, os fatores: $1, 3, 3, 1$ são obtido por meio do **"teorema da expansão binomial“**:
+
+$$(a+b)^n = {n \choose 0}a^n + {n \choose 1}a^{n-1}b + {n \choose 2}a^{n-2}b^2 + \dots + {n \choose n}b^n$$
+
+### Função de Distribuição Binomial
+
+Assim, a função de distribuição binomial é:
+
+$$P(X=x) = {n \choose x}p^x \cdot q^{n-x}$$
+
+### Denotação
+
+$$b(n,p) \text{ onde } \sum \limits_{i=0}^n b(n,p) = 1$$
+
+---
+
+Se $X$ é uma variável aleatória com distribuição Binomial ela apresenta:
+ 
+**Esperança**:  $E(X) = n \cdot p$ e **Variância**: $Var(X) = n \cdot p \cdot q$ (demonstração está aos 39min do vídeo abaixo).
+
+<iframe width="853" height="480" src="https://www.youtube.com/embed/tNRN89z0TYw?t=2356" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link para o vídeo](https://youtu.be/tNRN89z0TYw?t=2356)
+
+---
+E se, ao invés de 3 moedas, tivéssemos 4 moedas?
+
+```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png")
+```
+
+Qual a probabilidade do número de caras ser igual ao número de coroas?
+
+**R**: Dado que a moeda é honesta, ou seja, $P(H) = \frac{1}{2}$, temos que o $x=2$ e $n=4$, aplicando a função de probabilidade Binomial $b(4,\frac{1}{2})$:
+
+$P(X=x) = {n \choose x}p^x \cdot q^{n-x}$
+
+$P(X=2) = {4 \choose 2} \left(\frac{1}{2}\right)^2 \cdot \left(\frac{1}{2}\right)^{2-2} = 0,375$
+---
+
+No R podemos utilizar a função `dbinon()` com os argumentos $x$, $n$ e $p$ a probabilidade de sucesso.
+.pull-left[
+```{r,eval=FALSE}
+n <- 4
+x <- 0:n
+p<-1/2
+px<-dbinom(x,n,p)
+tibble(x,px)
+```
+
+```{r,echo=FALSE}
+n <- 4
+x <- 0:n
+p<-1/2
+px<-dbinom(x,n,p)
+tibble(x,px) |> 
+  kableExtra::kable()
+```
+]
+
+.pull-right[
+
+```{r}
+tibble(x,px) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")
+```
+]
+
+---
+
+No Excel, podemos utilizar a função `=DISTR.BINOM()`.
+
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png")
+```
+
+Observe que o último argumento da função é o valor zero $0$, que representa que a probabilidade não deve ser acumulada até o valor $x$ passado no primeiro argumento.
+
+
+---
+
+### Estudo do parâmetro $p$
+
+A distribuição binomial é **simétrica** se o valor de $p$ em um histograma tem o mesmo valor de $q$ em outro, as probabilidades são exatamente as mesmas, mas dispostas de forma invertida. 
+
+A propriedade geral da distribuição binomial: quando $p$ e $q$ são alternados, a distribuição de probabilidades é invertida, então:
+
+$$b(x,n,p) = b(n-x,n,1-p)$$
+
+---
+.pull-left[
+```{r,echo=FALSE}
+n <- 5
+x <- 0:n
+p<-.7
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.7)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r,echo=FALSE}
+tibble(x,px) |> 
+  tidyr::pivot_wider(names_from = x,
+                     values_from = px)  |> 
+  kableExtra::kable()
+```
+
+
+]
+
+.pull-right[
+```{r,echo=FALSE}
+n <- 5
+x <- 0:n
+p<-1-p
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.3)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r,echo=FALSE}
+tibble(x,px) |> 
+  tidyr::pivot_wider(names_from = x,
+                     values_from = px)  |> 
+  kableExtra::kable()
+```
+]
+
+---
+### Exercícios
+
+1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada 6 vezes. Achar a probabilidade de obter cara:  
+ a) exatamente 3 vezes;  
+ b) no máximo 3 vezes;  
+ c) pelo menos 3 vezes;  
+ d) pelo menos 1 vez.  
+
+2) Uma urna contém bolas brancas e pretas na proporção 2 para 3. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de $0, 1, 2 e 3$ sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
+
+3) Uma urna contém 52 bolas sendo 13 brancas e 39 pretas.  
+ a) Qual a probabilidade de se tirarem 6 bolas brancas, uma a uma, retornando a bola à urna após cada retirada?  
+ b) Calcule a esperança e a variância dessa distribuição de probabilidade.  
+ c) Nas mesmas condições da questão anterior, qual a probabilidade de se terem 5 brancas e 1 preta? 
+
+---
+### Respostas:
+
+### 1)
+a) $0,3125$  
+b) $0,6562$  
+c) $0,6562$  
+d) $0,9844$  
+
+### 2)
+$E(X) = 1,2$ e $Var(X) = 0,72$
+
+### 3)
+a) $0,0002441$;  
+b) $E(X) = 1,5$ e $Var(X) = 1,125$;  
+c) $0,0043945$
+
+---
+
+class: middle, center, inverse
+
+# Distribuição de Poisson
+
+---
+### Distribuição de Poisson
+
+O comportamento de variáveis aleatórias, as quais representam o número de ocorrências de eventos em um intervalo de tempo ou no espaço (superfície ou volume), pode ser descrito pela chamada distribuição de **Poisson**, cuja função de probabilidade é:
+
+### Função de Distribuição Poisson é:
+
+$$P(X=x) = \frac{e^{-\lambda} \lambda^x}{x!}$$
+
+Onde $e = 2,71828$ e $\lambda$ é o parâmetro da distribuição que representa o número médio (taxa) de ocorrências do evento por unidade de tempo ou espaço.
+
+### Denotação
+
+$$X \sim Po(\lambda) \text{ , onde } \sum \limits_{x=0}^\infty Po(\lambda) = 1$$
+
+---
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
+```
+---
+
+##Apêndice - Processo e Poisson
+
+<iframe width="853" height="480" src="https://www.youtube.com/embed/cEq38h7SzDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://www.youtube.com/watch?v=cEq38h7SzDI)
