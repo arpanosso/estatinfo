@@ -671,14 +671,184 @@ Onde $e = 2,71828$ e $\lambda$ é o parâmetro da distribuição que representa 
 ### Denotação
 
 $$X \sim Po(\lambda) \text{ , onde } \sum \limits_{x=0}^\infty Po(\lambda) = 1$$
+---
+
+### Definição 
+
+A variável aleatória $X$ com distribuição de Poisson apresenta:
+
+**Esperança**: 
+
+$$E(X) = \lambda$$ 
+
+e **Variância**: 
+
+$$Var(X) = \lambda$$
+
+Ou seja, o número médio e a variância de ocorrências de eventos por unidade de tempo (ou espaço) são iguais $(\lambda)$ e constantes ao longo do tempo (ou espaço).
 
 ---
-```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+
+
+**Exercícios 1)** Em uma população, seja $X$ o número de descendentes produzidos por família/geração. Assumindo que Média = $\lambda = 2$, qual a probabilidade de famílias com  $X= 4$ descendentes?
+
+--
+.pull-left[
+```{r,echo=FALSE}
+n <- 10
+x <- 0:n
+lambda <- 2
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x==4,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+]
+
+.pull-right[
+$$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
+
+]
+
+---
+**Exercício 2)** Suponha que o número de partículas alfa, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro $\lambda = 5$, isto é, a taxa média de ocorrência é de $5$ partículas a cada minuto. Calcule a probabilidade de haver mais de $2$ emissões em um minuto.
+
+
+.pull-left[
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
 ```
+
+Se $P(\mho) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}$, então:
+
+$P(x >2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}$
+
+$P(x >2 ) = 1 - P(X=0) + P(X=1) + P(X=2)$
+
+$P(x >2 ) = \frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}=0,87535$
+
+]
+
+--
+
+.pull-right[
+```{r,echo=FALSE}
+n <- 20
+x <- 0:n
+lambda <- 5
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x>2,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+]
 ---
 
-##Apêndice - Processo e Poisson
+**Exercício 3)** Calcule a probabilidade da emissão de até 4 partículas em 2 minutos. 
+
+
+
+.pull-left[
+```{r,echo=FALSE}
+n <- 20
+x <- 0:n
+lambda <- 5*2
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x<=4,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+]
+
+.pull-right[
+Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distribuição de Poisson, mas com o valor de parâmetro ajustado de forma conveniente. 
+
+Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: $\lambda'= 2 \times 5 = 10$ partículas em dois min.
+
+
+$$P(X \le 4) = 0,026252$$
+]
+
+---
+**Exercício 4)** Supondo que o número médio de bactérias por litro de água purificada é 2, qual é a probabilidade que 5 ou mais bactérias sejam encontradas em uma amostra de 3 litros de água?
+
+.pull-left[
+```{r,echo=FALSE}
+n <- 20
+x <- 0:n
+lambda <- 3*2
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x>=5,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+]
+
+.pull-right[
+Se o volume é alterado a variável aleatória mantém a mesma distribuição de Poisson, se o volume for de 3 litros, teremos que o número de bactérias observado terá distribuição: $\lambda'= 3 \times 2 = 6$ bactérias por litro.
+
+$$P(X \ge 5) =1 - \sum_{i=0}^5 \frac{e^{-\lambda}\lambda^x}{x!} = 0,7149$$
+]
+
+---
+
+### Distribuição de Poisson como aproximação da Distribuição Binomial
+
+Algumas vezes, no uso da distribuição binomial, ocorre que $n$ é muito grande e $p$ é muito pequeno, de modo que $q$ é próximo de $1$. Em tais casos, o cálculo torna-se muito difícil. Pode-se, então, fazer uma aproximação da distribuição Binomial pela Poisson.
+
+Função de Distribuição: 
+
+$$b(n,p) \sim \frac{e^{-n.p}(n.p)^x}{x!}$$
+
+A aproximação é boa, se $n \cdot p = \lambda \le 7$.
+
+Nestas condições, a variável aleatória $X$ com distribuição Binominal aproximada pela  Poisson apresenta:
+
+A variável aleatória $X$ com distribuição de Poisson apresenta:
+
+**Esperança**: 
+
+$$E(X) = n \cdot p$$ 
+
+e **Variância**: 
+
+$$Var(X) = n \cdot p$$
+---
+**Exercício 5)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à vacina coronavac é de $0,001$, determinar a probabilidade de que, de $2000$ pessoas vacinadas, mais do que $4$ pessoas tenham reação negativa?
+
+--
+
+$n \times p = \lambda =2000 \times 0,001 = 2$
+
+$P(X > 4)= 1 - P(X \le 4) = 1 - \sum_{i=0}^{4}Po(2)$
+
+$P(X > 4)= 1 - P(X \le 4) = 1 - \sum_{i=0}^{4}Po(2)=0,0526$
+
+
+```{r}
+n <- 2000
+x <- 0:n
+lambda <- n*0.001
+px <- dpois(x,lambda)
+1 - sum(px[x<=4])
+```
+
+---
+
+### Apêndice - Processo e Poisson
 
 <iframe width="853" height="480" src="https://www.youtube.com/embed/cEq38h7SzDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
