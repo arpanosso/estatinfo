@@ -623,7 +623,7 @@ tibble(x,px) |&gt;
   geom_col(color="black",fill="gray")
 ```
 
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -647,7 +647,7 @@ A propriedade geral da distribuição binomial: quando `\(p\)` e `\(q\)` são al
 
 ---
 .pull-left[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -676,7 +676,7 @@ A propriedade geral da distribuição binomial: quando `\(p\)` e `\(q\)` são al
 ]
 
 .pull-right[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -778,7 +778,7 @@ Ou seja, o número médio e a variância de ocorrências de eventos por unidade 
 
 --
 .pull-left[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -807,7 +807,7 @@ Se `\(P(\mho) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}\)`, e
 --
 
 .pull-right[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -816,7 +816,7 @@ Se `\(P(\mho) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}\)`, e
 
 
 .pull-left[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -832,7 +832,7 @@ Por exemplo, se o período de tempo considerado para o exemplo anterior for de d
 **Exercício 4)** Supondo que o número médio de bactérias por litro de água purificada é 2, qual é a probabilidade que 5 ou mais bactérias sejam encontradas em uma amostra de 3 litros de água?
 
 .pull-left[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -871,18 +871,15 @@ e **Variância**:
 
 `\(n \times p = \lambda =2000 \times 0,001 = 2\)`
 
-`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum_{i=0}^{4}Po(2)\)`
+`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)\)`
 
-`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum_{i=0}^{4}Po(2)=0,0526\)`
-
+`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)=0,0526\)`
 
 
 ```r
-n &lt;- 2000
-x &lt;- 0:n
+n &lt;- 2000 
 lambda &lt;- n*0.001
-px &lt;- dpois(x,lambda)
-1 - sum(px[x&lt;=4])
+1-ppois(4,lambda)
 ```
 
 ```

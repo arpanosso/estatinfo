@@ -833,17 +833,14 @@ $$Var(X) = n \cdot p$$
 
 $n \times p = \lambda =2000 \times 0,001 = 2$
 
-$P(X > 4)= 1 - P(X \le 4) = 1 - \sum_{i=0}^{4}Po(2)$
+$P(X > 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)$
 
-$P(X > 4)= 1 - P(X \le 4) = 1 - \sum_{i=0}^{4}Po(2)=0,0526$
-
+$P(X > 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)=0,0526$
 
 ```{r}
-n <- 2000
-x <- 0:n
+n <- 2000 
 lambda <- n*0.001
-px <- dpois(x,lambda)
-1 - sum(px[x<=4])
+1-ppois(4,lambda)
 ```
 
 ---
