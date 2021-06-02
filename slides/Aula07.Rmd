@@ -137,17 +137,31 @@ class: middle, center, inverse
 Conclusões baseadas em dados empíricos, oriundos de uma observação experimental, são encerradas com incerteza que é expressa em termos de probabilidade. Assim, a atribuição é baseada nas características teóricas da realização do fenômeno.
 
 **Definição de Laplace de Probabilidade**
+.pull-left[
+```{r,out.width = "40%",fig.cap="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg")
+```
+  
+]
+
+.pull-right[
+
   >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis".
 
 Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  $(H)$ ou Coroa $(T)$.
-
 Por assim definimos a Probabilidade de $H$ como:
 
 $$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}$$
 
+]
+
+
+
 ---
 
-**Exemplo:** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair Cara, $P(H)$?.
+### Exemplos 
+
+**1)** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair Cara, $P(H)$?
 
 --
 
@@ -157,7 +171,7 @@ Chamamos esse tipo de **Evento Impossível**.
 
 --
 
-**Exemplo**: No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair um número entre 1 e 6?
+**2)** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair um número entre $1$ e $6$?
 
 --
 
@@ -169,7 +183,7 @@ Chamamos esse tipo de **Evento Certo**.
 
 ###  Probabilidade de um Evento
 
->Assim, a probabilidade de um evento E - $[P(E)]$ - é um número entre $0$ e $1$, quanto mais próximo a 1, maior a chance de ocorrência. 
+>Assim, $P(E)$ é a probabilidade de um evento E, ou seja, um número entre $0$ e $1$, quanto mais próximo a 1, maior a chance de sua ocorrência. 
 
 A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
 
@@ -179,9 +193,9 @@ $$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }\mho} = 
 
 Portanto $P(.)$ é denominada probabilidade se, e somente se: 
 
-$i) \;0 \le 0 \le 1, \forall E \subset \mho$.
+$i) \;0 \le P(E) \le 1, \forall E \subset \mho$.
 
-$ii) \;P(\mho)= 1$ assim como, $P(\phi) =0$
+$ii) \;P(\mho)= 1$, assim como, $P(\phi)=0$
 
 $iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum_{i=1}^k P(E_i)$ com os eventos $E_i$ **disjuntos (mutuamente excludentes)**.
 
@@ -189,12 +203,9 @@ $iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum_{i=1}^k P(
 
 ### Exemplos
 
-1) Descreva o espaço amostral e a probabilidade de sair pelo menos uma face cara no lançamento de uma moeda duas vezes.
+1) Descreva o espaço amostral e a probabilidade de sair pelo menos uma face cara no lançamento de uma moeda três vezes.
 
-2) Em um lote de 20 animais existem 5 doentes, ao escolhermos 4 animais  desse lote ao acaso, de modo que a ordem dos elementos seja irrelevante:
 
-a) Qual a probabilidade de 2 animais doentes na amostra?  
-b) Qual a probabilidade de 4 animais doentes?  
 
 
 ---
@@ -334,7 +345,7 @@ tibble(x) |>
 ```
 
 Observe que os valores de $f_i$ são diferentes, não houve a convergência para os valores de probabilidade $P(E) = 0,16667$, linha vermelha no gráfico.
-]
+] 
 
 .pull-right[
 ```{r,tab_1,echo=FALSE}
@@ -376,7 +387,7 @@ Quando $n \to \infty$ os valores de $f_i \to P(E) = 0,16667$.
 
 ### Exemplo
 
-Dada a seguinte tabela, referente ao sexo $(F, M)$ e a cor do cabelo de crianças em uma escola:
+Dada a seguinte tabela, referente ao sexo $(F, M)$ e a cor do cabelo (*Ruivos* e *Não Ruivos*) de crianças em uma escola mista:
 
 
  | Ruivo | Não Ruivo | TOTAL
@@ -387,7 +398,7 @@ Dada a seguinte tabela, referente ao sexo $(F, M)$ e a cor do cabelo de criança
 
 Ao selecionarmos um aluno ao acaso, pergunta-se:
 
-a) Qual a probabilidade do estudante ser Ruivo:
+a) Qual a probabilidade do estudante ser *Ruivo*:
 
 --
 
@@ -395,7 +406,7 @@ a) Qual a probabilidade do estudante ser Ruivo:
 
 --
 
-b) Qual a probabilidade do estudante ser do sexo Feminino?
+b) Qual a probabilidade do estudante ser do sexo *Feminino*?
 
 --
 
@@ -403,7 +414,7 @@ b) Qual a probabilidade do estudante ser do sexo Feminino?
 
 --
 
-c) Qual a probabilidade do estudante ser do sexo Feminino **e** Ruivo?
+c) Qual a probabilidade do estudante ser do sexo *Feminino* **e** *Ruivo*?
 
 --
 
@@ -412,7 +423,7 @@ c) Qual a probabilidade do estudante ser do sexo Feminino **e** Ruivo?
 
 ---
 
-### c) Qual a probabilidade do estudante ser do sexo Feminino **ou** Ruivo?
+#### c) Qual a probabilidade do estudante ser do sexo *Feminino* **ou** *Ruivo*?
 
 --
 
@@ -432,7 +443,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ### Regra de Adição da Probabilidade
 
-No exemplo anterior é simples verificar que somamos duas vezes a interseção dos conjuntos, ou seja, os indivíduos que são do sexo feminino e ruivos, por isso precisamos descontar 1 vez essa probabilidade da soma.
+No exemplo anterior é simples verificar que somamos duas vezes a interseção dos conjuntos na parcela $P(F) + F(R)$, ou seja, os indivíduos que são do sexo feminino e ruivos $P(F \cap R)$, por isso precisamos descontar $1$ vez essa probabilidade da soma.
 
 Então temos a regra da adição da probabilidade:
 
@@ -628,7 +639,7 @@ $$P( A \cap B) = P(A) \cdot P(B)$$
 
 **Exemplo** 
 
-Voltando aos dados referentes ao sexo $(S)$ e a cor do cabelo $(CC)$ de crianças em uma escola:, verificar se esses eventos são independentes.
+Voltando aos dados referentes ao sexo e a cor do cabelo de crianças em uma escola:, verificar se esses eventos são independentes.
 
 
 | Ruivo | Não Ruivo | TOTAL
@@ -673,7 +684,7 @@ $P(F) = \frac{P(F \cap R)}{P(R)}$
 
 $\frac{33}{57} = \frac{15/57}{26/57}$
 
-$0,58 = 0,58$ VERDADEIRO, então concluímos que os eventos **SÃO** independentes, ou seja, a cor do cableo não depende do sexo.
+$0,58 = 0,58$ VERDADEIRO, então concluímos que os eventos **SÃO** independentes, ou seja, a cor do cabelo não depende do sexo.
 
 ---
 
@@ -692,7 +703,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 **NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, não se devolve a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral reduz de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral $\mho = \{ BB, BV, VB, VV\}$ será dados por:
 
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/sem_reposicao.png")
 ```
 
@@ -708,7 +719,7 @@ Considere a incidência de uma doença na população humana  nas diferentes fai
 ```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/Bayes.png")
 ```
-Sabe-se que $P(E_1) = 0,60$, $P(E_2) = 0,30$ e $P(E_3) = 0,10$, além disso, é conhecido que as incidências da doença nas diferentes faizas etárias são:
+Sabe-se que $P(E_1) = 0,60$, $P(E_2) = 0,30$ e $P(E_3) = 0,10$, além disso, é conhecido que as incidências da doença nas diferentes faixas etárias são:
 .pull-left[
 $P(D|E_1)=0,02$  
 $P(D|E_2)=0,05$  
@@ -796,7 +807,7 @@ $P(E_3 | D) = 0,2703$
 ---
 ### Exercícios
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7.png")
 ```
 
