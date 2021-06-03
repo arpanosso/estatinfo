@@ -1,0 +1,44 @@
+---
+# Para transformar em PDF, usar: 
+# pagedown::chrome_print("slides/Aula08.html")
+# imagens https://www.pexels.com/pt-br/
+# gifs https://giphy.com/
+# https://www.ime.usp.br/~rfarias/simbolos.html
+title: "Estatística e Informática"
+subtitle: "Aula 09 - Variáveis Aleatórias Contínuas"
+author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+date: "(10-06-2021)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+options(dplyr.print_min = 5, dplyr.print_max = 5)
+```
+
+class: middle, center, inverse
+
+# Distribuições teóricas de probabilidades de variáveis aleatórias Contínuas 
+
+---
+
+## Seríamos capazes de medir, com precisão:
+
+--
+**Extensão total da bacia hidrográfica do rio Amazonas?**
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_1.png")
+```
+
+
