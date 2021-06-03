@@ -41,4 +41,81 @@ class: middle, center, inverse
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_1.png")
 ```
 
+---
+
+**Sistema nefrálgico, seríamos capazes de medir com exatidão o volume total desse sistema?**
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_2.png")
+```
+
+---
+
+
+**Superfície específica de um agregado do solo?**
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_3.png")
+```
+
+
+---
+**O comprimento e volume total de poros na casca de um ovo de galinha?**
+
+.pull-left[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_4.png")
+```
+]
+
+.pull-right[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_5.png")
+```
+]
+
+---
+
+## Variável Quantitativa 
+
+é aquela que apresenta como possíveis realizações (valores) números resultantes de uma contagem ou mensuração, podendo ser:
+
+### Contínua
+
+- Os possíveis valores formam um intervalo de números reais e que resultam, normalmente, de uma mensuração. Exemplos: peso, altura, produção de leite, pressão arterial, teor de nitrogênio no solo ou na planta. 
+
+Essencialmente, dizemos que $X$ é uma variável aleatória contínua, se $X$ puder tomar todos os valores em algum intervalo:
+     $$a < x < b$$
+onde  $a$ e $b$ podem ser $- \infty$ e $+ \infty,$ respectivamente.
+
+---
+
+### Variável Aleatória Contínua 
+
+Sendo resultado de um processo de mensuração, o seu valor pode ser pensado como pertencendo a um intervalo ao redor do valor efetivamente observado. Por exemplo:
+
+.pull-left[
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/5063385/pexels-photo-5063385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+```
+]
+
+.pull-right[
+
+Quando dizemos que a altura de uma pessoa é $125$ cm, estamos medindo sua altura usando como unidade de medida o $cm$, e portanto o valor observado é, na realidade, um valor entre $124,5$ cm e $125,5$ cm, por exemplo.
+]
+
+
+---
+class: center,inverse
+
+Um vídeo bastante interessante do **Khan Academy Brasil** apresentando a diferença entre as variáveis aleatórias discreta e contínuas, segue abaixo:
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/wc6qIyg3Iqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://www.youtube.com/watch?v=wc6qIyg3Iqo)
+
+[Narrador - Ciência Todo Dia](https://www.youtube.com/user/cienciatododia)
 
