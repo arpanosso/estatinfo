@@ -134,30 +134,46 @@ Como a probabilidade é interpretada como a frequência relativa de um evento em
 A função matemática `\(f(x)\)`, cujo gráfico produz tal curva é chamada função densidade de probabilidade `\((f.d.p.)\)` da v.a. contínua `\(X\)`.
 
 **PROPRIEDADES**  
-- a área total sob a curva é igual a `\(1\)`;
-- `\((a \le X \le b)\)` = área sob a curva entre os pontos `\(a\)` e `\(b\)`;
-- `\(f(x) \ge 0\)` (não negativa) =;
+- a área total sob a curva é igual a `\(1\)` ;
+- `\((a \le X \le b)\)` = área sob a curva entre os pontos `\(a\)` e `\(b\)` ;
+- `\(f(x) \ge 0\)` (não negativa) ;
 - `\(P(X = x_i ) = 0\)`.  
 
 ]
+---
+
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-9-1.gif" style="display: block; margin: auto;" /&gt;&lt;img src="Aula09_files/figure-html/unnamed-chunk-9-2.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
 .pull-left[
-&lt;img src="Aula09_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
+
 Estando `\(f(x)\)` de uma variável aleatória contínua `\(X\)` especificada, o problema de se calcular `\(P(a \le X \le b)\)`, vem a ser o cálculo da área sob a curva.
 
 `$$P(a \le X \le b) = \int_a^bf(x)dx$$`
-
+onde:
 ]
 
-onde
 
-`\(P(a \le X \le B) = P(a \le X&lt;B) = P(a&lt;X \le B) = P(a&lt;X&lt;B)\)`
+
+`$$P(a \le X \le B) = P(a \le X&lt;B) = P(a&lt;X \le B) = P(a&lt;X&lt;B)$$`
 ---
+
+class: middle, center, inverse
+
+# Distribuições Normal
+
+---
+
+### Definição
+
+Uma v.a. `\(X\)` tem distribuição normal com parâmetros `\(\mu\)` e `\(\sigma^2\)`, `\(-\infty &lt; \mu &lt; +\infty\)` e `\(0 &lt; \sigma^2 &lt; \infty\)`, e sua `\(f.d.p.\)` dada por:
+
+`$$f(x) = \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}} , -\infty &lt; x &lt; +\infty$$`
 
 
     </textarea>

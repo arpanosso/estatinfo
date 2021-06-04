@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 library(tidyverse)
 library(bigrquery)
 
