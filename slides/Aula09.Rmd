@@ -119,3 +119,110 @@ Um vídeo bastante interessante do **Khan Academy Brasil** apresentando a difere
 
 [Narrador - Ciência Todo Dia](https://www.youtube.com/user/cienciatododia)
 
+
+---
+
+### Variável Aleatória Contínua 
+
+Relembrando o conceito do histograma a respeito da densidade de frequência $(di)$
+
+
+.pull-left[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/salario_hit.png")
+```
+]
+
+.pull-right[
+A altura do retângulo em cada intervalo de classe $(\Delta_i)$ é proporcional à densidade de frequência $(fi/\Delta_i)$ do intervalo, de modo que a área do retângulo seja igual $Delta_i \times \frac{fi}{\Delta_i} = fi$. 
+
+Ou seja, com um número suficientemente grande de observações, diminuindo-se os intervalos de classe, o histograma tende ficar cada vez menos irregular, até aproximar da forma de uma curva bem mais suave.
+]
+
+---
+
+.pull-left[
+```{r,echo=FALSE}
+library(tidyverse)
+library(patchwork)
+library(cowplot)
+
+fun_g <- function(n){
+  di <- 1/n*5
+  x<-seq(-4,4,di)
+  densidade <- dnorm(x)
+  tibble(x,densidade) |>
+    ggplot(aes(x=x,y=densidade))+
+    geom_col(color="black",fill="white")+
+    labs(x="(X)",
+         y="di")
+}
+g1<- fun_g(n=5)
+g2<- fun_g(n=30)
+g3<- fun_g(n=1000)
+g1<-g1 +
+  draw_label(label = "a)",x=-4,y=0.4)
+  
+g2<-g2 +
+  draw_label(label = "b)",x=-4,y=0.4) 
+  
+g3<-g3 +
+  draw_label(label = "c)",x=-4,y=0.4)
+
+g1/g2/g3
+```
+]
+
+.pull-right[
+Como a probabilidade é interpretada como a frequência relativa de um evento em uma longa série de ensaios independentes, a curva obtida como a forma limite dos histogramas $(c)$ representa a maneira pela qual a probabilidade total $(1,0)$ é distribuída em relação à amplitude dos possíveis valores da v.a. $X$. 
+
+A função matemática $f(x)$, cujo gráfico produz tal curva é chamada função densidade de probabilidade $(f.d.p.)$ da v.a. contínua $X$.
+
+**PROPRIEDADES**  
+- a área total sob a curva é igual a $1$;
+- $(a \le X \le b)$ = área sob a curva entre os pontos $a$ e $b$;
+- $f(x) \ge 0$ (não negativa) =;
+- $P(X = x_i ) = 0$.  
+
+]
+
+
+---
+.pull-left[
+```{r,echo=FALSE}
+n=1000
+di <- 1/n*5
+x<-seq(-4,4,di)
+densidade <- dnorm(x)
+g4<-tibble(x,densidade) |>
+  mutate(
+    densidade2 = if_else(x>-2 & x< -1, densidade,0)
+  ) |>
+  ggplot(aes(x=x,y=densidade))+
+  geom_col(color="white",fill="white")+
+  geom_col(aes(x=x,y=densidade2),color="gray") +
+  labs(x="(X)",
+       y="di")+
+  theme_bw()+
+  stat_function(fun = \(x) dnorm(x), color="black", lwd =1.2 )
+g4 +
+  draw_label(label = "f(x)",x=1,y=.3) +
+  draw_label(label = expression(paste("P(",a <= X, "" <= b,")")),
+             x=-2,y=.15)
+
+```
+]
+
+.pull-right[
+Estando $f(x)$ de uma variável aleatória contínua $X$ especificada, o problema de se calcular $P(a \le X \le b)$, vem a ser o cálculo da área sob a curva.
+
+$$P(a \le X \le b) = \int_a^bf(x)dx$$
+
+]
+
+onde
+
+$P(a \le X \le B) = P(a \le X<B) = P(a<X \le B) = P(a<X<B)$
+---
+
+

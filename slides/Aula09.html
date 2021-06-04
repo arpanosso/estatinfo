@@ -104,6 +104,62 @@ Um vídeo bastante interessante do **Khan Academy Brasil** apresentando a difere
 
 [Narrador - Ciência Todo Dia](https://www.youtube.com/user/cienciatododia)
 
+
+---
+
+### Variável Aleatória Contínua 
+
+Relembrando o conceito do histograma a respeito da densidade de frequência `\((di)\)`
+
+
+.pull-left[
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/salario_hit.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+A altura do retângulo em cada intervalo de classe `\((\Delta_i)\)` é proporcional à densidade de frequência `\((fi/\Delta_i)\)` do intervalo, de modo que a área do retângulo seja igual `\(Delta_i \times \frac{fi}{\Delta_i} = fi\)`. 
+
+Ou seja, com um número suficientemente grande de observações, diminuindo-se os intervalos de classe, o histograma tende ficar cada vez menos irregular, até aproximar da forma de uma curva bem mais suave.
+]
+
+---
+
+.pull-left[
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+Como a probabilidade é interpretada como a frequência relativa de um evento em uma longa série de ensaios independentes, a curva obtida como a forma limite dos histogramas `\((c)\)` representa a maneira pela qual a probabilidade total `\((1,0)\)` é distribuída em relação à amplitude dos possíveis valores da v.a. `\(X\)`. 
+
+A função matemática `\(f(x)\)`, cujo gráfico produz tal curva é chamada função densidade de probabilidade `\((f.d.p.)\)` da v.a. contínua `\(X\)`.
+
+**PROPRIEDADES**  
+- a área total sob a curva é igual a `\(1\)`;
+- `\((a \le X \le b)\)` = área sob a curva entre os pontos `\(a\)` e `\(b\)`;
+- `\(f(x) \ge 0\)` (não negativa) =;
+- `\(P(X = x_i ) = 0\)`.  
+
+]
+
+
+---
+.pull-left[
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+Estando `\(f(x)\)` de uma variável aleatória contínua `\(X\)` especificada, o problema de se calcular `\(P(a \le X \le b)\)`, vem a ser o cálculo da área sob a curva.
+
+`$$P(a \le X \le b) = \int_a^bf(x)dx$$`
+
+]
+
+onde
+
+`\(P(a \le X \le B) = P(a \le X&lt;B) = P(a&lt;X \le B) = P(a&lt;X&lt;B)\)`
+---
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
