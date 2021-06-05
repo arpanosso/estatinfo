@@ -356,3 +356,45 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_6.png")
 ```
 
+---
+
+class: middle, inverse, center
+
+# Ditribuição Normal Padrão
+
+---
+
+### Definição
+
+A particular distribuição normal com $\mu = 0$ e $\sigma^2 = 1$. Coincidindo com os parâmetros da variável $Z$:
+
+$$Z = \frac{X - \mu}{\sigma}$$ 
+
+onde $X \sim N(\mu, \sigma^2)$
+
+
+### Função de densidade de probabilidade:
+
+$$f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{\frac{-z^2}{2}}, - \infty < z < + \infty$$
+
+### Denotação
+
+$$Z \sim N(0,1)$$
+---
+
+## Esperança e Variância
+
+Se $X \sim N(\mu, \sigma^2)$, então a variável aleatória $Z$ definida terá uma distribuição $N(0, 1)$.
+
+### Esperança
+
+$$E(Z) = 0$$
+
+### Variância
+
+$$Var(Z) = 1$$
+
+---
+
+A vantagem de se usar a variável Z é que as áreas, ou as probabilidades, associadas à distribuição normal padronizada são tabeladas. Assim, distribuição normal padrão é fundamental para o cálculo de probabilidades relativas a uma distribuição normal qualquer.
+
