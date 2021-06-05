@@ -398,3 +398,6 @@ $$Var(Z) = 1$$
 
 A vantagem de se usar a variável Z é que as áreas, ou as probabilidades, associadas à distribuição normal padronizada são tabeladas. Assim, distribuição normal padrão é fundamental para o cálculo de probabilidades relativas a uma distribuição normal qualquer.
 
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_7.png")
+```
