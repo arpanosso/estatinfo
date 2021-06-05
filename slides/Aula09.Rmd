@@ -334,3 +334,25 @@ Três distribuições normais com médias iguais, mas com diferentes desvios pad
 ```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_4.png")
 ```
+
+---
+
+class: middle, inverse, center
+
+
+# Acesse o Link para estudarmos os parâmetros da distribuição normal
+
+## https://arpanosso.shinyapps.io/esta_inf/
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_5.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_6.png")
+```
+
