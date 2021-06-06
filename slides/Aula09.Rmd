@@ -342,7 +342,7 @@ class: middle, inverse, center
 
 # Acesse o Link para estudarmos os parâmetros da distribuição normal
 
-## https://arpanosso.shinyapps.io/esta_inf/
+## https://arpanosso.shinyapps.io/estatinfo/
 
 ---
 
@@ -401,3 +401,10 @@ A vantagem de se usar a variável Z é que as áreas, ou as probabilidades, asso
 ```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_7.png")
 ```
+
+
+---
+
+### Distribuição Normal Padrão
+
+[Tabela - Normal Padrão]()
