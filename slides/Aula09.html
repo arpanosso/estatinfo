@@ -125,7 +125,7 @@ Ou seja, com um número suficientemente grande de observações, diminuindo-se o
 ---
 
 .pull-left[
-&lt;img src="Aula09_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -142,12 +142,12 @@ A função matemática `\(f(x)\)`, cujo gráfico produz tal curva é chamada fun
 ]
 ---
 
-&lt;img src="Aula09_files/figure-html/unnamed-chunk-10-1.gif" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-9-1.gif" style="display: block; margin: auto;" /&gt;
 
 
 ---
 .pull-left[
-&lt;img src="Aula09_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -312,8 +312,33 @@ A figura abaixo ilustra a probabilidade fornecida pela tabela, ou seja,
 
 ---
 
+#### b) `\(P( Z \ge 1,73)\)`
+
+#### c) `\(P( Z \le -1,73)\)`
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_11.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+por simetria:
 
 
+```r
+pnorm(-1.73)
+```
+
+```
+#&gt; [1] 0.04181514
+```
+
+ou seja:
+
+`\(P( Z \ge 1,73) = P( Z \le -1,73) = 0,5 - P(0 \le Z \le 1,73) = 0,5 -0,4582 = 0,0418\)`
+
+---
+
+#### d) `\(P(Z \le 1,73)\)`
+
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_12.png" width="40%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

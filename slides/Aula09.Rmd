@@ -437,5 +437,29 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ---
 
+#### b) $P( Z \ge 1,73)$
+
+#### c) $P( Z \le -1,73)$
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_11.png")
+```
+
+por simetria:
+
+```{r}
+pnorm(-1.73)
+```
+
+ou seja:
+
+$P( Z \ge 1,73) = P( Z \le -1,73) = 0,5 - P(0 \le Z \le 1,73) = 0,5 -0,4582 = 0,0418$
+
+---
+
+#### d) $P(Z \le 1,73)$
 
 
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_12.png")
+```
