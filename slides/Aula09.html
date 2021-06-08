@@ -408,11 +408,99 @@ pnorm(5,3,4) - pnorm(2,3,4)
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_15.png" width="50%" style="display: block; margin: auto;" /&gt;
 
+No R:
+
+
+```r
+trunc(10000 * (1 - pnorm(165,170,5)))
+```
+
+```
+#&gt; [1] 8413
+```
+
 ---
 
 **b)** que peso `\((x)\)` deve atingir um bezerro para que ele supere `\(80\%\)` dos pesos à desmama desse rebanho?
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_16.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_16.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+No R:
+
+
+```r
+qnorm(0.80,170,5)
+```
+
+```
+#&gt; [1] 174.2081
+```
+
+---
+
+class: middle, inverse, center
+
+# Aproximação Normal à Binomial
+
+---
+
+#### Definição
+
+Se `\(X\)` tem distribuição binomial `\(b(n, p)\)`, onde `\(n\)` é grande e `\(p\)` não é muito próximo de `\(0\)` ou `\(1\)`, a distribuição da variável padronizada ficará:
+
+`$$Z = \frac{X -np}{\sqrt{(np(1-p))} }$$`
+que é aproximadamente `\(N(0,1)\)`.
+
+`$$P(a \le X \le b) = \sum_{x=a}^b {n \choose x}p^x(1-p)^{n-x} \cong P\left( \frac{a-np}{\sqrt{np(1-p)}} \le Z \le \frac{b-np}{\sqrt{np(1-p)}} \right)$$`
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_17.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Correção da continuidade
+
+Tendo em vista que uma distribuição discreta (binomial) é aproximada por uma 
+contínua (normal), a melhor aproximação é obtida calculando:
+
+`$$P(a \le X \le b) = P \left( \frac{(\frac{a-0,5}{n})-p}{\sqrt{\frac{p(1-p)}{n}}} \le Z \le \frac{(\frac{b+0,5}{n})-p}{\sqrt{\frac{p(1-p)}{n}}} \right)$$`
+
+A distribuição normal pode ser recomendada para aproximar probabilidades binomiais, contanto que `\(p\)` seja próximo de `\(0,5\)`. Quando `\(p\)` é muito pequeno e `\(n\)` é grande, a distribuição de **Poisson** é mais apropriada. 
+
+**Regra prática:** `\(n\)` pode ser assumido como "suficientemente" grande para se usar a distribuição normal, quando:  `\(np(1-p) \ge 3\)` sendo que a aproximação melhora com o crescimento de `\(n\)`.
+
+
+---
+
+#### Supondo que `\(X \sim b(15, 0,4)\)`, calcule a probabilidade:
+`\(P(7 \le X \le 10)\)`, por meio da aproximação normal à binomial.
+
+
+`$$P(7 \le X \le 10) = P \left( \frac{(\frac{7-0,5}{15})-0,4}{\sqrt{\frac{0,4(1-0,4)}{15}}} \le Z \le \frac{(\frac{10+0,5}{15})-0,4}{\sqrt{\frac{0,4(1-0,4)}{15}}} \right)$$`
+
+`$$P(0,263 \le Z \le 2,368) = 0,49111 - 0,10194 = 0,389$$`
+
+no R:
+
+
+```r
+pnorm(2.368) - pnorm(0.263)
+```
+
+```
+#&gt; [1] 0.387333
+```
+
+ou
+
+
+```r
+pbinom(11,15,0.4) - pbinom(6,15,0.4)
+```
+
+```
+#&gt; [1] 0.3882591
+```
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
