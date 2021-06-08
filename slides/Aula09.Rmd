@@ -412,3 +412,30 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
 ```
+
+---
+
+### Aplicação
+
+A figura abaixo ilustra a probabilidade fornecida pela tabela, ou seja, 
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_9.png")
+```
+---
+
+### a) $P(-1,73 \le Z \le 0)$
+
+
+```{r}
+0.5 - pnorm(-1.73)
+```
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_10.png")
+```
+
+---
+
+
+
