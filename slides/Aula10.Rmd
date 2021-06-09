@@ -32,13 +32,4 @@ class: middle, center, inverse
 
 ---
 
-## Seríamos capazes de medir, com precisão:
 
---
-**Extensão total da bacia hidrográfica do rio Amazonas?**
-
-```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_1.png")
-```
-
----

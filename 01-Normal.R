@@ -7,18 +7,19 @@ ui <- dashboardPage(
   header=dashboardHeader(
     title = "Estatística-UNESP"
   ),
-  sidebar=dashboardSidebar(
+  dashboardSidebar(
     sidebarMenu(
-      menuItem("Normal",tabName = "normal"),
+
       menuItem("Binomial",tabName = "binomial"),
-      menuItem("Poisson", tabName = "poisson")
+      menuItem("Poisson", tabName = "poisson"),
+      menuItem("Normal",tabName = "normal")
     )
   ),
-  body=dashboardBody(
+  dashboardBody(
     tabItems(
       tabItem(
         tabName = "normal",
-        fluidRow( # sempre usar com Colum, para não dar toque
+        fluidRow( # sempre usar com Column, para não dar toque
           column(h2("Estudo dos Parâmetros da Normal"),width = 12),
           column(
             h3("Distribuição 01"),
@@ -70,20 +71,30 @@ ui <- dashboardPage(
         h1("Estudo de parâmetros Binomial"),
         fluidRow( # sempre usar com Colum, para não dar toque
           column(
-            width = 5,
+            width = 4,
             numericInput("nb","Número de tentativas (n)",min=1,
                          max=1000,
                          value = 5,
                          step = 1)
           ),
           column(
-            width = 5,
+            width = 4,
             sliderInput("pb","Probabilidade de sucesso (p)",
                         min=0,
                         max=1,
                         value = .50,
-                        step = .01),
+                        step = .01)
           ),
+          column(
+              width = 2,
+              numericInput("valor_inicial","Sucessos minímo",min=0,
+                           max=1000,value = 0,step = 1)
+              ),
+          column(
+            width = 2,
+              numericInput("valor_final","Sucessos máximo",min=0,
+                           max=1000,value = 0,step = 1)
+            ),
           column(
             width = 12,
             plotOutput("grafico_histBinom")
@@ -99,19 +110,29 @@ ui <- dashboardPage(
         h1("Estudo de parâmetros Poisson"),
         fluidRow( # sempre usar com Colum, para não dar toque
           column(
-            width = 5,
-            numericInput("lambda","Taxa de sucesso",min=0.01,
+            width = 6,
+            numericInput("lambda","Taxa de sucesso (lambda)",min=0.01,
                          max=1000,
                          value = 5,
                          step = 1)
           ),
           column(
-            width = 5,
-            numericInput("np","Número de sucessos procurados",
+            width = 6,
+            numericInput("np","Número máximo de sucessos",
                         min=0,
                         max=100,
-                        value = 5,
+                        value = 12,
                         step = 1),
+          ),
+          column(
+            width = 6,
+            numericInput("valor_inicial_p","Sucessos minímo",min=0,
+                         max=1000,value = 0,step = 1)
+          ),
+          column(
+            width = 6,
+            numericInput("valor_final_p","Sucessos máximo",min=0,
+                         max=1000,value = 0,step = 1)
           ),
           column(
             width = 12,
@@ -125,10 +146,8 @@ ui <- dashboardPage(
       )
     )
   ),
-  title = "Meu App"
+  title = "Estatística e Informática"
 )
-
-
 
 server <- function(input, output, session) {
   output$grafico_hist <- renderPlot({
@@ -153,31 +172,58 @@ server <- function(input, output, session) {
   output$grafico_histBinom <- renderPlot({
     p <- input$pb
     n <- input$nb
-    tibble(x = 0:n, px = dbinom(x,n,p)) |>
-      ggplot(aes(x=x,y=px)) +
-      geom_col(color="black",fill="lightblue") +
-      theme_bw()
-
+    vi<-input$valor_inicial
+    vf<-input$valor_final
+    EX <- n*p
+    VarX <- n*p*(1-p)
+    if(vi>vf) vf<-vi
+    if(vi == vf){
+      Prob = dbinom(vi,n,p)
+      }else if(vi < vf) {
+        Prob = sum(dbinom(vi:vf,n,p))
+      }else{
+        Prob = 0
+        }
+    tibble(x = 0:n, px = dbinom(x,n,p),px2=px) |>
+      mutate(px2 = if_else(x>=vi & x<= vf,px2,0)) |>
+      ggplot() +
+      geom_col(aes(x=x,y=px),color="black",fill="lightblue") +
+      geom_col(aes(x=x,y=px2),color="black",fill="yellow",alpha=.5) +
+      theme_bw()+
+      labs(title = paste0("P(X) = ",round(Prob,4),"\nE(X) = ",EX,"\nVar(X) = ",VarX))
   })
   output$tabBinom <- renderTable({
     p <- input$pb
     n <- input$nb
-    tibble(x = 0:n, px = dbinom(x,n,p))
+    tibble(X = 0:n, `P(X = x)` = dbinom(X,n,p),`P(x) acumulada` = cumsum(`P(X = x)`))
   })
-
   output$grafico_histPois <- renderPlot({
     lmbd <- input$lambda
+    EX <- lmbd
+    VarX <- lmbd
     n <- input$np
-    tibble(x = 0:ceiling(n*2), px = dpois(x,lmbd)) |>
-      ggplot(aes(x=x,y=px)) +
-      geom_col(color="black",fill="lightblue") +
-      theme_bw()
-})
-
+    vi<-input$valor_inicial_p
+    vf<-input$valor_final_p
+    if(vi>vf) vf<-vi
+    if(vi == vf){
+      Prob = dpois(vi,lmbd)
+    }else if(vi < vf) {
+      Prob = sum(dpois(vi:vf,lmbd))
+    }else{
+      Prob = 0
+    }
+    tibble(x = 0:ceiling(n), px = dpois(x,lmbd), px2=px) |>
+      mutate(px2 = if_else(x>=vi & x<= vf,px2,0)) |>
+      ggplot() +
+      geom_col(aes(x=x,y=px),color="black",fill="lightblue") +
+      geom_col(aes(x=x,y=px2),color="black",fill="yellow",alpha=.5) +
+      theme_bw()+
+      labs(title = paste0("P(X) = ",round(Prob,4),"\nE(X) = ",EX,"\nVar(X) = ",VarX))
+  })
   output$tabPois <- renderTable({
     lmbd <- input$lambda
     n <- input$np
-    tibble(x = 0:ceiling(n*2), px = dpois(x,lmbd))
+    tibble(X = 0:ceiling(n), `P(X = x)` = dpois(X,lmbd),`P(x) acumulada` = cumsum(`P(X = x)`))
   })
 
 }
