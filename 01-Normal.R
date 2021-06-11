@@ -78,7 +78,7 @@ ui <- dashboardPage(
         tabName = "binomial",
         fluidRow(
           column(
-            width = 8,
+            width = 6,
             h1("Ditribuição Binomial")
           )
         ),
@@ -92,14 +92,14 @@ ui <- dashboardPage(
         hr(style = "border-top: 1px solid black;"),
         fluidRow( # sempre usar com Colum, para não dar toque
           column(
-            width = 4,
+            width = 3,
             numericInput("nb","Número de tentativas (n)",min=1,
                          max=1000,
                          value = 5,
                          step = 1)
           ),
           column(
-            width = 4,
+            width = 3,
             sliderInput("pb","Probabilidade de sucesso (p)",
                         min=0,
                         max=1,
@@ -107,12 +107,12 @@ ui <- dashboardPage(
                         step = .01)
           ),
           column(
-              width = 2,
+              width = 3,
               numericInput("valor_inicial","Sucessos minímo",min=0,
                            max=1000,value = 0,step = 1)
               ),
           column(
-            width = 2,
+            width = 3,
               numericInput("valor_final","Sucessos máximo",min=0,
                            max=1000,value = 0,step = 1)
             ),
@@ -196,14 +196,14 @@ ui <- dashboardPage(
         hr(style = "border-top: 1px solid black;"),
         fluidRow(
           column(
-            width = 4,
+            width = 3,
             numericInput("n_g","Número de tentativas (n)",min=1,
                          max=1000,
                          value = 10,
                          step = 1)
           ),
           column(
-            width = 4,
+            width = 3,
             sliderInput("p_g","Probabilidade de sucesso (p)",
                         min=0,
                         max=1,
@@ -211,12 +211,12 @@ ui <- dashboardPage(
                         step = .01)
           ),
           column(
-            width = 6,
+            width = 3,
             numericInput("valor_inicial_g","Sucessos minímo",min=0,
                          max=1000,value = 0,step = 1)
           ),
           column(
-            width = 6,
+            width = 3,
             numericInput("valor_final_g","Sucessos máximo",min=0,
                          max=1000,value = 0,step = 1)
           ),
@@ -269,14 +269,20 @@ ui <- dashboardPage(
                          step = 1)
           ),
           column(
-            width = 6,
+            width = 4,
             numericInput("valor_inicial_hg","Sucessos minímo",min=0,
                          max=1000,value = 0,step = 1)
           ),
           column(
-            width = 6,
+            width = 4,
             numericInput("valor_final_hg","Sucessos máximo",min=0,
                          max=1000,value = 0,step = 1)
+          ),
+          column(
+           width = 6,
+           actionButton("atualizar","Gerar Gráfico e Tabela"),
+           br(),
+           br()
           ),
           column(
             width = 12,
@@ -409,6 +415,10 @@ server <- function(input, output, session) {
   })
 
   output$tabhipergeom <- renderDataTable({
+    tabela_hiper()
+  })
+
+  tabela_hiper <- eventReactive(input$atualizar,{
     N <- input$N_hg
     M <- input$M_hg
     r <- input$r_hg
@@ -418,16 +428,18 @@ server <- function(input, output, session) {
     )
   })
 
+
   output$grafico_histhipergeometrica <- renderPlot({
+    grafico_hyper()
+      })
+
+  grafico_hyper <- eventReactive(input$atualizar,{
     N <- input$N_hg
     M <- input$M_hg
     r <- input$r_hg
-
     if(M > N) N <- M
-
     EX <- r*M/N
     VarX <- r*M/N*(N-M)/N*(N-r)/(N-1)
-
     vi<-input$valor_inicial_hg
     vf<-input$valor_final_hg
     if(vi>vf) vf<-vi
