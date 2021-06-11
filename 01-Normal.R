@@ -2,17 +2,25 @@ library(tidyverse)
 library(shiny)
 library(shinydashboard)
 
-
 ui <- dashboardPage(
   header=dashboardHeader(
     title = "Estatística-UNESP"
   ),
   dashboardSidebar(
     sidebarMenu(
-
-      menuItem("Binomial",tabName = "binomial"),
-      menuItem("Poisson", tabName = "poisson"),
-      menuItem("Normal",tabName = "normal")
+        menuItem("Distribuições Discretas",icon = icon("chart-bar"),
+          menuItem("Binomial",tabName = "binomial"),
+          menuItem("Poisson", tabName = "poisson"),
+          menuItem("Geométrica",tabName = "geometrica"),
+          menuItem("Hipergeométrica",tabName = "hipergeometrica")
+        ),
+        menuItem("Distribuições Contínuas",icon = icon("chart-area"),
+                 menuItem("Normal",tabName = "normal"),
+                 menuItem("Exponencial",tabName = "exponencial"),
+                 menuItem("Qui-quadrado",tabName = "quiquadrado"),
+                 menuItem("F de Snedecor",tabName = "fsnedecor"),
+                 menuItem("t de Student",tabName = "tstudent")
+        )
     )
   ),
   dashboardBody(
@@ -68,7 +76,20 @@ ui <- dashboardPage(
       ),
       tabItem(
         tabName = "binomial",
-        h1("Estudo de parâmetros Binomial"),
+        fluidRow(
+          column(
+            width = 8,
+            h1("Ditribuição Binomial")
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 8,
+            withMathJax(includeMarkdown("binomial.md"))
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
         fluidRow( # sempre usar com Colum, para não dar toque
           column(
             width = 4,
@@ -101,13 +122,26 @@ ui <- dashboardPage(
           ),
           column(
             width = 12,
-            tableOutput("tabBinom")
+            dataTableOutput("tabBinom")
           )
         )
       ),
       tabItem(
         tabName = "poisson",
-        h1("Estudo de parâmetros Poisson"),
+        fluidRow(
+          column(
+            width = 12,
+            h1("Ditribuição de Poisson")
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 12,
+            withMathJax(includeMarkdown("poisson.md"))
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
         fluidRow( # sempre usar com Colum, para não dar toque
           column(
             width = 6,
@@ -140,7 +174,117 @@ ui <- dashboardPage(
           ),
           column(
             width = 6,
-            tableOutput("tabPois")
+            dataTableOutput("tabPois")
+          )
+        )
+      ),
+      tabItem(
+        tabName = "geometrica",
+        fluidRow(
+          column(
+            width = 12,
+            h1("Ditribuição Geométrica")
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 12,
+            withMathJax(includeMarkdown("geometrica.md"))
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 4,
+            numericInput("n_g","Número de tentativas (n)",min=1,
+                         max=1000,
+                         value = 10,
+                         step = 1)
+          ),
+          column(
+            width = 4,
+            sliderInput("p_g","Probabilidade de sucesso (p)",
+                        min=0,
+                        max=1,
+                        value = .50,
+                        step = .01)
+          ),
+          column(
+            width = 6,
+            numericInput("valor_inicial_g","Sucessos minímo",min=0,
+                         max=1000,value = 0,step = 1)
+          ),
+          column(
+            width = 6,
+            numericInput("valor_final_g","Sucessos máximo",min=0,
+                         max=1000,value = 0,step = 1)
+          ),
+          column(
+            width = 12,
+            plotOutput("grafico_histgeometrica")
+          ),
+          column(
+            width = 6,
+            dataTableOutput("tabgeom")
+          )
+        )
+      ),
+      tabItem(
+        tabName = "hipergeometrica",
+        fluidRow(
+          column(
+            width = 12,
+            h1("Ditribuição Hipergométrica")
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 12,
+            withMathJax(includeMarkdown("hipergeometrica.md"))
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 4,
+            numericInput("N_hg","Tamanho da população (N)",min=2,
+                         max=1000,
+                         value = 10,
+                         step = 1)
+          ),
+          column(
+            width = 4,
+            numericInput("M_hg","Número de sucessos (M)",min=1,
+                         max=1000,
+                         value = 5,
+                         step = 1)
+          ),
+          column(
+            width = 4,
+            numericInput("r_hg","Amostras retiradas (r)",min=1,
+                         max=1000,
+                         value = 5,
+                         step = 1)
+          ),
+          column(
+            width = 6,
+            numericInput("valor_inicial_hg","Sucessos minímo",min=0,
+                         max=1000,value = 0,step = 1)
+          ),
+          column(
+            width = 6,
+            numericInput("valor_final_hg","Sucessos máximo",min=0,
+                         max=1000,value = 0,step = 1)
+          ),
+          column(
+            width = 12,
+            plotOutput("grafico_histhipergeometrica")
+          ),
+          column(
+            width = 6,
+            dataTableOutput("tabhipergeom")
           )
         )
       )
@@ -190,12 +334,13 @@ server <- function(input, output, session) {
       geom_col(aes(x=x,y=px),color="black",fill="lightblue") +
       geom_col(aes(x=x,y=px2),color="black",fill="yellow",alpha=.5) +
       theme_bw()+
-      labs(title = paste0("P(X) = ",round(Prob,4),"\nE(X) = ",EX,"\nVar(X) = ",VarX))
+      labs(title = paste0("P(X) = ",round(Prob,4),"\nE(X) = ",round(EX,4),"\nVar(X) = ",round(VarX,4)))
   })
-  output$tabBinom <- renderTable({
+  output$tabBinom <- renderDataTable({
     p <- input$pb
     n <- input$nb
-    tibble(X = 0:n, `P(X = x)` = dbinom(X,n,p),`P(x) acumulada` = cumsum(`P(X = x)`))
+    tibble(X = 0:n, `P(X = x)` = round(dbinom(X,n,p),4),
+           `P(x) acumulada` = round(cumsum(`P(X = x)`),4))
   })
   output$grafico_histPois <- renderPlot({
     lmbd <- input$lambda
@@ -218,16 +363,92 @@ server <- function(input, output, session) {
       geom_col(aes(x=x,y=px),color="black",fill="lightblue") +
       geom_col(aes(x=x,y=px2),color="black",fill="yellow",alpha=.5) +
       theme_bw()+
-      labs(title = paste0("P(X) = ",round(Prob,4),"\nE(X) = ",EX,"\nVar(X) = ",VarX))
+      labs(title = paste0("P(X) = ",round(Prob,4),"\nE(X) = ",round(EX,4),"\nVar(X) = ",round(VarX,4)))
   })
-  output$tabPois <- renderTable({
+  output$tabPois <- renderDataTable({
     lmbd <- input$lambda
     n <- input$np
-    tibble(X = 0:ceiling(n), `P(X = x)` = dpois(X,lmbd),`P(x) acumulada` = cumsum(`P(X = x)`))
+    tibble(X = 0:ceiling(n), `P(X = x)` = round(dpois(X,lmbd),4),`P(x) acumulada` = round(cumsum(`P(X = x)`),4))
+  })
+
+  output$tabgeom <- renderDataTable({
+    p <- input$p_g
+    n <- input$n_g
+    tibble(Y = 0:n,
+           `P(Y = n)` = round(dgeom(Y,p),4),
+           `P(y) acumulada` = round(cumsum(`P(Y = n)`),4)
+           )
+  })
+
+  output$grafico_histgeometrica <- renderPlot({
+    p <- input$p_g
+    n <- input$n_g
+    EY <- (1-p)/p
+    VarY <- (1-p)/p/p
+    vi<-input$valor_inicial_g
+    vf<-input$valor_final_g
+    if(vi>vf) vf<-vi
+    if(vi == vf){
+      Prob = dgeom(vi,p)
+    }else if(vi < vf) {
+      Prob = sum(dgeom(vi:vf,p))
+    }else{
+      Prob = 0
+    }
+    tibble(y = 0:n,
+           py = dgeom(y,p),
+           py2=py) |>
+      mutate(py2 = if_else(y>=vi & y<= vf,py2,0)) |>
+      ggplot() +
+      geom_col(aes(x=y,y=py),color="black",fill="lightblue") +
+      geom_col(aes(x=y,y=py2),color="black",fill="yellow",alpha=.5) +
+      theme_bw()+
+      labs(title = paste0("P(Y=n) = ",round(Prob,4),"\nE(Y) = ",round(EY,4),"\nVar(Y) = ",round(VarY,4)),
+           x="Número de Falhas até o Sucessos (n)",
+           y="P(Y=n)")
+  })
+
+  output$tabhipergeom <- renderDataTable({
+    N <- input$N_hg
+    M <- input$M_hg
+    r <- input$r_hg
+    tibble(X = 0:r,
+           `P(X = x)` = round(dhyper(X,M,(N-M),r),4),
+           `P(X) acumulada` = round(cumsum(`P(X = x)`),4)
+    )
+  })
+
+  output$grafico_histhipergeometrica <- renderPlot({
+    N <- input$N_hg
+    M <- input$M_hg
+    r <- input$r_hg
+
+    if(M > N) N <- M
+
+    EX <- r*M/N
+    VarX <- r*M/N*(N-M)/N*(N-r)/(N-1)
+
+    vi<-input$valor_inicial_hg
+    vf<-input$valor_final_hg
+    if(vi>vf) vf<-vi
+    if(vi == vf){
+      Prob = dhyper(vi,M,(N-M),r)
+    }else if(vi < vf) {
+      Prob = sum(dhyper(vi:vf,M,(N-M),r))
+    }else{
+      Prob = 0
+    }
+    tibble(x = 0:r,
+           px = dhyper(x,M,(N-M),r),
+           px2=px) |>
+      mutate(px2 = if_else(x>=vi & x<= vf,px2,0)) |>
+      ggplot() +
+      geom_col(aes(x=x,y=px),color="black",fill="lightblue") +
+      geom_col(aes(x=x,y=px2),color="black",fill="yellow",alpha=.5) +
+      theme_bw()+
+      labs(title = paste0("P(X=x) = ",round(Prob,4),"\nE(X) = ",round(EX,4),"\nVar(X) = ",round(VarX,4)))
   })
 
 }
-
-
 
 shinyApp(ui, server)
