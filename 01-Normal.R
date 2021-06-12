@@ -125,7 +125,7 @@ ui <- dashboardPage(
       )
     )
   ),
-  title = "Meu App"
+  title = "Estatística e Informática - UNESP FCAV"
 )
 
 
