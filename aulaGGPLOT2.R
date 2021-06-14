@@ -1,53 +1,66 @@
 library(tidyverse)
 library(bigrquery)
 
-conexao_ideb <- dbConnect(
-  bigrquery::bigquery(),
-  project = "basedosdados",
-  dataset = "br_inep_ideb",
-  billing = "live-curso-r-bd-2"
-)
-
-conexao_covid <- dbConnect(
-  bigrquery::bigquery(),
-  project = "basedosdados",
-  dataset = "br_ms_vacinacao_covid19",
-  billing = "live-curso-r-bd-2"
-)
-
-conexao_populacao <- dbConnect(
-  bigrquery::bigquery(),
-  project = "basedosdados",
-  dataset = "br_ibge_populacao",
-  billing = "live-curso-r-bd-2"
-)
+dados <- readxl::read_excel("data/dados_FCO2.xlsx",na = "NA")
 
 # ggridges -----------------------------------------------------------------
 
-escola <- tbl(conexao_ideb, "escola") %>%
-  group_by(ano, estado_abrev, municipio) %>%
-  summarise(ideb = mean(ideb, na.rm = TRUE),
-            saeb_matematica = mean(nota_saeb_matematica, na.rm = TRUE),
-            saeb_portugues = mean(nota_saeb_lingua_portuguesa, na.rm = TRUE)
-  ) %>%
-  ungroup() %>%
+glimpse(dados)
+
+
+e1<-dados |>
+  mutate(FCO2 = as.numeric(FCO2),
+         ano = lubridate::year(data)) |>
+  filter(ano==2015) |>
+  group_by(data,cultura,ponto) |>
+  summarise(fco2 = mean(FCO2, na.rm=TRUE),
+            ts = mean(Ts,na.rm=TRUE),
+            us = mean(Us,na.rm =TRUE)) |>
+  ungroup() |>
   collect()
 
-escola %>%
+
+e1 %>%
   mutate(
-    estado_abrev = fct_reorder(estado_abrev, ideb, .fun = median, na.rm = TRUE)
+    estado_abrev = fct_reorder(as.factor(data), fco2, .fun = median, na.rm = TRUE)
   ) %>%
-  ggplot(aes(x = ideb, y = estado_abrev, fill = estado_abrev)) +
+  ggplot(aes(x = fco2, y = as.factor(data), fill = as.factor(data))) +
   ggridges::geom_density_ridges(color = 'transparent', alpha = .6) +
   scale_fill_viridis_d() +
   theme_minimal() +
   labs(
-    x = "IDEB",
-    y = "Estado"
+    x = "fco2",
+    y = "as.factor(data)"
   ) +
   theme(
     legend.position = 'none') +
   geom_vline(xintercept = 4)
+
+
+# escola <- tbl(conexao_ideb, "escola") %>%
+#   group_by(ano, estado_abrev, municipio) %>%
+#   summarise(ideb = mean(ideb, na.rm = TRUE),
+#             saeb_matematica = mean(nota_saeb_matematica, na.rm = TRUE),
+#             saeb_portugues = mean(nota_saeb_lingua_portuguesa, na.rm = TRUE)
+#   ) %>%
+#   ungroup() %>%
+#   collect()
+
+# escola %>%
+#   mutate(
+#     estado_abrev = fct_reorder(estado_abrev, ideb, .fun = median, na.rm = TRUE)
+#   ) %>%
+#   ggplot(aes(x = ideb, y = estado_abrev, fill = estado_abrev)) +
+#   ggridges::geom_density_ridges(color = 'transparent', alpha = .6) +
+#   scale_fill_viridis_d() +
+#   theme_minimal() +
+#   labs(
+#     x = "IDEB",
+#     y = "Estado"
+#   ) +
+#   theme(
+#     legend.position = 'none') +
+#   geom_vline(xintercept = 4)
 
 
 # Julio Trecenti​begin = .2, end = .8 geralmente fica top tb

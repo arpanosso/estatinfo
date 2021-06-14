@@ -297,7 +297,6 @@ ui <- dashboardPage(
     )
   ),
   title = "Estatística e Informática - UNESP FCAV",
-  title = "Estatística e Informática"
 )
 
 server <- function(input, output, session) {
