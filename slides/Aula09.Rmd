@@ -414,7 +414,15 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ```
 
 ---
+class: center,inverse
 
+Outro vídeo bastante interessante do **Khan Academy Brasil** apresentando uma explicação sobre as ditribuição normal e a normal padrão:
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/BFu8smEp-Cc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://www.youtube.com/watch?v=BFu8smEp-Cc)
+
+---
 ### Aplicação
 
 A figura abaixo ilustra a probabilidade fornecida pela tabela, ou seja, 
