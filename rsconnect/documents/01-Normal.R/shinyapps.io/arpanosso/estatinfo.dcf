@@ -5,10 +5,17 @@ account: arpanosso
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4236096
+<<<<<<< HEAD
+bundleId: 4689226
+url: https://arpanosso.shinyapps.io/estatinfo/
+when: 1623095130.14192
+lastSyncTime: 1623095130.14192
+=======
 bundleId: 4706403
 url: https://arpanosso.shinyapps.io/estatinfo/
 when: 1623432450.21301
 lastSyncTime: 1623432450.21301
+>>>>>>> bf622a07cdb9336381e8176b83ba5fb2f6ce4fdd
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: aula04.R|aula05.R|aulaBASEDOSDADOS.R|aulaGGPLOT2.R|dap.csv|data/dados_turmas.rds|data/dados_turmas.xlsx|patchwork.R|R/thema_gafico.R|README.md|xkcd.ttf|docs|slides
