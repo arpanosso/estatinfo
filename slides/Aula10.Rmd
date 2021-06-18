@@ -174,11 +174,16 @@ Estima-se o erro padrão da média usando o tamanho da amostra $(n)$ e desvio pa
 
 ---
 
-## Teorema Central do Limite 
+### Teorema Central do Limite 
 
 Se $\bar{X}$ é a média de uma amostra aleatória simples com reposição, de tamanho $n$, de uma população **normal**, com média $\mu$ e variância $\sigma^2$, sua distribuição é **normal**, com média $\mu$ e variância $\frac{\sigma^2}{n}$.
 
 Assim, em uma amostra aleatória simples com reposição, de tamanho $n$, de uma população arbitrária, com média $\mu$ e variância $\sigma^2$, a distribuição de $\bar{X}$ quando $n$ é grande é  **aproximadamente  normal**, com média $\mu$ e variância $\frac{\sigma^2}{n}$.
 
+```{r,out.width = "35%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_2.png")
+```
+
+---
 
 

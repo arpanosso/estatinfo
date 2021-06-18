@@ -16,10 +16,11 @@ ui <- dashboardPage(
         ),
         menuItem("Distribuições Contínuas",icon = icon("chart-area"),
                  menuItem("Normal",tabName = "normal"),
-                 menuItem("Exponencial",tabName = "exponencial"),
-                 menuItem("Qui-quadrado",tabName = "quiquadrado"),
-                 menuItem("F de Snedecor",tabName = "fsnedecor"),
-                 menuItem("t de Student",tabName = "tstudent")
+                 menuItem("Amostral - Média",tabName = "amostral_media")
+                 #menuItem("Exponencial",tabName = "exponencial"),
+                 #menuItem("Qui-quadrado",tabName = "quiquadrado"),
+                 #menuItem("F de Snedecor",tabName = "fsnedecor"),
+                 #menuItem("t de Student",tabName = "tstudent")
         )
     )
   ),
@@ -293,6 +294,42 @@ ui <- dashboardPage(
             dataTableOutput("tabhipergeom")
           )
         )
+      ),
+      tabItem(
+        "amostral_media",
+        fluidRow(
+          column(
+            width = 12,
+            h1("Ditribuição Amostral da Média")
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 6,
+            uiOutput("ui_simulacao"),
+            plotOutput("ui_populacao")
+          ),
+          column(
+            width = 6,
+            fluidRow(
+              column(
+                width = 12,
+                sliderInput(
+                  "n_1",
+                  "Selecione o n da amostra 01",
+                  min = 2,
+                  max = 50,
+                  value = 15
+                )
+              ),
+              column(
+                width = 12,
+                plotOutput("ui_amostra_1")
+              )
+            )
+          )
+        )
       )
     )
   ),
@@ -460,7 +497,64 @@ server <- function(input, output, session) {
       theme_bw()+
       labs(title = paste0("P(X=x) = ",round(Prob,4),"\nE(X) = ",round(EX,4),"\nVar(X) = ",round(VarX,4)))
   })
+  ### Amostral da Média
 
+  amostra <- reactive({
+    req(input$n_sim)
+    n <- input$n_sim
+    x <- rep(rep(0:9,runif(10,3,30)%/%1),n)
+  })
+
+  output$ui_simulacao <- renderUI({
+    sliderInput(
+      inputId = "n_sim",
+      label = "Escolha o tamanho da população",
+      min = 100,
+      max = 1e4,
+      step=1,sep="",
+      value = 1000
+      )
+  })
+
+  output$ui_populacao <- renderPlot({
+
+    EX <- round(mean(amostra()),4)
+    VarX <- round(var(amostra()),4)
+    DPX <- round(sd(amostra()),4)
+
+    tibble(x = amostra() ) |>
+      ggplot(aes(x=x)) +
+      geom_histogram(bins=10,color='black',fill="gray")+
+      labs(x="Variável aleatória",
+           y="Contagem",
+           title = paste0("E(X) =,",EX,"\nVar(X) =",VarX,
+                          "\nDP(X) =",DPX))+
+      geom_vline(xintercept = EX, color="blue")+
+      theme_bw()
+  })
+
+  output$ui_amostra_1 <- renderPlot({
+    n <- input$n_1
+    xb <- 0
+    for(i in 1:100) {
+      xb[i] <- mean(sample(amostra(),size = n,replace = TRUE))
+    }
+
+    EX <- round(mean(xb),4)
+    VarX <- round(var(xb),4)
+    DPX <- round(sd(xb),4)
+
+    tibble(x = xb ) |>
+      ggplot(aes(x=x)) +
+      geom_histogram(bins=10,color='black',fill="lightblue")+
+      labs(x="Média da Variável aleatória",
+           y="Contagem",
+           title = paste0("E(Média) =,",EX,"\nVar(Média) =",VarX,
+                          "\nDP(Média) =",DPX))+
+      geom_vline(xintercept = EX, color="blue")+
+      coord_cartesian(xlim=c(0,10))+
+      theme_bw()
+  })
 }
 
 shinyApp(ui, server)
