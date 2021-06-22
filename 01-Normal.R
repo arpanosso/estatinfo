@@ -16,7 +16,8 @@ ui <- dashboardPage(
         ),
         menuItem("Distribuições Contínuas",icon = icon("chart-area"),
                  menuItem("Normal",tabName = "normal"),
-                 menuItem("Amostral - Média",tabName = "amostral_media")
+                 menuItem("Amostral - Média",tabName = "amostral_media"),
+                 menuItem("Amostral - Proporção",tabName = "amostral_prop")
                  #menuItem("Exponencial",tabName = "exponencial"),
                  #menuItem("Qui-quadrado",tabName = "quiquadrado"),
                  #menuItem("F de Snedecor",tabName = "fsnedecor"),
@@ -317,15 +318,73 @@ ui <- dashboardPage(
                 width = 12,
                 sliderInput(
                   "n_1",
-                  "Selecione o n da amostra 01",
+                  "Tamanho da amostra (n)",
                   min = 2,
                   max = 50,
-                  value = 15
+                  value = 2
                 )
               ),
               column(
                 width = 12,
                 plotOutput("ui_amostra_1")
+              )
+            )
+          )
+        )
+      ),
+      tabItem(
+        "amostral_prop",
+        fluidRow(
+          column(
+            width = 12,
+            h1("Ditribuição Amostral da Proporção")
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 6,
+            uiOutput("ui_simulacao_p"),
+            plotOutput("ui_populacao_p")
+          ),
+          column(
+            width = 6,
+            fluidRow(
+              column(
+                width = 12,
+                sliderInput(
+                  "n_p",
+                  "Tamanho da amostra (n)",
+                  min = 5,
+                  max = 100,
+                  value = 10
+                )
+              ),
+              column(
+                width = 12,
+                plotOutput("ui_amostra_p")
+              ),
+              column(
+                width = 12,
+                selectInput(
+                  "regra_1",
+                  "Regra 1",
+                  choices = c("é maior ou igual a",
+                              "é menor ou igual a")
+                ),
+                radioButtons(
+                  inputId = "e_ou",
+                  label = "",
+                  choices = c("E","OU"),
+                  selected = 1,
+                  inline =TRUE
+                  ),
+                selectInput(
+                  "regra_2",
+                  "Regra 2",
+                  choices = c("é maior ou igual a",
+                              "é menor ou igual a")
+                )
               )
             )
           )
@@ -508,7 +567,7 @@ server <- function(input, output, session) {
   output$ui_simulacao <- renderUI({
     sliderInput(
       inputId = "n_sim",
-      label = "Escolha o tamanho da população",
+      label = "Tamanho da população (N)",
       min = 100,
       max = 1e4,
       step=1,sep="",
@@ -534,6 +593,66 @@ server <- function(input, output, session) {
   })
 
   output$ui_amostra_1 <- renderPlot({
+    n <- input$n_1
+    xb <- 0
+    for(i in 1:10000) {
+      xb[i] <- mean(sample(amostra(),size = n,replace = TRUE))
+    }
+
+    EX <- round(mean(xb),4)
+    VarX <- round(var(xb),4)
+    DPX <- round(sd(xb),4)
+
+    tibble(x = xb ) |>
+      ggplot(aes(x=x)) +
+      geom_histogram(bins=10,color='black',fill="lightblue")+
+      labs(x="Média da Variável aleatória",
+           y="Contagem",
+           title = paste0("E(Média) =,",EX,"\nVar(Média) =",VarX,
+                          "\nDP(Média) =",DPX))+
+      geom_vline(xintercept = EX, color="blue")+
+      coord_cartesian(xlim=c(0,10))+
+      theme_bw()
+  })
+
+
+  ### Amostral da PROPORÇÃO
+
+  amostra_p <- reactive({
+    req(input$n_sim_p)
+    n <- input$n_sim_p
+    x <- rep(rep(0:9,runif(10,3,100)%/%1),n)
+  })
+
+  output$ui_simulacao_p <- renderUI({
+    sliderInput(
+      inputId = "n_sim_p",
+      label = "Tamanho da população (N)",
+      min = 100,
+      max = 1e4,
+      step=1,sep="",
+      value = 1000
+    )
+  })
+
+  output$ui_populacao_p <- renderPlot({
+
+    EX <- round(mean(amostra()),4)
+    VarX <- round(var(amostra()),4)
+    DPX <- round(sd(amostra()),4)
+
+    tibble(x = amostra() ) |>
+      ggplot(aes(x=x)) +
+      geom_histogram(bins=10,color='black',fill="gray")+
+      labs(x="Variável aleatória",
+           y="Contagem",
+           title = paste0("E(X) =,",EX,"\nVar(X) =",VarX,
+                          "\nDP(X) =",DPX))+
+      geom_vline(xintercept = EX, color="blue")+
+      theme_bw()
+  })
+
+  output$ui_amostra_p <- renderPlot({
     n <- input$n_1
     xb <- 0
     for(i in 1:10000) {

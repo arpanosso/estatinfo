@@ -55,7 +55,13 @@ Assim, cada estatística é uma variável aleatória e sua distribuição de pro
 
 ---
 
-Seja a variável aleatória `\(X\)` que denota o tempo em dias de germinação de sementes de uma espécie vegetal, após o plantio. Considerando a população de todas sementes plantadas nesse experimento, suponha que `\(X\)` tem a distribuição de probabilidade apresentada abaixo. Uma amostra aleatória simples com reposição ($X_1$, `\(X_2\)`) de 2 covas `\((n = 2)\)` é tomada nesta área. Qual a distribuição do tempo médio amostral em dias para a germinação?
+class: middle, center, inverse
+
+# Distribuições Amostral da Média
+
+---
+
+Seja a variável aleatória `\(X\)` que denota o tempo em dias de germinação de sementes de uma espécie vegetal, após o plantio. Considerando a população de todas sementes plantadas nesse experimento, suponha que `\(X\)` tem a distribuição de probabilidade apresentada abaixo. Uma amostra aleatória simples **COM REPOSIÇÃO** ($X_1$, `\(X_2\)`) de `\(2\)` covas `\((n = 2)\)` é tomada nesta área. Qual a distribuição do tempo médio amostral em dias para a germinação?
 
 .pull-left[
 `\(x\)` | `\(0\)` | `\(1\)` | `\(2\)` | `\(3\)` 
@@ -170,6 +176,101 @@ Assim, em uma amostra aleatória simples com reposição, de tamanho `\(n\)`, de
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_2.png" width="35%" style="display: block; margin: auto;" /&gt;
 
 ---
+class: middle, inverse, center
+
+# Acesse o Link para simularmos essa amostragem. Aba "Ditruição Amostral  - Média"
+
+## https://arpanosso.shinyapps.io/estatinfo/
+
+---
+
+### Exercício
+
+Seja uma máquina de empacotamento de soja, cujos pesos (em `\(kg\)`) seguem uma distribuição `\(N(50, 2)\)`. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra de `\(100\)` sacas ao acaso, observarmos uma média diferente de `\(50 \;kg\)` em menos de `\(0,2828 \; kg\)`?
+
+---
+
+### Amostras sem reposição de populações finitas
+
+Supondo uma população com `\(N\)` elementos, se a amostragem for feita **SEM REPOSIÇÃO**, temos as esperança e a variância definidas como:
+
+.pull-left[
+**Esperança**
+
+`\(E(\bar{X}) = \mu\)`
+]
+
+.pull-right[
+**Variância**
+
+`\(Var(\bar{X}) = \frac{\sigma^2}{n} \frac{N-n}{N-1}\)`
+
+]
+
+Observações, 
+
+`\(\mu = E(X)\)`, `\(\sigma^2 = Var(X)\)` e `\(\frac{N-n}{N-1}\)` é o fator de correção para populações finitas.
+
+A variância da média amostral com este tipo de amostragem é menor do que com reposição.
+
+Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio `\((\mu)\)`.
+
+No entanto, se a população for grande quando comparada com o tamanho da amostra `\((n)\)`, o fator de correção será próximo de 1 e, portanto:
+$$Var(\bar{X}) \approx \frac{\sigma}{n} $$
+---
+
+class: middle, center, inverse
+
+# Distribuições Amostral da Proporção
+
+---
+
+### Distribuição Amostral da Proporção
+
+Anteriormente, definimos `\(X\)` uma `\(v.a.\)` para cada ensaio de **Bernoulli**, com `\(P(S) = p\)`. 
+
+Neste contexto, considerando `\(n\)` ensaios independentes, `\(X_1, X_2, ... , X_n\)` constitui uma amostra *aleatória simples com reposição*. Como os resultados individuais são `\(0\)` (fracasso) ou `\(1\)` (sucesso), o número **TOTAL** de sucessos em `\(n\)` ensaios, é dado por:
+
+`$$T = \sum \limits_{i=1}^n = X_i$$`,
+
+Portanto, a proporção amostral de suscessos éem `\(n\)` ensaios é dada por:
+
+`$$\bar{X} = \hat{p} = \frac{T}{n} = \frac{\sum \limits_{i=1}^n = X_i}{n}$$`
+
+Observe que `\(T\)` tem distribuição binomial com parâmetros `\(n\)` e `\(p\)`, cuja esperança (média) é `\(n.p\)` e variância `\(n.p.q\)` ou `\(n.p.(1-p)\)`.
+
+---
+
+Então, para a proporção, temos:
+
+
+.pull-left[
+**Esperança**
+
+`\(E(\hat{p}) = E\left( \frac{T}{N} \right)\)`
+
+`\(E(\hat{p}) = \frac{1}{n} E(T)\)`
+
+`\(E(\hat{p}) = \frac{1}{n} n.p\)`
+
+`\(E(\hat{p}) = p\)`
+]
+
+.pull-right[
+**Variância**
+
+`\(Var(\hat{p}) = Var\left( \frac{T}{N} \right)\)`
+
+`\(Var(\hat{p}) = \frac{1}{n^2} Var(T)\)`
+
+`\(Var(\hat{p}) = \frac{1}{n^2} n.p.q\)`
+
+`\(Var(\hat{p}) = \frac{p.q}{n}\)`
+]
+
+Assim, pelo **Teorema Central Limite**, quando `\(n\)`  é grande, a proporção amostral `\(\hat{p}\)` de sucessos em `\(n\)` ensaios de **Bernoulli** tem distribuição aproximadamente normal com média `\(p\)` e variância `\(\frac{p.q}{n}\)`, assim, podemos definir a variável padronizada `\(Z\)` como:
+
+`\(Z = \frac{\hat{p} - p}{\sqrt{\frac{p.q}{n}}}\)` ou `\(Z = \frac{T - n.p}{\sqrt{n.p.q}}\)` tem distribuição apromadamente normal padrão `\(N(0,1)\)`.
 
 
     </textarea>
