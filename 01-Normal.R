@@ -536,7 +536,7 @@ server <- function(input, output, session) {
   output$ui_amostra_1 <- renderPlot({
     n <- input$n_1
     xb <- 0
-    for(i in 1:100) {
+    for(i in 1:10000) {
       xb[i] <- mean(sample(amostra(),size = n,replace = TRUE))
     }
 
