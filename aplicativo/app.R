@@ -8,21 +8,21 @@ ui <- dashboardPage(
   ),
   dashboardSidebar(
     sidebarMenu(
-        menuItem("Distribuições Discretas",icon = icon("chart-bar"),
-          menuItem("Binomial",tabName = "binomial"),
-          menuItem("Poisson", tabName = "poisson"),
-          menuItem("Geométrica",tabName = "geometrica"),
-          menuItem("Hipergeométrica",tabName = "hipergeometrica")
-        ),
-        menuItem("Distribuições Contínuas",icon = icon("chart-area"),
-                 menuItem("Normal",tabName = "normal"),
-                 menuItem("Amostral - Média",tabName = "amostral_media"),
-                 menuItem("Amostral - Proporção",tabName = "amostral_prop")
-                 #menuItem("Exponencial",tabName = "exponencial"),
-                 #menuItem("Qui-quadrado",tabName = "quiquadrado"),
-                 #menuItem("F de Snedecor",tabName = "fsnedecor"),
-                 #menuItem("t de Student",tabName = "tstudent")
-        )
+      menuItem("Distribuições Discretas",icon = icon("chart-bar"),
+               menuItem("Binomial",tabName = "binomial"),
+               menuItem("Poisson", tabName = "poisson"),
+               menuItem("Geométrica",tabName = "geometrica"),
+               menuItem("Hipergeométrica",tabName = "hipergeometrica")
+      ),
+      menuItem("Distribuições Contínuas",icon = icon("chart-area"),
+               menuItem("Normal",tabName = "normal"),
+               menuItem("Amostral - Média",tabName = "amostral_media"),
+               menuItem("Amostral - Proporção",tabName = "amostral_prop")
+               #menuItem("Exponencial",tabName = "exponencial"),
+               #menuItem("Qui-quadrado",tabName = "quiquadrado"),
+               #menuItem("F de Snedecor",tabName = "fsnedecor"),
+               #menuItem("t de Student",tabName = "tstudent")
+      )
     )
   ),
   dashboardBody(
@@ -109,15 +109,15 @@ ui <- dashboardPage(
                         step = .01)
           ),
           column(
-              width = 3,
-              numericInput("valor_inicial","Sucessos minímo",min=0,
-                           max=1000,value = 0,step = 1)
-              ),
+            width = 3,
+            numericInput("valor_inicial","Sucessos minímo",min=0,
+                         max=1000,value = 0,step = 1)
+          ),
           column(
             width = 3,
-              numericInput("valor_final","Sucessos máximo",min=0,
-                           max=1000,value = 0,step = 1)
-            ),
+            numericInput("valor_final","Sucessos máximo",min=0,
+                         max=1000,value = 0,step = 1)
+          ),
           column(
             width = 12,
             plotOutput("grafico_histBinom")
@@ -155,10 +155,10 @@ ui <- dashboardPage(
           column(
             width = 6,
             numericInput("np","Número máximo de sucessos",
-                        min=0,
-                        max=100,
-                        value = 12,
-                        step = 1),
+                         min=0,
+                         max=100,
+                         value = 12,
+                         step = 1),
           ),
           column(
             width = 6,
@@ -281,10 +281,10 @@ ui <- dashboardPage(
                          max=1000,value = 0,step = 1)
           ),
           column(
-           width = 6,
-           actionButton("atualizar","Gerar Gráfico e Tabela"),
-           br(),
-           br()
+            width = 6,
+            actionButton("atualizar","Gerar Gráfico e Tabela"),
+            br(),
+            br()
           ),
           column(
             width = 12,
@@ -343,49 +343,50 @@ ui <- dashboardPage(
         hr(style = "border-top: 1px solid black;"),
         fluidRow(
           column(
-            width = 6,
-            uiOutput("ui_simulacao_p"),
-            plotOutput("ui_populacao_p")
+            width = 12,
+            style = "font-size:22px;",
+            radioButtons(
+              inputId = "total",
+              label = "",
+              choices = c("Total (T)","Proporção (p)"),
+              selected = "Total (T)",
+              inline =TRUE
+            )
           ),
-          column(
-            width = 6,
+          box(
+            width=6,
             fluidRow(
               column(
                 width = 12,
                 sliderInput(
-                  "n_p",
-                  "Tamanho da amostra (n)",
-                  min = 5,
-                  max = 100,
-                  value = 10
-                )
-              ),
-              column(
-                width = 12,
-                plotOutput("ui_amostra_p")
-              ),
-              column(
-                width = 12,
-                selectInput(
-                  "regra_1",
-                  "Regra 1",
-                  choices = c("é maior ou igual a",
-                              "é menor ou igual a")
-                ),
-                radioButtons(
-                  inputId = "e_ou",
-                  label = "",
-                  choices = c("E","OU"),
-                  selected = 1,
-                  inline =TRUE
-                  ),
-                selectInput(
-                  "regra_2",
-                  "Regra 2",
-                  choices = c("é maior ou igual a",
-                              "é menor ou igual a")
+                  inputId = "n_sim_p",
+                  label = "Probabilida de sucesso (p)",
+                  min = 0,
+                  max = 1,
+                  step=0.01,
+                  value = 0.5
                 )
               )
+            )
+          ),
+          box(
+            width = 6,
+            sliderInput(
+              "n_p",
+              "Tamanho da amostra (n)",
+              min = 2,
+              max = 100,
+              value = 2
+            )
+          ),
+          column(
+            width = 6,
+            plotOutput("ui_populacao_p"),
+          ),
+          fluidRow(
+            column(
+              width = 6,
+              plotOutput("ui_amostra_p")
             )
           )
         )
@@ -396,6 +397,8 @@ ui <- dashboardPage(
 )
 
 server <- function(input, output, session) {
+  Sys.sleep(3)
+
   output$grafico_hist <- renderPlot({
     ggplot(data.frame(x = c(0, 100)), aes(x = x)) +
       stat_function(fun = \(x) dnorm(x,input$m1,input$sd1),
@@ -425,11 +428,11 @@ server <- function(input, output, session) {
     if(vi>vf) vf<-vi
     if(vi == vf){
       Prob = dbinom(vi,n,p)
-      }else if(vi < vf) {
-        Prob = sum(dbinom(vi:vf,n,p))
-      }else{
-        Prob = 0
-        }
+    }else if(vi < vf) {
+      Prob = sum(dbinom(vi:vf,n,p))
+    }else{
+      Prob = 0
+    }
     tibble(x = 0:n, px = dbinom(x,n,p),px2=px) |>
       mutate(px2 = if_else(x>=vi & x<= vf,px2,0)) |>
       ggplot() +
@@ -479,7 +482,7 @@ server <- function(input, output, session) {
     tibble(Y = 0:n,
            `P(Y = n)` = round(dgeom(Y,p),4),
            `P(y) acumulada` = round(cumsum(`P(Y = n)`),4)
-           )
+    )
   })
 
   output$grafico_histgeometrica <- renderPlot({
@@ -524,10 +527,9 @@ server <- function(input, output, session) {
     )
   })
 
-
   output$grafico_histhipergeometrica <- renderPlot({
     grafico_hyper()
-      })
+  })
 
   grafico_hyper <- eventReactive(input$atualizar,{
     N <- input$N_hg
@@ -572,7 +574,7 @@ server <- function(input, output, session) {
       max = 1e4,
       step=1,sep="",
       value = 1000
-      )
+    )
   })
 
   output$ui_populacao <- renderPlot({
@@ -608,72 +610,104 @@ server <- function(input, output, session) {
       geom_histogram(bins=10,color='black',fill="lightblue")+
       labs(x="Média da Variável aleatória",
            y="Contagem",
-           title = paste0("E(Média) =,",EX,"\nVar(Média) =",VarX,
+           title = paste0("E(Média) =",EX,"\nVar(Média) =",VarX,
                           "\nDP(Média) =",DPX))+
       geom_vline(xintercept = EX, color="blue")+
       coord_cartesian(xlim=c(0,10))+
       theme_bw()
   })
-
 
   ### Amostral da PROPORÇÃO
 
   amostra_p <- reactive({
-    req(input$n_sim_p)
-    n <- input$n_sim_p
-    x <- rep(rep(0:9,runif(10,3,100)%/%1),n)
-  })
-
-  output$ui_simulacao_p <- renderUI({
-    sliderInput(
-      inputId = "n_sim_p",
-      label = "Tamanho da população (N)",
-      min = 100,
-      max = 1e4,
-      step=1,sep="",
-      value = 1000
-    )
+    p <- input$n_sim_p
+    n_ <- 10
+    rbinom(1000,n_,p)
   })
 
   output$ui_populacao_p <- renderPlot({
+    # browser()
+    req(input$n_sim_p)
 
-    EX <- round(mean(amostra()),4)
-    VarX <- round(var(amostra()),4)
-    DPX <- round(sd(amostra()),4)
+    if(input$total == "Total (T)"){
+      EX <- round(mean(amostra_p()),4)
+      VarX <- round(var(amostra_p()),4)
+      DPX <- round(sd(amostra_p()),4)
 
-    tibble(x = amostra() ) |>
-      ggplot(aes(x=x)) +
-      geom_histogram(bins=10,color='black',fill="gray")+
-      labs(x="Variável aleatória",
-           y="Contagem",
-           title = paste0("E(X) =,",EX,"\nVar(X) =",VarX,
-                          "\nDP(X) =",DPX))+
-      geom_vline(xintercept = EX, color="blue")+
-      theme_bw()
-  })
+      tibble(x = amostra_p() ) |>
+        ggplot(aes(x=x)) +
+        geom_histogram(bins=10,color='black',fill="gray")+
+        labs(x="Variável aleatória",
+             y="TOTAL (contagem)",
+             title = paste0("E(X) =",EX,"\nVar(X) =",VarX,
+                            "\nDP(X) =",DPX))+
+        geom_vline(xintercept = EX, color="blue")+
+        coord_cartesian(xlim=c(0,10))+
+        theme_bw()
+    }else{
+      EX <- round(mean(amostra_p()/10),4)
+      VarX <- round(var(amostra_p()/10),4)
+      DPX <- round(sd(amostra_p()/10),4)
 
-  output$ui_amostra_p <- renderPlot({
-    n <- input$n_1
-    xb <- 0
-    for(i in 1:10000) {
-      xb[i] <- mean(sample(amostra(),size = n,replace = TRUE))
+      tibble(x = amostra_p()/10) |>
+        ggplot(aes(x=x)) +
+        geom_histogram(bins=10,color='black',fill="gray")+
+        labs(x="Variável aleatória",
+             y="Proporção (p)",
+             title = paste0("E(X) =",EX,"\nVar(X) =",VarX,
+                            "\nDP(X) =",DPX))+
+        geom_vline(xintercept = EX, color="red")+
+        coord_cartesian(xlim=c(0,1))+
+        theme_bw()
     }
 
-    EX <- round(mean(xb),4)
-    VarX <- round(var(xb),4)
-    DPX <- round(sd(xb),4)
+  }, height = 340)
 
-    tibble(x = xb ) |>
-      ggplot(aes(x=x)) +
-      geom_histogram(bins=10,color='black',fill="lightblue")+
-      labs(x="Média da Variável aleatória",
-           y="Contagem",
-           title = paste0("E(Média) =,",EX,"\nVar(Média) =",VarX,
-                          "\nDP(Média) =",DPX))+
-      geom_vline(xintercept = EX, color="blue")+
-      coord_cartesian(xlim=c(0,10))+
-      theme_bw()
-  })
+  output$ui_amostra_p <- renderPlot({
+
+    pop<-amostra_p()
+    n_ <- input$n_p
+    xb<-0
+    for(i in 1:100) {
+      x <- sample(pop, size = n_, replace = TRUE) #/n_
+      xb[i]<- mean(x)
+    }
+
+    # xb <- sample(pop, size = n_, replace = TRUE)
+    # browser()
+    if(input$total == "Total (T)"){
+      EXp <- round(mean(xb),4)
+      VarXp <- round(var(xb),4)
+      DPXp <- round(sd(xb),4)
+
+      tibble(x = xb ) |>
+        ggplot(aes(x=x)) +
+        geom_histogram(bins=10,color='black',fill="lightblue") +
+        labs(x="Média da Variável aleatória",
+             y="Total (Contagem)",
+             title = paste0("E(Média) =",EXp,"\nVar(Média) =",VarXp,
+                            "\nDP(Média) =",DPXp)) +
+        geom_vline(xintercept = EXp, color="blue") +
+        coord_cartesian(xlim=c(0,10))+
+        theme_bw()
+    }else{
+      xb <- xb/10
+      EXp <- round(mean(xb),4)
+      VarXp <- round(var(xb),4)
+      DPXp <- round(sd(xb),4)
+
+      tibble(x = xb ) |>
+        ggplot(aes(x=x)) +
+        geom_histogram(bins=10,color='black',fill="lightblue") +
+        labs(x="Média da Variável aleatória",
+             y="Proporção (p)",
+             title = paste0("E(Média) =",EXp,"\nVar(Média) =",VarXp,
+                            "\nDP(Média) =",DPXp)) +
+        geom_vline(xintercept = EXp, color="blue") +
+        coord_cartesian(xlim=c(0,1))+
+        theme_bw()
+    }
+  }, height = 340)
 }
 
 shinyApp(ui, server)

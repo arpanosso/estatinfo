@@ -1,0 +1,13 @@
+name: estatinfo
+title: estatinfo
+username:
+account: arpanosso
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4236096
+bundleId: 4748087
+url: https://arpanosso.shinyapps.io/estatinfo/
+when: 1624461989.96168
+lastSyncTime: 1624461989.96168
+asMultiple: FALSE
+asStatic: FALSE
