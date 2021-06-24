@@ -341,6 +341,7 @@ ui <- dashboardPage(
           )
         ),
         hr(style = "border-top: 1px solid black;"),
+        h3("Dada a realização de n=10 ensaios de Bernoulli"),
         fluidRow(
           column(
             width = 12,
@@ -588,8 +589,8 @@ server <- function(input, output, session) {
       geom_histogram(bins=10,color='black',fill="gray")+
       labs(x="Variável aleatória",
            y="Contagem",
-           title = paste0("E(X) =,",EX,"\nVar(X) =",VarX,
-                          "\nDP(X) =",DPX))+
+           title = paste0("E(X) =",EX,";   Var(X) =",VarX,
+                          ";   DP(X) =",DPX))+
       geom_vline(xintercept = EX, color="blue")+
       theme_bw()
   })
@@ -610,8 +611,8 @@ server <- function(input, output, session) {
       geom_histogram(bins=10,color='black',fill="lightblue")+
       labs(x="Média da Variável aleatória",
            y="Contagem",
-           title = paste0("E(Média) =",EX,"\nVar(Média) =",VarX,
-                          "\nDP(Média) =",DPX))+
+           title = paste0("E(Média) =",EX,";   Var(Média) =",VarX,
+                          ";  DP(Média) =",DPX))+
       geom_vline(xintercept = EX, color="blue")+
       coord_cartesian(xlim=c(0,10))+
       theme_bw()
@@ -639,8 +640,8 @@ server <- function(input, output, session) {
         geom_histogram(bins=10,color='black',fill="gray")+
         labs(x="Variável aleatória",
              y="TOTAL (contagem)",
-             title = paste0("E(X) =",EX,"\nVar(X) =",VarX,
-                            "\nDP(X) =",DPX))+
+             title = paste0("E(X) =",EX,";   Var(X) =",VarX,
+                            ";   DP(X) =",DPX))+
         geom_vline(xintercept = EX, color="blue")+
         coord_cartesian(xlim=c(0,10))+
         theme_bw()
@@ -654,9 +655,9 @@ server <- function(input, output, session) {
         geom_histogram(bins=10,color='black',fill="gray")+
         labs(x="Variável aleatória",
              y="Proporção (p)",
-             title = paste0("E(X) =",EX,"\nVar(X) =",VarX,
-                            "\nDP(X) =",DPX))+
-        geom_vline(xintercept = EX, color="red")+
+             title = paste0("E(X) =",EX,";   Var(X) =",VarX,
+                            ";   DP(X) =",DPX))+
+        geom_vline(xintercept = EX, color="blue")+
         coord_cartesian(xlim=c(0,1))+
         theme_bw()
     }
@@ -685,8 +686,8 @@ server <- function(input, output, session) {
         geom_histogram(bins=10,color='black',fill="lightblue") +
         labs(x="Média da Variável aleatória",
              y="Total (Contagem)",
-             title = paste0("E(Média) =",EXp,"\nVar(Média) =",VarXp,
-                            "\nDP(Média) =",DPXp)) +
+             title = paste0("E(Média) =",EXp,";   Var(Média) =",VarXp,
+                            ";   DP(Média) =",DPXp)) +
         geom_vline(xintercept = EXp, color="blue") +
         coord_cartesian(xlim=c(0,10))+
         theme_bw()
@@ -701,8 +702,8 @@ server <- function(input, output, session) {
         geom_histogram(bins=10,color='black',fill="lightblue") +
         labs(x="Média da Variável aleatória",
              y="Proporção (p)",
-             title = paste0("E(Média) =",EXp,"\nVar(Média) =",VarXp,
-                            "\nDP(Média) =",DPXp)) +
+             title = paste0("E(Média) =",EXp,";   Var(Média) =",VarXp,
+                            ";   DP(Média) =",DPXp)) +
         geom_vline(xintercept = EXp, color="blue") +
         coord_cartesian(xlim=c(0,1))+
         theme_bw()

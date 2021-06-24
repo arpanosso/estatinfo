@@ -37,17 +37,17 @@ class: middle, center, inverse
 **Estatística** ou **Estimador**: é qualquer função de uma amostra aleatória (fórmula ou expressão), construída com o propósito de servir como instrumento para descrever alguma característica da amostra e para fazer *inferência* a respeito da característica na população.  
 
 
-Resum | Parâmetro | Estatística
+Resumo | Parâmetro | Estatística
 ---|:---:|:---:
 Média | `\(\mu\)` | `\(\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i\)`
-Variância | `\(\sigma\)`^2 | `\(s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}\)`
+Variância | `\(\sigma^2\)`| `\(s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}\)`
 Proporção | `\(\pi\)` | `\(\hat{p}= \frac{X}{n}\)`
-
+Correlação | `\(\rho\)` | `\(r = \frac{\sum_{i=1}^n(x_1-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_1-\bar{x})^2(y_i-\bar{y})^2}}\)`
 ---
 
 Toda **estatística**, sendo uma função de uma amostra aleatória `\(X_1, X_2, \cdots X_n\)`, é também uma variável aleatória e tem uma distribuição. 
 
-O comportamento da estatística pode ser descrito por alguma distribuição de probabilidade. 
+Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora dita **"amostral"**. 
 
 Assim, cada estatística é uma variável aleatória e sua distribuição de probabilidade é chamada &lt;u&gt;distribuição amostral da estatística&lt;/u&gt;.
 
@@ -68,9 +68,9 @@ Seja a variável aleatória `\(X\)` que denota o tempo em dias de germinação d
 ---|---|---|---|---
 `\(P(X)\)` | `\(0,20\)` | `\(0,40\)`| `\(0,30\)`| `\(0,10\)`
 
-`$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30$$`
+`$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30\;dias$$`
 
-`\(Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\)`
+`\(Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\;dias^2\)`
 
 Definimos a média a partir da tomada de duas amostras temos:
 
@@ -93,7 +93,7 @@ De acordo com a definição de amostra aleatória simples com reposição, `\(X_
 .pull-left[
 Tabela com os possíveis valores de médias `\(\bar{X}\)`.
 
-x | 0 | 1 | 2 | 3 
+`\(\bar{x}\)` | 0 | 1 | 2 | 3 
 ---|---|---|---|---
 **0** | 0,00 | 0,50 | 1,00 | 1,50
 **1** | 0,50 | 1,00 | 1,50 | 2,00
@@ -108,10 +108,10 @@ Tabela com a distribuição conjunta de `\(X_1\)` e `\(X_2\)`.
 
 x | 0 | 1 | 2 | 3  | `\(\sum\)`
 ---|---|---|---|---|---
-**0** | 0,00 | 0,50 | 1,00 | 1,50 | 0,2
-**1** | 0,50 | 1,00 | 1,50 | 2,00 | 0,4
-**2** | 1,00 | 1,50 | 2,00 | 2,50 | 0,3
-**3** | 1,50 | 2,00 | 2,50 | 3,00 | 0,1
+**0** | 0,04 | 0,08 | 0,06 | 0,02 | **0,2**
+**1** | 0,08 | 0,16 | 0,12 | 0,04 | **0,4**
+**2** | 0,06 | 0,12 | 0,09 | 0,03 | **0,3**
+**3** | 0,02 | 0,04 | 0,09 | 0,03 | **0,1**
 `\(\sum\)`| **0,2** | **0,4** | **0,3** | **0,1** | **1,00**
 ]
 
@@ -140,30 +140,36 @@ Distribuição de probabilidade de `\(\bar{X}\)`.
 
 #### Cálculo da Esperança e da Variância da Média do Número de dias para Germinação de `\(X\)` `\((n=2)\)`.
 
-`$$E(\bar{X}) = \sum \limits_{n=1}^k = \bar{x_i} \cdot P(\bar{x_i}) = 1.30$$`
+`$$E(\bar{X}) = \sum \limits_{n=1}^k = \bar{x_i} \cdot P(\bar{x_i}) = 1,30 \;dias$$`
 
 `$$Var(\bar{X}) = E(\bar{X}^2) - [E(\bar{X})]^2$$`
 
 `$$Var(\bar{X}) = 2,095 - (1,3)^2$$`
 
-`$$Var(\bar{X}) = 0,405 = \frac{\sigma^2}{n} = \frac{0,81}{2} = \frac{Var(X)}{n}$$`
+`$$Var(\bar{X}) = 0,405\;dias^2= \frac{\sigma^2}{n} = \frac{0,81}{2} = \frac{Var(X)}{n}$$`
 Se `\(X_1, X_2, \cdots, X_n\)` constitui uma amostra aleatória simples com reposição de uma população que tem média `\(\mu\)` e variância `\(\sigma^2\)`, então:
 
 `$$E(\bar{X}) = \mu$$`
 
 `$$Var(\bar{X}) = \frac{\sigma^2}{n}$$` 
 
-`$$Dp(\bar{X}) = \frac{\sigma}{\sqrt{n}}$$`
+`$$DP(\bar{X}) = \frac{\sigma}{\sqrt{n}}$$`
 
 ---
 
-O desvio padrão da média `\(Dp(\bar{X})\)`  e o erro padrão da média `\(s(m)\)` são termos equivalentes. O erro padrão da média é geralmente usado para evitar confusão com o desvio padrão ($\sigma$) das observações.
+## Observações importantes
 
-O aumento do tamanho da amostra `\((n)\)` o  desvio padrão da distribuição da média diminui, portanto os valores de `\(\bar{X}\)` são mais próximos à `\(\mu\)`. 
+- O desvio padrão da média `\(DP(\bar{X})\)` e o erro padrão da média `\(s(m)\)` são termos equivalentes. 
 
-Estima-se o erro padrão da média usando o tamanho da amostra `\((n)\)` e desvio padrão `\((s)\)` de uma única amostra de observações.
+- O erro padrão da média é geralmente usado para evitar confusão com o desvio padrão ($\sigma$) das observações.
 
-À medida que o tamanho da amostra aumenta temos uma estimativa mais precisa do desvio padrão paramétrico `\((\sigma)\)` da população. Em contraste, o erro padrão da média torna-se uma estimativa mais precisa da média paramétrica `\((\mu)\)`, pois o erro padrão da média diminui.
+- O aumento do tamanho da amostra `\((n)\)` o  desvio padrão da distribuição da média diminui, portanto os valores de `\(\bar{X}\)` são mais próximos à `\(\mu\)`. 
+
+- Estima-se o erro padrão da média usando o tamanho da amostra `\((n)\)` e desvio padrão `\((s)\)` de uma única amostra de observações.
+
+- À medida que o tamanho da amostra aumenta temos uma estimativa mais precisa do desvio padrão paramétrico `\((\sigma)\)` da população. 
+
+- Em contraste, o erro padrão da média torna-se uma estimativa mais precisa da média paramétrica `\((\mu)\)`, pois o erro padrão da média diminui.
 
 ---
 
@@ -178,15 +184,29 @@ Assim, em uma amostra aleatória simples com reposição, de tamanho `\(n\)`, de
 ---
 class: middle, inverse, center
 
-# Acesse o Link para simularmos essa amostragem. Aba "Ditruição Amostral  - Média"
+# Acesse o Link para simularmos essa amostragem. Aba "Distribuição Amostral  - Média"
 
 ## https://arpanosso.shinyapps.io/estatinfo/
 
 ---
 
+## Transformação normal padrão para cálculo das probabilidades
+
+Assim, podemos utilizar a tabela normal padrão para o cálculo das probabilidades associadas aos intervalos de `\(\bar{X}\)` a partir da transformação:
+
+`$$Z = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$$` 
+
+onde `\(\bar{X} \sim N(\mu, \frac{\sigma^2}{n})\)` e `\(n\)` é o tamanho da amostras aleatória simples tomada da população.
+
+[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
 ### Exercício
 
-Seja uma máquina de empacotamento de soja, cujos pesos (em `\(kg\)`) seguem uma distribuição `\(N(50, 2)\)`. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra de `\(100\)` sacas ao acaso, observarmos uma média diferente de `\(50 \;kg\)` em menos de `\(0,2828 \; kg\)`?
+Seja uma máquina de empacotar de soja, cujos pesos das sacas (em `\(kg\)`) seguem uma distribuição `\(N(50, 2)\)`. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de `\(100\)` sacas, observarmos uma média diferente de `\(50\;kg\)` em menos de `\(0,2828 \; kg\)`?
 
 ---
 
@@ -203,7 +223,7 @@ Supondo uma população com `\(N\)` elementos, se a amostragem for feita **SEM R
 .pull-right[
 **Variância**
 
-`\(Var(\bar{X}) = \frac{\sigma^2}{n} \frac{N-n}{N-1}\)`
+`\(Var(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}\)`
 
 ]
 
@@ -231,11 +251,11 @@ Anteriormente, definimos `\(X\)` uma `\(v.a.\)` para cada ensaio de **Bernoulli*
 
 Neste contexto, considerando `\(n\)` ensaios independentes, `\(X_1, X_2, ... , X_n\)` constitui uma amostra *aleatória simples com reposição*. Como os resultados individuais são `\(0\)` (fracasso) ou `\(1\)` (sucesso), o número **TOTAL** de sucessos em `\(n\)` ensaios, é dado por:
 
-`$$T = \sum \limits_{i=1}^n = X_i$$`,
+`$$T = \sum \limits_{i=1}^n = X_i$$`
 
-Portanto, a proporção amostral de suscessos éem `\(n\)` ensaios é dada por:
+Portanto, a proporção amostral de suscessos em `\(n\)` ensaios é dada por:
 
-`$$\bar{X} = \hat{p} = \frac{T}{n} = \frac{\sum \limits_{i=1}^n = X_i}{n}$$`
+`$$\bar{X} = \hat{p} = \frac{T}{n} = \frac{\sum \limits_{i=1}^n X_i}{n}$$`
 
 Observe que `\(T\)` tem distribuição binomial com parâmetros `\(n\)` e `\(p\)`, cuja esperança (média) é `\(n.p\)` e variância `\(n.p.q\)` ou `\(n.p.(1-p)\)`.
 
@@ -245,8 +265,7 @@ Então, para a proporção, temos:
 
 
 .pull-left[
-**Esperança**
-
+**Esperança**  
 `\(E(\hat{p}) = E\left( \frac{T}{N} \right)\)`
 
 `\(E(\hat{p}) = \frac{1}{n} E(T)\)`
@@ -257,8 +276,7 @@ Então, para a proporção, temos:
 ]
 
 .pull-right[
-**Variância**
-
+**Variância**  
 `\(Var(\hat{p}) = Var\left( \frac{T}{N} \right)\)`
 
 `\(Var(\hat{p}) = \frac{1}{n^2} Var(T)\)`
@@ -268,17 +286,22 @@ Então, para a proporção, temos:
 `\(Var(\hat{p}) = \frac{p.q}{n}\)`
 ]
 
-Assim, pelo **Teorema Central Limite**, quando `\(n\)`  é grande, a proporção amostral `\(\hat{p}\)` de sucessos em `\(n\)` ensaios de **Bernoulli** tem distribuição aproximadamente normal com média `\(p\)` e variância `\(\frac{p.q}{n}\)`, assim, podemos definir a variável padronizada `\(Z\)` como:
+Assim, pelo **Teorema Central Limite**, quando `\(n\)`  é grande, a proporção amostral `\(\hat{p}\)` de sucessos em `\(n\)` ensaios de **Bernoulli** tem distribuição aproximadamente normal com média `\(p\)` e variância `\(\frac{p.q}{n}\)`, assim, podemos definir a variável padronizada `\(Z\)` como:   
 
-`\(Z = \frac{\hat{p} - p}{\sqrt{\frac{p.q}{n}}}\)` ou `\(Z = \frac{T - n.p}{\sqrt{n.p.q}}\)` tem distribuição apromadamente normal padrão `\(N(0,1)\)`.
+`$$Z = \frac{\hat{p} - p}{\sqrt{\frac{p.q}{n}}} \text{   ou   } Z = \frac{T - n.p}{\sqrt{n.p.q}}$$`
+
+
+Com distribuição aproximadamente normal padrão `\(N(0,1)\)`.
+
 
 ---
 
 ### Exercício
 
-Em um ensaio experimental `\(625\)` covas foram semeadas com sementes comercias provenientes de um lote com índice de germinação `\((p)\)` igual a `\(70\%\)`. 
+Em um ensaio experimental `\(625\)` covas foram semeadas com sementes comerciais provenientes de um lote com índice de germinação `\((p)\)` igual a `\(70\%\)`. 
 
 Qual a probabilidade de se encontrar mais de `\(72\%\)` das covas com plantas germinadas?
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
