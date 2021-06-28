@@ -1,6 +1,15 @@
+# 1 - As demonstrações E e Var
+# 2 - Acumulada
+# 3 - Exemplo com as três possibilidade de prob
+# menor entre e maiior
+# 4 -  Adicionar a acumulada
+# 5 - convergência para normal com o aumento da amostra
+
+
 library(tidyverse)
 library(shiny)
 library(shinydashboard)
+library(plotly)
 
 ui <- dashboardPage(
   header=dashboardHeader(
@@ -120,7 +129,7 @@ ui <- dashboardPage(
           ),
           column(
             width = 12,
-            plotOutput("grafico_histBinom")
+            plotlyOutput("grafico_histBinom")
           ),
           column(
             width = 12,
@@ -419,7 +428,7 @@ server <- function(input, output, session) {
                  color = "darkgray",lty=2)
   })
 
-  output$grafico_histBinom <- renderPlot({
+  output$grafico_histBinom <- renderPlotly({
     p <- input$pb
     n <- input$nb
     vi<-input$valor_inicial

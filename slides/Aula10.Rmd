@@ -8,7 +8,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 10 - Estatística, Distribuição Amostral e Amostragem"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(10-06-2021)"
+date: "(24-06-2021)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
