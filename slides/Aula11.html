@@ -271,7 +271,31 @@ A distribuição da razão `\(t\)` é conhecida como **distribuição `\(t\)` de
 
 [Tabela - Distribuição t-Student](https://github.com/arpanosso/estatinfo/raw/master/docs/Tabela_tdeStudent.pdf) 
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Distribuição t de Student
+
+As distribuições `\(t\)` são simétricas em torno de zero mas têm caudas mais espalhadas do que a distribuição `\(N(0, 1)\)`. Entretanto, com o aumento de `\(r\)`, a distribuição `\(t\)` se aproxima da distribuição `\(N(0, 1)\)`, por `\(Var(t)\)` tende à unidade `\((1)\)`.
+
+`$$E(t) = 0 \text{   e   } Var(t) = \frac{r}{r-2} = \frac{n-1}{n-3}$$`
+Pode-se concluir da distribuição `\(t\)`, que
+
+`$$P(-t_{\frac{\alpha}{2}} \le \frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}} \le +t_{\frac{\alpha}{2}}) = 1 - \alpha$$`
+em que `\(t_{\alpha \\2}\)` é obtido na tabela da distribuição t com `\(r = n – 1\)` graus de liberdade, ou seja:
+
+`$$IC(\mu;1-\alpha) = ]\bar{x}-t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$`
+
+---
+
+### Exercício
+
+Uma amostra de `\(10\)` cães sofrendo de uma determinada doença apresentou um tempo de sobrevivência médio de `\(46,9\)` meses e o desvio padrão de `\(43,3\)` meses. Determinar os limites de confiança de 90% para `\(\mu\)`.
+
+--
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_06.png" width="60%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
