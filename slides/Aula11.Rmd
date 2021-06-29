@@ -345,3 +345,4 @@ Suponha que em $n = 400$ animais são administrados uma droga, obtendo  $X = 320
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_07.png")
 ```
 
+---
