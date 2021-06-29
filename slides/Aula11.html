@@ -185,14 +185,32 @@ class: middle, center, inverse
 
 ---
 
-## (a) Caso em que `\(n\)` é grande `\((n \ge 30)\)` e `\(\sigma\)` conhecido.
+### (a) Caso em que `\(n\)` é grande `\((n \ge 30)\)` e `\(\sigma\)` conhecido.
 
 O desenvolvimento de intervalos de confiança para `\(\mu\)` é baseado na distribuição amostral de `\(\bar{X}\)` se o tamanho da amostra `\((n)\)` é grande:
 
 `$$Z = \frac{\bar{X}- \mu}{\frac{\sigma}{\sqrt{n}}} \cong N(0,1)$$`
 
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/acuracia_precisao.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_01.png" width="30%" style="display: block; margin: auto;" /&gt;
+onde:  
+`\(a = \bar{X} - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}\)` e `\(b = \bar{x} + z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}\)`
+
+$$
+`\begin{cases}
+\frac{\sigma}{\sqrt{n}} = \sigma_{\bar{X}} = \text{erro padrão da média} \\
+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} = \text{erro da estimativa da média} 
+\end{cases}`
+$$
+
+---
+
+### Exemplo
+
+Se `\(1 - \alpha = 0,95\)` nesse caso `\(\alpha = 0,05\)`
+
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_02.png" width="30%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
