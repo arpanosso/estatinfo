@@ -8,3 +8,4 @@
 ### https://arpanosso.github.io/estatinfo/slides/Aula08.html
 ### https://arpanosso.github.io/estatinfo/slides/Aula09.html
 ### https://arpanosso.github.io/estatinfo/slides/Aula10.html
+### https://arpanosso.github.io/estatinfo/slides/Aula11.html
