@@ -455,17 +455,22 @@ c) Fixe a probabilidade $\alpha$ de cometer o **erro tipo I** e use este valor p
 
 d) Use as informações da amostra para calcular o valor da estatística do teste;
 
-e) Se o valor da estatística calculado com os dados da amostra não pertencer à $RC$, não rejeitamos $H_0$; caso contrário, rejeita-se $H_0$.
+e) Se o valor da estatística calculado com os dados da amostra não pertencer à $RC$, não rejeitamos $H_0$; caso contrário, rejeita-se $H_0$. 
 
 ---
+
 ```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_05.png")
 ```
+
 ---
+
 ```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_06.png")
 ```
+
 ---
+
 ```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_07.png")
 ```
