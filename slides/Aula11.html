@@ -295,7 +295,37 @@ Uma amostra de `\(10\)` cães sofrendo de uma determinada doença apresentou um 
 
 --
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_06.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_06.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle, center, inverse
+
+# Intervalo de Confiança para o Parâmetro Binomial `\((p)\)`
+
+---
+
+Fazendo uso do fato que, para `\(n\)` grande, a distribuição binomial pode ser aproximada com a normal:
+
+`$$Z = \frac{x - n.p}{\sqrt{n.p.(1-p)}}$$`
+
+Temos:
+
+`$$P \left(-z_{\frac{\alpha} {2}} \le \frac{x- np}{\sqrt{np(1-p)}} \le +z_{\frac{\alpha}{2}} \right) = 1 - \alpha$$`
+
+Substituindo `\(p\)`, visto que é desconhecido, por seu estimador `\(\hat{p}\)`  dentro das raízes, obtêm-se:
+
+`$$IC(\hat{p};1-\alpha) = \left]\hat{p}-z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}};\hat{p}+z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}} \right[$$`
+
+---
+
+### Exemplo
+
+Suponha que em `\(n = 400\)` animais são administrados uma droga, obtendo  `\(X = 320\)` sucessos, ou seja, `\(80\%\)` dos animais melhoraram.  A partir destes dados, obtenha um `\(IC\)` para `\(p\)`, com `\(1 - \alpha = 0,90\)`.
+
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_07.png" width="80%" style="display: block; margin: auto;" /&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
