@@ -393,18 +393,17 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 Então $RC = \{ \bar{X} \in R | \bar{X} \ge 505,78\;g \}$ e a regra de decisão é "se $\bar{X_a} \in RC$, rejeita-se $H_0$ e a conclusão é que a ração $B$ é superior à $A$; se $\bar{X_a} \notin RC$, não rejeita-se $H_0$, e a conclusão é que as rações são estatisticamente iguais.
 
 ---
+### Estatística teste
 
-## Estatística teste
-
-Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, $n = 50$ ).
-
-Calcula-se a média amostral $\bar{x}_a$ do, no exemplo, ganho de peso diário no período.
+Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, $n = 50$ ). Calcula-se a média amostral $\bar{x}_a$ do, no exemplo, ganho de peso diário no período.
 
 Se $\bar{x}_a$ estiver próxima de $500\;g$, **não se deve rejeitar $H_0$**, e a **conclusão** será que a ração do tipo $B$ é *estatisticamente* igual à ração do tipo $A$.
 
 Se $\bar{x}_a$ estiver próxima ou for superior à $500\;g$, **rejeita-se $H_0$ em favor a $H_1$** e a **conclusão**  será que a ração do tipo $B$ é superior à do tipo $A$, tal resultado implica no fato de que a suinocultura poderá utilizá-la.
 
-## Critério de decisão 
+---
+
+### Critério de decisão 
 
 Para aceitar ou rejeitar $H_0$, determina-se um valor $k$ (ponto) entre $500$ e $510 \;g$, chamado valor crítico, $\bar{x}_c$.
 
@@ -412,5 +411,33 @@ Para aceitar ou rejeitar $H_0$, determina-se um valor $k$ (ponto) entre $500$ e 
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_02.png")
 ```
 
+O procedimento do teste, então, divide os possíveis valores da estatística teste em dois subconjuntos: uma região de aceitação e uma de rejeição para $H_0$, o que pode levar a dois tipos de erros. 
+
+Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\;g$ e incorretamente concluímos que $\mu = 510\;g$, cometeremos um erro referido como **ERRO TIPO I**. 
+
+Por outro lado, se o verdadeiro valor de $\mu$ é $510\;g$ e incorretamente concluímos  que $\mu = 500 \;g$, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II**.
+
+---
+## Erros tipo I e II
+
+ | Situação específica | na População
+---|---:|:---|
+Conclusão do Teste | $H_0$ verdadeira | $H_0$ falsa
+Não Rejeita $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
+Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
 
 
+$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = nível de significância $(5\%, 1\% \text{ ou } 0,1\%)$.
+
+$\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **poder do teste** dado por $1-\beta$.
+
+
+---
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_03.png")
+```
+
+---
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_04.png")
+```
