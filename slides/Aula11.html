@@ -175,13 +175,13 @@ class: middle, center, inverse
 
 ## Precisamos definir 4 casos:
 
-### (a) Caso em que `\(n\)` é grande e `\(\sigma\)` conhecido.
+### (a) Caso em que `\(n\)` é grande e `\(\sigma\)` conhecido;
 
-### (b) Caso em que `\(n\)` é grande e `\(\sigma\)` desconhecido.
+### (b) Caso em que `\(n\)` é grande e `\(\sigma\)` desconhecido;
 
-### (c) Caso em que as amostras são pequenas `\((n &lt; 30)\)` `\(\sigma\)` conhecido.
+### (c) Caso em que as amostras são pequenas `\((n &lt; 30)\)` `\(\sigma\)` conhecido;
 
-### (d) Caso em que as amostras são pequenas `\((n &lt; 30)\)` e `\(\sigma\)` desconhecido
+### (d) Caso em que as amostras são pequenas `\((n &lt; 30)\)` e `\(\sigma\)` desconhecido.
 
 ---
 
@@ -217,9 +217,61 @@ Se `\(1 - \alpha = 0,95\)` nesse caso `\(\alpha = 0,05\)`
 
 ---
 
-Esta expressão, deve ser interpretada do seguinte modo: contruídos todos os intervalos da orma `\(\bar{X} \pm 1,96 \sigma_{\bar{X}}\)`, `\(95\%\)` deles conterão `\(\mu\)`. 
+Esta expressão, deve ser interpretada do seguinte modo: contruídos todos os intervalos da orma `\(\bar{X} \pm 1,96 \sigma_{\bar{X}}\)`, `\(95\%\)` deles conterão `\(\mu\)`. Lembrando  que `\(\mu\)` não é uma variável aleatória, mas um parâmetro, isto é, não é o mesmo que dizer que `\(\mu\)` tem `\(95\%\)` de probabilidade de estar entre os limites indicados.
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_04.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_04.png" width="65%" style="display: block; margin: auto;" /&gt;
+
+---
+
+Então, denotamos o intervalo de confiança como:
+
+`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$`
+
+Considerando uma amostra de `\(100\)` animais da raça Nelore, onde o peso médio a desmama é `\(171,70 \;kg\)`, encontre um IC de `\(95\%\)` para `\(\mu\)`, supondo que o desvio padrão da população `\((\sigma)\)` seja igual a `\(7,79\;kg\)`.
+
+--
+
+`$$IC(\mu;95\%) = ]171,70 \pm 1,96 \frac{7,79}{\sqrt{100}} [ = ]170,17\;kg; 173,23\;kg [$$`
+
+---
+
+### (b) Caso em que `\(n\)` é grande `\((n \ge 30)\)` e `\(\sigma\)` desconhecido.
+
+Como n é grande, a substituição de `\(\sigma\)` pelo desvio padrão amostral `\((s)\)` não afeta apreciavelmente a estimativa de `\(IC\)`:
+
+
+`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$`
+
+---
+
+### (c) Caso em que as amostras são pequenas `\((n &lt; 30)\)` `\(\sigma\)` conhecido.
+
+Se `\(X_1, X_2, \cdots, X_n\)` é uma amostra aleatória de uma população com distribuição normal `\(N (\mu, \sigma^2)\)`, a média amostral `\(\bar{X}\)` é exatamente  distribuída como `\(N (\mu, \frac{\sigma^2}{n} )\)`. Sendo `\(\sigma\)` conhecido, o `\(IC (\mu : 1–\alpha)\)` é dado por:
+
+`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$`
+
+---
+
+### (d) Caso em que as amostras são pequenas `\((n &lt; 30)\)` e `\(\sigma\)` desconhecido.
+
+Fato que ocorre na maioria dos casos, uma aproximação intuitiva é substituir `\(\sigma\)` por `\(s\)` considerar a razão:
+
+`$$t = \frac{\bar{x} - \mu}{\frac{s}{\sqrt{n}}}$$`
+
+Essa substituição causa uma considerável diferença se a amostra for pequena. A notação `\(t\)` é requerida porque `\(s\)` aumenta a variância de `\(t\)` para um valor maior do que um `\((1)\)`, de modo que a razão não é padronizada. 
+
+
+A distribuição da razão `\(t\)` é conhecida como **distribuição `\(t\)` de Student** com 
+`\(r = n – 1\)` graus de liberdade.
+
+
+---
+
+### Distribuição t de Student
+
+[Tabela - Distribuição t-Student](https://github.com/arpanosso/estatinfo/raw/master/docs/Tabela_tdeStudent.pdf) 
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png" width="90%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
