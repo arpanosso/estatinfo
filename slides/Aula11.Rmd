@@ -341,8 +341,51 @@ $$IC(\hat{p};1-\alpha) = \left]\hat{p}-z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\
 Suponha que em $n = 400$ animais são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
 
 
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_07.png")
 ```
 
 ---
+
+### Exemplo  
+Suponha que em $n = 400$ animais são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
+
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_08.png")
+```
+
+---
+
+class: middle, center, inverse
+
+# Teste de Hipótese
+
+---
+
+## Teste de Hipótese
+
+**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado pela evidência obtida de dados amostrais. 
+
+
+Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
+
+---
+**Exemplo 1**.  Uma suinocultura usa uma ração $A$ que propicia, da desmama até a idade de abate, um ganho em peso de $500 g/dia/suíno$ $(\sigma = 25 g)$.  O fabricante de uma ração $B$ afirma que nas mesmas condições, sua ração propicia um ganho de $510 g/dia/suíno$ $(\sigma = 25 g/dia/suíno)$. 
+
+Considerando a amostra de $50$ leitões, aos quais foi fornecida a nova ração $(B)$, deve-se ou não adotar essa ração, admitindo-se como resultado um ganho em peso médio diário de $504 g/dia/suíno$ $( \bar{X})$, fixando-se $\alpha= 5\%$.
+
+
+---
+### Hipóteses estatísticas
+
+Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técnica é comparado com o padrão, para determinar se sua superioridade pode ser corroborada pela evidência experimental.
+
+**Hipótese nula $(H_0)$:** é a hipótese de igualdade entre o novo e o produto padrão, ou seja, a designação "hipótese nula" decorre da suposição que a diferença entre eles é nula ou zero.
+
+**Hipótese nula $(H_1)$:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
+
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_01.png")
+```
