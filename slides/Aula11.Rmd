@@ -216,7 +216,20 @@ $$
 
 Se $1 - \alpha = 0,95$ nesse caso $\alpha = 0,05$
 
-
-```{r,out.width = "30%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_02.png")
+```
+
+---
+
+```{r,out.width = "85%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_03.png")
+```
+
+---
+
+Esta expressão, deve ser interpretada do seguinte modo: contruídos todos os intervalos da orma $\bar{X} \pm 1,96 \sigma_{\bar{X}}$, $95\%$ deles conterão $\mu$. 
+
+```{r,out.width = "85%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_04.png")
 ```
