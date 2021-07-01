@@ -4,8 +4,6 @@
 # menor entre e maiior
 # 4 -  Adicionar a acumulada
 # 5 - convergência para normal com o aumento da amostra
-
-
 library(tidyverse)
 library(shiny)
 library(shinydashboard)
@@ -26,7 +24,8 @@ ui <- dashboardPage(
       menuItem("Distribuições Contínuas",icon = icon("chart-area"),
                menuItem("Normal",tabName = "normal"),
                menuItem("Amostral - Média",tabName = "amostral_media"),
-               menuItem("Amostral - Proporção",tabName = "amostral_prop")
+               menuItem("Amostral - Proporção",tabName = "amostral_prop"),
+               menuItem("Estimação",tabName = "estimativa")
                #menuItem("Exponencial",tabName = "exponencial"),
                #menuItem("Qui-quadrado",tabName = "quiquadrado"),
                #menuItem("F de Snedecor",tabName = "fsnedecor"),
@@ -400,6 +399,88 @@ ui <- dashboardPage(
             )
           )
         )
+      ),
+      tabItem(
+        tabName = "estimativa",
+        fluidRow(
+          column(
+            width = 12,
+            h1("Estimação")
+          )
+        ),
+        hr(style = "border-top: 1px solid black;"),
+        fluidRow(
+          column(
+            width = 12,
+            fluidRow(
+              box(
+                width = 6,
+                title = "Selecione o tamanho da população",
+                solidHeader = TRUE ,
+                status = "primary",
+                sliderInput(
+                  "N_pop",
+                  "",
+                  min = 1000,
+                  max = 50000,
+                  value = 10000
+                )
+              ),
+              # infoBoxOutput("media_pop"),
+              # infoBoxOutput("var_pop"),
+              # infoBoxOutput("sd_pop"),
+              box(
+                  width = 6,
+                  title = "Selecione o tamanho da amostra",
+                  solidHeader = TRUE ,
+                  status = "primary",
+                  sliderInput(
+                    "n_amostra",
+                    "",
+                    min = 2,
+                    max = 60,
+                    value = 2
+                  )
+
+              )
+            )
+          )
+        ),
+        fluidRow(
+          column(
+            width = 12,
+            fluidRow(
+               box(
+                width = 3,
+                title = "Média vs Variância",
+                solidHeader = TRUE ,
+                status = "primary",
+                plotOutput("media_var")
+              ),
+              box(
+                width = 3,
+                title = "Esperança da Estimador Viciado (Variância)",
+                solidHeader = TRUE ,
+                status = "primary",
+                plotOutput("esperanca_viciado")
+              ),
+              box(
+                width = 3,
+                title = "Esperança do Estimador Não Viciado (Variância)",
+                solidHeader = TRUE ,
+                status = "primary",
+                plotOutput("esperanca_n_viciado")
+              ),
+              box(
+                width = 3,
+                title = "Esperança do Desvio Padrão",
+                solidHeader = TRUE ,
+                status = "primary",
+                plotOutput("esperanca_desvio_padrao")
+              )
+            )
+          )
+        )
       )
     )
   ),
@@ -718,6 +799,118 @@ server <- function(input, output, session) {
         theme_bw()
     }
   }, height = 340)
+
+
+  pop <- reactive({
+    rnorm(input$N_pop)
+
+  })
+
+  output$media_pop <- renderInfoBox({
+    media_pop <- mean(pop())
+
+    infoBox(
+      title = "Média real",
+      value = round(media_pop,4),
+      icon = icon("hand-point-right"),
+      fill = TRUE,
+      color="blue", # validColors {shinydashboard} algumas válidas na documentação
+      width = 4 # já é padrão, não precisa de column
+    )
+  })
+
+  output$var_pop <- renderInfoBox({
+    var_pop <- var(pop())
+
+    infoBox(
+      title = "Variância",
+      value = round(var_pop,4),
+      icon = icon("chart-line"),
+      fill = TRUE,
+      color="blue", # validColors {shinydashboard} algumas válidas na documentação
+      width = 4 # já é padrão, não precisa de column
+    )
+  })
+
+  output$sd_pop <- renderInfoBox({
+    sd_pop <- sd(pop())
+
+    infoBox(
+      title = "Desvio Padrão",
+      value = round(sd_pop,4),
+      icon = icon("project-diagram"),
+      fill = TRUE,
+      color="blue", # validColors {shinydashboard} algumas válidas na documentação
+      width = 4 # já é padrão, não precisa de column
+    )
+  })
+
+  amostragem <- reactive({
+    req(input$n_amostra)
+    n = input$n_amostra
+    medias = 0
+    var_est_pop = 0
+    var_est_amos = 0
+    dp_est_amos = 0
+    for(i in 1:1000){
+      am<-sample(pop(),n,replace = TRUE)
+      medias[i] = mean(am)
+      var_est_pop[i] = sum((am-mean(am))^2)/length(am)
+      var_est_amos[i] = sum((am-mean(am))^2)/(length(am)-1)
+      dp_est_amos[i] = sd(am)
+    }
+    tibble(medias = medias,
+         var_est_pop = var_est_pop,
+         var_est_amos = var_est_amos,
+         dp_est_amos = dp_est_amos
+    )
+
+  })
+
+  output$media_var <- renderPlot({
+    amostragem() |>
+      ggplot(aes(x=medias, y= var_est_pop)) +
+      geom_vline(xintercept = mean(pop()),col=2, lwd=1.2)+
+      geom_hline(yintercept = var(pop()),col=2, lwd=1.2)+
+      theme_minimal()+
+      coord_cartesian(xlim=c(-2,2),ylim = c(0,4))+
+      geom_point(col="blue")
+
+  })
+
+  output$esperanca_viciado <- renderPlot({
+    amostragem() |>
+      ggplot(aes(x=mean(medias), y= mean(var_est_pop))) +
+      geom_vline(xintercept = mean(pop()),col=2, lwd=1.2)+
+      geom_hline(yintercept = var(pop()),col=2, lwd=1.2)+
+      theme_minimal()+
+      coord_cartesian(xlim=c(-1,1),ylim = c(0,1.5))+
+      geom_point(col="blue",size=4)
+
+  })
+
+  output$esperanca_n_viciado <- renderPlot({
+    amostragem() |>
+      ggplot(aes(x=mean(medias), y= mean(var_est_amos))) +
+      geom_vline(xintercept = mean(pop()),col=2, lwd=1.2)+
+      geom_hline(yintercept = var(pop()),col=2, lwd=1.2)+
+      theme_minimal()+
+      coord_cartesian(xlim=c(-1,1),ylim = c(0,1.5))+
+      geom_point(col="blue",size=4)
+
+  })
+
+  output$esperanca_desvio_padrao <- renderPlot({
+    amostragem() |>
+      ggplot(aes(x=mean(medias), y= mean(dp_est_amos))) +
+      geom_vline(xintercept = mean(pop()),col=2, lwd=1.2)+
+      geom_hline(yintercept = sd(pop()),col=2, lwd=1.2)+
+      theme_minimal()+
+      coord_cartesian(xlim=c(-1,1),ylim = c(0.75,1.5))+
+      geom_point(col="blue",size=4)
+
+  })
+
 }
 
 shinyApp(ui, server)

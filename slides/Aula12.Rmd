@@ -1,0 +1,146 @@
+---
+# Para transformar em PDF, usar: 
+# pagedown::chrome_print("slides/Aula08.html")
+# imagens https://www.pexels.com/pt-br/
+# gifs https://giphy.com/
+# https://www.ime.usp.br/~rfarias/simbolos.html
+title: "Estatística e Informática"
+subtitle: "Aula 12 - Teste de Hipótese"
+author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+date: "(08-07-2021)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+options(dplyr.print_min = 5, dplyr.print_max = 5)
+```
+
+
+class: middle, center, inverse
+
+# Teste de Hipótese
+
+---
+
+## Teste de Hipótese
+
+**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado pela evidência obtida de dados amostrais. 
+
+
+Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
+
+---
+**Exemplo 1**.  Uma suinocultura usa uma ração $A$ que propicia, da desmama até a idade de abate, um ganho em peso de $500 g/dia/suíno$ $(\sigma = 25 g)$.  O fabricante de uma ração $B$ afirma que nas mesmas condições, sua ração propicia um ganho de $510 g/dia/suíno$ $(\sigma = 25 g/dia/suíno)$. 
+
+Considerando a amostra de $50$ leitões, aos quais foi fornecida a nova ração $(B)$, deve-se ou não adotar essa ração, admitindo-se como resultado um ganho em peso médio diário de $504 g/dia/suíno$ $( \bar{X})$, fixando-se $\alpha= 5\%$.
+
+
+---
+### Hipóteses estatísticas
+
+Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técnica é comparado com o padrão, para determinar se sua superioridade pode ser corroborada pela evidência experimental.
+
+**Hipótese nula $(H_0)$:** é a hipótese de igualdade entre o novo e o produto padrão, ou seja, a designação "hipótese nula" decorre da suposição que a diferença entre eles é nula ou zero.
+
+**Hipótese nula $(H_1)$:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
+
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_01.png")
+```
+
+Então $RC = \{ \bar{X} \in R | \bar{X} \ge 505,78\;g \}$ e a regra de decisão é "se $\bar{X_a} \in RC$, rejeita-se $H_0$ e a conclusão é que a ração $B$ é superior à $A$; se $\bar{X_a} \notin RC$, não rejeita-se $H_0$, e a conclusão é que as rações são estatisticamente iguais.
+
+---
+### Estatística teste
+
+Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, $n = 50$ ). Calcula-se a média amostral $\bar{x}_a$ do, no exemplo, ganho de peso diário no período.
+
+Se $\bar{x}_a$ estiver próxima de $500\;g$, **não se deve rejeitar $H_0$**, e a **conclusão** será que a ração do tipo $B$ é *estatisticamente* igual à ração do tipo $A$.
+
+Se $\bar{x}_a$ estiver próxima ou for superior à $500\;g$, **rejeita-se $H_0$ em favor a $H_1$** e a **conclusão**  será que a ração do tipo $B$ é superior à do tipo $A$, tal resultado implica no fato de que a suinocultura poderá utilizá-la.
+
+---
+
+### Critério de decisão 
+
+Para aceitar ou rejeitar $H_0$, determina-se um valor $k$ (ponto) entre $500$ e $510 \;g$, chamado valor crítico, $\bar{x}_c$.
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_02.png")
+```
+
+O procedimento do teste, então, divide os possíveis valores da estatística teste em dois subconjuntos: uma região de aceitação e uma de rejeição para $H_0$, o que pode levar a dois tipos de erros. 
+
+Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\;g$ e incorretamente concluímos que $\mu = 510\;g$, cometeremos um erro referido como **ERRO TIPO I**. 
+
+Por outro lado, se o verdadeiro valor de $\mu$ é $510\;g$ e incorretamente concluímos  que $\mu = 500 \;g$, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II**.
+
+---
+## Erros tipo I e II
+
+ | Situação específica | na População
+---|---:|:---|
+Conclusão do Teste | $H_0$ verdadeira | $H_0$ falsa
+Não Rejeita $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
+Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
+
+
+$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = nível de significância $(5\%, 1\% \text{ ou } 0,1\%)$.
+
+$\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **poder do teste** dado por $1-\beta$.
+
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_03.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_04.png")
+```
+---
+
+## Passos para a construção de um teste de hipóteses
+
+a) Fixe a hipótese $H_0$  a ser testada e a alternativa $H_1$;
+ 
+b) Use a teoria estatística e as informações disponíveis para decidir qual estatística (estimador) será usada para testar a hipótese $H_0$, obtendo-se suas propriedades (distribuição, estimativa, erro padrão);
+ 
+c) Fixe a probabilidade $\alpha$ de cometer o **erro tipo I** e use este valor para construir a $RC$ (região crítica). Lembre-se que a $RC$ é construída para a estatística definida no passo **(a)**, usando os valores hipotetizados por $H_0$;
+
+d) Use as informações da amostra para calcular o valor da estatística do teste;
+
+e) Se o valor da estatística calculado com os dados da amostra não pertencer à $RC$, não rejeitamos $H_0$; caso contrário, rejeita-se $H_0$. 
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_05.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_06.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_07.png")
+```
