@@ -1,6 +1,6 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula08.html")
+# pagedown::chrome_print("slides/Aula11.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
@@ -287,6 +287,17 @@ $$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{
 
 ---
 
+class: center,inverse
+
+O vídeo abaixo apresenta um resumos dos 3 primeiros casos aqui apresentados.
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/JIivixTT344" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://youtu.be/JIivixTT344)
+
+---
+
 ### (d) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ desconhecido.
 
 Fato que ocorre na maioria dos casos, uma aproximação intuitiva é substituir $\sigma$ por $s$ considerar a razão:
@@ -325,7 +336,16 @@ em que $t_{\alpha \\2}$ é obtido na tabela da distribuição t com $r = n – 1
 $$IC(\mu;1-\alpha) = ]\bar{x}-t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$
 
 ---
+class: center,inverse
 
+O vídeo abaixo apresenta um resumos do último caso apresentado.
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/awuOPux5D1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://youtu.be/awuOPux5D1A)
+
+---
 ### Exercício
 
 Uma amostra de $10$ cães sofrendo de uma determinada doença apresentou um tempo de sobrevivência médio de $46,9$ meses e o desvio padrão de $43,3$ meses. Determinar os limites de confiança de 90% para $\mu$.
