@@ -459,7 +459,7 @@ ui <- dashboardPage(
               ),
               box(
                 width = 3,
-                title = "Esperança da Estimador Viciado (Variância)",
+                title = "Esperança do Estimador Viciado (Variância)",
                 solidHeader = TRUE ,
                 status = "primary",
                 plotOutput("esperanca_viciado")
