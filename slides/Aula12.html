@@ -234,18 +234,36 @@ Sob a suposição de `\(H_0\)` ser verdadeira, isto é, `\(\sigma^2_1 = \sigma^2
 
 ---
 
-### Construção da região crítica
+#### Construção da região crítica
 
 Fixado `\(\alpha\)`, os pontos críticos serão `\(F_1\)` e `\(F_2\)` da distribuição `\(F\)`, tais que:
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_17.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_17.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 Se `\(\alpha = 10\%\)`, pode-se, utilizando a Tabela da distribuição `\(F\)`, encontrar diretamente `\(F_2(5\%)\)`. Para encontrar `\(F_1(95\%)\)` utiliza-se a propriedade:
 
+
+`\(F_{(1-\alpha;\;n_1-1,\; n_2-1)} = \frac{1}{F_{(\alpha;\;n_2-1,\; n_1-1)}}\)`, assim: `\(F_{(0,95;\;n_1-1,\; n_2-1)} = \frac{1}{F_{(0,05;\;n_2-1,\; n_1-1)}}\)`
+
 ---
 
+#### Exemplo
 
+Se `\(n_1 - 1= 5\)` e `\(n_2-1 = 7\)`
 
+`\(F2_{(0,05;\;5,\; 7)} = 3,97\)`
+
+`\(F1_{(0,95;\;5,\; 7)} = \frac{1}{F_{(0,05;\;7,\; 5)}}=\frac{1}{4,88} = 0,205\)`
+
+Assim, `\(RC = \{0 &lt; F &lt; 0,205 \text{ ou }  F &gt; 3,97 \}\)`
+
+Entretanto, o procedimento que se usa na prática é calcular `\(F\)` utilizando sempre a maior variância no numerador `\(s_1^2 &gt; s^2_2\)` portanto `\(F &gt; 1\)`, e considerar o ponto crítico `\(F_{2(\alpha;\;n1-1,\; n2-1)}\)`.
+
+**Amostra:**&gt; Colhidas amostras aleatórias `\(n_1\)` e  `\(n_2\)`, calcula-se `\(s^2_1\)` e `\(s^2_2\)` com `\((s^2_1 &gt; s^2_2)\)`, então:
+
+`$$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$`
+
+**Conclusão:** Se `\(F_{obs} \in RC\)`, **rejeita-se** `\(H_0\)`, no caso contrário, **não se rejeita** `\(H_0\)`.
 
 
     </textarea>
