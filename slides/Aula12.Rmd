@@ -147,7 +147,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ---
 class: middle, center, inverse
 
-## Teste sobre a média de uma população com variância conhecida
+# Teste sobre a média de uma população com variância conhecida
 
 ---
 
@@ -158,7 +158,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ---
 
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_09.png")
 ```
 
@@ -170,3 +170,37 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ```
 
 ---
+
+[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_11.png")
+```
+
+---
+
+class: middle, center, inverse
+
+# Teste para a Proporção binomail (p)
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_12.png")
+```
+---
+
+**Exemplo 3**. Um laboratório de vacinas contra febre aftosa afirmou que ela imuniza $90\%$ dos animais.  Em uma amostra de $200$ animais, nos quais foram aplicados a vacina, $160$ foram imunizados. Verificar se a declaração do fabricante é verdadeira ao nível de $5\%$.
+
+---
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_13.png")
+```
+
+
