@@ -281,8 +281,9 @@ Fixado $\alpha$, os pontos críticos serão $F_1$ e $F_2$ da distribuição $F$,
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_17.png")
 ```
 
-
 Se $\alpha = 10\%$, pode-se, utilizando a Tabela da distribuição $F$, encontrar diretamente $F_2(5\%)$. Para encontrar $F_1(95\%)$ utiliza-se a propriedade:
+
+---
 
 
 
