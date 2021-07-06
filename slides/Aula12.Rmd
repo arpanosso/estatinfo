@@ -306,4 +306,11 @@ $$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$
 
 **Conclusão:** Se $F_{obs} \in RC$, **rejeita-se** $H_0$, no caso contrário, **não se rejeita** $H_0$.
 
+---
+
+[Tabela - Distribuição t-Student](https://github.com/arpanosso/estatinfo/raw/master/docs/Tabela_tdeStudent.pdf) 
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/TH_18.png")
+```
 
