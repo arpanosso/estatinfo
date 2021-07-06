@@ -240,3 +240,51 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_16.png")
 ```
+
+---
+class: middle, center, inverse
+
+# Comparações de parâmetros de duas populações
+
+---
+
+
+Suponha duas amostras aleatórias independentes de tamanhos $n_1$ e $n_2$ ou seja, $X_1 , X_2 , ..., X_{n1}$ e $Y_1 ,Y_2 , ...,Y_{n2}$, respectivamente, de uma população com distribuição $N(\mu_1, \sigma_1^2)$ e de população com distribuição $N(\mu_2, \sigma_2^2)$
+
+### Hipóteses
+
+$H_0: \sigma_1^2 = \sigma_2^2$ ou seja $\left(\frac{\sigma_1^2}{\sigma_2^2} = 1 \right)$ 
+
+$H_1: \sigma_1^2 \neq \sigma_2^2$ ou seja $\left(\frac{\sigma_1^2}{\sigma_2^2} \neq 1 \right)$ 
+
+---
+
+### Estatística do teste:
+
+Sendo $s_1^2$ e $s_2^2$ as variâncias, respectivamente das amostras $n_1$ e $n_2$, o quociente
+
+$$\frac{{s^2_1}/{\sigma_1^2}}{{s^2_2}/{\sigma^2_2}}$$
+
+Segue a distribuição de $F$ (Snedecor) com $n_1-1$ e $n_2-1$ graus de liberdade $(GL)$, tem a denotação $F(n_1-1, n_2-1)$.
+
+Sob a suposição de $H_0$ ser verdadeira, isto é, $\sigma^2_1 = \sigma^2_2$, tem-se que
+
+$F = \frac{s^2_1}{s^2_2} \sim F(n_1-1, n_2-1)$
+
+---
+
+### Construção da região crítica
+
+Fixado $\alpha$, os pontos críticos serão $F_1$ e $F_2$ da distribuição $F$, tais que:
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_17.png")
+```
+
+
+Se $\alpha = 10\%$, pode-se, utilizando a Tabela da distribuição $F$, encontrar diretamente $F_2(5\%)$. Para encontrar $F_1(95\%)$ utiliza-se a propriedade:
+
+
+
+
+
