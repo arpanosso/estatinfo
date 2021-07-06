@@ -308,9 +308,191 @@ $$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$
 
 ---
 
-[Tabela - Distribuição t-Student](https://github.com/arpanosso/estatinfo/raw/master/docs/Tabela_tdeStudent.pdf) 
+[Tabela - Distribuição F-Snedecor](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaFSnedecor.pdf) 
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/TH_18.png")
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_18.png")
 ```
+
+---
+
+**Exemplo**. Dois grupo de $8$ animais da mesma idade e raças diferentes foram submetidos a um mesmo regime alimentar. Os resultados para ganho de peso foram:
+
+| | | | | | | | 
+---| ---|--- | ---| ---|--- |--- |--- | 
+**R1:** | $2,30$   | $2,10$   | $1,91$   | $1,20$   | $1,93$   | $1,88$   | $1,95$   | $2,10$
+**R2:** | $2,30$   | $2,15$   | $2,00$   | $1,28$   | $2,15$   | $2,20$   | $1,91$   | $2,06$
+
+Ao nível de $5\%$, as variâncias dos ganhos de pesos raças diferem entre si?
+
+```{r}
+r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
+r2<-c(2.30,2.15,2.00,1.28,2.15,2.20,1.91,2.06)
+var.test(r1,r2)
+```
+
+---
+
+Testar as hipóteses:
+
+$$
+\begin{cases}
+H_0: \sigma_{r1}^2 = \sigma_{r2}^2 \\
+H_1: \sigma_{r1}^2 \neq \sigma_{r2}^2
+\end{cases}
+$$
+Calculando os valores de variância para as duas raças:
+
+$s_{r1}^2 = 0,10433$ 
+
+e  
+
+$s_{r2}^2 = 0,10068$
+
+sendo que $n_{r1} = n_{r2} = 8$ 
+
+e $\alpha = 5\%$
+
+
+A estatística do teste: $\frac{s_{r1}^2}{s_{r2}^2} = \frac{0,10433}{0,10068} = 1,03618$
+
+---
+$F_{c(0,05; 7, 7)} = 3,79$ assim, $RC = \{  F > 3,79 \}$
+```{r,echo=FALSE}
+curve(df(x,7,7),0,7,xlab="t",ylab="d",
+      main="F(7,7)")
+abline(v=1.03618,col="red",lty=2)
+segments(3.79,-1,3.79,df(3.79,7,7))
+text(1.5,0,"Fobs",col="red")
+text(5,0,"RC",col="black")
+```
+
+
+Como $F_{obs} \notin RC$ não se rejeita $H_0$, ou seja, as variâncias são estatisticamente iguais ao nível de 5% de significância, ou seja, as variâncias dos ganhos de peso das raças são homocedásticas.
+
+---
+
+### Comparação de duas médias de populações normais: amostras independentes
+
+A análise da hipótese da igualdade de variâncias é crucial para o uso do teste $t$, na comparação de duas médias, apresentado a seguir.
+
+Com o objetivo de se comparar duas populações examinaremos a situação na qual os dados estão na forma de realizações de amostras aleatórias de tamanhos $n_1$ e $n_2$, selecionadas, respectivamente, das populações $1$ e $2$. 
+
+Uma coleção de $n_1 + n_2$ elementos são aleatoriamente divididos em $2$ grupos de tamanhos $n_1$ e $n_2$, onde cada membro do primeiro grupo recebe o tratamento $1$ e do segundo, o tratamento $2$. Especificamente, estaremos interessados em fazer inferência sobre o parâmetro:
+
+$\mu_1 - \mu_2$ = (média da população 1) – (média da população 2)
+
+**Hipótese:** $H_0: \mu_1 = \mu_2$ ou seja, $\mu_1 - \mu_2 = 0$
+
+**Estatística do teste:** $Z = \frac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}} \sim N(0,1)$
+
+---
+
+#### Caso 1: variâncias conhecidas
+
+$Z = \frac{(\bar{X}-\bar{Y})}{\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}} \sim N(0,1)$
+
+#### Caso 2: variâncias desconhecidas e iguais
+
+Preliminarmente, testa-se se as variâncias das duas populações são iguais. Caso a hipótese não seja rejeitada, isto é, que $\sigma_1^2=\sigma_2^2=\sigma^2$, a estatística anterior transforma-se em:
+
+$Z = \frac{(\bar{X}-\bar{Y})}{\sigma\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$ , substituimos $\sigma$ por um estimador, teremos uma expressão muito semelhante à $t$ de Student. Uma estatística para $\sigma^2$ é a média ponderada:
+
+$S_P^2 = \frac{(n_1-1)s_1^2+(n_2-1)s^2_2}{(n_1-1)+(n_2-1)}$
+
+que, como $s^2_1$ e $s^2_2$ são dois estimadores não viciados de $\sigma^2$, também é um estimador não viciado de $\sigma^2$.
+
+Assim, $t = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \sim t(n_1+n_2 - 2) GL$
+---
+
+
+**Exemplo**. Dois grupo de $8$ animais da mesma idade e raças diferentes foram submetidos a um mesmo regime alimentar. Os resultados para ganho de peso foram:
+
+| | | | | | | | 
+---| ---|--- | ---| ---|--- |--- |--- | 
+**R1:** | $2,30$   | $2,10$   | $1,91$   | $1,20$   | $1,93$   | $1,88$   | $1,95$   | $2,10$
+**R2:** | $2,30$   | $2,15$   | $2,00$   | $1,28$   | $2,15$   | $2,20$   | $1,91$   | $2,06$
+
+Ao nível de $5\%$, as médias dos ganhos de pesos raças diferem entre si?
+
+```{r}
+r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
+r2<-c(2.30,2.15,2.00,1.28,2.15,2.20,1.91,2.06)
+t.test(r1, r2, alternative = "le", var.equal = TRUE)
+```
+
+---
+
+Usando os dados do exemplo anterior, testar se há evidência de que as duas raças
+apresentam o mesmo ganho de peso $(H_0: \mu_A = \mu_B \text{ vs. } H_1: \mu_A < \mu_B)$, ao nível de $5\%$.
+
+
+$$
+\begin{cases}
+H_0: \mu_{r1} = \mu_{r2} \\
+H_1: \mu_{r1} < \mu_{r2}
+\end{cases}
+$$
+
+Calculando os valores de média e desvio-padrão:
+
+
+$\bar{X} = 1,92125$ e $s_{r1}^2 = 0,10433$ e  $\bar{Y} = 2,00625$ e $s_{r2}^2 = 0,10068$
+
+sendo que $n_{r1} = n_{r2} = 8$ e $\alpha = 5\%$
+
+Assim, 
+
+$S_P^2 = \frac{(n_1-1)s_1^2+(n_2-1)s^2_2}{(n_1-1)+(n_2-1)} = \frac{(8-1)0,10433+(8-1)0,10068}{(8-1)+(8-1)} = 0,1025054$
+
+sendo $S_P = 0,3201646$
+
+Portanto, 
+
+$t_{obs} = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} = \frac{(1,92125 - 2,00625)}{0,3201646\sqrt{\frac{1}{8}+\frac{1}{8}}} = -0,5309908$
+
+---
+
+Para a construção da **região crítica** do teste: $t_c(14; 0,05) = -1,761$ assim, a região crítica é $RC = \{ t \le -1,76131\}$
+
+**Conclusão**: Como $t_{obs} \notin RC$, não rejeita-se $H_0$, não há evidências de que a raça 1 apresenta maior ganho de peso que a raça 2.
+
+```{r,echo=FALSE}
+curve(dt(x,14),-4,4,xlab="t",ylab="d",
+      main="t(14)")
+abline(v=0,col="black",lty=2)
+abline(v=-0.5309,col="red",lty=2)
+segments(-1.76,-1,-1.76,dt(-1.76,14))
+text(-0.6,0,"tobs",col="red")
+text(-2.6,0,"RC",col="black")
+```
+
+
+---
+
+#### Caso 3: variâncias desconhecidas e desiguais (Teste de Smith – Satterthwaite)
+
+
+Quando a hipótese de igualdade de variâncias for rejeitada, deve-se substituir $\sigma^2_1$ e $\sigma^2_2$ pelos seus respectivos estimadores $s^2_1$ e $s^2_2$ obtendo a estatística:
+
+
+$t = \frac{(\bar{X}-\bar{Y})}{\sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}$
+
+que sob a veracidade de $H_0$ $(\mu_1 - \mu_2 = 0)$, aproxima-se de uma distribuição $t$ de Student, com número de graus de liberdade dado aproximadamente por:
+
+$$gl=\frac{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}{\frac{\left( \frac{s^2_1}{n_1} \right)^2}{n_1-1}+\frac{\left( \frac{s^2_2}{n_2}  \right)^2}{n_2-1}}$$
+---
+
+Como o número de graus de liberdade assim calculado, geralmente, é **não inteiro**, recomenda-se aproximá-lo para o inteiro imediatamente anterior a este.
+
+Se $n_1$ e $n_2$ são ambos grandes $(n \ge 30)$, o teste pode ser baseado na estatística.
+
+$$Z = \frac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}} \sim N(0,1) \text{ sob } H_0$$
+
+pois permanece válido se $\sigma^2_1$ e $\sigma^2_2$ são substituídos por seus respectivos estimadores amostrais $s^2_1$ e $s^2_2$.
+
+
+**Nota**: no caso da inferência originada de amostras grandes, não é necessário assumir que as distribuições das populações originais são normais, porque o teorema  central do limite garante que as médias amostrais X e Y são aproximadamente distribuídas como $N( \mu_1, \sigma^2 / n_1 )$ e $N( \mu_2, \sigma^2 / n_2 )$, respectivamente. Além disso, a suposição de variâncias populacionais iguais $(\sigma^2_1 = \sigma^2_2)$ que é usada para amostras pequenas, é evitada nessa situação.
+
+
 
