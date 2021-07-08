@@ -62,6 +62,11 @@ Tal como no caso da distribuição $t$ de Student, existe uma família de distri
 
 ---
 
+[Tabela - Distribuição Qui-quadrado](https://github.com/arpanosso/estatinfo/blob/master/docs/TabelaChiSQ.pdf) 
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/chiSQ_01.png")
+```
 
 
 
