@@ -1,0 +1,88 @@
+---
+# Para transformar em PDF, usar: 
+# pagedown::chrome_print("slides/Aula08.html")
+# imagens https://www.pexels.com/pt-br/
+# gifs https://giphy.com/
+# https://www.ime.usp.br/~rfarias/simbolos.html
+title: "Estatística e Informática"
+subtitle: "Aula 13 - Ditribuição Qui-Quadrado"
+author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+date: "(15-07-2021)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+options(dplyr.print_min = 5, dplyr.print_max = 5)
+```
+
+
+### Distribuição Qui-quadrado
+
+Seja Y uma variável aleatória contínua com distribuição qui-quadrado   com $\nu$ graus de liberdade. Graficamente, a distribuição $\chi^2$ pode ser representada por:   
+
+```{r,echo=FALSE,fig.height=4}
+library(tidyverse)
+ggplot(data.frame(x=c(0,30)), aes(x = x)) +
+  stat_function(fun = dchisq,
+                args = list(df=10)
+                )+
+  geom_segment(aes(x=20,y=0,xend=20,yend=dchisq(20,10)),color="red") +
+  stat_function(fun = dchisq,
+                args = list(df=10),
+                xlim = c(20,30),
+                color="red",
+                geom = "area",
+                alpha = .2,
+                fill = "orange"
+    
+  ) + 
+  labs(y="f(X)", x="X") +
+  annotate(geom="text", x=25, y=0.015, 
+           label=expression(alpha),size=10)+
+  annotate(geom="text", x=17, y=0.005, 
+           label=expression(paste(x[c]," = ",chi^2)),size=8)+
+  theme_bw()
+```
+
+$$P(X > x_c) = \alpha$$
+
+
+Tal como no caso da distribuição $t$ de Student, existe uma família de distribuições $\chi^2$ indexada pelo número (inteiro) de graus de liberdade $(\nu)$.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
