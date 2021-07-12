@@ -42,27 +42,394 @@ Tal como no caso da distribuição `\(t\)` de Student, existe uma família de di
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/chiSQ_01.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
+---
+
+### Testes Qui-quadrado
+
+Serão apresentados testes que utilizam a distribuição qui-quadrado como estrutura probabilística e por esta razão são denominados **testes qui-quadrado**. A figura anterior apresenta a densidade do modelo `\(\chi^2\)` com a região crítica `\((RC)\)` do teste, isto é,  
+
+
+`$$RC = \{ X &gt; \chi^2 \}$$`
+
+Esses testes são utilizados para dados discretos (categóricos) provenientes de uma população, tais como mortalidade ou achados patológicos, etc. 
+
+O valor de qui-quadrado é um estimador da **Discrepância Entre Frequências Esperadas e Observadas**, estabelecendo se as diferenças encontradas se devem ou não à casualidade.
+
+---
+class: center, middle, inverse
+
+# Qui-quadrado como teste de aderência
+
+
+---
+
+O termo **aderência** refere-se à comparação de dados experimentais de frequência com a distribuição teórica.
+
+**Exemplo**: A Frequência    fenotípicas    observadas    de    um cruzamento  dihíbrido  entre  heterozigotos  de  ervilhas  lisas amarelas `\((YyRr \times YyRr)\)` (Mendel, 1866).
+
+Fenótipo | Freq. Observada `\((f_o)\)` | Freq Esperada `\((f_e)\)` sob `\(H_0\)`* | Desvio do esperado
+:--- |:---:|:---:|:---:|
+Amarela lisa | 315 | (556/16)*9 = 312,75  | 2,25
+Verde lisa | 108 | (556/16)*3 = 104,25  | 3,75
+Amarela rugosa|   101 | (556/16)*3 = 104,25 |  -3,25
+Verde rugosa | 32 | (556/16)*1 = 34,75  |   -2,75
+**Total**  | **556** | **556** | - 
+\* `\(H_0\)` = a segregação segue a razão mendeliana `\(9 : 3 : 3 : 1\)`.
+
+Estes desvios de frequência seriam devido ao acaso ?   
+Qual a probabilidade de ocorrer um desvio desta magnitude ?
+
+Formulando–se a hipótese `\(H_0\)` de que a segregação é `\(9:3:3:1\)`, as `\(f_e\)`’s dos quatro  genótipos são, respectivamente, `\(562.(9/16) = 312,75\)`, `\(562(3/16) = 104,25\)`,  `\(562(3/16) = 104,25\)`, `\(562(1/16) = 34,75\)`.
+
+---
+
+Para testar se os números observados `\((f_o)\)` dos três genótipos são consistentes com os esperados `\((f_e)\)` com base na segregação `\(9:3:3:1\)`, usa-se, então, a estatística:
+
+`$$\chi^2 = \sum \limits_{i=1}^k \frac{(f_o - f_e)^2}{f_e}$$`
+
+que sob `\(H_0\)` verdadeira tem distribuição `\(\chi^2\)` (qui-quadrado) com `\(\nu = k - 1\)` graus de liberdade.
+
+Note que em `\(\nu\)`, se subtrai `\(1\)` de `\(k\)` por causa da condição de restrição que estabelece que, sendo conhecidas `\((k-1)\)` frequências esperadas (independentes), a remanescente pode ser determinada por diferença.
+
+Quando as `\(f_e\)`’s somente puderem ser calculadas mediante estimativas de `\(m\)` parâmetros populacionais, a partir de estatísticas amostrais, o número de graus de liberdade `\((\nu)\)` é dado por `\(\nu = k – 1 – m\)`.
+
+
+
+### Defininto as Hipóteses
+
+$$
+`\begin{cases}
+H_0: \text{a segregação está de acordo com a razão mendeliana 9:3:3:1} 
+\\
+H_1: \text{a segregação é diferente de 9:3:3:1}
+\end{cases}`
+$$
+
+---
+
+### Fixar o `\(\alpha\)` de `\(10\%\)`, `\(5\%\)` ou `\(1\%\)`
+
+### Calcular a estatística `\(\chi^2_{obs}\)`
+
+`\(\chi_{obs}^2 = \frac{315-312,75}{312,75} +\frac{108-104,25}{104,25} +\frac{101-104,25}{104,25} +\frac{32-34,75}{34,75} = 0,470024\)`
+
+
+
+---
+### Determinar a região crítica
+
+`\(RC = \{\chi &gt; \chi_{c(\alpha, k-1)}^2\}\)`, como `\(k-1 = 3\)` e se `\(\alpha = 1\% \rightarrow \chi_c^2 = 11,345\)`
+
+
+
+&lt;img src="Aula13_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+Assim, `\(RC = \{ \chi^2 \ge 11,345 \}\)`
+
+### Conclusão
+
+Como `\(\chi_{obs} \notin RC\)` não rejeitamos `\(H_0\)`, ou seja, os resultados estão de acordo com a razão mendeliana `\(9:3:3:1\)`.
+
+---
+
+### Exemplo
+
+Seja `\(t\)` o número eventual de ***Unidades Formadoras de Colônia*** (UFC's)  presentes em um volume representado pelo pequeno quadrado observado em um levantamento isolamento  de  microrganismos  do  solo. Sendo `\(f_o\)` a frequência observada, observou-se:
+
+t	| 0	| 1	| 2	| 3	| 4	| 5	| 6	| 7	| 8	| 9	| 10 |	11| 12| Total
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
+`\(f_o\)` |	0	| 0	| 1	| 3	| 5	| 10	| 15	| 20	| 17	| 6	| 3	| 0	| 0	| **80**
+`\(t \times f_o\)`	| 0	| 0	| 2	| 9	| 20 | 	50| 	90 |	140 | 	136 |	54 |	30 |	0 |	0	| **531** |
+
+Testar se o modelo de Poisson descreve adequadamente os dados da tabela.
+
+`\(\hat{\lambda} = \frac{\sum \limits_{i=1}^k t .f_0}{\sum \limits_{i=1}^k f_o} = \frac{531}{80} =6,6\)`
+
+Assim, 
+
+`\(P(X=x) = \frac{e^{-\lambda} \lambda^{x}}{x!}\)`
+
+---
+
+As frequências esperadas das três primeiras classes de **t** e das duas últimas são menores do que `\(5\)`. Como a validade do teste de aderência, exclui essa situação, as três primeiras classes foram combinadas com a posterior (quarta) e as duas últimas combinadas entre si. A estatística   e o número de graus de liberdade são, então, calculados a partir dessas classes convenientemente modificadas.        
+
+`\(t\)`	| `\(\le\)` 3	| 4	| 5	| 6	| 7	| 8	| 9	| 10 | 	`\(\ge\)` 11	| Total
+:---| ---| ---| ---| ---| ---| ---| ---| ---| ---| ---
+`\(f_o\)`	| 4	 |5	| 10	| 15	| 20	| 17	| 6	| 3	 |0	| 80
+`\(f_e\)` por Poisson	| 8	| 9	| 11	| 13	| 12| 	10| 	7| 	5| 	5| 	80
+
+
+### Hipótese
+
+$$
+`\begin{cases}
+H_0: \text{dados são distribuídos segundo Poisson} 
+\\
+H_1: \text{dados não são distribuídos segundo Poisson}
+\end{cases}`
+$$
+
+### Estatística do teste
+
+`\(\chi^2 = \sum_{i=1}^k \frac{(f_o - f_e)^2}{f_e} = 14,7\)`
+
+---
+
+### Construção da Região Crítica
+
+Graus de liberdade: nº de classes `\((9) - 1 - \text{nº de parâmetros} [1 (\lambda) ] = 7\)`
+
+`\(\chi^2_{c(1\%,7)} = 18,48\)`
+
+&lt;img src="Aula13_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+**Conclusão**: Portanto, como  `\(\chi^2_{obs} &lt; \chi^2_c\)`, não há evidência suficiente para se rejeitar a hipótese de que os dados são distribuídos segundo Poisson.
+
+---
+
+### Teste  Qui-quadrado em tabelas de contingência
+
+
+A classificação de observações (em geral, de variáveis qualitativas) de acordo com dois critérios é referida como **tabela de contingência**.
+
+|Tipos de Acasalamento |||
+:--- | :---:| :---:| :----:
+**Raça**	| **Fecundos**	 | **Não-fecundos**	| **Total**
+Charolesa | 	`\(110\)`	| `\(50\)`	 | **160**
+Gir	| `\(70\)`	| `\(10\)`	| **80**
+Nelore| 	`\(30\)` | 	`\(10\)` | 	**40**
+**Total**	| `\(210\)`	| `\(70\)`	| **280**
+
+Se um critério envolve `\(m\)` categorias (linhas) e o outro `\(n\)` categorias (colunas), a tabela é referida como tabela `\(m × n\)`. No exemplo, a tabela é   `\(3 × 2\)`. Tabelas de contingência são construídas com o propósito de se testar:
+
+ **1)** a relação de dependência (associação) entre duas variáveis (Teste de independência). Baseado no esquema amostral, no qual uma única amostra aleatória de tamanho `\(n\)` é classificada com relação a duas características simultaneamente;
+
+**2)** que as várias colunas (ou linhas) tem a mesma proporção de indivíduos nas várias categorias de uma característica, se os totais das linhas (ou colunas) são especificados antecipadamente (**Teste de homogeneidade**). 
+
+---
+
+
+### Teste de Homogeneidade
+
+Iremos testar a igualdade das proporções de acasalamentos fecundos (e não fecundos) nas três raças. Vejamos os passos a seguir: 
+
+
+### Hipótese
+A hipótese nula de homogeneidade que a proporção de cada tipo de acasalamento é a mesma para todas as raças, pode ser formalmente estabelecida como a proporção de acasalamentos fecundos sendo a mesma nas três raças.
+
+
+
+$$
+`\begin{cases}
+H_0: p_{Ch} = p_{Gir} = p_{Ne}
+\\
+H_1: \text{as proporções não são todas iguais}
+\end{cases}`
+$$
+
+---
+
+Devemos agora calcular as `\(f_e\)`’s sob a hipótese `\(H_0\)` ser verdadeira, colocadas em colchetes na tabela abaixo.
+
+|Tipos de Acasalamento |||
+:--- | :---:| :---:| :----:
+**Raça**	| **Fecundos**	 | **Não-fecundos**	| **Total**
+Charolesa | 	`\(110[120]\)`	| `\(50[40]\)`	 | **160**
+Gir	| `\(70[60]\)`	| `\(10[20]\)`	| **80**
+Nelore| 	`\(30[30]\)` | 	`\(10[10]\)` | 	**40**
+**Total**	| `\(210\)`	| `\(70\)`	| **280**
 
 
 
 
+.pull-left[
+Dos 280 animais `\(\rightarrow\)` 210 fecundos   
+Dos 160 Charolês `\(\rightarrow\)` X fecundos
+
+Frequência esperada é dada por:
+
+`\(X = \frac{160 \times 210}{280}=120\)`
+]
+
+.pull-right[
+
+Dos 280 animais `\(\rightarrow\)` 210 fecundos   
+Dos 80 Gir `\(\rightarrow\)` X fecundos
+
+Frequência esperada é dada por:
+
+`\(X = \frac{80 \times 210}{280}=60\)`
+]
+
+Todas as demais `\(f_e\)`’s podem ser calculadas por diferença (os valores calculados estão entre parênteses na tabela). Diz-se então que há `\(2\)` graus de liberdade. Isso corresponde a  `\((m – 1) . (n – 1)\)` graus de liberdade, ou seja:    
+
+`\(r = (m – 1) . (n – 1) = (3 – 1) . (2 – 1) = 2\)`
+
+---
+
+### Calcular o valor da estatística
+
+`\(\chi_{obs}^2=\sum \limits _{i=1}^m \sum \limits_{j=1}^n \frac{(f_o-f_e)^2}{f_e}= \frac{(110-120)^2}{120} + \cdots + \frac{(10-10)^2}{10} = 9,99\)`
+
+
+.pull-left[### Construção da Região Crítica
+
+Graus de liberdade: `\((m-1).(n-1)=2 \cdot 1 = 2\)` e `\(\alpha=5\% \rightarrow \chi_c^2 =5,99\)` 
+
+
+
+&lt;img src="Aula13_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+### Concluir
+
+Como `\(\chi_{obs}^2 &gt; \chi_c^2\)`,  rejeita-se `\(H_0\)` ou seja, as fecundidades das raças não são todas estatisticamente iguais, ao nível de `\(5\%\)`.
+
+Como `\(H_0\)` foi rejeitada, deve-se continuar a investigação, comparando-se as raças duas a duas, para se verificar quem difere de quem em termos do critério analisado.
+]
+
+
+---
+
+### Tabela de contingência 2 × 2 (comparação de duas proporções)
+
+
+Considerando a seguinte tabela:
+
+Tratamento	| Morte	| Sobrevivência	| Total
+---|---|---|---
+A	| 41 [53,86] | 216[203,14] |	**257**
+B	| 64 [51,14] | 180[192,86] |	**244**
+**Total** |	**105**	| **396** |	**501**
+
+verificar se os dados proporcionam evidência que as proporções de mortalidade são diferentes para os dois tratamentos `\((\alpha = 1\%)\)`.
+
+### Hipóteses
+
+
+$$
+`\begin{cases}
+H_0: p_{A} = p_{B}
+\\
+H_1: p_{A} \neq p_{B}
+\end{cases}`
+$$
+
+em que: `\(p_A\)` e `\(p_B\)` denotam as proporções de morte (ou de sobrevivência) para os tratamentos `\(A\)` e `\(B\)`, respectivamente.
+
+---
+
+### Calcular o valor da estatística
+
+`\(\chi_{obs}^2=\sum \limits _{i=1}^m \sum \limits_{j=1}^n \frac{(f_o-f_e)^2}{f_e}= \frac{(41-53,86)^2}{53,86} + \cdots + \frac{(180-192,86)^2}{192,86} = 7,97\)` 
 
 
 
 
+.pull-left[### Construção da Região Crítica
+
+Graus de liberdade = `\((2-1) . (2-1) = 1\)` e `\(\alpha=1\% \rightarrow \chi_c^2 =6,63\)` 
 
 
 
+&lt;img src="Aula13_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+]
 
 
+.pull-right[
+### Concluir
+
+Como `\(\chi_{obs}^2 &gt; \chi_c^2\)`,  rejeita-se `\(H_0\)` ou seja, há uma diferença real entre as proporções de mortalidade (ou de sobrevivência) provocada pelos tratamentos `\(A\)` e `\(B\)`.
+
+]
+
+---
+
+Para tabelas de contingência `\(2 x 2\)`, o valor de `\(\chi^2\)` pode ser obtido também pela fórmula (1):
+
+|||Total
+---|---|---|
+|a|b| `\(n_1\)`
+|c|d| `\(n_2\)`
+Total| `\(n_3\)` | `\(n_4\)` | `\(N\)`
+
+`\(\chi_{obs}^2 = \frac{(c.b-a.d)^2N}{n_1.n_2.n_3.n_4}\)` então, `\(\chi_{obs}^2 = \frac{(216.64-41.180)^2 501}{275.244.105.396} = 7,97\)`
+
+Nas tabelas de contingência `\(2 \times 2\)`, alguns autores recomendam usar o teste de `\(\chi^2\)` com a **correção de Yates** para continuidade. 
+
+Esta correção consiste em subtrair ½ de cada diferença `\((f_o – f_e)\)` antes de elevá-la ao quadrado. 
+
+Com este procedimento a fórmula (1) transforma-se em:
+
+`\(\chi_{obs}^2 = \frac{(c.b-a.d - \frac{N}{2})^2N}{n_1.n_2.n_3.n_4}\)`
 
 
+Com a correção de Yates, o valor de `\(\chi^2\)` no exemplo anterior torna - se `\(7,37\)`, mostrando que em amostras grandes, produz, praticamente, o mesmo resultado que o `\(\chi^2\)` não corrigido. A correção tem importância principalmente quando os valores das `\(f_e\)`’s são pequenos, mas se  a menor `\(f_e\)` for `\(&lt; 5\)`, deve-se, então, usar o teste **exato de Fisher**, que é baseado exclusivamente no cálculo de probabilidades. Não trataremos, entretanto, deste teste.
+
+---
+
+### Teste de independência
+
+O procedimento para o teste de independência é equivalente ao apresentado para o teste de homogeneidade, ou seja, as fórmulas para `\(\chi^2\)` e graus de liberdade são os mesmos tanto para o teste de homogeneidade como para o de independência.  Somente o método amostral e a formalização de `\(H_0\)` são diferentes para as duas situações.
+
+Para um tratamento geral do teste de independência em uma tabela de contingência `\(r \times c\)`, suponha `\(n\)` indivíduos classificados de acordo com dois critérios: `\(A\)` e `\(B\)`, e que há `\(r\)` categorias para `\(A (A_1, A_2, ..., Ar)\)` e `\(c\)` categorias para `\(B (B_1, B_2, ..., B_c)\)`. Colocando a categoria `\(A\)` nas linhas e `\(B\)` nas colunas, pode-se construir uma tabela de dupla entrada, na qual cada célula é a intersecção de `\(A\)` com `\(B\)`.
+
+A hipótese nula que se interessa testar é que as classificações `\(A\)` e `\(B\)` são independentes. Relembrando que a probabilidade da intersecção de eventos independentes é o produto de suas probabilidades, logo a hipótese nula de independência, estabelecendo que os eventos `\(A_1, A_2, ..., A_r\)` são independentes dos eventos `\(B_1, B_2, ..., B_c\)`, pode ser representada por : `\(P(A_iB_j) = P(A_i).P(B_j)\)`. Ou seja, numa tabela de contingência de `\(r\)` linhas e `\(c\)` colunas, a hipótese nula de independência é:
 
 
+`\(H_0 = p_{ij} = p_i \cdot p_j\)` para todo `\(i = 1,2,...,K,...,r\)` e `\(j=1,2, ...,K, ...c\)`.
+
+Em outras palavras, fazendo `\(p_{ij}\)`, a probabilidade de um indivíduo, selecionado ao acaso, pertencer à célula da linha `\(i\)` e da coluna `\(j\)`, `\(p_{i.}\)`, a probabilidade dele pertencer à linha `\(i\)` (total marginal) e `\(p_{.j}\)`, a probabilidade de pertencer à coluna `\(j\)` (total marginal), têm-se que as probabilidades no corpo da tabela `\((p_{ij})\)` serão os produtos dos totais marginais `\((p_{ij} = p_{i}. p_{.j})\)`, se os critérios `\(i\)` e `\(j\)` forem independentes. 
+
+---
+
+Teste de independência entre os atributos **Sexo** e **Grupo sanguíneo**, considerando uma amostra de `\(367\)` indivíduos, classificados de acordo com as duas características simultaneamente.
 
 
+|Grupo|sanguíneo|||	|
+---| ----| ---| ---| ---| ---|
+**Sexo**	|**O**	|**A** |	**B**	| **AB**	| **Total**
+Masculino	| 96[99]	| 94[98]	| 30[24]	| 14[13]	| **234**
+Feminino	| 59[56]	| 60[56]	| 7[13]	 | 7[8] |	**133**
+Total	| **155** |	**154**	| **37**	| **21**	| **367**
+
+Os valores entre colchetes na tabela correspondem às frequências esperadas calculadas sob a hipótese `\(H_0\)` ser verdadeira:
+
+### Hipóteses
+
+$$
+`\begin{cases}
+H_0: \text{ os dois atributos são independentes}
+\\
+H_1: \text{ os dois atributos não são independentes}
+\end{cases}`
+$$
+
+---
 
 
+#### Calcular o valor da estatística
+
+`\(\chi_{obs}^2=\sum \limits _{i=1}^m \sum \limits_{j=1}^n \frac{(f_o-f_e)^2}{f_e}= \frac{(96-99)^2}{99} + \frac{(59-56)^2}{56} + \cdots + \frac{(7-8)^2}{8} = 5,2\)` 
+
+#### Construção da Região Crítica
+
+Graus de liberdade = `\((3-1) . (2-1) = 3\)` e `\(\alpha=5\% \rightarrow \chi_c^2 =7,82\)` 
+
+Conclusão: como `\(\chi^2_{obs} &lt; \chi^2_{c(5\%,3)}\)`, a hipótese de independência entre os dois atributos (sexo e grupo sanguíneo) não é rejeitada ao nível de significância de 5%.
+
+#### Restrições do uso do teste qui-quadrado `\((\chi2)\)` por razões teóricas
+
+ 
+
+- os testes vistos são aplicados sem restrição se todas as frequências esperadas forem maiores do que 5;  
+- quando o grau de liberdade for igual a 1, cada frequência esperada não deve ser inferior a 5;   
+- quando o grau de liberdade for maior do que 1, o teste qui-quadrado não deve ser usado se mais de 20% das frequências esperadas forem inferiores a 5 ou se qualquer frequência esperada for inferior a 1.   
+- os testes somente devem ser aplicados aos dados observados e nunca com as proporções ou porcentagens oriundas dos mesmos.  
+
+**Obs.**: caso haja restrições no uso do teste, eventualmente, pode-se juntar categorias adjacentes de modo a aumentar as frequências esperadas.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
