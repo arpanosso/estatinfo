@@ -5,7 +5,7 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 13 - Ditribuição Qui-Quadrado"
+subtitle: "Aula 13 - Distribuição Qui-Quadrado"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
 date: "(15-07-2021)"
