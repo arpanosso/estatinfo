@@ -148,7 +148,7 @@ chiobs<- sum((obs-esp)^2/esp)
 qq<-qchisq(p = 0.99,df = 4-1)
 ```
 ---
-### Determinar a região crítica
+### Determinar a Região Crítica
 
 $RC = \{\chi > \chi_{c(\alpha, k-1)}^2\}$, como $k-1 = 3$ e se $\alpha = 1\% \rightarrow \chi_c^2 = 11,345$
 
@@ -262,6 +262,12 @@ ggplot(data.frame(x=c(0,25)), aes(x = x)) +
 
 ---
 
+
+class: center, middle, inverse
+
+# Qui-quadrado em tabelas de contingência
+
+---
 ### Teste  Qui-quadrado em tabelas de contingência
 
 
@@ -489,6 +495,11 @@ Com a correção de Yates, o valor de $\chi^2$ no exemplo anterior torna - se $7
 
 ---
 
+class: center, middle, inverse
+
+# Qui-quadrado em teste de independência
+
+---
 ### Teste de independência
 
 O procedimento para o teste de independência é equivalente ao apresentado para o teste de homogeneidade, ou seja, as fórmulas para $\chi^2$ e graus de liberdade são os mesmos tanto para o teste de homogeneidade como para o de independência.  Somente o método amostral e a formalização de $H_0$ são diferentes para as duas situações.
@@ -537,16 +548,37 @@ $\chi_{obs}^2=\sum \limits _{i=1}^m \sum \limits_{j=1}^n \frac{(f_o-f_e)^2}{f_e}
 
 Graus de liberdade = $(3-1) . (2-1) = 3$ e $\alpha=5\% \rightarrow \chi_c^2 =7,82$ 
 
-Conclusão: como $\chi^2_{obs} < \chi^2_{c(5\%,3)}$, a hipótese de independência entre os dois atributos (sexo e grupo sanguíneo) não é rejeitada ao nível de significância de 5%.
+Conclusão: como $\chi^2_{obs} < \chi^2_{c(5\%,3)}$, a hipótese de independência entre os dois atributos (sexo e grupo sanguíneo) não é rejeitada ao nível de significância de $5\%$.
 
 #### Restrições do uso do teste qui-quadrado $(\chi2)$ por razões teóricas
 
  
 
-- os testes vistos são aplicados sem restrição se todas as frequências esperadas forem maiores do que 5;  
-- quando o grau de liberdade for igual a 1, cada frequência esperada não deve ser inferior a 5;   
-- quando o grau de liberdade for maior do que 1, o teste qui-quadrado não deve ser usado se mais de 20% das frequências esperadas forem inferiores a 5 ou se qualquer frequência esperada for inferior a 1.   
+- os testes vistos são aplicados sem restrição se todas as frequências esperadas forem maiores do que $5$;  
+- quando o grau de liberdade for igual a $1$, cada frequência esperada não deve ser inferior a $5$;   
+- quando o grau de liberdade for maior do que $1$, o teste qui-quadrado não deve ser usado se mais de $20\%$ das frequências esperadas forem inferiores a $5$ ou se qualquer frequência esperada for inferior a $1$.   
 - os testes somente devem ser aplicados aos dados observados e nunca com as proporções ou porcentagens oriundas dos mesmos.  
 
 **Obs.**: caso haja restrições no uso do teste, eventualmente, pode-se juntar categorias adjacentes de modo a aumentar as frequências esperadas.
+
+---
+
+class: center, middle, inverse
+
+# Regressão e correlação linear
+
+---
+### Introdução
+
+Em ensaios que procuram determinar a relação existente entre duas variáveis, por exemplo, a dose de um adubo e a produção de uma cultura, por exemplo, peso e altura, idade e a concentração de sacarose, etc., dois tipos de situações podem ocorrer:
+
+
+**a) Regressão**: uma variável $(X)$ pode ser medida acuradamente e seu valor escolhido pelo experimentador.  Por exemplo, a dose de um adubo a ser ministrada em uma cultura.  Esta variável é a variável independente.  A outra variável $(Y)$, dita variável dependente ou resposta, está sujeita a erro experimental, e seu valor depende do valor escolhido para a variável independente. Assim, a resposta (produção, $Y$ ) é uma variável dependente da variável independente dose $(X)$.
+
+**b) Correlação**:É a associação entre duas variáveis quando as medidas estão sujeitas a erros experimentais, isto é, erros de natureza aleatória inerentes ao experimento.  Por exemplo, produção de leite e produção de gordura medidas em vacas em lactação, peso do pai e peso do filho, disponibilidade hidríca e altura de plantas, etc.
+
+Atualmente, se dá à técnica de **correlação** uma importância menor do que a da **regressão**. Se duas variáveis estão correlacionadas, é muito mais útil estudar as posições de uma ou de ambas por meio de curvas de regressão, as quais permitem, por exemplo, a predição de uma variável em função de outra, do que estudá-las por meio de um simples **coeficiente de correlação**. 
+
+---
+
 

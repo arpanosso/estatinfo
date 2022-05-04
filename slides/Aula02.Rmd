@@ -7,7 +7,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 02 - Introdução (Conceitos Básicos)"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "22-04-2021"
+date: "04-05-2021"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -31,7 +31,7 @@ class: middle, center, inverse
 ## Porque estudar Estatística
 
 --
-- Estatística é fundamental para o avanço do conhecimento científico, uma vez que a essência da Ciência é a observação e que o seu objetivo básico é a inferência, destacando-se nas áreas da *Saúde*, *Genética* e *Melhoramento* (animal e vegetal), *Produção de alimentos* e demais *áreas científicas*.
+- Estatística é fundamental para o avanço do conhecimento científico, uma vez que a essência da Ciência é a observação e que o seu objetivo básico é a inferência, destacando-se nas áreas da *Saúde*, *Farmaceuticas*, *Melhoramento* (animal e vegetal), *Produção de alimentos* e demais *áreas científicas*.
 
 --
 - Os conhecimentos estatísticos são fundamentais para análise e interpretações das informações coletadas *em campo*.
@@ -40,7 +40,7 @@ class: middle, center, inverse
 - Várias técnicas de análises estatísticas ajudam o pesquisador a **confirmar as hipóteses** à respeito de um fenômeno de interesse.
 
 --
-- Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
+- Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
 
 ---
 ## Modelos Matemáticos 
@@ -53,9 +53,9 @@ Nesse modelo as condições sob as quais um experimento é executado determinam 
 
 $$F = m \cdot a$$
 
-Esse modelo diz que o valor da força $F$ pode ser calculado tão logo os valores da massa do objeto $m$ e sua aceleração $a$ sejam fornecidos. Nesse tipo de modelo, quaisquer desvios que pudessem ocorrer seriam tão pequenos que a descrição acima seria suficiente. 
+Esse modelo diz que o valor da força $F$ pode ser calculado tão logo os valores da massa do objeto $m$ e sua aceleração $a$ sejam fornecidos. Nesse tipo de modelo, quaisquer desvios que pudessem ocorrer seriam tão pequenos que a descrição acima seria suficiente para modelá-lo. 
 
-Seu resultado é determinado pelas condições sob as quais o experimento é executado.
+**Seu resultado é determinado pelas condições sob as quais o experimento é executado**.
 
 Exemplo de mecânica clássica, astronomia, termodinâmica, circuítos elétricos e química são comuns e abundantes na literatura.
 
@@ -91,11 +91,11 @@ $$Dados = Modelo$$
 Para um grande número de situação na natureza, o modelo matemático determinístico apresentado é suficiente, contudo existem fenômenos que requerem um modelo matemático diferente:
 
 
-### Modelos Estocásticos (não-determinísticos ou probabilístico): 
+### Modelos Estocásticos (não-determinísticos ou probabilísticos): 
 
-Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento **probabilístico** do resultado observável. 
+**Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento probabilístico do resultado observável**. 
 
-**Exemplo:** em fenômenos meteorológicos, não podemos determinar qual a precipitação de chuva que cairá como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa do ar podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
+**Exemplo:** em fenômenos meteorológicos, não podemos determinar qual será a precipitação em uma determinada região como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa do ar podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
 
 ---
 
