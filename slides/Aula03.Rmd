@@ -149,15 +149,18 @@ knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarp
 ---
 
 ## Propriedades da Somatória
-
+    
 **i)** A somatória de uma constante $(k)$ é igual ao produto  $n \cdot k$.
 
 $\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k$
 
+--
 
 **ii)** A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
 
 $\sum\limits_{i=1}^{n}{k \cdots x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
+
+--
 
 **iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
 
@@ -249,7 +252,7 @@ $$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultad
 onde $P(E)$ é a probabilidade de ocorrência do evento $E$.
 
 ---
-Vamos imaginar a situação: um rebanho é composto por 100 animais, temos 20 indivíduos doentes e 80 sadios. 
+Dado um rebanho composto por $100$ animais onde temos $20$ indivíduos doentes e, consequentemente, $80$ não doentes (sadios). 
 
 <img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 25%"></img>
 
@@ -263,13 +266,13 @@ Para respondermos essa quetão precisaremos calcular:
 
 #### $\text{nº de resultados favoráveis}$
 
-Ou seja, de quantas maneiras poderemos escolher 2 animais do total de 20 doentes e 3 animais dos 80 sadios.
+Ou seja, de quantas maneiras poderemos escolher $2$ animais do total de $20$ doentes e 3 animais dos $80$ sadios.
 
 --
 
 #### $\text{nº total de resultados possíveis}$
 
-De quantas maneiras poderemos escolher 5 animais (independentemente de serem sadios ou doentes) em um total de 100 animais.
+De quantas maneiras poderemos escolher $5$ animais (independentemente de serem sadios ou doentes) em um total de $100$ animais.
 
 ---
 
@@ -281,7 +284,7 @@ Portanto, para calcularmos a probabilidade do evento (escolher 2 animais doentes
 
 O princípio fundamental da contagem, também chamado de princípio multiplicativo, postula que:
 
- >“quando um evento é composto por $n$ etapas sucessivas e **independentes**, de tal modo que as possibilidades da primeira etapa é $x$ e as possibilidades da segunda etapa é $y$, o número total de possibilidades do evento ocorrer é dado pelo produto $(x) \cdot (y)$”.
+ >“quando um evento é composto por $n$ etapas sucessivas e **independentes**, de tal modo que as possibilidades da primeira etapa é $x$ e as possibilidades da segunda etapa é $y$, o número total de possibilidades do evento ocorrer é dado pelo produto $x \cdot y$”.
 
 Em resumo, no princípio fundamental da contagem, multiplica-se o número de opções entre as escolhas que lhe são apresentadas.
 
@@ -289,19 +292,19 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 **Exemplos**
 
-1. Em um restaurante, há 5 aperitivos no menu, 10 entradas principais e 4 sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
+1. Em um restaurante, há $5$ aperitivos no menu, $10$ entradas principais e $4$ sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
 
-2. Quantos códigos numéricos de 5 caractéres são possíveis se:  
+2. Quantos códigos numéricos de $5$ caractéres são possíveis se:  
 (a) não há restrições?  
 (b) o primeiro dígito não pode ser $0$?  
 (c) nenhuma repetição é permitida?  
 (d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
 
-3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média 435 milhões senhas por segundo:   
+3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média $435$ milhões senhas por segundo:   
 
   a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
 
-  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com 9 dígitos?
+  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com $9$ dígitos?
 
 ---
 ## Permutações
@@ -323,7 +326,7 @@ ${c,b,a}$
 
 Equivale em colocar os elementos dentro de caixas com $n$ compartimentos em alguma ordenação. 
 
-E como consequência do princípio da multiplicação, as possibilidades de inserção dentro dentro de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente, ou seja:
+E como consequência do princípio da multiplicação, as possibilidades de inserção dentro  de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente, ou seja:
 
 ---
 
@@ -338,16 +341,16 @@ $$3! = 3 \cdot (3-1) \cdot(3-2) = 3 \cdot 2 \cdot 1 = 6$$
 
 Exemplos:
 
-1. Quantos números de 7 algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7?
+1. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7?
 
-2. Quantos números de 7 algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo 6 seja imediatamente seguido pelo algarismo 7?
+2. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo 6 seja imediatamente seguido pelo algarismo $7$?
 
-3. Três (03) chineses, 04 americanos e 05 italianos serão dispostos em fila (dispostos em linha reta, respeitando o distanciamento social e todos usando máscaras) de modo que as pessoas da mesma nacionalidade estejam sempre juntas. De quantas maneiras a fila poderá ser formada, de modo que o primeiro da fila sempre seja um italiano?
+3. Três $(03)$ chineses, $04$ americanos e $05$ italianos serão dispostos em fila de modo que as pessoas da mesma nacionalidade estejam sempre juntas. De quantas maneiras a fila poderá ser formada, de modo que o primeiro da fila sempre seja um italiano?
 
 ---
 ## Arranjos
 
-O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ e vamos tomar $r$ elementos desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ elemntos e vamos tomar $r$ amostras desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
 
 ```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png")
@@ -358,11 +361,11 @@ $A^n_p= \frac{n!}{(n-r)!}$
 
 --
 
-1) A senha de uma conta bancária é formada de 6 números ou de 4 números dentre os números de 0 a 9, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
+1) A senha de uma conta bancária é formada de $6$ números ou de $4$ números dentre os números de $0$ a $9$, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
 
-Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza 6 números, e no banco Santander que utiliza 4 números, seguindo o conselho dos gerentes?
+Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza $6$ números, e no banco Santander que utiliza $4$ números, seguindo o conselho dos gerentes?
 
-2) Quantos números de 4 algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
+2) Quantos números de $4$ algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
 
 ---
 
@@ -467,13 +470,3 @@ tibble::tibble(x,px)
 $\sum \limits_{x=0}^r P(x_i) = 1$
 
 ]
-
----
-No Excel, temos:
-
-
-```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/distri_hyper.png")
-```
-
-
