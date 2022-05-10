@@ -25,14 +25,18 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
 ```
 class: middle, center, inverse
 
-# SOMATÓRIO
+# SOMATÓRIA
 
 ---
 ## Definições
 
-**Conjunto de dados**: Uma variável de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas $X$, $Y$, $Z$ e os valores específicos assumidos por estas variáveis (dados ou observações) pelas letras minúsculas $x$, $y$ e $z$, respectivamente. 
+**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas $X$, $Y$, $Z$.
 
-Para distinguir um valor do outro, utilizamos um subscrito $i$, ou seja, uma variável auxiliar que representa a posição do valor específico dentro do conjunto de dados.
+O conjunto de dados terá a o tamanho $n$, que representa o número de elementos que ele contém. Em outras palavras, $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
+
+os valores específicos assumidos por tais variáveis (suas realizações) serão representados pelas letras minúsculas $x$, $y$ e $z$, respectivamente, seguidas de um índice $i$ que representa a posição daquele valor específico dentro do conjunto de dados. 
+
+Assim, para distinguir um valor do outro, utilizamos esse índice  $i$, que pode ser entendido como uma variável auxiliar, utilizada para contage, que se inicia na posição $1$ e termina na posição $n$, abrangendo todo o seu conjunto de dados.
 
 Assim temos:
 
@@ -42,7 +46,7 @@ $Idade: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).$
 
 $Peso: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).$
 
-Assim, observamos que um valor típico da variável *Altura*, por exemplo, será designado por $x_i$ e o valor final desta amostra por $x_n$, sendo que $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
+Nessa notação um valor típico da variável *Altura*, será designado por $x_i$ e o valor final por $x_n$. 
 
 ---
 
@@ -52,29 +56,48 @@ Ao realizar a análise de uma variável quantitativa (numérica) é necessário 
 
 Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
 
-Assim, dado a variável $X$ a soma de todos seus valores será dada pela letra grega sigma maiúscula $\Sigma$:
+Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega sigma maiúscula $\Sigma$:
 
-Dados $X = {x_1, x_2, x_3, x_4, x_5}$, a soma desses 5 valores:
+Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses 5 valores:
 
 $x_1 + x_2 + x_3 + x_4 + x_5$
 
 será representada pela notação:
 
-$\sum\limits_{i=1}^{n}{x_i} = x_1 + x_2 + x_3 + x_4 + x_5$
+$\sum\limits_{i=1}^{n}{x_i}$ ou $\sum_{i=1}^{n}{x_i}$
 
-onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos 5 valores  de $X$
+onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos $5$ valores  de $X$.
 
 ---
+Dado duas variáveis  $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
 
-
-Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
-
+.pull-left[
 $\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24$
+]
+
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+X <- c(3,0,5,9,7)
+sum(X)
+```
+]
 
 Ao invés da soma ser com os índices $i$ de 1 a $n$, podemos ter, por exemplo:
+.pull-left[
 
 $\sum\limits_{i=2}^{4}{y_i} = 3+9+1 = 13$
+]
 
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+Y <- c(2,3,9,1,2)
+sum(Y[2:4])
+```
+]
+
+.pull-left[
 Observe que:
 
 $\sum\limits_{i=1}^{n}{x_i}^2 \neq \left( \sum\limits_{i=1}^{n}{x_i} \right)^2$
@@ -86,9 +109,20 @@ $3^2+0^2+5^2+9^2+7^2 \neq  (3+0+5+9+7)^2$
 $9+0+25+81+49 \neq  (24)^2$
 
 $164 \neq  576$
+]
+
+.pull-right[
+
+
+```{r, echo=TRUE, eval=FALSE}
+sum(X^2)
+sum(X)^2
+```
+
+]
 
 ---
-Qual a soma da multiplicação entre duas variáveis:
+Qual a soma do produto entre as variáveis $X$ e $Y$:
 
 Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
 
@@ -100,11 +134,8 @@ $\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot (2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot
 
 $\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
 
-No R
 
-```{r, echo=TRUE}
-X=c(3,0,5,9,7)
-Y=c(2,3,9,1,2)
+```{r, echo=TRUE, eval=FALSE}
 sum(X*Y)
 ```
 
@@ -119,18 +150,22 @@ knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarp
 
 ## Propriedades da Somatória
 
-i) A somatória de uma constante $(k)$ é igual a $nk$.
+**i)** A somatória de uma constante $(k)$ é igual ao produto  $n \cdot k$.
 
-$\sum\limits_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k$
+$\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k$
 
 
-ii) A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
+**ii)** A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
 
-$\sum\limits_{i=1}^{n}{kx_i} = kx_1 + kx_2 + \cdots + kx_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
+$\sum\limits_{i=1}^{n}{k \cdots x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
 
-iii) A somatória da adição de duas variáveis é igual à adição das somas dessas duas variáveis:
+**iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)$
+
 
 $\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n) =(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)$
+
 
 $\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}$
 
@@ -138,10 +173,10 @@ $\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=
 
 ## Exercícios
 
-iv) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+1) Calcular: $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
 
 
-v) Dado a média sendo: 
+2) Dado a média sendo: 
 
 $\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
 
@@ -153,7 +188,7 @@ $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
 
 ### Resposta
 
-iv) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+1) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
 
 --
 
