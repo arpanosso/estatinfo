@@ -35,7 +35,7 @@ mean(X)
 n <- length(X)
 sum(X)^2/((n-1)*(n-2))
 sd(X)
-(sum((X-mean(X))^2)/2)^.5
+sqrt(sum((X-mean(X))^2)/(n-1))
 
 
 

@@ -369,7 +369,7 @@ knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_
 ```
 
 
-$A^n_p= \frac{n!}{(n-r)!}$
+$A^n_r= \frac{n!}{(n-r)!}$
 
 --
 
