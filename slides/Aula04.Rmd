@@ -7,7 +7,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 04 - Distribuição de Frequência"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(06-05-2021)"
+date: "(18-05-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -29,6 +29,14 @@ class: middle, center, inverse
 # Distribuição de Frequência
 # e
 # Visualização de Dados
+---
+class: middle, center, inverse
+
+## Pré-requisito: Instalação de Patocotes no R
+
+<iframe width="753" height="380" src="https://www.youtube.com/embed/is32jC4LRjA?list=PLkhAqI7pygoYy6zhepFnF7KDK5jJSQUEv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+https://youtu.be/is32jC4LRjA
 
 ---
 ## Distribuição de frequência de uma variável
@@ -126,7 +134,7 @@ tab
 
 .pull-right[
 - `group_by()` a grupa as categorias da variável `sexo`.
-- `summarise()` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvara na coluna `ni`.
+- `summarise()` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
 
 ]
 ---
@@ -237,7 +245,7 @@ Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente
 
 Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. Observe que os gráficos serão construídos a partir do objeto `tab` anteriormente definido. 
 
-O ggplot funciona como de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
+O ggplot funciona na forma de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
 
 ### Gráfico de Colunas para Sexo
 
