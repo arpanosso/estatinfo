@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 ## Aula 05 - Medidas Estatísticas
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
-### (13-05-2021)
+### (26-05-2021)
 
 ---
 
@@ -65,29 +65,36 @@ Para a população, a média é definida como:
 Onde `\(n\)` é o tamanho da amostra.
 ---
 
-O exemplo abaixo demonstra o cálculo da média da amostra da idade em anos de 49 alunos (`idade_anos`). Observe que a média tem as mesmas unidades de medida que as observações individuais. 
+O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de `\(49\)` alunos (`idade_anos`). Observe que a média tem as mesmas unidades de medida que as observações individuais. 
 
 **Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
 
-**Carregando Pacotes e a Base de Dados**
-
 
 ```r
-library(readxl)
+# Carregando pacotes
 library(tidyverse)
-dados_turmas &lt;- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
-View(dados_turmas)
+library(readxl)
+
+# Lendo o banco de dados no R
+dados_turmas &lt;- read_excel("C:/Users/Not. Unesp/Downloads/dados_turmas.xlsx")
+
+# Resumo rápido dos dados
+glimpse(dados_turmas)
 ```
 
-
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" width="50%" style="display: block; margin: auto;" /&gt;
-
+```
+#&gt; Rows: 49
+#&gt; Columns: 6
+#&gt; $ id         &lt;dbl&gt; 4, 45, 17, 27, 41, 2, 6, 23, 37~
+#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "F", "F", "F", "~
+#&gt; $ cor_cabelo &lt;chr&gt; "CE", "P", "CC", "CE", "C", "CE~
+#&gt; $ GA         &lt;chr&gt; "socialmente", "nao_consome", "~
+#&gt; $ altura     &lt;dbl&gt; 1.50, 1.57, 1.58, 1.58, 1.58, 1~
+#&gt; $ idade_anos &lt;dbl&gt; 20, 23, 19, 19, 18, 20, 28, 20,~
+```
 ---
 
 ### Cálculo da Média Aritmética 
-
-.pull-left[
 
 $$
 \bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+20}{49} = 20,9184\text{ anos} 
@@ -103,17 +110,23 @@ mean(x)
 #&gt; [1] 20.91837
 ```
 
+```r
+# Ou
+
+dados_turmas %&gt;% 
+  pull(idade_anos) %&gt;% 
+  mean()
+```
+
+```
+#&gt; [1] 20.91837
+```
+
 ### Cálculo da Média Aritmética pela Frequência Relativa
 
-`\(\bar{x} = \sum_{i=1}^kf_ix_i\)`
+`\(\bar{x} = \sum_{i=1}^kf_ix_i = 18\cdot(0,16)+19\cdot(0,28)+ \cdots + 49(0,02) = 20,9184\;anos\)`
 
-`\(\bar{x} = 18(0,16)+19(0,28)+ \cdots + 49(0,02)\)`
-
-`\(\bar{x} = 20,9184\;anos\)`
-
-]
-
-.pull-right[
+---
 
 Tabela de Frequência para Idade
 
@@ -123,6 +136,10 @@ Tabela de Frequência para Idade
    &lt;th style="text-align:right;"&gt; idade_anos &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Perc &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -130,55 +147,95 @@ Tabela de Frequência para Idade
    &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.326531 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.32653 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.2857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 28.571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4489796 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44.89796 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.2244898 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22.448980 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6734694 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 67.34694 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0612245 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.122449 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7346939 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 73.46939 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0612245 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.122449 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7959184 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 79.59184 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.1224490 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.244898 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 45 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9183673 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 91.83673 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9387755 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93.87755 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9591837 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95.91837 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9795918 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 97.95918 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0000000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100.00000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-]
+
 ---
 **Hitograma e média para idade_anos**
 .pull-left[
@@ -197,8 +254,6 @@ Se os dados são plotados como um histograma a média é o centro de gravidade d
 
 Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria horizontalmente com o ponto de apoio em `\(\bar{x}\)`. 
 
-A média é aplicável aos dados de quantitativos, e **não deve ser usado para dados ordinais e nominais**.
-
 ]
 
 .pull-left[
@@ -214,13 +269,14 @@ A média é aplicável aos dados de quantitativos, e **não deve ser usado para 
 
 
 ```r
-mean(dados_turmas$altura)
+dados_turmas %&gt;% 
+  pull(altura) %&gt;% 
+  mean()
 ```
 
 ```
 #&gt; [1] 1.724286
 ```
-
 
 
 ```r
@@ -234,9 +290,7 @@ dados_turmas %&gt;%
 *   color="blue")
 ```
 
-`\(\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49}\)`
-
-`\(\bar{x} =  1,724\text{ m}\)`
+`\(\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49} =  1,724\text{ m}\)`
 
 ]
 
@@ -247,13 +301,45 @@ dados_turmas %&gt;%
 Observe o histograma e a média para a variável `altura`, e compare sua simetria com o histograma da variável `idade_anos`.
 ---
 
+## Média Ponderada
+Em alguams situações as observações têm graus de importância diferentes. Usa-se então a média ponderada:
+
+`$$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i}$$`
+
+Onde `\(\lambda_i\)` é o peso associado à i-ésima observaçõe. Assim, ele mede a importância relativa dessa i-ésima observação em relação às demais.
+---
+
+**Exemplo**: Calcular a intensidade média de infestação do complexo "Broca-podridão" da cana-de-açúcar, larva de lepidóptera (*Diatraea saccharalis*) em plantas jovens associado à infecção por fungos, causando a podridão vermelha (*Colletotrichum falcatum*), em `\(8\)` variedades plantadas em uma propriedade rural.
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/broca_podridao.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"&gt;&lt;/img&gt;
+
+---
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/tab_broca.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"&gt;&lt;/img&gt;
+
+
+`$$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10} = \frac{1257,22}{113}=11,126%$$`
+
+No R:
+
+```r
+pesos&lt;-c(12,40,4,2,6,18,21,10)
+X &lt;- c(9.1,14.57,3.2,2.89,8.74,11.7,10.10,7.15)
+weighted.mean(X, pesos)
+```
+
+```
+#&gt; [1] 11.12584
+```
+
+
+---
 ## Mediana
 
 É o valor que ocupa a posição central do conjunto de dados ordenados `\((X' \text{ ou } Xo)\)`. Portanto, inicialmente as observações são ordenadas de acordo com a sua ordem de magnitude.
 
-o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número e observações é grande.
+o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número de observações é grande.
 
-A mediana será encontrada ou calculada em função do número de observações `\(n\)` presentes na base de dados, se acaso `\(n\)` for par ou ímpar:
+A mediana será encontrada ou calculada em função do número de observações `\(n\)` presentes na base de dados, se acaso `\(n\)` for *par* ou *ímpar*:
 
 Se `\(n\)` é ímpar: `\(Md = Xo_{\left(\frac{n+1}{2}\right)}\)`
 
@@ -302,6 +388,17 @@ Em uma distribuição simétrica (como a da variável `altura`), a mediana amost
 
 ```r
 median(dados_turmas$altura)
+```
+
+```
+#&gt; [1] 1.74
+```
+
+```r
+# ou
+dados_turmas %&gt;% 
+  pull(altura) %&gt;% 
+  median()
 ```
 
 ```
@@ -404,7 +501,7 @@ tibble(x) %&gt;%
                  fill="lightgray")
 ```
 
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Quantis
@@ -1024,13 +1121,13 @@ No Excel utilizamos a função `=DISTORÇÃO()`.
 
 .pull-left[
 Distribuição **Assimétrica Positiva** `\(g_1=4.82\)`
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .pull-right[
 Distribuição **Simétrica** `\(g_1=-0,00283\)`
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
