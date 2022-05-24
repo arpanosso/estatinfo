@@ -26,18 +26,18 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
-# Medidas de Posição ou de Tendência Central
+# Medidas de Posição (Tendência Central)
 
 ---
 ## Medidas de posição
 
 São respostas breves e rápidas que sintetizam a informação não de uma forma de completa descrição dos dados ou eventual modelagem. 
 
-Essas medidas, portanto, fornecem a posição na reta real, informa sobre a posição de um conjunto de dados. As Principais medidas são: 
+Essas medidas, portanto, fornecem a posição da medida na reta real, ou seja, informa sobre a posição de um conjunto de dados. As Principais medidas são: 
 
 1. Média:  
  - **Aritmética**
- - Ponderada
+ - **Ponderada**
  - Geométrica (Apostila Apenas)
  - Harmônica (Apostila Apenas)
 
@@ -54,12 +54,12 @@ Para a população, a média é definida como:
  \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, \text{com } i=1,2,...,N.
  $$
  
- Onde $N$ é o tamanho da população (e geralmente não a conhecemos). 
+Onde $N$ é o tamanho da população (e geralmente não a conhecemos). 
 
 
 ### Média amostral
 
- É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da soma dos valores das observações dessa variável. A média amostral $\bar{x}$ é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população $\mu$. 
+É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da soma dos valores das observações dessa variável. A média amostral $\bar{x}$ é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população $\mu$. 
  
  $$
  \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, com\; i=1,2,...,n.
@@ -67,7 +67,7 @@ Para a população, a média é definida como:
 Onde $n$ é o tamanho da amostra.
 ---
 
-O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $49$ alunos (`idade_anos`). Observe que a média tem as mesmas unidades de medida que as observações individuais. 
+O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $49$ alunos (`idade_anos`). Observe que a média tem a mesma unidade de medida que a das observações individuais. 
 
 **Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
 
@@ -169,7 +169,7 @@ dados_turmas %>%
     color="blue") #<<
 ```
 
-$\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49} =  1,724\text{ m}$
+$\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49} =  1,7243\text{ m}$
 
 ]
 
@@ -178,15 +178,16 @@ $\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49} =  1,724\text{ m}$
 ```{r,plot13_2, echo=FALSE}
 ```
 ]
+
 Observe o histograma e a média para a variável `altura`, e compare sua simetria com o histograma da variável `idade_anos`.
 ---
 
 ## Média Ponderada
-Em alguams situações as observações têm graus de importância diferentes. Usa-se então a média ponderada:
+Em algumas situações as observações têm graus de importância diferentes. Usa-se, então, a média ponderada:
 
 $$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i}$$
 
-Onde $\lambda_i$ é o peso associado à i-ésima observaçõe. Assim, ele mede a importância relativa dessa i-ésima observação em relação às demais.
+Onde $\lambda_i$ é o peso associado à i-ésima observação. Assim, ele mede a importância relativa dessa i-ésima observação em relação às demais.
 ---
 
 **Exemplo**: Calcular a intensidade média de infestação do complexo "Broca-podridão" da cana-de-açúcar, larva de lepidóptera (*Diatraea saccharalis*) em plantas jovens associado à infecção por fungos, causando a podridão vermelha (*Colletotrichum falcatum*), em $8$ variedades plantadas em uma propriedade rural.
@@ -210,7 +211,9 @@ weighted.mean(X, pesos)
 ---
 ## Mediana
 
-É o valor que ocupa a posição central do conjunto de dados ordenados $(X' \text{ ou } Xo)$. Portanto, inicialmente as observações são ordenadas de acordo com a sua ordem de magnitude.
+É o valor que ocupa a posição central do conjunto de dados ordenados que pode ser denotado por $X' \text{ ou } X_o$. 
+
+Assim, antes de encontrar/calcular a mediana as observações são ordenadas de acordo com a sua ordem de magnitude.
 
 o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número de observações é grande.
 
@@ -237,7 +240,7 @@ No R:
 X=c(20, 30, 50, 50, 60, 70 ,90)
 median(X)
 ```
-Observe que a unidade da mediana é a mesma dos dados individuais.
+Observe que a unidade da mediana é a mesma dos dados originais.
 
 ]
 
@@ -258,8 +261,6 @@ Em uma distribuição simétrica (como a da variável `altura`), a mediana amost
 .pull-left[
 
 ```{r}
-median(dados_turmas$altura)
-# ou
 dados_turmas %>% 
   pull(altura) %>% 
   median()
@@ -270,8 +271,7 @@ dados_turmas %>%
 dados_turmas %>% 
   ggplot(aes(x=altura, y=..density..)) +
   geom_histogram(bins=6, 
-                 color="black", 
-                 fill="gray")+
+                 color="black",fill="gray")+
   geom_vline(
     xintercept = c(1.7242,1.74), #<<
     color=c("blue","red")) #<<
@@ -292,7 +292,7 @@ Se a distribuição de frequência é assimétrica (como a da variável `idade_a
 
 ---
 
-**Exemplo 2**: Calcular a média e a mediana dos dados de salário (nº salário mínimos), que diz respeito à uma amostra de 6 colaboradores de uma empresa.
+**Exemplo 2**: Calcular a média e a mediana dos dados de salário (nº salário mínimos), que diz respeito à uma amostra de $6$ colaboradores de uma empresa.
 
 $$S=\{ 5, 2, 3, 6, 10, 9\}$$
 $n=6$, par.
@@ -309,9 +309,16 @@ A média será dada por:
 
 $\bar{x}= \frac{2+3+5+6+9+10}{6} = 5,83 \text{ salários mínimos}$
 
+
+```{r}
+X <- c(5,2,3,6,10,9)
+median(X)
+mean(X)
+```
+
 ---
 
-Imagine que, ao ínvés de 10, o verdadeiro valor de ganho do 5º colaborador amostra seja 100, calcule a média e a mediana novamente para essa variável: 
+Imagine que, ao ínvés de $10$, o novo valor de ganho do 5º colaborador amostra seja $100$, calcule a média e a mediana novamente para essa variável: 
 
 $$S=\{ 5, 2, 3, 6, 100, 9\}$$
 $n=6$, par.
@@ -328,6 +335,11 @@ A média será dada por:
 
 $\bar{x}= \frac{2+3+5+6+9+100}{6} = 20,83 \text{ salários mínimos}$
 
+```{r}
+X[5] <- 100
+median(X)
+mean(X)
+```
 Concluímos então que a mediana não é afetada por observações muito grandes ou muito pequenas, enquanto que a presença de tais extremos tem um significante efeito sobre a média.
 
 ---
@@ -336,7 +348,7 @@ Concluímos então que a mediana não é afetada por observações muito grandes
 .pull-left[
 A moda é comumente definida como a medição que ocorre com mais frequência em um conjunto de dados.
 
-Para os dados de `idade_anos` o valor mais presente do conjunto de dados é 19 anos.
+Para os dados de `idade_anos` o valor mais presente do conjunto de dados é $19$ anos.
 
 Portanto, podemos ter distribuições com mais de um valor mais frequente (plurimodal), ou mesmo sem moda (amodal).
 
@@ -371,7 +383,7 @@ tibble(x) %>%
 
 - Os **Percentis** são os quantis de ordem $1$, $2$, ..., $99$ (P1, P2, ..., P99).
 
-No R, ele podem ser encontrados por meio da função `quantile()` que tem como algumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor.
+No R, ele podem ser encontrados por meio da função `quantile()` que tem como argumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor desejado.
 
 .pull-left[
 ```{r}
@@ -403,7 +415,8 @@ dados_turmas %>%
 ---
 class: middle, center, inverse
 
-# Medidas de Dispersão ou de Variabilidade
+# Medidas de Dispersão 
+# (Variabilidade)
 
 ---
 
@@ -427,7 +440,7 @@ As medidas de variação medem o grau com que os dados tendem a se distribuir em
 
 **Exemplo**:
 
-Dados o conjunto de 4 amostras da mesma variável (altura de planta em cm), calcule a média e a Amplitude amplitude total de cada amostra.
+Dados o conjunto de $4$ amostras da mesma variável (altura de planta em cm), calcule a média e a Amplitude amplitude total de cada amostra.
 
 ```{r,echo=FALSE}
 X1<-c(9,9,9,9,9)
@@ -438,6 +451,7 @@ tibble(X1,X2,X3,X4) %>%
   kableExtra::kable()
 ```
 --
+
 Tabela de Médias $(\sum_{i=1}^nx_i)/n$
 
 ```{r,,plot15,echo=FALSE}
@@ -483,9 +497,9 @@ Tabela Médias
 Tabela Amplitudes
 ```{r,plot16,echo=FALSE}
 ```
-- Apesar das amostras apresentarem o mesmo valor médio, a terceira (X3) e quarta (X4) amostras são mais dispersas. 
+- Apesar das amostras apresentarem o mesmo valor médio, a terceira $(X3)$ e quarta $(X4)$ amostras são mais dispersas. 
 
-- As amostras X3 e X4, apesar do mesmo valor de média e amplitude, são bem distintas. Isso corre pois a Amplitude leva em consideração apenas **dois** valores do conjunto de dados, o conveniente seria considerar uma medida que utiliza-se todas as observações.
+- As amostras $X3$ e $X4$, apesar do mesmo valor de média e amplitude, são bem distintas. Isso corre pois a Amplitude leva em consideração apenas **dois** valores do conjunto de dados, o conveniente seria considerar uma medida que utiliza-se todas as observações.
 
 ---
 ## Desvios ou erros $(e_i)$
@@ -505,7 +519,7 @@ tibble(X3,Desvios) %>%
 ]
 
 .pull-right[
-Como demosntrado anteriormente, a soma dos erros $e_i$
+Como demonstrado anteriormente, a soma dos erros $e_i$
  é sempre igual a zero:
 $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}$
 $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}$
@@ -516,7 +530,7 @@ $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i
 ---
 ## Soma dos Quadrados dos Desvios (SDQ)
 
-Para evitar a inconveniência do somatório dos desvios ser igual a zero, para qualquer conjunto de dados, elevamos ao quadrado cada um dos valores de desvios $e_i$. 
+Para evitar a inconveniência da somatória dos desvios ser igual a zero, para qualquer conjunto de dados, elevamos ao quadrado cada um dos valores de desvios $e_i$. 
   
 $$e_i^2 = (x_i - \bar{x})^2$$
 
@@ -577,7 +591,8 @@ No R:
 
 ```{r}
 X3<-c(0.6,3.4,9.8,13.8,17.4)
-QD <- sum(X3^2) - sum(X3)^2/5
+n <- length(X3)
+QD <- sum(X3^2) - sum(X3)^2/n
 QD
 sum(QD)
 ```
@@ -597,7 +612,7 @@ $SQD = 196,16 \;cm^2$
 
 Agora podemos definir a mais importante medida de variabilidade, a variância. 
 
-Ela será definida como a soma de quadrado dos desvios, dividada pelos seus GL **graus de liberdade** ( $DF$ do inglês - *degrees of freedom*).
+Ela será a soma de quadrado dos desvios, dividada pelos seus GL **graus de liberdade** ( $DF$ do inglês - *degrees of freedom*).
 
 Ou seja:
 
@@ -617,7 +632,7 @@ tibble(X3) %>%
   kableExtra::kable()
 ```
 
-A média da amostra é dada pela soma dos valores dividido por $n$, ou seja, não exsite qualquer restrição nesse cálculo pois, matematicamente, precisaremos de $n$ elementos conhecidos para conhecer todo o vetor de dados $X3$.
+A média da amostra é dada pela soma dos valores dividido por $n$, ou seja, não existe qualquer restrição nesse cálculo pois, matematicamente, precisaremos de $n$ elementos conhecidos para conhecer todo o vetor de dados $X3$.
 
 $\bar{x} = \frac{0,6+3,4+9,8+13,8+17,4}{n} = 9\;cm$
 ]
@@ -681,7 +696,7 @@ $SQD = 49,04 \;cm^2$
 
 ## Desvio Padrão amostral $(s)$
 
-A *variância* apresenta a unidade dos dados quadrática, o que dificulta a sua comparação. A raiz quadrada da variância é denominada **desvio padrão**: 
+A *variância* apresenta a unidade dos dados quadrática, o que dificulta a sua comparação e interpretação. Portanto, podemos tomar a raiz quadrada da variância, que é denominada **desvio padrão**: 
 $s=\sqrt{s^2}$  
 Para a população temos: $\sigma=\sqrt{\sigma^2}$
 
@@ -706,7 +721,7 @@ $SQD = 7,003 \;cm$
 ---
 ## Erro padrão da média $[s(m)]$
 
-Ao tomarmos $r$ amostragens da mesma população, tendo essas amostras individuais com tamanho $(n)$, obteremos diversas estimativas da média, distintas entre si. A partir dessas diversas estimativas da média, podemos estimar a variância, considerando os desvios de cada média, em relação à média de todas as amostras. Temos, portanto, uma estimativa da variância média, denominadas **erro padrão da média**
+Ao tomarmos $r$ amostragens da mesma população, tendo essas amostras individuais com tamanho $(n)$, obteremos diversas estimativas da média, distintas entre si. A partir dessas diversas estimativas da média, podemos estimar a variância, considerando os desvios de cada média, em relação à média de todas as amostras. Temos, portanto, uma estimativa da variância média, denominadas **erro padrão da média**.
 
 Essa medida fornece a ideia de precisão da estimativa da média, ou seja, quanto *menor* ela for, **maior** a precisão terá a estimativa da média. E deve ser calculada como:
 
