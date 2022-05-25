@@ -744,7 +744,7 @@ $$CV = 100 \cdot \frac{s}{\bar{x}}$$
 
 é interpretado como a variabilidade dos dados em relação à média.
 
-**Exemplo**: Suponha dois grupos de indivíduos, um deles com idades $\{3,1,5\}$ anos e no outro, têm idades ${55,57,53}$ anos. No primeiro grupo, a média de idade é 3 anos e, no segundo grupo e a $\bar{x}=55\;anos$ anos e ambos com $s=2\;anos$. Onde o desvio padrão é mais importante? Por quê?
+**Exemplo**: Suponha dois grupos de indivíduos, um deles com idades $\{3,1,5\}$ anos e no outro, têm idades ${55,57,53}$ anos. No primeiro grupo, a média de idade é $3$ anos e no segundo grupo $\bar{x}=55\;anos$ e ambos com $s=2\;anos$. Onde o desvio padrão é mais importante? Por quê?
 
 ```{r}
 cv <- function(x) 100*sd(x)/mean(x)
@@ -756,9 +756,9 @@ cv(g2)
 ---
 ## Coeficiente de Variação (CV)
 
-Assim, desvios de 2 anos são muito mais importantes para o primeiro grupo que para o segundo, isto é, a dispersão dos dados em torno da média é muito grande no primeiro grupo. 
+Assim, desvios de $2$ anos são muito mais importantes para o primeiro grupo que para o segundo, isto é, a dispersão dos dados em torno da média é muito grande no primeiro grupo. 
 
-Deste modo, o CV pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados.
+Deste modo, o $CV$ pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados, e variáveis.
 
 ---
 class: middle, center, inverse
@@ -771,7 +771,9 @@ class: middle, center, inverse
 
 A interpretação da diferença entre a média e a mediana é, muitas vezes, subjetiva, então, utilizamos esse coeficiente para resumir a assimetria das observações. 
 
-Este coeficiente indica se os desvios da média são maiores para um lado da distribuição do que para o outro. É formalmente definido a partir do terceiro momento da média (OBS: a variância é o segundo momento *m2* e a média o primeiro momento *m1*).
+Este coeficiente indica se os desvios da média são maiores para um lado da distribuição do que para o outro. 
+
+É formalmente definido a partir do terceiro momento da média (OBS: a variância é o segundo momento *m2* e a média o primeiro momento *m1*).
 
 
 O terceiro momento pode ser computado como:
@@ -794,9 +796,9 @@ dados_turmas %>%
   )
 ```
 
-- Se as observações apresentam distribuição simétrica, g1=0, ou próximas a 0 (**ALTURA**).
-- As observações apresentam assimetria positiva $(g_1 > 0)$ se o histograma apresenta uma influência dos valores mais altos, maiores que a média e a mediana (**IDADE_ANOS**).
-- As observações apresentam assimetria negativa $(g_1 < 0)$ se o histograma apresenta uma influência dos valores mais baixos, menores que a média e a mediana.
+- Se as observações apresentam distribuição simétrica, $g_1=0$, ou próximas a $0$ (**ALTURA**).
+- As observações apresentam **assimetria positiva** $(g_1 > 0)$ se o histograma apresenta uma influência dos valores mais altos, maiores que a média e a mediana (**IDADE_ANOS**).
+- As observações apresentam **assimetria negativa** $(g_1 < 0)$ se o histograma apresenta uma influência dos valores mais baixos, menores que a média e a mediana.
 
 ---
 No Excel utilizamos a função `=DISTORÇÃO()`.
@@ -854,6 +856,7 @@ A estimativa do Coeficiente de Curtose é dada por $(g_2)$:
 
 $$g_2 = n(n+1) \frac{\frac{\sum \limits_{i=1}^n(x_1-\bar{x})^4}{s^4}}{(n-1)(n-2)(n-3)}-3\frac{(n-1)^2}{(n-2)(n-3)}$$
 ```{r}
+library(agricolae)
 dados_turmas %>% 
   summarise(
     g2_idade = kurtosis(idade_anos),
