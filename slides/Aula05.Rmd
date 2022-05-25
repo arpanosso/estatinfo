@@ -7,7 +7,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 05 - Medidas Estatísticas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(26-05-2021)"
+date: "(26-05-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -77,7 +77,7 @@ library(tidyverse)
 library(readxl)
 
 # Lendo o banco de dados no R
-dados_turmas <- read_excel("C:/Users/Not. Unesp/Downloads/dados_turmas.xlsx")
+dados_turmas <- read_excel("../data/dados_turmas.xlsx")
 
 # Resumo rápido dos dados
 glimpse(dados_turmas)
