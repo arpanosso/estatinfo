@@ -33,7 +33,7 @@ class: middle, center, inverse
 
 São respostas breves e rápidas que sintetizam a informação não de uma forma de completa descrição dos dados ou eventual modelagem. 
 
-Essas medidas, portanto, fornecem a posição da medida na reta real, ou seja, informa sobre a posição de um conjunto de dados. As Principais medidas são: 
+Essas medidas, portanto, fornecem a posição da medida na reta real, ou seja, informa sobre a posição de um conjunto de dados. As principais medidas são: 
 
 1. Média:  
  - **Aritmética**
@@ -59,7 +59,9 @@ Onde $N$ é o tamanho da população (e geralmente não a conhecemos).
 
 ### Média amostral
 
-É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da soma dos valores das observações dessa variável. A média amostral $\bar{x}$ é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população $\mu$. 
+É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da soma dos valores das observações dessa variável. 
+
+A média amostral $\bar{x}$ é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população $\mu$. 
  
  $$
  \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, com\; i=1,2,...,n.
