@@ -5,10 +5,10 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 07 - Probabilidade (continuação)"
+subtitle: "Aula 07 - Probabilidade Parte II"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(27-05-2021)"
+date: "(09-06-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
