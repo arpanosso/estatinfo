@@ -755,7 +755,9 @@ g2<-c(55,57,53)
 cv(g1)
 cv(g2)
 ```
+
 ---
+
 ## Coeficiente de Variação (CV)
 
 Assim, desvios de $2$ anos são muito mais importantes para o primeiro grupo que para o segundo, isto é, a dispersão dos dados em torno da média é muito grande no primeiro grupo. 
@@ -769,6 +771,15 @@ class: middle, center, inverse
 
 ---
 
+# Introdução
+
+Observe a distribuição de frequência das variáveis teores de Areia, Silte e
+Argila (%) coletados em uma área experimental de Latossolo:
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/distribuicoes.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+
+---
 ## Coeficiente de Assimetria (Skewness – G1)
 
 A interpretação da diferença entre a média e a mediana é, muitas vezes, subjetiva, então, utilizamos esse coeficiente para resumir a assimetria das observações. 
