@@ -31,11 +31,11 @@ class: middle, center, inverse
 
 **Conjuntos**: é uma coleção de qualquer tipo de objetos – pessoas, animais, plantas, fenômenos, estímulos, respostas, traços genéticos, métodos, ideias e possibilidades lógicas. Dizemos que um conjunto está bem definido quando está claro que um objeto pertence ou não pertence ao conjunto. A ambiguidade não é permitida. 
 
-- Conjunto dos números 2,3,5,7.
-- Conjunto de alunos dessa sala.
-- Conjunto de meses que se iniciam pela letra "J".
+- Conjunto dos números `\(2\)`, `\(3\)`, `\(5\)`, `\(7\)`.
+- Conjunto de estudantes dessa sala.
+- Conjunto de meses que se iniciam pela letra `\(J\)`.
 - Conjunto de números pares.
-- Conjunto de cães nesse meet.
+- Conjunto de árvores dentro dessa sala de aula.
 
 --
 
@@ -44,9 +44,9 @@ class: middle, center, inverse
 --
 
 **Conjunto finito**: contém um número finito de elementos. 
-	Conjunto dos números 2,3,5,7.
-	Conjunto de alunos dessa sala.
-	Conjunto de meses que se iniciam pela letra "J".
+- Conjunto dos números `\(2\)`, `\(3\)`, `\(5\)`, `\(7\)`.
+- Conjunto de estudantes dessa sala.
+- Conjunto de meses que se iniciam pela letra `\(J\)`.
 
 --
 
@@ -56,7 +56,7 @@ class: middle, center, inverse
 --
 
 **Conjunto vazio**: não contém elementos
-	Conjunto de cães assistindo essa aula no Google Meet.
+	Conjunto de árvores dentro dessa sala de aula.
 
 ---
 
@@ -68,22 +68,23 @@ class: middle, center, inverse
 
 **Conjunto vazio**: é representado pelo zero cortado por uma barra, é o símbolo padrão `\(\phi\)` ou `\(\{\}\)`.  É aquele desprovido de elementos.
 
-Os elementos de um conjunto são reunidos por chaves. 
-Conjunto dos números 2,3,5,7:
-    
-`\(A=\{2,3,5,7\}\)` `\(\to\)` Forma Tabular.
 
-`\(A=\{x|x \text{ é nº primo menor que 10} \} \to\)` Forma Construção. 
+
 ---
 
-**Forma de construção**: Para conjuntos grandes devemos caracterizar seus elementos por meio de afirmações matemáticas, pois, por exemplo, somos incapazes de relacionar todos os números maiores que 5, uma vez que este conjunto é infinito, assim, introduzimos um elemento variável, `\(x\)`, e definimos como:
+## Formas de apresentação 
 
-`\(A = \{ x | x &gt; 5\}\)`
+**Forma Tabular**: Os elementos de um conjunto são reunidos por chaves. 
+Conjunto dos números 2,3,5,7:
 
---
+`\(A=\{2,3,5,7\}\)`
 
-Lê-se "o conjunto de todo os números `\(x\)` tal que, `\(x\)` seja maior que 5".
+**Forma de construção**: Para conjuntos grandes devemos caracterizar seus elementos por meio de afirmações matemáticas, pois, por exemplo, somos incapazes de relacionar todos os números maiores que `\(5\)`, uma vez que este conjunto é infinito, assim, introduzimos um elemento variável, `\(x\)`, e definimos como  `\(Z = \{ x | x &gt; 5\}\)`, lê-se "o conjunto de todo os números `\(x\)` tal que, `\(x\)` seja maior que 5".
 
+
+Para o exemplo anterior, temos:
+
+`\(A=\{x|x \text{ é nº primo menor que 10} \}\)` 
 --
 
 **Conjunto solução**: A teoria dos conjuntos pode ser utilizada para apresentar as soluções de problemas matemáticos. Por exemplo:
@@ -133,14 +134,14 @@ $$ 5 \in \aleph$$
 ---
 ## Continência
 
-**Subconjunto**: Para um conjunto `\(A\)` contendo somente elementos de um conjunto `\(B\)`, mas não necessariamente todos os membros de `\(B\)`, A é subconjunto de `\(B\)`.
+**Subconjunto**: Para um conjunto `\(A\)` contendo somente elementos de um conjunto `\(B\)`, mas não necessariamente todos os membros de `\(B\)`, então `\(A\)` é **subconjunto** de `\(B\)`.
 
 $$ A \subset B$$
-ou
+ou `\(B\)` é **superconjunto** de `\(A\)`.
 
 `$$B \supset A$$`
 
-E dizemos que **"A está contido em B"** ou **"B contém A"**. `\(A\)`  é chamado de **subconjunto** de `\(B\)` ou `\(B\)` é um de **superconjunto** A. 
+E dizemos que **"A está contido em B"** ou **"B contém A"**.
 
 Essa definição de subconjunto nos permite dizer que um conjunto é subconjunto de si mesmo:
 
@@ -196,11 +197,11 @@ Subconjunto com 3 elementos {1, 2, 3}
 
 --
 
-Observe que 3 é diferente de `\(\{3\}\)`, pois 3 é um elemento e `\(\{3\}\)` é um conjunto. 
+Observe que `\(3\)` é diferente de `\(\{3\}\)`, pois `\(3\)` é um elemento e `\(\{3\}\)` é um conjunto. 
 
 Podemos dizer que:
 
- `\({ 3 } \subset \{ 1, 2, 3\}\)`, porém `\(3 \in \{1, 2, 3\}\)`
+ `\(\{ 3 } \subset \{ 1, 2, 3\}\)`, porém `\(3 \in \{1, 2, 3\}\)`
  
   
 ---
@@ -353,12 +354,10 @@ Dados 3 conjuntos, A, B e C, podemos demonstrar que:
 ---
 ## Conjunto Complementar
 
-**Conjunto Complementar**: Seja `\(A\)` um subconjunto de `\(U\)` , isto é `\(A \in U\)`. Então estamos interessados nos elementos de `\(U\)` que não pertencem a `\(A\)`. Ele formam um novo conjunto, que é chamado **"o complementar de A em U"**. Representado por: `\(\bar{A}\)` ou `\(A^c\)`.
+**Conjunto Complementar**: Seja `\(A\)` um subconjunto de `\(U\)` , isto é `\(A \subet U\)`. Então estamos interessados nos elementos de `\(U\)` que não pertencem a `\(A\)`. Ele formam um novo conjunto, que é chamado **"o complementar de A em U"**. Representado por: `\(\bar{A}\)` ou `\(A^c\)`.
 
 
-2) Segunda Lei Distributiva 
-Dados 3 conjuntos, A, B e C, podemos demonstrar que:
-`\(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\)`
+
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_09.png" width="55%" style="display: block; margin: auto;" /&gt;
 `$$\bar{A} = \{ x | x \in U, x \notin A \}$$`
@@ -391,7 +390,7 @@ Utilize o diagrama de Venn para provar as propriedades:
 ---
 ### Exercícios
 
-1) Numa escola mista há 30 meninas, 21 crianças ruivas, 13 meninos não ruivos e 4 meninas ruivas. Pergunta-se:  
+1) Em uma  sala de aula  há `\(30\)` meninas, `\(21\)` crianças ruivas, `\(13\)` meninos não ruivos e `\(4\)` meninas ruivas. Pergunta-se:  
 
 a)Quantos são os meninos ruivos?  
 b)Quantas são as meninas não ruivas?  
@@ -400,14 +399,14 @@ d)Quantas crianças são ruivas ou meninas?
 e)Quantas crianças não são ruivas ou meninas?  
 f)Quantas crianças não são, ruivas ou meninas?  
 
-2) Numa comunidade de animais são consumidas 3 espécies de plantas A, B e C. Uma pesquisa apresentou os seguintes resultados:
+2) Em uma comunidade de animais são consumidas `\(3\)` espécies de plantas `\(A\)`, `\(B\)` e `\(C\)`. Uma pesquisa apresentou os seguintes resultados:
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ex2_aula6.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 a) Quantos animais foram amostrados?  
-b) Quantos animais consomem somente 2 espécies de plantas?  
-c) Quantos animais não consomem a planta B?  
-d) Quantos animais não consomem A ou não consomem B?  
+b) Quantos animais consomem somente `\(2\)` espécies de plantas?  
+c) Quantos animais não consomem a planta `\(B\)`?  
+d) Quantos animais não consomem `\(A\)` ou não consomem `\(B\)`?  
 
 ---
 ### Respostas
