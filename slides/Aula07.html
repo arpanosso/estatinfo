@@ -36,16 +36,18 @@ class: middle, center, inverse
 
 Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png" width="80%" style="display: block; margin: auto;" /&gt;
+Um **experimento aleatório** pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png" width="70%" style="display: block; margin: auto;" /&gt;
 ---
 
 **Fenômeno aleatório:** É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade (**experimento aleatório**). Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controlá-los.
 
 .pull-left[
-Germinação de sementes
+Germinação de sementes de milho
 &lt;img src="https://images.pexels.com/photos/1459331/pexels-photo-1459331.jpeg?cs=srgb&amp;dl=pexels-livier-garcia-1459331.jpg&amp;fm=jpg" width="60%" style="display: block; margin: auto auto auto 0;" /&gt;
 
-TCH
+Produção de cana-de-açúcar (TCH)
 &lt;img src="https://images.pexels.com/photos/7457175/pexels-photo-7457175.jpeg?cs=srgb&amp;dl=pexels-kindel-media-7457175.jpg&amp;fm=jpg" width="60%" style="display: block; margin: auto auto auto 0;" /&gt;
 ]
 
@@ -57,22 +59,22 @@ Ganho de peso bovino
 ---
 
 
-**Espaço amostral `\((\mho\)` ou `\(S)\)`**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra ômega `\(\mho\)` ou pelo `\(S\)`. 
+**Espaço amostral ou Universo `\((\Omega\)` ou `\(S \text{ ou } U)\)`**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra Ômega `\(\Omega\)` ou pelo `\(S\)`. 
 
 Assim, no lançamento de um dado, o espaço amostral é:
 
-`$$\mho = \{1, 2, 3, 4, 5, 6\}$$`
+`$$S = \{1, 2, 3, 4, 5, 6\}$$`
 
 No lançamento de uma moeda, o espaço amostral é:
 
-`$$\mho = \{H, T\}$$`
+`$$S = \{H, T\}$$`
 Onde `\(H\)` representa Cara e `\(T\)` representa Coroa.
 
 No lançamento de duas moedas o espaço amostral é:
 
-`$$\mho = \{HH, HT,TH,TT\}$$`
+`$$S = \{HH, HT,TH,TT\}$$`
 
-**Evento simples ou evento elementar `\((e)\)`**: É cada resultado possível, ou seja, é o conjunto de resultados possíveis. Assim, para o lançamento de duas modeas,  temos: 
+**Evento simples, ponto amostral ou evento elementar `\((e)\)`**: É cada resultado possível, ou seja, é o conjunto de resultados possíveis. Assim, para o lançamento de duas modeas,  temos: 
 --
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/duas_modeas.png" width="90%" style="display: block; margin: auto;" /&gt;
 
@@ -82,14 +84,27 @@ No lançamento de duas moedas o espaço amostral é:
 
 Assim, para o lançamento de um dado,  temos os eventos:
 
-a) sair um número par:  
-	R: `\(E_1 = \{2, 4, 6\}\)`
+a) sair um número par: 
 
-b) sair um número menor que 3:  
-	R: `\(E_2 = \{x| x&lt; 3 \} = \{1, 2\}\)` 
+--
+	
+R: `\(E_1 = \{2, 4, 6\}\)`
 
-c) sair um número menor que 3 ou primo:  
-	R: `\(E = \{x| x&lt; 3 \text{ ou } x = \text{ primo }\} = \{ 1,2,3,5\}\)`
+--
+
+b) sair um número menor que `\(3\)`:  
+
+--
+
+R: `\(E_2 = \{x| x&lt; 3 \} = \{1, 2\}\)` 
+
+--
+
+c) sair um número menor que `\(3\)` ou primo:
+
+--
+
+R: `\(E = \{x| x&lt; 3 \text{ ou } x = \text{ primo }\} = \{ 1,2,3,5\}\)`
 
 ---
 
@@ -102,9 +117,9 @@ A probabilidade é uma função `\(P(.)\)` que atribuí valores numéricos a um 
 A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado.
 
 Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
-`\(\mho = \{H H, H T, T H, T T\}\)`.
+`\(\Omega = \{H H, H T, T H, T T\}\)`.
 
-A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como `\(X\)` que representa o **número de caras** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
+A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como `\(X\)` que representa o **a contagem do número de caras** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png" width="40%" style="display: block; margin: auto;" /&gt;
 
@@ -169,11 +184,11 @@ Chamamos esse tipo de **Evento Certo**.
 
 ###  Probabilidade de um Evento
 
-&gt;Assim, `\(P(E)\)` é a probabilidade de um evento E, ou seja, um número entre `\(0\)` e `\(1\)`, quanto mais próximo a 1, maior a chance de sua ocorrência. 
+&gt;Assim, `\(P(E)\)` é a probabilidade de um evento `\(E\)`, ou seja, é um número entre `\(0\)` e `\(1\)`, quanto mais próximo a `\(1\)`, maior a chance de sua ocorrência. 
 
 A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
 
-Portanto, se `\(\mho\)` consiste de `\(k\)` eventos simples `\(\{ e_1, e_2, \cdots, e_k\}\)` que são **igualmente prováveis**, a probabilidade de cada `\(e_i\)` é `\(\frac{1}{k}\)` se `\(E\)` consiste de `\(m\)` desses `\(k\)` elementos, então temos:
+Portanto, se `\(S\)` consiste de `\(k\)` eventos simples `\(\{ e_1, e_2, \cdots, e_k\}\)` que são **igualmente prováveis**, a probabilidade de cada `\(e_i\)` é `\(\frac{1}{k}\)` se `\(E\)` consiste de `\(m\)` desses `\(k\)` elementos, então temos:
 
 `$$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }\mho} = \frac{m}{k},$$`
 
@@ -181,7 +196,7 @@ Portanto `\(P(.)\)` é denominada probabilidade se, e somente se:
 
 `\(i) \;0 \le P(E) \le 1, \forall E \subset \mho\)`.
 
-`\(ii) \;P(\mho)= 1\)`, assim como, `\(P(\phi)=0\)`
+`\(ii) \;P(S)= 1\)`, assim como, `\(P(\phi)=0\)`
 
 `\(iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum_{i=1}^k P(E_i)\)` com os eventos `\(E_i\)` **disjuntos (mutuamente excludentes)**.
 
@@ -208,7 +223,7 @@ Para qualquer evento `\(A\)`, podemos escrever:
 
 `\(A = A \cup \phi\)`, com `\(A\)` e `\(\phi\)` disjuntos, apresentado na propriedade (iii), temos:
 
-`\(P(A)=P(A)+P(\phi)\)`, como cnclusão imediata, temos:
+`\(P(A)=P(A)+P(\phi)\)`, como conclusão imediata, temos:
 
 `\(P(\phi)=0\)`, mas se `\(P(A)=0\)`, não é verdadeiro que `\(A=\phi\)`, existem situações que atribuiremos `\(P(E)=0\)` para um evento que pode ocorrer.
 
@@ -218,15 +233,15 @@ Para qualquer evento `\(A\)`, podemos escrever:
 
 Se `\(\bar{A}\)` for o evento complementar de `\(A\)`, então: 
 
-`$$P(A) = 1- P(A)$$`
+`$$P(A) = 1 - P(A)$$`
 
 **Demonstração**:
 
 Podemos escrever:
 
-`\(\mho = A \cup \bar{A}, \forall A\)`,
+`\(S = A \cup \bar{A}, \forall A\)`,
 
-Empregando a propriedade 2 e 3, temos:
+Empregando a propriedade `\(2\)` e `\(3\)`, temos:
 
 `\(P(U) = P(A)+P(\bar{A})\)`  
 
@@ -292,7 +307,7 @@ Se as condições dos experimentos não mudam, quando o número `\(n\)` de vezes
 
 `$$\lim_{ n \to \infty } f_n(E) = P(E)$$`
 
-Se jogarmos um dado, não viciado, muitas vezes e contarmos as vezes que cada lado sai, o valor da frequência relativa de cada tenderá a `\(\frac{1}{6} = 0,1667\)`.
+Se jogarmos um dado não viciado, muitas vezes e contarmos as vezes que cada lado sai, o valor da frequência relativa de cada tenderá a `\(\frac{1}{6} = 0,1667\)`.
 
 &lt;img src="https://images.pexels.com/photos/979722/pexels-photo-979722.jpeg?cs=srgb&amp;dl=pexels-jonathan-petersson-979722.jpg&amp;fm=jpg" width="15%" style="display: block; margin: auto;" /&gt;
 
