@@ -1,0 +1,143 @@
+---
+title: "Avaliação 01 - Estatística e Informática - TP1"
+output: html_document
+---
+
+### INFORMAÇÕES E RECOMENDAÇÕES:
+
+  - A avaliação é **INDIVIDUAL**.
+  - Clique sobre o **SEU NOME** e faça o download do arquivo que contém a **SUA PROVA**.
+  - Leia atentamente todas as questões, pois a interpretação faz parte da avaliação.  
+  - Apresente **TODOS** os resultados com, no mínimo, $04$ casas decimais, no campo de resposta na própria avaliação.
+  - Poderá ser utilizado o **R**, o **Excel** ou a **calculadora científica**, contudo, **NÃO SERÁ NECESSÁRIO ENVIAR OS CÓDIGOS OU CÁLCULOS**, somente a **própria avaliação** com as respostas nos respectivos campos.
+  - A Prova deverá ser entregue até as **23:59h** do dia **23/06/2022** via Google Classroom, Atividade: **"AVALIAÇÃO 01"**.  
+  - A prova poderá ser impressa, preenchida e as fotos poderão ser anexadas e enviadas.
+  - Poderá ser utilizada a ferramenta de **preencher e assinar** do *Adobe Acrobat Reader* . Ao final desta página será apresentado um breve tutorial de como utilizar essa ferramenta.
+
+### Arquivos para download:
+
+| Nome | 
+|:---|
+|[Alan Gabriel de Souza](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/01.pdf) | 
+|[Alan Moretto Ferreira de Aguiar](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/02.pdf) | 
+|[Alessandra da Silva Andrade](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/03.pdf) | 
+|[Amanda Caroline Bertuso](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/04.pdf) | 
+|[Augusto Rosario Vieira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/05.pdf) | 
+|[Beatriz dos Reis Jesus Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/06.pdf) | 
+|[Bruno Borges Manginelli](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/07.pdf) | 
+|[Eduardo Venturinelli](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/08.pdf) | 
+|[Enzo Morillo](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/09.pdf) | 
+|[Felipe Machado Camargo](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/10.pdf) | 
+|[Fernando Junqueira de Almeida Galletti](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/11.pdf) | 
+|[Filipe Coelho de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/12.pdf) | 
+|[Francisco Eduardo Boissoni Ogata](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/13.pdf) | 
+|[Gabriel Henrique da Silva Crispim](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/14.pdf) | 
+|[Gabriel Queiroz](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/15.pdf) | 
+|[Geysor Taylon Lima Vieira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/16.pdf) | 
+|[Guilherme Ligabue Pereira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/17.pdf) | 
+|[Guilherme Pinto Ferreira de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/18.pdf) | 
+|[Guilherme Santos de Moura](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/19.pdf) | 
+|[Guilherme Teixera Padilha Stefano](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/20.pdf) | 
+|[Helora Machado Sampaio da Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/21.pdf) | 
+|[Josiel Marcos Carvalho Soares](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/22.pdf) | 
+|[Kailaine do Nascimento Ferreira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/23.pdf) | 
+|[Lorenzo Pagnano Bocchi](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/24.pdf) | 
+|[Luccas Casella Mattiello](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/25.pdf) | 
+|[Luis Otavio Osorio Rosa](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/26.pdf) | 
+|[Luiz Antônio Bonaldo Citrangulo](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/27.pdf) | 
+|[Luiz Fernando de Mello](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/28.pdf) | 
+|[Murilo Augusto Destefani](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/29.pdf) | 
+|[Pedro Costa Scrivanti](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/30.pdf) | 
+|[Pedro Henrique Batista dos Santos](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/31.pdf) | 
+|[Pedro Lucas de Carvalho Galina](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/32.pdf) | 
+|[Pietro Tambasco Talhari](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/33.pdf) | 
+|[Rafael Barboza Fredi](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/34.pdf) | 
+|[Rafael Cavichioli Lopes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/35.pdf) | 
+|[Rafael Henrique de Souza Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/36.pdf) | 
+|[Rian Nogueira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/37.pdf) | 
+|[Sarah Donadeli Pagliarone](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/38.pdf) | 
+|[Taina Oliveira Alves](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/39.pdf) | 
+|[Theo Safatle Telles](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/40.pdf) | 
+|[Thiago Lorenzo Girardi](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/41.pdf) | 
+|[Yara de Assis Serafim](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p1/tp1/42.pdf) | 
+
+
+
+### Tutorial para Preenchimento da Avaliação.
+
+#### 01) Faça o download da sua prova e salve em uma pasta no seu computador. 
+Após esse procedimento, clique duas vezes sobre o arquivo. Abra-o utilizando a Adob Acrobat Reader (o download do programa pode ser feito no link-https://get.adobe.com/br/reader/).
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed01.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
+
+---
+
+#### 2) O arquivo da sua prova será aberto no programa, como apresentado abaixo:
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed02.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
+
+---
+
+#### 3) Ative a ferramenta **Preencher e assinar** do Adobe.  
+
+Para isso clique no menu **Assinar** e em seguida clique na opção **Preencher e assinar**: 
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed03.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
+
+---
+
+#### 4) Observe que será apresentada a barra *Preencher e assinar* com várias fermentas.
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed04.png" style=" display: block; margin-left: auto; margin-right: auto;width: 110%"></img>
+
+Clique na ferramenta **Adicionar Texto**, como apresentado na figura abaixo:
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed05.png" style=" display: block; margin-left: auto; margin-right: auto;width: 110%"></img>
+
+---
+
+#### 5) Preencha os campos com as suas respostas:
+
+Em seguida, posicione o cursos sobre o campo que deseja preencher e digite a resposta.
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed07.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+Repita esse procedimento para todos os campos da prova.
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed08.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+
+---
+
+#### 6) Salve a prova preenchida:
+
+Para realizar essa etapa, clique no menu  **Arquivo**:
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed09.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+Em seguida selecione **Salvar como...**
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed10.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
+
+
+---
+
+Escolha a pasta onde o arquivo com a prova preenchida será salvo: 
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed11.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
+
+
+---
+
+
+No exemplo, selecionamos a mesma pasta de origem da prova, e clique em **Salvar**: 
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed12.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
+
+---
+
+Se necessário substitua o arquivo ou simplesmente salve a prova preenchida com outro nome.
+
+<img src="https://arpanosso.github.io/estatinfo/docs/p12/img/pdf_ed13.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
+
+Pronto, agora você pode enviar a sua prova no **Google Classroom**.
