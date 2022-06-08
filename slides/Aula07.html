@@ -36,12 +36,14 @@ class: middle, center, inverse
 
 Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
 
-Um **experimento aleatório** pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes
+Um **experimento aleatório** pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes.
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png" width="70%" style="display: block; margin: auto;" /&gt;
 ---
 
-**Fenômeno aleatório:** É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade (**experimento aleatório**). Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controlá-los.
+**Fenômeno aleatório:** É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade, portanto é proveniente de um **experimento aleatório**. 
+
+Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controlá-los.
 
 .pull-left[
 Germinação de sementes de milho
@@ -59,7 +61,7 @@ Ganho de peso bovino
 ---
 
 
-**Espaço amostral ou Universo `\((\Omega\)` ou `\(S \text{ ou } U)\)`**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra Ômega `\(\Omega\)` ou pelo `\(S\)`. 
+**Espaço amostral ou Universo `\((U)\)`**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra Ômega `\(\Omega\)` ou pelo `\(S\)`, . 
 
 Assim, no lançamento de um dado, o espaço amostral é:
 
@@ -117,9 +119,9 @@ A probabilidade é uma função `\(P(.)\)` que atribuí valores numéricos a um 
 A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado.
 
 Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
-`\(\Omega = \{H H, H T, T H, T T\}\)`.
+`\(S = \{H H, H T, T H, T T\}\)`.
 
-A título de exemplificação, vamos definir uma variável **aleatória (v.a.)** como `\(X\)` que representa o **a contagem do número de caras** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
+A título de exemplificação, vamos definir uma **variável aleatória `\(X\)`** que representa **a contagem do número de caras (H)** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png" width="40%" style="display: block; margin: auto;" /&gt;
 
@@ -190,11 +192,11 @@ A proporção de vezes que um evento simples pode ocorrer pode ser determinada s
 
 Portanto, se `\(S\)` consiste de `\(k\)` eventos simples `\(\{ e_1, e_2, \cdots, e_k\}\)` que são **igualmente prováveis**, a probabilidade de cada `\(e_i\)` é `\(\frac{1}{k}\)` se `\(E\)` consiste de `\(m\)` desses `\(k\)` elementos, então temos:
 
-`$$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }\mho} = \frac{m}{k},$$`
+`$$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }S} = \frac{m}{k},$$`
 
 Portanto `\(P(.)\)` é denominada probabilidade se, e somente se: 
 
-`\(i) \;0 \le P(E) \le 1, \forall E \subset \mho\)`.
+`\(i) \;0 \le P(E) \le 1, \forall E \subset S\)`.
 
 `\(ii) \;P(S)= 1\)`, assim como, `\(P(\phi)=0\)`
 
@@ -233,7 +235,7 @@ Para qualquer evento `\(A\)`, podemos escrever:
 
 Se `\(\bar{A}\)` for o evento complementar de `\(A\)`, então: 
 
-`$$P(A) = 1 - P(A)$$`
+`$$P(\bar{A}) = 1 - P(A)$$`
 
 **Demonstração**:
 
@@ -324,17 +326,17 @@ Vamos definir `\(n\)` como o número de vezes que o experimento será realizado 
 # Carregando pacotes
 library(tidyverse)
 n &lt;- 100
-x&lt;-n |&gt; 
-  runif(min=.5,max=6.5) |&gt; 
+x&lt;-n  %&gt;%  
+  runif(min=.5,max=6.5) %&gt;%  
   round()
 
 # Criando a tabela e posterior gráfico
-tibble(x) |&gt; 
-  group_by(x) |&gt; 
+tibble(x)  %&gt;%  
+  group_by(x)  %&gt;%  
   summarise(
     ni = n(),
     fi = ni/n
-  ) |&gt; 
+  ) %&gt;% 
   ggplot(aes(x=x,y=fi)) +
   geom_col(color="black",fill="lightblue") +
   geom_hline(yintercept = 1/6,color="red")
@@ -349,7 +351,7 @@ Observe que os valores de `\(f_i\)` são diferentes, não houve a convergência 
 
 ---
 
-Agora vamos aumentar o `\(n\)` para  `\(1.000.000\)`, e observa convergência para o valor de `\(1/6\)`, linha vermelha no gráfico.
+Agora vamos aumentar o `\(n\)` para  `\(1.000.000\)`, e observar a convergência para o valor de `\(1/6\)`, linha vermelha no gráfico.
 
 .pull-left[
 
@@ -382,13 +384,13 @@ Quando `\(n \to \infty\)` os valores de `\(f_i \to P(E) = 0,16667\)`.
 
 ### Exemplo
 
-Dada a seguinte tabela, referente ao sexo `\((F, M)\)` e a cor do cabelo (*Ruivos* e *Não Ruivos*) de crianças em uma escola mista:
+Dada a seguinte tabela, referente ao sexo `\((F, M)\)` e a cor do cabelo (*Ruivos* e *Não Ruivos*) de crianças em uma escola:
 
 
- | Ruivo | Não Ruivo | TOTAL
+ | Ruivo `\((R)\)` | Não Ruivo `\((\bar{R})\)` | TOTAL
 ---|:---:|:---:|:---:|---:
-**Feminino** | 4  | 26 | **30**
-**Masculino** | 17 | 13 | **30** 
+**Feminino `\((F)\)`** | 4  | 26 | **30**
+**Masculino `\((\bar{F})\)`** | 17 | 13 | **30** 
 **TOTAL** | **21** | **39** | **60**
 
 Ao selecionarmos um aluno ao acaso, pergunta-se:
@@ -442,8 +444,10 @@ Então temos a regra da adição da probabilidade:
 
 `$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$`
 --
+
 #### Teorema 3
- Se A e B forem dois eventos quaisquer, então, `\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)`:
+
+Se `\(A\)` e `\(B\)` forem dois eventos quaisquer, então, `\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)`:
 
 **Demonstração**: A ideia principal dessa demonstração é decompor `\(A \cup B\)` e `\(B\)` em dois eventos disjuntos, e em seguida aplicar a propriedade 3 da definição de probabilidade (slide 11).
 
@@ -547,8 +551,8 @@ Responda:
 a) Qual o probabilidade de A não ocorrer?  
 b) Qual a probabilidade de B não ocorrer?  
 c) Qual a probabilidade de A ou B ocorrer?  
-d) Qual a probabilidade de A e B não ocorrerem?  
-e) Qual a probabilidade de A ou B não ocorrer?  
+d) Qual a probabilidade de A não ocorrer e B não ocorrer?  
+e) Qual a probabilidade de A não ocorrer ou B não ocorrer?  
 f) Qual a probabilidade que ocorra apenas o B, e não ocorra o A?  
 
 ---
@@ -579,13 +583,13 @@ class: middle, center, inverse
 Voltando aos dados referentes ao sexo e a cor do cabelo de crianças em uma escola:
 
 
-| Ruivo | Não Ruivo | TOTAL
+ | Ruivo `\((R)\)` | Não Ruivo `\((\bar{R})\)` | TOTAL
 ---|:---:|:---:|:---:|---:
-**Feminino** | 4  | 26 | **30**
-**Masculino** | 17 | 13 | **30** 
+**Feminino `\((F)\)`** | 4  | 26 | **30**
+**Masculino `\((\bar{F})\)`** | 17 | 13 | **30** 
 **TOTAL** | **21** | **39** | **60**
 
-Agora, sabendo que foi sorteado um aluno do sexo Feminino `\((F)\)`, qual a probabilidade da aluna ter  ruiva `\((R)\)`?
+Agora, sabendo que foi sorteado uma aluna `\((F)\)`, qual a probabilidade dessa aluna ser ruiva `\((R)\)`?
 
 `$$P(R|F) = \frac{4}{30} = 0,1333$$`
 
@@ -633,10 +637,10 @@ Ou seja,
 Voltando aos dados referentes ao sexo e a cor do cabelo de crianças em uma escola:, verificar se esses eventos são independentes.
 
 
-| Ruivo | Não Ruivo | TOTAL
+ | Ruivo `\((R)\)` | Não Ruivo `\((\bar{R})\)` | TOTAL
 ---|:---:|:---:|:---:|---:
-**Feminino** | 4  | 26 | **30**
-**Masculino** | 17 | 13 | **30** 
+**Feminino `\((F)\)`** | 4  | 26 | **30**
+**Masculino `\((\bar{F})\)`** | 17 | 13 | **30** 
 **TOTAL** | **21** | **39** | **60**
 
 Na independência, a `\(P(F)\)` deve ser igual à `\(P(F|R)\)` e vice- versa.
@@ -649,7 +653,7 @@ Podemos verificar:
 
 `\(\frac{30}{60} = \frac{4/60}{21/60}\)`
 
-`\(0,50 = 0,19\)` FALSO, então concluímos que os eventos **NÃO** são independentes, ou seja a cordo do cabelo depende do sexo.
+`\(0,50 = 0,19\)` FALSO, então concluímos que os eventos **NÃO SÃO INDEPENDENTES**, ou seja a cordo do cabelo depende do sexo.
 
 ---
 
@@ -658,13 +662,13 @@ Podemos verificar:
 Agora, teste a independência para a seguinte condição:
 
 
-| **Ruivo** | **Não Ruivo** | **TOTAL**
+ | Ruivo `\((R)\)` | Não Ruivo `\((\bar{R})\)` | TOTAL
 ---|:---:|:---:|:---:|---:
-**Feminino** | 15  | 18 | **33**
-**Masculino** | 11 | 13 | **24** 
+**Feminino `\((F)\)`** | 15  | 18 | **33**
+**Masculino `\((\bar{F})\)`** | 11 | 13 | **24** 
 **TOTAL** | **26** | **31** | **57**
 
-Na independência, a `\(P(F)\)` deve ser igual à `\(P(F|R)\)` e vice- versa.
+Na independência, a `\(P(F)\)` deve ser igual à `\(P(F|R)\)` e vice-versa.
 
 
 Podemos verificar:
@@ -675,22 +679,22 @@ Podemos verificar:
 
 `\(\frac{33}{57} = \frac{15/57}{26/57}\)`
 
-`\(0,58 = 0,58\)` VERDADEIRO, então concluímos que os eventos **SÃO** independentes, ou seja, a cor do cabelo não depende do sexo.
+`\(0,58 = 0,58\)` VERDADEIRO, então concluímos que os eventos **SÃO INDEPENDENTES**, ou seja, a cor do cabelo não depende do sexo.
 
 ---
-
-O exemplo clássico de independência e não independência entre eventos será apresentado a seguir:
 
 **INDEPENDÊNCIA**: Imagine uma urna contento `\(2\)` bolas brancas e `\(3\)` bolas vermelhas. Serão sorteados duas bolas **COM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, devolve-se a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral desse ensaio seguido de suas respectivas probabilidades de ocorrência, pode ser dado por: `\(\mho = \{ BB, BV, VB, VV\}\)`
 
+--
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/reposicao.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/reposicao.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, não se devolve a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral reduz de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral `\(\mho = \{ BB, BV, VB, VV\}\)` será dados por:
+**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, contudo, não se devolve a bola para a urna e realizá-se o segundo sorteio. Nessas condições o espaço amostral é reduzido de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral `\(\mho = \{ BB, BV, VB, VV\}\)` serão dadas por:
 
+--
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/sem_reposicao.png" width="75%" style="display: block; margin: auto;" /&gt;
 
@@ -700,8 +704,9 @@ class: middle, center, inverse
 # Teorema de Bayes
 
 ---
-#### Teorema de Bayes  
-Considere a incidência de uma doença na população humana  nas diferentes faixas etárias: *jovens*, *adultos* e *idosos*, `\(E_1\)`, `\(E_2\)` e `\(E_3\)`, respectivamente.
+#### Teorema de Bayes 
+
+Considere a incidência de uma doença em um rebanho  em diferentes faixas etárias: *jovens*, *adultos* e *idosos*, `\(E_1\)`, `\(E_2\)` e `\(E_3\)`, respectivamente.
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/Bayes.png" width="50%" style="display: block; margin: auto;" /&gt;
 Sabe-se que `\(P(E_1) = 0,60\)`, `\(P(E_2) = 0,30\)` e `\(P(E_3) = 0,10\)`, além disso, é conhecido que as incidências da doença nas diferentes faixas etárias são:
@@ -709,10 +714,10 @@ Sabe-se que `\(P(E_1) = 0,60\)`, `\(P(E_2) = 0,30\)` e `\(P(E_3) = 0,10\)`, alé
 `\(P(D|E_1)=0,02\)`  
 `\(P(D|E_2)=0,05\)`  
 `\(P(D|E_3)=0,10\)`  
-Toma-se  uma  pessoa dessa população  ao  acaso  e  verificamos que ela está doente.
+Toma-se  um  animal desse rebanho  ao  acaso  e  verificamos que ele está doente.
 ]
 .pull-right[
-   Qual  a probabilidade da pessoa escolhida pertencer à faixa etária `\(E_1\)`, ou seja ?
+   Qual  a probabilidade do animal escolhida pertencer à faixa etária `\(E_1\)`, ou seja ?
 `$$P(E_1|D) = ?$$`
 ]
 
