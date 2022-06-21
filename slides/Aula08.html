@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 ## Aula 08 - Variáveis Aleatórias
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
-### (03-06-2021)
+### (21-06-2022)
 
 ---
 
@@ -42,19 +42,15 @@ class: middle, center, inverse
 
 ### Variável Aleatória Discreta
 
-Muitos experimentos produzem resultados não numéricos. 
+Muitos experimentos produzem resultados não numéricos, portanto, antes de analisá-los é conveniente transformar seus resultados em números. Para isso devemos associar a cada resultado elementar `\((e_i)\)` do espaço amostral `\((S)\)` um número real, o que é feito por meio de uma regra ou função denominada variável aleatória.
 
-Antes de analisá-los é conveniente transformar seus resultados em números. 
+Considerando o cruzamento de organismos heterozigotos para o gene `\(A\)`, `\(Aa × Aa\)`, este conceito é ilustrado com um espaço amostral com `\(4\)` resultados elementares, ou seja:
 
-Para isso devemos associar a cada resultado elementar `\((e_i)\)` do espaço amostral `\((\mho)\)` um número real, o que é feito por meio de uma regra ou função denominada variável aleatória.
-
-Considerando o cruzamento de organismos heterozigotos para o gene `\(A\)`, `\(Aa × Aa\)`, este conceito é ilustrado com um espaço amostral com 4 resultados elementares, ou seja:
-
-`$$\mho = \{AA,Aa,aA,aa\}$$`
+`$$S = \{AA,Aa,aA,aa\}$$`
 
 Agora vamos definir `\(X\)`, como nossa variável aleatória, que é o número de alelos dominantes `\(A\)`. Assim:
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 Note que para ser discreta, a variável aleatória (v.a.) deve assumir valores em um conjunto finito ou infinito, porém contável.
 
@@ -77,12 +73,12 @@ em que: `\(P(x_i)\)` é chamada função de probabilidade, que a cada valor de `
 
 #### Exemplo:
 
-Votemos ao cruzamento de dois organismos heterozigotos para o gene `\(A\)`, temos:
+Voltemos ao cruzamento de dois organismos heterozigotos para o gene `\(A\)`, temos:
 
-Genótipos | AA | Aa | aa | **Total**
+Genótipos | AA | Aa | aa | ** `\(\Sigma\)` **
 :---|:---:|:---:|:---:|---:
 `\(X=x_i\)` | `\(2\)` | `\(1\)` |  `\(0\)` | -
-`\(P(X=x_i)\)` | 1/4 | 1/2| 1/4| 1
+`\(P(X=x_i)\)` | `\(1/4\)` | `\(1/2\)`| `\(1/4\)`| `\(1\)`
 
 A distribuição de probabilidade mostra-nos como a probabilidade total `\((1)\)` é distribuída de acordo com os diferentes valores da variável aleatória `\(X\)`.
 
