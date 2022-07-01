@@ -793,25 +793,28 @@ Ou seja, o número médio e a variância de ocorrências de eventos por unidade 
 **Exercício 2)** Suponha que o número de partículas alfa, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro `\(\lambda = 5\)`, isto é, a taxa média de ocorrência é de `\(5\)` partículas a cada minuto. Calcule a probabilidade de haver mais de `\(2\)` emissões em um minuto.
 
 
-.pull-left[
-
 &lt;img src="https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif" width="60%" style="display: block; margin: auto;" /&gt;
 
-Se `\(P(\mho) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}\)`, então:
+---
+
+.pull-left[
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+Assim temos que:
+
+Se `\(P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}\)`, então:
 
 `\(P(x &gt;2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}\)`
 
-`\(P(x &gt;2 ) = 1 - P(X=0) + P(X=1) + P(X=2)\)`
+`\(P(x &gt;2 ) = 1 - [P(X=0) + P(X=1) + P(X=2)]\)`
 
-`\(P(x &gt;2 ) = \frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}=0,87535\)`
+`\(P(x &gt;2 ) = 1-[\frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}]=0,87535\)`
+
 
 ]
 
---
-
-.pull-right[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
-]
 ---
 
 **Exercício 3)** Calcule a probabilidade da emissão de até `\(4\)` partículas em `\(2\)` minutos. 
@@ -828,12 +831,12 @@ Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distr
 Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: `\(\lambda'= 2 \times 5 = 10\)` partículas em dois min.
 
 
-`$$P(X \le 4) = 0,026252$$`
+`$$P(X \le 4) = 0,029252$$`
 ]
 
 ---
 **Exercício 4)** Supondo que o número médio de bactérias por litro de água purificada é `\(2\)`, qual é a probabilidade que `\(5\)` ou mais bactérias sejam encontradas em uma amostra de `\(3\)` litros de água?
-
+--
 .pull-left[
 &lt;img src="Aula08_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 ]

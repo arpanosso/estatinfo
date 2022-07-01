@@ -720,25 +720,13 @@ $$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
 **Exercício 2)** Suponha que o número de partículas alfa, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro $\lambda = 5$, isto é, a taxa média de ocorrência é de $5$ partículas a cada minuto. Calcule a probabilidade de haver mais de $2$ emissões em um minuto.
 
 
-.pull-left[
-
 ```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
 ```
 
-Se $P(\mho) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}$, então:
+---
 
-$P(x >2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}$
-
-$P(x >2 ) = 1 - P(X=0) + P(X=1) + P(X=2)$
-
-$P(x >2 ) = \frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}=0,87535$
-
-]
-
---
-
-.pull-right[
+.pull-left[
 ```{r,echo=FALSE}
 n <- 20
 x <- 0:n
@@ -752,6 +740,21 @@ tibble(x,px) |>
   theme_bw()
 ```
 ]
+
+.pull-right[
+Assim temos que:
+
+Se $P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}$, então:
+
+$P(x >2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}$
+
+$P(x >2 ) = 1 - [P(X=0) + P(X=1) + P(X=2)]$
+
+$P(x >2 ) = 1-[\frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}]=0,87535$
+
+
+]
+
 ---
 
 **Exercício 3)** Calcule a probabilidade da emissão de até $4$ partículas em $2$ minutos. 
@@ -779,12 +782,12 @@ Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distr
 Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: $\lambda'= 2 \times 5 = 10$ partículas em dois min.
 
 
-$$P(X \le 4) = 0,026252$$
+$$P(X \le 4) = 0,029252$$
 ]
 
 ---
 **Exercício 4)** Supondo que o número médio de bactérias por litro de água purificada é $2$, qual é a probabilidade que $5$ ou mais bactérias sejam encontradas em uma amostra de $3$ litros de água?
-
+--
 .pull-left[
 ```{r,echo=FALSE}
 n <- 20
