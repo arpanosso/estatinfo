@@ -635,7 +635,7 @@ A distribuição normal pode ser recomendada para aproximar probabilidades binom
 $P(7 \le X \le 10)$, por meio da aproximação normal à binomial.
 
 
-$$P(7 \le X \le 10) = P \left( \frac{(\frac{7-0,5}{15})-0,4}{\sqrt{\frac{0,4(1-0,4)}{15}}} \le Z \le \frac{(\frac{10+0,5}{15})-0,4}{\sqrt{\frac{0,4(1-0,4)}{15}}} \right)$$
+$$P(7 \le X \le 10) = P \left( \frac{(\frac{7-0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \le Z \le \frac{(\frac{10+0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \right)$$
 
 $$P(0,263 \le Z \le 2,368) = 0,49111 - 0,10194 = 0,389$$
 
