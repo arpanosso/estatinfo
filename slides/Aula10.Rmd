@@ -38,8 +38,10 @@ class: middle, center, inverse
 
 
 **Estatística** ou **Estimador**: é qualquer função de uma amostra aleatória (fórmula ou expressão), construída com o propósito de servir como instrumento para descrever alguma característica da amostra e para fazer *inferência* a respeito da característica na população.  
+
+
 Resumo | Parâmetro | Estatística
----|:---:|:---:
+:---|:---:|:---:  
 Média | $\mu$ | $\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i$
 Variância | $\sigma^2$| $s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}$
 Proporção | $\pi$ | $\hat{p}= \frac{X}{n}$
@@ -48,7 +50,7 @@ Correlação | $\rho$ | $r = \frac{\sum_{i=1}^n(x_1-\bar{x})(y_i-\bar{y})}{\sqrt
 
 Toda **estatística**, sendo uma função de uma amostra aleatória $X_1, X_2, \cdots X_n$, é também uma variável aleatória e tem uma distribuição. 
 
-Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora denominada **"amostral"**. 
+Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora denominada **distribuição amostral**. 
 
 Assim, cada **estatística** é uma variável aleatória e sua distribuição de probabilidade é chamada <u>distribuição amostral da estatística</u>.
 
@@ -67,9 +69,11 @@ class: middle, center, inverse
 Seja a variável aleatória $X$ que denota o tempo em dias de germinação de sementes de uma espécie vegetal, após o plantio. Considerando a população de todas sementes plantadas nesse experimento, suponha que $X$ tem a distribuição de probabilidade apresentada abaixo. Uma amostra aleatória simples **COM REPOSIÇÃO** $(X_1$, $X_2)$ de $2$ covas $(n = 2)$ é tomada nesta área. Qual a distribuição do tempo médio amostral em dias para a germinação?
 
 .pull-left[
+
 $x$ | $0$ | $1$ | $2$ | $3$ 
 ---|---|---|---|---
 $P(X)$ | $0,20$ | $0,40$| $0,30$| $0,10$
+
 
 $$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30\;dias$$
 
@@ -266,7 +270,7 @@ Anteriormente, definimos $X$ uma $v.a.$ para cada ensaio de **Bernoulli**, com $
 
 Neste contexto, considerando $n$ ensaios independentes, $X_1, X_2, ... , X_n$ constitui uma amostra *aleatória simples com reposição*. Como os resultados individuais são $0$ (fracasso) ou $1$ (sucesso), o número **TOTAL** de sucessos em $n$ ensaios, é dado por:
 
-$$T = \sum \limits_{i=1}^n = X_i$$
+$$T = \sum \limits_{i=1}^n X_i$$
 
 Portanto, a proporção amostral de suscessos em $n$ ensaios é dada por:
 
