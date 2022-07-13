@@ -5,10 +5,10 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 10 - Estatística, Distribuição Amostral e Amostragem"
+subtitle: "Aula 10 - Estatística, Distribuição Amostral"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(24-06-2021)"
+date: "(14-07-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -38,8 +38,6 @@ class: middle, center, inverse
 
 
 **Estatística** ou **Estimador**: é qualquer função de uma amostra aleatória (fórmula ou expressão), construída com o propósito de servir como instrumento para descrever alguma característica da amostra e para fazer *inferência* a respeito da característica na população.  
-
-
 Resumo | Parâmetro | Estatística
 ---|:---:|:---:
 Média | $\mu$ | $\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i$
