@@ -50,9 +50,9 @@ Correlação | $\rho$ | $r = \frac{\sum_{i=1}^n(x_1-\bar{x})(y_i-\bar{y})}{\sqrt
 
 Toda **estatística**, sendo uma função de uma amostra aleatória $X_1, X_2, \cdots X_n$, é também uma variável aleatória e tem uma distribuição. 
 
-Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora dita **"amostral"**. 
+Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora denominada **"amostral"**. 
 
-Assim, cada estatística é uma variável aleatória e sua distribuição de probabilidade é chamada <u>distribuição amostral da estatística</u>.
+Assim, cada **estatística** é uma variável aleatória e sua distribuição de probabilidade é chamada <u>distribuição amostral da estatística</u>.
 
 ```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_1.png")
