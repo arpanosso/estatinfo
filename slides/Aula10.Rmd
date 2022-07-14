@@ -65,47 +65,56 @@ class: middle, center, inverse
 # Distribuições Amostral da Média
 
 ---
-
 Seja a variável aleatória $X$ que denota o tempo em dias de germinação de sementes de uma espécie vegetal, após o plantio. Considerando a população de todas sementes plantadas nesse experimento, suponha que $X$ tem a distribuição de probabilidade apresentada abaixo. Uma amostra aleatória simples **COM REPOSIÇÃO** $(X_1$, $X_2)$ de $2$ covas $(n = 2)$ é tomada nesta área. Qual a distribuição do tempo médio amostral em dias para a germinação?
 
-.pull-left[
 
 $x$ | $0$ | $1$ | $2$ | $3$ 
 ---|---|---|---|---
 $P(X)$ | $0,20$ | $0,40$| $0,30$| $0,10$
 
 
+---
+
+.pull-left[
+
+Distribuição de Probabilidade
+
+```{r,echo=FALSE}
+x<-0:3
+px<-c(.2, .4, .3, .1)
+barplot(px, names=x,las=1,
+        ylim = c(0,.45))
+box()
+```
+]
+
+.pull-right[
+
+Calculando a Esperança de X: 
+
 $$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30\;dias$$
+
+Calculando a Variância de X.
 
 $Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\;dias^2$
 
 Definimos a média a partir da tomada de duas amostras temos:
 
 $$\bar{X} = \frac{X_1+X_2}{2}$$
-
-]
-
-.pull-right[
-```{r,echo=FALSE}
-x<-0:3
-px<-c(.2, .4, .3, .1)
-barplot(px, names=x,las=1)
-```
-
 ]
 
 ---
 
-De acordo com a definição de amostra aleatória simples com reposição, $X_1$ e $X_2$ são variáveis aleatórias independentes, assim, a distribuição conjunta de duas variáveis aleatórias independentes é obtida multiplicando-se as probabilidades marginais.
+De acordo com a definição de amostra aleatória simples com reposição, $X_1$ e $X_2$ são variáveis aleatórias independentes, assim, a distribuição conjunta pode ser obtida multiplicando-se as probabilidades marginais.
 
 
-$$P(0 \cap 1) = P(0) \cdot P(1) = 0,2 \times 0,4 = 0,08$$
+$$P(0 \cap 1) = P(0) \times P(1) = 0,2 \times 0,4 = 0,08$$
 
 .pull-left[
-Tabela com os possíveis valores de médias $\bar{X}$.
+Tabela com os possíveis valores de médias $\bar{X}$, dados os valores de $X$.
 
-$\bar{x}$ | 0 | 1 | 2 | 3 
----|---|---|---|---
+$X_1 / X_2$ | 0 | 1 | 2 | 3 
+:---:|---|---|---|---
 **0** | 0,00 | 0,50 | 1,00 | 1,50
 **1** | 0,50 | 1,00 | 1,50 | 2,00
 **2** | 1,00 | 1,50 | 2,00 | 2,50
@@ -115,10 +124,10 @@ $\bar{x}$ | 0 | 1 | 2 | 3
 
 .pull-right[
 
-Tabela com a distribuição conjunta de $X_1$ e $X_2$.
+Tabela com a distribuição conjunta de $X_1$ e $X_2$, ou seja, as probabilidades $P(\bar{X})$.
 
-x | 0 | 1 | 2 | 3  | $\sum$
----|---|---|---|---|---
+$X_1 / X_2$ | 0 | 1 | 2 | 3  | $\sum$
+:---:|---|---|---|---|---
 **0** | 0,04 | 0,08 | 0,06 | 0,02 | **0,2**
 **1** | 0,08 | 0,16 | 0,12 | 0,04 | **0,4**
 **2** | 0,06 | 0,12 | 0,09 | 0,03 | **0,3**
@@ -129,13 +138,6 @@ $\sum$| **0,2** | **0,4** | **0,3** | **0,1** | **1,00**
 --
 
 </br>
-
-Distribuição de probabilidade de $\bar{X}$.
-
-$\bar{X}$ | $0$ | $0,5$ | $1$ | $1,5$ | $2,0$  | $2,5$ | $3,0$  
----|---|---|---|---|---|---|---
-$P(\bar{X})$ | $0,04$ | $0,16$| $0,28$| $0,28$ | $0,17$ | $0,06$ | $0,01$ 
-
 ---
 
 
@@ -227,6 +229,12 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 Seja uma máquina de empacotar de soja, cujos pesos das sacas (em $kg$) seguem uma distribuição $N(50, 2)$. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de $100$ sacas, observarmos uma média diferente de $50\;kg$ em menos de $0,2828 \; kg$?
 
+--
+
+**Resposta:** 
+
+$P(50-0,2828 \leq \bar{X} \leq 50+0,2828 ) = 0,9545$
+
 ---
 
 ### Amostras sem reposição de populações finitas
@@ -285,7 +293,7 @@ Então, para a proporção, temos:
 
 .pull-left[
 **Esperança**  
-$E(\hat{p}) = E\left( \frac{T}{N} \right)$
+$E(\hat{p}) = E\left( \frac{T}{n} \right)$
 
 $E(\hat{p}) = \frac{1}{n} E(T)$
 
@@ -296,7 +304,7 @@ $E(\hat{p}) = p$
 
 .pull-right[
 **Variância**  
-$Var(\hat{p}) = Var\left( \frac{T}{N} \right)$
+$Var(\hat{p}) = Var\left( \frac{T}{n} \right)$
 
 $Var(\hat{p}) = \frac{1}{n^2} Var(T)$
 
@@ -322,3 +330,8 @@ Em um ensaio experimental $625$ covas foram semeadas com sementes comerciais pro
 Qual a probabilidade de se encontrar mais de $72\%$ das covas com plantas germinadas?
 
 
+--
+
+**Resposta:** 
+
+$P(T \geq 450) = P(\hat{p} \geq 0,72) = 0,1378$
