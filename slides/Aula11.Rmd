@@ -8,7 +8,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 11 - Estimação e Teste de Hipótese"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(01-07-2021)"
+date: "(21-07-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -289,7 +289,7 @@ $$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{
 
 class: center,inverse
 
-O vídeo abaixo apresenta um resumos dos 3 primeiros casos aqui apresentados.
+O vídeo abaixo apresenta um resumos dos 3 primeiros casos.
 
 
 <iframe width="718" height="404" src="https://www.youtube.com/embed/JIivixTT344" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
