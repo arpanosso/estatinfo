@@ -8,11 +8,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 11 - Estimação"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-<<<<<<< HEAD
 date: "(21-07-2022)"
-=======
-date: "(13-07-2022)"
->>>>>>> aa4c8fdbfc37fd80b1dc44ce185d3176ff14608d
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -50,9 +46,9 @@ Média | $\mu$ | $\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i$
 Variância | $\sigma^2$| $s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}$
 Proporção | $\pi$ | $\hat{p}= \frac{X}{n}$
 
-O valor numérico da estatística ou estimador de um parâmetro, calculado para uma amostra observada, é chamado de estimativa desse parâmetro.
+O valor numérico da estatística ou estimador de um parâmetro, calculado para uma amostra observada, é chamado de **estimativa desse parâmetro**.
 
-A diferença entre estatística e estimativa é que a **estatística** é uma variável aleatória, e a estimativa é uma particular valor dessa variável aleatória.
+A diferença entre estatística e estimativa é que a **estatística** é uma variável aleatória, e a estimativa é um particular valor dessa variável aleatória.
 
 
 ---
@@ -74,7 +70,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ## Propriedades de um bom estimador
 
-**1) Consistência**: é uma propriedade por meio da qual a acurácia de uma estimativa aumenta quando o tamanho da amostra aumenta. Assim dado um parâmetro populacional $\theta$ e $\hat{\theta}$  o estimador desse parâmetro. As condições suficientes para um estimador ser consistente são:
+**1) Consistência**: é uma propriedade por meio da qual a acurácia de uma estimativa aumenta quando o tamanho da amostra aumenta. Assim dado um parâmetro populacional $\theta$ e sendo $\hat{\theta}$  o estimador desse parâmetro. As condições suficientes para um estimador ser consistente são:
 
 $$\lim_{n \to \infty}E(\hat{\theta}) = \theta$$
 
@@ -88,7 +84,7 @@ $$E(\bar{X}) = \mu \text{ e } Var(\bar{X})= \frac{Var(X)}{n}$$
 
 ## Propriedades de um bom estimador
 
-**2) Não viciado ou não viesado**: O estimador  $\hat{\theta}$   como uma variável aleatória, tem uma certa distribuição em repetidas amostras de tamanho n. Não viciado é uma propriedade que assegura que, em média, o estimador é correto.:
+**2) Não viciado ou não viesado**: O estimador  $\hat{\theta}$  como uma variável aleatória, tem uma certa distribuição em repetidas amostras de tamanho $n$. Não viciado é uma propriedade que assegura que, em média, o estimador é correto:
 
 O **estimador** é chamado **não viciado** ou **imparcial** se seu valor esperado ou médio for igual ao verdadeiro valor do parâmetro, ou seja:
 
@@ -158,7 +154,7 @@ esse procedimento não permite julgar qual a possível magnitude do erro que se 
 
 **Exemplo**: O diâmetro a altura do peito de árvores de Eucalipto tem uma média de $105 \;cm$,
 
---
+---
 
 ### Estimativa por intervalo
 
@@ -204,9 +200,9 @@ class: middle, center, inverse
 
 ## Precisamos definir 4 casos:
 
-### (a) Caso em que $n$ é grande e $\sigma$ conhecido;
+### (a) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ conhecido;
 
-### (b) Caso em que $n$ é grande e $\sigma$ desconhecido;
+### (b) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ desconhecido;
 
 ### (c) Caso em que as amostras são pequenas $(n < 30)$ $\sigma$ conhecido;
 
@@ -214,7 +210,7 @@ class: middle, center, inverse
 
 ---
 
-### (a) Caso em que $n$ é grande $(n \ge 30)$ e $\sigma$ conhecido.
+### (a) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ conhecido.
 
 O desenvolvimento de intervalos de confiança para $\mu$ é baseado na distribuição amostral de $\bar{X}$ se o tamanho da amostra $(n)$ é grande:
 
@@ -254,7 +250,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ---
 
-Esta expressão, deve ser interpretada do seguinte modo: contruídos todos os intervalos da orma $\bar{X} \pm 1,96 \sigma_{\bar{X}}$, $95\%$ deles conterão $\mu$. Lembrando  que $\mu$ não é uma variável aleatória, mas um parâmetro, isto é, não é o mesmo que dizer que $\mu$ tem $95\%$ de probabilidade de estar entre os limites indicados.
+Esta expressão, deve ser interpretada do seguinte modo: construídos todos os intervalos da forma $\bar{X} \pm 1,96 \sigma_{\bar{X}}$, $95\%$ deles conterão $\mu$. Lembrando  que $\mu$ não é uma variável aleatória, mas um parâmetro, isto é, não é o mesmo que dizer que $\mu$ tem $95\%$ de probabilidade de estar entre os limites indicados.
 
 ```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_04.png")
@@ -266,26 +262,28 @@ Então, denotamos o intervalo de confiança como:
 
 $$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$
 
+### Exemplo 
+
 Considerando uma amostra de $100$ animais da raça Nelore, onde o peso médio a desmama é $171,70 \;kg$, encontre um IC de $95\%$ para $\mu$, supondo que o desvio padrão da população $(\sigma)$ seja igual a $7,79\;kg$.
 
 --
 
-$$IC(\mu;95\%) = ]171,70 \pm 1,96 \frac{7,79}{\sqrt{100}} [ = ]170,17\;kg; 173,23\;kg [$$
-
+$$IC(\mu;95\%) = ]171,70 \pm 1,96 \frac{7,79}{\sqrt{100}} $$
+$$IC(\mu;95\%) = ]170,17\;kg; 173,23\;kg [$$
 ---
 
-### (b) Caso em que $n$ é grande $(n \ge 30)$ e $\sigma$ desconhecido.
+### (b) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ desconhecido.
 
-Como n é grande, a substituição de $\sigma$ pelo desvio padrão amostral $(s)$ não afeta apreciavelmente a estimativa de $IC$:
+Como $n$ é grande, a substituição de $\sigma$ pelo desvio padrão amostral $(s)$ não afeta apreciavelmente a estimativa de $IC$, assim, temos que:
 
 
 $$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$
 
 ---
 
-### (c) Caso em que as amostras são pequenas $(n < 30)$ $\sigma$ conhecido.
+### (c) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ conhecido.
 
-Se $X_1, X_2, \cdots, X_n$ é uma amostra aleatória de uma população com distribuição normal $N (\mu, \sigma^2)$, a média amostral $\bar{X}$ é exatamente  distribuída como $N (\mu, \frac{\sigma^2}{n} )$. Sendo $\sigma$ conhecido, o $IC (\mu : 1–\alpha)$ é dado por:
+Se $X_1, X_2, \cdots, X_n$ é uma amostra aleatória de uma população com distribuição normal $N (\mu, \sigma^2)$, a média amostral $\bar{X}$ é exatamente distribuída como $N (\mu, \frac{\sigma^2}{n} )$. Sendo $\sigma$ conhecido, o $IC (\mu : 1–\alpha)$ é dado por:
 
 $$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$
 
@@ -293,7 +291,7 @@ $$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{
 
 class: center,inverse
 
-O vídeo abaixo apresenta um resumos dos 3 primeiros casos.
+O vídeo abaixo apresenta um resumos dos $3$ primeiros casos.
 
 
 <iframe width="718" height="404" src="https://www.youtube.com/embed/JIivixTT344" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -311,8 +309,7 @@ $$t = \frac{\bar{x} - \mu}{\frac{s}{\sqrt{n}}}$$
 Essa substituição causa uma considerável diferença se a amostra for pequena. A notação $t$ é requerida porque $s$ aumenta a variância de $t$ para um valor maior do que um $(1)$, de modo que a razão não é padronizada. 
 
 
-A distribuição da razão $t$ é conhecida como **distribuição $t$ de Student** com 
-$r = n – 1$ graus de liberdade.
+A distribuição da razão $t$ é conhecida como **distribuição $t$ de Student** com parâmetro $r = n – 1$ graus de liberdade.
 
 
 ---
@@ -331,11 +328,14 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 As distribuições $t$ são simétricas em torno de zero mas têm caudas mais espalhadas do que a distribuição $N(0, 1)$. Entretanto, com o aumento de $r$, a distribuição $t$ se aproxima da distribuição $N(0, 1)$, por $Var(t)$ tende à unidade $(1)$.
 
-$$E(t) = 0 \text{   e   } Var(t) = \frac{r}{r-2} = \frac{n-1}{n-3}$$
+$$E(t) = 0$$
+e
+$$Var(t) = \frac{r}{r-2} = \frac{n-1}{n-3}$$
+
 Pode-se concluir da distribuição $t$, que
 
 $$P(-t_{\frac{\alpha}{2}} \le \frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}} \le +t_{\frac{\alpha}{2}}) = 1 - \alpha$$
-em que $t_{\alpha \\2}$ é obtido na tabela da distribuição t com $r = n – 1$ graus de liberdade, ou seja:
+em que $t_{\alpha \\2}$ é obtido na tabela da distribuição $t$ com $r = n – 1$ graus de liberdade, ou seja:
 
 $$IC(\mu;1-\alpha) = ]\bar{x}-t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$
 
@@ -352,7 +352,7 @@ O vídeo abaixo apresenta um resumos do último caso apresentado.
 ---
 ### Exercício
 
-Uma amostra de $10$ cães sofrendo de uma determinada doença apresentou um tempo de sobrevivência médio de $46,9$ meses e o desvio padrão de $43,3$ meses. Determinar os limites de confiança de 90% para $\mu$.
+Uma amostra de $10$ cães sofrendo de uma determinada doença apresentou um tempo de sobrevivência médio de $46,9$ meses e o desvio padrão de $43,3$ meses. Determinar os limites de confiança de $90\%$ para $\mu$.
 
 --
 
@@ -394,7 +394,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ---
 
 ### Exemplo  
-Suponha que em $n = 400$ animais são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
+Suponha que em $n = 400$ animais doentes são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
 
 
 ```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
