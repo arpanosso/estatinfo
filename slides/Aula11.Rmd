@@ -5,10 +5,14 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 11 - Estimação e Teste de Hipótese"
+subtitle: "Aula 11 - Estimação"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+<<<<<<< HEAD
 date: "(21-07-2022)"
+=======
+date: "(13-07-2022)"
+>>>>>>> aa4c8fdbfc37fd80b1dc44ce185d3176ff14608d
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
