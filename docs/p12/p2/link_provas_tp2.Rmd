@@ -18,62 +18,62 @@ output: html_document
 
 | Nome | 
 |:---|
-|[Ana Carolina Moraes Fantin](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/01.pdf)  |
-|[Ana Luisa Ribeiro Resende](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/02.pdf)  |
-|[Antonio Braga Filho](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/03.pdf)  |
-|[Arthur Louzada](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/04.pdf)  |
-|[Artur Cunha Medeiros](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/05.pdf)  |
-|[Brenda Carolina Ito](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/06.pdf)  |
-|[Carime Gibran](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/07.pdf)  |
-|[Carolina Herrera](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/08.pdf)  |
-|[Caroline Demite](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/09.pdf)  |
-|[Clara Rabelo de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/10.pdf)  |
-|[Fabio de Sousa Carneiro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/11.pdf)  |
-|[Felipe Scarelli Tavares](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/12.pdf)  |
-|[Fernando Coletti Micheletti](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/13.pdf)  |
-|[Gabriel de Sousa Rocha](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/14.pdf)  |
-|[Gabriel dos Santos Menezes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/15.pdf)  |
-|[Gabriel Henrique da Silva Gomes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/16.pdf)  |
-|[Gabriela Raposo Barsam](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/17.pdf)  |
-|[Gabrielle Machado Christan](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/18.pdf)  |
-|[Giovana Nunes da Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/19.pdf)  |
-|[Giovanna de Castro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/20.pdf)  |
-|[Giulia Lameira da Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/21.pdf)  |
-|[Guilherme Alves da Rosa](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/22.pdf)  |
-|[Heitor de Arruda Falcao](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/23.pdf)  |
-|[Henrique de Lima Pedro Lourenco](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/24.pdf)  |
-|[Isabela Almagro Ribeiro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/25.pdf)  |
-|[Isabella Vilalvo Moraes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/26.pdf)  |
-|[Joao Lucas Coli de Souza Monteneri Nacinben](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/27.pdf)  |
-|[Joao Pedro Benedetti Delphino](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/28.pdf)  |
-|[Joao Pedro Kazuo Kamogari](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/29.pdf)  |
-|[Joao Pedro Marcelino de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/30.pdf)  |
-|[Jose Renato Freire Grellet Franco do Amaral](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/31.pdf)  |
-|[Julia Aguiar](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/32.pdf)  |
-|[Jussara Clara Domingues Lima](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/33.pdf)  |
-|[Leonara Aparecida Alves Ribeiro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/34.pdf)  |
-|[Leonardo Davi Issa](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/35.pdf)  |
-|[Leticia Faria](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/36.pdf)  |
-|[Luana Demilio Perez Almeida](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/37.pdf)  |
-|[Lucas Sonoda Ninomiya](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/38.pdf)  |
-|[Lucas Vieira Moraes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/39.pdf)  |
-|[Marcelo Augusto Oliveira Castro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/40.pdf)  |
-|[Marcio Falcão Lopes Neto](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/41.pdf)  |
-|[Maria Eduarda Parizi Borges Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/42.pdf)  |
-|[Maria Fernanda Franca](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/43.pdf)  |
-|[Maria Victoria Negrao de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/44.pdf)  |
-|[Mateus Vinicius Jacinto](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/45.pdf)  |
-|[Matheus Johann Santos](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/46.pdf)  |
-|[Matheus Pontes Albertim](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/47.pdf)  |
-|[Milena Vales Garcia](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/48.pdf)  |
-|[Paulo Alves de Oliveira Neto](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/49.pdf)  |
-|[Pedro Henrique Merofa Persoli](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/50.pdf)  |
-|[Pedro Henrique Mortari Parreira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/51.pdf)  |
-|[Pedro Lukas Paludetti](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/52.pdf)  |
-|[Ricardo Cesar Rossi Pavan](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/53.pdf)  |
-|[Vagney Ferreira Viana](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/54.pdf)  |
-|[Victor Resende Freire da Costa](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/55.pdf)  |
-|[Willian Lourenço Novais da Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/tp2/56.pdf)  |
+|[Ana Carolina Moraes Fantin](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/01.pdf)  |
+|[Ana Luisa Ribeiro Resende](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/02.pdf)  |
+|[Antonio Braga Filho](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/03.pdf)  |
+|[Arthur Louzada](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/04.pdf)  |
+|[Artur Cunha Medeiros](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/05.pdf)  |
+|[Brenda Carolina Ito](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/06.pdf)  |
+|[Carime Gibran](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/07.pdf)  |
+|[Carolina Herrera](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/08.pdf)  |
+|[Caroline Demite](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/09.pdf)  |
+|[Clara Rabelo de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/10.pdf)  |
+|[Fabio de Sousa Carneiro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/11.pdf)  |
+|[Felipe Scarelli Tavares](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/12.pdf)  |
+|[Fernando Coletti Micheletti](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/13.pdf)  |
+|[Gabriel de Sousa Rocha](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/14.pdf)  |
+|[Gabriel dos Santos Menezes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/15.pdf)  |
+|[Gabriel Henrique da Silva Gomes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/16.pdf)  |
+|[Gabriela Raposo Barsam](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/17.pdf)  |
+|[Gabrielle Machado Christan](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/18.pdf)  |
+|[Giovana Nunes da Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/19.pdf)  |
+|[Giovanna de Castro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/20.pdf)  |
+|[Giulia Lameira da Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/21.pdf)  |
+|[Guilherme Alves da Rosa](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/22.pdf)  |
+|[Heitor de Arruda Falcao](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/23.pdf)  |
+|[Henrique de Lima Pedro Lourenco](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/24.pdf)  |
+|[Isabela Almagro Ribeiro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/25.pdf)  |
+|[Isabella Vilalvo Moraes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/26.pdf)  |
+|[Joao Lucas Coli de Souza Monteneri Nacinben](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/27.pdf)  |
+|[Joao Pedro Benedetti Delphino](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/28.pdf)  |
+|[Joao Pedro Kazuo Kamogari](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/29.pdf)  |
+|[Joao Pedro Marcelino de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/30.pdf)  |
+|[Jose Renato Freire Grellet Franco do Amaral](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/31.pdf)  |
+|[Julia Aguiar](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/32.pdf)  |
+|[Jussara Clara Domingues Lima](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/33.pdf)  |
+|[Leonara Aparecida Alves Ribeiro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/34.pdf)  |
+|[Leonardo Davi Issa](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/35.pdf)  |
+|[Leticia Faria](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/36.pdf)  |
+|[Luana Demilio Perez Almeida](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/37.pdf)  |
+|[Lucas Sonoda Ninomiya](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/38.pdf)  |
+|[Lucas Vieira Moraes](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/39.pdf)  |
+|[Marcelo Augusto Oliveira Castro](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/40.pdf)  |
+|[Marcio Falcão Lopes Neto](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/41.pdf)  |
+|[Maria Eduarda Parizi Borges Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/42.pdf)  |
+|[Maria Fernanda Franca](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/43.pdf)  |
+|[Maria Victoria Negrao de Oliveira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/44.pdf)  |
+|[Mateus Vinicius Jacinto](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/45.pdf)  |
+|[Matheus Johann Santos](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/46.pdf)  |
+|[Matheus Pontes Albertim](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/47.pdf)  |
+|[Milena Vales Garcia](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/48.pdf)  |
+|[Paulo Alves de Oliveira Neto](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/49.pdf)  |
+|[Pedro Henrique Merofa Persoli](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/50.pdf)  |
+|[Pedro Henrique Mortari Parreira](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/51.pdf)  |
+|[Pedro Lukas Paludetti](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/52.pdf)  |
+|[Ricardo Cesar Rossi Pavan](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/53.pdf)  |
+|[Vagney Ferreira Viana](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/54.pdf)  |
+|[Victor Resende Freire da Costa](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/55.pdf)  |
+|[Willian Lourenço Novais da Silva](https://github.com/arpanosso/estatinfo/raw/master/docs/p12/p2/TP2/56.pdf)  |
 
 ### Tutorial para Preenchimento da Avaliação.
 
