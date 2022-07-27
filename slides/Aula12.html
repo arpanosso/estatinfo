@@ -12,11 +12,21 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Estatística e Informática
-## Aula 12 - Teste de Hipótese
+]
+.subtitle[
+## Aula 12 - Testes de Hipótese
+]
+.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
+]
+.institute[
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
-### (08-07-2021)
+]
+.date[
+### (28-07-2022)
+]
 
 ---
 
@@ -32,7 +42,7 @@ class: middle, center, inverse
 
 ## Teste de Hipótese
 
-**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado pela evidência obtida de dados amostrais. 
+**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado por evidências obtida de dados amostrais. 
 
 
 Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
@@ -76,9 +86,9 @@ Para aceitar ou rejeitar `\(H_0\)`, determina-se um valor `\(k\)` (ponto) entre 
 
 O procedimento do teste, então, divide os possíveis valores da estatística teste em dois subconjuntos: uma região de aceitação e uma de rejeição para `\(H_0\)`, o que pode levar a dois tipos de erros. 
 
-Por exemplo, se o verdadeiro valor do parâmetro `\(\mu\)` é `\(500\;g\)` e incorretamente concluímos que `\(\mu = 510\;g\)`, cometeremos um erro referido como **ERRO TIPO I**. 
+Por exemplo, se o verdadeiro valor do parâmetro `\(\mu\)` é `\(500\;g\)` e incorretamente concluímos que `\(\mu = 510\;g\)`, cometeremos um erro referido como **ERRO TIPO I (falso positivo)**. 
 
-Por outro lado, se o verdadeiro valor de `\(\mu\)` é `\(510\;g\)` e incorretamente concluímos  que `\(\mu = 500 \;g\)`, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II**.
+Por outro lado, se o verdadeiro valor de `\(\mu\)` é `\(510\;g\)` e incorretamente concluímos  que `\(\mu = 500 \;g\)`, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo)**.
 
 ---
 ## Erros tipo I e II
@@ -93,7 +103,6 @@ Rejeitar `\(H_0\)` | Erro tipo I (perdas reais) | Decisão Correta
 `\(\alpha = P \text{(erro tipo I)}\)` = `\(P\)`(Rejeitar `\(H_0|H_0\)` é verdadeira) = nível de significância `\((5\%, 1\% \text{ ou } 0,1\%)\)`.
 
 `\(\beta = P \text{(erro tipo II)}\)` = `\(P\)`(Não rejeitar `\(H_0|H_0\)` é falsa) = **poder do teste** dado por `\(1-\beta\)`.
-
 
 ---
 
@@ -160,7 +169,7 @@ class: middle, center, inverse
 
 class: middle, center, inverse
 
-# Teste para a Proporção binomail (p)
+# Teste para a Proporção binomial (p)
 
 ---
 
@@ -259,7 +268,7 @@ Assim, `\(RC = \{0 &lt; F &lt; 0,205 \text{ ou }  F &gt; 3,97 \}\)`
 
 Entretanto, o procedimento que se usa na prática é calcular `\(F\)` utilizando sempre a maior variância no numerador `\(s_1^2 &gt; s^2_2\)` portanto `\(F &gt; 1\)`, e considerar o ponto crítico `\(F_{2(\alpha;\;n1-1,\; n2-1)}\)`.
 
-**Amostra:**&gt; Colhidas amostras aleatórias `\(n_1\)` e  `\(n_2\)`, calcula-se `\(s^2_1\)` e `\(s^2_2\)` com `\((s^2_1 &gt; s^2_2)\)`, então:
+**Amostra:** Colhidas amostras aleatórias `\(n_1\)` e  `\(n_2\)`, calcula-se `\(s^2_1\)` e `\(s^2_2\)` com `\((s^2_1 &gt; s^2_2)\)`, então:
 
 `$$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$`
 
@@ -516,6 +525,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

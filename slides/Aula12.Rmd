@@ -8,7 +8,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 12 - Testes de Hipótese"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(08-07-2021)"
+date: "(28-07-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -35,7 +35,7 @@ class: middle, center, inverse
 
 ## Teste de Hipótese
 
-**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado pela evidência obtida de dados amostrais. 
+**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado por evidências obtida de dados amostrais. 
 
 
 Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
@@ -83,9 +83,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 O procedimento do teste, então, divide os possíveis valores da estatística teste em dois subconjuntos: uma região de aceitação e uma de rejeição para $H_0$, o que pode levar a dois tipos de erros. 
 
-Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\;g$ e incorretamente concluímos que $\mu = 510\;g$, cometeremos um erro referido como **ERRO TIPO I**. 
+Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\;g$ e incorretamente concluímos que $\mu = 510\;g$, cometeremos um erro referido como **ERRO TIPO I (falso positivo)**. 
 
-Por outro lado, se o verdadeiro valor de $\mu$ é $510\;g$ e incorretamente concluímos  que $\mu = 500 \;g$, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II**.
+Por outro lado, se o verdadeiro valor de $\mu$ é $510\;g$ e incorretamente concluímos  que $\mu = 500 \;g$, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo)**.
 
 ---
 ## Erros tipo I e II
@@ -100,7 +100,6 @@ Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
 $\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = nível de significância $(5\%, 1\% \text{ ou } 0,1\%)$.
 
 $\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **poder do teste** dado por $1-\beta$.
-
 
 ---
 
@@ -187,7 +186,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 class: middle, center, inverse
 
-# Teste para a Proporção binomail (p)
+# Teste para a Proporção binomial (p)
 
 ---
 
@@ -300,7 +299,7 @@ Assim, $RC = \{0 < F < 0,205 \text{ ou }  F > 3,97 \}$
 
 Entretanto, o procedimento que se usa na prática é calcular $F$ utilizando sempre a maior variância no numerador $s_1^2 > s^2_2$ portanto $F > 1$, e considerar o ponto crítico $F_{2(\alpha;\;n1-1,\; n2-1)}$.
 
-**Amostra:**> Colhidas amostras aleatórias $n_1$ e  $n_2$, calcula-se $s^2_1$ e $s^2_2$ com $(s^2_1 > s^2_2)$, então:
+**Amostra:** Colhidas amostras aleatórias $n_1$ e  $n_2$, calcula-se $s^2_1$ e $s^2_2$ com $(s^2_1 > s^2_2)$, então:
 
 $$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$
 
