@@ -19,6 +19,7 @@ output:
 <img src="https://arpanosso.github.io/estatinfo/slides/img/foto-cv.jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 50%"></img>
 
 ]
+
 .pull-right[
 
 **ALAN RODRIGO PANOSSO**  
