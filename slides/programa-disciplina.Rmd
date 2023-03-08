@@ -2,7 +2,7 @@
 # Para transformar em PDF, usar: 
 # pagedown::chrome_print("slides/Aula01.html")
 title: "Estatística e Informática"
-subtitle: "Aula 01- Apresentação da disciplina e Noções de Programação"
+subtitle: "Apresentação da disciplina"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
 date: "09-03-2022"
@@ -10,14 +10,21 @@ output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      ratio: "16:9"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+## Professor
+
+-left[
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/foto-cv.jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"></img>
+
+]
 
 
 ---
+
 ## Ementa
 
 - Noções de programação
@@ -53,7 +60,6 @@ $$
 onde: $P1$ = Nota da 1ª prova; $P2$ = Nota do 2ª Prova; $LS$ = Nota das listas de exercícios entregues durante a disciplina.
 
 ---
-Calendário
 
 | Dia	| Semana	| Conteúdo |  
 |:--- | :---: | :---:|
@@ -63,16 +69,16 @@ Calendário
 |30/03/2023	| 4 | Probabilidade	
 |06/04/2023	| 5 | Variáveis aleatórias discretas	
 |13/04/2023	| 6 | Variáveis aleatórias contínuas	
-|**20/04/2023**	| **7** | **Prova 01** Oo
+|**20/04/2023**	| **7** | **Prova 01** 
 |27/04/2023	| 8 | Estatística e distribuição amostral	
 |04/05/2023	| 9 | Estimação	
-|11/05/2023	| 11 | Testes de hipóteses	
-|18/05/2023	| 12 | Comparação de parâmetros de duas populações 	
-|25/05/2023	| 13 | Correlação e regressão	
-|**01/06/2023**	| **14** | **Prova 02** $\leftarrow$		
-|**15/06/2023**	| **15** | **Prova Substitutiva**	$\leftarrow$	
-|**22/06/2023**	| **16** | **Período de Recuperação**	$\leftarrow$	
-
+|11/05/2023	| 10 | Testes de hipóteses	
+|18/05/2023	| 11 | Comparação de parâmetros de duas populações 	
+|25/05/2023 | 12 | XLVIII SECITAP
+|01/06/2023	| 13 | Correlação e regressão	
+|**15/06/2023**	| **14** | **Prova 02** $\leftarrow$		
+|**22/06/2023**	| **15** | **Prova Substitutiva**	$\leftarrow$	
+|**29/06/2023**	| **16** | **Período de Recuperação**	$\leftarrow$	
 
 ---
 
