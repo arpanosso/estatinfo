@@ -2,7 +2,7 @@
 # Para transformar em PDF, usar: 
 # pagedown::chrome_print("slides/Aula01.html")
 title: "Estatística e Informática"
-subtitle: "Aula 01 - Apresentação da disciplina"
+subtitle: "Aula 01- Apresentação da disciplina e Noções de Programação"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
 date: "09-03-2022"
@@ -16,35 +16,62 @@ output:
       countIncrementalSlides: false
 ---
 
+
+---
 ## Ementa
 
+- Noções de programação
 - Introdução
 - Estatística Descritiva
 - Ditribuições de Probabilidade
 - Amostragem
 - Estimação de Parâmetros
 - Teste de hipóteses e intervalos de confiança
-- Correlação e regressão linear Simples
+- Correlação e regressão linear simples
 
 ---
+
 ## Objetivos
 
-- Sumariar  e  apresentar  dados  por meio de  tabelas,  gráficos  e  medidas.  
+- Resumir  e  apresentar  dados  por meio de  tabelas,  gráficos  e  medidas.  
 - Inferir  resultados  amostrais para as populações alvo por meio de  técnicas estatísticas apropriadas.
 
-- Utilizar as ferramentas computacionais para apresentação os resumos e análises de dados.
+- Utilizar as ferramentas computacionais para apresentação dos resumos e análises de dados.
 
 ---
 
 ## Avaliação 
 
-Serão  realizados **02  trabalhos práticos** ( $T1$ e $T2$) e toda a aula será atribuído uma lista de exercícios referentes ao assunto abordado na semana. Ao final da disciplina as listas serão utilizadas para compor a nota da **Listas Semanais** $LS$. A  nota  de  aproveitamento da disciplina será  a  média  aritmética  ponderada  das notas dos trabalhos e listas, dada por:
+Serão  realizados **02  Provas** ( $P1$ e $P2$) e serão atribuídas listas de exercícios que deverão ser entregues no **Google Classroom**. Ao final da disciplina as listas serão utilizadas para compor a nota da **Listas Semanais** $LS$. 
+
+A  nota  de  aproveitamento da disciplina será  a  média  ponderada  das notas dos trabalhos e listas, dada por:
 
 $$
-\text{Nota Final} = \frac{LS+3 \cdot T1 + 4 \cdot T2}{8}
+\text{Nota Final} = \frac{LS+3 \cdot P1 + 4 \cdot P2}{8}
 $$
 
-onde: $T1$ = Nota do 1º trabalho; $T2$ = Nota do 2º trabalho; $LS$ = Nota das listas semanais de exercícios entregues durante a disciplina.
+onde: $P1$ = Nota da 1ª prova; $P2$ = Nota do 2ª Prova; $LS$ = Nota das listas de exercícios entregues durante a disciplina.
+
+---
+Calendário
+
+| Dia	| Semana	| Conteúdo |  
+|:--- | :---: | :---:|
+| 09/03/2023	| 1 | Apresentação da Disciplina e Noções de Programação | 
+| 16/03/2023	| 2 | Introdução à Estatística	
+| 23/03/2023	| 3 | Medidas estatísticas	
+|30/03/2023	| 4 | Probabilidade	
+|06/04/2023	| 5 | Variáveis aleatórias discretas	
+|13/04/2023	| 6 | Variáveis aleatórias contínuas	
+|**20/04/2023**	| **7** | **Prova 01** Oo
+|27/04/2023	| 8 | Estatística e distribuição amostral	
+|04/05/2023	| 9 | Estimação	
+|11/05/2023	| 11 | Testes de hipóteses	
+|18/05/2023	| 12 | Comparação de parâmetros de duas populações 	
+|25/05/2023	| 13 | Correlação e regressão	
+|**01/06/2023**	| **14** | **Prova 02** $\leftarrow$		
+|**15/06/2023**	| **15** | **Prova Substitutiva**	$\leftarrow$	
+|**22/06/2023**	| **16** | **Período de Recuperação**	$\leftarrow$	
 
 
 ---
@@ -53,7 +80,7 @@ onde: $T1$ = Nota do 1º trabalho; $T2$ = Nota do 2º trabalho; $LS$ = Nota das 
 
 - Aulas teóricas expositivas.
 
-- Aula teóricas de anos anteriores serão disponibilizadas (**Google Classroom**).
+- Vídeos de aula teóricas de anos anteriores serão disponibilizadas (**Google Classroom**).
 
 - Serão utilizados vídeos gravados pelo professor disponíveis no YouTube <https://www.youtube.com/channel/UCCJBXRV7CbfkcyaIixp0CqQ>
 
