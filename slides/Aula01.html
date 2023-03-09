@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ]
 .institute[
-### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
+### Departamento de Engenharia e Ciências Exatas
 ]
 .date[
 ### 09-03-2022
@@ -31,6 +31,91 @@ class: center, middle, inverse, title-slide
 ---
 
 
+# Computador
+
+&gt;“Computador é aquele que faz cômputos ou que calcula; máquina à base de circuitos eletrônicos que efetua grandes operações e cálculos gerais, de maneira ultra rápida." 
+
+&gt;"Computador é o idiota mais veloz do mundo, pois fará qualquer coisa que nós lhe ordenarmos a uma velocidade extremamente alta." 
+
+&gt;"Computador é um equipamento capaz de aceitar elementos relativos a um problema, submetê-lo a operações predeterminadas e chegar a um resultado."
+
+---
+
+# Arquitetura de Computadores
+
+Estudo sobre como projetar as partes de um sistema de computador que são visíveis para os programadores.
+
+Atributos que têm impacto direto sobre a execução lógica de um programa. Exemplos: 
+
+ + Conjunto de instruções;
+
+ + Número de bits usados para representar os vários tipos de dados (caracteres 2B ou 4B);
+
+ + Mecanismos de E/S;
+
+ + Técnicas de endereçamento à memória.
+
+---
+
+# Projeto de computadores atuais
+
+**Conceitos Básicos**
+
+  + Dados/Instruções são armazenados em uma única memória de leitura/escrita;
+
+  + Conteúdo da memória é endereçado pela posição;
+
+  + Execução de instruções de modo seqüencial (salvo exceções).
+
+---
+
+
+# Projeto de computadores atuais
+
+**Conceitos Básicos**
+
+  + Dados/Instruções são armazenados em uma única memória de leitura/escrita;
+
+  + Conteúdo da memória é endereçado pela posição;
+
+  + Execução de instruções de modo seqüencial (salvo exceções).
+  
+---
+
+#### Componentes Básicos de uma computador
+
+![](img/computador-basico.png)
+
+
+O **processador** (ou microprocessador) é responsável pelo tratamento de informações armazenadas em memória (programas em código de máquina e dos dados).
+
+A **memória** é responsável pela armazenagem dos programas e dos dados. 
+
+**Periféricos**, que são os dispositivos responsáveis pelas entradas e saídas de dados do computador, ou seja, pelas interações entre o computador e o mundo externo. Exemplos de periféricos são o monitor, teclados, mouses, impressoras, etc.
+
+**Barramento**, que liga todos estes componentes e é uma via de comunicação de alto desempenho por onde circulam os dados tratados pelo computador.
+
+---
+
+![](img/computador-basico-2.png)
+---
+
+![](img/processador.png)
+
+---
+### Exemplo de como funciona o computador:
+
+Uso de um programa que faz cálculos matemáticos:
+  + Usuário digita: `\(10+20*2\)`
+  + **UC** recebe estes dados
+  + **UC** verifica que precisam ser calculados
+  + **UC** envia para a **ULA**
+  + **ULA** realiza o cálculo necessário
+  + **ULA** *retorna* o valor `\(50\)` para a **UC**
+  + **UC** armazena na memória
+  + **UC** mostra o resultado no dispositivo de saída
+  
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
