@@ -5,10 +5,10 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 13 - Distribuição Qui-Quadrado"
+subtitle: "Aula 12 - Testes de Hipótese"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(15-07-2021)"
+date: "(28-07-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -27,558 +27,471 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 
 
-### Distribuição Qui-quadrado
+class: middle, center, inverse
 
-Seja Y uma variável aleatória contínua com distribuição qui-quadrado   com $\nu$ graus de liberdade. Graficamente, a distribuição $\chi^2$ pode ser representada por:   
-
-```{r,echo=FALSE,fig.height=4}
-library(tidyverse)
-ggplot(data.frame(x=c(0,30)), aes(x = x)) +
-  stat_function(fun = dchisq,
-                args = list(df=10)
-                )+
-  geom_segment(aes(x=20,y=0,xend=20,yend=dchisq(20,10)),color="red") +
-  stat_function(fun = dchisq,
-                args = list(df=10),
-                xlim = c(20,30),
-                color="red",
-                geom = "area",
-                alpha = .2,
-                fill = "orange"
-    
-  ) + 
-  labs(y="f(X)", x="X") +
-  annotate(geom="text", x=25, y=0.015, 
-           label=expression(alpha),size=10)+
-  annotate(geom="text", x=17, y=0.005, 
-           label=expression(paste(x[c]," = ",chi^2)),size=8)+
-  theme_bw()
-```
-
-$$P(X > x_c) = \alpha$$
-
-
-Tal como no caso da distribuição $t$ de Student, existe uma família de distribuições $\chi^2$ indexada pelo número (inteiro) de graus de liberdade $(\nu)$.
+# Teste de Hipótese
 
 ---
 
-[Tabela - Distribuição Qui-quadrado](https://github.com/arpanosso/estatinfo/blob/master/docs/TabelaChiSQ.pdf) 
+## Teste de Hipótese
+
+**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado por evidências obtida de dados amostrais. 
+
+
+Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
+
+---
+**Exemplo 1**.  Uma suinocultura usa uma ração $A$ que propicia, da desmama até a idade de abate, um ganho em peso de $500 g/dia/suíno$ $(\sigma = 25 g)$.  O fabricante de uma ração $B$ afirma que nas mesmas condições, sua ração propicia um ganho de $510 g/dia/suíno$ $(\sigma = 25 g/dia/suíno)$. 
+
+Considerando a amostra de $50$ leitões, aos quais foi fornecida a nova ração $(B)$, deve-se ou não adotar essa ração, admitindo-se como resultado um ganho em peso médio diário de $504 g/dia/suíno$ $( \bar{X})$, fixando-se $\alpha= 5\%$.
+
+
+---
+### Hipóteses estatísticas
+
+Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técnica é comparado com o padrão, para determinar se sua superioridade pode ser corroborada pela evidência experimental.
+
+**Hipótese nula $(H_0)$:** é a hipótese de igualdade entre o novo e o produto padrão, ou seja, a designação "hipótese nula" decorre da suposição que a diferença entre eles é nula ou zero.
+
+**Hipótese nula $(H_1)$:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
+
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_01.png")
+```
+
+Então $RC = \{ \bar{X} \in R | \bar{X} \ge 505,78\;g \}$ e a regra de decisão é "se $\bar{X_a} \in RC$, rejeita-se $H_0$ e a conclusão é que a ração $B$ é superior à $A$; se $\bar{X_a} \notin RC$, não rejeita-se $H_0$, e a conclusão é que as rações são estatisticamente iguais.
+
+---
+### Estatística teste
+
+Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, $n = 50$ ). Calcula-se a média amostral $\bar{x}_a$ do, no exemplo, ganho de peso diário no período.
+
+Se $\bar{x}_a$ estiver próxima de $500\;g$, **não se deve rejeitar $H_0$**, e a **conclusão** será que a ração do tipo $B$ é *estatisticamente* igual à ração do tipo $A$.
+
+Se $\bar{x}_a$ estiver próxima ou for superior à $500\;g$, **rejeita-se $H_0$ em favor a $H_1$** e a **conclusão**  será que a ração do tipo $B$ é superior à do tipo $A$, tal resultado implica no fato de que a suinocultura poderá utilizá-la.
+
+---
+
+### Critério de decisão 
+
+Para aceitar ou rejeitar $H_0$, determina-se um valor $k$ (ponto) entre $500$ e $510 \;g$, chamado valor crítico, $\bar{x}_c$.
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_02.png")
+```
+
+O procedimento do teste, então, divide os possíveis valores da estatística teste em dois subconjuntos: uma região de aceitação e uma de rejeição para $H_0$, o que pode levar a dois tipos de erros. 
+
+Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\;g$ e incorretamente concluímos que $\mu = 510\;g$, cometeremos um erro referido como **ERRO TIPO I (falso positivo)**. 
+
+Por outro lado, se o verdadeiro valor de $\mu$ é $510\;g$ e incorretamente concluímos  que $\mu = 500 \;g$, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo)**.
+
+---
+## Erros tipo I e II
+
+ | Situação específica | na População
+---|---:|:---|
+Conclusão do Teste | $H_0$ verdadeira | $H_0$ falsa
+Não Rejeita $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
+Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
+
+
+$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = nível de significância $(5\%, 1\% \text{ ou } 0,1\%)$.
+
+$\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **poder do teste** dado por $1-\beta$.
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_03.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_04.png")
+```
+---
+
+## Passos para a construção de um teste de hipóteses
+
+a) Fixe a hipótese $H_0$  a ser testada e a alternativa $H_1$;
+ 
+b) Use a teoria estatística e as informações disponíveis para decidir qual estatística (estimador) será usada para testar a hipótese $H_0$, obtendo-se suas propriedades (distribuição, estimativa, erro padrão);
+ 
+c) Fixe a probabilidade $\alpha$ de cometer o **erro tipo I** e use este valor para construir a $RC$ (região crítica). Lembre-se que a $RC$ é construída para a estatística definida no passo **(a)**, usando os valores hipotetizados por $H_0$;
+
+d) Use as informações da amostra para calcular o valor da estatística do teste;
+
+e) Se o valor da estatística calculado com os dados da amostra não pertencer à $RC$, não rejeitamos $H_0$; caso contrário, rejeita-se $H_0$. 
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_05.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_06.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_07.png")
+```
+---
+class: middle, center, inverse
+
+# Teste sobre a média de uma população com variância conhecida
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_08.png")
+```
+
+---
+
 
 ```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/chiSQ_01.png")
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_09.png")
 ```
 
+---
+
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_10.png")
+```
 
 ---
 
-### Testes Qui-quadrado
+[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
 
-Serão apresentados testes que utilizam a distribuição qui-quadrado como estrutura probabilística e por esta razão são denominados **testes qui-quadrado**. A figura anterior apresenta a densidade do modelo $\chi^2$ com a região crítica $(RC)$ do teste, isto é,  
-
-
-$$RC = \{ X > \chi^2 \}$$
-
-Esses testes são utilizados para dados discretos (categóricos) provenientes de uma população, tais como mortalidade ou achados patológicos, etc. 
-
-O valor de qui-quadrado é um estimador da **Discrepância Entre Frequências Esperadas e Observadas**, estabelecendo se as diferenças encontradas se devem ou não à casualidade.
-
----
-class: center, middle, inverse
-
-# Qui-quadrado como teste de aderência
-
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
+```
 
 ---
 
-O termo **aderência** refere-se à comparação de dados experimentais de frequência com a distribuição teórica.
-
-**Exemplo**: A Frequência    fenotípicas    observadas    de    um cruzamento  dihíbrido  entre  heterozigotos  de  ervilhas  lisas amarelas $(YyRr \times YyRr)$ (Mendel, 1866).
-
-Fenótipo | Freq. Observada $(f_o)$ | Freq Esperada $(f_e)$ sob $H_0$* | Desvio do esperado
-:--- |:---:|:---:|:---:|
-Amarela lisa | 315 | (556/16)*9 = 312,75  | 2,25
-Verde lisa | 108 | (556/16)*3 = 104,25  | 3,75
-Amarela rugosa|   101 | (556/16)*3 = 104,25 |  -3,25
-Verde rugosa | 32 | (556/16)*1 = 34,75  |   -2,75
-**Total**  | **556** | **556** | - 
-\* $H_0$ = a segregação segue a razão mendeliana $9 : 3 : 3 : 1$.
-
-Estes desvios de frequência seriam devido ao acaso ?   
-Qual a probabilidade de ocorrer um desvio desta magnitude ?
-
-Formulando–se a hipótese $H_0$ de que a segregação é $9:3:3:1$, as $f_e$’s dos quatro  genótipos são, respectivamente, $562.(9/16) = 312,75$, $562(3/16) = 104,25$,  $562(3/16) = 104,25$, $562(1/16) = 34,75$.
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_11.png")
+```
 
 ---
 
-Para testar se os números observados $(f_o)$ dos três genótipos são consistentes com os esperados $(f_e)$ com base na segregação $9:3:3:1$, usa-se, então, a estatística:
+class: middle, center, inverse
 
-$$\chi^2 = \sum \limits_{i=1}^k \frac{(f_o - f_e)^2}{f_e}$$
+# Teste para a Proporção binomial (p)
 
-que sob $H_0$ verdadeira tem distribuição $\chi^2$ (qui-quadrado) com $\nu = k - 1$ graus de liberdade.
+---
 
-Note que em $\nu$, se subtrai $1$ de $k$ por causa da condição de restrição que estabelece que, sendo conhecidas $(k-1)$ frequências esperadas (independentes), a remanescente pode ser determinada por diferença.
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_12.png")
+```
+---
 
-Quando as $f_e$’s somente puderem ser calculadas mediante estimativas de $m$ parâmetros populacionais, a partir de estatísticas amostrais, o número de graus de liberdade $(\nu)$ é dado por $\nu = k – 1 – m$.
+**Exemplo 3**. Um laboratório de vacinas contra febre aftosa afirmou que ela imuniza $90\%$ dos animais.  Em uma amostra de $200$ animais, nos quais foram aplicados a vacina, $160$ foram imunizados. Verificar se a declaração do fabricante é verdadeira ao nível de $5\%$.
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_13.png")
+```
+
+---
+class: middle, center, inverse
+
+# Test t de Student
+
+## Teste para a média de uma população normal com $\sigma^2$ desconhecido
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_14.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_15.png")
+```
+
+---
+
+**Exemplo 4**. As especificações de uma dada droga veterinária exigem $23,2$ g de álcool etílico. Uma amostra de $10$ análises do produto apresentou um teor médio de álcool de $23,5$ g com desvio padrão de $0,24$ g. Pode-se concluir ao nível de significância de $1\%$ que o produto satisfaz as condições exigidas $(\mu = 23,2 \text{ g })$ ?
+
+---
+
+[Tabela - Distribuição t-Student](https://github.com/arpanosso/estatinfo/raw/master/docs/Tabela_tdeStudent.pdf) 
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_16.png")
+```
+
+---
+class: middle, center, inverse
+
+# Comparações de parâmetros de duas populações
+
+---
 
 
+Suponha duas amostras aleatórias independentes de tamanhos $n_1$ e $n_2$ ou seja, $X_1 , X_2 , ..., X_{n1}$ e $Y_1 ,Y_2 , ...,Y_{n2}$, respectivamente, de uma população com distribuição $N(\mu_1, \sigma_1^2)$ e de população com distribuição $N(\mu_2, \sigma_2^2)$
 
-### Defininto as Hipóteses
+### Hipóteses
+
+$H_0: \sigma_1^2 = \sigma_2^2$ ou seja $\left(\frac{\sigma_1^2}{\sigma_2^2} = 1 \right)$ 
+
+$H_1: \sigma_1^2 \neq \sigma_2^2$ ou seja $\left(\frac{\sigma_1^2}{\sigma_2^2} \neq 1 \right)$ 
+
+---
+
+### Estatística do teste:
+
+Sendo $s_1^2$ e $s_2^2$ as variâncias, respectivamente das amostras $n_1$ e $n_2$, o quociente
+
+$$\frac{s^2_1 / \sigma_1^2}{ s^2_2 / \sigma^2_2}$$
+
+Segue a distribuição de $F$ (Snedecor) com $n_1-1$ e $n_2-1$ graus de liberdade $(GL)$, tem a denotação $F(n_1-1, n_2-1)$.
+
+Sob a suposição de $H_0$ ser verdadeira, isto é, $\sigma^2_1 = \sigma^2_2$, tem-se que
+
+$F = \frac{s^2_1}{s^2_2} \sim F(n_1-1, n_2-1)$
+
+---
+
+#### Construção da região crítica
+
+Fixado $\alpha$, os pontos críticos serão $F_1$ e $F_2$ da distribuição $F$, tais que:
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_17.png")
+```
+
+Se $\alpha = 10\%$, pode-se, utilizando a Tabela da distribuição $F$, encontrar diretamente $F_2(5\%)$. Para encontrar $F_1(95\%)$ utiliza-se a propriedade:
+
+
+$F_{(1-\alpha;\;n_1-1,\; n_2-1)} = \frac{1}{F_{(\alpha;\;n_2-1,\; n_1-1)}}$, assim: $F_{(0,95;\;n_1-1,\; n_2-1)} = \frac{1}{F_{(0,05;\;n_2-1,\; n_1-1)}}$
+
+---
+
+#### Exemplo
+
+Se $n_1 - 1= 5$ e $n_2-1 = 7$
+
+$F2_{(0,05;\;5,\; 7)} = 3,97$
+
+$F1_{(0,95;\;5,\; 7)} = \frac{1}{F_{(0,05;\;7,\; 5)}}=\frac{1}{4,88} = 0,205$
+
+Assim, $RC = \{0 < F < 0,205 \text{ ou }  F > 3,97 \}$
+
+Entretanto, o procedimento que se usa na prática é calcular $F$ utilizando sempre a maior variância no numerador $s_1^2 > s^2_2$ portanto $F > 1$, e considerar o ponto crítico $F_{2(\alpha;\;n1-1,\; n2-1)}$.
+
+**Amostra:** Colhidas amostras aleatórias $n_1$ e  $n_2$, calcula-se $s^2_1$ e $s^2_2$ com $(s^2_1 > s^2_2)$, então:
+
+$$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$
+
+**Conclusão:** Se $F_{obs} \in RC$, **rejeita-se** $H_0$, no caso contrário, **não se rejeita** $H_0$.
+
+---
+
+[Tabela - Distribuição F-Snedecor](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaFSnedecor.pdf) 
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_18.png")
+```
+
+---
+
+**Exemplo**. Dois grupo de $8$ animais da mesma idade e raças diferentes foram submetidos a um mesmo regime alimentar. Os resultados para ganho de peso foram:
+
+| | | | | | | | 
+---| ---|--- | ---| ---|--- |--- |--- | 
+**R1:** | $2,30$   | $2,10$   | $1,91$   | $1,20$   | $1,93$   | $1,88$   | $1,95$   | $2,10$
+**R2:** | $2,30$   | $2,15$   | $2,00$   | $1,28$   | $2,15$   | $2,20$   | $1,91$   | $2,06$
+
+Ao nível de $5\%$, as variâncias dos ganhos de pesos raças diferem entre si?
+
+```{r}
+r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
+r2<-c(2.30,2.15,2.00,1.28,2.15,2.20,1.91,2.06)
+var.test(r1,r2)
+```
+
+---
+
+Testar as hipóteses:
 
 $$
 \begin{cases}
-H_0: \text{a segregação está de acordo com a razão mendeliana 9:3:3:1} 
-\\
-H_1: \text{a segregação é diferente de 9:3:3:1}
+H_0: \sigma_{r1}^2 = \sigma_{r2}^2 \\
+H_1: \sigma_{r1}^2 \neq \sigma_{r2}^2
+\end{cases}
+$$
+Calculando os valores de variância para as duas raças:
+
+$s_{r1}^2 = 0,10433$ 
+
+e  
+
+$s_{r2}^2 = 0,10068$
+
+sendo que $n_{r1} = n_{r2} = 8$ 
+
+e $\alpha = 5\%$
+
+
+A estatística do teste: $\frac{s_{r1}^2}{s_{r2}^2} = \frac{0,10433}{0,10068} = 1,03618$
+
+---
+$F_{c(0,05; 7, 7)} = 3,79$ assim, $RC = \{  F > 3,79 \}$
+```{r,echo=FALSE}
+curve(df(x,7,7),0,7,xlab="t",ylab="d",
+      main="F(7,7)")
+abline(v=1.03618,col="red",lty=2)
+segments(3.79,-1,3.79,df(3.79,7,7))
+text(1.5,0,"Fobs",col="red")
+text(5,0,"RC",col="black")
+```
+
+
+Como $F_{obs} \notin RC$ não se rejeita $H_0$, ou seja, as variâncias são estatisticamente iguais ao nível de 5% de significância, ou seja, as variâncias dos ganhos de peso das raças são homocedásticas.
+
+---
+
+### Comparação de duas médias de populações normais: amostras independentes
+
+A análise da hipótese da igualdade de variâncias é crucial para o uso do teste $t$, na comparação de duas médias, apresentado a seguir.
+
+Com o objetivo de se comparar duas populações examinaremos a situação na qual os dados estão na forma de realizações de amostras aleatórias de tamanhos $n_1$ e $n_2$, selecionadas, respectivamente, das populações $1$ e $2$. 
+
+Uma coleção de $n_1 + n_2$ elementos são aleatoriamente divididos em $2$ grupos de tamanhos $n_1$ e $n_2$, onde cada membro do primeiro grupo recebe o tratamento $1$ e do segundo, o tratamento $2$. Especificamente, estaremos interessados em fazer inferência sobre o parâmetro:
+
+$\mu_1 - \mu_2$ = (média da população 1) – (média da população 2)
+
+**Hipótese:** $H_0: \mu_1 = \mu_2$ ou seja, $\mu_1 - \mu_2 = 0$
+
+**Estatística do teste:** $Z = \frac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}} \sim N(0,1)$
+
+---
+
+#### Caso 1: variâncias conhecidas
+
+$Z = \frac{(\bar{X}-\bar{Y})}{\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}} \sim N(0,1)$
+
+#### Caso 2: variâncias desconhecidas e iguais
+
+Preliminarmente, testa-se se as variâncias das duas populações são iguais. Caso a hipótese não seja rejeitada, isto é, que $\sigma_1^2=\sigma_2^2=\sigma^2$, a estatística anterior transforma-se em:
+
+$Z = \frac{(\bar{X}-\bar{Y})}{\sigma\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$ , substituimos $\sigma$ por um estimador, teremos uma expressão muito semelhante à $t$ de Student. Uma estatística para $\sigma^2$ é a média ponderada:
+
+$S_P^2 = \frac{(n_1-1)s_1^2+(n_2-1)s^2_2}{(n_1-1)+(n_2-1)}$
+
+que, como $s^2_1$ e $s^2_2$ são dois estimadores não viciados de $\sigma^2$, também é um estimador não viciado de $\sigma^2$.
+
+Assim, $t = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \sim t(n_1+n_2 - 2) GL$
+---
+
+
+**Exemplo**. Dois grupo de $8$ animais da mesma idade e raças diferentes foram submetidos a um mesmo regime alimentar. Os resultados para ganho de peso foram:
+
+| | | | | | | | 
+---| ---|--- | ---| ---|--- |--- |--- | 
+**R1:** | $2,30$   | $2,10$   | $1,91$   | $1,20$   | $1,93$   | $1,88$   | $1,95$   | $2,10$
+**R2:** | $2,30$   | $2,15$   | $2,00$   | $1,28$   | $2,15$   | $2,20$   | $1,91$   | $2,06$
+
+Ao nível de $5\%$, as médias dos ganhos de pesos raças diferem entre si?
+
+```{r}
+r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
+r2<-c(2.30,2.15,2.00,1.28,2.15,2.20,1.91,2.06)
+t.test(r1, r2, alternative = "le", var.equal = TRUE)
+```
+
+---
+
+Usando os dados do exemplo anterior, testar se há evidência de que as duas raças
+apresentam o mesmo ganho de peso $(H_0: \mu_A = \mu_B \text{ vs. } H_1: \mu_A < \mu_B)$, ao nível de $5\%$.
+
+
+$$
+\begin{cases}
+H_0: \mu_{r1} = \mu_{r2} \\
+H_1: \mu_{r1} < \mu_{r2}
 \end{cases}
 $$
 
----
-
-### Fixar o $\alpha$ de $10\%$, $5\%$ ou $1\%$
-
-### Calcular a estatística $\chi^2_{obs}$
-
-$\chi_{obs}^2 = \frac{315-312,75}{312,75} +\frac{108-104,25}{104,25} +\frac{101-104,25}{104,25} +\frac{32-34,75}{34,75} = 0,470024$
+Calculando os valores de média e desvio-padrão:
 
 
-```{r,echo=FALSE}
-obs<- c(315,108,101,32)
-esp<- sum(obs)/16 * c(9,3,3,1)
-chiobs<- sum((obs-esp)^2/esp)
-qq<-qchisq(p = 0.99,df = 4-1)
-```
----
-### Determinar a Região Crítica
+$\bar{X} = 1,92125$ e $s_{r1}^2 = 0,10433$ e  $\bar{Y} = 2,00625$ e $s_{r2}^2 = 0,10068$
 
-$RC = \{\chi > \chi_{c(\alpha, k-1)}^2\}$, como $k-1 = 3$ e se $\alpha = 1\% \rightarrow \chi_c^2 = 11,345$
-
-
-
-```{r,echo=FALSE,fig.height=4}
-ggplot(data.frame(x=c(0,15)), aes(x = x)) +
-  stat_function(fun = dchisq,
-                args = list(df=3)
-                )+
-  geom_segment(aes(x=11,y=0,xend=11,yend=dchisq(11,3)),color="red") +
-  stat_function(fun = dchisq,
-                args = list(df=3),
-                xlim = c(11,15),
-                color="red",
-                geom = "area",
-                alpha = .2,
-                fill = "orange"
-    
-  ) + 
-  labs(y="f(X)", x="X") +
-  annotate(geom="text", x=12, y=0.015, 
-           label=expression(paste(alpha,"= 1%")),size=5)+
-  # annotate(geom="text", x=17, y=0.005, 
-  #          label=expression(paste(x[c]," = ",chi^2)),size=8)+
-  theme_bw()
-```
-
-Assim, $RC = \{ \chi^2 \ge 11,345 \}$
-
-### Conclusão
-
-Como $\chi_{obs} \notin RC$ não rejeitamos $H_0$, ou seja, os resultados estão de acordo com a razão mendeliana $9:3:3:1$.
-
----
-
-### Exemplo
-
-Seja $t$ o número eventual de ***Unidades Formadoras de Colônia*** (UFC's)  presentes em um volume representado pelo pequeno quadrado observado em um levantamento isolamento  de  microrganismos  do  solo. Sendo $f_o$ a frequência observada, observou-se:
-
-t	| 0	| 1	| 2	| 3	| 4	| 5	| 6	| 7	| 8	| 9	| 10 |	11| 12| Total
-:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
-$f_o$ |	0	| 0	| 1	| 3	| 5	| 10	| 15	| 20	| 17	| 6	| 3	| 0	| 0	| **80**
-$t \times f_o$	| 0	| 0	| 2	| 9	| 20 | 	50| 	90 |	140 | 	136 |	54 |	30 |	0 |	0	| **531** |
-
-Testar se o modelo de Poisson descreve adequadamente os dados da tabela.
-
-$\hat{\lambda} = \frac{\sum \limits_{i=1}^k t .f_0}{\sum \limits_{i=1}^k f_o} = \frac{531}{80} =6,6$
+sendo que $n_{r1} = n_{r2} = 8$ e $\alpha = 5\%$
 
 Assim, 
 
-$P(X=x) = \frac{e^{-\lambda} \lambda^{x}}{x!}$
+$S_P^2 = \frac{(n_1-1)s_1^2+(n_2-1)s^2_2}{(n_1-1)+(n_2-1)} = \frac{(8-1)0,10433+(8-1)0,10068}{(8-1)+(8-1)} = 0,1025054$
+
+sendo $S_P = 0,3201646$
+
+Portanto, 
+
+$t_{obs} = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} = \frac{(1,92125 - 2,00625)}{0,3201646\sqrt{\frac{1}{8}+\frac{1}{8}}} = -0,5309908$
 
 ---
 
-As frequências esperadas das três primeiras classes de **t** e das duas últimas são menores do que $5$. Como a validade do teste de aderência, exclui essa situação, as três primeiras classes foram combinadas com a posterior (quarta) e as duas últimas combinadas entre si. A estatística   e o número de graus de liberdade são, então, calculados a partir dessas classes convenientemente modificadas.        
+Para a construção da **região crítica** do teste: $t_c(14; 0,05) = -1,761$ assim, a região crítica é $RC = \{ t \le -1,76131\}$
 
-$t$	| $\le$ 3	| 4	| 5	| 6	| 7	| 8	| 9	| 10 | 	$\ge$ 11	| Total
-:---| ---| ---| ---| ---| ---| ---| ---| ---| ---| ---
-$f_o$	| 4	 |5	| 10	| 15	| 20	| 17	| 6	| 3	 |0	| 80
-$f_e$ por Poisson	| 8	| 9	| 11	| 13	| 12| 	10| 	7| 	5| 	5| 	80
+**Conclusão**: Como $t_{obs} \notin RC$, não rejeita-se $H_0$, não há evidências de que a raça 1 apresenta maior ganho de peso que a raça 2.
 
-
-### Hipótese
-
-$$
-\begin{cases}
-H_0: \text{dados são distribuídos segundo Poisson} 
-\\
-H_1: \text{dados não são distribuídos segundo Poisson}
-\end{cases}
-$$
-
-### Estatística do teste
-
-$\chi^2 = \sum_{i=1}^k \frac{(f_o - f_e)^2}{f_e} = 14,7$
-
----
-
-### Construção da Região Crítica
-
-Graus de liberdade: nº de classes $(9) - 1 - \text{nº de parâmetros} [1 (\lambda) ] = 7$
-
-$\chi^2_{c(1\%,7)} = 18,48$
-
-```{r,echo=FALSE,fig.height=4}
-ggplot(data.frame(x=c(0,25)), aes(x = x)) +
-  stat_function(fun = dchisq,
-                args = list(df=7)
-                )+
-  geom_segment(aes(x=18.5,y=0,xend=18.5,yend=dchisq(18.5,7)),color="red") +
-  stat_function(fun = dchisq,
-                args = list(df=7),
-                xlim = c(18.5,25),
-                color="red",
-                geom = "area",
-                alpha = .2,
-                fill = "orange"
-    
-  ) + 
-  labs(y="f(X)", x="X") +
-  annotate(geom="text", x=22, y=0.015, 
-           label=expression(paste(alpha,"= 1%")),size=5)+
-  annotate(geom="text", x=13, y=0.005, 
-            label=expression(paste({chi}[obs]^2)),size=8)+
-  geom_vline(xintercept = 14.7, color="blue")+
-  theme_bw()
+```{r,echo=FALSE}
+curve(dt(x,14),-4,4,xlab="t",ylab="d",
+      main="t(14)")
+abline(v=0,col="black",lty=2)
+abline(v=-0.5309,col="red",lty=2)
+segments(-1.76,-1,-1.76,dt(-1.76,14))
+text(-0.6,0,"tobs",col="red")
+text(-2.6,0,"RC",col="black")
 ```
 
-**Conclusão**: Portanto, como  $\chi^2_{obs} < \chi^2_c$, não há evidência suficiente para se rejeitar a hipótese de que os dados são distribuídos segundo Poisson.
 
 ---
 
-
-class: center, middle, inverse
-
-# Qui-quadrado em tabelas de contingência
-
----
-### Teste  Qui-quadrado em tabelas de contingência
+#### Caso 3: variâncias desconhecidas e desiguais (Teste de Smith – Satterthwaite)
 
 
-A classificação de observações (em geral, de variáveis qualitativas) de acordo com dois critérios é referida como **tabela de contingência**.
+Quando a hipótese de igualdade de variâncias for rejeitada, deve-se substituir $\sigma^2_1$ e $\sigma^2_2$ pelos seus respectivos estimadores $s^2_1$ e $s^2_2$ obtendo a estatística:
 
-|Tipos de Acasalamento |||
-:--- | :---:| :---:| :----:
-**Raça**	| **Fecundos**	 | **Não-fecundos**	| **Total**
-Charolesa | 	$110$	| $50$	 | **160**
-Gir	| $70$	| $10$	| **80**
-Nelore| 	$30$ | 	$10$ | 	**40**
-**Total**	| $210$	| $70$	| **280**
 
-Se um critério envolve $m$ categorias (linhas) e o outro $n$ categorias (colunas), a tabela é referida como tabela $m × n$. No exemplo, a tabela é   $3 × 2$. Tabelas de contingência são construídas com o propósito de se testar:
+$$t = \frac{(\bar{X}-\bar{Y})}{\sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}$$
 
- **1)** a relação de dependência (associação) entre duas variáveis (Teste de independência). Baseado no esquema amostral, no qual uma única amostra aleatória de tamanho $n$ é classificada com relação a duas características simultaneamente;
+que sob a veracidade de $H_0$ $(\mu_1 - \mu_2 = 0)$, aproxima-se de uma distribuição $t$ de Student, com número de graus de liberdade dado aproximadamente por:
 
-**2)** que as várias colunas (ou linhas) tem a mesma proporção de indivíduos nas várias categorias de uma característica, se os totais das linhas (ou colunas) são especificados antecipadamente (**Teste de homogeneidade**). 
-
+$$gl=\frac{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}{\frac{\left( \frac{s^2_1}{n_1} \right)^2}{n_1-1}+\frac{\left( \frac{s^2_2}{n_2}  \right)^2}{n_2-1}}$$
 ---
 
+Como o número de graus de liberdade assim calculado, geralmente, é **não inteiro**, recomenda-se aproximá-lo para o inteiro imediatamente anterior a este.
 
-### Teste de Homogeneidade
+Se $n_1$ e $n_2$ são ambos grandes $(n \ge 30)$, o teste pode ser baseado na estatística.
 
-Iremos testar a igualdade das proporções de acasalamentos fecundos (e não fecundos) nas três raças. Vejamos os passos a seguir: 
+$$Z = \frac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}} \sim N(0,1) \text{ sob } H_0$$
 
+pois permanece válido se $\sigma^2_1$ e $\sigma^2_2$ são substituídos por seus respectivos estimadores amostrais $s^2_1$ e $s^2_2$.
 
-### Hipótese
-A hipótese nula de homogeneidade que a proporção de cada tipo de acasalamento é a mesma para todas as raças, pode ser formalmente estabelecida como a proporção de acasalamentos fecundos sendo a mesma nas três raças.
 
+**Nota**: no caso da inferência originada de amostras grandes, não é necessário assumir que as distribuições das populações originais são normais, porque o teorema  central do limite garante que as médias amostrais X e Y são aproximadamente distribuídas como $N( \mu_1, \sigma^2 / n_1 )$ e $N( \mu_2, \sigma^2 / n_2 )$, respectivamente. Além disso, a suposição de variâncias populacionais iguais $(\sigma^2_1 = \sigma^2_2)$ que é usada para amostras pequenas, é evitada nessa situação.
 
-
-$$
-\begin{cases}
-H_0: p_{Ch} = p_{Gir} = p_{Ne}
-\\
-H_1: \text{as proporções não são todas iguais}
-\end{cases}
-$$
-
----
-
-Devemos agora calcular as $f_e$’s sob a hipótese $H_0$ ser verdadeira, colocadas em colchetes na tabela abaixo.
-
-|Tipos de Acasalamento |||
-:--- | :---:| :---:| :----:
-**Raça**	| **Fecundos**	 | **Não-fecundos**	| **Total**
-Charolesa | 	$110[120]$	| $50[40]$	 | **160**
-Gir	| $70[60]$	| $10[20]$	| **80**
-Nelore| 	$30[30]$ | 	$10[10]$ | 	**40**
-**Total**	| $210$	| $70$	| **280**
-
-
-
-
-.pull-left[
-Dos 280 animais $\rightarrow$ 210 fecundos   
-Dos 160 Charolês $\rightarrow$ X fecundos
-
-Frequência esperada é dada por:
-
-$X = \frac{160 \times 210}{280}=120$
-]
-
-.pull-right[
-
-Dos 280 animais $\rightarrow$ 210 fecundos   
-Dos 80 Gir $\rightarrow$ X fecundos
-
-Frequência esperada é dada por:
-
-$X = \frac{80 \times 210}{280}=60$
-]
-
-Todas as demais $f_e$’s podem ser calculadas por diferença (os valores calculados estão entre parênteses na tabela). Diz-se então que há $2$ graus de liberdade. Isso corresponde a  $(m – 1) . (n – 1)$ graus de liberdade, ou seja:    
-
-$r = (m – 1) . (n – 1) = (3 – 1) . (2 – 1) = 2$
-
----
-
-### Calcular o valor da estatística
-
-$\chi_{obs}^2=\sum \limits _{i=1}^m \sum \limits_{j=1}^n \frac{(f_o-f_e)^2}{f_e}= \frac{(110-120)^2}{120} + \cdots + \frac{(10-10)^2}{10} = 9,99$
-
-
-.pull-left[### Construção da Região Crítica
-
-Graus de liberdade: $(m-1).(n-1)=2 \cdot 1 = 2$ e $\alpha=5\% \rightarrow \chi_c^2 =5,99$ 
-
-
-
-```{r,echo=FALSE,fig.height=4}
-ggplot(data.frame(x=c(0,10)), aes(x = x)) +
-  stat_function(fun = dchisq,
-                args = list(df=2)
-                )+
-  geom_segment(aes(x=6,y=0,xend=6,yend=dchisq(6,2)),color="red") +
-  stat_function(fun = dchisq,
-                args = list(df=2),
-                xlim = c(6,10),
-                color="red",
-                geom = "area",
-                alpha = .2,
-                fill = "orange"
-    
-  ) + 
-  labs(y="f(X)", x="X") +
-  annotate(geom="text", x=7.5, y=0.030, 
-           label=expression(paste(alpha,"= 5%")),size=5)+
-  annotate(geom="text", x=9.5, y=0.065, 
-            label=expression(paste({chi}[obs]^2)),size=8)+
-  geom_vline(xintercept = 10, color="blue")+
-  theme_bw()
-```
-]
-
-
-.pull-right[
-### Concluir
-
-Como $\chi_{obs}^2 > \chi_c^2$,  rejeita-se $H_0$ ou seja, as fecundidades das raças não são todas estatisticamente iguais, ao nível de $5\%$.
-
-Como $H_0$ foi rejeitada, deve-se continuar a investigação, comparando-se as raças duas a duas, para se verificar quem difere de quem em termos do critério analisado.
-]
-
-
----
-
-### Tabela de contingência 2 × 2 (comparação de duas proporções)
-
-
-Considerando a seguinte tabela:
-
-Tratamento	| Morte	| Sobrevivência	| Total
----|---|---|---
-A	| 41 [53,86] | 216[203,14] |	**257**
-B	| 64 [51,14] | 180[192,86] |	**244**
-**Total** |	**105**	| **396** |	**501**
-
-verificar se os dados proporcionam evidência que as proporções de mortalidade são diferentes para os dois tratamentos $(\alpha = 1\%)$.
-
-### Hipóteses
-
-
-$$
-\begin{cases}
-H_0: p_{A} = p_{B}
-\\
-H_1: p_{A} \neq p_{B}
-\end{cases}
-$$
-
-em que: $p_A$ e $p_B$ denotam as proporções de morte (ou de sobrevivência) para os tratamentos $A$ e $B$, respectivamente.
-
----
-
-### Calcular o valor da estatística
-
-$\chi_{obs}^2=\sum \limits _{i=1}^m \sum \limits_{j=1}^n \frac{(f_o-f_e)^2}{f_e}= \frac{(41-53,86)^2}{53,86} + \cdots + \frac{(180-192,86)^2}{192,86} = 7,97$ 
-
-
-
-
-.pull-left[### Construção da Região Crítica
-
-Graus de liberdade = $(2-1) . (2-1) = 1$ e $\alpha=1\% \rightarrow \chi_c^2 =6,63$ 
-
-
-
-```{r,echo=FALSE,fig.height=4}
-ggplot(data.frame(x=c(2,10)), aes(x = x)) +
-  stat_function(fun = dchisq,
-                args = list(df=1)
-                )+
-  geom_segment(aes(x=6.6,y=0,xend=6.6,yend=dchisq(6.6,1)),color="red") +
-  stat_function(fun = dchisq,
-                args = list(df=1),
-                xlim = c(6.6,10),
-                color="red",
-                geom = "area",
-                alpha = .2,
-                fill = "orange"
-    
-  ) + 
-  labs(y="f(X)", x="X") +
-  annotate(geom="text", x=7.5, y=0.010, 
-           label=expression(paste(alpha,"= 1%")),size=5)+
-  annotate(geom="text", x=8.5, y=0.065, 
-            label=expression(paste({chi}[obs]^2)),size=8)+
-  geom_vline(xintercept = 7.97, color="blue")+
-  theme_bw()
-```
-]
-
-
-.pull-right[
-### Concluir
-
-Como $\chi_{obs}^2 > \chi_c^2$,  rejeita-se $H_0$ ou seja, há uma diferença real entre as proporções de mortalidade (ou de sobrevivência) provocada pelos tratamentos $A$ e $B$.
-
-]
-
----
-
-Para tabelas de contingência $2 x 2$, o valor de $\chi^2$ pode ser obtido também pela fórmula (1):
-
-|||Total
----|---|---|
-|a|b| $n_1$
-|c|d| $n_2$
-Total| $n_3$ | $n_4$ | $N$
-
-$\chi_{obs}^2 = \frac{(c.b-a.d)^2N}{n_1.n_2.n_3.n_4}$ então, $\chi_{obs}^2 = \frac{(216.64-41.180)^2 501}{275.244.105.396} = 7,97$
-
-Nas tabelas de contingência $2 \times 2$, alguns autores recomendam usar o teste de $\chi^2$ com a **correção de Yates** para continuidade. 
-
-Esta correção consiste em subtrair ½ de cada diferença $(f_o – f_e)$ antes de elevá-la ao quadrado. 
-
-Com este procedimento a fórmula (1) transforma-se em:
-
-$\chi_{obs}^2 = \frac{(c.b-a.d - \frac{N}{2})^2N}{n_1.n_2.n_3.n_4}$
-
-
-Com a correção de Yates, o valor de $\chi^2$ no exemplo anterior torna - se $7,37$, mostrando que em amostras grandes, produz, praticamente, o mesmo resultado que o $\chi^2$ não corrigido. A correção tem importância principalmente quando os valores das $f_e$’s são pequenos, mas se  a menor $f_e$ for $< 5$, deve-se, então, usar o teste **exato de Fisher**, que é baseado exclusivamente no cálculo de probabilidades. Não trataremos, entretanto, deste teste.
-
----
-
-class: center, middle, inverse
-
-# Qui-quadrado em teste de independência
-
----
-### Teste de independência
-
-O procedimento para o teste de independência é equivalente ao apresentado para o teste de homogeneidade, ou seja, as fórmulas para $\chi^2$ e graus de liberdade são os mesmos tanto para o teste de homogeneidade como para o de independência.  Somente o método amostral e a formalização de $H_0$ são diferentes para as duas situações.
-
-Para um tratamento geral do teste de independência em uma tabela de contingência $r \times c$, suponha $n$ indivíduos classificados de acordo com dois critérios: $A$ e $B$, e que há $r$ categorias para $A (A_1, A_2, ..., Ar)$ e $c$ categorias para $B (B_1, B_2, ..., B_c)$. Colocando a categoria $A$ nas linhas e $B$ nas colunas, pode-se construir uma tabela de dupla entrada, na qual cada célula é a intersecção de $A$ com $B$.
-
-A hipótese nula que se interessa testar é que as classificações $A$ e $B$ são independentes. Relembrando que a probabilidade da intersecção de eventos independentes é o produto de suas probabilidades, logo a hipótese nula de independência, estabelecendo que os eventos $A_1, A_2, ..., A_r$ são independentes dos eventos $B_1, B_2, ..., B_c$, pode ser representada por : $P(A_iB_j) = P(A_i).P(B_j)$. Ou seja, numa tabela de contingência de $r$ linhas e $c$ colunas, a hipótese nula de independência é:
-
-
-$H_0 = p_{ij} = p_i \cdot p_j$ para todo $i = 1,2,...,K,...,r$ e $j=1,2, ...,K, ...c$.
-
-Em outras palavras, fazendo $p_{ij}$, a probabilidade de um indivíduo, selecionado ao acaso, pertencer à célula da linha $i$ e da coluna $j$, $p_{i.}$, a probabilidade dele pertencer à linha $i$ (total marginal) e $p_{.j}$, a probabilidade de pertencer à coluna $j$ (total marginal), têm-se que as probabilidades no corpo da tabela $(p_{ij})$ serão os produtos dos totais marginais $(p_{ij} = p_{i}. p_{.j})$, se os critérios $i$ e $j$ forem independentes. 
-
----
-
-Teste de independência entre os atributos **Sexo** e **Grupo sanguíneo**, considerando uma amostra de $367$ indivíduos, classificados de acordo com as duas características simultaneamente.
-
-
-|Grupo|sanguíneo|||	|
----| ----| ---| ---| ---| ---|
-**Sexo**	|**O**	|**A** |	**B**	| **AB**	| **Total**
-Masculino	| 96[99]	| 94[98]	| 30[24]	| 14[13]	| **234**
-Feminino	| 59[56]	| 60[56]	| 7[13]	 | 7[8] |	**133**
-Total	| **155** |	**154**	| **37**	| **21**	| **367**
-
-Os valores entre colchetes na tabela correspondem às frequências esperadas calculadas sob a hipótese $H_0$ ser verdadeira:
-
-### Hipóteses
-
-$$
-\begin{cases}
-H_0: \text{ os dois atributos são independentes}
-\\
-H_1: \text{ os dois atributos não são independentes}
-\end{cases}
-$$
-
----
-
-
-#### Calcular o valor da estatística
-
-$\chi_{obs}^2=\sum \limits _{i=1}^m \sum \limits_{j=1}^n \frac{(f_o-f_e)^2}{f_e}= \frac{(96-99)^2}{99} + \frac{(59-56)^2}{56} + \cdots + \frac{(7-8)^2}{8} = 5,2$ 
-
-#### Construção da Região Crítica
-
-Graus de liberdade = $(3-1) . (2-1) = 3$ e $\alpha=5\% \rightarrow \chi_c^2 =7,82$ 
-
-Conclusão: como $\chi^2_{obs} < \chi^2_{c(5\%,3)}$, a hipótese de independência entre os dois atributos (sexo e grupo sanguíneo) não é rejeitada ao nível de significância de $5\%$.
-
-#### Restrições do uso do teste qui-quadrado $(\chi2)$ por razões teóricas
-
- 
-
-- os testes vistos são aplicados sem restrição se todas as frequências esperadas forem maiores do que $5$;  
-- quando o grau de liberdade for igual a $1$, cada frequência esperada não deve ser inferior a $5$;   
-- quando o grau de liberdade for maior do que $1$, o teste qui-quadrado não deve ser usado se mais de $20\%$ das frequências esperadas forem inferiores a $5$ ou se qualquer frequência esperada for inferior a $1$.   
-- os testes somente devem ser aplicados aos dados observados e nunca com as proporções ou porcentagens oriundas dos mesmos.  
-
-**Obs.**: caso haja restrições no uso do teste, eventualmente, pode-se juntar categorias adjacentes de modo a aumentar as frequências esperadas.
-
----
-
-class: center, middle, inverse
-
-# Regressão e correlação linear
-
----
-### Introdução
-
-Em ensaios que procuram determinar a relação existente entre duas variáveis, por exemplo, a dose de um adubo e a produção de uma cultura, por exemplo, peso e altura, idade e a concentração de sacarose, etc., dois tipos de situações podem ocorrer:
-
-
-**a) Regressão**: uma variável $(X)$ pode ser medida acuradamente e seu valor escolhido pelo experimentador.  Por exemplo, a dose de um adubo a ser ministrada em uma cultura.  Esta variável é a variável independente.  A outra variável $(Y)$, dita variável dependente ou resposta, está sujeita a erro experimental, e seu valor depende do valor escolhido para a variável independente. Assim, a resposta (produção, $Y$ ) é uma variável dependente da variável independente dose $(X)$.
-
-**b) Correlação**:É a associação entre duas variáveis quando as medidas estão sujeitas a erros experimentais, isto é, erros de natureza aleatória inerentes ao experimento.  Por exemplo, produção de leite e produção de gordura medidas em vacas em lactação, peso do pai e peso do filho, disponibilidade hidríca e altura de plantas, etc.
-
-Atualmente, se dá à técnica de **correlação** uma importância menor do que a da **regressão**. Se duas variáveis estão correlacionadas, é muito mais útil estudar as posições de uma ou de ambas por meio de curvas de regressão, as quais permitem, por exemplo, a predição de uma variável em função de outra, do que estudá-las por meio de um simples **coeficiente de correlação**. 
-
----
 
 

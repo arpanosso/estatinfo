@@ -5,10 +5,10 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 10 - Estatística, Distribuição Amostral"
+subtitle: "Aula 09 - Variáveis Aleatórias Contínuas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(14-07-2022)"
+date: "(07-07-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -28,310 +28,626 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 
 class: middle, center, inverse
 
-# Distribuições Amostral
+# Distribuições teóricas de probabilidades de variáveis aleatórias Contínuas 
 
 ---
 
-## Parâmetro e Estatística
+## Seríamos capazes de medir, com precisão:
 
-**Parâmetro**: é uma medida usada para descrever uma característica da população.
+--
+**Extensão total da bacia hidrográfica do rio Amazonas?**
 
-
-**Estatística** ou **Estimador**: é qualquer função de uma amostra aleatória (fórmula ou expressão), construída com o propósito de servir como instrumento para descrever alguma característica da amostra e para fazer *inferência* a respeito da característica na população.  
-
-
-Resumo | Parâmetro | Estatística
-:---|:---:|:---:  
-Média | $\mu$ | $\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i$
-Variância | $\sigma^2$| $s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}$
-Proporção | $\pi$ | $\hat{p}= \frac{X}{n}$
-Correlação | $\rho$ | $r = \frac{\sum_{i=1}^n(x_1-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_1-\bar{x})^2(y_i-\bar{y})^2}}$
----
-
-Toda **estatística**, sendo uma função de uma amostra aleatória $X_1, X_2, \cdots X_n$, é também uma variável aleatória e tem uma distribuição. 
-
-Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora denominada **distribuição amostral**. 
-
-Assim, cada **estatística** é uma variável aleatória e sua distribuição de probabilidade é chamada <u>distribuição amostral da estatística</u>.
-
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_1.png")
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_1.png")
 ```
 
+---
+
+**Sistema nefrálgico, seríamos capazes de medir com exatidão o volume total desse sistema?**
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_2.png")
+```
+
+---
+
+
+**Superfície específica de um agregado do solo?**
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_3.png")
+```
+
+
+---
+**O comprimento e volume total de poros na casca de um ovo de galinha?**
+
+.pull-left[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_4.png")
+```
+]
+
+.pull-right[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_5.png")
+```
+]
+
+---
+
+## Variável Quantitativa 
+
+é aquela que apresenta como possíveis realizações (valores) números resultantes de uma contagem ou mensuração, podendo ser:
+
+### Contínua
+
+- Os possíveis valores formam um intervalo de números reais e que resultam, normalmente, de uma mensuração. Exemplos: peso, altura, produção de leite, pressão arterial, teor de nitrogênio no solo ou na planta. 
+
+Essencialmente, dizemos que $X$ é uma variável aleatória contínua, se $X$ puder tomar todos os valores em algum intervalo:
+     $$a \leq x \leq b$$
+onde  $a$ e $b$ podem ser $- \infty$ e $+ \infty,$ respectivamente.
+
+---
+
+### Variável Aleatória Contínua 
+
+Sendo resultado de um processo de mensuração, o seu valor pode ser pensado como pertencendo a um intervalo ao redor do valor efetivamente observado. Por exemplo:
+
+.pull-left[
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/5063385/pexels-photo-5063385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+```
+]
+
+.pull-right[
+
+Quando dizemos que a altura de uma criança é $125$, estamos medindo sua altura usando como unidade de medida o $cm$, e portanto o valor observado é, na realidade, um valor entre $124,5$ cm e $125,5$ cm, por exemplo.
+]
+
+
+---
+class: center,inverse
+
+Um vídeo bastante interessante do **Khan Academy Brasil** apresentando a diferença entre as variáveis aleatórias discreta e contínuas, segue abaixo:
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/wc6qIyg3Iqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://www.youtube.com/watch?v=wc6qIyg3Iqo)
+
+[Narrador - Ciência Todo Dia](https://www.youtube.com/user/cienciatododia)
+
+
+---
+
+### Variável Aleatória Contínua 
+
+Relembrando o conceito do histograma a respeito da densidade de frequência $(di)$
+
+
+.pull-left[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/salario_hit.png")
+```
+]
+
+.pull-right[
+A altura do retângulo em cada intervalo de classe $(\Delta_i)$ é proporcional à densidade de frequência $(fi/\Delta_i)$ do intervalo, de modo que a área do retângulo seja igual $Delta_i \times \frac{fi}{\Delta_i} = fi$. 
+
+Ou seja, com um número suficientemente grande de observações, diminuindo-se os intervalos de classe, o histograma tende ficar cada vez menos irregular, até aproximar da forma de uma curva bem mais suave.
+]
+
+---
+
+.pull-left[
+```{r,echo=FALSE}
+library(tidyverse)
+library(patchwork)
+library(cowplot)
+
+fun_g <- function(n){
+  di <- 1/n*5
+  x<-seq(-4,4,di)
+  densidade <- dnorm(x)
+  tibble(x,densidade) |>
+    ggplot(aes(x=x,y=densidade))+
+    geom_col(color="black",fill="white")+
+    labs(x="(X)",
+         y="di")
+}
+g1<- fun_g(n=5)
+g2<- fun_g(n=30)
+g3<- fun_g(n=1000)
+g1<-g1 +
+  draw_label(label = "a)",x=-4,y=0.4)
+  
+g2<-g2 +
+  draw_label(label = "b)",x=-4,y=0.4) 
+  
+g3<-g3 +
+  draw_label(label = "c)",x=-4,y=0.4)
+
+g1/g2/g3
+```
+]
+
+.pull-right[
+Como a probabilidade é interpretada como a frequência relativa de um evento em uma longa série de ensaios independentes, a curva obtida como a forma limite dos histogramas $(c)$ representa a maneira pela qual a probabilidade total $(1)$ é distribuída em relação à amplitude dos possíveis valores da v.a. $X$. 
+
+A função matemática $f(x)$, cujo gráfico produz tal curva é chamada **função densidade de probabilidade** $(f.d.p.)$ da v.a. contínua $X$.
+
+**PROPRIEDADES**  
+- a área total sob a curva é igual a $1$ ;
+- $(a \le X \le b)$ = área sob a curva entre os pontos $a$ e $b$ ;
+- $f(x) \ge 0$ (não negativa) ;
+- $P(X = x_i ) = 0$.  
+
+]
+---
+
+```{r,echo=FALSE}
+library(gganimate)
+library(tidyverse)
+library(patchwork)
+library(cowplot)
+
+n=5
+di1 <- 1/n*5
+x1<-seq(-4,4,di1)
+densidade1 <- dnorm(x1)
+
+n=15
+di2 <- 1/n*5
+x2<-seq(-4,4,di2)
+densidade2 <- dnorm(x2)
+
+n=50
+di3 <- 1/n*5
+x3<-seq(-4,4,di3)
+densidade3 <- dnorm(x3)
+
+n=1000
+di4 <- 1/n*5
+x4<-seq(-4,4,di4)
+densidade4 <- dnorm(x4)
+
+tab1 <- tibble(x=x1,dd=densidade1,g=1)
+tab2 <- tibble(x=x2,dd=densidade2,g=2)
+tab3 <- tibble(x=x3,dd=densidade3,g=3)
+tab4 <- tibble(x=x4,dd=densidade4,g=4)
+tab<-rbind(tab1,tab2,tab3,tab4)
+
+tab |>
+    ggplot(aes(x=x,y=dd))+
+    geom_col(color="blue",fill="white")+
+    labs(x="(X)",
+         y="di") +
+  theme_minimal() +
+  #facet_wrap(~g,nrow=3)+
+  exit_disappear() +
+  transition_states(g , wrap = FALSE) +
+  enter_grow() +
+  enter_fade()
+  
+```
+
+
+---
+.pull-left[
+```{r,echo=FALSE}
+n=1000
+di <- 1/n*5
+x<-seq(-4,4,di)
+densidade <- dnorm(x)
+g4<-tibble(x,densidade) |>
+  mutate(
+    densidade2 = if_else(x>-2 & x< -1, densidade,0)
+  ) |>
+  ggplot(aes(x=x,y=densidade))+
+  geom_col(color="white",fill="white")+
+  geom_col(aes(x=x,y=densidade2),color="gray") +
+  labs(x="(X)",
+       y="di")+
+  theme_bw()+
+  stat_function(fun = \(x) dnorm(x), color="black", lwd =1.2 )
+g4 +
+  draw_label(label = "f(x)",x=1,y=.3) +
+  draw_label(label = expression(paste("P(",a <= X, "" <= b,")")),
+             x=-2,y=.15)
+
+```
+]
+
+.pull-right[
+
+Estando $f(x)$ de uma variável aleatória contínua $X$ especificada, o problema de se calcular $P(a \le X \le b)$ vem a ser o cálculo da área sob a curva.
+
+$$P(a \le X \le b) = \int_a^bf(x)dx$$
+onde:
+]
+
+
+
+$$P(a \le X \le B) = P(a \le X<B) = P(a<X \le B) = P(a<X<B)$$
 ---
 
 class: middle, center, inverse
 
-# Distribuições Amostral da Média
-
----
-Seja a variável aleatória $X$ que denota o tempo em dias de germinação de sementes de uma espécie vegetal, após o plantio. Considerando a população de todas sementes plantadas nesse experimento, suponha que $X$ tem a distribuição de probabilidade apresentada abaixo. Uma amostra aleatória simples **COM REPOSIÇÃO** $(X_1$, $X_2)$ de $2$ covas $(n = 2)$ é tomada nesta área. Qual a distribuição do tempo médio amostral em dias para a germinação?
-
-
-$x$ | $0$ | $1$ | $2$ | $3$ 
----|---|---|---|---
-$P(X)$ | $0,20$ | $0,40$| $0,30$| $0,10$
-
+# Distribuições Normal
 
 ---
 
-.pull-left[
+### Definição
 
-Distribuição de Probabilidade
+Uma v.a. $X$ tem distribuição normal com parâmetros $\mu$ e $\sigma^2$, $-\infty < \mu < +\infty$ e $0 < \sigma^2 < \infty$, e sua $f.d.p.$ dada por:
 
-```{r,echo=FALSE}
-x<-0:3
-px<-c(.2, .4, .3, .1)
-barplot(px, names=x,las=1,
-        ylim = c(0,.45))
-box()
-```
-]
+$$f(x) = \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}} , -\infty < x < +\infty$$
 
-.pull-right[
-
-Calculando a Esperança de X: 
-
-$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30\;dias$$
-
-Calculando a Variância de X.
-
-$Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\;dias^2$
-
-Definimos a média a partir da tomada de duas amostras temos:
-
-$$\bar{X} = \frac{X_1+X_2}{2}$$
-]
-
----
-
-De acordo com a definição de amostra aleatória simples com reposição, $X_1$ e $X_2$ são variáveis aleatórias independentes, assim, a distribuição conjunta pode ser obtida multiplicando-se as probabilidades marginais.
-
-
-$$P(0 \cap 1) = P(0) \times P(1) = 0,2 \times 0,4 = 0,08$$
-
-.pull-left[
-Tabela com os possíveis valores de médias $\bar{X}$, dados os valores de $X$.
-
-$X_1 / X_2$ | 0 | 1 | 2 | 3 
-:---:|---|---|---|---
-**0** | 0,00 | 0,50 | 1,00 | 1,50
-**1** | 0,50 | 1,00 | 1,50 | 2,00
-**2** | 1,00 | 1,50 | 2,00 | 2,50
-**3** | 1,50 | 2,00 | 2,50 | 3,00
- 
-]
-
-.pull-right[
-
-Tabela com a distribuição conjunta de $X_1$ e $X_2$, ou seja, as probabilidades $P(\bar{X})$.
-
-$X_1 / X_2$ | 0 | 1 | 2 | 3  | $\sum$
-:---:|---|---|---|---|---
-**0** | 0,04 | 0,08 | 0,06 | 0,02 | **0,2**
-**1** | 0,08 | 0,16 | 0,12 | 0,04 | **0,4**
-**2** | 0,06 | 0,12 | 0,09 | 0,03 | **0,3**
-**3** | 0,02 | 0,04 | 0,03 | 0,01 | **0,1**
-$\sum$| **0,2** | **0,4** | **0,3** | **0,1** | **1,00**
-]
-
---
-
-</br>
----
-
-
-Distribuição de probabilidade de $\bar{X}$.
-
-$\bar{X}$ | $0$ | $0,5$ | $1$ | $1,5$ | $2,0$  | $2,5$ | $3,0$  
----|---|---|---|---|---|---|---
-$P(\bar{X})$ | $0,04$ | $0,16$| $0,28$| $0,28$ | $0,17$ | $0,06$ | $0,01$ 
-
-```{r, echo=FALSE}
-xb<-c(0,.5,1,1.5,2,2.5,3)
-pxb<-c(.04, .16, .28, .28, .17, .06, .01)
-barplot(pxb, names=xb,las=1)
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_1.png")
 ```
 
 ---
 
-#### Cálculo da Esperança e da Variância da Média do Número de dias para Germinação de $X$ $(n=2)$.
+### Propriedades
 
-$$E(\bar{X}) = \sum \limits_{n=1}^k = \bar{x_i} \cdot P(\bar{x_i}) = 1,30 \;dias$$
+**i)** Os parâmetros $\mu$ e $\sigma^2$ representam, respectivamente, a média e a variância da distribuição, isto é:
 
-$$Var(\bar{X}) = E(\bar{X}^2) - [E(\bar{X})]^2$$
+Onde:
 
-$$Var(\bar{X}) = 2,095 - (1,3)^2$$
+$$E(X) = \mu \text{ e } Var(X) = \sigma^2$$
 
-$$Var(\bar{X}) = 0,405\;dias^2= \frac{\sigma^2}{n} = \frac{0,81}{2} = \frac{Var(X)}{n}$$
-Se $X_1, X_2, \cdots, X_n$ constitui uma amostra aleatória simples com reposição de uma população que tem média $\mu$ e variância $\sigma^2$, então:
+**ii)** $f(x) \to 0$ quando $x \to \pm \infty$;
 
-$$E(\bar{X}) = \mu$$
+**iii)** $\mu - \sigma$ e $\mu + \sigma$ são os pontos de inflexão de $f(x)$;
 
-$$Var(\bar{X}) = \frac{\sigma^2}{n}$$ 
+**iv)** $x=\mu$ é o ponto de máximo de $f(x)$ e o valor máximo é $\frac{1}{\sigma \sqrt{2 \pi} }$;
 
-$$DP(\bar{X}) = \frac{\sigma}{\sqrt{n}}$$
+**v)** $f(x)$ é simétrica ao redor de $x = \mu$, isto é, $f(\mu + x) = f(\mu -x)$, para todo $-\infty < x < + \infty$;
 
----
-
-## Observações importantes
-
-- O desvio padrão da média $DP(\bar{X})$ e o erro padrão da média $s(m)$ são termos equivalentes. 
-
-- O erro padrão da média é geralmente usado para evitar confusão com o desvio padrão $(\sigma)$ das observações.
-
-- O aumento do tamanho da amostra $(n)$ o  desvio padrão da distribuição da média diminui, portanto os valores de $\bar{X}$ são mais próximos à $\mu$. 
-
-- Estima-se o erro padrão da média usando o tamanho da amostra $(n)$ e desvio padrão $(s)$ de uma única amostra de observações.
-
-- À medida que o tamanho da amostra aumenta temos uma estimativa mais precisa do desvio padrão paramétrico $(\sigma)$ da população. 
-
-- Em contraste, o erro padrão da média torna-se uma estimativa mais precisa da média paramétrica $(\mu)$, pois o erro padrão da média diminui.
+**vi)** média = moda = mediana.
 
 ---
 
-### Teorema Central do Limite 
 
-Se $\bar{X}$ é a média de uma amostra aleatória simples com reposição, de tamanho $n$, de uma população **normal**, com média $\mu$ e variância $\sigma^2$, sua distribuição é **normal**, com média $\mu$ e variância $\frac{\sigma^2}{n}$.
+$$X \sim N(\mu; \sigma^2)$$
 
-Assim, em uma amostra aleatória simples com reposição, de tamanho $n$, de uma população arbitrária, com média $\mu$ e variância $\sigma^2$, a distribuição de $\bar{X}$ quando $n$ é grande é  **aproximadamente  normal**, com média $\mu$ e variância $\frac{\sigma^2}{n}$.
 
-```{r,out.width = "35%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_2.png")
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_2.png")
 ```
 
 ---
+
+### Interpretando Parâmetros
+
+Duas distribuições normais com diferentes médias, mas com o mesmo desvio padrão $(\sigma)$
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_3.png")
+```
+
+Três distribuições normais com médias iguais, mas com diferentes desvios padrões
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_4.png")
+```
+
+---
+
 class: middle, inverse, center
 
-# Acesse o Link para simularmos essa amostragem. Aba "Distribuição Amostral  - Média"
+
+# Acesse o Link para estudarmos os parâmetros da distribuição normal
 
 ## https://arpanosso.shinyapps.io/estatinfo/
 
 ---
 
-## Transformação normal padrão para cálculo das probabilidades
-
-Assim, podemos utilizar a tabela normal padrão para o cálculo das probabilidades associadas aos intervalos de $\bar{X}$ a partir da transformação:
-
-$$Z = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$$ 
-
-onde $\bar{X} \sim N(\mu, \frac{\sigma^2}{n})$ e $n$ é o tamanho da amostras aleatória simples tomada da população.
-
-[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
-
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_5.png")
 ```
 
 ---
 
-### Exercício
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_6.png")
+```
 
-Seja uma máquina de empacotar de soja, cujos pesos das sacas (em $kg$) seguem uma distribuição $N(50, 2)$. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de $100$ sacas, observarmos uma média diferente de $50\;kg$ em menos de $0,2828 \; kg$?
+---
+
+class: middle, inverse, center
+
+# Ditribuição Normal Padrão (normal padronizada)
+
+---
+
+### Definição
+
+A particular distribuição normal com $\mu = 0$ e $\sigma^2 = 1$. Coincidindo com os parâmetros da variável $Z$:
+
+$$Z = \frac{X - \mu}{\sigma}$$ 
+
+onde $X \sim N(\mu, \sigma^2)$
+
+
+### Função de densidade de probabilidade:
+
+$$f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{\frac{-z^2}{2}}, - \infty < z < + \infty$$
+
+### Denotação
+
+$$Z \sim N(0,1)$$
+---
+
+## Esperança e Variância
+
+Se $X \sim N(\mu, \sigma^2)$, então a variável aleatória $Z$ definida terá uma distribuição $N(0, 1)$.
+
+### Esperança
+
+$$E(Z) = 0$$
+
+### Variância
+
+$$Var(Z) = 1$$
+
+---
+
+A vantagem de se usar a variável $Z$ é que as áreas, ou as probabilidades, associadas à distribuição normal padronizada são tabeladas. Assim, distribuição normal padrão é fundamental para o cálculo de probabilidades relativas a uma distribuição normal qualquer.
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_7.png")
+```
+
+
+---
+
+### Distribuição Normal Padrão
+
+[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
+```
+
+---
+class: center,inverse
+
+Outro vídeo bastante interessante do **Khan Academy Brasil** apresentando uma explicação sobre as ditribuição normal e a normal padrão:
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/BFu8smEp-Cc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://www.youtube.com/watch?v=BFu8smEp-Cc)
+
+---
+### Aplicação
+
+A figura abaixo ilustra a probabilidade fornecida pela tabela, ou seja, 
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_9.png")
+```
+---
+
+### a) $P(-1,73 \le Z \le 0)$
+
+
+```{r}
+0.5 - pnorm(-1.73)
+```
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_10.png")
+```
+
+---
+
+#### b) $P( Z \ge 1,73)$
+
+#### c) $P( Z \le -1,73)$
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_11.png")
+```
+
+por simetria:
+
+```{r}
+pnorm(-1.73)
+```
+
+ou seja:
+
+$P( Z \ge 1,73) = P( Z \le -1,73) = 0,5 - P(0 \le Z \le 1,73) = 0,5 -0,4582 = 0,0418$
+
+---
+
+#### d) $P(Z \le 1,73)$
+
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_12.png")
+```
+
+
+```{r}
+pnorm(1.73)
+```
+
+$P( Z \le 1,73) = 0,5 + P(0 \le Z \le 1,73) = 0,5 +0,4582 = 0,9582$
+
+
+---
+
+#### e) $P(0,47 \le Z \le 1,73)$
+
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_13.png")
+```
+
+
+```{r}
+pnorm(1.73) - pnorm(0.47)
+```
+
+$P(0,47 \le Z \le 1,73) = P(0 \le Z \le 1,73) P(0 \le Z \le 0,47) = 0,4582 - 0,1808 = 0,2774$
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_14.png")
+```
+---
+
+#### Suponha que $X \sim N(3, 16)$, calcular: $P(2 \le X \le 5)$ 
+
+
+$P(2 \le X \le 5) = P(\frac{2-3}{4} \le \frac{X}{4} \le \frac{5-3}{4}) = P(-0,25 \le Z \le 0,5)$
+
+$P(-0,25 \le Z \le 0,5) = P(-0,25 \le Z \le 0) + P(0 < Z \le 0,5)$
+
+$P(-0,25 \le Z \le 0,5) = 0,0987 + 0,1915 = 0,2902$ ou seja, 
+
+$P(2 \le X \le 5) = 0,2902$
+
+No R:
+
+```{r}
+pnorm(5,3,4) - pnorm(2,3,4)
+```
+
+
+---
+
+# Exercício 
+
+Sabendo-se que os pesos à desmama $(X)$ de $10.000$ bezerros de um rebanho são distribuídos normalmente, com média $(\mu = 170\;kg)$ e desvio padrão $( \sigma = 5\;kg)$, pergunta-se:
+
+
+**a)** qual é o número esperado de bezerros com peso superior a $165$ kg?  
 
 --
 
-**Resposta:** 
+Solução:
 
-$P(50-0,2828 \leq \bar{X} \leq 50+0,2828 ) = 0,9545$
+$$
+P(X \geq 165) = P\left( \frac{X -\mu}{\sigma} > \frac{165-170}{5}\right) = P(Z \geq -1)
+$$
 
----
+$$
+P(Z \geq -1) = P(-1 \leq Z \leq 0 ) + P(Z \geq 0) = P(0 \leq Z \leq 1 ) + 0,50
+$$
 
-### Amostras sem reposição de populações finitas
+$$
+P(Z \geq -1) = 0,3413 + 0,50 = 0,8413
+$$
+Portanto, o número esperado é $10.000 \times 0,8413 = 8413$ bezerros.
 
-Supondo uma população com $N$ elementos, se a amostragem for feita **SEM REPOSIÇÃO**, temos as esperança e a variância definidas como:
+No R:
 
-.pull-left[
-**Esperança**
-
-$E(\bar{X}) = \mu$
-]
-
-.pull-right[
-**Variância**
-
-$Var(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}$
-
-]
-
-Observações, 
-
-$\mu = E(X)$, $\sigma^2 = Var(X)$ e $\frac{N-n}{N-1}$ é o fator de correção para populações finitas.
-
-A variância da média amostral com este tipo de amostragem é menor do que com reposição.
-
-Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio $(\mu)$.
-
-No entanto, se a população for grande quando comparada com o tamanho da amostra $(n)$, o fator de correção será próximo de 1 e, portanto:
-$$Var(\bar{X}) \approx \frac{\sigma}{n} $$
----
-
-class: middle, center, inverse
-
-# Distribuições Amostral da Proporção
+```{r}
+trunc(10000 * (1 - pnorm(165,170,5)))
+```
 
 ---
 
-### Distribuição Amostral da Proporção
+**b)** que peso $(x_c)$ deve atingir um bezerro para que ele supere $80\%$ dos pesos à desmama desse rebanho?
 
-Anteriormente, definimos $X$ uma $v.a.$ para cada ensaio de **Bernoulli**, com $P(S) = p$. 
+$$
+P(X \leq 170) + P(170 \leq X \leq x_c) = 0,80
+$$
+$$
+0,50 + P(170 \leq X \leq x_c) = 0,80
+$$
 
-Neste contexto, considerando $n$ ensaios independentes, $X_1, X_2, ... , X_n$ constitui uma amostra *aleatória simples com reposição*. Como os resultados individuais são $0$ (fracasso) ou $1$ (sucesso), o número **TOTAL** de sucessos em $n$ ensaios, é dado por:
+$$
+ P(170 \leq X \leq x) = 0,30
+$$
+$$
+ P(170 \leq X \leq x) = P\left( \frac{170-170}{5} \leq \frac{X - \mu}{\sigma} \leq \frac{x_c-170}{5} \right) = 30
+$$
 
-$$T = \sum \limits_{i=1}^n X_i$$
+$$
+P\left( 0 \leq Z \leq \frac{x_c-170}{5} \right) = 30
+$$
 
-Portanto, a proporção amostral de suscessos em $n$ ensaios é dada por:
+Obervando a tabela
 
-$$\bar{X} = \hat{p} = \frac{T}{n} = \frac{\sum \limits_{i=1}^n X_i}{n}$$
+$$
+P\left( 0 \leq Z \leq 0,84 \right) = 30
+$$
+Então,
 
-Observe que $T$ tem distribuição binomial com parâmetros $n$ e $p$, cuja esperança (média) é $n.p$ e variância $n.p.q$ ou $n.p.(1-p)$.
-
----
-
-Então, para a proporção, temos:
-
-
-.pull-left[
-**Esperança**  
-$E(\hat{p}) = E\left( \frac{T}{n} \right)$
-
-$E(\hat{p}) = \frac{1}{n} E(T)$
-
-$E(\hat{p}) = \frac{1}{n} n.p$
-
-$E(\hat{p}) = p$
-]
-
-.pull-right[
-**Variância**  
-$Var(\hat{p}) = Var\left( \frac{T}{n} \right)$
-
-$Var(\hat{p}) = \frac{1}{n^2} Var(T)$
-
-$Var(\hat{p}) = \frac{1}{n^2} n.p.q$
-
-$Var(\hat{p}) = \frac{p.q}{n}$
-]
-
-Assim, pelo **Teorema Central Limite**, quando $n$  é grande, a proporção amostral $\hat{p}$ de sucessos em $n$ ensaios de **Bernoulli** tem distribuição aproximadamente normal com média $p$ e variância $\frac{p.q}{n}$, assim, podemos definir a variável padronizada $Z$ como:   
-
-$$Z = \frac{\hat{p} - p}{\sqrt{\frac{p.q}{n}}} \text{   ou   } Z = \frac{T - n.p}{\sqrt{n.p.q}}$$
-
-
-Com distribuição aproximadamente normal padrão $N(0,1)$.
-
+$$
+\frac{x_c-170}{5} = 0,84 \rightarrow x_c =174,2 \;kg 
+$$
 
 ---
 
-### Exercício
+No R:
 
-Em um ensaio experimental $625$ covas foram semeadas com sementes comerciais provenientes de um lote com índice de germinação $(p)$ igual a $70\%$. 
+```{r}
+qnorm(0.80,170,5)
+```
 
-Qual a probabilidade de se encontrar mais de $72\%$ das covas com plantas germinadas?
+---
+
+class: middle, inverse, center
+
+# Aproximação Normal à Binomial
+
+---
+
+#### Definição
+
+Se $X$ tem distribuição binomial $b(n, p)$, onde $n$ é grande e $p$ não é muito próximo de $0$ ou $1$, a distribuição da variável padronizada ficará:
+
+$$Z = \frac{X -np}{\sqrt{(np(1-p))} }$$
+que é aproximadamente $N(0,1)$.
+
+$$P(a \le X \le b) = \sum_{x=a}^b {n \choose x}p^x(1-p)^{n-x} \cong P\left( \frac{a-np}{\sqrt{np(1-p)}} \le Z \le \frac{b-np}{\sqrt{np(1-p)}} \right)$$
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_17.png")
+```
+
+---
+
+### Correção da continuidade
+
+Tendo em vista que uma distribuição discreta (binomial) é aproximada por uma 
+contínua (normal), a melhor aproximação é obtida calculando:
+
+$$P(a \le X \le b) = P \left( \frac{(\frac{a-0,5}{n})-p}{\sqrt{\frac{p(1-p)}{n}}} \le Z \le \frac{(\frac{b+0,5}{n})-p}{\sqrt{\frac{p(1-p)}{n}}} \right)$$
+
+A distribuição normal pode ser recomendada para aproximar probabilidades binomiais, contanto que $p$ seja próximo de $0,5$. Quando $p$ é muito pequeno e $n$ é grande, a distribuição de **Poisson** é mais apropriada. 
+
+**Regra prática:** $n$ pode ser assumido como "suficientemente" grande para se usar a distribuição normal, quando:  $np(1-p) \ge 3$ sendo que a aproximação melhora com o crescimento de $n$.
 
 
---
+---
 
-**Resposta:** 
+#### Supondo que $X \sim b(15, 0,4)$, calcule a probabilidade:
+$P(7 \le X \le 10)$, por meio da aproximação normal à binomial.
 
-$P(T \geq 450) = P(\hat{p} \geq 0,72) = 0,1378$
+
+$$P(7 \le X \le 10) = P \left( \frac{(\frac{7-0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \le Z \le \frac{(\frac{10+0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \right)$$
+
+$$P(0,263 \le Z \le 2,368) = 0,49111 - 0,10194 = 0,389$$
+
+no R:
+
+```{r}
+pnorm(2.368) - pnorm(0.263)
+```
+
+ou
+
+```{r}
+pbinom(11,15,0.4) - pbinom(6,15,0.4)
+```
+

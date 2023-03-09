@@ -63,6 +63,7 @@ Fonte: [https://www.fcav.unesp.br/#!/alan](https://www.fcav.unesp.br/#!/alan)
 ## Objetivos
 
 - Resumir  e  apresentar  dados  por meio de  tabelas,  gráficos  e  medidas.  
+
 - Inferir  resultados  amostrais para as populações alvo por meio de  técnicas estatísticas apropriadas.
 
 - Utilizar as ferramentas computacionais para apresentação dos resumos e análises de dados.
@@ -112,19 +113,13 @@ onde: $P1$ = Nota da 1ª prova; $P2$ = Nota do 2ª Prova; $LS$ = Nota das listas
 
 - Serão utilizados vídeos gravados pelo professor disponíveis no YouTube <https://www.youtube.com/channel/UCCJBXRV7CbfkcyaIixp0CqQ>
 
-- Utilização de programas computacionais:
-
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/excel_R_logo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"></img>
-
 - Resolução de listas de exercícios (**Google Classroom**).  
 
 - Apostila didática [Baixar Apostila](https://www.fcav.unesp.br/Home/departamentos/cienciasexatas/alanrodrigopanosso/apostila_bioestatistica_2019.pdf)
 
-- Consulta a livros.
-
 - Material Didático: [Link](https://www.fcav.unesp.br/#!/departamentos/ciencias-exatas/docentes/alan-rodrigo-panosso/material-didatico/estataistica-e-informatica/)
 
+- Consulta a livros.
 
 ---
 
@@ -139,3 +134,32 @@ MAGALHÃES, M. N.; LIMA, A. C. P. **Noções de Probabilidade e Estatística**. 
 BLAIR, R. C.; TAYLOR, R. A. **Bioestatística para ciências da saúde**.  São Paulo: Pearson Education do Brasil, 2013. 469 p. [LINK](https://www.submarino.com.br/produto/1368960931/livro-bioestatistica-para-ciencias-da-saude?WT.srch=1&acc=d47a04c6f99456bc289220d5d0ff208d&epar=bp_pl_00_go_g35177&gclid=Cj0KCQjw1PSDBhDbARIsAPeTqretIWgohh4CuyLOwGdNd-W56zb9kfuDNz9YaVg3KmFtZXGWyZuk1REaAhW-EALw_wcB&i=561e53416ed24cafb5322074&o=5ec29a42f8e95eac3dc7d8f4&opn=XMLGOOGLE&sellerid=03)
 
 BATSCHELET, E. **Introdução à matemática para biocientistas**.  São Paulo: Ed. Da Universidade de São Paulo., 1978. 596 p. [LINK](https://www.amazon.com.br/Introdu%C3%A7%C3%A3o-%C3%A0-Matem%C3%A1tica-Para-Biocientistas/dp/8571930295/ref=asc_df_8571930295/?tag=googleshopp00-20&linkCode=df0&hvadid=379751745514&hvpos=&hvnetw=g&hvrand=15178690494420387835&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1031739&hvtargid=pla-836184941200&psc=1)
+
+
+---
+class: middle, center
+
+## Ferramentas de trabalho
+
+![](img/calculadora.png)
+
+Calculadora Científica Cassio  *fs-82MS*
+ 
+---
+class: middle, center
+
+# Linguagem Computacional de Alto Nível
+
+![](img/R_logo.png)
+ 
+---
+
+##  Instalação do R e do RStudio
+
+<iframe width="853" height="480" src="https://www.youtube.com/embed/AqTzQzuQUPw?list=PLkhAqI7pygoYy6zhepFnF7KDK5jJSQUEv" title="Curso R - Aula 01 - Instalação do R e do RStudio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+---
+
+## Configurando o RStudio
+
+<iframe width="853" height="480" src="https://www.youtube.com/embed/ehXn5keH9C8?list=PLkhAqI7pygoYy6zhepFnF7KDK5jJSQUEv" title="Curso R - Aula 02 - Configurando o RStudio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

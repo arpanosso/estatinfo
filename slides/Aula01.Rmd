@@ -2,80 +2,16 @@
 # Para transformar em PDF, usar: 
 # pagedown::chrome_print("slides/Aula01.html")
 title: "Estatística e Informática"
-subtitle: "Aula 01 - Apresentação da disciplina"
+subtitle: "Aula 01 - Noções de Programação"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+institute: "Departamento de Engenharia e Ciências Exatas"
 date: "09-03-2022"
 output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      ratio: "16:9"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
 
-## Ementa
-
-- Introdução
-- Estatística Descritiva
-- Ditribuições de Probabilidade
-- Amostragem
-- Estimação de Parâmetros
-- Teste de hipóteses e intervalos de confiança
-- Correlação e regressão linear Simples
-
----
-## Objetivos
-
-- Sumariar  e  apresentar  dados  por meio de  tabelas,  gráficos  e  medidas.  
-- Inferir  resultados  amostrais para as populações alvo por meio de  técnicas estatísticas apropriadas.
-
-- Utilizar as ferramentas computacionais para apresentação os resumos e análises de dados.
-
----
-
-## Avaliação 
-
-Serão  realizados **02  trabalhos práticos** ( $T1$ e $T2$) e toda a aula será atribuído uma lista de exercícios referentes ao assunto abordado na semana. Ao final da disciplina as listas serão utilizadas para compor a nota da **Listas Semanais** $LS$. A  nota  de  aproveitamento da disciplina será  a  média  aritmética  ponderada  das notas dos trabalhos e listas, dada por:
-
-$$
-\text{Nota Final} = \frac{LS+3 \cdot T1 + 4 \cdot T2}{8}
-$$
-
-onde: $T1$ = Nota do 1º trabalho; $T2$ = Nota do 2º trabalho; $LS$ = Nota das listas semanais de exercícios entregues durante a disciplina.
-
-
----
-
-## Metodologia de Ensino
-
-- Aulas teóricas expositivas.
-
-- Aula teóricas de anos anteriores serão disponibilizadas (**Google Classroom**).
-
-- Serão utilizados vídeos gravados pelo professor disponíveis no YouTube <https://www.youtube.com/channel/UCCJBXRV7CbfkcyaIixp0CqQ>
-
-- Utilização de programas computacionais:
-
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/excel_R_logo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"></img>
-
-- Resolução de listas de exercícios (**Google Classroom**).  
-
-- Apostila didática [Baixar Apostila](https://www.fcav.unesp.br/Home/departamentos/cienciasexatas/alanrodrigopanosso/apostila_bioestatistica_2019.pdf)
-
-- Consulta a livros.
-
----
-
-## Bibliografia básica
-
-BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**. 5 ed.  São Paulo: Saraiva, 2002.  p. [LINK](https://www.amazon.com.br/Estat%C3%ADstica-B%C3%A1sica-Wilton-Bussab/dp/8547220224/ref=asc_df_8547220224/?tag=googleshopp00-20&linkCode=df0&hvadid=379748610448&hvpos=&hvnetw=g&hvrand=13078554075477532168&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1031739&hvtargid=pla-811770768458&psc=1)
-
-MAGALHÃES, M. N.; LIMA, A. C. P. **Noções de Probabilidade e Estatística**.  São Paulo: Editora da Universidade de São Paulo, 2005. 392 p. [LINK](https://www.amazon.com.br/No%C3%A7%C3%B5es-Probabilidade-Estat%C3%ADstica-Nascimento-Magalh%C3%A3es/dp/8531406773/ref=asc_df_8531406773/?tag=googleshopp00-20&linkCode=df0&hvadid=379712528301&hvpos=&hvnetw=g&hvrand=3043005081199790255&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1031739&hvtargid=pla-422923055890&psc=1)
-
-BLAIR, R. C.; TAYLOR, R. A. **Bioestatística para ciências da saúde**.  São Paulo: Pearson Education do Brasil, 2013. 469 p. [LINK](https://www.submarino.com.br/produto/1368960931/livro-bioestatistica-para-ciencias-da-saude?WT.srch=1&acc=d47a04c6f99456bc289220d5d0ff208d&epar=bp_pl_00_go_g35177&gclid=Cj0KCQjw1PSDBhDbARIsAPeTqretIWgohh4CuyLOwGdNd-W56zb9kfuDNz9YaVg3KmFtZXGWyZuk1REaAhW-EALw_wcB&i=561e53416ed24cafb5322074&o=5ec29a42f8e95eac3dc7d8f4&opn=XMLGOOGLE&sellerid=03)
-
-BATSCHELET, E. **Introdução à matemática para biocientistas**.  São Paulo: Ed. Da Universidade de São Paulo., 1978. 596 p. [LINK](https://www.amazon.com.br/Introdu%C3%A7%C3%A3o-%C3%A0-Matem%C3%A1tica-Para-Biocientistas/dp/8571930295/ref=asc_df_8571930295/?tag=googleshopp00-20&linkCode=df0&hvadid=379751745514&hvpos=&hvnetw=g&hvrand=15178690494420387835&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1031739&hvtargid=pla-836184941200&psc=1)

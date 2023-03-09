@@ -1,14 +1,14 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula08.html")
+# pagedown::chrome_print("slides/Aula11.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 12 - Testes de Hipótese"
+subtitle: "Aula 11 - Estimação"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(28-07-2022)"
+date: "(21-07-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -26,472 +26,378 @@ knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>
 options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 
-
 class: middle, center, inverse
 
-# Teste de Hipótese
+# Conceitos Básicos
 
 ---
 
-## Teste de Hipótese
+### Parâmetro e Estatística
 
-**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado por evidências obtida de dados amostrais. 
-
-
-Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
-
----
-**Exemplo 1**.  Uma suinocultura usa uma ração $A$ que propicia, da desmama até a idade de abate, um ganho em peso de $500 g/dia/suíno$ $(\sigma = 25 g)$.  O fabricante de uma ração $B$ afirma que nas mesmas condições, sua ração propicia um ganho de $510 g/dia/suíno$ $(\sigma = 25 g/dia/suíno)$. 
-
-Considerando a amostra de $50$ leitões, aos quais foi fornecida a nova ração $(B)$, deve-se ou não adotar essa ração, admitindo-se como resultado um ganho em peso médio diário de $504 g/dia/suíno$ $( \bar{X})$, fixando-se $\alpha= 5\%$.
+**Parâmetro**: é uma medida usada para descrever uma característica da população.
 
 
----
-### Hipóteses estatísticas
-
-Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técnica é comparado com o padrão, para determinar se sua superioridade pode ser corroborada pela evidência experimental.
-
-**Hipótese nula $(H_0)$:** é a hipótese de igualdade entre o novo e o produto padrão, ou seja, a designação "hipótese nula" decorre da suposição que a diferença entre eles é nula ou zero.
-
-**Hipótese nula $(H_1)$:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
+**Estatística** ou **Estimador**: é qualquer função de uma amostra aleatória (fórmula ou expressão), construída com o propósito de servir como instrumento para descrever alguma característica da amostra e para fazer *inferência* a respeito da característica na população.  
 
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_01.png")
-```
+Resumo | Parâmetro | Estatística
+---|:---:|:---:
+Média | $\mu$ | $\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i$
+Variância | $\sigma^2$| $s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}$
+Proporção | $\pi$ | $\hat{p}= \frac{X}{n}$
 
-Então $RC = \{ \bar{X} \in R | \bar{X} \ge 505,78\;g \}$ e a regra de decisão é "se $\bar{X_a} \in RC$, rejeita-se $H_0$ e a conclusão é que a ração $B$ é superior à $A$; se $\bar{X_a} \notin RC$, não rejeita-se $H_0$, e a conclusão é que as rações são estatisticamente iguais.
+O valor numérico da estatística ou estimador de um parâmetro, calculado para uma amostra observada, é chamado de **estimativa desse parâmetro**.
 
----
-### Estatística teste
+A diferença entre estatística e estimativa é que a **estatística** é uma variável aleatória, e a estimativa é um particular valor dessa variável aleatória.
 
-Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, $n = 50$ ). Calcula-se a média amostral $\bar{x}_a$ do, no exemplo, ganho de peso diário no período.
-
-Se $\bar{x}_a$ estiver próxima de $500\;g$, **não se deve rejeitar $H_0$**, e a **conclusão** será que a ração do tipo $B$ é *estatisticamente* igual à ração do tipo $A$.
-
-Se $\bar{x}_a$ estiver próxima ou for superior à $500\;g$, **rejeita-se $H_0$ em favor a $H_1$** e a **conclusão**  será que a ração do tipo $B$ é superior à do tipo $A$, tal resultado implica no fato de que a suinocultura poderá utilizá-la.
 
 ---
 
-### Critério de decisão 
-
-Para aceitar ou rejeitar $H_0$, determina-se um valor $k$ (ponto) entre $500$ e $510 \;g$, chamado valor crítico, $\bar{x}_c$.
-
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_02.png")
-```
-
-O procedimento do teste, então, divide os possíveis valores da estatística teste em dois subconjuntos: uma região de aceitação e uma de rejeição para $H_0$, o que pode levar a dois tipos de erros. 
-
-Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\;g$ e incorretamente concluímos que $\mu = 510\;g$, cometeremos um erro referido como **ERRO TIPO I (falso positivo)**. 
-
-Por outro lado, se o verdadeiro valor de $\mu$ é $510\;g$ e incorretamente concluímos  que $\mu = 500 \;g$, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo)**.
-
----
-## Erros tipo I e II
-
- | Situação específica | na População
----|---:|:---|
-Conclusão do Teste | $H_0$ verdadeira | $H_0$ falsa
-Não Rejeita $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
-Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
+## Acurácia  
+A acurácia mede quão próximo o valor estimado está do valor real, ou seja, é a habilidade do estimador de estimar o valor real.
 
 
-$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = nível de significância $(5\%, 1\% \text{ ou } 0,1\%)$.
+## Precisão  
+A Precisão mede quão próximas estimativas individuais estão umas das outras, ou seja é a habilidade do estimador de estimar valores similares de maneira consistente.
 
-$\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **poder do teste** dado por $1-\beta$.
+--
 
----
-
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_03.png")
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/acuracia_precisao.png")
 ```
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_04.png")
-```
----
+## Propriedades de um bom estimador
 
-## Passos para a construção de um teste de hipóteses
+**1) Consistência**: é uma propriedade por meio da qual a acurácia de uma estimativa aumenta quando o tamanho da amostra aumenta. Assim dado um parâmetro populacional $\theta$ e sendo $\hat{\theta}$  o estimador desse parâmetro. As condições suficientes para um estimador ser consistente são:
 
-a) Fixe a hipótese $H_0$  a ser testada e a alternativa $H_1$;
- 
-b) Use a teoria estatística e as informações disponíveis para decidir qual estatística (estimador) será usada para testar a hipótese $H_0$, obtendo-se suas propriedades (distribuição, estimativa, erro padrão);
- 
-c) Fixe a probabilidade $\alpha$ de cometer o **erro tipo I** e use este valor para construir a $RC$ (região crítica). Lembre-se que a $RC$ é construída para a estatística definida no passo **(a)**, usando os valores hipotetizados por $H_0$;
+$$\lim_{n \to \infty}E(\hat{\theta}) = \theta$$
 
-d) Use as informações da amostra para calcular o valor da estatística do teste;
+$$\lim_{n \to \infty}Var(\hat{\theta}) = 0$$
 
-e) Se o valor da estatística calculado com os dados da amostra não pertencer à $RC$, não rejeitamos $H_0$; caso contrário, rejeita-se $H_0$. 
+### Exemplo
+
+$$E(\bar{X}) = \mu \text{ e } Var(\bar{X})= \frac{Var(X)}{n}$$
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_05.png")
-```
+## Propriedades de um bom estimador
+
+**2) Não viciado ou não viesado**: O estimador  $\hat{\theta}$  como uma variável aleatória, tem uma certa distribuição em repetidas amostras de tamanho $n$. Não viciado é uma propriedade que assegura que, em média, o estimador é correto:
+
+O **estimador** é chamado **não viciado** ou **imparcial** se seu valor esperado ou médio for igual ao verdadeiro valor do parâmetro, ou seja:
+
+$$E(\hat{\theta}) = \theta$$
+
+Entretanto, se
+
+$E(\hat{\theta}) = \theta + b(\theta)$ com $b(\theta) \neq 0$,
+
+o estimador é **viciado** e a quantidade $b(\theta)$ é chamada vício ou viés.
+
+---
+### Exemplos de Estimadores
+
+Estes estimadores nada mais são do que as próprias definições dos respectivos parâmetros, mas aplicadas à amostra:
+
+$E(\bar{X})=\mu$ e $E(\hat{p}) = p$
+
+
+Por sua vez, para a variância o estimador populacional $\sigma^2 = \frac{1}{n} \sum \limits_{i=1}^n (x -\bar{x})^2$ é viciado, pois, podemos demonstrar que:
+
+$E(\hat{\sigma}^2)=\frac{n-1}{n}\sigma^2 = \sigma^2 - \frac{1}{n}\sigma^2$
+
+onde o viés $b(\sigma^2) = -\frac{1}{n} \sigma^2$.
+
+Abaixo segue o estimador não viciado para variância:
+
+$s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n (x -\bar{x})^2$  
+
+No entanto, para $n \to \infty$, têm-se para ambos os estimadores convergem para $\sigma^2$, ou seja, $\hat{\sigma}^2$ e $s^2$ são assintoticamente não viciados.
+
+---
+class: middle, inverse, center
+
+# Acesse o Link para estudarmos essas Propriedades
+
+## https://arpanosso.shinyapps.io/estatinfo/
+
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_06.png")
-```
+class: center,inverse
 
----
+O vídeo abaixo apresenta os passos utilizados para a construções dos estimadores e dos gráficos apresentados no aplicativo.
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_07.png")
-```
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/g3xrAjJdOx0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://youtu.be/an0bGEjdWMM)
+
+
 ---
 class: middle, center, inverse
 
-# Teste sobre a média de uma população com variância conhecida
+# Estimativa por Ponto e por Intervalo
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_08.png")
+### Estimativa por ponto
+
+É a estimativa de um parâmetro populacional dada por um único valor para a estatística, exemplo:
+
+
+$$\hat{X} = \mu$$
+
+esse procedimento não permite julgar qual a possível magnitude do erro que se está cometendo.
+
+**Exemplo**: O diâmetro a altura do peito de árvores de Eucalipto tem uma média de $105 \;cm$,
+
+---
+
+### Estimativa por intervalo
+
+É a estimativa de um parâmetro populacional baseada na distribuição amostral do estimador pontual, dada por dois valores $a$ e $b$ $(a < b)$, entre os quais se considera que o parâmetro esteja contido.
+
+Essas estimativas indicam a sua precisão ou acurácia, por isto são preferíveis às estimativas por ponto.
+
+A declaração da precisão de uma estimativa por intervalo denomina-se grau de confiança ou **nível de confiança**, daí a denominação de **Intervalo de Confiança**.
+
+**Exemplo**: O diâmetro a altura do peito de árvores de Eucalipto tem uma média de $105 \pm 0,05\;cm$,
+
+---
+
+class: middle, center, inverse
+
+# Estimativa por Intervalo de Confiança
+
+---
+
+### Estimativa por intervalo de confiança
+
+Um intervalo de confiança para $\theta$ é um intervalo construído a partir das observações da amostra, de modo que ele inclui o verdadeiro e desconhecido valor de $\theta$, **com uma específica e alta probabilidade** denotada por $1 - \alpha$, é tipicamente tomada como:
+
+$$NC = P(a \le \theta \le b) = 1-\alpha$$
+
+Então, o intervalo $] a, b [$ é chamado intervalo com $100 \cdot (1 - \alpha)\%$ de confiança para o parâmetro $\theta$, onde: $1 ‑ \alpha$  é  o **nível de confiança** associado ao intervalo $a$ e $b$ são os **limites de confiança**, inferior e superior, respectivamente, do intervalo.
+
+Onde temos a seguinte relação:
+
+Nível de Confiança (NC) | Nível de significância $(\alpha)$
+:---:|:---:
+$0,90$ | $0,10$
+$0,95$ | $0,05$
+$0,99$ | $0,01$
+
+
+---
+class: middle, center, inverse
+
+# Intervalo de Confiança para a Média Populacional $(\mu)$
+
+---
+
+## Precisamos definir 4 casos:
+
+### (a) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ conhecido;
+
+### (b) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ desconhecido;
+
+### (c) Caso em que as amostras são pequenas $(n < 30)$ $\sigma$ conhecido;
+
+### (d) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ desconhecido.
+
+---
+
+### (a) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ conhecido.
+
+O desenvolvimento de intervalos de confiança para $\mu$ é baseado na distribuição amostral de $\bar{X}$ se o tamanho da amostra $(n)$ é grande:
+
+$$Z = \frac{\bar{X}- \mu}{\frac{\sigma}{\sqrt{n}}} \cong N(0,1)$$
+
+
+```{r,out.width = "30%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_01.png")
 ```
+onde:  
+$a = \bar{X} - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}$ e $b = \bar{x} + z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}$
+
+$$
+\begin{cases}
+\frac{\sigma}{\sqrt{n}} = \sigma_{\bar{X}} = \text{erro padrão da média} \\
+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} = \text{erro da estimativa da média} 
+\end{cases}
+$$
 
 ---
 
+### Exemplo
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_09.png")
-```
+Se $1 - \alpha = 0,95$ nesse caso $\alpha = 0,05$
 
----
-
-
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_10.png")
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_02.png")
 ```
 
 ---
 
 [Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
+```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_03.png")
 ```
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_11.png")
+Esta expressão, deve ser interpretada do seguinte modo: construídos todos os intervalos da forma $\bar{X} \pm 1,96 \sigma_{\bar{X}}$, $95\%$ deles conterão $\mu$. Lembrando  que $\mu$ não é uma variável aleatória, mas um parâmetro, isto é, não é o mesmo que dizer que $\mu$ tem $95\%$ de probabilidade de estar entre os limites indicados.
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_04.png")
 ```
 
 ---
 
-class: middle, center, inverse
+Então, denotamos o intervalo de confiança como:
 
-# Teste para a Proporção binomial (p)
+$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$
+
+### Exemplo 
+
+Considerando uma amostra de $100$ animais da raça Nelore, onde o peso médio a desmama é $171,70 \;kg$, encontre um IC de $95\%$ para $\mu$, supondo que o desvio padrão da população $(\sigma)$ seja igual a $7,79\;kg$.
+
+--
+
+$$IC(\mu;95\%) = ]171,70 \pm 1,96 \frac{7,79}{\sqrt{100}} $$
+$$IC(\mu;95\%) = ]170,17\;kg; 173,23\;kg [$$
+---
+
+### (b) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ desconhecido.
+
+Como $n$ é grande, a substituição de $\sigma$ pelo desvio padrão amostral $(s)$ não afeta apreciavelmente a estimativa de $IC$, assim, temos que:
+
+
+$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$
 
 ---
 
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_12.png")
-```
----
+### (c) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ conhecido.
 
-**Exemplo 3**. Um laboratório de vacinas contra febre aftosa afirmou que ela imuniza $90\%$ dos animais.  Em uma amostra de $200$ animais, nos quais foram aplicados a vacina, $160$ foram imunizados. Verificar se a declaração do fabricante é verdadeira ao nível de $5\%$.
+Se $X_1, X_2, \cdots, X_n$ é uma amostra aleatória de uma população com distribuição normal $N (\mu, \sigma^2)$, a média amostral $\bar{X}$ é exatamente distribuída como $N (\mu, \frac{\sigma^2}{n} )$. Sendo $\sigma$ conhecido, o $IC (\mu : 1–\alpha)$ é dado por:
 
----
-
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_13.png")
-```
-
----
-class: middle, center, inverse
-
-# Test t de Student
-
-## Teste para a média de uma população normal com $\sigma^2$ desconhecido
+$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_14.png")
-```
+class: center,inverse
+
+O vídeo abaixo apresenta um resumos dos $3$ primeiros casos.
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/JIivixTT344" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://youtu.be/JIivixTT344)
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_15.png")
-```
+### (d) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ desconhecido.
+
+Fato que ocorre na maioria dos casos, uma aproximação intuitiva é substituir $\sigma$ por $s$ considerar a razão:
+
+$$t = \frac{\bar{x} - \mu}{\frac{s}{\sqrt{n}}}$$
+
+Essa substituição causa uma considerável diferença se a amostra for pequena. A notação $t$ é requerida porque $s$ aumenta a variância de $t$ para um valor maior do que um $(1)$, de modo que a razão não é padronizada. 
+
+
+A distribuição da razão $t$ é conhecida como **distribuição $t$ de Student** com parâmetro $r = n – 1$ graus de liberdade.
+
 
 ---
 
-**Exemplo 4**. As especificações de uma dada droga veterinária exigem $23,2$ g de álcool etílico. Uma amostra de $10$ análises do produto apresentou um teor médio de álcool de $23,5$ g com desvio padrão de $0,24$ g. Pode-se concluir ao nível de significância de $1\%$ que o produto satisfaz as condições exigidas $(\mu = 23,2 \text{ g })$ ?
-
----
+### Distribuição t de Student
 
 [Tabela - Distribuição t-Student](https://github.com/arpanosso/estatinfo/raw/master/docs/Tabela_tdeStudent.pdf) 
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png")
 ```
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_16.png")
+### Distribuição t de Student
+
+As distribuições $t$ são simétricas em torno de zero mas têm caudas mais espalhadas do que a distribuição $N(0, 1)$. Entretanto, com o aumento de $r$, a distribuição $t$ se aproxima da distribuição $N(0, 1)$, por $Var(t)$ tende à unidade $(1)$.
+
+$$E(t) = 0$$
+e
+$$Var(t) = \frac{r}{r-2} = \frac{n-1}{n-3}$$
+
+Pode-se concluir da distribuição $t$, que
+
+$$P(-t_{\frac{\alpha}{2}} \le \frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}} \le +t_{\frac{\alpha}{2}}) = 1 - \alpha$$
+em que $t_{\alpha \\2}$ é obtido na tabela da distribuição $t$ com $r = n – 1$ graus de liberdade, ou seja:
+
+$$IC(\mu;1-\alpha) = ]\bar{x}-t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$
+
+---
+class: center,inverse
+
+O vídeo abaixo apresenta um resumos do último caso apresentado.
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/awuOPux5D1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://youtu.be/awuOPux5D1A)
+
+---
+### Exercício
+
+Uma amostra de $10$ cães sofrendo de uma determinada doença apresentou um tempo de sobrevivência médio de $46,9$ meses e o desvio padrão de $43,3$ meses. Determinar os limites de confiança de $90\%$ para $\mu$.
+
+--
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_06.png")
 ```
 
 ---
+
 class: middle, center, inverse
 
-# Comparações de parâmetros de duas populações
+# Intervalo de Confiança para o Parâmetro Binomial $(p)$
 
 ---
 
+Fazendo uso do fato que, para $n$ grande, a distribuição binomial pode ser aproximada com a normal:
 
-Suponha duas amostras aleatórias independentes de tamanhos $n_1$ e $n_2$ ou seja, $X_1 , X_2 , ..., X_{n1}$ e $Y_1 ,Y_2 , ...,Y_{n2}$, respectivamente, de uma população com distribuição $N(\mu_1, \sigma_1^2)$ e de população com distribuição $N(\mu_2, \sigma_2^2)$
+$$Z = \frac{x - n.p}{\sqrt{n.p.(1-p)}}$$
 
-### Hipóteses
+Temos:
 
-$H_0: \sigma_1^2 = \sigma_2^2$ ou seja $\left(\frac{\sigma_1^2}{\sigma_2^2} = 1 \right)$ 
+$$P \left(-z_{\frac{\alpha} {2}} \le \frac{x- np}{\sqrt{np(1-p)}} \le +z_{\frac{\alpha}{2}} \right) = 1 - \alpha$$
 
-$H_1: \sigma_1^2 \neq \sigma_2^2$ ou seja $\left(\frac{\sigma_1^2}{\sigma_2^2} \neq 1 \right)$ 
+Substituindo $p$, visto que é desconhecido, por seu estimador $\hat{p}$  dentro das raízes, obtêm-se:
 
----
-
-### Estatística do teste:
-
-Sendo $s_1^2$ e $s_2^2$ as variâncias, respectivamente das amostras $n_1$ e $n_2$, o quociente
-
-$$\frac{s^2_1 / \sigma_1^2}{ s^2_2 / \sigma^2_2}$$
-
-Segue a distribuição de $F$ (Snedecor) com $n_1-1$ e $n_2-1$ graus de liberdade $(GL)$, tem a denotação $F(n_1-1, n_2-1)$.
-
-Sob a suposição de $H_0$ ser verdadeira, isto é, $\sigma^2_1 = \sigma^2_2$, tem-se que
-
-$F = \frac{s^2_1}{s^2_2} \sim F(n_1-1, n_2-1)$
+$$IC(\hat{p};1-\alpha) = \left]\hat{p}-z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}};\hat{p}+z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}} \right[$$
 
 ---
 
-#### Construção da região crítica
+### Exemplo
 
-Fixado $\alpha$, os pontos críticos serão $F_1$ e $F_2$ da distribuição $F$, tais que:
-
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_17.png")
-```
-
-Se $\alpha = 10\%$, pode-se, utilizando a Tabela da distribuição $F$, encontrar diretamente $F_2(5\%)$. Para encontrar $F_1(95\%)$ utiliza-se a propriedade:
+Suponha que em $n = 400$ animais são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
 
 
-$F_{(1-\alpha;\;n_1-1,\; n_2-1)} = \frac{1}{F_{(\alpha;\;n_2-1,\; n_1-1)}}$, assim: $F_{(0,95;\;n_1-1,\; n_2-1)} = \frac{1}{F_{(0,05;\;n_2-1,\; n_1-1)}}$
-
----
-
-#### Exemplo
-
-Se $n_1 - 1= 5$ e $n_2-1 = 7$
-
-$F2_{(0,05;\;5,\; 7)} = 3,97$
-
-$F1_{(0,95;\;5,\; 7)} = \frac{1}{F_{(0,05;\;7,\; 5)}}=\frac{1}{4,88} = 0,205$
-
-Assim, $RC = \{0 < F < 0,205 \text{ ou }  F > 3,97 \}$
-
-Entretanto, o procedimento que se usa na prática é calcular $F$ utilizando sempre a maior variância no numerador $s_1^2 > s^2_2$ portanto $F > 1$, e considerar o ponto crítico $F_{2(\alpha;\;n1-1,\; n2-1)}$.
-
-**Amostra:** Colhidas amostras aleatórias $n_1$ e  $n_2$, calcula-se $s^2_1$ e $s^2_2$ com $(s^2_1 > s^2_2)$, então:
-
-$$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$
-
-**Conclusão:** Se $F_{obs} \in RC$, **rejeita-se** $H_0$, no caso contrário, **não se rejeita** $H_0$.
-
----
-
-[Tabela - Distribuição F-Snedecor](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaFSnedecor.pdf) 
-
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_18.png")
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_07.png")
 ```
 
 ---
 
-**Exemplo**. Dois grupo de $8$ animais da mesma idade e raças diferentes foram submetidos a um mesmo regime alimentar. Os resultados para ganho de peso foram:
+### Exemplo  
+Suponha que em $n = 400$ animais doentes são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
 
-| | | | | | | | 
----| ---|--- | ---| ---|--- |--- |--- | 
-**R1:** | $2,30$   | $2,10$   | $1,91$   | $1,20$   | $1,93$   | $1,88$   | $1,95$   | $2,10$
-**R2:** | $2,30$   | $2,15$   | $2,00$   | $1,28$   | $2,15$   | $2,20$   | $1,91$   | $2,06$
 
-Ao nível de $5\%$, as variâncias dos ganhos de pesos raças diferem entre si?
-
-```{r}
-r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
-r2<-c(2.30,2.15,2.00,1.28,2.15,2.20,1.91,2.06)
-var.test(r1,r2)
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_08.png")
 ```
-
----
-
-Testar as hipóteses:
-
-$$
-\begin{cases}
-H_0: \sigma_{r1}^2 = \sigma_{r2}^2 \\
-H_1: \sigma_{r1}^2 \neq \sigma_{r2}^2
-\end{cases}
-$$
-Calculando os valores de variância para as duas raças:
-
-$s_{r1}^2 = 0,10433$ 
-
-e  
-
-$s_{r2}^2 = 0,10068$
-
-sendo que $n_{r1} = n_{r2} = 8$ 
-
-e $\alpha = 5\%$
-
-
-A estatística do teste: $\frac{s_{r1}^2}{s_{r2}^2} = \frac{0,10433}{0,10068} = 1,03618$
-
----
-$F_{c(0,05; 7, 7)} = 3,79$ assim, $RC = \{  F > 3,79 \}$
-```{r,echo=FALSE}
-curve(df(x,7,7),0,7,xlab="t",ylab="d",
-      main="F(7,7)")
-abline(v=1.03618,col="red",lty=2)
-segments(3.79,-1,3.79,df(3.79,7,7))
-text(1.5,0,"Fobs",col="red")
-text(5,0,"RC",col="black")
-```
-
-
-Como $F_{obs} \notin RC$ não se rejeita $H_0$, ou seja, as variâncias são estatisticamente iguais ao nível de 5% de significância, ou seja, as variâncias dos ganhos de peso das raças são homocedásticas.
-
----
-
-### Comparação de duas médias de populações normais: amostras independentes
-
-A análise da hipótese da igualdade de variâncias é crucial para o uso do teste $t$, na comparação de duas médias, apresentado a seguir.
-
-Com o objetivo de se comparar duas populações examinaremos a situação na qual os dados estão na forma de realizações de amostras aleatórias de tamanhos $n_1$ e $n_2$, selecionadas, respectivamente, das populações $1$ e $2$. 
-
-Uma coleção de $n_1 + n_2$ elementos são aleatoriamente divididos em $2$ grupos de tamanhos $n_1$ e $n_2$, onde cada membro do primeiro grupo recebe o tratamento $1$ e do segundo, o tratamento $2$. Especificamente, estaremos interessados em fazer inferência sobre o parâmetro:
-
-$\mu_1 - \mu_2$ = (média da população 1) – (média da população 2)
-
-**Hipótese:** $H_0: \mu_1 = \mu_2$ ou seja, $\mu_1 - \mu_2 = 0$
-
-**Estatística do teste:** $Z = \frac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}} \sim N(0,1)$
-
----
-
-#### Caso 1: variâncias conhecidas
-
-$Z = \frac{(\bar{X}-\bar{Y})}{\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}} \sim N(0,1)$
-
-#### Caso 2: variâncias desconhecidas e iguais
-
-Preliminarmente, testa-se se as variâncias das duas populações são iguais. Caso a hipótese não seja rejeitada, isto é, que $\sigma_1^2=\sigma_2^2=\sigma^2$, a estatística anterior transforma-se em:
-
-$Z = \frac{(\bar{X}-\bar{Y})}{\sigma\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$ , substituimos $\sigma$ por um estimador, teremos uma expressão muito semelhante à $t$ de Student. Uma estatística para $\sigma^2$ é a média ponderada:
-
-$S_P^2 = \frac{(n_1-1)s_1^2+(n_2-1)s^2_2}{(n_1-1)+(n_2-1)}$
-
-que, como $s^2_1$ e $s^2_2$ são dois estimadores não viciados de $\sigma^2$, também é um estimador não viciado de $\sigma^2$.
-
-Assim, $t = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \sim t(n_1+n_2 - 2) GL$
----
-
-
-**Exemplo**. Dois grupo de $8$ animais da mesma idade e raças diferentes foram submetidos a um mesmo regime alimentar. Os resultados para ganho de peso foram:
-
-| | | | | | | | 
----| ---|--- | ---| ---|--- |--- |--- | 
-**R1:** | $2,30$   | $2,10$   | $1,91$   | $1,20$   | $1,93$   | $1,88$   | $1,95$   | $2,10$
-**R2:** | $2,30$   | $2,15$   | $2,00$   | $1,28$   | $2,15$   | $2,20$   | $1,91$   | $2,06$
-
-Ao nível de $5\%$, as médias dos ganhos de pesos raças diferem entre si?
-
-```{r}
-r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
-r2<-c(2.30,2.15,2.00,1.28,2.15,2.20,1.91,2.06)
-t.test(r1, r2, alternative = "le", var.equal = TRUE)
-```
-
----
-
-Usando os dados do exemplo anterior, testar se há evidência de que as duas raças
-apresentam o mesmo ganho de peso $(H_0: \mu_A = \mu_B \text{ vs. } H_1: \mu_A < \mu_B)$, ao nível de $5\%$.
-
-
-$$
-\begin{cases}
-H_0: \mu_{r1} = \mu_{r2} \\
-H_1: \mu_{r1} < \mu_{r2}
-\end{cases}
-$$
-
-Calculando os valores de média e desvio-padrão:
-
-
-$\bar{X} = 1,92125$ e $s_{r1}^2 = 0,10433$ e  $\bar{Y} = 2,00625$ e $s_{r2}^2 = 0,10068$
-
-sendo que $n_{r1} = n_{r2} = 8$ e $\alpha = 5\%$
-
-Assim, 
-
-$S_P^2 = \frac{(n_1-1)s_1^2+(n_2-1)s^2_2}{(n_1-1)+(n_2-1)} = \frac{(8-1)0,10433+(8-1)0,10068}{(8-1)+(8-1)} = 0,1025054$
-
-sendo $S_P = 0,3201646$
-
-Portanto, 
-
-$t_{obs} = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} = \frac{(1,92125 - 2,00625)}{0,3201646\sqrt{\frac{1}{8}+\frac{1}{8}}} = -0,5309908$
-
----
-
-Para a construção da **região crítica** do teste: $t_c(14; 0,05) = -1,761$ assim, a região crítica é $RC = \{ t \le -1,76131\}$
-
-**Conclusão**: Como $t_{obs} \notin RC$, não rejeita-se $H_0$, não há evidências de que a raça 1 apresenta maior ganho de peso que a raça 2.
-
-```{r,echo=FALSE}
-curve(dt(x,14),-4,4,xlab="t",ylab="d",
-      main="t(14)")
-abline(v=0,col="black",lty=2)
-abline(v=-0.5309,col="red",lty=2)
-segments(-1.76,-1,-1.76,dt(-1.76,14))
-text(-0.6,0,"tobs",col="red")
-text(-2.6,0,"RC",col="black")
-```
-
-
----
-
-#### Caso 3: variâncias desconhecidas e desiguais (Teste de Smith – Satterthwaite)
-
-
-Quando a hipótese de igualdade de variâncias for rejeitada, deve-se substituir $\sigma^2_1$ e $\sigma^2_2$ pelos seus respectivos estimadores $s^2_1$ e $s^2_2$ obtendo a estatística:
-
-
-$$t = \frac{(\bar{X}-\bar{Y})}{\sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}$$
-
-que sob a veracidade de $H_0$ $(\mu_1 - \mu_2 = 0)$, aproxima-se de uma distribuição $t$ de Student, com número de graus de liberdade dado aproximadamente por:
-
-$$gl=\frac{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}{\frac{\left( \frac{s^2_1}{n_1} \right)^2}{n_1-1}+\frac{\left( \frac{s^2_2}{n_2}  \right)^2}{n_2-1}}$$
----
-
-Como o número de graus de liberdade assim calculado, geralmente, é **não inteiro**, recomenda-se aproximá-lo para o inteiro imediatamente anterior a este.
-
-Se $n_1$ e $n_2$ são ambos grandes $(n \ge 30)$, o teste pode ser baseado na estatística.
-
-$$Z = \frac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}} \sim N(0,1) \text{ sob } H_0$$
-
-pois permanece válido se $\sigma^2_1$ e $\sigma^2_2$ são substituídos por seus respectivos estimadores amostrais $s^2_1$ e $s^2_2$.
-
-
-**Nota**: no caso da inferência originada de amostras grandes, não é necessário assumir que as distribuições das populações originais são normais, porque o teorema  central do limite garante que as médias amostrais X e Y são aproximadamente distribuídas como $N( \mu_1, \sigma^2 / n_1 )$ e $N( \mu_2, \sigma^2 / n_2 )$, respectivamente. Além disso, a suposição de variâncias populacionais iguais $(\sigma^2_1 = \sigma^2_2)$ que é usada para amostras pequenas, é evitada nessa situação.
-
-
 

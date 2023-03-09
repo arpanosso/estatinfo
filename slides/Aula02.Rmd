@@ -1,14 +1,11 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula02.html")
-# imagens https://www.pexels.com/pt-br/
-# gifs https://giphy.com/
+# pagedown::chrome_print("slides/Aula01.html")
 title: "Estatística e Informática"
-subtitle: "Aula 02 - Introdução (Conceitos Básicos)"
+subtitle: "Aula 01 - Apresentação da disciplina"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "04-05-2021"
-encoding: "UTF-8"
+date: "09-03-2022"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -19,366 +16,66 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
-```
-class: middle, center, inverse
+## Ementa
 
-# INTRODUÇÃO
-
----
-## Porque estudar Estatística
-
---
-- Estatística é fundamental para o avanço do conhecimento científico, uma vez que a essência da Ciência é a observação e que o seu objetivo básico é a inferência, destacando-se nas áreas da *Saúde*, *Farmaceuticas*, *Melhoramento* (animal e vegetal), *Produção de alimentos* e demais *áreas científicas*.
-
---
-- Os conhecimentos estatísticos são fundamentais para análise e interpretações das informações coletadas *em campo*.
-
---
-- Várias técnicas de análises estatísticas ajudam o pesquisador a **confirmar as hipóteses** à respeito de um fenômeno de interesse.
-
---
-- Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
+- Introdução
+- Estatística Descritiva
+- Ditribuições de Probabilidade
+- Amostragem
+- Estimação de Parâmetros
+- Teste de hipóteses e intervalos de confiança
+- Correlação e regressão linear Simples
 
 ---
-## Modelos Matemáticos 
+## Objetivos
 
-### Modelos Determinísticos: 
+- Sumariar  e  apresentar  dados  por meio de  tabelas,  gráficos  e  medidas.  
+- Inferir  resultados  amostrais para as populações alvo por meio de  técnicas estatísticas apropriadas.
 
-Nesse modelo as condições sob as quais um experimento é executado determinam o resultado do experimento. 
-
-**Exemplo**: Segunda Lei de Newton:
-
-$$F = m \cdot a$$
-
-Esse modelo diz que o valor da força $F$ pode ser calculado tão logo os valores da massa do objeto $m$ e sua aceleração $a$ sejam fornecidos. Nesse tipo de modelo, quaisquer desvios que pudessem ocorrer seriam tão pequenos que a descrição acima seria suficiente para modelá-lo. 
-
-**Seu resultado é determinado pelas condições sob as quais o experimento é executado**.
-
-Exemplo de mecânica clássica, astronomia, termodinâmica, circuítos elétricos e química são comuns e abundantes na literatura.
+- Utilizar as ferramentas computacionais para apresentação os resumos e análises de dados.
 
 ---
 
-```{r,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
-source("..\\R\\thema_gafico.R")
-library(tidyverse)
+## Avaliação 
 
-df<- tibble(
-  massa = 0:100,
-  aceleracao = 2,
-  dados = massa*aceleracao,
-  modelo_de = dados
-)
-df %>% 
-  ggplot()+
-  geom_point(aes(x=massa,y=dados,fill="Dados"),color="black",size=3)+
-  geom_line(aes(x=massa,y=modelo_de,linetype="Modelo"),color="red")+
-  xkcdaxis(xrange=c(0,15),yrange=c(0,30)) +
-  labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Deterministico",
-       fill="",linetype="")+
-  annotate(geom = "text",x=3,y=30,label = 'bold("aceleração = 2 m/s²")',
-            parse = TRUE) +
-   theme_grafico
-```
+Serão  realizados **02  trabalhos práticos** ( $T1$ e $T2$) e toda a aula será atribuído uma lista de exercícios referentes ao assunto abordado na semana. Ao final da disciplina as listas serão utilizadas para compor a nota da **Listas Semanais** $LS$. A  nota  de  aproveitamento da disciplina será  a  média  aritmética  ponderada  das notas dos trabalhos e listas, dada por:
 
-$$Dados = Modelo$$
+$$
+\text{Nota Final} = \frac{LS+3 \cdot T1 + 4 \cdot T2}{8}
+$$
 
----
-## Modelos Matemáticos 
+onde: $T1$ = Nota do 1º trabalho; $T2$ = Nota do 2º trabalho; $LS$ = Nota das listas semanais de exercícios entregues durante a disciplina.
 
-Para um grande número de situação na natureza, o modelo matemático determinístico apresentado é suficiente, contudo existem fenômenos que requerem um modelo matemático diferente:
-
-
-### Modelos Estocásticos (não-determinísticos ou probabilísticos): 
-
-**Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento probabilístico do resultado observável**. 
-
-**Exemplo:** em fenômenos meteorológicos, não podemos determinar qual será a precipitação em uma determinada região como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa do ar podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
 
 ---
 
-```{r,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
-set.seed(1235)
-df<- tibble(
-  umidade = 10:100,
-  a = 2,
-  ruido = rnorm(101-10,0,3),
-  dados = umidade*a + ruido,
-  modelo_es = umidade*a
-)
-df %>% 
-  ggplot()+
-  geom_point(aes(x=umidade,y=dados,fill="Dados"),color="black",size=3)+
-  geom_line(aes(x=umidade,y=modelo_es,linetype="Modelo"),color="red")+
-  xkcdaxis(xrange=c(10,30),yrange=c(15,60)) +
-  labs(x="Umidade relativa (%)",y="Chuva (mm)",title = "Modelo Estocastico (Probabilistico)",
-       fill="",linetype="")+
-   theme_grafico
-```
-$$Dados = Modelo + Ruído$$
----
+## Metodologia de Ensino
 
+- Aulas teóricas expositivas.
 
-    A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
+- Aula teóricas de anos anteriores serão disponibilizadas (**Google Classroom**).
 
---
-##### Estatística Descritiva
+- Serão utilizados vídeos gravados pelo professor disponíveis no YouTube <https://www.youtube.com/channel/UCCJBXRV7CbfkcyaIixp0CqQ>
 
-Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de **representar dados em tabelas e gráficos**, **resumi-los** por meio de algumas medidas **sem, contudo, tirar conclusões** sobre um grupo maior.
+- Utilização de programas computacionais:
 
---
-
-##### Probabilidade
-
-Teoria matemática utilizada para se estudar a incerteza oriunda de fenômenos de caráter **aleatório**. 
-
---
-
-##### Inferência Estatística
-
-Técnicas que possibilitam a extrapolação das informações e conclusões obtidas a partir de subconjuntos de dados, a um grande número de dados. Ou seja, **conclusões aqui serão tomadas**.
-
----
-class: middle, center, inverse
-
-# ESTATÍSTICA DESCRITIVA
-
----
-## Estatística Descritiva
-
-Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de representar dados em tabelas e gráficos, resumi-los por meio de algumas medidas **sem, contudo, tirar conclusões sobre um grupo maior**.
-
-É necessário, portanto, definirmos os nossos termos básicos para podermos nos comunicar durante a disciplina. Assim, serão definidos alguns conceitos.
---
-
-### Dados
---
-
-Considerados o material básico da estatística, são os valores observados de uma característica de interesse de cada amostra, é o registro da característica de interesse. 
-
---
-
-**Exemplos**
-
---
-
-- Variação de temperatura no processo de secagem de um alimento.
-- Tempo de reabilitação de doentes após determinados tratamentos.
-- Número de produtos defeituosos em lotes oriundos de uma linha de montagem.
-- Peso e alturas de plantas de uma determinada variedade após aplicação de um trato cultural.
-- Número de insetos vivos após a aplicação de um defensivo.
-
---
-
-Cada número desses constituem os **DADOS** e a característica comum entre eles é a **VARIABILIDADE** ou **VARIAÇÃO**.
-
----
-
-**Exemplo de um banco de dados**
-
-[Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) $\leftarrow$ Clique para baixar o banco de dados no Excel (**exemplo_dados.xlsx**)
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"></img>
-
-Onde:  
-**id** é a identificação do aluno;   
-**sexo**: "M" masculino e "F" feminino;  
-**cor_cabelo**: "P" - Preto, "C" - Castanho, "CC" - Castanho Claro, "CE" - Castanho Escuro, "L" - Loiro, "R - Ruivo";  
-**GA**: é o grau de alcoolismo: "nao_consome" < "pouco" < "socialmente" < "mais_social";  
-**altura**: altura declarada pelo aluno em $m$;  
-**idade**: idade do aluno ao cursar a disciplina (Estatística e Bioestatística).
----
-**Exemplo de um banco de dados**
-
-[Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) $\leftarrow$ Clique para baixar o banco de dados no R (**exemplo_dados.rds**)
-
-```{r,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
-dados_turmas<-readxl::read_excel(path = "../data/dados_turmas.xlsx")
-readr::write_rds(dados_turmas,"../data/dados_turmas.rds")
-```
-
-```{r,echo=TRUE}
-# Lendo o Banco de dados
-dados_turmas<-readr::read_rds("../data/dados_turmas.rds")
-
-# Mostrando os 7 primeiro registros
-head(dados_turmas, n=7)
-```
-
----
-### População
-
-**Populações Comuns**: Uma população é um conjunto de pessoas (ou elementos) que possuem uma característica observável comum, geralmente, de interesse de estudo. Conjunto total de objetos que queremos estudar, para os quais uma decisão deve ser tomada.
-
-<img src="https://images.pexels.com/photos/9816/pexels-photo-9816.jpeg?cs=srgb&dl=pexels-ingo-joseph-9816.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-
-### População
-
-**Populações Estatísticas**: a população estatística se refere a dados, e não às pessoas (elementos) nessa abordagem, a população é composta de características dos elementos, independente de terem sido medidas ou não.
-
-.pull-left[
-- Valores de pressão sanguínea dos indivíduos de uma população.
-
-<img src="https://media0.giphy.com/media/PhaAAKt6a95Qy1Pm7i/giphy.gif?cid=ecf05e47mt3as17yvha04viluavo86fg0sxjy7i31z4ukcq7&rid=giphy.gif&ct=g" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
-]
-
-.pull-right[- Presença ou ausência de doenças na população de cervos do pantanal.
-
-<img src="https://images.pexels.com/photos/6249413/pexels-photo-6249413.jpeg?cs=srgb&dl=pexels-ryutaro-tsukata-6249413.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
-]
-
----
-
-### População
-
-**Populações Estatísticas**:
-
-.pull-left[
-- Porcentagem de controle de praga por inseto predador em uma parcela experimental.
-
-<img src="https://images.pexels.com/photos/36485/ladybug-flight-beetle-insect.jpg?cs=srgb&dl=pexels-pixabay-36485.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-]
-
-.pull-right[
-
-- Valores de produção de soja por estados no Brasil.
-
-<img src="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?cs=srgb&dl=pexels-tom-fisk-1595104.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-]
-
----
-
-### Amostra
-
-Amostra é qualquer subconjunto da população.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/pop_amostra.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
-
-- Não conseguimos acessar toda uma população para estudar as características de interesse, tomaremos alguns elementos dessa população para formar um grupo a ser estudado.
-- Impossibilidade de acesso e implicações éticas.
-
----
-.pull-left[
-### Parâmetro: 
-
-É a medida usada para descrever uma característica da população, por exemplo: média populacional $(\mu)$ ou a variância populacional $(\sigma^2)$.]
-
-.pull-right[
-### Estatística
-É a medida usada para descrever uma característica da amostra, em analogia, média amostral $(\bar{x}\text{ ou } \bar{m} )$ e a variância amostral $(s^2)$.
-]
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/pop_amostra_parametros.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
-
----
-
-### Variável
-
-As informações obtidas, sejam com base nos elementos que constituem a população, sejam com base nos elementos que constituem a amostra, são denominadas **dados**. 
-
-Assim, definimos que todo dado coletado refere-se a uma característica da população, agora, para nós  determinada **VARIÁVEL**.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_tipo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 70%"></img>
-
----
-
-### Variável Qualitativa
-
-É aquela que apresenta como possíveis realizações uma qualidade (ou atributo) do indivíduo pesquisado.
-
-**Nominal**: é aquela para a qual **não existe ordenação** alguma das possíveis realizações (característica observados). Em estatística dizemos que os dados são **categóricos**. 
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_nominal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-### Variável Qualitativa
-
-**Ordinal**: é aquela para a qual **existe certa ordem** nos possíveis resultados. Apesar de ordenar, não permite a indicação em termos de quanto mais ou menos.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_ordinal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-### Variável Quantitativa 
-
-**Discreta**: os possíveis valores formam um conjunto enumerável resultam, frequentemente, de um **processo  contagem** (os valores podem ser finito ou mesmo infinitos). Exemplos: número de filhos, número de células, número de ovos, número de ácaros ou insetos em uma planta.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_discreta.png" style=" display: block; margin-left: auto; margin-right: auto;width: 90%"></img>
-
----
-### Variável Quantitativa 
-
-**Contínua**: os possíveis valores formam um intervalo de números reais e que resultam, normalmente, de um processo de medida (mensuração). Exemplos: peso, altura, produção de leite, pressão arterial, teor de nitrogênio no solo ou na folha.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_continua.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-class: middle, center, inverse
-
-# Ferramental
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/excel_R_logo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"></img>
 
----
+- Resolução de listas de exercícios (**Google Classroom**).  
 
-### Exercícios Práticos
+- Apostila didática [Baixar Apostila](https://www.fcav.unesp.br/Home/departamentos/cienciasexatas/alanrodrigopanosso/apostila_bioestatistica_2019.pdf)
 
-#### 1) Utilizando o Excel e o R, monte as expressões para resolver as equações:
-
-$$\begin{align*} & a)\; log_5 125 \\
-& b)\; 2 \cdot sen(45°) \\
-& c)\; \frac{1}{\sqrt{2\pi}} \\
-& d)\; \frac{1}{\sqrt{2\pi+1}} \end{align*}$$
-
-
-#### 2) Dados a amostra da variável $X=\{6,8,7\}$, sendo $\Sigma$ a somatória dos elementos de $X$  e $\bar{x}$ a média (amostral) dos elementos de $X$ e $n$ o número total de elementos dessa amostra, calcule:
-
-$$\begin{align*} 
-& a)\;Soma= \sum_{i=1}^n x_i \\
-& b)\; \bar{x} = \frac{\sum_{i=1}^n x_i}{n}\\
-& c)\; \beta = \frac{(\sum_{i=1}^n x_i)^2}{(n-1)\cdot(n-2) } \end{align*}$$
+- Consulta a livros.
 
 ---
-### Resolução no Excel
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/exer_excel.png" style=" display: block; margin-left: auto; margin-right: auto;width: 73%"></img>
+## Bibliografia básica
 
----
-### Resolução no R  
-#### Exercício 01
-```{r,echo=TRUE}
-# 1.a
-log(125,5)
+BUSSAB, W. O.; MORETTIN, P. A. **Estatística Básica**. 5 ed.  São Paulo: Saraiva, 2002.  p. [LINK](https://www.amazon.com.br/Estat%C3%ADstica-B%C3%A1sica-Wilton-Bussab/dp/8547220224/ref=asc_df_8547220224/?tag=googleshopp00-20&linkCode=df0&hvadid=379748610448&hvpos=&hvnetw=g&hvrand=13078554075477532168&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1031739&hvtargid=pla-811770768458&psc=1)
 
-# 1.b
-2*sin(45*pi/180)
+MAGALHÃES, M. N.; LIMA, A. C. P. **Noções de Probabilidade e Estatística**.  São Paulo: Editora da Universidade de São Paulo, 2005. 392 p. [LINK](https://www.amazon.com.br/No%C3%A7%C3%B5es-Probabilidade-Estat%C3%ADstica-Nascimento-Magalh%C3%A3es/dp/8531406773/ref=asc_df_8531406773/?tag=googleshopp00-20&linkCode=df0&hvadid=379712528301&hvpos=&hvnetw=g&hvrand=3043005081199790255&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1031739&hvtargid=pla-422923055890&psc=1)
 
-# 1.c
-1/(sqrt(2*pi))
+BLAIR, R. C.; TAYLOR, R. A. **Bioestatística para ciências da saúde**.  São Paulo: Pearson Education do Brasil, 2013. 469 p. [LINK](https://www.submarino.com.br/produto/1368960931/livro-bioestatistica-para-ciencias-da-saude?WT.srch=1&acc=d47a04c6f99456bc289220d5d0ff208d&epar=bp_pl_00_go_g35177&gclid=Cj0KCQjw1PSDBhDbARIsAPeTqretIWgohh4CuyLOwGdNd-W56zb9kfuDNz9YaVg3KmFtZXGWyZuk1REaAhW-EALw_wcB&i=561e53416ed24cafb5322074&o=5ec29a42f8e95eac3dc7d8f4&opn=XMLGOOGLE&sellerid=03)
 
-# 1.d
-1/(sqrt(2*pi+1))
-```
-
----
-### Resolução no R
-
-#### Exercício 02
-
-```{r,echo=TRUE}
-# Definindo dados X
-X = c(6,8,7)
-
-# 2.a
-sum(X)
-
-# 2.b
-mean(X)
-
-# 2.c
-sum(X)^2/((3-1)*(3-2))
-```
-
+BATSCHELET, E. **Introdução à matemática para biocientistas**.  São Paulo: Ed. Da Universidade de São Paulo., 1978. 596 p. [LINK](https://www.amazon.com.br/Introdu%C3%A7%C3%A3o-%C3%A0-Matem%C3%A1tica-Para-Biocientistas/dp/8571930295/ref=asc_df_8571930295/?tag=googleshopp00-20&linkCode=df0&hvadid=379751745514&hvpos=&hvnetw=g&hvrand=15178690494420387835&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1031739&hvtargid=pla-836184941200&psc=1)
