@@ -33,9 +33,9 @@ Atributos que têm impacto direto sobre a execução lógica de um programa. Exe
 
  + Conjunto de instruções;
 
- + Número de bits usados para representar os vários tipos de dados (caracteres 2B ou 4B);
+ + Número de bits usados para representar os vários tipos de dados (caracteres 2b ou 4b);
 
- + Mecanismos de E/S;
+ + Mecanismos de E/S (Entrada e Ssaída);
 
  + Técnicas de endereçamento à memória.
 
@@ -52,21 +52,20 @@ Atributos que têm impacto direto sobre a execução lógica de um programa. Exe
   + Execução de instruções de modo seqüencial (salvo exceções).
 
 ---
-
-
 # Projeto de computadores atuais
 
-**Conceitos Básicos**
+  + Base no modelo de John Von Neumann (IAS);
 
-  + Dados/Instruções são armazenados em uma única memória de leitura/escrita;
+  + Formado pelos componentes: memória, CPU, E/S, barramentos;
 
-  + Conteúdo da memória é endereçado pela posição;
+  + CPU dividida em ULA e unidade de controle.
 
-  + Execução de instruções de modo seqüencial (salvo exceções).
-  
+```{r, echo=FALSE, out.width="70%", fig.align='center',fig.cap="Um microprocessador, ou simplesmente processador, é um circuito integrado (ou chip), que é considerado o 'cérebro' do computador."}
+knitr::include_graphics("img/microprocessador.png")
+```
 ---
 
-#### Componentes Básicos de uma computador
+#### Componentes básicos de um computador
 
 ![](img/computador-basico.png)
 
@@ -100,3 +99,137 @@ Uso de um programa que faz cálculos matemáticos:
   + **UC** mostra o resultado no dispositivo de saída
   
 ---
+class: middle, center, inverse
+
+# Conceitos Básicos
+
+---
+class: middle, center, inverse
+
+## Abstração
+
+---
+
+## Abstração
+
+  > A realidade é complexa e rica em detalhes! 
+
+```{r, echo=FALSE, out.width="70%", fig.align='center',fig.cap=""}
+knitr::include_graphics("img/tropical-forest.jpeg")
+```
+---
+
+
+```{r, echo=FALSE, out.width="200%", fig.align='center',fig.cap=""}
+knitr::include_graphics("img/tropical-forest.jpeg")
+```
+
+---
+
+## Abstração
+É a operação mental que observa a realidade e captura apenas os aspectos relevantes para um contexto.
+
+--
+```{r, echo=FALSE, out.width="40%", fig.align='center',fig.cap="Uma 'jovem mulher de perfil' ou uma 'senhora olhando para baixo'."}
+knitr::include_graphics("img/abstraction-1.png")
+```
+
+---
+## Abstração
+
+Perceba que a realidade é a mesma.
+
+ > Isto é, uma figura em preto e branco.
+
+Mas, dependendo da observação da realidade, você pode ter abstrações diferentes.
+
+Por isso, a abstração depende mais do observador do que da realidade observada.
+
+--
+
+[Teoria da conspiração](https://pt.wikipedia.org/wiki/Teoria_da_conspira%C3%A7%C3%A3o) 
+
+  + [terraplanismo](https://pt.wikipedia.org/wiki/Terra_plana)
+  
+  + [criacionismo](https://pt.wikipedia.org/wiki/Criacionismo)
+  
+  + [movimento antivacina](https://www.ufcspa.edu.br/noticias/34-meu-perfil/imprensa/noticias/810-movimento-antivacina)
+  
+  + [negacionismo do holocausto](https://pt.wikipedia.org/wiki/Negacionismo_do_Holocausto)
+  
+  + [Negacionismo climático](https://pt.wikipedia.org/wiki/Negacionismo_clim%C3%A1tico)
+
+---
+
+## Sistema computacional
+
+```{r, echo=FALSE, out.width="120%", fig.align='center'}
+knitr::include_graphics("img/sistema-computacional.png")
+```
+
+---
+## Programação de Sistema Computacional
+
+```{r, echo=FALSE, out.width="120%", fig.align='center'}
+knitr::include_graphics("img/sistema-computacional-prog.png")
+```
+**Exemplo 1** – Exibir a média de dois números  
+**Exemplo 2** – Exibir se o aluno está aprovado ou reprovado
+
+
+---
+**Exemplo 1** – Exibir a média de dois números 
+Algoritmo - Pseudocódigo
+*A orientação da execução das declarações será sempre de  cima para baixo, da esquerda para a direita*
+
+
+```{r, eval=FALSE}
+início  // identificação do início do bolco do algoritmo
+  inteiro: x;  // declarando variável
+  inteiro: y;  // declarando variável
+  real: media; // declarando variável  
+  leia(x,y);   // entrada de dados
+  media <- (x+y)/2;  // ação
+  escreva(média);  // saída de dados
+fim. //fim do algoritmo
+```
+
+Implementação em R
+```{r}
+x <- 3
+y <- 4
+media <- (x+y)/2
+media
+```
+
+---
+**Exemplo 2** – Exibir se o aluno está aprovado ou reprovado
+
+Algoritmo - Pseudocódigo
+
+
+```{r, eval=FALSE}
+início  // identificação do início do bolco do algoritmo
+  caracter: nome; // declarando variável
+  inteiro: prova1;  // declarando variável
+  inteiro: prova2;  // declarando variável
+  leia(prova1,prova2);   // entrada de dados
+  se ((prova1+prova2)/2 .=> 5)  // teste lógico
+    então escreva(nome,":Aprovado(a)"); // ação se verdadeiro
+    senão escreva(nome,": Reprovado(a)"); //ação se falso
+fim. //fim do algoritmo
+```
+
+Implementação em R
+
+```{r}
+nome <- "Maria"
+prova1 <- 5
+prova2 <- 3
+if((prova1+prova2)/2 >= 5 ){
+  print(paste0(nome, ": Aprovado(a)"))
+} else {
+  print(paste0(nome, ": Reprovado(a)"))
+}
+```
+
