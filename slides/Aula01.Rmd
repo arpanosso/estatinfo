@@ -178,21 +178,21 @@ knitr::include_graphics("img/sistema-computacional-prog.png")
 
 
 ---
-**Exemplo 1** – Exibir a média de dois números 
-Algoritmo - Pseudocódigo
+**Exemplo 1** – Exibir a média de dois números
+
+**-Algoritmo-** 
+
 *A orientação da execução das declarações será sempre de  cima para baixo, da esquerda para a direita*
 
-
-```{r, eval=FALSE}
-início  // identificação do início do bolco do algoritmo
-  inteiro: x;  // declarando variável
-  inteiro: y;  // declarando variável
-  real: media; // declarando variável  
-  leia(x,y);   // entrada de dados
-  media <- (x+y)/2;  // ação
-  escreva(média);  // saída de dados
-fim. //fim do algoritmo
-```
+    
+    início  
+      inteiro: x;  
+      inteiro: y;  
+      real: media;   
+      leia(x,y);   
+      media <- (x+y)/2;  
+      escreva(média);  
+    fim. 
 
 Implementação em R
 ```{r}
@@ -207,25 +207,22 @@ media
 
 Algoritmo - Pseudocódigo
 
-
-```{r, eval=FALSE}
-início  // identificação do início do bolco do algoritmo
-  caracter: nome; // declarando variável
-  inteiro: prova1;  // declarando variável
-  inteiro: prova2;  // declarando variável
-  leia(prova1,prova2);   // entrada de dados
-  se ((prova1+prova2)/2 .=> 5)  // teste lógico
-    então escreva(nome,":Aprovado(a)"); // ação se verdadeiro
-    senão escreva(nome,": Reprovado(a)"); //ação se falso
-fim. //fim do algoritmo
-```
+    início  
+      caracter: nome; 
+      inteiro: prova1;  
+      inteiro: prova2;  
+      leia(prova1,prova2);   
+      se ((prova1+prova2)/2 .=> 5)  
+        então escreva(nome,":Aprovado(a)"); 
+        senão escreva(nome,": Reprovado(a)"); 
+    fim.
 
 Implementação em R
 
 ```{r}
 nome <- "Maria"
 prova1 <- 5
-prova2 <- 3
+prova2 <- 8
 if((prova1+prova2)/2 >= 5 ){
   print(paste0(nome, ": Aprovado(a)"))
 } else {
@@ -233,3 +230,178 @@ if((prova1+prova2)/2 >= 5 ){
 }
 ```
 
+---
+class: center, middle, inverse
+
+# Linguagem de Programação, Algoritmos
+# &
+# Lógica de Programação
+
+---
+
+## Linguagem de programação
+
+É o conjunto de palavras e regras que permitem **comunicar** ao computador o que este deve **executar**.
+
+Em computação, uma linguagem de programação é a ferramenta de **comunicação** entre o **programador** que visa resolver um problema e o **computador** que irá ajudá-lo a resolver.
+
+--
+
+## Algoritmo
+
+Seqüência lógica e não ambígua de **instruções** que levam à solução de um problema num tempo finito.
+
+
+  + As instruções devem ser definidas em uma ordem correta.
+ 
+  + A sequência lógica e as instruções não  devem dar margem à dupla interpretação.
+
+  + A sequência lógica deve resolver exatamente (nem mais e nem menos) o problema identificado.
+
+  + A seqüência lógica não deve possuir iterações infinitas.
+
+
+---
+
+### Exemplos de algoritmos
+  + Receitas de comidas
+  + Coreografia
+  + Manuais de instalação
+
+### Contra-exemplos de algoritmos
+  + Listas de compras
+  + Dança informal
+  + Índice remissivo de um livro
+
+--
+
+### Atenção:
+Um algoritmo é **“uma solução”** e não **“a solução”** de um problema.
+Um problema pode ser resolvido por mais de um algoritmo! ** -- SEMPRE -- **
+
+Tarefas que possuem **“padrão de comportamento”** podem ser descritas por um algoritmo.
+
+Ex: Qual será o próximo número da sequência $0,1,4,9,16,25$?
+
+---
+**Exemplo 3** – Apresente os números de $1$ a $10$, com os valores ímpares negativos e pares posivitos.
+
+Algoritmo - Pseudocódigo
+
+    início
+      inteiro: contador;
+      inteiro: resultado;
+      para contador <- 1 até 10 faça 
+        resultado <- contador * pot(-1, contador);
+        escreva(resultado);
+      fim para
+    fim.
+---
+**Exemplo 3** – Apresente os números de $1$ a $10$, com os valores ímpares negativos e pares posivitos.
+
+Implementação em R
+
+```{r}
+resultado <- integer()
+for(contador in 1:10){
+  resultado <- contador * (-1)^contador
+  print(resultado)
+}
+```
+
+---
+## Lógica de Programação
+
+É o encadeamento lógico de "*instruções*" para o desenvolvimento de "*programas*".
+
+### Instrução
++ Informação que representa uma ação elementar que deve ser executada.
++ O ";" (**ponto-e-vírgula**) indica o fim de uma instrução!
++ Em **R** cada instrução deve ser digitada em uma linha, se mais de uma instrução for digitada na mesma linha, usa-se, então, o ponto-e-vírgula.
+
+.pull-left[
+```{r}
+x <- 2
+y <- 3
+x*y
+```
+]
+
+.pull-right[
+```{r}
+x <- 2; y <- 3; x*y
+```
+]
+
+Ambas as intruções retornam o mesmo valor, $6$.
+
+---
+## Lógica de Programação
+
+É o encadeamento lógico de "*instruções*" para o desenvolvimento de "*programas*".
+
+### Programa
+É a implementação das instruções (codificação + tradução + execução) de um algoritmo em uma linguagem de programação.
+Existem vários tipos de linguagens de programação:
+
+
+  + **Linguagem de Máquina:** Possuí uma notação binária (zeros e uns), a qual tornava a programação trabalhosa, cansativa e fortemente sujeita a erros.  
+  + **Linguagem Assembly:**  Surgiu para minimizar as dificuldades da programação em notação binária.  
+  + **Linguagem de Alto Nível:** Aproxima-se das linguagens utilizadas por humanos para expressar problemas. Cada declaração numa linguagem de alto nível equivale a várias declarações numa linguagem de baixo nível.
+
+
+---
+1 - Totalmente codificadas em binário ( $0$´s e $1$´s ).
+
+2 - Usa instruções simbólicas para representar os $0$´s e $1$´s.
+
+3 - Voltadas para facilitar o raciocínio humano.
+
+```{r, echo=FALSE, out.width="120%", fig.align='center'}
+knitr::include_graphics("img/tipos-linguagens.png")
+```
+
+---
+
+## BAIXO NÍVEL	
+
+**VANTAGENS:** Programas são processados mais rapidamente. Ocupam menos espaço na memória.	
+
+**DESVANTAGENS:** Programas têm pouca portabilidade (são específicos para um tipo de processador) e não são estruturados.
+
+## ALTO NÍVEL	
+
+**VANTAGENS:** Programas têm maior portabilidade e as linguagens são mais estruturadas (facilitam a programação).
+
+**DESVANTAGENS:** Programas exigem mais tempo de processamento (tradução para linguagem de máquina gera código genérico e complexo, + Memória).
+
+
+---
+
+Se o computador só entende linguagem de máquina, o que deve ser feito para que ele entenda programas em linguagem assembly ou de alto nível?
+
+> Resposta: Usar um tradutor!
+
+--
+
+**Tradutores** no contexto de linguagens de programação são programas que recebem como:
+
+ * **entrada um programa em linguagem assembly ou de alto nível** (dita linguagem fonte); 
+
+ * **saída  as instruções deste programa traduzidas para linguagem de máquina**.
+
+--
+
+#### Principais Tipos
+
+**1) COMPILADOR:** traduz de uma vez só todo o programa escrito em linguagem de alto nível (código-fonte) para um programa equivalente escrito em linguagem de máquina (código-objeto).
+
+**2) INTERPRETADOR:** traduz (sem gerar código-objeto) e em seguida executa, uma-a-uma, as instruções de um programa em linguagem de alto nível (código-fonte).
+
+
+---
+class: middle
+
+```{r, echo=FALSE, out.width="120%", fig.align='center'}
+knitr::include_graphics("img/compilador-interpretador.png")
+```
