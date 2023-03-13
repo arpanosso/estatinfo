@@ -4,7 +4,7 @@
     <title>Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
-    <script src="libs/header-attrs-2.13/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -12,11 +12,21 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Estatística e Informática
+]
+.subtitle[
 ## Aula 01 - Noções de Programação
+]
+.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
+]
+.institute[
 ### Departamento de Engenharia e Ciências Exatas
+]
+.date[
 ### 09-03-2022
+]
 
 ---
 
@@ -25,12 +35,20 @@ class: center, middle, inverse, title-slide
 
 &gt;“Computador é aquele que faz cômputos ou que calcula; máquina à base de circuitos eletrônicos que efetua grandes operações e cálculos gerais, de maneira ultra rápida." 
 
-&gt;"Computador é o idiota mais veloz do mundo, pois fará qualquer coisa que nós lhe ordenarmos a uma velocidade extremamente alta." 
+&gt;"Computador é a entidade mais veloz do mundo, pois fará qualquer coisa que nós lhe ordenarmos a uma velocidade extremamente alta." 
 
 &gt;"Computador é um equipamento capaz de aceitar elementos relativos a um problema, submetê-lo a operações predeterminadas e chegar a um resultado."
 
 ---
 
+class: center, middle, inverse
+
+### Dica de Filme: 
+
+&lt;img src="img/o-jogo-da-imitacao.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+Fonte: [IMDB](https://www.imdb.com/title/tt2084970/)
+---
 # Arquitetura de Computadores
 
 Estudo sobre como projetar as partes de um sistema de computador que são visíveis para os programadores.
@@ -151,6 +169,8 @@ Por isso, a abstração depende mais do observador do que da realidade observada
 
 --
 
+Cuidados que devemos ter para não cair em engodos abstrativos
+
 [Teoria da conspiração](https://pt.wikipedia.org/wiki/Teoria_da_conspira%C3%A7%C3%A3o) 
 
   + [terraplanismo](https://pt.wikipedia.org/wiki/Terra_plana)
@@ -159,12 +179,30 @@ Por isso, a abstração depende mais do observador do que da realidade observada
   
   + [movimento antivacina](https://www.ufcspa.edu.br/noticias/34-meu-perfil/imprensa/noticias/810-movimento-antivacina)
   
-  + [negacionismo do holocausto](https://pt.wikipedia.org/wiki/Negacionismo_do_Holocausto)
-  
-  + [Negacionismo climático](https://pt.wikipedia.org/wiki/Negacionismo_clim%C3%A1tico)
+  + [negacionismo climático](https://pt.wikipedia.org/wiki/Negacionismo_clim%C3%A1tico)
+
+O [Método Científico](https://pt.wikipedia.org/wiki/M%C3%A9todo_cient%C3%ADfico) é uma "vacina" para isso...
+
+---
+class: center, middle, inverse
+
+### Dica de Leitura: 
+
+&lt;img src="img/o-mundo-assombrado.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
+### Obstáculos transpostos...vamos á Lua
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="img/margaret-hamilton.png" alt="A cientista da computação Margaret Hamilton posa com o software de orientação Apollo que ela e sua equipe desenvolveram no MIT. Estima-se 660.000 linhas de código." width="45%" /&gt;
+&lt;p class="caption"&gt;A cientista da computação Margaret Hamilton posa com o software de orientação Apollo que ela e sua equipe desenvolveram no MIT. Estima-se 660.000 linhas de código.&lt;/p&gt;
+&lt;/div&gt;
+
+
+Fonte: [NASA](https://solarsystem.nasa.gov/people/320/margaret-hamilton/)
+---
 ## Sistema computacional
 
 &lt;img src="img/sistema-computacional.png" width="120%" style="display: block; margin: auto;" /&gt;
@@ -217,7 +255,7 @@ Algoritmo - Pseudocódigo
       inteiro: prova1;  
       inteiro: prova2;  
       leia(prova1,prova2);   
-      se ((prova1+prova2)/2 .=&gt; 5)  
+      se ((prova1+prova2)/2 &gt;= 5)  
         então escreva(nome,":Aprovado(a)"); 
         senão escreva(nome,": Reprovado(a)"); 
     fim.
@@ -254,6 +292,9 @@ class: center, middle, inverse
 É o conjunto de palavras e regras que permitem **comunicar** ao computador o que este deve **executar**.
 
 Em computação, uma linguagem de programação é a ferramenta de **comunicação** entre o **programador** que visa resolver um problema e o **computador** que irá ajudá-lo a resolver.
+
+
+&lt;img src="img/linguagens-programacao.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -434,7 +475,524 @@ Se o computador só entende linguagem de máquina, o que deve ser feito para que
 ---
 class: middle
 
-&lt;img src="img/compilador-interpretador.png" width="120%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/compilador-interpretador.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Representação de um algoritmo
+
+### Exemplo: 
+
+Algoritmo para converter uma temperatura de Fahrenheit para Celsius.
+
+#### Descrição narrativa
+      1. solicite a temperatura em Fahrenheit;
+
+      2. transforme a temperatura em Fahrenheit para Celsius;
+
+      3. informe a temperatura em Celsius.
+
+Características:   
+
+  +	De fácil entendimento, porém, imprecisa.  
+  +	Pouca confiabilidade.  
+  +	Extensão (normalmente,  escreve-se  muito para dizer pouca coisa).  
+
+---
+
+#### Fluxograma
+
+Características:  
+
+•	Padrão mundial, ferramente bastante conhecida, pois as figuras dizem muito mais que palavras, porém, a representação complica-se à medida que o algoritmo cresce.  
+•	Pouca atenção aos dados, não oferecendo recursos para declará-los.
+
+Principais símbolos:
+
+&lt;img src="img/fluxograma.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Representação de um algoritmo por Fluxograma
+
+Algoritmo para converter uma temperatura de Fahrenheit para Celsius.
+
+&lt;img src="img/fluxograma-far.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Representação por Linguagem algorítmica (pseudo-código)
+
+A forma geral de um algoritmo em pseudocódigo:
+
+    Algoritmo &lt;nome_do_algoritmo&gt;
+    Início
+      [&lt;declaração_de_variáveis&gt;]
+      [&lt;sub-algoritmos&gt;]
+      Início
+      &lt;corpo_do_algoritmo&gt;
+    Fim.   
+Características:   
+
+  +	É independente da linguagem de programação e, no caso do Brasil, usa o português como base.   
+  + Define-se melhor quais e como os dados vão estar estruturados.  
+  + Passagem quase imediata do algoritmo para uma linguagem de programação qualquer.  
+  + Exige a definição de uma  linguagem não real para trabalho e não é padronizada.
+
+---
+
+## Pseudo-código do algoritmo Fahrenheit-Celsius
+
+    Algoritmo Fahrenheit-Celsius
+    Real: Fahrenheit, Celsius;
+    Início
+      Ler (Fahrenheit);
+      Celsius &lt;- 5/9 * (Fahrenheit – 32);
+      Escrever (Celsius);
+    Fim
+
+Implementação em R
+
+
+```r
+Fahrenheit &lt;- 77
+Celsius &lt;- 5/9*(Fahrenheit - 32)
+Celsius
+```
+
+```
+## [1] 25
+```
+
+---
+
+## Construindo algoritmos
+
+Uma boa prática para construir algoritmos é dividir o problema em `\(3\)` fases (Entrada, Processamento e Saída).
+
+&lt;img src="img/mantra.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+**ENTRADA**: São os dados de entrada do algoritmo.  
+
+**PROCESSAMENTO**: São os procedimentos utilizados para chegar ao resultado final.  
+
+**SAÍDA**: São os dados já processados.  
+
+
+---
+
+No algoritmo Fahrenheit-Celsius temos:
+  
+  + **ENTRADA:** Temperatura em Fahrenheit  
+
+  + **PROCESSAMENTO:** Celsius = 5/9 *(Fahrenheit – 32)    
+
+  + **SAÍDA:** Temperatura em Celsius  
+
+Num algoritmo para calcular a área de um triângulo temos:
+
+  + **ENTRADA:** Base e Altura do triângulo  
+
+  + **PROCESSAMENTO:** Área = (Base * Altura)/2  
+
+  + **SAÍDA:** Área
+
+--
+  &gt; Dividir o problema em Entrada, Processamento e Saída irá ajudá-lo a ordenar corretamente as instruções do seus algoritmos.
+
+Por isso, antes de construir um algoritmo, pare para  pensar e identificar:
+
+Que dados preciso para começar? – **Entrada**  
+Quais são os cálculos e decisões? – **Processamento**
+Que dados devem ser exibidos? – **Saída**
+
+
+---
+
+## Atividades
+
+1) Calcular e exibir a média ponderada de `\(2\)` notas dadas.   
+(nota1 = peso `\(6\)` e nota2 = peso `\(4\)`).
+
+--
+
+```r
+Algoritmo media-ponderada
+Real: mediaP, nota1, nota2;
+Início
+  Ler(nota1, nota2);
+  mediaP &lt;- (nota1*6 + nota2*4)/(6+4);
+  Escrever(mediaP);
+Fim.
+```
+
+Implementação em R
+
+
+
+---
+
+2) Reajustar um salário em `\(7,75%\)`.
+
+--
+
+
+```r
+Algoritmo reajuste-salarial
+Real: porcentagem, salario, novo_salario
+Início
+  Ler(salario, porcentagem);
+  novo_salario = salario + salario*porcentagem;
+  Escrever(novo_salario);
+Fim.
+```
+
+Implementação em R
+
+
+
+---
+
+3) Calcular o desconto de `\(23\%\)` sobre o preço de um produto.
+
+--
+
+
+```r
+Algoritmo desconto
+Real: preço, desconto;
+Início
+  Ler(preço);
+  desconto &lt;- preço*0.23;
+  Escrever(desconto);
+Fim.
+```
+
+Implementação em R
+
+
+
+
+---
+
+4) Dada uma taxa de câmbio, transformar um valor em Dólar para Reais.
+
+
+```r
+Algoritmo dolar-real
+Real: valor_dolar, taxa_cambio, valor_real;
+Início
+  Ler(valor_dolar, taxa_cambio);
+  valor_real &lt;- valor_dolar * taxa_cambio;
+  Escrever(valor_real);
+Fim.
+```
+
+Implementação em R
+
+
+
+---
+
+5) Dada uma taxa de câmbio, transformar um valor em Reais para Dólar.
+
+
+```r
+Algoritmo real-dolar
+Real: valor_dolar, taxa_cambio, valor_real;
+Início
+  Ler(valor_real, taxa_cambio);
+  valor_dolar &lt;- valor_real * taxa_cambio;
+  Escrever(valor_dolar);
+Fim.
+```
+
+Implementação em R
+
+
+
+
+
+---
+
+class: middle, center, inverse
+
+# Conceitos Básicos
+
+## Identificadores e Palavras Reservadas
+
+
+---
+
+## Identificadores:
+
+São nomes únicos definidos pelos programadores para identificar/distinguir os elementos de um algoritmo.
+
+## Palavras Reservadas
+
+São instruções primitivas que têm significados pré-determinados e fazem parte da estrutura de qualquer linguagem de programação.
+
+---
+
+### Algumas regras para os nomes de Identificadores:
+
+1) Devem começar por um caractere alfabético, nunca por um caractere numérico.
+
+2) Podem ser seguidos por mais caracteres alfabéticos e/ou numéricos.
+
+3) Não é permitido o uso de espaço em branco ou de caracteres especiais, como: @, #, &amp;, *, +, ?, $ (exceto o _ e o . ).
+
+4) Não poderá ser uma palavra reservada a uma instrução do algoritmo.
+
+5) Devem ser significativos.
+
+6) Não podem ser repetidos dentro de um mesmo algoritmo/sub-algoritmo.
+
+---
+
+## Recomendação
+
+&gt; Você deseja que os nomes de seus objetos sejam descritivos, portanto, precisará adotar uma convenção para várias palavras. Recomendamos snake_case, onde você separa palavras minúsculas com _.
+
+
+```r
+*i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention
+```
+
+---
+
+## Exercício
+
+Identifique os erros e reescreva os identificadores abaixo:
+
+vm
+
+13salário
+
+salário$
+
+salário_mínimo 
+
+salário+reajuste
+
+novoSalário
+
+fumante? 
+
+preço médio
+
+%desconto
+
+km/h
+
+---
+
+## Exercício - Resposta
+
+Identifique os erros, se houver, e reescreva os identificadores abaixo, se necessário:
+
+vm
+
+13salário
+
+salário$
+
+salário_mínimo 
+
+salário+reajuste
+
+novoSalário
+
+fumante? 
+
+preço médio
+
+%desconto
+
+km/h
+
+---
+
+class: middle, center, inverse
+
+# Conceitos Básicos
+
+## Tipos de Dados
+
+---
+
+### Tipos de Dados
+
+As fases de **Entrada**, **Processamento** e **Saída** podem manipular vários tipos primitivos de dados, a saber: 
+
+
+Tipo Primitivo | Descrição | Exemplo
+:--- | :---: | :---:
+Inteiro | Representa o conjunto de números inteiros | 1, 40, -8, 1024
+Real | Representa o conjunto de números reais | 3.14, 2.455, -9.88
+Caracter | Representa um ou mais caracteres do teclado | "Oi Mundo"
+Lógico | Representa valor lógico (Verdadeiro ou Falso) | TRUE, FALSE
+
+**OBS**: Um Caractere **SEMPRE** deve estar entre áspas "   "
+
+Todos os exempor abaixo serão conseiderados do tipo caractere: 
+
+"A"   
+"Discente",  
+"Fone 3333-33333",   
+"1" 
+
+---
+
+**Exercício:** Classifique os dados de acordo com o seu tipo, sendo (I = Inteiro, R = Real, C = Caractere e L = Lógico):  
+
+.pull-left[
+
+a(__)  0	   
+ 
+b(__) + 36  
+ 
+c(__) 0,3257  
+
+d(__) F  
+ 
+e(__)  1  
+ 
+f(__) "F"  
+ 
+g(__) "+3257"	  
+ 
+h(__) -1  
+ 
+i(__) 0,0      
+ 
+j(__) - 0,001	     
+ 
+k(__) "-0,0"	  
+ 
+l(__) ".F."  
+ 
+]
+ 
+ .pull-right[
+ m(__) "o"
+ 
+ n(__) +0,05	     
+ 
+ o(__) ".V."		  
+ 
+ p(__) 7/2
+ 
+ q(__) 32     
+ 
+ r(__) +3257	     
+ 
+ s(__) V		  
+ 
+ t(__) -32   
+ 
+ u(__) "A"	  
+ 
+ v(__) "abc"	     
+ 
+ x(__) -1,9E123	  
+ 
+ z(__) "0"  
+]
+
+---
+
+**Exercício: Resposta** Classifique os dados de acordo com o seu tipo, sendo (I = Inteiro, R = Real, C = Caractere e L = Lógico):  
+
+.pull-left[
+
+a(__)  0	   
+ 
+b(__) + 36  
+ 
+c(__) 0,3257  
+
+d(__) F  
+ 
+e(__)  1  
+ 
+f(__) "F"  
+ 
+g(__) "+3257"	  
+ 
+h(__) -1  
+ 
+i(__) 0,0      
+ 
+j(__) - 0,001	     
+ 
+k(__) "-0,0"	  
+ 
+l(__) ".F."  
+ 
+]
+ 
+ .pull-right[
+ m(__) "o"
+ 
+ n(__) +0,05	     
+ 
+ o(__) ".V."		  
+ 
+ p(__) 7/2
+ 
+ q(__) 32     
+ 
+ r(__) +3257	     
+ 
+ s(__) V		  
+ 
+ t(__) -32   
+ 
+ u(__) "A"	  
+ 
+ v(__) "abc"	     
+ 
+ x(__) -1,9E123	  
+ 
+ z(__) "0"  
+]
+
+---
+class: middle, center, inverse
+
+# Conceitos Básicos
+
+## Variável e Constante
+
+
+---
+
+class: middle, center, inverse
+
+# Conceitos Básicos
+
+## Expressões
+
+
+---
+
+class: middle, center, inverse
+
+# Conceitos Básicos
+
+## Operadores
+
+
+
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -482,6 +1040,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
