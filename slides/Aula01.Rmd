@@ -728,7 +728,7 @@ São instruções primitivas que têm significados pré-determinados e fazem par
 > Você deseja que os nomes de seus objetos sejam descritivos, portanto, precisará adotar uma convenção para várias palavras. Recomendamos snake_case, onde você separa palavras minúsculas com _.
 
 ```{r, eval = FALSE}
-i_use_snake_case #<<
+i_use_snake_case # chatGPT_to #<<
 otherPeopleUseCamelCase
 some.people.use.periods
 And_aFew.People_RENOUNCEconvention
@@ -940,6 +940,53 @@ class: middle, center, inverse
 
 ## Variável e Constante
 
+---
+
+## Constante
+
+**Constante** é um identificador que representa valores constantes, ou seja, que não variam no decorrer do algoritmo. 
+
+Seu uso poupa tempo quando tem que alterar o seu valor no algoritmo. 
+
+Ao trocar o valor de uma constante, todas as instruções que a usam irão manipular, automaticamente, o novo valor.
+
+A declaração de uma constate, geralmente é realizada no momento da declaração das variávies no início do programa.
+
+---
+Exemplo de constantes no R:
+
+```{r}
+pi # valor de Pi
+exp(1) # constante de Euler
+letters # letras minúsculas
+LETTERS # letras maiúsculas
+month.name # meses
+month.abb # meses abreviados
+```
+
+
+---
+
+**Variável** é um **endereço físico** da memória principal, que é representado por um **identificador** que, ao longo do seu tempo de existência, pode armazenar vários conteúdos de um único tipo pré-determinado.
+
+Endereço físico | Identificador	| Conteúdo	| Tipo
+:--- | :---: | :---: | :---: | :---:
+1000:2000|	Nome|	"João" | Caracter
+2001:3000|	RG|	12345|	Inteiro
+3001:4000|	Salário|	999,99|	Real
+4001:5000|	Fumante|	F	|Lógico
+
+```{r}
+x <- 1:4 # x é um conunto de números que vão de 1 a 4
+print(x)
+
+x[5] <- "A" # x foi coagido a um conjunto de caracteres
+print(x)
+```
+
+
+**OBS**: Conversão de tipos ou **COERÇÃO** são as diferentes formas de, implícita ou explicitamente, alterar uma entidade de um tipo de dados em outro.
+
 
 ---
 
@@ -948,6 +995,38 @@ class: middle, center, inverse
 # Conceitos Básicos
 
 ## Expressões
+
+---
+
+Uma **expressão** é uma fórmula para processamento de um valor.
+
+As principais expressões são as seguintes:
+
+Aritméticas: Retornam um valor numérico (inteiro ou real).   
+EX: $10+(3+1)/2$ 
+RETORNO: $12$
+
+```{r}
+10+(3+1)/2
+```
+
+
+Relacionais: Retornam um valor lógico $V$ ou $F$.  
+EX: $7 = 14/2$  
+RETORNO: $VERDADEIRO$
+
+```{r}
+(7 == 14/2)
+```
+
+
+Lógicas: Retornam um valor lógico $V$ ou $F$.  
+EX: $(3=2+1) E (3>2)$  
+RETORNO: $VERDADEIRO$
+
+```{r}
+(3 == 2+1) & (3>2)
+```
 
 
 ---
@@ -959,8 +1038,77 @@ class: middle, center, inverse
 ## Operadores
 
 
+---
+
+## Operadores 
+
+**Aritméticos**: são as operações aritméticas básicas.
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/operadores-aritmeticos.png")
+```
 
 
+---
+
+### Exemplos
+
+Operador	| Operação	| Exemplo	| Resultado | No R
+:--- | :--: | :---: | :---: | :---: 
++	| Adição| 	4+3	|7 | `4+3`
+-	| Subtração| 	4-3 |	1 | `4 - 1`
+*	| Multiplicação| 	4*3|	12 | `4 * 3` 
+/	| Divisão| 	4/3	| 1,33 | `4 / 3`
+MOD	| Resto da Divisão Inteira| 	5 MOD 3|	2 | `5 %% 3`
+DIV	| Quociente da Divisão Inteira|	5 DIV 3|	1 | `5 %/% 3`
+POT(x,y)	| Potenciação| 	POT (4,3)|	64 | `4^3` ou `4**3`
+RAD(x)	| Radiciação| 	RAD(4)|	2 | `sqrt(4)`
++	| Manutenção do Sinal|	+- 4|	- 4 | `+(-4)`
+-	| Inversão do Sinal	| -- 4|	+4 | `-(-4)`
+
+---
+
+### Exemplos - Implementados no R
+
+.pull-left[
+```{r}
+4+3
+4 - 1
+4 * 3 
+4 / 3
+5 %% 3
+5 %/% 3
+```
+]
+
+.pull-right[
+```{r}
+4^3
+4**3
+sqrt(4)
++-4
+--4
+```
+]
+
+---
+
+## Operadores 
+
+**Relacionais**: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos $V$ ou $F$.
+
+Operador| Símbolo	| Comparação | Exemplo no R | Retorno
+:--- | :---: |:---: | :---:
+$>$	| > |maior que | 7 > 5 | 
+$<$	| < |menor que |
+$\geq$| >= | 	maior ou igual |
+$\leq$| <= |	menor ou igual |
+$=$	| = |igual|
+$\not=$| <> |	diferente|
+
+Estes somente são usados para efetuar comparações, as quais só podem ser feitas entre dados do mesmo tipo.
+
+O resultado de uma comparação é sempre um valor lógico. 
 
 
 

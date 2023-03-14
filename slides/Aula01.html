@@ -4,7 +4,7 @@
     <title>Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
-    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.13/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -12,21 +12,11 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # Estatística e Informática
-]
-.subtitle[
 ## Aula 01 - Noções de Programação
-]
-.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
-]
-.institute[
 ### Departamento de Engenharia e Ciências Exatas
-]
-.date[
 ### 09-03-2022
-]
 
 ---
 
@@ -757,7 +747,7 @@ São instruções primitivas que têm significados pré-determinados e fazem par
 
 
 ```r
-*i_use_snake_case
+*i_use_snake_case # chatGPT_to
 otherPeopleUseCamelCase
 some.people.use.periods
 And_aFew.People_RENOUNCEconvention
@@ -969,6 +959,107 @@ class: middle, center, inverse
 
 ## Variável e Constante
 
+---
+
+## Constante
+
+**Constante** é um identificador que representa valores constantes, ou seja, que não variam no decorrer do algoritmo. 
+
+Seu uso poupa tempo quando tem que alterar o seu valor no algoritmo. 
+
+Ao trocar o valor de uma constante, todas as instruções que a usam irão manipular, automaticamente, o novo valor.
+
+A declaração de uma constate, geralmente é realizada no momento da declaração das variávies no início do programa.
+
+---
+Exemplo de constantes no R:
+
+
+```r
+pi # valor de Pi
+```
+
+```
+## [1] 3.141593
+```
+
+```r
+exp(1) # constante de Euler
+```
+
+```
+## [1] 2.718282
+```
+
+```r
+letters # letras minúsculas
+```
+
+```
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w"
+## [24] "x" "y" "z"
+```
+
+```r
+LETTERS # letras maiúsculas
+```
+
+```
+##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W"
+## [24] "X" "Y" "Z"
+```
+
+```r
+month.name # meses
+```
+
+```
+##  [1] "January"   "February"  "March"     "April"     "May"       "June"      "July"     
+##  [8] "August"    "September" "October"   "November"  "December"
+```
+
+```r
+month.abb # meses abreviados
+```
+
+```
+##  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
+```
+
+
+---
+
+**Variável** é um **endereço físico** da memória principal, que é representado por um **identificador** que, ao longo do seu tempo de existência, pode armazenar vários conteúdos de um único tipo pré-determinado.
+
+Endereço físico | Identificador	| Conteúdo	| Tipo
+:--- | :---: | :---: | :---: | :---:
+1000:2000|	Nome|	"João" | Caracter
+2001:3000|	RG|	12345|	Inteiro
+3001:4000|	Salário|	999,99|	Real
+4001:5000|	Fumante|	F	|Lógico
+
+
+```r
+x &lt;- 1:4 # x é um conunto de números que vão de 1 a 4
+print(x)
+```
+
+```
+## [1] 1 2 3 4
+```
+
+```r
+x[5] &lt;- "A" # x foi coagido a um conjunto de caracteres
+print(x)
+```
+
+```
+## [1] "1" "2" "3" "4" "A"
+```
+
+
+**OBS**: Conversão de tipos ou **COERÇÃO** são as diferentes formas de, implícita ou explicitamente, alterar uma entidade de um tipo de dados em outro.
+
 
 ---
 
@@ -977,6 +1068,53 @@ class: middle, center, inverse
 # Conceitos Básicos
 
 ## Expressões
+
+---
+
+Uma **expressão** é uma fórmula para processamento de um valor.
+
+As principais expressões são as seguintes:
+
+Aritméticas: Retornam um valor numérico (inteiro ou real).   
+EX: `\(10+(3+1)/2\)` 
+RETORNO: `\(12\)`
+
+
+```r
+10+(3+1)/2
+```
+
+```
+## [1] 12
+```
+
+
+Relacionais: Retornam um valor lógico `\(V\)` ou `\(F\)`.  
+EX: `\(7 = 14/2\)`  
+RETORNO: `\(VERDADEIRO\)`
+
+
+```r
+(7 == 14/2)
+```
+
+```
+## [1] TRUE
+```
+
+
+Lógicas: Retornam um valor lógico `\(V\)` ou `\(F\)`.  
+EX: `\((3=2+1) E (3&gt;2)\)`  
+RETORNO: `\(VERDADEIRO\)`
+
+
+```r
+(3 == 2+1) &amp; (3&gt;2)
+```
+
+```
+## [1] TRUE
+```
 
 
 ---
@@ -988,8 +1126,148 @@ class: middle, center, inverse
 ## Operadores
 
 
+---
+
+## Operadores 
+
+**Aritméticos**: são as operações aritméticas básicas.
+
+&lt;img src="img/operadores-aritmeticos.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
+---
+
+### Exemplos
+
+Operador	| Operação	| Exemplo	| Resultado | No R
+:--- | :--: | :---: | :---: | :---: 
++	| Adição| 	4+3	|7 | `4+3`
+-	| Subtração| 	4-3 |	1 | `4 - 1`
+*	| Multiplicação| 	4*3|	12 | `4 * 3` 
+/	| Divisão| 	4/3	| 1,33 | `4 / 3`
+MOD	| Resto da Divisão Inteira| 	5 MOD 3|	2 | `5 %% 3`
+DIV	| Quociente da Divisão Inteira|	5 DIV 3|	1 | `5 %/% 3`
+POT(x,y)	| Potenciação| 	POT (4,3)|	64 | `4^3` ou `4**3`
+RAD(x)	| Radiciação| 	RAD(4)|	2 | `sqrt(4)`
++	| Manutenção do Sinal|	+- 4|	- 4 | `+(-4)`
+-	| Inversão do Sinal	| -- 4|	+4 | `-(-4)`
+
+---
+
+### Exemplos - Implementados no R
+
+.pull-left[
+
+```r
+4+3
+```
+
+```
+## [1] 7
+```
+
+```r
+4 - 1
+```
+
+```
+## [1] 3
+```
+
+```r
+4 * 3 
+```
+
+```
+## [1] 12
+```
+
+```r
+4 / 3
+```
+
+```
+## [1] 1.333333
+```
+
+```r
+5 %% 3
+```
+
+```
+## [1] 2
+```
+
+```r
+5 %/% 3
+```
+
+```
+## [1] 1
+```
+]
+
+.pull-right[
+
+```r
+4^3
+```
+
+```
+## [1] 64
+```
+
+```r
+4**3
+```
+
+```
+## [1] 64
+```
+
+```r
+sqrt(4)
+```
+
+```
+## [1] 2
+```
+
+```r
++-4
+```
+
+```
+## [1] -4
+```
+
+```r
+--4
+```
+
+```
+## [1] 4
+```
+]
+
+---
+
+## Operadores 
+
+**Relacionais**: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos `\(V\)` ou `\(F\)`.
+
+Operador| Símbolo	| Comparação | Exemplo no R | Retorno
+:--- | :---: |:---: | :---:
+`\(&gt;\)`	| &gt; |maior que | 7 &gt; 5 | 
+`\(&lt;\)`	| &lt; |menor que |
+`\(\geq\)`| &gt;= | 	maior ou igual |
+`\(\leq\)`| &lt;= |	menor ou igual |
+`\(=\)`	| = |igual|
+`\(\not=\)`| &lt;&gt; |	diferente|
+
+Estes somente são usados para efetuar comparações, as quais só podem ser feitas entre dados do mesmo tipo.
+
+O resultado de uma comparação é sempre um valor lógico. 
 
 
 
@@ -1040,19 +1318,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
