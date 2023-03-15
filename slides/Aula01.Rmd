@@ -1040,9 +1040,7 @@ class: middle, center, inverse
 
 ---
 
-## Operadores 
-
-**Aritméticos**: são as operações aritméticas básicas.
+**Operadores Aritméticos**: são as operações aritméticas básicas.
 
 ```{r, echo=FALSE, out.width="100%", fig.align='center'}
 knitr::include_graphics("img/operadores-aritmeticos.png")
@@ -1092,23 +1090,149 @@ sqrt(4)
 ]
 
 ---
-
-## Operadores 
-
-**Relacionais**: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos $V$ ou $F$.
+**Operadores Relacionais**: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos $V$ ou $F$.
 
 Operador| Símbolo	| Comparação | Exemplo no R | Retorno
 :--- | :---: |:---: | :---:
-$>$	| > |maior que | 7 > 5 | 
-$<$	| < |menor que |
-$\geq$| >= | 	maior ou igual |
-$\leq$| <= |	menor ou igual |
-$=$	| = |igual|
-$\not=$| <> |	diferente|
+$>$	| > |maior que | `7 > 5`  | TRUE 
+$<$	| < |menor que | `7 < 5` | FALSE
+$\geq$| >= | 	maior ou igual | `7 >= 40/5` | FALSE
+$\leq$| <= |	menor ou igual | `7 <= 40/5` | TRUE
+$=$	| = |igual| `4 == 8/2` | TRUE
+$\not=$| <> |	diferente| `4 != 8/2` | FALSE
 
 Estes somente são usados para efetuar comparações, as quais só podem ser feitas entre dados do mesmo tipo.
 
+```{r}
+x <- "Meu Nome"; x == "Meu Nome"
+```
+
+
 O resultado de uma comparação é sempre um valor lógico. 
 
+---
+
+```{r}
+7 > 5 
+7 < 5
+7 >= 40/5
+7 <= 35/5
+4 == 8/2
+4 != 8/2
+```
+
+
+---
+
+**Operadores Lógicos** ou **Booleanos**: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos $V$ ou $F$.
+
+
+Operador	| Tipo	| Operação|	| Prioridade
+:--- | :---: | :---: | :---: | :---:
+NÃO |	Unário	| Negação |	 | 1
+E	| Binário	| Conjunção	|  | 2
+OU	| Binário	| Disjunção	|  | 3
+
+**Exemplos**
+.pull-left[
+```{r}
+! TRUE # Negação
+TRUE & FALSE # Conjunção
+TRUE & TRUE # Conjunção
+```
+]
+
+.pull-right[
+```{r}
+TRUE & FALSE # Disjunção
+TRUE & TRUE # Disjunção
+```
+]
+
+---
+
+## Ordem de prioridades dos operadores
+
+```{r, echo=FALSE, out.width="80%", fig.align='center'}
+knitr::include_graphics("img/ordem-operadores.png")
+```
+
+Observações:
+Operadores de igual prioridade, execução da esquerda para direita.
+Para alterar a ordem de prioridade, utilizar parênteses.
+
+---
+**Exercício**
+
+Imagine que você está parado na beira de um penhasco e deixa cair uma pedra da borda. Assim que você solta a pedra, ela começa a cair em direção ao solo devido à força da gravidade. A aceleração da rocha ao cair é de $9,8$ metros por segundo ao quadrado (m/s²), que é a aceleração da gravidade na Terra.
+
+.pull-left[
+```{r, echo=FALSE, out.width="90%", fig.align='center'}
+knitr::include_graphics("img/holding.jpg")
+```
+]
+
+.pull-right[
+Nessa condição a rocha continuará acelerando até atingir a chamada  velocidade terminal, e então cairá com velocidade constante, pois a força de resistência do ar vai equilibrar a força da gravidade.
+
+]
+---
+
+A velocidade terminal é a velocidade máxima que um objeto pode atingir ao cair através de um fluido, como ar ou água, devido ao equilíbrio entre a força da gravidade e a resistência do fluido. Assim, a fórmula para calcular a velocidade terminal de um objeto em queda é dada pela expressão:
+
+$$
+v_t = \frac{\sqrt{2mg}}{\rho .  A . C_D}
+$$
+Onde:  
+$v_t$ é a velocidade terminal em metros por segundo $(m/s)$;  
+$m$ é a massa do objeto em quilogramas $(kg)$;  
+$g$ é a aceleração da gravidade em metros por segundo ao quadrado $(m/s²)$;  
+$ρ$ é a densidade do fluido em quilogramas por metro cúbico $(kg/m³)$;  
+$A$ é a área da seção transversal do objeto perpendicular à direção do movimento em metros quadrados $(m²)$;  
+$C_D$ é o coeficiente de arrasto, que depende da forma e das propriedades da superfície do objeto.  
+---
+No exemplo da rocha caindo no ar, podemos assumir que a densidade do ar é de aproximadamente $1,21$ kg/m³, e podemos estimar o coeficiente de arrasto para uma rocha esférica em torno de $0,47$.
+Digamos que a rocha tenha uma massa de $1$ quilograma e um raio $r$ de $0,1 metros$. Sabendo que a seção transversal da rocha pode ser calculada por:
+
+A = π.r²
+
+Construa um código em R para calcular a velocidade terminal da pedra, não esqueça de documentar o seu código na forma de um pseudo-código.
+
+```{r, eval=FALSE}
+início
+  // declaração de constantes
+
+  // declaração de variáveis
+
+  //entrada
+
+  //processamento
+
+  //saída
+
+fim.
+```
+
+
+**Resposta**: a velocidade terminal da rocha caindo no ar será de aproximadamente: 
+
+```{r,echo=FALSE}
+## declaração das constantes
+g <- 9.8
+rho <- 1.2
+cd <- 0.47
+
+## declaração das variáveis
+r <- 0.1
+m <- 1
+vt <- 0
+
+## processamento
+A = pi*r^2
+vt <- sqrt((2 * m * g) / (rho * A * cd))
+
+## saída
+cat(round(vt,2), " m/s")
+```
 
 
