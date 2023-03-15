@@ -281,7 +281,7 @@ Em computação, uma linguagem de programação é a ferramenta de **comunicaç�
 knitr::include_graphics("img/linguagens-programacao.png")
 ```
 
---
+---
 
 ## Algoritmo
 
