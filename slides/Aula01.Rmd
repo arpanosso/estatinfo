@@ -65,6 +65,10 @@ Atributos que têm impacto direto sobre a execução lógica de um programa. Exe
 
   + Execução de instruções de modo seqüencial (salvo exceções).
 
+
+```{r, echo=FALSE, out.width="70%", fig.align='center',fig.cap=""}
+knitr::include_graphics("img/computador-memoria.png")
+````
 ---
 # Projeto de computadores atuais
 
