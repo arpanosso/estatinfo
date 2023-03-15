@@ -132,7 +132,7 @@ class: middle, center, inverse
 
   > A realidade é complexa e rica em detalhes! 
 
-```{r, echo=FALSE, out.width="100%", fig.align='center',fig.cap=""}
+```{r, echo=FALSE, out.width="90%", fig.align='center',fig.cap=""}
 knitr::include_graphics("img/tropical-forest.jpeg")
 ```
 ---
@@ -213,8 +213,52 @@ knitr::include_graphics("img/sistema-computacional-prog.png")
 ```
 **Exemplo 1** – Exibir a média de dois números  
 **Exemplo 2** – Exibir se o aluno está aprovado ou reprovado
+---
 
+### Comentário em Programação
 
+Um comentário é um pedaço de texto adicionado ao código para fornecer informações adicionais ou contexto sobre o código para outros desenvolvedores ou para o futuro eu do programador. Os comentários não são executados pelo computador.
+
+Comentar seu código na programação é importante por vários motivos:
+
+**1) Aprimorando a legibilidade do código**: o código bem comentado é muito mais fácil de ler e entender, especialmente para outros programadores que podem estar trabalhando na mesma base de código. 
+
+**2) Facilitando a manutenção e a depuração**: Eles podem ajudar a identificar e isolar problemas, tornando mais fácil corrigi-los.
+
+**3) Documentando o Código**: Eles podem fornecer detalhes sobre como o código funciona, por que certas decisões de design foram tomadas e como usar o código de forma eficaz. 
+
+**4) Colaboração e trabalho em equipe**: ao trabalhar em equipe, comentar seu código pode ser uma forma de se comunicar com os membros da equipe. 
+---
+
+No geral, comentar o código é uma boa prática a ser seguida no desenvolvimento de software, pois pode tornar o código mais fácil de ler, manter,  entender e estudar para você e outras pessoas que possam trabalhar no código no futuro. Esta prática é considerada fundamental para o processo de aprendizado.
+  
+.pull-left[
+Em Pseudo-código o comentário será feito com `\\`.
+
+```{r, eval=FALSE}
+Início
+  \\ Declaração
+  \\ Entrada
+  \\ Processamento
+  \\ Saída
+Fim
+```
+
+]
+  
+.pull-right[
+Em R, o comentário poderá ser feito com `#`.
+```{r}
+# Declaraçaõ de variáveis
+# Entrada
+# Processamento
+# Saída
+```
+
+]  
+  
+  
+  
 ---
 **Exemplo 1** – Exibir a média de dois números
 
