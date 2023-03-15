@@ -23,6 +23,10 @@ output:
 
 >"Computador é um equipamento capaz de aceitar elementos relativos a um problema, submetê-lo a operações predeterminadas e chegar a um resultado."
 
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/laptop.png")
+```
+
 ---
 
 class: center, middle, inverse
@@ -124,14 +128,13 @@ class: middle, center, inverse
 
   > A realidade é complexa e rica em detalhes! 
 
-```{r, echo=FALSE, out.width="70%", fig.align='center',fig.cap=""}
+```{r, echo=FALSE, out.width="100%", fig.align='center',fig.cap=""}
 knitr::include_graphics("img/tropical-forest.jpeg")
 ```
 ---
 
-
 ```{r, echo=FALSE, out.width="200%", fig.align='center',fig.cap=""}
-knitr::include_graphics("img/tropical-forest.jpeg")
+knitr::include_graphics("img/tropical-forest2.jpg")
 ```
 
 ---
