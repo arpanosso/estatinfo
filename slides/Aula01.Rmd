@@ -63,13 +63,15 @@ Atributos que têm impacto direto sobre a execução lógica de um programa. Exe
 
   + Conteúdo da memória é endereçado pela posição;
 
-  + Execução de instruções de modo seqüencial (salvo exceções).
+  + Execução de instruções de modo sequencial (salvo exceções).
 
 
-```{r, echo=FALSE, out.width="70%", fig.align='center',fig.cap=""}
+```{r, echo=FALSE, out.width="60%", fig.align='center',fig.cap=""}
 knitr::include_graphics("img/computador-memoria.png")
-````
+```
+
 ---
+
 # Projeto de computadores atuais
 
   + Base no modelo de John Von Neumann (IAS);
@@ -132,22 +134,36 @@ class: middle, center, inverse
 
   > A realidade é complexa e rica em detalhes! 
 
-```{r, echo=FALSE, out.width="90%", fig.align='center',fig.cap=""}
+```{r, echo=FALSE, out.width="70%", fig.align='center',fig.cap="Floresta tropical."}
 knitr::include_graphics("img/tropical-forest.jpeg")
 ```
 ---
 
-```{r, echo=FALSE, out.width="200%", fig.align='center',fig.cap=""}
+```{r, echo=FALSE, out.width="200%", fig.align='center',fig.cap="Vegetação."}
 knitr::include_graphics("img/tropical-forest2.jpg")
 ```
 
 ---
 
+```{r, echo=FALSE, out.width="200%", fig.align='center',fig.cap="Corpo d'água."}
+knitr::include_graphics("img/tropical-forest3.jpg")
+```
+
+---
+```{r, echo=FALSE, out.width="200%", fig.align='center',fig.cap="Relevo."}
+knitr::include_graphics("img/tropical-forest4.jpg")
+```
+
+--
+
+Qual desses aspéctos mais lhe chamou a atenção?
+
+---
 ## Abstração
 É a operação mental que observa a realidade e captura apenas os aspectos relevantes para um contexto.
 
 --
-```{r, echo=FALSE, out.width="40%", fig.align='center',fig.cap="Uma 'jovem mulher de perfil' ou uma 'senhora olhando para baixo'."}
+```{r, echo=FALSE, out.width="40%", fig.align='center',fig.cap="'."}
 knitr::include_graphics("img/abstraction-1.png")
 ```
 
@@ -176,7 +192,21 @@ Cuidados que devemos ter para não cair em engodos abstrativos
   
   + [negacionismo climático](https://pt.wikipedia.org/wiki/Negacionismo_clim%C3%A1tico)
 
-O [Método Científico](https://pt.wikipedia.org/wiki/M%C3%A9todo_cient%C3%ADfico) é uma "vacina" para isso...
+---
+class: middle, center
+
+# O [Método Científico](https://pt.wikipedia.org/wiki/M%C3%A9todo_cient%C3%ADfico) é uma "vacina" para isso...
+
+---
+class: middle, 
+
+Assim, os objetivos dessa aula serão:
+
+  + apresentar os conceitos básicos para criação de algoritmos que envolvem a abstração do problema, a descrição e a organização dos métodos para sua resolução.
+  
+  + Treinamento do encademamento lógico e organizado do pensamento. 
+  
+  + Aprender a documentar e implementar tais métodos, mesmo que de forma simples, por meio de um ferramental próprio, que poderá ser  lápis e papel, calculadora ou uma linguagem de programação.
 
 ---
 class: center, middle, inverse
@@ -189,8 +219,7 @@ knitr::include_graphics("img/o-mundo-assombrado.png")
 
 ---
 
-### Obstáculos transpostos...vamos á Lua
-
+### Simples resultados da aplicação do método científico
 
 ```{r, echo=FALSE, out.width="45%", fig.align='center', fig.cap="A cientista da computação Margaret Hamilton posa com o software de orientação Apollo que ela e sua equipe desenvolveram no MIT. Estima-se 660.000 linhas de código."}
 knitr::include_graphics("img/margaret-hamilton.png")
@@ -198,6 +227,7 @@ knitr::include_graphics("img/margaret-hamilton.png")
 
 
 Fonte: [NASA](https://solarsystem.nasa.gov/people/320/margaret-hamilton/)
+
 ---
 ## Sistema computacional
 
@@ -230,7 +260,7 @@ Comentar seu código na programação é importante por vários motivos:
 **4) Colaboração e trabalho em equipe**: ao trabalhar em equipe, comentar seu código pode ser uma forma de se comunicar com os membros da equipe. 
 ---
 
-No geral, comentar o código é uma boa prática a ser seguida no desenvolvimento de software, pois pode tornar o código mais fácil de ler, manter,  entender e estudar para você e outras pessoas que possam trabalhar no código no futuro. Esta prática é considerada fundamental para o processo de aprendizado.
+Comentar o código é uma boa prática a ser seguida no desenvolvimento de software, pois pode tornar o código mais fácil de ler, manter,  entender e estudar para você e outras pessoas que possam trabalhar no código no futuro. Esta prática é considerada fundamental para o processo de aprendizado.
   
 .pull-left[
 Em Pseudo-código o comentário será feito com `\\`.
@@ -256,25 +286,38 @@ Em R, o comentário poderá ser feito com `#`.
 ```
 
 ]  
-  
-  
-  
 ---
-**Exemplo 1** – Exibir a média de dois números
+### Identação
+  
+Identar é afastar o texto de sua margem, com espaços ou tabulações, que tem como objetivo criar uma hierarquia entre os blocos das instruções para essaltar ou definir a estrutura do algoritmo.
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/identation.png")
+```
+
+Fonte: [Wikipédia-Identação](https://pt.wikipedia.org/wiki/Indenta%C3%A7%C3%A3o)
+---
+# **Exemplo 1** – Exibir a média de dois números  
+
+
+---
 
 **-Algoritmo-** 
 
-*A orientação da execução das declarações será sempre de  cima para baixo, da esquerda para a direita*
+*OBS: A orientação da execução das declarações será sempre de  cima para baixo, da esquerda para a direita.*
 
-    
-    início  
-      inteiro: x;  
-      inteiro: y;  
-      real: media;   
-      leia(x,y);   
-      media <- (x+y)/2;  
-      escreva(média);  
-    fim. 
+
+```{r, eval=FALSE}
+início  
+  inteiro: x;  
+  inteiro: y;  
+  real: media;   
+  leia(x,y);   
+  media <- (x+y)/2;  
+  escreva(média);  
+fim. 
+```
+
 
 Implementação em R
 ```{r}
@@ -289,15 +332,18 @@ media
 
 Algoritmo - Pseudocódigo
 
-    início  
-      caracter: nome; 
-      inteiro: prova1;  
-      inteiro: prova2;  
-      leia(prova1,prova2);   
-      se ((prova1+prova2)/2 >= 5)  
-        então escreva(nome,":Aprovado(a)"); 
-        senão escreva(nome,": Reprovado(a)"); 
-    fim.
+```{r, eval= FALSE}
+início  
+  caracter: nome; 
+  inteiro: prova1;  
+  inteiro: prova2;  
+  leia(prova1,prova2);   
+  se ((prova1+prova2)/2 >= 5)  
+  então escreva(nome,":Aprovado(a)"); 
+  senão escreva(nome,": Reprovado(a)"); 
+fim.
+```
+
 
 Implementação em R
 
@@ -307,7 +353,7 @@ prova1 <- 5
 prova2 <- 8
 if((prova1+prova2)/2 >= 5 ){
   print(paste0(nome, ": Aprovado(a)"))
-} else {
+}else{
   print(paste0(nome, ": Reprovado(a)"))
 }
 ```
@@ -336,7 +382,7 @@ knitr::include_graphics("img/linguagens-programacao.png")
 
 ## Algoritmo
 
-Seqüência lógica e não ambígua de **instruções** que levam à solução de um problema num tempo finito.
+Sequência lógica e não ambígua de **instruções** que levam à solução de um problema num tempo finito.
 
 
   + As instruções devem ser definidas em uma ordem correta.
@@ -375,14 +421,17 @@ Ex: Qual será o próximo número da sequência $0,1,4,9,16,25$?
 
 Algoritmo - Pseudocódigo
 
-    início
-      inteiro: contador;
-      inteiro: resultado;
-      para contador <- 1 até 10 faça 
-        resultado <- contador * pot(-1, contador);
-        escreva(resultado);
-      fim para
-    fim.
+```{r, eval=FALSE}
+início
+  inteiro: contador;
+  inteiro: resultado;
+  para contador <- 1 até 10 faça 
+    resultado <- contador * pot(-1, contador);
+    escreva(resultado);
+  fim para
+fim.
+```
+
 ---
 **Exemplo 3** – Apresente os números de $1$ a $10$, com os valores ímpares negativos e pares posivitos.
 
@@ -609,6 +658,8 @@ No algoritmo Fahrenheit-Celsius temos:
 
 Num algoritmo para calcular a área de um triângulo temos:
 
+--
+
   + **ENTRADA:** Base e Altura do triângulo  
 
   + **PROCESSAMENTO:** Área = (Base * Altura)/2  
@@ -616,6 +667,7 @@ Num algoritmo para calcular a área de um triângulo temos:
   + **SAÍDA:** Área
 
 --
+
   > Dividir o problema em Entrada, Processamento e Saída irá ajudá-lo a ordenar corretamente as instruções do seus algoritmos.
 
 Por isso, antes de construir um algoritmo, pare para  pensar e identificar:
@@ -699,6 +751,8 @@ Implementação em R
 
 4) Dada uma taxa de câmbio, transformar um valor em Dólar para Reais.
 
+--
+
 ```{r, eval=FALSE}
 Algoritmo dolar-real
 Real: valor_dolar, taxa_cambio, valor_real;
@@ -748,13 +802,22 @@ class: middle, center, inverse
 
 ---
 
-## Identificadores:
+## Identificadores
 
 São nomes únicos definidos pelos programadores para identificar/distinguir os elementos de um algoritmo.
 
+
+--
 ## Palavras Reservadas
 
 São instruções primitivas que têm significados pré-determinados e fazem parte da estrutura de qualquer linguagem de programação.
+
+
+```{r, eval=FALSE}
+if; else for; while; repeat; break; function
+next; NULL; Inf; NA; NaN; TRUE; FALSE; T; F
+```
+
 
 ---
 
@@ -776,7 +839,7 @@ São instruções primitivas que têm significados pré-determinados e fazem par
 
 ## Recomendação
 
-> Você deseja que os nomes de seus objetos sejam descritivos, portanto, precisará adotar uma convenção para várias palavras. Recomendamos snake_case, onde você separa palavras minúsculas com _.
+> Você deseja que os nomes de seus objetos sejam descritivos, portanto, precisará adotar uma convenção para várias palavras. Recomendamos snake_case, onde você separa palavras minúsculas com underline.
 
 ```{r, eval = FALSE}
 i_use_snake_case # chatGPT_to #<<
@@ -841,9 +904,7 @@ km/h
 
 class: middle, center, inverse
 
-# Conceitos Básicos
-
-## Tipos de Dados
+# Tipos de Dados
 
 ---
 
@@ -987,9 +1048,7 @@ l(__) ".F."
 ---
 class: middle, center, inverse
 
-# Conceitos Básicos
-
-## Variável e Constante
+# Variável e Constante
 
 ---
 
@@ -1004,6 +1063,7 @@ Ao trocar o valor de uma constante, todas as instruções que a usam irão manip
 A declaração de uma constate, geralmente é realizada no momento da declaração das variávies no início do programa.
 
 ---
+
 Exemplo de constantes no R:
 
 ```{r}
@@ -1043,9 +1103,7 @@ print(x)
 
 class: middle, center, inverse
 
-# Conceitos Básicos
-
-## Expressões
+# Expressões
 
 ---
 
@@ -1084,9 +1142,7 @@ RETORNO: $VERDADEIRO$
 
 class: middle, center, inverse
 
-# Conceitos Básicos
-
-## Operadores
+# Operadores
 
 
 ---
