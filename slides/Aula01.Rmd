@@ -1288,7 +1288,7 @@ Nessa condição a rocha continuará acelerando até atingir a chamada  velocida
 A velocidade terminal é a velocidade máxima que um objeto pode atingir ao cair através de um fluido, como ar ou água, devido ao equilíbrio entre a força da gravidade e a resistência do fluido. Assim, a fórmula para calcular a velocidade terminal de um objeto em queda é dada pela expressão:
 
 $$
-v_t = \frac{\sqrt{2mg}}{\rho .  A . C_D}
+v_t = \sqrt{\frac{2mg}{\rho .  A . C_D}}
 $$
 Onde:  
 $v_t$ é a velocidade terminal em metros por segundo $(m/s)$;  
