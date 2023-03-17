@@ -49,7 +49,7 @@ Atributos que têm impacto direto sobre a execução lógica de um programa. Exe
 
  + Número de bits usados para representar os vários tipos de dados (caracteres 2b ou 4b);
 
- + Mecanismos de E/S (Entrada e Ssaída);
+ + Mecanismos de E/S (Entrada e Saída);
 
  + Técnicas de endereçamento à memória.
 
@@ -204,9 +204,9 @@ Assim, os objetivos dessa aula serão:
 
   + apresentar os conceitos básicos para criação de algoritmos que envolvem a abstração do problema, a descrição e a organização dos métodos para sua resolução.
   
-  + Treinamento do encademamento lógico e organizado do pensamento. 
+  + Treinamento do encadeamento lógico e organizado do pensamento. 
   
-  + Aprender a documentar e implementar tais métodos, mesmo que de forma simples, por meio de um ferramental próprio, que poderá ser  lápis e papel, calculadora ou uma linguagem de programação.
+  + Aprender a documentar e implementar tais métodos, mesmo que de forma simples, por meio de um ferramental próprio, que poderá ser: lápis e papel, calculadora ou uma linguagem de programação.
 
 ---
 class: center, middle, inverse
@@ -260,10 +260,10 @@ Comentar seu código na programação é importante por vários motivos:
 **4) Colaboração e trabalho em equipe**: ao trabalhar em equipe, comentar seu código pode ser uma forma de se comunicar com os membros da equipe. 
 ---
 
-Comentar o código é uma boa prática a ser seguida no desenvolvimento de software, pois pode tornar o código mais fácil de ler, manter,  entender e estudar para você e outras pessoas que possam trabalhar no código no futuro. Esta prática é considerada fundamental para o processo de aprendizado.
+Comentar o código é uma boa prática a ser seguida no desenvolvimento de software, pois pode tornar o código mais fácil de ler, manter, entender e estudar para você e outras pessoas que possam trabalhar no código no futuro. Esta prática é considerada fundamental para o processo de aprendizado.
   
 .pull-left[
-Em Pseudo-código o comentário será feito com `\\`.
+Em Pseudocódigo o comentário será feito com `\\`.
 
 ```{r, eval=FALSE}
 Início
@@ -279,7 +279,7 @@ Fim
 .pull-right[
 Em R, o comentário poderá ser feito com `#`.
 ```{r}
-# Declaraçaõ de variáveis
+# Declaração de variáveis
 # Entrada
 # Processamento
 # Saída
@@ -289,7 +289,7 @@ Em R, o comentário poderá ser feito com `#`.
 ---
 ### Identação
   
-Identar é afastar o texto de sua margem, com espaços ou tabulações, que tem como objetivo criar uma hierarquia entre os blocos das instruções para essaltar ou definir a estrutura do algoritmo.
+Identar é afastar o texto de sua margem, com espaços ou tabulações, que tem como objetivo criar uma hierarquia entre os blocos das instruções para ressaltar ou definir a estrutura do algoritmo.
 
 ```{r, echo=FALSE, out.width="100%", fig.align='center'}
 knitr::include_graphics("img/identation.png")
@@ -304,7 +304,7 @@ Fonte: [Wikipédia-Identação](https://pt.wikipedia.org/wiki/Indenta%C3%A7%C3%A
 
 **-Algoritmo-** 
 
-*OBS: A orientação da execução das declarações será sempre de  cima para baixo, da esquerda para a direita.*
+*OBS: A orientação da execução das declarações será sempre de cima para baixo, da esquerda para a direita.*
 
 
 ```{r, eval=FALSE}
@@ -387,11 +387,11 @@ Sequência lógica e não ambígua de **instruções** que levam à solução de
 
   + As instruções devem ser definidas em uma ordem correta.
  
-  + A sequência lógica e as instruções não  devem dar margem à dupla interpretação.
+  + A sequência lógica e as instruções não devem dar margem à dupla interpretação.
 
   + A sequência lógica deve resolver exatamente (nem mais e nem menos) o problema identificado.
 
-  + A seqüência lógica não deve possuir iterações infinitas.
+  + A sequência lógica não deve possuir iterações infinitas.
 
 
 ---
@@ -401,7 +401,7 @@ Sequência lógica e não ambígua de **instruções** que levam à solução de
   + Coreografia
   + Manuais de instalação
 
-### Contra-exemplos de algoritmos
+### Contraexemplos de algoritmos
   + Listas de compras
   + Dança informal
   + Índice remissivo de um livro
@@ -417,7 +417,7 @@ Tarefas que possuem **“padrão de comportamento”** podem ser descritas por u
 Ex: Qual será o próximo número da sequência $0,1,4,9,16,25$?
 
 ---
-**Exemplo 3** – Apresente os números de $1$ a $10$, com os valores ímpares negativos e pares posivitos.
+**Exemplo 3** – Apresente os números de $1$ a $10$, com os valores ímpares negativos e pares positivos.
 
 Algoritmo - Pseudocódigo
 
@@ -433,7 +433,7 @@ fim.
 ```
 
 ---
-**Exemplo 3** – Apresente os números de $1$ a $10$, com os valores ímpares negativos e pares posivitos.
+**Exemplo 3** – Apresente os números de $1$ a $10$, com os valores ímpares negativos e pares positivos.
 
 Implementação em R
 
@@ -469,7 +469,7 @@ x <- 2; y <- 3; x*y
 ```
 ]
 
-Ambas as intruções retornam o mesmo valor, $6$.
+Ambas as instruções retornam o mesmo valor, $6$.
 
 ---
 ## Lógica de Programação
@@ -561,7 +561,7 @@ Características:
 
   +	De fácil entendimento, porém, imprecisa.  
   +	Pouca confiabilidade.  
-  +	Extensão (normalmente,  escreve-se  muito para dizer pouca coisa).  
+  +	Extensão (normalmente, escreve-se muito para dizer pouca coisa).  
 
 ---
 
@@ -569,7 +569,7 @@ Características:
 
 Características:  
 
-•	Padrão mundial, ferramente bastante conhecida, pois as figuras dizem muito mais que palavras, porém, a representação complica-se à medida que o algoritmo cresce.  
+•	Padrão mundial, ferramenta bastante conhecida, pois as figuras dizem muito mais que palavras, porém, a representação complica-se à medida que o algoritmo cresce.  
 •	Pouca atenção aos dados, não oferecendo recursos para declará-los.
 
 Principais símbolos:
@@ -591,7 +591,7 @@ knitr::include_graphics("img/fluxograma-far.png")
 
 ---
 
-### Representação por Linguagem algorítmica (pseudo-código)
+### Representação por Linguagem algorítmica (pseudocódigo)
 
 A forma geral de um algoritmo em pseudocódigo:
 
@@ -611,7 +611,7 @@ Características:
 
 ---
 
-## Pseudo-código do algoritmo Fahrenheit-Celsius
+## Pseudocódigo do algoritmo Fahrenheit-Celsius
 
     Algoritmo Fahrenheit-Celsius
     Real: Fahrenheit, Celsius;
@@ -670,7 +670,7 @@ Num algoritmo para calcular a área de um triângulo temos:
 
   > Dividir o problema em Entrada, Processamento e Saída irá ajudá-lo a ordenar corretamente as instruções do seus algoritmos.
 
-Por isso, antes de construir um algoritmo, pare para  pensar e identificar:
+Por isso, antes de construir um algoritmo, pare para pensar e identificar:
 
 Que dados preciso para começar? – **Entrada**  
 Quais são os cálculos e decisões? – **Processamento**
@@ -920,9 +920,9 @@ Real | Representa o conjunto de números reais | 3.14, 2.455, -9.88
 Caracter | Representa um ou mais caracteres do teclado | "Oi Mundo"
 Lógico | Representa valor lógico (Verdadeiro ou Falso) | TRUE, FALSE
 
-**OBS**: Um Caractere **SEMPRE** deve estar entre áspas "   "
+**OBS**: Um Caractere **SEMPRE** deve estar entre aspas "   "
 
-Todos os exempor abaixo serão conseiderados do tipo caractere: 
+Todos os exemplos abaixo serão considerados do tipo caractere: 
 
 "A"   
 "Discente",  
@@ -1060,7 +1060,7 @@ Seu uso poupa tempo quando tem que alterar o seu valor no algoritmo.
 
 Ao trocar o valor de uma constante, todas as instruções que a usam irão manipular, automaticamente, o novo valor.
 
-A declaração de uma constate, geralmente é realizada no momento da declaração das variávies no início do programa.
+A declaração de uma constate, geralmente é realizada no momento da declaração das variáveis no início do programa.
 
 ---
 
