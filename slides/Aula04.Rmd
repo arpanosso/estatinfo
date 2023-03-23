@@ -1,13 +1,13 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula03.html")
+# pagedown::chrome_print("slides/Aula04.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
-subtitle: "Aula 03 - Somatória e Análise Combinatória"
+subtitle: "Aula 04 - Distribuição de Frequência"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(12-05-2022)"
+date: "(18-05-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -21,463 +21,875 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
-# SOMATÓRIA
-
----
-## Definições
-
-**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas $X$, $Y$, $Z$.
-
-O conjunto de dados terá a o tamanho $n$, que representa o número de elementos que ele contém. Em outras palavras, $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
-
-os valores específicos assumidos por tais variáveis (suas realizações) serão representados pelas letras minúsculas $x$, $y$ e $z$, respectivamente, seguidas de um índice $i$ que representa a posição daquele valor específico dentro do conjunto de dados. 
-
-Assim, para distinguir um valor do outro, utilizamos esse índice  $i$, que pode ser entendido como uma variável auxiliar, utilizada para contage, que se inicia na posição $1$ e termina na posição $n$, abrangendo todo o seu conjunto de dados.
-
-Assim temos:
-
-$Altura: X = \{x_1, x_2, ..., x_n\}, \text{ com  }i = 1,2,..,n.$
-
-$Idade: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).$
-
-$Peso: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).$
-
-Nessa notação um valor típico da variável *Altura*, será designado por $x_i$ e o valor final por $x_n$. 
-
----
-
-## Somatória
-
-Ao realizar a análise de uma variável quantitativa (numérica) é necessário somarmos todos os seus valores valores. 
-
-Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
-
-Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega sigma maiúscula $\Sigma$:
-
-Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses 5 valores:
-
-$x_1 + x_2 + x_3 + x_4 + x_5$
-
-será representada pela notação:
-
-$\sum\limits_{i=1}^{n}{x_i}$ ou $\sum_{i=1}^{n}{x_i}$
-
-onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos $5$ valores  de $X$.
-
----
-Dado duas variáveis  $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
-
-.pull-left[
-$\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24$
-]
-
-.pull-right[
-
-```{r, echo=TRUE, eval=FALSE}
-X <- c(3,0,5,9,7)
-sum(X)
-```
-]
-
-Ao invés da soma ser com os índices $i$ de 1 a $n$, podemos ter, por exemplo:
-.pull-left[
-
-$\sum\limits_{i=2}^{4}{y_i} = 3+9+1 = 13$
-]
-
-.pull-right[
-
-```{r, echo=TRUE, eval=FALSE}
-Y <- c(2,3,9,1,2)
-sum(Y[2:4])
-```
-]
-
-.pull-left[
-Observe que:
-
-$\sum\limits_{i=1}^{n}{x_i}^2 \neq \left( \sum\limits_{i=1}^{n}{x_i} \right)^2$
-
-uma vez que:
-
-$3^2+0^2+5^2+9^2+7^2 \neq  (3+0+5+9+7)^2$
-
-$9+0+25+81+49 \neq  (24)^2$
-
-$164 \neq  576$
-]
-
-.pull-right[
-
-
-```{r, echo=TRUE, eval=FALSE}
-sum(X^2)
-sum(X)^2
-```
-
-]
-
----
-Qual a soma do produto entre as variáveis $X$ e $Y$:
-
-Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
-
-$\sum\limits_{i=1}^{n}{x_iy_i}$
-
-$\sum\limits_{i=1}^{n}{x_i y_i}= x_1 \cdot y_1 + x_2 \cdot y_2 + x_3 \cdot y_3 + x_4 \cdot y_4 + x_5 \cdot y_5$
-
-$\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot (2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot(1) + 7 \cdot(2)$
-
-$\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
-
-
-```{r, echo=TRUE, eval=FALSE}
-sum(X*Y)
-```
-
----
-
-No Excel
-
-```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarprod_excel.png")
-```
----
-
-## Propriedades da Somatória
-    
-**i)** A somatória de uma constante $(k)$ é igual ao produto  $n \cdot k$.
-
-$\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k$
-
---
-
-**ii)** A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
-
-$\sum\limits_{i=1}^{n}{k \cdot x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
-
---
-
-**iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
-
-$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)$
-
-
-$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n) =(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)$
-
-
-$\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}$
-
----
-
-## Exercícios
-
-1) Calcular: $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
-
-
-2) Dado a média sendo: 
-
-$\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
-
-Provar que:
-
-$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
-
----
-
-### Resposta
-
-1) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
-
---
-
-$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{ k \cdot x_i} + \sum\limits_{i=1}^{n}k$
-
---
-
-$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{k \cdot x_i} + \sum\limits_{i=1}^{n}k$
-
---
-
-$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = k \cdot \sum\limits_{i=1}^{n}{x_i} + n \cdot k$
-
-
----
-
-### Resposta
-
-2) Dado: $\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$, 
-
---
-
-$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}$
-
---
-
-$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}$
-
---
-
-$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
-
---
-
-$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
-
+# Distribuição de Frequência
+# e
+# Visualização de Dados
 ---
 class: middle, center, inverse
 
-# ANÁLISE COMBINATÓRIA E MÉTODOS DE NUMERAÇÃO
+## Pré-requisito: Instalação de Patocotes no R
+
+<iframe width="753" height="380" src="https://www.youtube.com/embed/is32jC4LRjA?list=PLkhAqI7pygoYy6zhepFnF7KDK5jJSQUEv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+https://youtu.be/is32jC4LRjA
+
+---
+## Distribuição de frequência de uma variável
+
+Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
+
+Nesse sentido, o objetivo dessa aula será apresentar as principais formas e visualização gráfica de variáveis quali e quantitativas. 
+
+**Exemplo:** Considerando os [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) amostrados das turmas de Estatísticas temos:
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>
 
 ---
 
-### Exemplo Prático
+## Carregando os dados no R
+Para carregar o banco de dados da turma no R, siga os passos:  
+1.Faça o Download dos [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
 
-Imaginemos uma situação prática onde temos um rebanho com $100$ animais contendo $20$ indivíduos doentes e, consequentemente, $80$ não doentes (sadios). 
-
-<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 25%"></img>
-
-1) Quais as probabilidade de, em uma amostra aleatória simples sem reposição de $3$ animais, selecionarmos:
-a) nenhum doente, consequentemente, $3$ animais sadios?  
-b) $1$ doente e $2$ sadios?  
-c) $2$ doentes e $1$ sadios?  
-d) $3$ doentes  
-
-2) Construir o gráfico dessas probabilidade de cada evento eixos $(Y)$ pelo nº animais doentes na amostra eixo $(X)$.
-
-
----
-## Probabilidade e Análise Combinatória
-
-A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número 5 sair no lançamento de um dado. Ou no lançamento de 4 moedas, sair pelo menos uma face **Cara**.
+2.Salve em uma pasta do seu computador (no exemplo o documento será salvo na pasta "*Downloads*").
 
 .pull-left[
-<img src="https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?cs=srgb&dl=pexels-pixabay-37534.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>]
+<img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ]
 
 .pull-right[
-<img src="https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?cs=srgb&dl=pexels-pixabay-210600.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>]
 
+3.Na aba **Environment** do RStudio selecione **Import Dataset/From Excel...** como apresentado abaixo.
 
-A partir disso, a probabilidade é determinada pela razão entre o número de eventos possíveis e o número de eventos favoráveis, sendo apresentada pela seguinte expressão:
-
-$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}}$$
-
-onde $P(E)$ é a probabilidade de ocorrência do evento $E$.
-
-
----
-Assim, para respondermos a quetão da amostragens de animais doentes, precisaremos calcular:
-
-#### $\text{nº de resultados favoráveis}$
-
-Ou seja, de quantas maneiras poderemos escolher, por exemplo, $2$ animais do total de $20$ doentes e $1$ do total de $80 $animais sadios.
-
-#### $\text{nº total de resultados possíveis}$
-
-De quantas maneiras poderemos escolher $3$ animais (independentemente de serem sadios ou doentes) em um total de $100$ animais.
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ]
 
 ---
 
-## Análise Combinatória
+4.Selecione **Browse** (destacado em vermelho no canto direito superior).
 
-Portanto, para calcularmos a probabilidade do evento (escolher $2$ animais doentes e $1$ sadio), faz-se necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (*Permutações*, *Arranjos* e *Combinações*).
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> 
+---
+5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*Downloads"*,  selecione o arquivo e clique em **Open**.
 
-### Princípio Fundamental da Contagem
-
-O princípio fundamental da contagem, também chamado de princípio multiplicativo, postula que:
-
- >“quando um evento é composto por $n$ etapas sucessivas e **independentes**, de tal modo que as possibilidades da primeira etapa é $x$ e as possibilidades da segunda etapa é $y$, o número total de possibilidades do evento ocorrer é dado pelo produto $x \cdot y$”.
-
-Em resumo, no princípio fundamental da contagem, multiplica-se o número de opções independentes entre as escolhas que lhe são apresentadas.
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
 
 ---
+6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, selecione e copie os código para a importação dos dados. Após isso **CLIQUE EM CANCEL**. 
 
-**Exemplos**
-
-1. Em um restaurante, há $5$ aperitivos no *menu*, $10$ entradas principais e $4$ sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
-
---
-
-2. Quantos códigos numéricos de $5$ caractéres são possíveis se:  
-(a) não há restrições?  
-(b) o primeiro dígito não pode ser $0$?  
-(c) nenhuma repetição é permitida?  
-(d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
-
---
-
-3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média $435$ milhões senhas por segundo:   
-
---
-  a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
-
---
-  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com $9$ dígitos?
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
 
 ---
-## Permutações
+7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções da aba **Packages/Install** ou com o comando `install.packages("readxl")`.
 
-Quando estamos preocupados em responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos $n$ objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
-
-Dado o conjunto de letras $L=\{a, b, c\}$, de quantas maneiras podemos permutá-las?
-
---
-
-${a,b,c}$     
-${a,c,b}$  
-${b,a,c}$     
-${b,c,a}$  
-${c,a,b}$     
-${c,b,a}$  
-
---
-
-Equivale em colocar os elementos dentro de caixas com $n$ compartimentos em alguma ordenação. 
-
-E como consequência do princípio da multiplicação, as possibilidades de inserção dentro  de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente:
-
----
-
-## Permutações
-
-```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
+```{r, eval=FALSE}
+library(readxl)
+dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
+View(dados_turmas)
 ```
 
-$$n! = n \cdot (n-1) \cdot (n-2) \cdots (2) \cdot (1)$$
-$$3! = 3 \cdot (3-1) \cdot(3-2) = 3 \cdot 2 \cdot 1 = 6$$
+```{r,echo=FALSE}
+`%>%` <- magrittr::`%>%`
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+dados_turmas <- read_excel("../data/dados_turmas.xlsx")
+```
 
-Exemplos:
-
-1. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7?
-
-2. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo $6$ seja imediatamente seguido pelo algarismo $7$?
-
-3. Três $(03)$ chineses, $04$ americanos e $05$ italianos serão dispostos em fila de modo que as pessoas da mesma nacionalidade estejam sempre juntas. De quantas maneiras a fila poderá ser formada, de modo que o primeiro da fila sempre seja um italiano?
+<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
 
 ---
-## Arranjos
+### Tamanho da População $(N)$  
+O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas vezes não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
+### Tamanho da amostra $(n)$  
+É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 
-O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ elemntos e vamos tomar $r$ amostras desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
-
-```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png")
+```{r,eval=TRUE}
+library(tidyverse) # não esqueça de instalar o tidyverse para ter o glimpse
+glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
 ```
 
 
-$A^n_r= \frac{n!}{(n-r)!}$
-
---
-
-1) A senha de uma conta bancária é formada de $6$ números ou de $4$ números dentre os números de $0$ a $9$, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
-
-Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza $6$ números, e no banco Santander que utiliza $4$ números, seguindo o conselho dos gerentes?
-
-2) Quantos números de $4$ algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
-
 ---
+### Exemplo da base de dados das turmas 
 
-## Combinações 
+Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas $(n_i)$, relativas $(f_i)$ e a porcentagem $(perc)$ para as categoria existentes. 
 
-Semelhante aos arranjo, nas **Combinações** temos $n$ elementos e vamos amostrar $r$ elementos $(0<r<n)$, e estamos interessados em contar de quantas maneiras poderemos **combinar** os $r$ elementos amostrados, nesse caso **a ordem** com a qual os elementos são amostrados **NÃO IMPORTA** para a contagem.
+Após isso, realizar a visualização de dados com gráficos de Colunas, Barras e Setores (Pizza ou *Pie*).
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png")
-```
-
-Assim, teremos que descontar dos Arranjos de $r$ elementos as permutações desses $r$ elementos, para isso, basta dividirmos os Arranjos por $r!$ ou seja $C^n_r={r \choose x}$.
-
----
-
-## Combinações
-
-Voltando para o exemplo do rebanho composto por $100$ animais, onde temos $20$ indivíduos doentes e $80$ sadios, vamos calcular a probabilidade de em uma amostra de $3$ animais selecionarmos $2$ animais doentes e $1$ animais sadios:
-
-#### $\text{nº de resultados favoráveis}$
-
-Ou seja, de quantas maneiras poderemos escolher $2$ animais do total de $20$ doentes e $1$ dos $80$ sadios?
-
-$C^{20}_2 \cdot C^{80}_1 = {20 \choose 2} \cdot {80 \choose 1}$
-
-$C^{20}_2 \cdot C^{80}_1  = \frac{20!}{2!(20-2)!} \cdot \frac{80!}{1!(80-1)!}$
-
-$C^{20}_2 \cdot C^{80}_3  = 190 \cdot 80$
-
-$C^{20}_2 \cdot C^{80}_3  = 15200$
----
-
-#### $\text{nº total de resultados possíveis}$
-
-Devemos calcular agora de quantas maneiras poderemos escolher $3$ animais (independente de serem sadios ou doentes) em um total de $100$ animais.
-
-$C^{100}_3 = {100 \choose 3}$
-
-$C^{100}_3 = \frac{100!}{3!(100-3)!}$
-
-$C^{100}_3  = 161700$
-
-Finalmente, a probabilidade do evento, amostrar $2$ indivíduos doentes e $1$ sadio será:
-
-$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15200}{161700}=0,094 \text{ ou } 9,40\%$$
-
-Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de 5 animais tomarmos:
-
-a) nenhum animal doente (todos sadios).  
-b) 01 doente e 02 sadios.  
-c) 02 doentes e 01 sadios.  
-d) todos doentes.
-
----
-
-## Distribuição de Probabilidade 
-
-Essa fórmula que acbamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
-
-Considere uma população com $N$ objetos nos quais $M$ são classificados como do tipo $A$ e $N−M$ são classificados como do tipo $B$. Tomamos uma amostra ao acaso, **sem reposição** e não ordenada de $r$ objetos. Seja $X$ a variável que conta o número de objetos classificados como do tipo $A$ na amostra. Então a distribuição de probabilidade de $X$ será dada por:
-
-$$P(X = x) = \frac{ {M \choose x} \cdot { {N-M} \choose {r - x} } } { {N \choose r}}$$
-Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
-
-```{r,echo=TRUE,eval=FALSE}
-N = 100 # Número total de elementos na população
-M = 20 # número total de elementos de interesse (doentes) na população
-r = 3 # tamanho da amostra.
-x=0:r # os possiveis valores de doentes na amostra.
-px<-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
-barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.65),
-        xlab="nº de doentes na amostra",ylab="P(X=x)",main="X~Hgeo(20,100,3)")
-text(1:length(x),px+.05,round(px*100,2))
-```
-
----
-class: middle, center
-## Distribuição Hipergeométrica
+Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%>%`) feito com o atalho `CTRL + SHIFT + M`. Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias de `sexo`
 
 
 .pull-left[
 ```{r}
-N = 100 # número total de elementos
-M = 20 # número total de elementos de interesse (doentes)
-r = 3 # tamamho da amostra
-x=0:r # os possiveis valores de doentes na amostra
-px<-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
-barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.65),
-        xlab="nº de doentes na amostra",ylab="P(X=x)",main="X~Hgeo(20,100,3)")
-text(seq(.7, length(x)+1, 1.2),px+.05,round(px,2))
+tab <- dados_turmas %>%
+        group_by(sexo) %>% #<<
+        summarise(ni=n()) #<<
+tab
 ```
 ]
 
 .pull-right[
-```{r}
-tibble::tibble(x,px)
+- `group_by()` a grupa as categorias da variável `sexo`.
+- `summarise()` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
+
+]
+---
+
+No R, para facilitar o processo de contagem poderíamos ordenar os dados por sexo:
+```{r, eval=FALSE}
+dados_turmas %>% 
+  arrange(sexo) +
+  View()
 ```
 
-**OBS**: O número de doentes da amostra de $3$ animais pode variar de 0 a 3, ao conjunto dessas possibilidades denominamos espaço amostral (letras $\Omega$ ou $S$), com a soma de suas probabilidades é sempre igual a $1$:
 
-$\sum \limits_{x=0}^r P(x_i) = 1$
+No Excel, primeiramente selecionamos os dados, clicamos em **Dados\Classificar** e na janela que se segue clicamos em **Adicionar Nível** e em **Classifcar por**, escolhemos `sexo` e em **OK**. 
 
+```{r,echo=FALSE,out.width = "100%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/arrange_sexo.png")
+```
+---
+
+### Frequência Absoluta $(n_i)$
+
+É definida como o número de realizações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
+
+Então temos:
+
+$n_F = 17$ e,
+
+$n_M = 32$
+ 
+Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes $(k)$ da variável cetegória é igual a $n$. 
+
+$$
+\sum \limits_{i=1}^{k}{n_i} = n
+$$
+
+Onde $k$ é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
+
+$$
+\sum \limits_{i=1}^{k}{n_i} = 17+32=49
+$$
+
+---
+
+### Frequência Relativa $(f_i)$ ou proporção
+
+É definida como a proporção de cada realização em relação ao **Total de observações** $(n)$, ou seja:
+
+$$
+f_i = \frac{n_i}{n}
+$$
+Vamos, mais uma vez, utilizar o R para esses cálculos.
+
+.pull-left[
+```{r, echo = TRUE, eval=TRUE}
+tab <-dados_turmas %>%
+        group_by(sexo) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni)) #<<   
+tab
+```
+
+- `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna $n_i$, no caso a frequência relativa $f_i$.
+
+]
+
+.pull-right[
+Portanto:
+$f_F = \frac{17}{49}=0,347$ e   $f_M = \frac{32}{49}=0,653$
+
+Assim, temos que a soma das frequências relativas sempre é igual a $1$: 
+
+$\sum \limits_{i=1}^{k} f_i = 1$
+
+onde $k$ é o número de categorias da variável `sexo`, ou seja, $2$.
+]
+---
+
+### Porcentagem de frequência $(perc \text{ ou %})$
+
+Definida como o resultado da multiplicação da frequência relativa (proporção) por 100.
+
+
+```{r, echo = TRUE, eval=TRUE}
+tab<-dados_turmas %>%
+      group_by(sexo) %>% 
+      summarise(ni=n()) %>%      # Frequência Absoluta
+      mutate(fi = ni/sum(ni),    # Frequência Relativa
+             perc = fi*100)      #<<
+tab
+```
+
+**OBS**: A soma das Porcentagens de frequência é igual a $100\%$.
+
+A partir da tabela de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
+
+Essa etapa é a denominada de **Visualização de Dados**. 
+
+---
+class: middle, center, inverse
+
+# VISUALIZAÇÃO DE DADOS
+###(Variáveis Qualitativas)
+
+---
+## Visualização dos dados
+
+Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos os gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
+
+Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. Observe que os gráficos serão construídos a partir do objeto `tab` anteriormente definido. 
+
+O ggplot funciona na forma de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
+
+### Gráfico de Colunas para Sexo
+
+Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
+
+```{r, plot1, eval=FALSE}
+tab %>% 
+  ggplot(aes(x=sexo, y=fi)) + 
+  geom_col()
+```
+
+---
+### Gráfico de Colunas para Sexo
+
+```{r, plot1, echo = FALSE}
+```
+
+---
+### Gráfico de Barras para Sexo
+
+Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias.
+
+
+.pull-left[
+```{r, plot2, eval=FALSE}
+tab %>% 
+  ggplot(aes(x=fi,y=sexo)) + 
+  geom_col(fill="aquamarine4", #<< 
+           color="black") #<<
+```
+- o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra e o argumento `color="black"` permite a alteração da cor o contorno das barras. Outras cores são possíveis tente algumas [das cores no R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
+]
+
+.pull-right[
+```{r, plot2, echo = FALSE}
+```
+]
+
+---
+### Gráfico de Setores para Sexo
+
+Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categoras da variável em uma circunferência.
+
+.pull-left[
+```{r, plot3, eval=FALSE}
+tab %>% 
+  ggplot(aes(x="",y=fi, fill=sexo)) + 
+  geom_bar(stat="identity") + #<<
+  coord_polar("y", start=0) + #<<
+  theme_void() #<<
+```
+- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
+
+- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
+]
+
+.pull-right[
+```{r, plot3, echo = FALSE}
+```
+]
+---
+#### Vamos Adicionar os valores de $fi$ no gráfico
+
+.pull-left[
+```{r, plot3_1, eval=FALSE}
+tab %>%
+  ggplot(aes(x="",y=fi, fill=sexo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+  geom_text(
+    aes(
+      label=paste0(round(perc), "%")), #<<
+      position=position_stack(vjust = 0.5)) #<<
+```
+]
+
+.pull-right[
+```{r, plot3_1, echo = FALSE}
+```
+]
+---
+## Tabela de Frequência para a variável Cor de cabelo
+
+
+Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. Observe que esse é o mesmo código daquele apresentado no slide 13, mas com o nome da coluna `cor_cabelo` ao invés de `sexo` dentro da função `group_by()`.
+
+
+```{r, eval=TRUE}
+tab<-dados_turmas %>%
+      group_by(cor_cabelo) %>% #<< 
+      summarise(ni=n()) %>%      
+      mutate(fi = ni/sum(ni),    
+             perc = fi*100)      
+tab
+```
+
+---
+
+### Gráfico de Colunas para Cor de cabelo
+
+.pull-left[
+```{r, plot4, eval=FALSE}
+tab %>% 
+  ggplot(aes(x=cor_cabelo,y=fi,
+             fill=cor_cabelo)) + #<<
+  geom_col(color="black")+
+  theme_bw() #<<
+```
+- ao passarmos o argumento `fill=cor_cabelo` dentro da função `aes()` estamos pedindo o mapeamento das cores de cabelo a partir de cores de preeenchimento diferentes.
+
+- `aes()` representa a estética do gráfico, ou seja, quem é x, quem é y e quem deve ser mapeado.
+
+- a função `theme_bw()` muda o padrão de cores e de linhas do gráfico. Existem outros padrões como `theme_classic`, `theme_minimal` entre outros.
+]
+
+.pull-right[
+```{r, plot4, echo = FALSE}
+```
+
+]
+---
+
+### Gráfico de Barras para Cor de cabelo
+
+.pull-left[
+```{r, plot5, eval=FALSE}
+tab %>% 
+  ggplot(aes(x=fi, y=cor_cabelo,
+             fill=cor_cabelo)) + 
+  geom_col(color="black")+
+  scale_fill_manual(values = c("salmon4",
+                               "burlywood4",
+                               "orange4",
+                               "gold2",
+                               "black"))+
+  theme_minimal()
+```
+- utilize a função `scale_fill_manual()` para alterar as cores dos preenchimentos, se necessário.
+
+]
+
+.pull-right[
+```{r, plot5, echo = FALSE}
+```
+]
+
+---
+### Gráfico de Setores para cor_cabelo
+
+.pull-left[
+```{r, plot6, eval=FALSE}
+tab %>% 
+  ggplot(aes(x="", y=fi, 
+             fill=cor_cabelo)) + 
+  geom_bar(stat="identity",color="black") +
+  coord_polar("y", start=0) +
+  theme_void()
+```
+]
+
+.pull-right[
+```{r, plot6, echo = FALSE}
+```
+]
+
+---
+
+#### Vamos Adicionar os valores de $perc$ no gráfico
+
+.pull-left[
+```{r, plot6_1, eval=FALSE}
+tab %>%
+  ggplot(aes(x="",y=fi, fill=cor_cabelo)) +
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) +
+  theme_void() +
+  geom_text(
+    aes(
+      label=paste0(round(perc), "%")), #<<
+      position=position_stack(vjust = 0.5)) #<<
+```
+
+]
+
+.pull-right[
+```{r, plot6_1, echo = FALSE}
+```
+]
+---
+class: middle, center, inverse
+
+# VISUALIZAÇÃO DE DADOS
+###(Variáveis Quantitativas)
+
+---
+## Tabela de frequência e visualização para Idade em anos (discreta)
+
+Quando a variável  for quantitativa discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, também recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função distribuição acumulada`.
+
+Pra a variável `idade_anos` vamos criar a tabela de frequência;
+
+.pull-left[
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+        group_by(idade_anos) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni),    
+             perc = fi*100)    
+View(tab)
+```
+]
+
+.pull-right[
+```{r,echo=FALSE}
+tab<-dados_turmas %>%
+        group_by(idade_anos) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni),    
+             perc = fi*100)  
+kableExtra::kable(tab)
+```
+]
+
+
+---
+## Gráfico Boxplot
+.pull-left[
+Conhecido como gráfico dos 5 números representa um resumos dos valores *mínimo*, *primeiro quartil*, *mediana*, *terceiro quartil* e *máximo* de uma variável. É  construído a partir de `geom_boxplot()`. 
+
+Observe que dentro da função `ggplot()` não é necessário passar o `x`, somente é atribuído a `y` a variável discreta `idade_anos`.
+
+```{r, plot7, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(y=idade_anos)) +
+  geom_boxplot()
+```
+]
+
+.pull-right[
+```{r,plot7,echo=FALSE}
+```
+
+]
+
+---
+- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a **amplitude interquartil** (IIQ). 
+- No meio da caixa há uma linha que exibe a **mediana**, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
+- Pontos visuais que exibem observações são aqueles que cairam em mais do que $1,5$ vezes o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
+- Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
+
+
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura)) +
+  geom_boxplot(fill="lightgray")+theme_minimal()+
+  coord_cartesian(ylim=c(-1,1))
+```
+
+---
+Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`. Utilize `fill` para controlar a cor de preenchimento da caixa, e as opções `outlier.` para controlar tamanhos, formas, cores e preenchimentos dos outliers.
+
+.pull-left[
+```{r, plot8, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos)) +
+  geom_boxplot(fill="orange",
+               outlier.size = 4,
+               outlier.shape = 21,
+               outlier.color = "red",
+               outlier.fill = "gray"
+               )+
+  coord_cartesian(ylim=c(-1,1))+ #<<
+  theme_classic()
+```
+]
+.pull-right[
+```{r,plot8,echo=FALSE}
+```
+]
+
+
+---
+
+Outra alternativa para exibir a distribuição de uma variável quantitativa, no exemplo `altura`, é desmembrá-la por uma variável categórica aqui no boxplot.
+
+.pull-left[
+```{r, plot9, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(y=altura, 
+             fill=sexo)) + #<<
+  geom_boxplot()
+```
+
+Para fazer isso basta passarmos como preenchimento o nome da variável categórica, no exemplo, `sexo`.
+
+]
+.pull-right[
+```{r,plot9,echo=FALSE}
+```
+]
+
+
+---
+## Tabela de frequência para variável Altura (Quantitativa Contínua)
+
+Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função de distribuição acumulada`. 
+
+Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, os valores de uma variável contínua não se repetem, mesmo que isso aparentemente ocorra na base de dados. 
+
+Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurarmos uma variável contínua, temos apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
+
+.pull-left[
+Para exemplificar, vamos criar 5 classes de alturas a partir da função `cut()`.
+
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) #<<
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100)    
+View(tab)
+```
+]
+
+```{r,echo=FALSE}
+tab <- dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) 
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100)  
+kableExtra::kable(tab)
+```
+
+---
+
+## Amplitude Total
+
+Para melhor entendermos como a função `cut()` funciona, será necessário conhecermos mais algumas medidas para a construção do histograma. Vamos iniciar com a Amplitude total $(\Delta)$, definida como a diferença entre o valor máximo menos o valor mínimo da variável.
+
+$$\Delta = Máximo - Mínimo$$
+
+Para os dados de altura temos, $\Delta = 1,91\;m-1,50\;m = 0,41 \;m$
+
+No R podemos calcular a amplitude total com as funções do pacote `base`, para isso devemos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
+
+```{r,eval=TRUE}
+altura <- dados_turmas$altura
+```
+
+Agora vamos encontrar o máximo e o mínimo e calcular a diferença.
+
+```{r,eval=TRUE}
+D <- max(altura) - min(altura)
+D
+```
+
+---
+## Número de intervalos de classes $(k)$ 
+
+Definiremos $k$ como sendo o número de **sub-intervalos** da Amplitude Total. Uma boa representação apresenta um $k$ **NUNCA** inferior a $5$ ou superior a $15$, pois com um pequeno número de classes, perde-se informação, e com um grande número de classes, o objetivo de resumir os dados fica prejudicado.
+
+
+```{r, eval=TRUE}
+k <- 5
+```
+
+.pull-left[
+## Amplitude de classe $(\Delta_i)$
+
+É o tamanho de cada um dos $k=5$ sub-intervalos, dado pela amplitude total dividida pelo número de intervalos.
+
+$$\Delta_i = \frac{\Delta}{k}$$
+Para os dados de altura:
+
+$\Delta_i = \frac{\Delta}{k} = \frac{0.41\;m}{5} = 0,082 \;m$
+]
+
+.pull-right[
+
+```{r,eval=TRUE}
+Di = D/k
+Di
+```
+Cada um dos 5 intervalos terá uma amplitude de 0,082 m. Ou seja, o cálculo dos  limites das classes é feito a partir da adição ao valor Mínimo o valor de $\Delta_i$ $k$ vezes:
+
+```{r}
+limites <- min(altura)+ 0:k * Di
+limites
+```
+]
+
+---
+
+Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
+
+```{r,echo=FALSE}
+kableExtra::kable(tab)
+limites
+```
+
+Agora podemos criar um gráfico de barras para cada uma dessas classes, denominado hitograma:
+
+---
+## Gráfico histograma (frequências absolutas)
+
+.pull-left[
+A partir da tabela anterior, pode-se construir o gráfico de frequência de cada classe de valor de altura, denominado Histograma. 
+
+```{r,plot10,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..count..))+ #<<
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="gray")
+```
+O código acima gera um histograma com $5$ barras onde o eixo `y` será a frequência absoluta, ou seja, a contagem (`..count..`) de quantos valores de altura estão dentro de uma determinada classe.
+
+A opção `breaks = limites` deixa o histograma igual ao observado na tabela anterior.
+]
+
+```{r,plot10,echo=FALSE}
+```
+
+---
+## Gráfico histograma (frequências relativas)
+.pull-left[
+
+Ao longo de nosso curso, vamos estudar que a frequência relativa $f_i$ é uma estimativa empírica da probabilidade $P(X=xi)$, assim é interessante que a área total da figura do histograma seja igual a $1$, correspondendo à soma total das frequências relativas $( f_i )$. 
+
+Então, para construção do histograma, sugere-se usar no eixo das ordenadas os valores de $fi / \Delta_i$ (denominado densidade de frequência), ou seja, da medida que indica qual a concentração por unidade da variável.
+
+```{r,plot11,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..density..))+ #<<
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="gray")
+```
+
+Para isso utilizamos `y=..density..`.
+]
+
+.pull-right[
+```{r,plot11,echo=FALSE}
+```
+]
+
+---
+## Densidade de frequência $(d_i)$
+
+Agora vamos atualizar a tabela com o valor de densidade de frequência, dado por:
+
+$$d_i=\frac{f_i}{\Delta_i}$$
+.pull-left[
+
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5)
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di) #<<
+View(tab)
+```
+]
+
+```{r,echo=FALSE}
+tab <- dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) 
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di)  
+kableExtra::kable(tab)
+```
+
+---
+
+## Medidas de Frequências Acumuladas
+
+As medidas acumuladas são interessantes para compor algumas vizualizações:
+
+$N_i$: Frequência Absoluta Acumulada.
+
+$F_i$: Frequência Relativa Acumulada.
+
+$Perc$: Porcentagem de Frequência Acumulada.
+
+
+
+```{r, echo = TRUE, eval=FALSE}
+tab <-dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5)
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di,
+         Ni = cumsum(ni), #<<
+         Fi = cumsum(fi), #<<
+         Perc = cumsum(perc)) #<<
+View(tab)
+```
+
+
+---
+
+# Tabela de Frequência para Altura
+
+```{r,echo=FALSE}
+tab <- dados_turmas %>%
+  mutate(
+    classes_altura = cut(altura,5) 
+    ) %>% 
+  group_by(classes_altura) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100,
+         di=fi/Di,
+         Ni = cumsum(ni),
+         Fi = cumsum(fi),
+         Perc = cumsum(perc)
+  )
+kableExtra::kable(tab)
+```
+
+
+---
+## Histograma e Polígono de Frequência
+
+.pull-left[
+
+Obtemos o polígono de frequências unindo por uma poligonal (segmentos de retas) os pontos correspondentes às frequências, das classes, centradas nos pontos médios de cada classe. 
+
+Para se obter as interseções do polígono com o eixo horizontal, cria-se em cada extremo do histograma uma classe com frequência nula.
+
+No R:
+
+```{r,plot12,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..count..))+ #<<
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="gray") +
+  geom_freqpoly(breaks=limites,color="red") #<<
+```
+Observe que o histograma foi construído com as frequências absolutas $(n_i)$, ou seja, `y=..count..`.
+
+]
+
+.pull-right[
+```{r,plot12,echo=FALSE}
+```
+]
+
+---
+
+## Histograma e Estimativas de densidade suavizadas
+
+.pull-left[
+
+Calcula e desenha a estimativa da densidade, que é uma versão suavizada do histograma. Esta é uma alternativa útil para dados contínuos que vêm de uma distribuição suave subjacente. 
+
+```{r,plot12_1,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..density..))+ #<<
+  geom_histogram(breaks = limites,
+                 color="black",
+                 fill="white") +
+  geom_density(color="red",
+               fill="green",
+               alpha=0.05) #<<
+```
+
+- Observe que o histograma foi construído com as frequências absolutas $(n_i)$, ou seja, `y=..density..`. Utilizamos a função `geom_density()`.  
+- O argumento `alpha=0.05` controla a transparência do preenchimento. 
+
+]
+
+.pull-right[
+```{r,plot12_1,echo=FALSE}
+```
+]
+
+---
+
+
+## Função de Distribuição Acumulada
+
+.pull-left[
+A função de distribuição acumulada descreve como probabilidades são associadas aos valores ou aos intervalos de valores de uma variável aleatória. Em outras palavras, ela representa a probabilidade de uma variável aleatória ser menor ou igual a um valor real qualquer $x$. 
+
+$$
+F(x) = P(X \leq x) \in [0,1].
+$$
+
+Para uma variável aleatória contínua (`altura`):
+
+$\int \limits_{- \infty }^x f(x_i) dx$
+
+```{r,plot13,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura))+ 
+  stat_ecdf(geom = "line",color="red")#<<
+```
+]
+
+.pull-right[
+```{r,plot13,echo=FALSE}
+```
+]
+
+---
+## Função de Distribuição Acumulada
+
+.pull-left[
+
+No caso da variável aleatória discreta (`idade_anos`):
+
+$F(x) = \sum \limits_{x_i<x} f(x_i)$
+
+```{r,plot14,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos))+ #<<
+  stat_ecdf(geom = "line",color="red")
+```
+]
+
+.pull-right[
+```{r,plot14,echo=FALSE}
+```
 ]

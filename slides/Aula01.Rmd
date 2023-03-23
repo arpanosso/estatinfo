@@ -720,7 +720,11 @@ Fim.
 Implementação em R
 
 ```{r}
-
+porcentagem <- 0.075 # real
+salario <- 1212.00 # real 
+novo_salario <- 0.00 # real
+novo_salario = salario + salario*porcentagem # processamento
+cat("Novo Salário: R$", round(novo_salario,2)) # saída
 ```
 
 ---
@@ -742,8 +746,10 @@ Fim.
 Implementação em R
 
 ```{r}
-
-
+preco <- 4274.90 #real
+desconto <- preco *23/100
+cat("desconto: R$ ", desconto)
+cat("Preço com desconto: R$", preco-desconto)
 ```
 
 
@@ -766,7 +772,10 @@ Fim.
 Implementação em R
 
 ```{r}
-
+taxa_cambio <- 5.24
+valor_dolar <- 405.78
+valor_real <- valor_dolar * taxa_cambio
+cat("valor em R$", round(valor_real,2))
 ```
 
 ---
@@ -786,9 +795,11 @@ Fim.
 Implementação em R
 
 ```{r}
-
+taxa_cambio <- 5.24
+valor_real <- 4274.90
+valor_dolar <- valor_real / taxa_cambio
+cat("valor em USD", round(valor_dolar,2))
 ```
-
 
 
 ---
@@ -814,7 +825,7 @@ São instruções primitivas que têm significados pré-determinados e fazem par
 
 
 ```{r, eval=FALSE}
-if; else for; while; repeat; break; function
+if; else; in; for; while; repeat; break; function
 next; NULL; Inf; NA; NaN; TRUE; FALSE; T; F
 ```
 
@@ -880,25 +891,25 @@ km/h
 
 Identifique os erros, se houver, e reescreva os identificadores abaixo, se necessário:
 
-vm
+vm: não tem significado, ideal `valor_médio`, por exemplo;
 
-13salário
+13salário: não se inicial com número, ideal `salario_13`;
 
-salário$
+salário$: não utilizar caractere especial, ideal `salario`;
 
-salário_mínimo 
+salário_mínimo: correto, outra opção seria `salario_minimo`;
 
-salário+reajuste
+salário+reajuste: não utilizar caractere especial, ideal `salario_reajuste`;
 
-novoSalário
+novoSalário: correto, outra opção `novoSalario`;
 
-fumante? 
+fumante? :não utilizar caractere especial, ideal `fumante`;
 
-preço médio
+preço médio: não utilizar caractere especial, espaço, ideal `preco_medio`;
 
-%desconto
+%desconto: não utilizar caractere especial, ideal `desconto`: 
 
-km/h
+km/h: não utilizar caractere especial, ideal `km_h`. 
 
 ---
 
@@ -927,7 +938,7 @@ Todos os exemplos abaixo serão considerados do tipo caractere:
 "A"   
 "Discente",  
 "Fone 3333-33333",   
-"1" 
+"1"  
 
 ---
 
@@ -989,61 +1000,62 @@ l(__) ".F."
 
 ---
 
-**Exercício: Resposta** Classifique os dados de acordo com o seu tipo, sendo (I = Inteiro, R = Real, C = Caractere e L = Lógico):  
+**Exercício: Respostas** Classifique os dados de acordo com o seu tipo, sendo (I = Inteiro, R = Real, C = Caractere e L = Lógico):  
 
 .pull-left[
 
-a(__)  0	   
+a(I)  0	   
  
-b(__) + 36  
+b(I) + 36  
  
-c(__) 0,3257  
+c(R) 0,3257  
 
-d(__) F  
+d(L) F  
  
-e(__)  1  
+e(I)  1  
  
-f(__) "F"  
+f(C) "F"  
  
-g(__) "+3257"	  
+g(C) "+3257"	  
  
-h(__) -1  
+h(I) -1  
  
-i(__) 0,0      
+i(R) 0,0      
  
-j(__) - 0,001	     
+j(R) - 0,001	     
  
-k(__) "-0,0"	  
+k(C) "-0,0"	  
  
-l(__) ".F."  
+l(C) ".F."  
  
 ]
  
  .pull-right[
- m(__) "o"
+ m(C) "o"
  
- n(__) +0,05	     
+ n(R) +0,05	     
  
- o(__) ".V."		  
+ o(C) ".V."		  
  
- p(__) 7/2
+ p(R) 7/2
  
- q(__) 32     
+ q(I) 32     
  
- r(__) +3257	     
+ r(I) +3257	     
  
- s(__) V		  
+ s(L) V		  
  
- t(__) -32   
+ t(I) -32   
  
- u(__) "A"	  
+ u(C) "A"	  
  
- v(__) "abc"	     
+ v(C) "abc"	     
  
- x(__) -1,9E123	  
+ x(R) -1,9E123	  
  
- z(__) "0"  
+ z(C) "0"  
 ]
+
 
 ---
 class: middle, center, inverse
@@ -1071,6 +1083,12 @@ pi # valor de Pi
 exp(1) # constante de Euler
 letters # letras minúsculas
 LETTERS # letras maiúsculas
+```
+---
+
+Exemplo de constantes no R:
+
+```{r}
 month.name # meses
 month.abb # meses abreviados
 ```
@@ -1111,7 +1129,7 @@ Uma **expressão** é uma fórmula para processamento de um valor.
 
 As principais expressões são as seguintes:
 
-Aritméticas: Retornam um valor numérico (inteiro ou real).   
+**Aritméticas**: Retornam um valor numérico (inteiro ou real).   
 EX: $10+(3+1)/2$ 
 RETORNO: $12$
 
@@ -1119,17 +1137,17 @@ RETORNO: $12$
 10+(3+1)/2
 ```
 
-
-Relacionais: Retornam um valor lógico $V$ ou $F$.  
+**Relacionais**: Retornam um valor lógico $V$ ou $F$.  
 EX: $7 = 14/2$  
 RETORNO: $VERDADEIRO$
 
+No R o operador relacional de igualdade são dois sinais de igual (`==`).
 ```{r}
-(7 == 14/2)
+(7 == 14/2) 
 ```
 
 
-Lógicas: Retornam um valor lógico $V$ ou $F$.  
+**Lógicas**: Retornam um valor lógico $V$ ou $F$.  
 EX: $(3=2+1) E (3>2)$  
 RETORNO: $VERDADEIRO$
 
@@ -1140,6 +1158,8 @@ RETORNO: $VERDADEIRO$
 
 ---
 
+
+---
 class: middle, center, inverse
 
 # Operadores
@@ -1211,7 +1231,7 @@ $\not=$| <> |	diferente| `4 != 8/2` | FALSE
 Estes somente são usados para efetuar comparações, as quais só podem ser feitas entre dados do mesmo tipo.
 
 ```{r}
-x <- "Meu Nome"; x == "Meu Nome"
+x <- "Meu Nome"; x == "MEU NOME"
 ```
 
 
@@ -1220,18 +1240,18 @@ O resultado de uma comparação é sempre um valor lógico.
 ---
 
 ```{r}
-7 > 5 
-7 < 5
-7 >= 40/5
-7 <= 35/5
-4 == 8/2
-4 != 8/2
+7 > 5 # maior que
+7 < 5 # menor que 
+7 >= 40/5 # maior ou igual a
+7 <= 35/5 # menor ou igaul a
+4 == 8/2 # igual a 
+4 != 8/2 # não igual a
 ```
 
 
 ---
 
-**Operadores Lógicos** ou **Booleanos**: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos $V$ ou $F$.
+**Operadores Lógicos** ou **Booleanos**: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos, ou seja, $V$ ou $F$.
 
 
 Operador	| Tipo	| Operação|	| Prioridade

@@ -1,13 +1,13 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula04.html")
+# pagedown::chrome_print("slides/Aula05.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
-subtitle: "Aula 04 - Distribuição de Frequência"
+subtitle: "Aula 05 - Medidas Estatísticas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(18-05-2022)"
+date: "(26-05-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -26,870 +26,939 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
-# Distribuição de Frequência
-# e
-# Visualização de Dados
----
-class: middle, center, inverse
-
-## Pré-requisito: Instalação de Patocotes no R
-
-<iframe width="753" height="380" src="https://www.youtube.com/embed/is32jC4LRjA?list=PLkhAqI7pygoYy6zhepFnF7KDK5jJSQUEv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-https://youtu.be/is32jC4LRjA
+# Medidas de Posição (Tendência Central)
 
 ---
-## Distribuição de frequência de uma variável
+## Medidas de posição
 
-Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
+São respostas breves e rápidas que sintetizam a informação não de uma forma de completa descrição dos dados ou eventual modelagem. 
 
-Nesse sentido, o objetivo dessa aula será apresentar as principais formas e visualização gráfica de variáveis quali e quantitativas. 
+Essas medidas, portanto, fornecem a posição da medida na reta real, ou seja, informa sobre a posição de um conjunto de dados. As principais medidas são: 
 
-**Exemplo:** Considerando os [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) amostrados das turmas de Estatísticas temos:
+1. Média:  
+ - **Aritmética**
+ - **Ponderada**
+ - Geométrica (Apostila Apenas)
+ - Harmônica (Apostila Apenas)
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>
+2. Mediana 
 
----
-
-## Carregando os dados no R
-Para carregar o banco de dados da turma no R, siga os passos:  
-1.Faça o Download dos [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
-
-2.Salve em uma pasta do seu computador (no exemplo o documento será salvo na pasta "*Downloads*").
-
-.pull-left[
-<img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ]
-
-.pull-right[
-
-3.Na aba **Environment** do RStudio selecione **Import Dataset/From Excel...** como apresentado abaixo.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ]
+3. Moda
 
 ---
+### Média Populacional
 
-4.Selecione **Browse** (destacado em vermelho no canto direito superior).
+Para a população, a média é definida como:
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> 
----
-5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*Downloads"*,  selecione o arquivo e clique em **Open**.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
-
----
-6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, selecione e copie os código para a importação dos dados. Após isso **CLIQUE EM CANCEL**. 
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
-
----
-7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções da aba **Packages/Install** ou com o comando `install.packages("readxl")`.
-
-```{r, eval=FALSE}
-library(readxl)
-dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
-View(dados_turmas)
-```
-
-```{r,echo=FALSE}
-`%>%` <- magrittr::`%>%`
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(readxl)
-dados_turmas <- read_excel("../data/dados_turmas.xlsx")
-```
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
-
----
-### Tamanho da População $(N)$  
-O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas vezes não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
-### Tamanho da amostra $(n)$  
-É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
-
-```{r,eval=TRUE}
-library(tidyverse) # não esqueça de instalar o tidyverse para ter o glimpse
-glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
-```
-
-
----
-### Exemplo da base de dados das turmas 
-
-Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas $(n_i)$, relativas $(f_i)$ e a porcentagem $(perc)$ para as categoria existentes. 
-
-Após isso, realizar a visualização de dados com gráficos de Colunas, Barras e Setores (Pizza ou *Pie*).
-
-Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%>%`) feito com o atalho `CTRL + SHIFT + M`. Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias de `sexo`
-
-
-.pull-left[
-```{r}
-tab <- dados_turmas %>%
-        group_by(sexo) %>% #<<
-        summarise(ni=n()) #<<
-tab
-```
-]
-
-.pull-right[
-- `group_by()` a grupa as categorias da variável `sexo`.
-- `summarise()` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
-
-]
----
-
-No R, para facilitar o processo de contagem poderíamos ordenar os dados por sexo:
-```{r, eval=FALSE}
-dados_turmas %>% 
-  arrange(sexo) +
-  View()
-```
-
-
-No Excel, primeiramente selecionamos os dados, clicamos em **Dados\Classificar** e na janela que se segue clicamos em **Adicionar Nível** e em **Classifcar por**, escolhemos `sexo` e em **OK**. 
-
-```{r,echo=FALSE,out.width = "100%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/arrange_sexo.png")
-```
----
-
-### Frequência Absoluta $(n_i)$
-
-É definida como o número de realizações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
-
-Então temos:
-
-$n_F = 17$ e,
-
-$n_M = 32$
+ $$
+ \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, \text{com } i=1,2,...,N.
+ $$
  
-Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes $(k)$ da variável cetegória é igual a $n$. 
+Onde $N$ é o tamanho da população (e geralmente não a conhecemos). 
+
+
+### Média amostral
+
+É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da soma dos valores das observações dessa variável. 
+
+A média amostral $\bar{x}$ é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população $\mu$. 
+ 
+ $$
+ \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, com\; i=1,2,...,n.
+ $$
+Onde $n$ é o tamanho da amostra.
+---
+
+O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $49$ alunos (`idade_anos`). Observe que a média tem a mesma unidade de medida que a das observações individuais. 
+
+**Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+
+```{r,message=FALSE,error=FALSE,warning=FALSE}
+# Carregando pacotes
+library(tidyverse)
+library(readxl)
+
+# Lendo o banco de dados no R
+dados_turmas <- read_excel("../data/dados_turmas.xlsx")
+
+# Resumo rápido dos dados
+glimpse(dados_turmas)
+```
+---
+
+### Cálculo da Média Aritmética 
 
 $$
-\sum \limits_{i=1}^{k}{n_i} = n
+\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+20}{49} = 20,9184\text{ anos} 
 $$
-
-Onde $k$ é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
-
-$$
-\sum \limits_{i=1}^{k}{n_i} = 17+32=49
-$$
-
----
-
-### Frequência Relativa $(f_i)$ ou proporção
-
-É definida como a proporção de cada realização em relação ao **Total de observações** $(n)$, ou seja:
-
-$$
-f_i = \frac{n_i}{n}
-$$
-Vamos, mais uma vez, utilizar o R para esses cálculos.
-
-.pull-left[
-```{r, echo = TRUE, eval=TRUE}
-tab <-dados_turmas %>%
-        group_by(sexo) %>% 
-        summarise(ni=n()) %>%      
-        mutate(fi = ni/sum(ni)) #<<   
-tab
-```
-
-- `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna $n_i$, no caso a frequência relativa $f_i$.
-
-]
-
-.pull-right[
-Portanto:
-$f_F = \frac{17}{49}=0,347$ e   $f_M = \frac{32}{49}=0,653$
-
-Assim, temos que a soma das frequências relativas sempre é igual a $1$: 
-
-$\sum \limits_{i=1}^{k} f_i = 1$
-
-onde $k$ é o número de categorias da variável `sexo`, ou seja, $2$.
-]
----
-
-### Porcentagem de frequência $(perc \text{ ou %})$
-
-Definida como o resultado da multiplicação da frequência relativa (proporção) por 100.
-
-
-```{r, echo = TRUE, eval=TRUE}
-tab<-dados_turmas %>%
-      group_by(sexo) %>% 
-      summarise(ni=n()) %>%      # Frequência Absoluta
-      mutate(fi = ni/sum(ni),    # Frequência Relativa
-             perc = fi*100)      #<<
-tab
-```
-
-**OBS**: A soma das Porcentagens de frequência é igual a $100\%$.
-
-A partir da tabela de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
-
-Essa etapa é a denominada de **Visualização de Dados**. 
-
----
-class: middle, center, inverse
-
-# VISUALIZAÇÃO DE DADOS
-###(Variáveis Qualitativas)
-
----
-## Visualização dos dados
-
-Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos os gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
-
-Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. Observe que os gráficos serão construídos a partir do objeto `tab` anteriormente definido. 
-
-O ggplot funciona na forma de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
-
-### Gráfico de Colunas para Sexo
-
-Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
-
-```{r, plot1, eval=FALSE}
-tab %>% 
-  ggplot(aes(x=sexo, y=fi)) + 
-  geom_col()
-```
-
----
-### Gráfico de Colunas para Sexo
-
-```{r, plot1, echo = FALSE}
-```
-
----
-### Gráfico de Barras para Sexo
-
-Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias.
-
-
-.pull-left[
-```{r, plot2, eval=FALSE}
-tab %>% 
-  ggplot(aes(x=fi,y=sexo)) + 
-  geom_col(fill="aquamarine4", #<< 
-           color="black") #<<
-```
-- o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra e o argumento `color="black"` permite a alteração da cor o contorno das barras. Outras cores são possíveis tente algumas [das cores no R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
-]
-
-.pull-right[
-```{r, plot2, echo = FALSE}
-```
-]
-
----
-### Gráfico de Setores para Sexo
-
-Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categoras da variável em uma circunferência.
-
-.pull-left[
-```{r, plot3, eval=FALSE}
-tab %>% 
-  ggplot(aes(x="",y=fi, fill=sexo)) + 
-  geom_bar(stat="identity") + #<<
-  coord_polar("y", start=0) + #<<
-  theme_void() #<<
-```
-- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
-
-- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
-]
-
-.pull-right[
-```{r, plot3, echo = FALSE}
-```
-]
----
-#### Vamos Adicionar os valores de $fi$ no gráfico
-
-.pull-left[
-```{r, plot3_1, eval=FALSE}
-tab %>%
-  ggplot(aes(x="",y=fi, fill=sexo)) +
-  geom_bar(stat="identity") +
-  coord_polar("y", start=0) +
-  theme_void() +
-  geom_text(
-    aes(
-      label=paste0(round(perc), "%")), #<<
-      position=position_stack(vjust = 0.5)) #<<
-```
-]
-
-.pull-right[
-```{r, plot3_1, echo = FALSE}
-```
-]
----
-## Tabela de Frequência para a variável Cor de cabelo
-
-
-Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. Observe que esse é o mesmo código daquele apresentado no slide 13, mas com o nome da coluna `cor_cabelo` ao invés de `sexo` dentro da função `group_by()`.
-
-
-```{r, eval=TRUE}
-tab<-dados_turmas %>%
-      group_by(cor_cabelo) %>% #<< 
-      summarise(ni=n()) %>%      
-      mutate(fi = ni/sum(ni),    
-             perc = fi*100)      
-tab
-```
-
----
-
-### Gráfico de Colunas para Cor de cabelo
-
-.pull-left[
-```{r, plot4, eval=FALSE}
-tab %>% 
-  ggplot(aes(x=cor_cabelo,y=fi,
-             fill=cor_cabelo)) + #<<
-  geom_col(color="black")+
-  theme_bw() #<<
-```
-- ao passarmos o argumento `fill=cor_cabelo` dentro da função `aes()` estamos pedindo o mapeamento das cores de cabelo a partir de cores de preeenchimento diferentes.
-
-- `aes()` representa a estética do gráfico, ou seja, quem é x, quem é y e quem deve ser mapeado.
-
-- a função `theme_bw()` muda o padrão de cores e de linhas do gráfico. Existem outros padrões como `theme_classic`, `theme_minimal` entre outros.
-]
-
-.pull-right[
-```{r, plot4, echo = FALSE}
-```
-
-]
----
-
-### Gráfico de Barras para Cor de cabelo
-
-.pull-left[
-```{r, plot5, eval=FALSE}
-tab %>% 
-  ggplot(aes(x=fi, y=cor_cabelo,
-             fill=cor_cabelo)) + 
-  geom_col(color="black")+
-  scale_fill_manual(values = c("salmon4",
-                               "burlywood4",
-                               "orange4",
-                               "gold2",
-                               "black"))+
-  theme_minimal()
-```
-- utilize a função `scale_fill_manual()` para alterar as cores dos preenchimentos, se necessário.
-
-]
-
-.pull-right[
-```{r, plot5, echo = FALSE}
-```
-]
-
----
-### Gráfico de Setores para cor_cabelo
-
-.pull-left[
-```{r, plot6, eval=FALSE}
-tab %>% 
-  ggplot(aes(x="", y=fi, 
-             fill=cor_cabelo)) + 
-  geom_bar(stat="identity",color="black") +
-  coord_polar("y", start=0) +
-  theme_void()
-```
-]
-
-.pull-right[
-```{r, plot6, echo = FALSE}
-```
-]
-
----
-
-#### Vamos Adicionar os valores de $perc$ no gráfico
-
-.pull-left[
-```{r, plot6_1, eval=FALSE}
-tab %>%
-  ggplot(aes(x="",y=fi, fill=cor_cabelo)) +
-  geom_bar(stat="identity") +
-  coord_polar("y", start=0) +
-  theme_void() +
-  geom_text(
-    aes(
-      label=paste0(round(perc), "%")), #<<
-      position=position_stack(vjust = 0.5)) #<<
-```
-
-]
-
-.pull-right[
-```{r, plot6_1, echo = FALSE}
-```
-]
----
-class: middle, center, inverse
-
-# VISUALIZAÇÃO DE DADOS
-###(Variáveis Quantitativas)
-
----
-## Tabela de frequência e visualização para Idade em anos (discreta)
-
-Quando a variável  for quantitativa discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, também recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função distribuição acumulada`.
-
-Pra a variável `idade_anos` vamos criar a tabela de frequência;
-
-.pull-left[
-```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
-        group_by(idade_anos) %>% 
-        summarise(ni=n()) %>%      
-        mutate(fi = ni/sum(ni),    
-             perc = fi*100)    
-View(tab)
-```
-]
-
-.pull-right[
-```{r,echo=FALSE}
-tab<-dados_turmas %>%
-        group_by(idade_anos) %>% 
-        summarise(ni=n()) %>%      
-        mutate(fi = ni/sum(ni),    
-             perc = fi*100)  
-kableExtra::kable(tab)
-```
-]
-
-
----
-## Gráfico Boxplot
-.pull-left[
-Conhecido como gráfico dos 5 números representa um resumos dos valores *mínimo*, *primeiro quartil*, *mediana*, *terceiro quartil* e *máximo* de uma variável. É  construído a partir de `geom_boxplot()`. 
-
-Observe que dentro da função `ggplot()` não é necessário passar o `x`, somente é atribuído a `y` a variável discreta `idade_anos`.
-
-```{r, plot7, eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(y=idade_anos)) +
-  geom_boxplot()
-```
-]
-
-.pull-right[
-```{r,plot7,echo=FALSE}
-```
-
-]
-
----
-- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a **amplitude interquartil** (IIQ). 
-- No meio da caixa há uma linha que exibe a **mediana**, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
-- Pontos visuais que exibem observações são aqueles que cairam em mais do que $1,5$ vezes o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
-- Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
-
-
-```{r, echo=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=altura)) +
-  geom_boxplot(fill="lightgray")+theme_minimal()+
-  coord_cartesian(ylim=c(-1,1))
-```
-
----
-Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`. Utilize `fill` para controlar a cor de preenchimento da caixa, e as opções `outlier.` para controlar tamanhos, formas, cores e preenchimentos dos outliers.
-
-.pull-left[
-```{r, plot8, eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=idade_anos)) +
-  geom_boxplot(fill="orange",
-               outlier.size = 4,
-               outlier.shape = 21,
-               outlier.color = "red",
-               outlier.fill = "gray"
-               )+
-  coord_cartesian(ylim=c(-1,1))+ #<<
-  theme_classic()
-```
-]
-.pull-right[
-```{r,plot8,echo=FALSE}
-```
-]
-
-
----
-
-Outra alternativa para exibir a distribuição de uma variável quantitativa, no exemplo `altura`, é desmembrá-la por uma variável categórica aqui no boxplot.
-
-.pull-left[
-```{r, plot9, eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(y=altura, 
-             fill=sexo)) + #<<
-  geom_boxplot()
-```
-
-Para fazer isso basta passarmos como preenchimento o nome da variável categórica, no exemplo, `sexo`.
-
-]
-.pull-right[
-```{r,plot9,echo=FALSE}
-```
-]
-
-
----
-## Tabela de frequência para variável Altura (Quantitativa Contínua)
-
-Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função de distribuição acumulada`. 
-
-Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, os valores de uma variável contínua não se repetem, mesmo que isso aparentemente ocorra na base de dados. 
-
-Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurarmos uma variável contínua, temos apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
-
-.pull-left[
-Para exemplificar, vamos criar 5 classes de alturas a partir da função `cut()`.
-
-```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
-  mutate(
-    classes_altura = cut(altura,5) #<<
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100)    
-View(tab)
-```
-]
-
-```{r,echo=FALSE}
-tab <- dados_turmas %>%
-  mutate(
-    classes_altura = cut(altura,5) 
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100)  
-kableExtra::kable(tab)
-```
-
----
-
-## Amplitude Total
-
-Para melhor entendermos como a função `cut()` funciona, será necessário conhecermos mais algumas medidas para a construção do histograma. Vamos iniciar com a Amplitude total $(\Delta)$, definida como a diferença entre o valor máximo menos o valor mínimo da variável.
-
-$$\Delta = Máximo - Mínimo$$
-
-Para os dados de altura temos, $\Delta = 1,91\;m-1,50\;m = 0,41 \;m$
-
-No R podemos calcular a amplitude total com as funções do pacote `base`, para isso devemos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
-
-```{r,eval=TRUE}
-altura <- dados_turmas$altura
-```
-
-Agora vamos encontrar o máximo e o mínimo e calcular a diferença.
-
-```{r,eval=TRUE}
-D <- max(altura) - min(altura)
-D
-```
-
----
-## Número de intervalos de classes $(k)$ 
-
-Definiremos $k$ como sendo o número de **sub-intervalos** da Amplitude Total. Uma boa representação apresenta um $k$ **NUNCA** inferior a $5$ ou superior a $15$, pois com um pequeno número de classes, perde-se informação, e com um grande número de classes, o objetivo de resumir os dados fica prejudicado.
-
-
-```{r, eval=TRUE}
-k <- 5
-```
-
-.pull-left[
-## Amplitude de classe $(\Delta_i)$
-
-É o tamanho de cada um dos $k=5$ sub-intervalos, dado pela amplitude total dividida pelo número de intervalos.
-
-$$\Delta_i = \frac{\Delta}{k}$$
-Para os dados de altura:
-
-$\Delta_i = \frac{\Delta}{k} = \frac{0.41\;m}{5} = 0,082 \;m$
-]
-
-.pull-right[
-
-```{r,eval=TRUE}
-Di = D/k
-Di
-```
-Cada um dos 5 intervalos terá uma amplitude de 0,082 m. Ou seja, o cálculo dos  limites das classes é feito a partir da adição ao valor Mínimo o valor de $\Delta_i$ $k$ vezes:
 
 ```{r}
-limites <- min(altura)+ 0:k * Di
-limites
+x<-dados_turmas$idade_anos
+mean(x)
+
+# Ou
+
+dados_turmas %>% 
+  pull(idade_anos) %>% 
+  mean()
 ```
-]
+
+### Cálculo da Média Aritmética pela Frequência Relativa
+
+$\bar{x} = \sum_{i=1}^kf_ix_i = 18\cdot(0,16)+19\cdot(0,28)+ \cdots + 49(0,02) = 20,9184\;anos$
 
 ---
 
-Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
+Tabela de Frequência para Idade
 
 ```{r,echo=FALSE}
+tab<-dados_turmas %>%
+        group_by(idade_anos) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni),
+               perc = fi*100,
+               Ni=cumsum(ni),
+               Fi=Ni/sum(ni),
+               Perc= Fi*100)
 kableExtra::kable(tab)
-limites
 ```
-
-Agora podemos criar um gráfico de barras para cada uma dessas classes, denominado hitograma:
 
 ---
-## Gráfico histograma (frequências absolutas)
-
+**Hitograma e média para idade_anos**
 .pull-left[
-A partir da tabela anterior, pode-se construir o gráfico de frequência de cada classe de valor de altura, denominado Histograma. 
-
-```{r,plot10,eval=FALSE}
+```{r,plot13_1, eval=FALSE}
 dados_turmas %>% 
-  ggplot(aes(x=altura,y=..count..))+ #<<
-  geom_histogram(breaks = limites,
-                 color="black",
-                 fill="gray")
+  ggplot(aes(x=idade_anos, y=..density..)) +
+  geom_histogram(bins=10, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(xintercept = 20.9184, #<<
+             color="blue") #<<
 ```
-O código acima gera um histograma com $5$ barras onde o eixo `y` será a frequência absoluta, ou seja, a contagem (`..count..`) de quantos valores de altura estão dentro de uma determinada classe.
 
-A opção `breaks = limites` deixa o histograma igual ao observado na tabela anterior.
+Se os dados são plotados como um histograma a média é o centro de gravidade do histograma (linha azul). 
+
+Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria horizontalmente com o ponto de apoio em $\bar{x}$. 
+
 ]
 
-```{r,plot10,echo=FALSE}
-```
-
----
-## Gráfico histograma (frequências relativas)
 .pull-left[
 
-Ao longo de nosso curso, vamos estudar que a frequência relativa $f_i$ é uma estimativa empírica da probabilidade $P(X=xi)$, assim é interessante que a área total da figura do histograma seja igual a $1$, correspondendo à soma total das frequências relativas $( f_i )$. 
+```{r,plot13_1, echo=FALSE}
+```
+]
 
-Então, para construção do histograma, sugere-se usar no eixo das ordenadas os valores de $fi / \Delta_i$ (denominado densidade de frequência), ou seja, da medida que indica qual a concentração por unidade da variável.
+---
 
-```{r,plot11,eval=FALSE}
+**Hitograma e média para altura**
+
+.pull-left[
+
+```{r}
 dados_turmas %>% 
-  ggplot(aes(x=altura,y=..density..))+ #<<
-  geom_histogram(breaks = limites,
-                 color="black",
-                 fill="gray")
+  pull(altura) %>% 
+  mean()
 ```
 
-Para isso utilizamos `y=..density..`.
+```{r,plot13_2, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+    xintercept = 1.7242, #<<
+    color="blue") #<<
+```
+
+$\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49} =  1,7243\text{ m}$
+
+]
+
+.pull-left[
+
+```{r,plot13_2, echo=FALSE}
+```
+]
+
+Observe o histograma e a média para a variável `altura`, e compare sua simetria com o histograma da variável `idade_anos`.
+---
+
+## Média Ponderada
+Em algumas situações as observações têm graus de importância diferentes. Usa-se, então, a média ponderada:
+
+$$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i}$$
+
+Onde $\lambda_i$ é o peso associado à i-ésima observação. Assim, ele mede a importância relativa dessa i-ésima observação em relação às demais.
+---
+
+**Exemplo**: Calcular a intensidade média de infestação do complexo "Broca-podridão" da cana-de-açúcar, larva de lepidóptera (*Diatraea saccharalis*) em plantas jovens associado à infecção por fungos, causando a podridão vermelha (*Colletotrichum falcatum*), em $8$ variedades plantadas em uma propriedade rural.
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/broca_podridao.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+---
+<img src="https://arpanosso.github.io/estatinfo/slides/img/tab_broca.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
+
+
+$$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10} = \frac{1257,22}{113}=11,126%$$
+
+No R:
+```{r}
+pesos<-c(12,40,4,2,6,18,21,10)
+X <- c(9.1,14.57,3.2,2.89,8.74,11.7,10.10,7.15)
+weighted.mean(X, pesos)
+```
+
+
+---
+## Mediana
+
+É o valor que ocupa a posição central do conjunto de dados ordenados que pode ser denotado por $X' \text{ ou } X_o$. 
+
+Assim, antes de encontrar/calcular a mediana as observações são ordenadas de acordo com a sua ordem de magnitude.
+
+o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número de observações é grande.
+
+A mediana será encontrada ou calculada em função do número de observações $n$ presentes na base de dados, se acaso $n$ for *par* ou *ímpar*:
+
+Se $n$ é ímpar: $Md = Xo_{\left(\frac{n+1}{2}\right)}$
+
+Se $n$ é par: $Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$
+---
+
+**Exemplo 1**:  
+
+Dado $X=\{50, 60, 20, 50, 30, 90, 70\}$, teremos a sua versão ordenada $X_0$ dada por:
+
+$X_o=\{20, 30, 50, 50, 60, 70 ,90 \}$, então,
+
+$n=7$, ímpar.
+
+$Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50$
+
+.pull-left[
+No R:
+```{r}
+X=c(20, 30, 50, 50, 60, 70 ,90)
+median(X)
+```
+Observe que a unidade da mediana é a mesma dos dados originais.
+
 ]
 
 .pull-right[
-```{r,plot11,echo=FALSE}
+No Excel:
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mediana_excel.png")
 ```
 ]
 
 ---
-## Densidade de frequência $(d_i)$
 
-Agora vamos atualizar a tabela com o valor de densidade de frequência, dado por:
+### Media e Mediana
 
-$$d_i=\frac{f_i}{\Delta_i}$$
+Em uma distribuição simétrica (como a da variável `altura`), a mediana amostral também é uma estimativa imparcial e consistente de média populacional $\mu$, contudo não é tão eficiente como a média amostral $\bar{x}$.
+
 .pull-left[
 
-```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
-  mutate(
-    classes_altura = cut(altura,5)
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100,
-         di=fi/Di) #<<
-View(tab)
+```{r}
+dados_turmas %>% 
+  pull(altura) %>% 
+  median()
+```
+
+
+```{r,plot13_3, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = c(1.7242,1.74), #<<
+    color=c("blue","red")) #<<
+```
+
+$Md =  1,74\text{ m}$
+
+Se a distribuição de frequência é assimétrica (como a da variável `idade_anos`) a mediana é uma pobre estimativa da média populacional.
+]
+
+.pull-left[
+
+```{r,plot13_3, echo=FALSE}
+```
+
+
+]
+
+---
+
+**Exemplo 2**: Calcular a média e a mediana dos dados de salário (nº salário mínimos), que diz respeito à uma amostra de $6$ colaboradores de uma empresa.
+
+$$S=\{ 5, 2, 3, 6, 10, 9\}$$
+$n=6$, par.
+
+$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: $So=\{ 2, 3, 5, 6, 9, 10\}$, então a mediana será dada por:
+
+$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}$.
+
+A média será dada por:
+
+$\bar{x}= \frac{2+3+5+6+9+10}{6} = 5,83 \text{ salários mínimos}$
+
+
+```{r}
+X <- c(5,2,3,6,10,9)
+median(X)
+mean(X)
+```
+
+---
+
+Imagine que, ao ínvés de $10$, o novo valor de ganho do 5º colaborador amostra seja $100$, calcule a média e a mediana novamente para essa variável: 
+
+$$S=\{ 5, 2, 3, 6, 100, 9\}$$
+$n=6$, par.
+
+$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: $So=\{ 2, 3, 5, 6, 9, 100\}$, então a mediana será dada por:
+
+$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}$.
+
+A média será dada por:
+
+$\bar{x}= \frac{2+3+5+6+9+100}{6} = 20,83 \text{ salários mínimos}$
+
+```{r}
+X[5] <- 100
+median(X)
+mean(X)
+```
+Concluímos então que a mediana não é afetada por observações muito grandes ou muito pequenas, enquanto que a presença de tais extremos tem um significante efeito sobre a média.
+
+---
+
+## Moda
+.pull-left[
+A moda é comumente definida como a medição que ocorre com mais frequência em um conjunto de dados.
+
+Para os dados de `idade_anos` o valor mais presente do conjunto de dados é $19$ anos.
+
+Portanto, podemos ter distribuições com mais de um valor mais frequente (plurimodal), ou mesmo sem moda (amodal).
+
+Outra forma de definir a moda como uma medida de concentração relativamente grande, pois algumas distribuições de frequência podem ter mais de um ponto de concetração, embora essas concentrações possam não conter precisamente as mesmas frequências.
+
+]
+
+.pull-right[
+
+```{r,plot13_1, echo=FALSE}
+```
+]
+---
+
+
+```{r}
+x<-c(6, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 14)
+tibble(x) %>% 
+  ggplot(aes(x=x,y=..density..)) +
+  geom_histogram(bins = 9,
+                 color="black",
+                 fill="lightgray")
+```
+
+---
+## Quantis
+É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
+
+- Os Quantis de ordem $25$, $50$, $75$ são chamados **Quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
+
+- Os **Decis** são os quantis de ordem $10$, $20$, ..., $90$  (D1, D2, ..., D9)
+
+- Os **Percentis** são os quantis de ordem $1$, $2$, ..., $99$ (P1, P2, ..., P99).
+
+No R, ele podem ser encontrados por meio da função `quantile()` que tem como argumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor desejado.
+
+.pull-left[
+```{r}
+altura<-dados_turmas$altura
+q1 <- quantile(altura,0.25)
+q2 <- quantile(altura,0.50)
+q3 <- quantile(altura,0.75)
+```
+A função `geom_vline()`, ao lado, cria as linhas verticais na posição dos respectivos quartis no gráfico a seguir.
+]
+
+.pull-right[
+```{r,plot14,eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..density..)) +
+  geom_histogram(bins=6,
+                 col="black",
+                 fill="gray") +
+  geom_vline(xintercept=c(q1,q2,q3), #<<
+             color="red",lwd=1,
+             linetype=2)+ 
+  theme_bw()
+```
+]
+---
+```{r,plot14,echo=FALSE}
+```
+
+---
+class: middle, center, inverse
+
+# Medidas de Dispersão 
+# (Variabilidade)
+
+---
+
+**Medidas de Dispersão**: 
+
+O resumo de um conjunto de dados, por meio de uma única medida representativa de posição central, esconde toda informação sobre a variabilidade do conjunto de valores. 
+
+As medidas de variação medem o grau com que os dados tendem a se distribuir em torno de um valor central. 
+
+- Amplitude total
+- Variância 
+- Desvio Padrão
+- Erro Padrão da Média 
+- Coeficiente de Variação
+
+**Coeficientes de formas de distribuição**:
+- Coeficiente de Assimetria
+- Coeficiente de Curtose 
+
+---
+
+**Exemplo**:
+
+Dados o conjunto de $4$ amostras da mesma variável (altura de planta em cm), calcule a média e a Amplitude amplitude total de cada amostra.
+
+```{r,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  kableExtra::kable()
+```
+--
+
+Tabela de Médias $(\sum_{i=1}^nx_i)/n$
+
+```{r,,plot15,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  summarise( 
+    media_X1 = mean(X1),
+    media_X2 = mean(X2),
+    media_X3 = mean(X3),
+    media_X4 = mean(X4)
+  )%>% 
+  kableExtra::kable()
+```
+
+--
+Tabela de Amplitudes $(\Delta = Máximo - Mínimo)$
+
+
+```{r,plot16,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  summarise( 
+    Delta_X1 = diff(range(X1)),
+    Delta_X2 = diff(range(X2)),
+    Delta_X3 = diff(range(X3)),
+    Delta_X4 = diff(range(X4))
+  )%>% 
+  kableExtra::kable()
+```
+
+---
+
+Tabela Médias
+```{r,plot15,echo=FALSE}
+```
+
+Tabela Amplitudes
+```{r,plot16,echo=FALSE}
+```
+- Apesar das amostras apresentarem o mesmo valor médio, a terceira $(X3)$ e quarta $(X4)$ amostras são mais dispersas. 
+
+- As amostras $X3$ e $X4$, apesar do mesmo valor de média e amplitude, são bem distintas. Isso corre pois a Amplitude leva em consideração apenas **dois** valores do conjunto de dados, o conveniente seria considerar uma medida que utiliza-se todas as observações.
+
+---
+## Desvios ou erros $(e_i)$
+
+Para resolvermos o problema da amplitude consideramos os desvios ou erros $(e_i)$'s de cada observação em relação a um ponto de referência, no caso, a média aritmética do conjunto de dados, portanto, os desvios de cada observação é dado por:
+
+$$e_i = x_i - \bar{x}$$
+
+Para os dados da amostra 3 $(X3)$ temos:
+.pull-left[
+```{r,echo=FALSE}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+Desvios <- X3-mean(X3)
+tibble(X3,Desvios) %>% 
+  kableExtra::kable()
 ```
 ]
 
-```{r,echo=FALSE}
-tab <- dados_turmas %>%
-  mutate(
-    classes_altura = cut(altura,5) 
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100,
-         di=fi/Di)  
-kableExtra::kable(tab)
+.pull-right[
+Como demonstrado anteriormente, a soma dos erros $e_i$
+ é sempre igual a zero:
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}$
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}$
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
+]
+
+---
+## Soma dos Quadrados dos Desvios (SDQ)
+
+Para evitar a inconveniência da somatória dos desvios ser igual a zero, para qualquer conjunto de dados, elevamos ao quadrado cada um dos valores de desvios $e_i$. 
+  
+$$e_i^2 = (x_i - \bar{x})^2$$
+
+e temos
+
+$$SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2$$
+
+A $SQD$ leva a unidade dos dados ao quadrado e pode ser calculada no R:
+
+```{r}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+QD <- (X3-mean(X3))^2
+QD
+sum(QD)
 ```
 
 ---
+No Excel temos:
 
-## Medidas de Frequências Acumuladas
-
-As medidas acumuladas são interessantes para compor algumas vizualizações:
-
-$N_i$: Frequência Absoluta Acumulada.
-
-$F_i$: Frequência Relativa Acumulada.
-
-$Perc$: Porcentagem de Frequência Acumulada.
-
-
-
-```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
-  mutate(
-    classes_altura = cut(altura,5)
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100,
-         di=fi/Di,
-         Ni = cumsum(ni), #<<
-         Fi = cumsum(fi), #<<
-         Perc = cumsum(perc)) #<<
-View(tab)
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/sqd.png")
 ```
 
-
+$SQD = 196,16 \;cm^2$
 ---
 
-# Tabela de Frequência para Altura
-
-```{r,echo=FALSE}
-tab <- dados_turmas %>%
-  mutate(
-    classes_altura = cut(altura,5) 
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100,
-         di=fi/Di,
-         Ni = cumsum(ni),
-         Fi = cumsum(fi),
-         Perc = cumsum(perc)
-  )
-kableExtra::kable(tab)
-```
-
-
----
-## Histograma e Polígono de Frequência
+## Manipulação Algébrica da SQD:
 
 .pull-left[
+$SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2$
+$SQD = \sum \limits_{i=1}^n(x_i^2 - 2x_i \bar{x} + \bar{x}^2)$
+$SQD = \sum \limits_{i=1}^nx_i^2 - \sum \limits_{i=1}^n2x_i \bar{x} + \sum \limits_{i=1}^n \bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i  + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i \times \frac{n}{n}  + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\frac{\sum \limits_{i=1}^nx_i}{n}  + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\bar{x} + n\bar{x}^2$
+]
 
-Obtemos o polígono de frequências unindo por uma poligonal (segmentos de retas) os pontos correspondentes às frequências, das classes, centradas nos pontos médios de cada classe. 
+.pull-right[
 
-Para se obter as interseções do polígono com o eixo horizontal, cria-se em cada extremo do histograma uma classe com frequência nula.
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - n\bar{x}^2$  
+$SQD = \sum \limits_{i=1}^nx_i^2 -n \left( \frac{\sum \limits_{i=1}^nx_i}{n} \right)^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 -  n\frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n^2}$
+$SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}$
+]
+
+---
+
+Assim, temos outra fórmula para o cálculo da soma dos quadrados dos desvios
+
+
+$$SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}$$
+Essa fórmula é mais eficiente e simples do que a anterior pois não passa pelo cálculo dos desvios individuais.
 
 No R:
 
-```{r,plot12,eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=altura, y=..count..))+ #<<
-  geom_histogram(breaks = limites,
-                 color="black",
-                 fill="gray") +
-  geom_freqpoly(breaks=limites,color="red") #<<
+```{r}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+n <- length(X3)
+QD <- sum(X3^2) - sum(X3)^2/n
+QD
+sum(QD)
 ```
-Observe que o histograma foi construído com as frequências absolutas $(n_i)$, ou seja, `y=..count..`.
 
+---
+No Excel temos:
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/sqd2.png")
+```
+
+$SQD = 196,16 \;cm^2$
+
+---
+
+## Variância amostral $(s^2)$
+
+Agora podemos definir a mais importante medida de variabilidade, a variância. 
+
+Ela será a soma de quadrado dos desvios, dividada pelos seus GL **graus de liberdade** ( $DF$ do inglês - *degrees of freedom*).
+
+Ou seja:
+
+$$s^2 = \frac{SQD}{GL}$$
+
+**Grau de liberdade** é o número de observações independentes de uma estatística, após aplicada uma restrição. Ou seja, número de maneiras independentes pelas quais um sistema dinâmico pode se mover, sem violar qualquer restrição imposta a ele. Em outras palavras, o número de graus de liberdade pode ser definido como o número mínimo de coordenadas independentes que podem especificar a posição do sistema completamente.
+
+Matematicamente, graus de liberdade é o número de dimensões do domínio de um vetor aleatório, ou essencialmente o número de componentes "livres" (**quantos componentes precisam ser conhecidos antes que o vetor seja totalmente determinado**).
+
+---
+.pull-left[
+Tomemos como exemplo a amostra X3:
+
+```{r,echo=FALSE}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+tibble(X3) %>% 
+  kableExtra::kable()
+```
+
+A média da amostra é dada pela soma dos valores dividido por $n$, ou seja, não existe qualquer restrição nesse cálculo pois, matematicamente, precisaremos de $n$ elementos conhecidos para conhecer todo o vetor de dados $X3$.
+
+$\bar{x} = \frac{0,6+3,4+9,8+13,8+17,4}{n} = 9\;cm$
 ]
 
 .pull-right[
-```{r,plot12,echo=FALSE}
+Agora, tomemos o vetor de desvios de $X3$ em relação à sua média:
+
+```{r,echo=FALSE}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+Desvios <- X3-mean(X3)
+tibble(Desvios) %>% 
+  kableExtra::kable()
+```
+Observe que não precisamos conhecer seus $n$ elementos para conhecermos o vetor **Desvios**, basta conhecermos $n-1$ elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero, como montrado no slide 22:
+$\sum_{i=1}^nx_i=0$
+Portanto, qualquer elemento do vetor **Desvios** pode ser conhecido pelas somas dos demais elementos multiplicada por $(-1)$, ou seja:
+$-8,4= -1 \cdot (-5,6+0,8+4,8+8,4)$
+$-5,6= -1 \cdot (-8,4+0,8+4,8+8,4)$
+$+0,8= -1 \cdot (-8,4-5,6+4,8+8,4)$
+$+4,8= -1 \cdot (-8,4-5,6+0,8+8,4)$
+$+8,4= -1 \cdot (-8,4-5,6+0,8+4,8)$
+]
+
+---
+
+Lebrando que:
+
+$$SQD = \sum_{i=1}^n (x_i-\bar{x})^2$$
+
+Então essa estatística tem $n-1$ graus de liberdade, levando o cálculo da variância amostral para:
+
+
+$$s^2 = \frac{\sum \limits_{i=1}^n (x_i-\bar{x})^2}{n-1}$$
+
+ou, pela segunda fórmula de SQD:
+
+$$s^2 = \frac{\sum \limits_{i=1}^n x_i^2-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}$$
+A variância é a medida de dispersão que leva em conta todos as observações, definida como a média da soma de quadrados dos desvios (SQD) em relação à média aritmética: Para uma população, temos:
+
+$$\sigma^2 = \frac{\sum \limits_{i=1}^N (x_i-\mu)^2}{N}$$
+
+---
+Para os dados de X3, podemos calcular a variância como:
+
+No R:
+
+```{r}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+var(X3)
+```
+
+No Excel temos:
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/variancia.png")
+```
+
+$SQD = 49,04 \;cm^2$
+
+---
+
+## Desvio Padrão amostral $(s)$
+
+A *variância* apresenta a unidade dos dados quadrática, o que dificulta a sua comparação e interpretação. Portanto, podemos tomar a raiz quadrada da variância, que é denominada **desvio padrão**: 
+$s=\sqrt{s^2}$  
+Para a população temos: $\sigma=\sqrt{\sigma^2}$
+
+A vantagem dessa estatística é que ela apresenta a mesma unidade dos dados originais.
+
+.pull-left[
+No R:
+```{r}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+sd(X3)
+```
+]
+
+.pull-right[
+No Excel:
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/desvpad.png")
+```
+$SQD = 7,003 \;cm$
+]
+
+---
+## Erro padrão da média $[s(m)]$
+
+Ao tomarmos $r$ amostragens da mesma população, tendo essas amostras individuais com tamanho $(n)$, obteremos diversas estimativas da média, distintas entre si. A partir dessas diversas estimativas da média, podemos estimar a variância, considerando os desvios de cada média, em relação à média de todas as amostras. Temos, portanto, uma estimativa da variância média, denominadas **erro padrão da média**.
+
+Essa medida fornece a ideia de precisão da estimativa da média, ou seja, quanto *menor* ela for, **maior** a precisão terá a estimativa da média. E deve ser calculada como:
+
+$$s(m) = \frac{s}{\sqrt{n}}$$
+
+Portanto, o aumento de $n$, implica na diminuição no valor de $s(m)$ e aumento da precisão da estimativa da média amostral.
+
+```{r}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+sd(X3)/length(X3)
+```
+
+$s(m) = 1,400 \;cm$
+---
+## Coeficiente de Variação (CV)
+
+Expressa percentualmente o desvio padrão por unidade de média, observe que a média e o desvio padrão apresentam a mesma unidade, portanto, o coeficiente de variação é um número adimensional.
+
+$$CV = 100 \cdot \frac{s}{\bar{x}}$$
+
+é interpretado como a variabilidade dos dados em relação à média.
+
+**Exemplo**: Suponha dois grupos de indivíduos, um deles com idades $\{3,1,5\}$ anos e no outro, têm idades ${55,57,53}$ anos. No primeiro grupo, a média de idade é $3$ anos e no segundo grupo $\bar{x}=55\;anos$ e ambos com $s=2\;anos$. Onde o desvio padrão é mais importante? Por quê?
+
+```{r}
+cv <- function(x) 100*sd(x)/mean(x)
+g1<-c(3,1,5)
+g2<-c(55,57,53)
+cv(g1)
+cv(g2)
+```
+
+---
+
+## Coeficiente de Variação (CV)
+
+Assim, desvios de $2$ anos são muito mais importantes para o primeiro grupo que para o segundo, isto é, a dispersão dos dados em torno da média é muito grande no primeiro grupo. 
+
+Deste modo, o $CV$ pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados, e variáveis.
+
+---
+class: middle, center, inverse
+
+# Medidas de Forma de Distribuição
+
+---
+
+## Introdução
+
+Observe a distribuição de frequência das variáveis teores de Areia, Silte e
+Argila (%) coletados em uma área experimental de Latossolo, utilizado na produção de cana-de-açúcar na regiao de Jaboticabal-SP:
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/distribuicoes.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+
+---
+
+
+```{r,message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
+dados <- read.table("../data/transectos.txt",h=TRUE)
+dados %>% 
+  ggplot(aes(x=Areia,y=..count..)) +
+    geom_histogram(bins=15, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = 
+      c(dados %>%  pull(Areia) %>%  mean(),
+        dados %>%  pull(Areia) %>%  median()),
+    color=c("blue","red"))+
+  annotate("text", x = 40, y = 100, label = 
+             paste("Média = ", dados %>%  pull(Areia) %>%  mean() %>% round(digits = 2),
+                   "\nMediana = ", dados %>%  pull(Areia) %>%  median() %>% round(digits = 2)))+
+  coord_cartesian(xlim=c(0,80))
+```
+
+Para a **Areia**, a *Média* foi maior do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais baixos** de areia. 
+
+Nesse caso dizemos que a distribuição de frequência é **Assimétrica Positiva**, ou seja, a média está sendo influenciada por amostras com altos valores de areia.
+---
+
+```{r,message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
+dados %>% 
+  ggplot(aes(x=Silte,y=..count..)) +
+    geom_histogram(bins=15, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = 
+      c(dados %>%  pull(Silte) %>%  mean(),
+        dados %>%  pull(Silte) %>%  median()),
+    color=c("blue","red"))+
+  annotate("text", x = 40, y = 100, label = 
+             paste("Média = ", dados %>%  pull(Silte) %>%  mean() %>% round(digits = 2),
+                   "\nMediana = ", dados %>%  pull(Silte) %>%  median() %>% round(digits = 2)))+
+  coord_cartesian(xlim=c(0,80))
+```
+
+Observe que para o teor de **Silte** os valores de **Média** e **Mediana** foram semelhantes, existe um "pequena" diferença entre eles. 
+
+Nesses casos dizemos que a distribuição de frequência dos dados é **Simétrica**, ou seja, observações discrepantes (valores altos, ou baixos), não foram observadas.
+
+
+---
+```{r,message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
+dados %>% 
+  ggplot(aes(x=Arg,y=..count..)) +
+    geom_histogram(bins=15, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = 
+      c(dados %>%  pull(Arg) %>%  mean(),
+        dados %>%  pull(Arg) %>%  median()),
+    color=c("blue","red"))+
+  annotate("text", x = 40, y = 100, label = 
+             paste("Média = ", dados %>%  pull(Arg) %>%  mean() %>% round(digits = 2),
+                   "\nMediana = ", dados %>%  pull(Arg) %>%  median() %>% round(digits = 2)))+
+  coord_cartesian(xlim=c(0,80))
+```
+
+Para o teor de **Argila**, a *Média* foi menor do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais altos** de argila. 
+
+Nesse caso dizemos que a distribuição de frequência é **Assimétrica Negativa**, ou seja, a média está sendo influenciada por amostras com baixos valores de argila.
+---
+
+## Coeficiente de Assimetria (Skewness – G1)
+
+A interpretação da diferença entre a média e a mediana é, muitas vezes, subjetiva, então, utilizamos esse coeficiente para resumir a assimetria das observações. 
+
+Este coeficiente indica se os desvios da média são maiores para um lado da distribuição do que para o outro. 
+
+É formalmente definido a partir do terceiro momento da média (OBS: a variância é o segundo momento *m2* e a média o primeiro momento *m1*).
+
+
+O terceiro momento pode ser computado como:
+
+$$m_3= \frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^3\text{ assim, }G_1=\frac{m_3}{m_2\sqrt{m_2}}=\frac{m_3}{s^3}$$
+
+---
+Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
+
+$$g_1 = \frac{n}{(n-1)(n-2)}\frac{\sum_{i=1}^n(x_i-\bar{x})^3}{s^3}$$
+
+No R, vamos utilizar a função `skewness()` do pacote `{agricolae}` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
+
+```{r}
+library(agricolae)
+dados_turmas %>% 
+  summarise(
+    g1_idade = skewness(idade_anos),
+    g1_altura = skewness(altura)
+  )
+```
+
+- Se as observações apresentam distribuição simétrica, $g_1=0$, ou próximas a $0$ (**ALTURA**).
+- As observações apresentam **assimetria positiva** $(g_1 > 0)$ se o histograma apresenta uma influência dos valores mais altos, maiores que a média e a mediana (**IDADE_ANOS**).
+- As observações apresentam **assimetria negativa** $(g_1 < 0)$ se o histograma apresenta uma influência dos valores mais baixos, menores que a média e a mediana.
+
+---
+No Excel utilizamos a função `=DISTORÇÃO()` (exemplo hipotético).
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/assimetria.png")
+```
+
+---
+
+.pull-left[
+Distribuição **Assimétrica Positiva** $g_1=4.82$
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos, y=..density..)) +
+  geom_histogram(bins=10, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(xintercept = 20.9184, #<<
+             color="blue") #<<
+```
+]
+
+
+.pull-right[
+Distribuição **Simétrica** $g_1=-0,00283$
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+    xintercept = c(1.7242), #<<
+    color=c("blue")) #<<
 ```
 ]
 
 ---
 
-## Histograma e Estimativas de densidade suavizadas
+### Coeficiente de Curtose (Kurtosis – G2)
 
-.pull-left[
+Indica o grau de achatamento de uma distribuição, é a medida do peso das  caudas da distribuição. É formalmente definido a partir do quarto momento.
 
-Calcula e desenha a estimativa da densidade, que é uma versão suavizada do histograma. Esta é uma alternativa útil para dados contínuos que vêm de uma distribuição suave subjacente. 
+$$G_2 = \frac{m_4}{s_4} -3\text{, sendo: } m_4=\frac{\sum_{i=1}^N(x_i-\bar{x})^4}{n} \text{, onde } s_4=Var(X)^2$$
 
-```{r,plot12_1,eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=altura,y=..density..))+ #<<
-  geom_histogram(breaks = limites,
-                 color="black",
-                 fill="white") +
-  geom_density(color="red",
-               fill="green",
-               alpha=0.05) #<<
-```
+A estimativa do Coeficiente de Curtose é dada por $(g_2)$:
 
-- Observe que o histograma foi construído com as frequências absolutas $(n_i)$, ou seja, `y=..density..`. Utilizamos a função `geom_density()`.  
-- O argumento `alpha=0.05` controla a transparência do preenchimento. 
-
-]
-
-.pull-right[
-```{r,plot12_1,echo=FALSE}
-```
-]
-
+$$g_2 = n(n+1) \frac{\frac{\sum \limits_{i=1}^n(x_1-\bar{x})^4}{s^4}}{(n-1)(n-2)(n-3)}-3\frac{(n-1)^2}{(n-2)(n-3)}$$
 ---
 
+No R podemos calcular o coeficiente de curtose a partir da função `kurtosis` do pacote `{agricolae}`
 
-## Função de Distribuição Acumulada
-
-.pull-left[
-A função de distribuição acumulada descreve como probabilidades são associadas aos valores ou aos intervalos de valores de uma variável aleatória. Em outras palavras, ela representa a probabilidade de uma variável aleatória ser menor ou igual a um valor real qualquer $x$. 
-
-$$
-F(x) = P(X \leq x) \in [0,1].
-$$
-
-Para uma variável aleatória contínua (`altura`):
-
-$\int \limits_{- \infty }^x f(x_i) dx$
-
-```{r,plot13,eval=FALSE}
+```{r}
+library(agricolae)
 dados_turmas %>% 
-  ggplot(aes(x=altura))+ 
-  stat_ecdf(geom = "line",color="red")#<<
+  summarise(
+    g2_idade = kurtosis(idade_anos),
+    g2_altura = kurtosis(altura)
+  )
 ```
-]
-
-.pull-right[
-```{r,plot13,echo=FALSE}
-```
-]
-
 ---
-## Função de Distribuição Acumulada
+Se as observações seguem uma distribuição **normal**, então o coeficiente de curtose é zero:
+$g_2 = 0$, nesse caso a distribuição é denominada **mesocúrtica**.
 
-.pull-left[
-
-No caso da variável aleatória discreta (`idade_anos`):
-
-$F(x) = \sum \limits_{x_i<x} f(x_i)$
-
-```{r,plot14,eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=idade_anos))+ #<<
-  stat_ecdf(geom = "line",color="red")
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mesocurtica.png")
 ```
-]
+---
+Se o coeficiente de curtose é positivo, $g_2 > 0$, nesse caso o peso das caudas é baixo,  distribuição é denominada **leptocúrtica**.
 
-.pull-right[
-```{r,plot14,echo=FALSE}
+Se o coeficiente de curtose é negativo, $g_2 < 0$, nesse caso o peso das caudas é alto,  distribuição é denominada **platicúrtica**.
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/lepto_plati.png")
 ```
-]
+---
+
+No Excel, utilizamos a função `=CURT()` (exemplo hipotético).
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/curtose.png")
+```

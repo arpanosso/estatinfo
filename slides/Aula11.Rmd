@@ -1,14 +1,14 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula08.html")
+# pagedown::chrome_print("slides/Aula11.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 10 - Estatística, Distribuição Amostral"
+subtitle: "Aula 11 - Estimação"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(14-07-2022)"
+date: "(21-07-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -28,11 +28,11 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 
 class: middle, center, inverse
 
-# Distribuições Amostral
+# Conceitos Básicos
 
 ---
 
-## Parâmetro e Estatística
+### Parâmetro e Estatística
 
 **Parâmetro**: é uma medida usada para descrever uma característica da população.
 
@@ -41,297 +41,363 @@ class: middle, center, inverse
 
 
 Resumo | Parâmetro | Estatística
-:---|:---:|:---:  
+---|:---:|:---:
 Média | $\mu$ | $\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i$
 Variância | $\sigma^2$| $s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}$
 Proporção | $\pi$ | $\hat{p}= \frac{X}{n}$
-Correlação | $\rho$ | $r = \frac{\sum_{i=1}^n(x_1-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_1-\bar{x})^2(y_i-\bar{y})^2}}$
----
 
-Toda **estatística**, sendo uma função de uma amostra aleatória $X_1, X_2, \cdots X_n$, é também uma variável aleatória e tem uma distribuição. 
+O valor numérico da estatística ou estimador de um parâmetro, calculado para uma amostra observada, é chamado de **estimativa desse parâmetro**.
 
-Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora denominada **distribuição amostral**. 
-
-Assim, cada **estatística** é uma variável aleatória e sua distribuição de probabilidade é chamada <u>distribuição amostral da estatística</u>.
-
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_1.png")
-```
-
----
-
-class: middle, center, inverse
-
-# Distribuições Amostral da Média
-
----
-Seja a variável aleatória $X$ que denota o tempo em dias de germinação de sementes de uma espécie vegetal, após o plantio. Considerando a população de todas sementes plantadas nesse experimento, suponha que $X$ tem a distribuição de probabilidade apresentada abaixo. Uma amostra aleatória simples **COM REPOSIÇÃO** $(X_1$, $X_2)$ de $2$ covas $(n = 2)$ é tomada nesta área. Qual a distribuição do tempo médio amostral em dias para a germinação?
-
-
-$x$ | $0$ | $1$ | $2$ | $3$ 
----|---|---|---|---
-$P(X)$ | $0,20$ | $0,40$| $0,30$| $0,10$
+A diferença entre estatística e estimativa é que a **estatística** é uma variável aleatória, e a estimativa é um particular valor dessa variável aleatória.
 
 
 ---
 
-.pull-left[
-
-Distribuição de Probabilidade
-
-```{r,echo=FALSE}
-x<-0:3
-px<-c(.2, .4, .3, .1)
-barplot(px, names=x,las=1,
-        ylim = c(0,.45))
-box()
-```
-]
-
-.pull-right[
-
-Calculando a Esperança de X: 
-
-$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30\;dias$$
-
-Calculando a Variância de X.
-
-$Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\;dias^2$
-
-Definimos a média a partir da tomada de duas amostras temos:
-
-$$\bar{X} = \frac{X_1+X_2}{2}$$
-]
-
----
-
-De acordo com a definição de amostra aleatória simples com reposição, $X_1$ e $X_2$ são variáveis aleatórias independentes, assim, a distribuição conjunta pode ser obtida multiplicando-se as probabilidades marginais.
+## Acurácia  
+A acurácia mede quão próximo o valor estimado está do valor real, ou seja, é a habilidade do estimador de estimar o valor real.
 
 
-$$P(0 \cap 1) = P(0) \times P(1) = 0,2 \times 0,4 = 0,08$$
-
-.pull-left[
-Tabela com os possíveis valores de médias $\bar{X}$, dados os valores de $X$.
-
-$X_1 / X_2$ | 0 | 1 | 2 | 3 
-:---:|---|---|---|---
-**0** | 0,00 | 0,50 | 1,00 | 1,50
-**1** | 0,50 | 1,00 | 1,50 | 2,00
-**2** | 1,00 | 1,50 | 2,00 | 2,50
-**3** | 1,50 | 2,00 | 2,50 | 3,00
- 
-]
-
-.pull-right[
-
-Tabela com a distribuição conjunta de $X_1$ e $X_2$, ou seja, as probabilidades $P(\bar{X})$.
-
-$X_1 / X_2$ | 0 | 1 | 2 | 3  | $\sum$
-:---:|---|---|---|---|---
-**0** | 0,04 | 0,08 | 0,06 | 0,02 | **0,2**
-**1** | 0,08 | 0,16 | 0,12 | 0,04 | **0,4**
-**2** | 0,06 | 0,12 | 0,09 | 0,03 | **0,3**
-**3** | 0,02 | 0,04 | 0,03 | 0,01 | **0,1**
-$\sum$| **0,2** | **0,4** | **0,3** | **0,1** | **1,00**
-]
+## Precisão  
+A Precisão mede quão próximas estimativas individuais estão umas das outras, ou seja é a habilidade do estimador de estimar valores similares de maneira consistente.
 
 --
 
-</br>
----
-
-
-Distribuição de probabilidade de $\bar{X}$.
-
-$\bar{X}$ | $0$ | $0,5$ | $1$ | $1,5$ | $2,0$  | $2,5$ | $3,0$  
----|---|---|---|---|---|---|---
-$P(\bar{X})$ | $0,04$ | $0,16$| $0,28$| $0,28$ | $0,17$ | $0,06$ | $0,01$ 
-
-```{r, echo=FALSE}
-xb<-c(0,.5,1,1.5,2,2.5,3)
-pxb<-c(.04, .16, .28, .28, .17, .06, .01)
-barplot(pxb, names=xb,las=1)
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/acuracia_precisao.png")
 ```
 
 ---
 
-#### Cálculo da Esperança e da Variância da Média do Número de dias para Germinação de $X$ $(n=2)$.
+## Propriedades de um bom estimador
 
-$$E(\bar{X}) = \sum \limits_{n=1}^k = \bar{x_i} \cdot P(\bar{x_i}) = 1,30 \;dias$$
+**1) Consistência**: é uma propriedade por meio da qual a acurácia de uma estimativa aumenta quando o tamanho da amostra aumenta. Assim dado um parâmetro populacional $\theta$ e sendo $\hat{\theta}$  o estimador desse parâmetro. As condições suficientes para um estimador ser consistente são:
 
-$$Var(\bar{X}) = E(\bar{X}^2) - [E(\bar{X})]^2$$
+$$\lim_{n \to \infty}E(\hat{\theta}) = \theta$$
 
-$$Var(\bar{X}) = 2,095 - (1,3)^2$$
+$$\lim_{n \to \infty}Var(\hat{\theta}) = 0$$
 
-$$Var(\bar{X}) = 0,405\;dias^2= \frac{\sigma^2}{n} = \frac{0,81}{2} = \frac{Var(X)}{n}$$
-Se $X_1, X_2, \cdots, X_n$ constitui uma amostra aleatória simples com reposição de uma população que tem média $\mu$ e variância $\sigma^2$, então:
+### Exemplo
 
-$$E(\bar{X}) = \mu$$
-
-$$Var(\bar{X}) = \frac{\sigma^2}{n}$$ 
-
-$$DP(\bar{X}) = \frac{\sigma}{\sqrt{n}}$$
+$$E(\bar{X}) = \mu \text{ e } Var(\bar{X})= \frac{Var(X)}{n}$$
 
 ---
 
-## Observações importantes
+## Propriedades de um bom estimador
 
-- O desvio padrão da média $DP(\bar{X})$ e o erro padrão da média $s(m)$ são termos equivalentes. 
+**2) Não viciado ou não viesado**: O estimador  $\hat{\theta}$  como uma variável aleatória, tem uma certa distribuição em repetidas amostras de tamanho $n$. Não viciado é uma propriedade que assegura que, em média, o estimador é correto:
 
-- O erro padrão da média é geralmente usado para evitar confusão com o desvio padrão $(\sigma)$ das observações.
+O **estimador** é chamado **não viciado** ou **imparcial** se seu valor esperado ou médio for igual ao verdadeiro valor do parâmetro, ou seja:
 
-- O aumento do tamanho da amostra $(n)$ o  desvio padrão da distribuição da média diminui, portanto os valores de $\bar{X}$ são mais próximos à $\mu$. 
+$$E(\hat{\theta}) = \theta$$
 
-- Estima-se o erro padrão da média usando o tamanho da amostra $(n)$ e desvio padrão $(s)$ de uma única amostra de observações.
+Entretanto, se
 
-- À medida que o tamanho da amostra aumenta temos uma estimativa mais precisa do desvio padrão paramétrico $(\sigma)$ da população. 
+$E(\hat{\theta}) = \theta + b(\theta)$ com $b(\theta) \neq 0$,
 
-- Em contraste, o erro padrão da média torna-se uma estimativa mais precisa da média paramétrica $(\mu)$, pois o erro padrão da média diminui.
+o estimador é **viciado** e a quantidade $b(\theta)$ é chamada vício ou viés.
 
 ---
+### Exemplos de Estimadores
 
-### Teorema Central do Limite 
+Estes estimadores nada mais são do que as próprias definições dos respectivos parâmetros, mas aplicadas à amostra:
 
-Se $\bar{X}$ é a média de uma amostra aleatória simples com reposição, de tamanho $n$, de uma população **normal**, com média $\mu$ e variância $\sigma^2$, sua distribuição é **normal**, com média $\mu$ e variância $\frac{\sigma^2}{n}$.
+$E(\bar{X})=\mu$ e $E(\hat{p}) = p$
 
-Assim, em uma amostra aleatória simples com reposição, de tamanho $n$, de uma população arbitrária, com média $\mu$ e variância $\sigma^2$, a distribuição de $\bar{X}$ quando $n$ é grande é  **aproximadamente  normal**, com média $\mu$ e variância $\frac{\sigma^2}{n}$.
 
-```{r,out.width = "35%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_2.png")
-```
+Por sua vez, para a variância o estimador populacional $\sigma^2 = \frac{1}{n} \sum \limits_{i=1}^n (x -\bar{x})^2$ é viciado, pois, podemos demonstrar que:
+
+$E(\hat{\sigma}^2)=\frac{n-1}{n}\sigma^2 = \sigma^2 - \frac{1}{n}\sigma^2$
+
+onde o viés $b(\sigma^2) = -\frac{1}{n} \sigma^2$.
+
+Abaixo segue o estimador não viciado para variância:
+
+$s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n (x -\bar{x})^2$  
+
+No entanto, para $n \to \infty$, têm-se para ambos os estimadores convergem para $\sigma^2$, ou seja, $\hat{\sigma}^2$ e $s^2$ são assintoticamente não viciados.
 
 ---
 class: middle, inverse, center
 
-# Acesse o Link para simularmos essa amostragem. Aba "Distribuição Amostral  - Média"
+# Acesse o Link para estudarmos essas Propriedades
 
 ## https://arpanosso.shinyapps.io/estatinfo/
 
----
-
-## Transformação normal padrão para cálculo das probabilidades
-
-Assim, podemos utilizar a tabela normal padrão para o cálculo das probabilidades associadas aos intervalos de $\bar{X}$ a partir da transformação:
-
-$$Z = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$$ 
-
-onde $\bar{X} \sim N(\mu, \frac{\sigma^2}{n})$ e $n$ é o tamanho da amostras aleatória simples tomada da população.
-
-[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
-
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
-```
 
 ---
 
-### Exercício
+class: center,inverse
 
-Seja uma máquina de empacotar de soja, cujos pesos das sacas (em $kg$) seguem uma distribuição $N(50, 2)$. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de $100$ sacas, observarmos uma média diferente de $50\;kg$ em menos de $0,2828 \; kg$?
+O vídeo abaixo apresenta os passos utilizados para a construções dos estimadores e dos gráficos apresentados no aplicativo.
 
---
 
-**Resposta:** 
+<iframe width="718" height="404" src="https://www.youtube.com/embed/g3xrAjJdOx0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-$P(50-0,2828 \leq \bar{X} \leq 50+0,2828 ) = 0,9545$
+[Link do vídeo](https://youtu.be/an0bGEjdWMM)
+
+
+---
+class: middle, center, inverse
+
+# Estimativa por Ponto e por Intervalo
 
 ---
 
-### Amostras sem reposição de populações finitas
+### Estimativa por ponto
 
-Supondo uma população com $N$ elementos, se a amostragem for feita **SEM REPOSIÇÃO**, temos as esperança e a variância definidas como:
+É a estimativa de um parâmetro populacional dada por um único valor para a estatística, exemplo:
 
-.pull-left[
-**Esperança**
 
-$E(\bar{X}) = \mu$
-]
+$$\hat{X} = \mu$$
 
-.pull-right[
-**Variância**
+esse procedimento não permite julgar qual a possível magnitude do erro que se está cometendo.
 
-$Var(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}$
+**Exemplo**: O diâmetro a altura do peito de árvores de Eucalipto tem uma média de $105 \;cm$,
 
-]
+---
 
-Observações, 
+### Estimativa por intervalo
 
-$\mu = E(X)$, $\sigma^2 = Var(X)$ e $\frac{N-n}{N-1}$ é o fator de correção para populações finitas.
+É a estimativa de um parâmetro populacional baseada na distribuição amostral do estimador pontual, dada por dois valores $a$ e $b$ $(a < b)$, entre os quais se considera que o parâmetro esteja contido.
 
-A variância da média amostral com este tipo de amostragem é menor do que com reposição.
+Essas estimativas indicam a sua precisão ou acurácia, por isto são preferíveis às estimativas por ponto.
 
-Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio $(\mu)$.
+A declaração da precisão de uma estimativa por intervalo denomina-se grau de confiança ou **nível de confiança**, daí a denominação de **Intervalo de Confiança**.
 
-No entanto, se a população for grande quando comparada com o tamanho da amostra $(n)$, o fator de correção será próximo de 1 e, portanto:
-$$Var(\bar{X}) \approx \frac{\sigma}{n} $$
+**Exemplo**: O diâmetro a altura do peito de árvores de Eucalipto tem uma média de $105 \pm 0,05\;cm$,
+
 ---
 
 class: middle, center, inverse
 
-# Distribuições Amostral da Proporção
+# Estimativa por Intervalo de Confiança
 
 ---
 
-### Distribuição Amostral da Proporção
+### Estimativa por intervalo de confiança
 
-Anteriormente, definimos $X$ uma $v.a.$ para cada ensaio de **Bernoulli**, com $P(S) = p$. 
+Um intervalo de confiança para $\theta$ é um intervalo construído a partir das observações da amostra, de modo que ele inclui o verdadeiro e desconhecido valor de $\theta$, **com uma específica e alta probabilidade** denotada por $1 - \alpha$, é tipicamente tomada como:
 
-Neste contexto, considerando $n$ ensaios independentes, $X_1, X_2, ... , X_n$ constitui uma amostra *aleatória simples com reposição*. Como os resultados individuais são $0$ (fracasso) ou $1$ (sucesso), o número **TOTAL** de sucessos em $n$ ensaios, é dado por:
+$$NC = P(a \le \theta \le b) = 1-\alpha$$
 
-$$T = \sum \limits_{i=1}^n X_i$$
+Então, o intervalo $] a, b [$ é chamado intervalo com $100 \cdot (1 - \alpha)\%$ de confiança para o parâmetro $\theta$, onde: $1 ‑ \alpha$  é  o **nível de confiança** associado ao intervalo $a$ e $b$ são os **limites de confiança**, inferior e superior, respectivamente, do intervalo.
 
-Portanto, a proporção amostral de suscessos em $n$ ensaios é dada por:
+Onde temos a seguinte relação:
 
-$$\bar{X} = \hat{p} = \frac{T}{n} = \frac{\sum \limits_{i=1}^n X_i}{n}$$
-
-Observe que $T$ tem distribuição binomial com parâmetros $n$ e $p$, cuja esperança (média) é $n.p$ e variância $n.p.q$ ou $n.p.(1-p)$.
-
----
-
-Então, para a proporção, temos:
-
-
-.pull-left[
-**Esperança**  
-$E(\hat{p}) = E\left( \frac{T}{n} \right)$
-
-$E(\hat{p}) = \frac{1}{n} E(T)$
-
-$E(\hat{p}) = \frac{1}{n} n.p$
-
-$E(\hat{p}) = p$
-]
-
-.pull-right[
-**Variância**  
-$Var(\hat{p}) = Var\left( \frac{T}{n} \right)$
-
-$Var(\hat{p}) = \frac{1}{n^2} Var(T)$
-
-$Var(\hat{p}) = \frac{1}{n^2} n.p.q$
-
-$Var(\hat{p}) = \frac{p.q}{n}$
-]
-
-Assim, pelo **Teorema Central Limite**, quando $n$  é grande, a proporção amostral $\hat{p}$ de sucessos em $n$ ensaios de **Bernoulli** tem distribuição aproximadamente normal com média $p$ e variância $\frac{p.q}{n}$, assim, podemos definir a variável padronizada $Z$ como:   
-
-$$Z = \frac{\hat{p} - p}{\sqrt{\frac{p.q}{n}}} \text{   ou   } Z = \frac{T - n.p}{\sqrt{n.p.q}}$$
-
-
-Com distribuição aproximadamente normal padrão $N(0,1)$.
+Nível de Confiança (NC) | Nível de significância $(\alpha)$
+:---:|:---:
+$0,90$ | $0,10$
+$0,95$ | $0,05$
+$0,99$ | $0,01$
 
 
 ---
+class: middle, center, inverse
 
-### Exercício
+# Intervalo de Confiança para a Média Populacional $(\mu)$
 
-Em um ensaio experimental $625$ covas foram semeadas com sementes comerciais provenientes de um lote com índice de germinação $(p)$ igual a $70\%$. 
+---
 
-Qual a probabilidade de se encontrar mais de $72\%$ das covas com plantas germinadas?
+## Precisamos definir 4 casos:
 
+### (a) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ conhecido;
+
+### (b) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ desconhecido;
+
+### (c) Caso em que as amostras são pequenas $(n < 30)$ $\sigma$ conhecido;
+
+### (d) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ desconhecido.
+
+---
+
+### (a) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ conhecido.
+
+O desenvolvimento de intervalos de confiança para $\mu$ é baseado na distribuição amostral de $\bar{X}$ se o tamanho da amostra $(n)$ é grande:
+
+$$Z = \frac{\bar{X}- \mu}{\frac{\sigma}{\sqrt{n}}} \cong N(0,1)$$
+
+
+```{r,out.width = "30%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_01.png")
+```
+onde:  
+$a = \bar{X} - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}$ e $b = \bar{x} + z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}$
+
+$$
+\begin{cases}
+\frac{\sigma}{\sqrt{n}} = \sigma_{\bar{X}} = \text{erro padrão da média} \\
+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} = \text{erro da estimativa da média} 
+\end{cases}
+$$
+
+---
+
+### Exemplo
+
+Se $1 - \alpha = 0,95$ nesse caso $\alpha = 0,05$
+
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_02.png")
+```
+
+---
+
+[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
+
+```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_03.png")
+```
+
+---
+
+Esta expressão, deve ser interpretada do seguinte modo: construídos todos os intervalos da forma $\bar{X} \pm 1,96 \sigma_{\bar{X}}$, $95\%$ deles conterão $\mu$. Lembrando  que $\mu$ não é uma variável aleatória, mas um parâmetro, isto é, não é o mesmo que dizer que $\mu$ tem $95\%$ de probabilidade de estar entre os limites indicados.
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_04.png")
+```
+
+---
+
+Então, denotamos o intervalo de confiança como:
+
+$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$
+
+### Exemplo 
+
+Considerando uma amostra de $100$ animais da raça Nelore, onde o peso médio a desmama é $171,70 \;kg$, encontre um IC de $95\%$ para $\mu$, supondo que o desvio padrão da população $(\sigma)$ seja igual a $7,79\;kg$.
 
 --
 
-**Resposta:** 
+$$IC(\mu;95\%) = ]171,70 \pm 1,96 \frac{7,79}{\sqrt{100}} $$
+$$IC(\mu;95\%) = ]170,17\;kg; 173,23\;kg [$$
+---
 
-$P(T \geq 450) = P(\hat{p} \geq 0,72) = 0,1378$
+### (b) Caso em que amostras são grandes $(n \geq 30)$ e $\sigma$ desconhecido.
+
+Como $n$ é grande, a substituição de $\sigma$ pelo desvio padrão amostral $(s)$ não afeta apreciavelmente a estimativa de $IC$, assim, temos que:
+
+
+$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$
+
+---
+
+### (c) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ conhecido.
+
+Se $X_1, X_2, \cdots, X_n$ é uma amostra aleatória de uma população com distribuição normal $N (\mu, \sigma^2)$, a média amostral $\bar{X}$ é exatamente distribuída como $N (\mu, \frac{\sigma^2}{n} )$. Sendo $\sigma$ conhecido, o $IC (\mu : 1–\alpha)$ é dado por:
+
+$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$
+
+---
+
+class: center,inverse
+
+O vídeo abaixo apresenta um resumos dos $3$ primeiros casos.
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/JIivixTT344" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://youtu.be/JIivixTT344)
+
+---
+
+### (d) Caso em que as amostras são pequenas $(n < 30)$ e $\sigma$ desconhecido.
+
+Fato que ocorre na maioria dos casos, uma aproximação intuitiva é substituir $\sigma$ por $s$ considerar a razão:
+
+$$t = \frac{\bar{x} - \mu}{\frac{s}{\sqrt{n}}}$$
+
+Essa substituição causa uma considerável diferença se a amostra for pequena. A notação $t$ é requerida porque $s$ aumenta a variância de $t$ para um valor maior do que um $(1)$, de modo que a razão não é padronizada. 
+
+
+A distribuição da razão $t$ é conhecida como **distribuição $t$ de Student** com parâmetro $r = n – 1$ graus de liberdade.
+
+
+---
+
+### Distribuição t de Student
+
+[Tabela - Distribuição t-Student](https://github.com/arpanosso/estatinfo/raw/master/docs/Tabela_tdeStudent.pdf) 
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png")
+```
+
+---
+
+### Distribuição t de Student
+
+As distribuições $t$ são simétricas em torno de zero mas têm caudas mais espalhadas do que a distribuição $N(0, 1)$. Entretanto, com o aumento de $r$, a distribuição $t$ se aproxima da distribuição $N(0, 1)$, por $Var(t)$ tende à unidade $(1)$.
+
+$$E(t) = 0$$
+e
+$$Var(t) = \frac{r}{r-2} = \frac{n-1}{n-3}$$
+
+Pode-se concluir da distribuição $t$, que
+
+$$P(-t_{\frac{\alpha}{2}} \le \frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}} \le +t_{\frac{\alpha}{2}}) = 1 - \alpha$$
+em que $t_{\alpha \\2}$ é obtido na tabela da distribuição $t$ com $r = n – 1$ graus de liberdade, ou seja:
+
+$$IC(\mu;1-\alpha) = ]\bar{x}-t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$
+
+---
+class: center,inverse
+
+O vídeo abaixo apresenta um resumos do último caso apresentado.
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/awuOPux5D1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://youtu.be/awuOPux5D1A)
+
+---
+### Exercício
+
+Uma amostra de $10$ cães sofrendo de uma determinada doença apresentou um tempo de sobrevivência médio de $46,9$ meses e o desvio padrão de $43,3$ meses. Determinar os limites de confiança de $90\%$ para $\mu$.
+
+--
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_06.png")
+```
+
+---
+
+class: middle, center, inverse
+
+# Intervalo de Confiança para o Parâmetro Binomial $(p)$
+
+---
+
+Fazendo uso do fato que, para $n$ grande, a distribuição binomial pode ser aproximada com a normal:
+
+$$Z = \frac{x - n.p}{\sqrt{n.p.(1-p)}}$$
+
+Temos:
+
+$$P \left(-z_{\frac{\alpha} {2}} \le \frac{x- np}{\sqrt{np(1-p)}} \le +z_{\frac{\alpha}{2}} \right) = 1 - \alpha$$
+
+Substituindo $p$, visto que é desconhecido, por seu estimador $\hat{p}$  dentro das raízes, obtêm-se:
+
+$$IC(\hat{p};1-\alpha) = \left]\hat{p}-z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}};\hat{p}+z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}} \right[$$
+
+---
+
+### Exemplo
+
+Suponha que em $n = 400$ animais são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
+
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_07.png")
+```
+
+---
+
+### Exemplo  
+Suponha que em $n = 400$ animais doentes são administrados uma droga, obtendo  $X = 320$ sucessos, ou seja, $80\%$ dos animais melhoraram.  A partir destes dados, obtenha um $IC$ para $p$, com $1 - \alpha = 0,90$.
+
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_08.png")
+```
+

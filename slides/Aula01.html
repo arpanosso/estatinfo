@@ -4,19 +4,29 @@
     <title>Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
-    <script src="libs/header-attrs-2.13/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Estatística e Informática
+]
+.subtitle[
 ## Aula 01 - Noções de Programação
+]
+.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
+]
+.institute[
 ### Departamento de Engenharia e Ciências Exatas
+]
+.date[
 ### 09-03-2022
+]
 
 ---
 
@@ -751,6 +761,17 @@ Fim.
 Implementação em R
 
 
+```r
+porcentagem &lt;- 0.075 # real
+salario &lt;- 1212.00 # real 
+novo_salario &lt;- 0.00 # real
+novo_salario = salario + salario*porcentagem # processamento
+cat("Novo Salário: R$", round(novo_salario,2)) # saída
+```
+
+```
+## Novo Salário: R$ 1302.9
+```
 
 ---
 
@@ -772,6 +793,23 @@ Fim.
 Implementação em R
 
 
+```r
+preco &lt;- 4274.90 #real
+desconto &lt;- preco *23/100
+cat("desconto: R$ ", desconto)
+```
+
+```
+## desconto: R$  983.227
+```
+
+```r
+cat("Preço com desconto: R$", preco-desconto)
+```
+
+```
+## Preço com desconto: R$ 3291.673
+```
 
 
 ---
@@ -794,6 +832,16 @@ Fim.
 Implementação em R
 
 
+```r
+taxa_cambio &lt;- 5.24
+valor_dolar &lt;- 405.78
+valor_real &lt;- valor_dolar * taxa_cambio
+cat("valor em R$", round(valor_real,2))
+```
+
+```
+## valor em R$ 2126.29
+```
 
 ---
 
@@ -813,7 +861,16 @@ Fim.
 Implementação em R
 
 
+```r
+taxa_cambio &lt;- 5.24
+valor_real &lt;- 4274.90
+valor_dolar &lt;- valor_real / taxa_cambio
+cat("valor em USD", round(valor_dolar,2))
+```
 
+```
+## valor em USD 815.82
+```
 
 
 ---
@@ -840,7 +897,7 @@ São instruções primitivas que têm significados pré-determinados e fazem par
 
 
 ```r
-if; else for; while; repeat; break; function
+if; else; in; for; while; repeat; break; function
 next; NULL; Inf; NA; NaN; TRUE; FALSE; T; F
 ```
 
@@ -907,25 +964,25 @@ km/h
 
 Identifique os erros, se houver, e reescreva os identificadores abaixo, se necessário:
 
-vm
+vm: não tem significado, ideal `valor_médio`, por exemplo;
 
-13salário
+13salário: não se inicial com número, ideal `salario_13`;
 
-salário$
+salário$: não utilizar caractere especial, ideal `salario`;
 
-salário_mínimo 
+salário_mínimo: correto, outra opção seria `salario_minimo`;
 
-salário+reajuste
+salário+reajuste: não utilizar caractere especial, ideal `salario_reajuste`;
 
-novoSalário
+novoSalário: correto, outra opção `novoSalario`;
 
-fumante? 
+fumante? :não utilizar caractere especial, ideal `fumante`;
 
-preço médio
+preço médio: não utilizar caractere especial, espaço, ideal `preco_medio`;
 
-%desconto
+%desconto: não utilizar caractere especial, ideal `desconto`: 
 
-km/h
+km/h: não utilizar caractere especial, ideal `km_h`. 
 
 ---
 
@@ -954,7 +1011,7 @@ Todos os exemplos abaixo serão considerados do tipo caractere:
 "A"   
 "Discente",  
 "Fone 3333-33333",   
-"1" 
+"1"  
 
 ---
 
@@ -1016,61 +1073,62 @@ l(__) ".F."
 
 ---
 
-**Exercício: Resposta** Classifique os dados de acordo com o seu tipo, sendo (I = Inteiro, R = Real, C = Caractere e L = Lógico):  
+**Exercício: Respostas** Classifique os dados de acordo com o seu tipo, sendo (I = Inteiro, R = Real, C = Caractere e L = Lógico):  
 
 .pull-left[
 
-a(__)  0	   
+a(I)  0	   
  
-b(__) + 36  
+b(I) + 36  
  
-c(__) 0,3257  
+c(R) 0,3257  
 
-d(__) F  
+d(L) F  
  
-e(__)  1  
+e(I)  1  
  
-f(__) "F"  
+f(C) "F"  
  
-g(__) "+3257"	  
+g(C) "+3257"	  
  
-h(__) -1  
+h(I) -1  
  
-i(__) 0,0      
+i(R) 0,0      
  
-j(__) - 0,001	     
+j(R) - 0,001	     
  
-k(__) "-0,0"	  
+k(C) "-0,0"	  
  
-l(__) ".F."  
+l(C) ".F."  
  
 ]
  
  .pull-right[
- m(__) "o"
+ m(C) "o"
  
- n(__) +0,05	     
+ n(R) +0,05	     
  
- o(__) ".V."		  
+ o(C) ".V."		  
  
- p(__) 7/2
+ p(R) 7/2
  
- q(__) 32     
+ q(I) 32     
  
- r(__) +3257	     
+ r(I) +3257	     
  
- s(__) V		  
+ s(L) V		  
  
- t(__) -32   
+ t(I) -32   
  
- u(__) "A"	  
+ u(C) "A"	  
  
- v(__) "abc"	     
+ v(C) "abc"	     
  
- x(__) -1,9E123	  
+ x(R) -1,9E123	  
  
- z(__) "0"  
+ z(C) "0"  
 ]
+
 
 ---
 class: middle, center, inverse
@@ -1115,8 +1173,8 @@ letters # letras minúsculas
 ```
 
 ```
-##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
-## [20] "t" "u" "v" "w" "x" "y" "z"
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o"
+## [16] "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
 ```
 
 ```r
@@ -1124,17 +1182,22 @@ LETTERS # letras maiúsculas
 ```
 
 ```
-##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
-## [20] "T" "U" "V" "W" "X" "Y" "Z"
+##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O"
+## [16] "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 ```
+---
+
+Exemplo de constantes no R:
+
 
 ```r
 month.name # meses
 ```
 
 ```
-##  [1] "January"   "February"  "March"     "April"     "May"       "June"     
-##  [7] "July"      "August"    "September" "October"   "November"  "December"
+##  [1] "January"   "February"  "March"     "April"     "May"      
+##  [6] "June"      "July"      "August"    "September" "October"  
+## [11] "November"  "December"
 ```
 
 ```r
@@ -1142,7 +1205,8 @@ month.abb # meses abreviados
 ```
 
 ```
-##  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
+##  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct"
+## [11] "Nov" "Dec"
 ```
 
 
@@ -1192,7 +1256,7 @@ Uma **expressão** é uma fórmula para processamento de um valor.
 
 As principais expressões são as seguintes:
 
-Aritméticas: Retornam um valor numérico (inteiro ou real).   
+**Aritméticas**: Retornam um valor numérico (inteiro ou real).   
 EX: `\(10+(3+1)/2\)` 
 RETORNO: `\(12\)`
 
@@ -1205,14 +1269,14 @@ RETORNO: `\(12\)`
 ## [1] 12
 ```
 
-
-Relacionais: Retornam um valor lógico `\(V\)` ou `\(F\)`.  
+**Relacionais**: Retornam um valor lógico `\(V\)` ou `\(F\)`.  
 EX: `\(7 = 14/2\)`  
 RETORNO: `\(VERDADEIRO\)`
 
+No R o operador relacional de igualdade são dois sinais de igual (`==`).
 
 ```r
-(7 == 14/2)
+(7 == 14/2) 
 ```
 
 ```
@@ -1220,7 +1284,7 @@ RETORNO: `\(VERDADEIRO\)`
 ```
 
 
-Lógicas: Retornam um valor lógico `\(V\)` ou `\(F\)`.  
+**Lógicas**: Retornam um valor lógico `\(V\)` ou `\(F\)`.  
 EX: `\((3=2+1) E (3&gt;2)\)`  
 RETORNO: `\(VERDADEIRO\)`
 
@@ -1236,6 +1300,8 @@ RETORNO: `\(VERDADEIRO\)`
 
 ---
 
+
+---
 class: middle, center, inverse
 
 # Operadores
@@ -1379,11 +1445,11 @@ Estes somente são usados para efetuar comparações, as quais só podem ser fei
 
 
 ```r
-x &lt;- "Meu Nome"; x == "Meu Nome"
+x &lt;- "Meu Nome"; x == "MEU NOME"
 ```
 
 ```
-## [1] TRUE
+## [1] FALSE
 ```
 
 
@@ -1393,7 +1459,7 @@ O resultado de uma comparação é sempre um valor lógico.
 
 
 ```r
-7 &gt; 5 
+7 &gt; 5 # maior que
 ```
 
 ```
@@ -1401,7 +1467,7 @@ O resultado de uma comparação é sempre um valor lógico.
 ```
 
 ```r
-7 &lt; 5
+7 &lt; 5 # menor que 
 ```
 
 ```
@@ -1409,7 +1475,7 @@ O resultado de uma comparação é sempre um valor lógico.
 ```
 
 ```r
-7 &gt;= 40/5
+7 &gt;= 40/5 # maior ou igual a
 ```
 
 ```
@@ -1417,7 +1483,7 @@ O resultado de uma comparação é sempre um valor lógico.
 ```
 
 ```r
-7 &lt;= 35/5
+7 &lt;= 35/5 # menor ou igaul a
 ```
 
 ```
@@ -1425,7 +1491,7 @@ O resultado de uma comparação é sempre um valor lógico.
 ```
 
 ```r
-4 == 8/2
+4 == 8/2 # igual a 
 ```
 
 ```
@@ -1433,7 +1499,7 @@ O resultado de uma comparação é sempre um valor lógico.
 ```
 
 ```r
-4 != 8/2
+4 != 8/2 # não igual a
 ```
 
 ```
@@ -1443,7 +1509,7 @@ O resultado de uma comparação é sempre um valor lógico.
 
 ---
 
-**Operadores Lógicos** ou **Booleanos**: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos `\(V\)` ou `\(F\)`.
+**Operadores Lógicos** ou **Booleanos**: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos, ou seja, `\(V\)` ou `\(F\)`.
 
 
 Operador	| Tipo	| Operação|	| Prioridade
@@ -1616,6 +1682,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

@@ -1,13 +1,13 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula02.html")
+# pagedown::chrome_print("slides/Aula03.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
-subtitle: "Aula 02 - Introdução (Conceitos Básicos)"
+subtitle: "Aula 03 - Somatória e Análise Combinatória"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "04-05-2021"
+date: "(12-05-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -25,360 +25,459 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
 ```
 class: middle, center, inverse
 
-# INTRODUÇÃO
+# SOMATÓRIA
 
 ---
-## Porque estudar Estatística
+## Definições
 
---
-- Estatística é fundamental para o avanço do conhecimento científico, uma vez que a essência da Ciência é a observação e que o seu objetivo básico é a inferência, destacando-se nas áreas da *Saúde*, *Farmaceuticas*, *Melhoramento* (animal e vegetal), *Produção de alimentos* e demais *áreas científicas*.
+**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas $X$, $Y$, $Z$.
 
---
-- Os conhecimentos estatísticos são fundamentais para análise e interpretações das informações coletadas *em campo*.
+O conjunto de dados terá a o tamanho $n$, que representa o número de elementos que ele contém. Em outras palavras, $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
 
---
-- Várias técnicas de análises estatísticas ajudam o pesquisador a **confirmar as hipóteses** à respeito de um fenômeno de interesse.
+os valores específicos assumidos por tais variáveis (suas realizações) serão representados pelas letras minúsculas $x$, $y$ e $z$, respectivamente, seguidas de um índice $i$ que representa a posição daquele valor específico dentro do conjunto de dados. 
 
---
-- Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
+Assim, para distinguir um valor do outro, utilizamos esse índice  $i$, que pode ser entendido como uma variável auxiliar, utilizada para contage, que se inicia na posição $1$ e termina na posição $n$, abrangendo todo o seu conjunto de dados.
 
----
-## Modelos Matemáticos 
+Assim temos:
 
-### Modelos Determinísticos: 
+$Altura: X = \{x_1, x_2, ..., x_n\}, \text{ com  }i = 1,2,..,n.$
 
-Nesse modelo as condições sob as quais um experimento é executado determinam o resultado do experimento. 
+$Idade: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).$
 
-**Exemplo**: Segunda Lei de Newton:
+$Peso: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).$
 
-$$F = m \cdot a$$
-
-Esse modelo diz que o valor da força $F$ pode ser calculado tão logo os valores da massa do objeto $m$ e sua aceleração $a$ sejam fornecidos. Nesse tipo de modelo, quaisquer desvios que pudessem ocorrer seriam tão pequenos que a descrição acima seria suficiente para modelá-lo. 
-
-**Seu resultado é determinado pelas condições sob as quais o experimento é executado**.
-
-Exemplo de mecânica clássica, astronomia, termodinâmica, circuítos elétricos e química são comuns e abundantes na literatura.
+Nessa notação um valor típico da variável *Altura*, será designado por $x_i$ e o valor final por $x_n$. 
 
 ---
 
-```{r,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
-source("..\\R\\thema_gafico.R")
-library(tidyverse)
+## Somatória
 
-df<- tibble(
-  massa = 0:100,
-  aceleracao = 2,
-  dados = massa*aceleracao,
-  modelo_de = dados
-)
-df %>% 
-  ggplot()+
-  geom_point(aes(x=massa,y=dados,fill="Dados"),color="black",size=3)+
-  geom_line(aes(x=massa,y=modelo_de,linetype="Modelo"),color="red")+
-  xkcdaxis(xrange=c(0,15),yrange=c(0,30)) +
-  labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Deterministico",
-       fill="",linetype="")+
-  annotate(geom = "text",x=3,y=30,label = 'bold("aceleração = 2 m/s²")',
-            parse = TRUE) +
-   theme_grafico
+Ao realizar a análise de uma variável quantitativa (numérica) é necessário somarmos todos os seus valores valores. 
+
+Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
+
+Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega sigma maiúscula $\Sigma$:
+
+Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses 5 valores:
+
+$x_1 + x_2 + x_3 + x_4 + x_5$
+
+será representada pela notação:
+
+$\sum\limits_{i=1}^{n}{x_i}$ ou $\sum_{i=1}^{n}{x_i}$
+
+onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos $5$ valores  de $X$.
+
+---
+Dado duas variáveis  $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+.pull-left[
+$\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24$
+]
+
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+X <- c(3,0,5,9,7)
+sum(X)
+```
+]
+
+Ao invés da soma ser com os índices $i$ de 1 a $n$, podemos ter, por exemplo:
+.pull-left[
+
+$\sum\limits_{i=2}^{4}{y_i} = 3+9+1 = 13$
+]
+
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+Y <- c(2,3,9,1,2)
+sum(Y[2:4])
+```
+]
+
+.pull-left[
+Observe que:
+
+$\sum\limits_{i=1}^{n}{x_i}^2 \neq \left( \sum\limits_{i=1}^{n}{x_i} \right)^2$
+
+uma vez que:
+
+$3^2+0^2+5^2+9^2+7^2 \neq  (3+0+5+9+7)^2$
+
+$9+0+25+81+49 \neq  (24)^2$
+
+$164 \neq  576$
+]
+
+.pull-right[
+
+
+```{r, echo=TRUE, eval=FALSE}
+sum(X^2)
+sum(X)^2
 ```
 
-$$Dados = Modelo$$
+]
 
 ---
-## Modelos Matemáticos 
+Qual a soma do produto entre as variáveis $X$ e $Y$:
 
-Para um grande número de situação na natureza, o modelo matemático determinístico apresentado é suficiente, contudo existem fenômenos que requerem um modelo matemático diferente:
+Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+$\sum\limits_{i=1}^{n}{x_iy_i}$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= x_1 \cdot y_1 + x_2 \cdot y_2 + x_3 \cdot y_3 + x_4 \cdot y_4 + x_5 \cdot y_5$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot (2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot(1) + 7 \cdot(2)$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
 
 
-### Modelos Estocásticos (não-determinísticos ou probabilísticos): 
-
-**Nesse modelo admitimos que as condições nas quais o ensaio é executado determinam somente o comportamento probabilístico do resultado observável**. 
-
-**Exemplo:** em fenômenos meteorológicos, não podemos determinar qual será a precipitação em uma determinada região como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa do ar podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
-
----
-
-```{r,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
-set.seed(1235)
-df<- tibble(
-  umidade = 10:100,
-  a = 2,
-  ruido = rnorm(101-10,0,3),
-  dados = umidade*a + ruido,
-  modelo_es = umidade*a
-)
-df %>% 
-  ggplot()+
-  geom_point(aes(x=umidade,y=dados,fill="Dados"),color="black",size=3)+
-  geom_line(aes(x=umidade,y=modelo_es,linetype="Modelo"),color="red")+
-  xkcdaxis(xrange=c(10,30),yrange=c(15,60)) +
-  labs(x="Umidade relativa (%)",y="Chuva (mm)",title = "Modelo Estocastico (Probabilistico)",
-       fill="",linetype="")+
-   theme_grafico
+```{r, echo=TRUE, eval=FALSE}
+sum(X*Y)
 ```
-$$Dados = Modelo + Ruído$$
+
 ---
 
+No Excel
 
-    A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
+```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarprod_excel.png")
+```
+---
+
+## Propriedades da Somatória
+    
+**i)** A somatória de uma constante $(k)$ é igual ao produto  $n \cdot k$.
+
+$\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k$
 
 --
-##### Estatística Descritiva
 
-Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de **representar dados em tabelas e gráficos**, **resumi-los** por meio de algumas medidas **sem, contudo, tirar conclusões** sobre um grupo maior.
+**ii)** A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
 
---
-
-##### Probabilidade
-
-Teoria matemática utilizada para se estudar a incerteza oriunda de fenômenos de caráter **aleatório**. 
+$\sum\limits_{i=1}^{n}{k \cdot x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
 
 --
 
-##### Inferência Estatística
+**iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
 
-Técnicas que possibilitam a extrapolação das informações e conclusões obtidas a partir de subconjuntos de dados, a um grande número de dados. Ou seja, **conclusões aqui serão tomadas**.
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)$
+
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n) =(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)$
+
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}$
+
+---
+
+## Exercícios
+
+1) Calcular: $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+
+
+2) Dado a média sendo: 
+
+$\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+Provar que:
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
+
+---
+
+### Resposta
+
+1) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+
+--
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{ k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+--
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+--
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = k \cdot \sum\limits_{i=1}^{n}{x_i} + n \cdot k$
+
+
+---
+
+### Resposta
+
+2) Dado: $\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$, 
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}$
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}$
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+--
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
 
 ---
 class: middle, center, inverse
 
-# ESTATÍSTICA DESCRITIVA
+# ANÁLISE COMBINATÓRIA E MÉTODOS DE NUMERAÇÃO
 
 ---
-## Estatística Descritiva
 
-Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de representar dados em tabelas e gráficos, resumi-los por meio de algumas medidas **sem, contudo, tirar conclusões sobre um grupo maior**.
+### Exemplo Prático
 
-É necessário, portanto, definirmos os nossos termos básicos para podermos nos comunicar durante a disciplina. Assim, serão definidos alguns conceitos.
---
+Imaginemos uma situação prática onde temos um rebanho com $100$ animais contendo $20$ indivíduos doentes e, consequentemente, $80$ não doentes (sadios). 
 
-### Dados
---
+<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 25%"></img>
 
-Considerados o material básico da estatística, são os valores observados de uma característica de interesse de cada amostra, é o registro da característica de interesse. 
+1) Quais as probabilidade de, em uma amostra aleatória simples sem reposição de $3$ animais, selecionarmos:
+a) nenhum doente, consequentemente, $3$ animais sadios?  
+b) $1$ doente e $2$ sadios?  
+c) $2$ doentes e $1$ sadios?  
+d) $3$ doentes  
 
---
+2) Construir o gráfico dessas probabilidade de cada evento eixos $(Y)$ pelo nº animais doentes na amostra eixo $(X)$.
+
+
+---
+## Probabilidade e Análise Combinatória
+
+A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número 5 sair no lançamento de um dado. Ou no lançamento de 4 moedas, sair pelo menos uma face **Cara**.
+
+.pull-left[
+<img src="https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?cs=srgb&dl=pexels-pixabay-37534.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>]
+
+.pull-right[
+<img src="https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?cs=srgb&dl=pexels-pixabay-210600.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>]
+
+
+A partir disso, a probabilidade é determinada pela razão entre o número de eventos possíveis e o número de eventos favoráveis, sendo apresentada pela seguinte expressão:
+
+$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}}$$
+
+onde $P(E)$ é a probabilidade de ocorrência do evento $E$.
+
+
+---
+Assim, para respondermos a quetão da amostragens de animais doentes, precisaremos calcular:
+
+#### $\text{nº de resultados favoráveis}$
+
+Ou seja, de quantas maneiras poderemos escolher, por exemplo, $2$ animais do total de $20$ doentes e $1$ do total de $80 $animais sadios.
+
+#### $\text{nº total de resultados possíveis}$
+
+De quantas maneiras poderemos escolher $3$ animais (independentemente de serem sadios ou doentes) em um total de $100$ animais.
+
+---
+
+## Análise Combinatória
+
+Portanto, para calcularmos a probabilidade do evento (escolher $2$ animais doentes e $1$ sadio), faz-se necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (*Permutações*, *Arranjos* e *Combinações*).
+
+### Princípio Fundamental da Contagem
+
+O princípio fundamental da contagem, também chamado de princípio multiplicativo, postula que:
+
+ >“quando um evento é composto por $n$ etapas sucessivas e **independentes**, de tal modo que as possibilidades da primeira etapa é $x$ e as possibilidades da segunda etapa é $y$, o número total de possibilidades do evento ocorrer é dado pelo produto $x \cdot y$”.
+
+Em resumo, no princípio fundamental da contagem, multiplica-se o número de opções independentes entre as escolhas que lhe são apresentadas.
+
+---
 
 **Exemplos**
 
---
-
-- Variação de temperatura no processo de secagem de um alimento.
-- Tempo de reabilitação de doentes após determinados tratamentos.
-- Número de produtos defeituosos em lotes oriundos de uma linha de montagem.
-- Peso e alturas de plantas de uma determinada variedade após aplicação de um trato cultural.
-- Número de insetos vivos após a aplicação de um defensivo.
+1. Em um restaurante, há $5$ aperitivos no *menu*, $10$ entradas principais e $4$ sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
 
 --
 
-Cada número desses constituem os **DADOS** e a característica comum entre eles é a **VARIABILIDADE** ou **VARIAÇÃO**.
+2. Quantos códigos numéricos de $5$ caractéres são possíveis se:  
+(a) não há restrições?  
+(b) o primeiro dígito não pode ser $0$?  
+(c) nenhuma repetição é permitida?  
+(d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
+
+--
+
+3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média $435$ milhões senhas por segundo:   
+
+--
+  a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
+
+--
+  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com $9$ dígitos?
+
+---
+## Permutações
+
+Quando estamos preocupados em responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos $n$ objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
+
+Dado o conjunto de letras $L=\{a, b, c\}$, de quantas maneiras podemos permutá-las?
+
+--
+
+${a,b,c}$     
+${a,c,b}$  
+${b,a,c}$     
+${b,c,a}$  
+${c,a,b}$     
+${c,b,a}$  
+
+--
+
+Equivale em colocar os elementos dentro de caixas com $n$ compartimentos em alguma ordenação. 
+
+E como consequência do princípio da multiplicação, as possibilidades de inserção dentro  de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente:
 
 ---
 
-**Exemplo de um banco de dados**
+## Permutações
 
-[Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) $\leftarrow$ Clique para baixar o banco de dados no Excel (**exemplo_dados.xlsx**)
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"></img>
-
-Onde:  
-**id** é a identificação do aluno;   
-**sexo**: "M" masculino e "F" feminino;  
-**cor_cabelo**: "P" - Preto, "C" - Castanho, "CC" - Castanho Claro, "CE" - Castanho Escuro, "L" - Loiro, "R - Ruivo";  
-**GA**: é o grau de alcoolismo: "nao_consome" < "pouco" < "socialmente" < "mais_social";  
-**altura**: altura declarada pelo aluno em $m$;  
-**idade**: idade do aluno ao cursar a disciplina (Estatística e Bioestatística).
----
-**Exemplo de um banco de dados**
-
-[Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) $\leftarrow$ Clique para baixar o banco de dados no R (**exemplo_dados.rds**)
-
-```{r,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
-dados_turmas<-readxl::read_excel(path = "../data/dados_turmas.xlsx")
-readr::write_rds(dados_turmas,"../data/dados_turmas.rds")
+```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
 ```
 
-```{r,echo=TRUE}
-# Lendo o Banco de dados
-dados_turmas<-readr::read_rds("../data/dados_turmas.rds")
+$$n! = n \cdot (n-1) \cdot (n-2) \cdots (2) \cdot (1)$$
+$$3! = 3 \cdot (3-1) \cdot(3-2) = 3 \cdot 2 \cdot 1 = 6$$
 
-# Mostrando os 7 primeiro registros
-head(dados_turmas, n=7)
+Exemplos:
+
+1. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7?
+
+2. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo $6$ seja imediatamente seguido pelo algarismo $7$?
+
+3. Três $(03)$ chineses, $04$ americanos e $05$ italianos serão dispostos em fila de modo que as pessoas da mesma nacionalidade estejam sempre juntas. De quantas maneiras a fila poderá ser formada, de modo que o primeiro da fila sempre seja um italiano?
+
+---
+## Arranjos
+
+O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ elemntos e vamos tomar $r$ amostras desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png")
+```
+
+
+$A^n_r= \frac{n!}{(n-r)!}$
+
+--
+
+1) A senha de uma conta bancária é formada de $6$ números ou de $4$ números dentre os números de $0$ a $9$, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
+
+Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza $6$ números, e no banco Santander que utiliza $4$ números, seguindo o conselho dos gerentes?
+
+2) Quantos números de $4$ algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
+
+---
+
+## Combinações 
+
+Semelhante aos arranjo, nas **Combinações** temos $n$ elementos e vamos amostrar $r$ elementos $(0<r<n)$, e estamos interessados em contar de quantas maneiras poderemos **combinar** os $r$ elementos amostrados, nesse caso **a ordem** com a qual os elementos são amostrados **NÃO IMPORTA** para a contagem.
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png")
+```
+
+Assim, teremos que descontar dos Arranjos de $r$ elementos as permutações desses $r$ elementos, para isso, basta dividirmos os Arranjos por $r!$ ou seja $C^n_r={r \choose x}$.
+
+---
+
+## Combinações
+
+Voltando para o exemplo do rebanho composto por $100$ animais, onde temos $20$ indivíduos doentes e $80$ sadios, vamos calcular a probabilidade de em uma amostra de $3$ animais selecionarmos $2$ animais doentes e $1$ animais sadios:
+
+#### $\text{nº de resultados favoráveis}$
+
+Ou seja, de quantas maneiras poderemos escolher $2$ animais do total de $20$ doentes e $1$ dos $80$ sadios?
+
+$C^{20}_2 \cdot C^{80}_1 = {20 \choose 2} \cdot {80 \choose 1}$
+
+$C^{20}_2 \cdot C^{80}_1  = \frac{20!}{2!(20-2)!} \cdot \frac{80!}{1!(80-1)!}$
+
+$C^{20}_2 \cdot C^{80}_3  = 190 \cdot 80$
+
+$C^{20}_2 \cdot C^{80}_3  = 15200$
+---
+
+#### $\text{nº total de resultados possíveis}$
+
+Devemos calcular agora de quantas maneiras poderemos escolher $3$ animais (independente de serem sadios ou doentes) em um total de $100$ animais.
+
+$C^{100}_3 = {100 \choose 3}$
+
+$C^{100}_3 = \frac{100!}{3!(100-3)!}$
+
+$C^{100}_3  = 161700$
+
+Finalmente, a probabilidade do evento, amostrar $2$ indivíduos doentes e $1$ sadio será:
+
+$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15200}{161700}=0,094 \text{ ou } 9,40\%$$
+
+Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de 5 animais tomarmos:
+
+a) nenhum animal doente (todos sadios).  
+b) 01 doente e 02 sadios.  
+c) 02 doentes e 01 sadios.  
+d) todos doentes.
+
+---
+
+## Distribuição de Probabilidade 
+
+Essa fórmula que acbamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
+
+Considere uma população com $N$ objetos nos quais $M$ são classificados como do tipo $A$ e $N−M$ são classificados como do tipo $B$. Tomamos uma amostra ao acaso, **sem reposição** e não ordenada de $r$ objetos. Seja $X$ a variável que conta o número de objetos classificados como do tipo $A$ na amostra. Então a distribuição de probabilidade de $X$ será dada por:
+
+$$P(X = x) = \frac{ {M \choose x} \cdot { {N-M} \choose {r - x} } } { {N \choose r}}$$
+Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
+
+```{r,echo=TRUE,eval=FALSE}
+N = 100 # Número total de elementos na população
+M = 20 # número total de elementos de interesse (doentes) na população
+r = 3 # tamanho da amostra.
+x=0:r # os possiveis valores de doentes na amostra.
+px<-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
+barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.65),
+        xlab="nº de doentes na amostra",ylab="P(X=x)",main="X~Hgeo(20,100,3)")
+text(1:length(x),px+.05,round(px*100,2))
 ```
 
 ---
-### População
+class: middle, center
+## Distribuição Hipergeométrica
 
-**Populações Comuns**: Uma população é um conjunto de pessoas (ou elementos) que possuem uma característica observável comum, geralmente, de interesse de estudo. Conjunto total de objetos que queremos estudar, para os quais uma decisão deve ser tomada.
-
-<img src="https://images.pexels.com/photos/9816/pexels-photo-9816.jpeg?cs=srgb&dl=pexels-ingo-joseph-9816.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-
-### População
-
-**Populações Estatísticas**: a população estatística se refere a dados, e não às pessoas (elementos) nessa abordagem, a população é composta de características dos elementos, independente de terem sido medidas ou não.
 
 .pull-left[
-- Valores de pressão sanguínea dos indivíduos de uma população.
-
-<img src="https://media0.giphy.com/media/PhaAAKt6a95Qy1Pm7i/giphy.gif?cid=ecf05e47mt3as17yvha04viluavo86fg0sxjy7i31z4ukcq7&rid=giphy.gif&ct=g" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
-]
-
-.pull-right[- Presença ou ausência de doenças na população de cervos do pantanal.
-
-<img src="https://images.pexels.com/photos/6249413/pexels-photo-6249413.jpeg?cs=srgb&dl=pexels-ryutaro-tsukata-6249413.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
-]
-
----
-
-### População
-
-**Populações Estatísticas**:
-
-.pull-left[
-- Porcentagem de controle de praga por inseto predador em uma parcela experimental.
-
-<img src="https://images.pexels.com/photos/36485/ladybug-flight-beetle-insect.jpg?cs=srgb&dl=pexels-pixabay-36485.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+```{r}
+N = 100 # número total de elementos
+M = 20 # número total de elementos de interesse (doentes)
+r = 3 # tamamho da amostra
+x=0:r # os possiveis valores de doentes na amostra
+px<-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
+barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.65),
+        xlab="nº de doentes na amostra",ylab="P(X=x)",main="X~Hgeo(20,100,3)")
+text(seq(.7, length(x)+1, 1.2),px+.05,round(px,2))
+```
 ]
 
 .pull-right[
-
-- Valores de produção de soja por estados no Brasil.
-
-<img src="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?cs=srgb&dl=pexels-tom-fisk-1595104.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-]
-
----
-
-### Amostra
-
-Amostra é qualquer subconjunto da população.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/pop_amostra.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
-
-- Não conseguimos acessar toda uma população para estudar as características de interesse, tomaremos alguns elementos dessa população para formar um grupo a ser estudado.
-- Impossibilidade de acesso e implicações éticas.
-
----
-.pull-left[
-### Parâmetro: 
-
-É a medida usada para descrever uma característica da população, por exemplo: média populacional $(\mu)$ ou a variância populacional $(\sigma^2)$.]
-
-.pull-right[
-### Estatística
-É a medida usada para descrever uma característica da amostra, em analogia, média amostral $(\bar{x}\text{ ou } \bar{m} )$ e a variância amostral $(s^2)$.
-]
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/pop_amostra_parametros.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
-
----
-
-### Variável
-
-As informações obtidas, sejam com base nos elementos que constituem a população, sejam com base nos elementos que constituem a amostra, são denominadas **dados**. 
-
-Assim, definimos que todo dado coletado refere-se a uma característica da população, agora, para nós  determinada **VARIÁVEL**.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_tipo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 70%"></img>
-
----
-
-### Variável Qualitativa
-
-É aquela que apresenta como possíveis realizações uma qualidade (ou atributo) do indivíduo pesquisado.
-
-**Nominal**: é aquela para a qual **não existe ordenação** alguma das possíveis realizações (característica observados). Em estatística dizemos que os dados são **categóricos**. 
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_nominal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-### Variável Qualitativa
-
-**Ordinal**: é aquela para a qual **existe certa ordem** nos possíveis resultados. Apesar de ordenar, não permite a indicação em termos de quanto mais ou menos.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_ordinal.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-### Variável Quantitativa 
-
-**Discreta**: os possíveis valores formam um conjunto enumerável resultam, frequentemente, de um **processo  contagem** (os valores podem ser finito ou mesmo infinitos). Exemplos: número de filhos, número de células, número de ovos, número de ácaros ou insetos em uma planta.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_discreta.png" style=" display: block; margin-left: auto; margin-right: auto;width: 90%"></img>
-
----
-### Variável Quantitativa 
-
-**Contínua**: os possíveis valores formam um intervalo de números reais e que resultam, normalmente, de um processo de medida (mensuração). Exemplos: peso, altura, produção de leite, pressão arterial, teor de nitrogênio no solo ou na folha.
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/var_continua.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
-
----
-class: middle, center, inverse
-
-# Ferramental
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/excel_R_logo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"></img>
-
----
-
-### Exercícios Práticos
-
-#### 1) Utilizando o Excel e o R, monte as expressões para resolver as equações:
-
-$$\begin{align*} & a)\; log_5 125 \\
-& b)\; 2 \cdot sen(45°) \\
-& c)\; \frac{1}{\sqrt{2\pi}} \\
-& d)\; \frac{1}{\sqrt{2\pi+1}} \end{align*}$$
-
-
-#### 2) Dados a amostra da variável $X=\{6,8,7\}$, sendo $\Sigma$ a somatória dos elementos de $X$  e $\bar{x}$ a média (amostral) dos elementos de $X$ e $n$ o número total de elementos dessa amostra, calcule:
-
-$$\begin{align*} 
-& a)\;Soma= \sum_{i=1}^n x_i \\
-& b)\; \bar{x} = \frac{\sum_{i=1}^n x_i}{n}\\
-& c)\; \beta = \frac{(\sum_{i=1}^n x_i)^2}{(n-1)\cdot(n-2) } \end{align*}$$
-
----
-### Resolução no Excel
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/exer_excel.png" style=" display: block; margin-left: auto; margin-right: auto;width: 73%"></img>
-
----
-### Resolução no R  
-#### Exercício 01
-```{r,echo=TRUE}
-# 1.a
-log(125,5)
-
-# 1.b
-2*sin(45*pi/180)
-
-# 1.c
-1/(sqrt(2*pi))
-
-# 1.d
-1/(sqrt(2*pi+1))
+```{r}
+tibble::tibble(x,px)
 ```
 
----
-### Resolução no R
+**OBS**: O número de doentes da amostra de $3$ animais pode variar de 0 a 3, ao conjunto dessas possibilidades denominamos espaço amostral (letras $\Omega$ ou $S$), com a soma de suas probabilidades é sempre igual a $1$:
 
-#### Exercício 02
+$\sum \limits_{x=0}^r P(x_i) = 1$
 
-```{r,echo=TRUE}
-# Definindo dados X
-X = c(6,8,7)
-
-# 2.a
-sum(X)
-
-# 2.b
-mean(X)
-
-# 2.c
-sum(X)^2/((3-1)*(3-2))
-```
-
+]
