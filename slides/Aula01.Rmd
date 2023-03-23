@@ -1271,8 +1271,8 @@ TRUE & TRUE # Conjunção
 
 .pull-right[
 ```{r}
-TRUE & FALSE # Disjunção
-TRUE & TRUE # Disjunção
+TRUE | FALSE # Disjunção
+TRUE | TRUE # Disjunção
 ```
 ]
 

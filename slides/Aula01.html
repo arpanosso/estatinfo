@@ -4,9 +4,9 @@
     <title>Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -1173,8 +1173,8 @@ letters # letras minúsculas
 ```
 
 ```
-##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o"
-## [16] "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+## [20] "t" "u" "v" "w" "x" "y" "z"
 ```
 
 ```r
@@ -1182,8 +1182,8 @@ LETTERS # letras maiúsculas
 ```
 
 ```
-##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O"
-## [16] "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+## [20] "T" "U" "V" "W" "X" "Y" "Z"
 ```
 ---
 
@@ -1195,9 +1195,8 @@ month.name # meses
 ```
 
 ```
-##  [1] "January"   "February"  "March"     "April"     "May"      
-##  [6] "June"      "July"      "August"    "September" "October"  
-## [11] "November"  "December"
+##  [1] "January"   "February"  "March"     "April"     "May"       "June"     
+##  [7] "July"      "August"    "September" "October"   "November"  "December"
 ```
 
 ```r
@@ -1205,8 +1204,7 @@ month.abb # meses abreviados
 ```
 
 ```
-##  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct"
-## [11] "Nov" "Dec"
+##  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
 ```
 
 
@@ -1549,15 +1547,15 @@ TRUE &amp; TRUE # Conjunção
 .pull-right[
 
 ```r
-TRUE &amp; FALSE # Disjunção
+TRUE | FALSE # Disjunção
 ```
 
 ```
-## [1] FALSE
+## [1] TRUE
 ```
 
 ```r
-TRUE &amp; TRUE # Disjunção
+TRUE | TRUE # Disjunção
 ```
 
 ```
