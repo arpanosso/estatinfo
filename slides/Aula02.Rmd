@@ -111,8 +111,9 @@ Antes de realizarmos a entrada de dados no R, vamos conhecer alguns conceitos b�
 knitr::include_graphics("img/data-science.png")
 ```
 
+Principais etapas de uma análise de dados
 
----
+--
 
 - Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
 
@@ -394,13 +395,10 @@ class: middle, center, inverse
 
 # Ferramental
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/excel_R_logo.png" style=" display: block; margin-left: auto; margin-right: auto;width: 30%"></img>
-
+## Calculadora e o R
 ---
 
-### Exercícios Práticos
-
-#### 1) Utilizando o Excel e o R, monte as expressões para resolver as equações:
+#### 1) Utilizando a Calculadora Científica e o R, monte as expressões para resolver as equações:
 
 $$\begin{align*} & a)\; log_5 125 \\
 & b)\; 2 \cdot sen(45°) \\
@@ -414,11 +412,6 @@ $$\begin{align*}
 & a)\;Soma= \sum_{i=1}^n x_i \\
 & b)\; \bar{x} = \frac{\sum_{i=1}^n x_i}{n}\\
 & c)\; \beta = \frac{(\sum_{i=1}^n x_i)^2}{(n-1)\cdot(n-2) } \end{align*}$$
-
----
-### Resolução no Excel
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/exer_excel.png" style=" display: block; margin-left: auto; margin-right: auto;width: 73%"></img>
 
 ---
 ### Resolução no R  
