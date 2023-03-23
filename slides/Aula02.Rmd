@@ -92,6 +92,11 @@ knitr::include_graphics("img/rstudio2.png")
 
 Antes de realizarmos a entrada de dados no R, vamos conhecer alguns conceitos básicos de estatística...
 
+
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("img/data-import.png")
+```
+
 ---
 ## O Estudo da Estatística
 
