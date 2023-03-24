@@ -7,13 +7,12 @@ title: "Estatística e Informática"
 subtitle: "Aula 03 - Somatória e Análise Combinatória"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(12-05-2022)"
+date: "(30-03-2023)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      ratio: "16:9"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -28,15 +27,14 @@ class: middle, center, inverse
 # SOMATÓRIA
 
 ---
-## Definições
 
 **Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas $X$, $Y$, $Z$.
 
-O conjunto de dados terá a o tamanho $n$, que representa o número de elementos que ele contém. Em outras palavras, $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
+O conjunto de dados terá o tamanho $n$, que representa o número de elementos que ele contém. Em outras palavras, $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
 
-os valores específicos assumidos por tais variáveis (suas realizações) serão representados pelas letras minúsculas $x$, $y$ e $z$, respectivamente, seguidas de um índice $i$ que representa a posição daquele valor específico dentro do conjunto de dados. 
+os valores específicos assumidos por tais variáveis serão representados pelas letras minúsculas $x$, $y$ e $z$, respectivamente, seguidas de um índice $i$ que representa a posição daquele valor específico dentro do conjunto de dados. 
 
-Assim, para distinguir um valor do outro, utilizamos esse índice  $i$, que pode ser entendido como uma variável auxiliar, utilizada para contage, que se inicia na posição $1$ e termina na posição $n$, abrangendo todo o seu conjunto de dados.
+Assim, para distinguir um valor do outro, utilizamos esse índice  $i$, que pode ser entendido como uma *variável auxiliar*, utilizada para contagem, que se inicia na posição $1$ e termina na última posição, $n$, abrangendo todo o seu conjunto de dados.
 
 Assim temos:
 
@@ -50,15 +48,13 @@ Nessa notação um valor típico da variável *Altura*, será designado por $x_i
 
 ---
 
-## Somatória
-
-Ao realizar a análise de uma variável quantitativa (numérica) é necessário somarmos todos os seus valores valores. 
+**Somatória**: Ao realizar a análise de uma variável quantitativa (numérica) é necessário somarmos todos os seus valores valores. 
 
 Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
 
 Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega sigma maiúscula $\Sigma$:
 
-Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses 5 valores:
+Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses $5$ valores:
 
 $x_1 + x_2 + x_3 + x_4 + x_5$
 
@@ -69,6 +65,7 @@ $\sum\limits_{i=1}^{n}{x_i}$ ou $\sum_{i=1}^{n}{x_i}$
 onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos $5$ valores  de $X$.
 
 ---
+
 Dado duas variáveis  $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
 
 .pull-left[
@@ -118,11 +115,10 @@ $164 \neq  576$
 sum(X^2)
 sum(X)^2
 ```
-
 ]
 
 ---
-Qual a soma do produto entre as variáveis $X$ e $Y$:
+Qual a somatória do produto entre as variáveis $X$ e $Y$:
 
 Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
 
@@ -139,13 +135,6 @@ $\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
 sum(X*Y)
 ```
 
----
-
-No Excel
-
-```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/somarprod_excel.png")
-```
 ---
 
 ## Propriedades da Somatória
@@ -227,25 +216,23 @@ $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{
 --
 
 $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
-
 ---
+
 class: middle, center, inverse
 
-# ANÁLISE COMBINATÓRIA E MÉTODOS DE NUMERAÇÃO
+# Probabilidade
+
 
 ---
 
 ### Exemplo Prático
 
-Imaginemos uma situação prática onde temos um rebanho com $100$ animais contendo $20$ indivíduos doentes e, consequentemente, $80$ não doentes (sadios). 
+Imaginemos uma situação prática onde temos um rebanho com $100$ animais contendo $20$ indivíduos doentes (tuberculose bovina - *Mycobacterium bovis*). 
 
-<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 25%"></img>
+<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>
 
-1) Quais as probabilidade de, em uma amostra aleatória simples sem reposição de $3$ animais, selecionarmos:
-a) nenhum doente, consequentemente, $3$ animais sadios?  
-b) $1$ doente e $2$ sadios?  
-c) $2$ doentes e $1$ sadios?  
-d) $3$ doentes  
+1) Quais as probabilidade de, em uma amostra aleatória simples (sem reposição) de tamanho $3$, selecionarmos, $2$ animais doentes?  
+
 
 2) Construir o gráfico dessas probabilidade de cada evento eixos $(Y)$ pelo nº animais doentes na amostra eixo $(X)$.
 
@@ -253,13 +240,15 @@ d) $3$ doentes
 ---
 ## Probabilidade e Análise Combinatória
 
-A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número 5 sair no lançamento de um dado. Ou no lançamento de 4 moedas, sair pelo menos uma face **Cara**.
+A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número $5$ sair no lançamento de um dado. Ou no lançamento de 4 moedas, sair pelo menos uma face **Cara**.
 
 .pull-left[
-<img src="https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?cs=srgb&dl=pexels-pixabay-37534.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>]
+<img src="https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?cs=srgb&dl=pexels-pixabay-37534.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>
+]
 
 .pull-right[
-<img src="https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?cs=srgb&dl=pexels-pixabay-210600.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>]
+<img src="https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?cs=srgb&dl=pexels-pixabay-210600.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>
+]
 
 
 A partir disso, a probabilidade é determinada pela razão entre o número de eventos possíveis e o número de eventos favoráveis, sendo apresentada pela seguinte expressão:
@@ -268,13 +257,13 @@ $$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultad
 
 onde $P(E)$ é a probabilidade de ocorrência do evento $E$.
 
-
 ---
+
 Assim, para respondermos a quetão da amostragens de animais doentes, precisaremos calcular:
 
 #### $\text{nº de resultados favoráveis}$
 
-Ou seja, de quantas maneiras poderemos escolher, por exemplo, $2$ animais do total de $20$ doentes e $1$ do total de $80 $animais sadios.
+Ou seja, de quantas maneiras poderemos escolher, por exemplo, $2$ animais do total de $20$ doentes e $1$ do total de $80$ animais sadios.
 
 #### $\text{nº total de resultados possíveis}$
 
