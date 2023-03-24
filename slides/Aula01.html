@@ -1626,7 +1626,27 @@ fim.
 
 
 **Resposta**: a velocidade terminal da rocha caindo no ar será de aproximadamente: 
+---
 
+
+```r
+## declaração das constantes
+g &lt;- 9.8
+rho &lt;- 1.2
+cd &lt;- 0.47
+
+## declaração das variáveis
+r &lt;- 0.1
+m &lt;- 1
+vt &lt;- 0
+
+## processamento
+A = pi*r^2
+vt &lt;- sqrt((2 * m * g) / (rho * A * cd))
+
+## saída
+cat(round(vt,2), " m/s")
+```
 
 ```
 ## 33.26  m/s

@@ -1342,8 +1342,9 @@ fim.
 
 
 **Resposta**: a velocidade terminal da rocha caindo no ar será de aproximadamente: 
+---
 
-```{r,echo=FALSE}
+```{r}
 ## declaração das constantes
 g <- 9.8
 rho <- 1.2
