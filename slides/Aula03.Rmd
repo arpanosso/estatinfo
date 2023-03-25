@@ -4,7 +4,7 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
-subtitle: "Aula 03 - Somatória e Análise Combinatória"
+subtitle: "Aula 03 - Somatória, Análise combinatória e Probabilidade"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
 date: "(30-03-2023)"
@@ -225,17 +225,60 @@ class: middle, center, inverse
 
 ---
 
-### Exemplo Prático
+A probabilidade é uma função $P()$ que atribuí valores numéricos a um determinado **evento aleatório (E)**. **Exemplo**: No lançamento de um dado, podemos definir como evento, sair um número menor que $3$.
 
-Imaginemos uma situação prática onde temos um rebanho com $100$ animais contendo $20$ indivíduos doentes (tuberculose bovina - *Mycobacterium bovis*). 
+  + $E=\{1,2\}$, $m = 2$ elementos em E.
 
-<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>
+Assim, a probabilidade é uma medida numérica de "quão provável" é a ocorrência do evento na excussão do experimento, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
 
-1) Quais as probabilidade de, em uma amostra aleatória simples (sem reposição) de tamanho $3$, selecionarmos, $2$ animais doentes?  
+A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado. **Espaço amostral** é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra ômega $\Omega$ ou pelo $S$. **Exemplo**: No lançamento de um dado, temos como expaço amostral
+
+ + $S = \{1,2,3,4,5,6\}$ $k = 6$ elementos em S.
+
+Portanto o cálculo da probabilidade do exemplo implica na razão
+
+$$
+P(E) = \frac{m}{k} = \frac{\text{nº elementos em m}}{\text{nº de elementos em S}}
+$$
 
 
-2) Construir o gráfico dessas probabilidade de cada evento eixos $(Y)$ pelo nº animais doentes na amostra eixo $(X)$.
+---
 
+**Exemplo Prático**
+
+Imaginemos uma situação prática onde temos um rebanho com $100$ animais contendo $20$ indivíduos diagnosticados com tuberculose bovina (*Mycobacterium bovis*). 
+
+<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 35%"></img>
+
+Qual a probabilidade de, em uma amostragem aleatória simples (sem reposição) de tamanho $n = 3$, selecionarmos, $2$ animais doentes?  
+
+$E_1 = \{D,D,S\}$  
+$E_2 = \{D,S,D\}$  
+$E_3 = \{S,D,D\}$  
+
+Assim a chance de obtermos $2$ doentes em uma amostra de $3$ animais será:
+
+$P(E)=P(E_1)+P(E_2)+P(E_3)$
+---
+
+Observando esses possiveis resultados, podemos atribuir os valores para cada um desses eventos.
+
+$P(E_1)=P(D).P(D).P(S)$  
+
+Veja que a chance de coletarmos um animal doente é de $20$ em $100$ na primeira amostragem, ou seja $P(D) = \frac{20}{100}$. Na segunda amostragem, o espaço amostral diminuiu pois um animal foi coletado sem reposição, então a chance de amostrarmos outro animal doente será $P(D)=\frac{19}{99}$ e consequentemente, a chance de coletarmos o terceiro animal sadio (não doente para tuberculose) será $P(S) = \frac{80}{98}$, portanto:
+
+$P(E_1)=\frac{20}{100}.\frac{19}{99}.\frac{80}{98}$, 
+
+em analogia, podemos aplicar o mesmo procedimento para os demais eventos.
+
+$P(E_2)=\frac{20}{100}.\frac{80}{99}.\frac{19}{98}$, e 
+
+$P(E_3)=\frac{80}{100}.\frac{20}{99}.\frac{19}{98}$, 
+
+Aplicando a propriedade comutativa da multiplicação temos:
+
+
+$P(E)=\frac{20}{100}.\frac{19}{99}.\frac{80}{98}+\frac{20}{100}.\frac{80}{99}.\frac{19}{98}+\frac{80}{100}.\frac{20}{99}.\frac{19}{98} = 3\left( \frac{20.19.80}{100.99.98}\right) = 0,094\text{ ou 9,4%}$
 
 ---
 ## Probabilidade e Análise Combinatória
@@ -424,7 +467,7 @@ d) todos doentes.
 
 ## Distribuição de Probabilidade 
 
-Essa fórmula que acbamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
+Essa fórmula que acabamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
 
 Considere uma população com $N$ objetos nos quais $M$ são classificados como do tipo $A$ e $N−M$ são classificados como do tipo $B$. Tomamos uma amostra ao acaso, **sem reposição** e não ordenada de $r$ objetos. Seja $X$ a variável que conta o número de objetos classificados como do tipo $A$ na amostra. Então a distribuição de probabilidade de $X$ será dada por:
 
