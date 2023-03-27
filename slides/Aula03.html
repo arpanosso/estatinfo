@@ -12,21 +12,11 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # Estatística e Informática
-]
-.subtitle[
 ## Aula 03 - Somatória, Análise combinatória e Probabilidade
-]
-.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
-]
-.institute[
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
-]
-.date[
 ### (30-03-2023)
-]
 
 ---
 
@@ -38,7 +28,7 @@ class: middle, center, inverse
 
 ---
 
-**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas `\(X\)`, `\(Y\)`, `\(Z\)`.
+**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas `\(X\)`, `\(Y\)`, `\(Z.\)`
 
 O conjunto de dados terá o tamanho `\(n\)`, que representa o número de elementos que ele contém. Em outras palavras, `\(n\)` representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
 
@@ -48,17 +38,17 @@ Assim, para distinguir um valor do outro, utilizamos esse índice  `\(i\)`, que 
 
 Assim temos:
 
-`\(Altura: X = \{x_1, x_2, ..., x_n\}, \text{ com  }i = 1,2,..,n.\)`
+`\(\text{Altura}: X = \{x_1, x_2, ..., x_n\}, \text{ com  }i = 1,2,..,n.\)`
 
-`\(Idade: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).\)`
+`\(\text{Idade}: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).\)`
 
-`\(Peso: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).\)`
+`\(\text{Peso}: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).\)`
 
 Nessa notação um valor típico da variável *Altura*, será designado por `\(x_i\)` e o valor final por `\(x_n\)`. 
 
 ---
 
-**Somatória**: Ao realizar a análise de uma variável quantitativa (numérica) é necessário somarmos todos os seus valores valores. 
+**Somatória**: Ao realizar a análise de uma variável quantitativa é necessário somarmos todos os seus valores valores. 
 
 Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
 
@@ -151,7 +141,7 @@ sum(X*Y)
 
 ---
 
-## Propriedades da Somatória
+**Propriedades da Somatória**
     
 **i)** A somatória de uma constante `\((k)\)` é igual ao produto  `\(n \cdot k\)`.
 
@@ -243,13 +233,13 @@ A probabilidade é uma função `\(P()\)` que atribuí valores numéricos a um d
 
   + `\(E=\{1,2\}\)`, `\(m = 2\)` elementos em E.
 
-Assim, a probabilidade é uma medida numérica de "quão provável" é a ocorrência do evento na excussão do experimento, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
+Assim, a probabilidade é uma medida numérica de "quão provável" é a ocorrência do evento na excussão do ensaio, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
 
-A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado. **Espaço amostral** é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra ômega `\(\Omega\)` ou pelo `\(S\)`. **Exemplo**: No lançamento de um dado, temos como expaço amostral
+A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado. **Espaço amostral** é o conjunto de todos os  possíveis resultados de um fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo, representado pela letra grega ômega `\(\Omega\)` ou pelo `\(S\)`. **Exemplo**: No lançamento de um dado, temos como espaço amostral:
 
- + `\(S = \{1,2,3,4,5,6\}\)` `\(k = 6\)` elementos em S.
+ + `\(S = \{1,2,3,4,5,6\}\)` com `\(k = 6\)` elementos em `\(S\)`.
 
-Portanto o cálculo da probabilidade do exemplo implica na razão
+Portanto o cálculo da probabilidade do exemplo implica na razão:
 
 $$
 P(E) = \frac{m}{k} = \frac{\text{nº elementos em m}}{\text{nº de elementos em S}}
@@ -258,7 +248,7 @@ $$
 
 ---
 
-**Exemplo Prático**
+**Exemplo**
 
 Imaginemos uma situação prática onde temos um rebanho com `\(100\)` animais contendo `\(20\)` indivíduos diagnosticados com tuberculose bovina (*Mycobacterium bovis*). 
 
@@ -316,15 +306,19 @@ onde `\(P(E)\)` é a probabilidade de ocorrência do evento `\(E\)`.
 
 ---
 
-Assim, para respondermos a quetão da amostragens de animais doentes, precisaremos calcular:
+Assim, para respondermos a questão da amostragens de animais doentes, precisaremos calcular:
 
-#### `\(\text{nº de resultados favoráveis}\)`
+$$
+\text{nº de resultados favoráveis}
+$$ 
 
-Ou seja, de quantas maneiras poderemos escolher, por exemplo, `\(2\)` animais do total de `\(20\)` doentes e `\(1\)` do total de `\(80\)` animais sadios.
+&gt; de quantas maneiras poderemos escolher `\(2\)` animais de um total de `\(20\)` doentes e `\(1\)` do total de `\(80\)` animais sadios?
 
-#### `\(\text{nº total de resultados possíveis}\)`
+$$
+\text{nº total de resultados possíveis}
+$$
 
-De quantas maneiras poderemos escolher `\(3\)` animais (independentemente de serem sadios ou doentes) em um total de `\(100\)` animais.
+ &gt; de quantas maneiras poderemos escolher `\(3\)` animais (independentemente de serem sadios ou doentes) em um total de `\(100\)` animais.
 
 ---
 
@@ -356,13 +350,13 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 --
 
-3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média `\(435\)` milhões senhas por segundo:   
+3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média `\(435\)` milhões senhas por segundo:    
 
---
-  a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
 
---
-  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com `\(9\)` dígitos?
+  a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior?  
+
+
+  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com `\(9\)` dígitos?  
 
 ---
 ## Permutações
@@ -388,7 +382,6 @@ E como consequência do princípio da multiplicação, as possibilidades de inse
 
 ---
 
-## Permutações
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png" width="70%" style="display: block; margin: auto;" /&gt;
 
@@ -406,12 +399,14 @@ Exemplos:
 ---
 ## Arranjos
 
-O arranjo é uma extensão do conceito de fatorial de modo que, se temos `\(n\)` elemntos e vamos tomar `\(r\)` amostras desses `\(n\)` (sempre com `\(0&lt;r&lt;n\)`), de quantas maneiras poderemos **dispor** os `\(r\)` elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+O arranjo é uma extensão do conceito de fatorial de modo que, se temos `\(n\)` elementos e vamos tomar `\(r\)` amostras desses `\(n\)` (sempre com `\(0&lt;r&lt;n\)`), de quantas maneiras poderemos **dispor** os `\(r\)` elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
-`\(A^n_r= \frac{n!}{(n-r)!}\)`
+$$
+A^n_r= \frac{n!}{(n-r)!}
+$$
 
 --
 
@@ -435,7 +430,7 @@ Assim, teremos que descontar dos Arranjos de `\(r\)` elementos as permutações 
 
 ## Combinações
 
-Voltando para o exemplo do rebanho composto por `\(100\)` animais, onde temos `\(20\)` indivíduos doentes e `\(80\)` sadios, vamos calcular a probabilidade de em uma amostra de `\(3\)` animais selecionarmos `\(2\)` animais doentes e `\(1\)` animais sadios:
+Voltando para o exemplo do rebanho composto por `\(100\)` animais, onde temos `\(20\)` indivíduos doentes, vamos calcular a probabilidade de em uma amostra de `\(3\)` animais selecionarmos `\(2\)` animais doentes e `\(1\)` animais sadios:
 
 #### `\(\text{nº de resultados favoráveis}\)`
 
@@ -452,7 +447,7 @@ Ou seja, de quantas maneiras poderemos escolher `\(2\)` animais do total de `\(2
 
 #### `\(\text{nº total de resultados possíveis}\)`
 
-Devemos calcular agora de quantas maneiras poderemos escolher `\(3\)` animais (independente de serem sadios ou doentes) em um total de `\(100\)` animais.
+Devemos calcular agora de quantas maneiras poderemos escolher `\(3\)` animais (independente de serem doentes ou não) em um total de `\(100\)` animais.
 
 `\(C^{100}_3 = {100 \choose 3}\)`
 
@@ -473,7 +468,7 @@ d) todos doentes.
 
 ---
 
-## Distribuição de Probabilidade 
+**Distribuição de Probabilidade**
 
 Essa fórmula que acabamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
 
@@ -488,14 +483,14 @@ N = 100 # Número total de elementos na população
 M = 20 # número total de elementos de interesse (doentes) na população
 r = 3 # tamanho da amostra.
 x=0:r # os possiveis valores de doentes na amostra.
-px&lt;-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
+px&lt;-dhyper(x,M,N-M,r) # função dadistribuição hipergeométrica
 barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.65),
-        xlab="nº de doentes na amostra",ylab="P(X=x)",main="X~Hgeo(20,100,3)")
+        xlab="nº de doentes",ylab="P(X=x)",
+        main="X~Hgeo(20,100,3)")
 text(1:length(x),px+.05,round(px*100,2))
 ```
 
 ---
-class: middle, center
 ## Distribuição Hipergeométrica
 
 
@@ -515,7 +510,7 @@ class: middle, center
 ## 4     3 0.00705
 ```
 
-**OBS**: O número de doentes da amostra de `\(3\)` animais pode variar de 0 a 3, ao conjunto dessas possibilidades denominamos espaço amostral (letras `\(\Omega\)` ou `\(S\)`), com a soma de suas probabilidades é sempre igual a `\(1\)`:
+**OBS**: O número de doentes da amostra de `\(3\)` animais pode variar de 0 a 3, ao conjunto dessas possibilidades denominamos espaço amostral `\((S)\)`, com a soma de suas probabilidades igual a `\(1\)`:
 
 `\(\sum \limits_{x=0}^r P(x_i) = 1\)`
 
@@ -567,19 +562,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
