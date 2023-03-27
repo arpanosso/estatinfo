@@ -285,6 +285,103 @@ Aplicando a propriedade comutativa da multiplicação temos:
 `\(P(E)=\frac{20}{100}.\frac{19}{99}.\frac{80}{98}+\frac{20}{100}.\frac{80}{99}.\frac{19}{98}+\frac{80}{100}.\frac{20}{99}.\frac{19}{98} = 3\left( \frac{20.19.80}{100.99.98}\right) = 0,094\text{ ou 9,4%}\)`
 
 ---
+Podemos simular esse experimento em R: Vamos, inicialmente, definir o rebanho.
+
+
+```r
+rebanho &lt;- rep(c("S","D"), c(80,20) )
+table(rebanho)
+```
+
+```
+## rebanho
+##  D  S 
+## 20 80
+```
+
+Agora vamos definir o tamanho da amostra `\(n = 3\)` e o número de vezes que vamos repetir o ensaio (amostrar 3 animais) um milhão de vezes, por exemplo.
+
+
+```r
+n&lt;-3
+N &lt;- 1000000
+```
+
+Próximo passo é definir uma variável que ira receber a a amostra de `\(3\)` animais e outra que vai receber a contagem do número de doentes na amostra de `\(3\)` animais.
+
+
+```r
+amostra &lt;- 0
+doentes_na_amostra &lt;- 0
+```
+
+
+---
+Usando a função `sample()` com o argumento `replace=FALSE` para amostragem de n animais no rebanho.
+
+
+
+```r
+amostra &lt;- sample(rebanho, n, replace = FALSE)
+amostra
+```
+
+```
+## [1] "S" "S" "S"
+```
+
+Agora vamos contar o número de doentes na amostra usando o operador relacional `==`
+
+
+```r
+sum(amostra == "D")
+```
+
+```
+## [1] 0
+```
+
+Podemos, então, colocar essa lógica dentro de um loop, e executar esse ensaio N vezes
+
+
+
+```r
+for(i in 1:N){
+  amostra &lt;- sample(rebanho, n, replace = FALSE)
+  doentes_na_amostra[i] &lt;- sum(amostra == "D")
+}
+```
+
+---
+
+Finalmente podemos calcular o número de vezes que observamos `\(0,1,2,\;e\;3\)` doentes na amostra.
+
+
+```r
+table(doentes_na_amostra)
+```
+
+```
+## doentes_na_amostra
+##      0      1      2      3 
+## 508778 389882  94315   7025
+```
+
+E calcular a probabilidade
+
+
+```r
+table(doentes_na_amostra)/N
+```
+
+```
+## doentes_na_amostra
+##        0        1        2        3 
+## 0.508778 0.389882 0.094315 0.007025
+```
+
+
+---
 ## Probabilidade e Análise Combinatória
 
 A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número `\(5\)` sair no lançamento de um dado. Ou no lançamento de 4 moedas, sair pelo menos uma face **Cara**.
@@ -357,6 +454,26 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 
   b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com `\(9\)` dígitos?  
+
+---
+**Exemplos - Respostas**
+
+1) 200
+
+
+
+2)  
+(a) 1e5   
+(b) 9e4  
+(c) 30240  
+(d) 7737809375 
+
+
+
+3)   
+a) 17s
+
+b) 1.448.849.218s, aproximadamente  46 anos... 
 
 ---
 ## Permutações
@@ -495,7 +612,7 @@ text(1:length(x),px+.05,round(px*100,2))
 
 
 .pull-left[
-&lt;img src="Aula03_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
