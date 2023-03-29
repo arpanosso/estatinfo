@@ -397,11 +397,15 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 **Exemplos**
 
-1. Em um restaurante, há $5$ aperitivos no *menu*, $10$ entradas principais e $4$ sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
+1) Em um restaurante, há $5$ aperitivos no *menu*, $10$ entradas principais e $4$ sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
 
 --
 
-2. Quantos códigos numéricos de $5$ caractéres são possíveis se:  
+2) De quantas maneiras podemos ordenar os $10$ algarismos numéricos $X =\{0,1,...9 \}$ ? Em outras palavras quantos números de 10 dígitos podem ser formados?
+
+--
+
+3) Quantos códigos numéricos de $5$ caractéres são possíveis se:  
 (a) não há restrições?  
 (b) o primeiro dígito não pode ser $0$?  
 (c) nenhuma repetição é permitida?  
@@ -409,11 +413,9 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 --
 
-3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média $435$ milhões senhas por segundo:    
-
+4) No métodos de invasão de contas chamado Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)) o computador testa combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média $435$ milhões senhas por segundo:    
 
   a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior?  
-
 
   b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com $9$ dígitos?  
 
@@ -422,17 +424,17 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 1) 200
 
+2) 3.628.800
 
-
-2)  
+3)  
 (a) 1e5   
 (b) 9e4  
 (c) 30240  
-(d) 7737809375 
+(d) 7.737.809.375 
 
 
 
-3)   
+4)   
 a) 17s
 
 b) 1.448.849.218s, aproximadamente  46 anos... 
@@ -469,16 +471,10 @@ knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_
 $$n! = n \cdot (n-1) \cdot (n-2) \cdots (2) \cdot (1)$$
 $$3! = 3 \cdot (3-1) \cdot(3-2) = 3 \cdot 2 \cdot 1 = 6$$
 
-Exemplos:
-
-1. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7?
-
-2. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo $6$ seja imediatamente seguido pelo algarismo $7$?
-
 ---
 ## Arranjos
 
-O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ elementos e vamos tomar $r$ amostras desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+O arranjo é uma extensão do conceito de permutação de modo que, se temos $n$ elementos e vamos tomar $r$ amostras desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
 
 ```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png")
@@ -490,14 +486,6 @@ A^n_r= \frac{n!}{(n-r)!}
 $$
 
 --
-
-1) A senha de uma conta bancária é formada de $6$ números ou de $4$ números dentre os números de $0$ a $9$, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
-
-Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza $6$ números, e no banco Santander que utiliza $4$ números, seguindo o conselho dos gerentes?
-
-2) Quantos números de $4$ algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
-
----
 
 ## Combinações 
 
