@@ -475,8 +475,6 @@ Exemplos:
 
 2. Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo $6$ seja imediatamente seguido pelo algarismo $7$?
 
-3. Três $(03)$ chineses, $04$ americanos e $05$ italianos serão dispostos em fila de modo que as pessoas da mesma nacionalidade estejam sempre juntas. De quantas maneiras a fila poderá ser formada, de modo que o primeiro da fila sempre seja um italiano?
-
 ---
 ## Arranjos
 
