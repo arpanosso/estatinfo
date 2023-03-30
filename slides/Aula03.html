@@ -38,11 +38,11 @@ class: middle, center, inverse
 
 ---
 
-**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas `\(X\)`, `\(Y\)`, `\(Z.\)`
+**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas do nosso alfaveto latino `\(X\)`, `\(Y\)`, `\(Z.\)`
 
 O conjunto de dados terá o tamanho `\(n\)`, que representa o número de elementos que ele contém. Em outras palavras, `\(n\)` representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
 
-os valores específicos assumidos por tais variáveis serão representados pelas letras minúsculas `\(x\)`, `\(y\)` e `\(z\)`, respectivamente, seguidas de um índice `\(i\)` que representa a posição daquele valor específico dentro do conjunto de dados. 
+Os valores específicos assumidos por tais variáveis serão representados pelas letras minúsculas `\(x\)`, `\(y\)` e `\(z\)`, respectivamente, seguidas de um índice `\(i\)` que representa a posição daquele valor específico dentro do conjunto de dados. 
 
 Assim, para distinguir um valor do outro, utilizamos esse índice  `\(i\)`, que pode ser entendido como uma *variável auxiliar*, utilizada para contagem, que se inicia na posição `\(1\)` e termina na última posição, `\(n\)`, abrangendo todo o seu conjunto de dados.
 
@@ -157,21 +157,22 @@ sum(X*Y)
 
 `\(\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k\)`
 
---
+---
 
 **ii)** A somatória dos produtos de uma constante `\(k\)` e uma variável `\(X\)` é igual ao produto da constante pela soma dos valores da variável.
 
 `\(\sum\limits_{i=1}^{n}{k \cdot x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}\)` 
 
---
+---
 
 **iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
 
 `\(\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)\)`
 
 
-`\(\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n) =(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)\)`
+`\(\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)\)`
 
+`\(\sum\limits_{i=1}^{n}{(x_i+y_i)}=(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)\)`
 
 `\(\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}\)`
 
@@ -196,18 +197,11 @@ Provar que:
 
 1) Calcular, portanto `\(\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?\)`
 
---
-
 `\(\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{ k \cdot x_i} + \sum\limits_{i=1}^{n}k\)`
-
---
 
 `\(\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{k \cdot x_i} + \sum\limits_{i=1}^{n}k\)`
 
---
-
 `\(\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = k \cdot \sum\limits_{i=1}^{n}{x_i} + n \cdot k\)`
-
 
 ---
 
@@ -215,37 +209,29 @@ Provar que:
 
 2) Dado: `\(\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}\)`, 
 
---
-
 `\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}\)`
-
---
 
 `\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}\)`
 
---
-
 `\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}\)`
 
---
-
 `\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0\)`
+
 ---
 
 class: middle, center, inverse
 
 # Probabilidade
 
-
 ---
 
 A probabilidade é uma função `\(P()\)` que atribuí valores numéricos a um determinado **evento aleatório (E)**. **Exemplo**: No lançamento de um dado, podemos definir como evento, sair um número menor que `\(3\)`.
 
-  + `\(E=\{1,2\}\)`, `\(m = 2\)` elementos em E.
+  + `\(E=\{1,2\}\)`, `\(m = 2\)` elementos em `\(E\)`.
 
-Assim, a probabilidade é uma medida numérica de "quão provável" é a ocorrência do evento na excussão do ensaio, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
+Assim, a probabilidade é uma medida numérica de "quão provável" é a ocorrência do evento na excução do ensaio, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
 
-A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado. **Espaço amostral** é o conjunto de todos os  possíveis resultados de um fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo, representado pela letra grega ômega `\(\Omega\)` ou pelo `\(S\)`. **Exemplo**: No lançamento de um dado, temos como espaço amostral:
+A determinação da probabilidade de um evento depende da natureza do experimento e do espaço amostral associado. **Espaço amostral** é o conjunto de todos os  possíveis resultados de um fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo, representado pela letra grega ômega `\(\Omega\)` ou pelo `\(S\)`. **Exemplo**: No lançamento de um dado, temos como espaço amostral:
 
  + `\(S = \{1,2,3,4,5,6\}\)` com `\(k = 6\)` elementos em `\(S\)`.
 
@@ -295,6 +281,7 @@ Aplicando a propriedade comutativa da multiplicação temos:
 `\(P(E)=\frac{20}{100}.\frac{19}{99}.\frac{80}{98}+\frac{20}{100}.\frac{80}{99}.\frac{19}{98}+\frac{80}{100}.\frac{20}{99}.\frac{19}{98} = 3\left( \frac{20.19.80}{100.99.98}\right) = 0,094\text{ ou 9,4%}\)`
 
 ---
+
 Podemos simular esse experimento em R: Vamos, inicialmente, definir o rebanho.
 
 
@@ -314,10 +301,10 @@ Agora vamos definir o tamanho da amostra `\(n = 3\)` e o número de vezes que va
 
 ```r
 n&lt;-3
-N &lt;- 1000000
+N &lt;- 1e6
 ```
 
-Próximo passo é definir uma variável que ira receber a a amostra de `\(3\)` animais e outra que vai receber a contagem do número de doentes na amostra de `\(3\)` animais.
+Próximo passo é definir uma variável que ira receber a a amostra de `\(3\)` animais e outra que vai receber a contagem do número de doentes nessa amostra.
 
 
 ```r
@@ -325,9 +312,8 @@ amostra &lt;- 0
 doentes_na_amostra &lt;- 0
 ```
 
-
 ---
-Usando a função `sample()` com o argumento `replace=FALSE` para amostragem de n animais no rebanho.
+Usando a função `sample()` com o argumento `replace=FALSE` para amostragem de `n` animais no rebanho.
 
 
 
@@ -337,21 +323,29 @@ amostra
 ```
 
 ```
-## [1] "S" "D" "D"
+## [1] "S" "S" "S"
 ```
 
 Agora vamos contar o número de doentes na amostra usando o operador relacional `==`
 
 
 ```r
+amostra == "D"
+```
+
+```
+## [1] FALSE FALSE FALSE
+```
+
+```r
 sum(amostra == "D")
 ```
 
 ```
-## [1] 2
+## [1] 0
 ```
 
-Podemos, então, colocar essa lógica dentro de um loop, e executar esse ensaio N vezes
+Podemos, então, colocar essa lógica dentro de um loop, e executar esse ensaio `N` vezes.
 
 
 
@@ -374,7 +368,7 @@ table(doentes_na_amostra)
 ```
 ## doentes_na_amostra
 ##      0      1      2      3 
-## 508280 390793  93816   7111
+## 508163 390724  93978   7135
 ```
 
 E calcular a probabilidade
@@ -387,7 +381,7 @@ table(doentes_na_amostra)/N
 ```
 ## doentes_na_amostra
 ##        0        1        2        3 
-## 0.508280 0.390793 0.093816 0.007111
+## 0.508163 0.390724 0.093978 0.007135
 ```
 
 
@@ -470,22 +464,87 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 ---
 **Exemplos - Respostas**
 
-1) 200
 
-2) 3.628.800
+```r
+5*10*4 # 1
+```
 
-3)  
-(a) 1e5   
-(b) 9e4  
-(c) 30240  
-(d) 7.737.809.375 
-
+```
+## [1] 200
+```
 
 
-4)   
-a) 17s
 
-b) 1.448.849.218s, aproximadamente  46 anos... 
+```r
+factorial(10) # 2
+```
+
+```
+## [1] 3628800
+```
+
+
+```r
+10^5 # 3a
+```
+
+```
+## [1] 1e+05
+```
+
+```r
+9*10^4 # 3b
+```
+
+```
+## [1] 90000
+```
+
+```r
+factorial(10)/factorial(10-5)# 3c
+```
+
+```
+## [1] 30240
+```
+
+```r
+95^5 # 3d
+```
+
+```
+## [1] 7737809375
+```
+
+
+---
+**Exemplos - Respostas**
+  4)   
+
+
+```r
+95^5/435e6 # 4a
+```
+
+```
+## [1] 17.78807
+```
+
+```r
+95^9/435e6 # 4a
+```
+
+```
+## [1] 1448849218
+```
+
+```r
+95^9/435e6/3600/24/365 # 4a
+```
+
+```
+## [1] 45.94271
+```
 
 ---
 ## Permutações
@@ -529,7 +588,7 @@ $$
 A^n_r= \frac{n!}{(n-r)!}
 $$
 
---
+---
 
 ## Combinações 
 
@@ -537,25 +596,27 @@ Semelhante aos arranjo, nas **Combinações** temos `\(n\)` elementos e vamos am
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-Assim, teremos que descontar dos Arranjos de `\(r\)` elementos as permutações desses `\(r\)` elementos, para isso, basta dividirmos os Arranjos por `\(r!\)` ou seja `\(C^n_r={r \choose x}\)`.
+Assim, teremos que descontar dos Arranjos de `\(r\)` elementos as permutações desses `\(r\)` elementos, para isso, basta dividirmos os Arranjos por `\(r!\)` ou seja:
+
+$$
+C^n_r={r \choose x}
+$$
 
 ---
 
-## Combinações
-
-Voltando para o exemplo do rebanho composto por `\(100\)` animais, onde temos `\(20\)` indivíduos doentes, vamos calcular a probabilidade de em uma amostra de `\(3\)` animais selecionarmos `\(2\)` animais doentes e `\(1\)` animais sadios:
+Voltando ao exemplo do rebanho composto por `\(100\)` animais, onde temos `\(20\)` indivíduos doentes, vamos calcular a probabilidade de em uma amostra de `\(3\)` animais selecionarmos `\(2\)` animais doentes e `\(1\)` animal sadio:
 
 #### `\(\text{nº de resultados favoráveis}\)`
 
 Ou seja, de quantas maneiras poderemos escolher `\(2\)` animais do total de `\(20\)` doentes e `\(1\)` dos `\(80\)` sadios?
 
-`\(C^{20}_2 \cdot C^{80}_1 = {20 \choose 2} \cdot {80 \choose 1}\)`
+`$$C^{20}_2 \cdot C^{80}_1 = {20 \choose 2} \cdot {80 \choose 1}$$`
 
-`\(C^{20}_2 \cdot C^{80}_1  = \frac{20!}{2!(20-2)!} \cdot \frac{80!}{1!(80-1)!}\)`
+`$$C^{20}_2 \cdot C^{80}_1  = \frac{20!}{2!(20-2)!} \cdot \frac{80!}{1!(80-1)!}$$`
 
-`\(C^{20}_2 \cdot C^{80}_3  = 190 \cdot 80\)`
+`$$C^{20}_2 \cdot C^{80}_3  = 190 \cdot 80$$`
 
-`\(C^{20}_2 \cdot C^{80}_3  = 15200\)`
+`$$C^{20}_2 \cdot C^{80}_3  = 15200$$`
 ---
 
 #### `\(\text{nº total de resultados possíveis}\)`
@@ -572,7 +633,7 @@ Finalmente, a probabilidade do evento, amostrar `\(2\)` indivíduos doentes e `\
 
 `$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15200}{161700}=0,094 \text{ ou } 9,40\%$$`
 
-Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de 5 animais tomarmos:
+Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de `\(3\)` animais tomarmos:
 
 a) nenhum animal doente (todos sadios).  
 b) 01 doente e 02 sadios.  
@@ -608,7 +669,7 @@ text(1:length(x),px+.05,round(px*100,2))
 
 
 .pull-left[
-&lt;img src="Aula03_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -623,7 +684,7 @@ text(1:length(x),px+.05,round(px*100,2))
 ## 4     3 0.00705
 ```
 
-**OBS**: O número de doentes da amostra de `\(3\)` animais pode variar de 0 a 3, ao conjunto dessas possibilidades denominamos espaço amostral `\((S)\)`, com a soma de suas probabilidades igual a `\(1\)`:
+**OBS**: O número de doentes da amostra de `\(3\)` animais pode variar de `\(0\)` a `\(3\)`, ao conjunto dessas possibilidades denominamos espaço amostral `\((S)\)`, com a soma de suas probabilidades igual a `\(1\)`:
 
 `\(\sum \limits_{x=0}^r P(x_i) = 1\)`
 
