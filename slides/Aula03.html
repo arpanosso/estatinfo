@@ -323,7 +323,7 @@ amostra
 ```
 
 ```
-## [1] "S" "S" "S"
+## [1] "S" "D" "S"
 ```
 
 Agora vamos contar o número de doentes na amostra usando o operador relacional `==`
@@ -334,7 +334,7 @@ amostra == "D"
 ```
 
 ```
-## [1] FALSE FALSE FALSE
+## [1] FALSE  TRUE FALSE
 ```
 
 ```r
@@ -342,7 +342,7 @@ sum(amostra == "D")
 ```
 
 ```
-## [1] 0
+## [1] 1
 ```
 
 Podemos, então, colocar essa lógica dentro de um loop, e executar esse ensaio `N` vezes.
@@ -368,7 +368,7 @@ table(doentes_na_amostra)
 ```
 ## doentes_na_amostra
 ##      0      1      2      3 
-## 508163 390724  93978   7135
+## 508561 390606  93854   6979
 ```
 
 E calcular a probabilidade
@@ -381,7 +381,7 @@ table(doentes_na_amostra)/N
 ```
 ## doentes_na_amostra
 ##        0        1        2        3 
-## 0.508163 0.390724 0.093978 0.007135
+## 0.508561 0.390606 0.093854 0.006979
 ```
 
 
