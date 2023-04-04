@@ -12,21 +12,11 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # Estatística e Informática
-]
-.subtitle[
 ## Aula 04 - Distribuição de Frequência
-]
-.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
-]
-.institute[
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
-]
-.date[
 ### (06-04-2023)
-]
 
 ---
 
@@ -55,7 +45,7 @@ Nesse sentido, o objetivo dessa aula será apresentar as principais formas e vis
 
 **Exemplo:** Considerando os [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) amostrados das turmas de Estatísticas temos:
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"&gt;&lt;/img&gt;
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"&gt;&lt;/img&gt;
 
 ---
 
@@ -116,14 +106,14 @@ glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
 ```
 
 ```
-#&gt; Rows: 49
+#&gt; Rows: 69
 #&gt; Columns: 6
-#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,~
-#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "F", "M", "M", ~
-#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", ~
-#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", ~
-#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, ~
-#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20~
+#&gt; $ id         &lt;dbl&gt; 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,~
+#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "~
+#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "L", "CE", "CC", "C",~
+#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "socialmente", "mais_~
+#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.6~
+#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18,~
 ```
 
 
@@ -150,8 +140,8 @@ tab
 #&gt; # A tibble: 2 x 2
 #&gt;   sexo     ni
 #&gt;   &lt;chr&gt; &lt;int&gt;
-#&gt; 1 F        17
-#&gt; 2 M        32
+#&gt; 1 F        26
+#&gt; 2 M        43
 ```
 ]
 
@@ -223,8 +213,8 @@ tab
 #&gt; # A tibble: 2 x 3
 #&gt;   sexo     ni    fi
 #&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
-#&gt; 1 F        17 0.347
-#&gt; 2 M        32 0.653
+#&gt; 1 F        26 0.377
+#&gt; 2 M        43 0.623
 ```
 
 - `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna `\(n_i\)`, no caso a frequência relativa `\(f_i\)`.
@@ -262,8 +252,8 @@ tab
 #&gt; # A tibble: 2 x 4
 #&gt;   sexo     ni    fi  perc
 #&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 F        17 0.347  34.7
-#&gt; 2 M        32 0.653  65.3
+#&gt; 1 F        26 0.377  37.7
+#&gt; 2 M        43 0.623  62.3
 ```
 
 **OBS**: A soma das Porcentagens de frequência é igual a `\(100\%\)`.
@@ -388,11 +378,11 @@ tab
 #&gt; # A tibble: 5 x 4
 #&gt;   cor_cabelo    ni     fi  perc
 #&gt;   &lt;chr&gt;      &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 C              6 0.122  12.2 
-#&gt; 2 CC            10 0.204  20.4 
-#&gt; 3 CE            25 0.510  51.0 
-#&gt; 4 L              4 0.0816  8.16
-#&gt; 5 P              4 0.0816  8.16
+#&gt; 1 C              6 0.0870  8.70
+#&gt; 2 CC            12 0.174  17.4 
+#&gt; 3 CE            32 0.464  46.4 
+#&gt; 4 L              9 0.130  13.0 
+#&gt; 5 P             10 0.145  14.5
 ```
 
 ---
@@ -525,63 +515,63 @@ View(tab)
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.326531 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2857143 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 28.571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3188406 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.884058 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2244898 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 22.448980 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2463768 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.637681 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0612245 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.122449 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0724638 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.246377 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0612245 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.122449 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0434783 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.347826 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1224490 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12.244898 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1014493 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.144927 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0204082 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.040816 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -698,34 +688,34 @@ View(tab)
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1020408 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.20408 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.32653 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2448980 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.48980 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3469388 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 34.69388 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1428571 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.28571 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -756,7 +746,7 @@ D
 ```
 
 ```
-#&gt; [1] 0.41
+#&gt; [1] 0.43
 ```
 
 ---
@@ -790,7 +780,7 @@ Di
 ```
 
 ```
-#&gt; [1] 0.082
+#&gt; [1] 0.086
 ```
 Cada um dos 5 intervalos terá uma amplitude de 0,082 m. Ou seja, o cálculo dos  limites das classes é feito a partir da adição ao valor Mínimo o valor de `\(\Delta_i\)` `\(k\)` vezes:
 
@@ -801,7 +791,7 @@ limites
 ```
 
 ```
-#&gt; [1] 1.500 1.582 1.664 1.746 1.828 1.910
+#&gt; [1] 1.500 1.586 1.672 1.758 1.844 1.930
 ```
 ]
 
@@ -820,40 +810,40 @@ Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1020408 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.20408 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.32653 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2448980 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.48980 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3469388 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 34.69388 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1428571 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.28571 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 ```
-#&gt; [1] 1.500 1.582 1.664 1.746 1.828 1.910
+#&gt; [1] 1.500 1.586 1.672 1.758 1.844 1.930
 ```
 
 Agora podemos criar um gráfico de barras para cada uma dessas classes, denominado hitograma:
@@ -938,39 +928,39 @@ View(tab)
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1020408 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.20408 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.244400 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.011122 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.32653 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.991040 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.853724 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2448980 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.48980 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.986560 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.213010 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3469388 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 34.69388 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.230961 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.033367 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1428571 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.28571 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.742160 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.516684 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1026,54 +1016,54 @@ View(tab)
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1020408 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.20408 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.244400 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1020408 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.20408 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.011122 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1632653 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.32653 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.991040 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2653061 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26.53061 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2448980 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.48980 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.986560 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.5102041 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 51.02041 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.853724 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3469388 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 34.69388 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.230961 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.8571429 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 85.71429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2463768 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.637681 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1428571 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.28571 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.742160 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.213010 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6086957 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60.869565 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.033367 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8695652 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 86.956522 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.516684 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1.0000000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 100.00000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100.000000 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1231,19 +1221,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
