@@ -25,17 +25,92 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
-# Distribuição de Frequência
-# e
-# Visualização de Dados
----
-class: middle, center, inverse
-
 ## Pré-requisito: Instalação de Patocotes no R
 
 <iframe width="753" height="380" src="https://www.youtube.com/embed/is32jC4LRjA?list=PLkhAqI7pygoYy6zhepFnF7KDK5jJSQUEv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 https://youtu.be/is32jC4LRjA
+
+---
+### Pacote em R
+
+Um pacote é uma coleção de funções, exemplos e documentação. A funcionalidade de um pacote é frequentemente focada em uma metodologia estatística especial" (**Everitt & Hothorn**).
+
+```{r echo=FALSE, fig.cap="Pacotes no R são coleções de funções, exemoplos e documentações, os quais devem ser previamente instalados e alocados no ambiente por meio da função `library`.",fig.align='center',out.width = "550px"}
+knitr::include_graphics("img/Fig08.png")
+```
+
+
+---
+## Pacotes básicos
+
+Liste os pacotes carregados no ambiente com:
+
+```{r}
+(.packages())
+```
+
+O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro $[\;i\;]$ apresentado entre colchetes **[i]**.
+
+Carregue um pacote chamando a função `library`.
+
+```{r,message=FALSE}
+library(MASS)
+```
+
+
+---
+Agora, liste novamente os pacotes e observe a diferença no retorno da função.
+
+```{r}
+(.packages())
+```
+
+Observe que o pacote `MASS` agora está no ambiente de trabalho. 
+
+
+---
+
+### Instalando pacotes
+
+Para a realização de procedimentos estatístico e manipulação de arquivos durante o curso, serão necessários vários pacotes que não fazem parte do `base` do R, que deverão ser instalados.
+
+**Utilizando a opção** `Packages\Install\nome do pacote`
+
+```{r echo=FALSE, fig.cap="",fig.align='center',out.width = "450px"}
+knitr::include_graphics("img/install_pac.png")
+```
+
+
+Instale os pacotes:  
+ 
+ * `tidyverse`   
+ * `agricolae`  
+
+---
+Os pacotes também podem ser instalados a partir das linhas de comandos:
+
+```{r,eval=FALSE}
+install.packages("tidyverse")
+install.packages("agricolae")
+```
+
+
+Agora podemos carregar esse pacotes em nosso ambiente de trabalho.
+
+```{r,message=FALSE,error=FALSE}
+library(tidyverse)
+library(agricolae)
+```
+
+Vamos agora criar uma "Pipe Line" para visualização de um banco de dados
+
+```{r,message=FALSE,error=FALSE}
+mtcars %>% 
+  glimpse()
+```
+
+O simbolo para operação de arquivos de dados é o pipe `%>%` que pode ser criado a partir do atalho `CTRL + SHIFT + M`
 
 ---
 ## Distribuição de frequência de uma variável
@@ -54,7 +129,7 @@ Nesse sentido, o objetivo dessa aula será apresentar as principais formas e vis
 Para carregar o banco de dados da turma no R, siga os passos:  
 1.Faça o Download dos [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
 
-2.Salve em uma pasta do seu computador (no exemplo o documento será salvo na pasta "*Downloads*").
+2.Salve em uma pasta `data` dentro de um projeto do R previamente criado.
 
 .pull-left[
 <img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ]
@@ -71,12 +146,12 @@ Para carregar o banco de dados da turma no R, siga os passos:
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> 
 ---
-5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*Downloads"*,  selecione o arquivo e clique em **Open**.
+5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*data"*,  selecione o arquivo e clique em **Open**.
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
 
 ---
-6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, selecione e copie os código para a importação dos dados. Após isso **CLIQUE EM CANCEL**. 
+6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, selecione e copie o código para a importação dos dados. Após isso **CLIQUE EM CANCEL**. 
 
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
 
@@ -85,7 +160,7 @@ Para carregar o banco de dados da turma no R, siga os passos:
 
 ```{r, eval=FALSE}
 library(readxl)
-dados_turmas <- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
+dados_turmas <- read_excel("data/dados_turmas.xlsx")
 View(dados_turmas)
 ```
 
@@ -101,14 +176,17 @@ dados_turmas <- read_excel("../data/dados_turmas.xlsx")
 <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
 
 ---
-### Tamanho da População $(N)$  
+**Tamanho da População $(N)$**
+
 O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas vezes não conhecemos esse valor. Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
-### Tamanho da amostra $(n)$  
+
+**Tamanho da amostra $(n)$**
+
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 
 ```{r,eval=TRUE}
-library(tidyverse) # não esqueça de instalar o tidyverse para ter o glimpse
-glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
+library(tidyverse) 
+glimpse(dados_turmas) 
 ```
 
 
@@ -141,7 +219,7 @@ tab
 No R, para facilitar o processo de contagem poderíamos ordenar os dados por sexo:
 ```{r, eval=FALSE}
 dados_turmas %>% 
-  arrange(sexo) +
+  arrange(sexo) %>% 
   View()
 ```
 
@@ -159,9 +237,9 @@ knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/arrang
 
 Então temos:
 
-$n_F = 17$ e,
+$n_F = 27$
 
-$n_M = 32$
+$n_M = 43$
  
 Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes $(k)$ da variável cetegória é igual a $n$. 
 
@@ -172,12 +250,12 @@ $$
 Onde $k$ é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
 
 $$
-\sum \limits_{i=1}^{k}{n_i} = 17+32=49
+\sum \limits_{i=1}^{k}{n_i} = 27+43=70
 $$
 
 ---
 
-### Frequência Relativa $(f_i)$ ou proporção
+**Frequência Relativa $(f_i)$**
 
 É definida como a proporção de cada realização em relação ao **Total de observações** $(n)$, ou seja:
 
@@ -188,7 +266,7 @@ Vamos, mais uma vez, utilizar o R para esses cálculos.
 
 .pull-left[
 ```{r, echo = TRUE, eval=TRUE}
-tab <-dados_turmas %>%
+tab <- dados_turmas %>%
         group_by(sexo) %>% 
         summarise(ni=n()) %>%      
         mutate(fi = ni/sum(ni)) #<<   
@@ -201,7 +279,7 @@ tab
 
 .pull-right[
 Portanto:
-$f_F = \frac{17}{49}=0,347$ e   $f_M = \frac{32}{49}=0,653$
+$f_F = \frac{27}{70}=0,386$ e   $f_M = \frac{43}{70}=0,614$
 
 Assim, temos que a soma das frequências relativas sempre é igual a $1$: 
 
@@ -211,7 +289,7 @@ onde $k$ é o número de categorias da variável `sexo`, ou seja, $2$.
 ]
 ---
 
-### Porcentagem de frequência $(perc \text{ ou %})$
+**Porcentagem de frequência $(perc \text{ ou %})$**
 
 Definida como o resultado da multiplicação da frequência relativa (proporção) por 100.
 
@@ -235,7 +313,7 @@ Essa etapa é a denominada de **Visualização de Dados**.
 class: middle, center, inverse
 
 # VISUALIZAÇÃO DE DADOS
-###(Variáveis Qualitativas)
+## (Variáveis Qualitativas)
 
 ---
 ## Visualização dos dados

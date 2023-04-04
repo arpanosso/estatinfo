@@ -24,17 +24,127 @@ class: center, middle, inverse, title-slide
 
 class: middle, center, inverse
 
-# Distribuição de Frequência
-# e
-# Visualização de Dados
----
-class: middle, center, inverse
-
 ## Pré-requisito: Instalação de Patocotes no R
 
 &lt;iframe width="753" height="380" src="https://www.youtube.com/embed/is32jC4LRjA?list=PLkhAqI7pygoYy6zhepFnF7KDK5jJSQUEv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
 https://youtu.be/is32jC4LRjA
+
+---
+### Pacote em R
+
+Um pacote é uma coleção de funções, exemplos e documentação. A funcionalidade de um pacote é frequentemente focada em uma metodologia estatística especial" (**Everitt &amp; Hothorn**).
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="img/Fig08.png" alt="Pacotes no R são coleções de funções, exemoplos e documentações, os quais devem ser previamente instalados e alocados no ambiente por meio da função `library`." width="550px" /&gt;
+&lt;p class="caption"&gt;Pacotes no R são coleções de funções, exemoplos e documentações, os quais devem ser previamente instalados e alocados no ambiente por meio da função `library`.&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+## Pacotes básicos
+
+Liste os pacotes carregados no ambiente com:
+
+
+```r
+(.packages())
+```
+
+```
+#&gt;  [1] "agricolae" "forcats"   "stringr"   "purrr"     "readr"    
+#&gt;  [6] "tibble"    "tidyverse" "readxl"    "ggplot2"   "tidyr"    
+#&gt; [11] "dplyr"     "MASS"      "stats"     "graphics"  "grDevices"
+#&gt; [16] "utils"     "datasets"  "methods"   "base"
+```
+
+O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro `\([\;i\;]\)` apresentado entre colchetes **[i]**.
+
+Carregue um pacote chamando a função `library`.
+
+
+```r
+library(MASS)
+```
+
+
+---
+Agora, liste novamente os pacotes e observe a diferença no retorno da função.
+
+
+```r
+(.packages())
+```
+
+```
+#&gt;  [1] "agricolae" "forcats"   "stringr"   "purrr"     "readr"    
+#&gt;  [6] "tibble"    "tidyverse" "readxl"    "ggplot2"   "tidyr"    
+#&gt; [11] "dplyr"     "MASS"      "stats"     "graphics"  "grDevices"
+#&gt; [16] "utils"     "datasets"  "methods"   "base"
+```
+
+Observe que o pacote `MASS` agora está no ambiente de trabalho. 
+
+
+---
+
+### Instalando pacotes
+
+Para a realização de procedimentos estatístico e manipulação de arquivos durante o curso, serão necessários vários pacotes que não fazem parte do `base` do R, que deverão ser instalados.
+
+**Utilizando a opção** `Packages\Install\nome do pacote`
+
+&lt;img src="img/install_pac.png" width="450px" style="display: block; margin: auto;" /&gt;
+
+
+Instale os pacotes:  
+ 
+ * `tidyverse`   
+ * `agricolae`  
+
+---
+Os pacotes também podem ser instalados a partir das linhas de comandos:
+
+
+```r
+install.packages("tidyverse")
+install.packages("agricolae")
+```
+
+
+Agora podemos carregar esse pacotes em nosso ambiente de trabalho.
+
+
+```r
+library(tidyverse)
+library(agricolae)
+```
+
+Vamos agora criar uma "Pipe Line" para visualização de um banco de dados
+
+
+```r
+mtcars %&gt;% 
+  glimpse()
+```
+
+```
+#&gt; Rows: 32
+#&gt; Columns: 11
+#&gt; $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.~
+#&gt; $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, ~
+#&gt; $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 1~
+#&gt; $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, ~
+#&gt; $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.9~
+#&gt; $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3~
+#&gt; $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 2~
+#&gt; $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, ~
+#&gt; $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, ~
+#&gt; $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, ~
+#&gt; $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, ~
+```
+
+O simbolo para operação de arquivos de dados é o pipe `%&gt;%` que pode ser criado a partir do atalho `CTRL + SHIFT + M`
 
 ---
 ## Distribuição de frequência de uma variável
@@ -53,7 +163,7 @@ Nesse sentido, o objetivo dessa aula será apresentar as principais formas e vis
 Para carregar o banco de dados da turma no R, siga os passos:  
 1.Faça o Download dos [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
 
-2.Salve em uma pasta do seu computador (no exemplo o documento será salvo na pasta "*Downloads*").
+2.Salve em uma pasta `data` dentro de um projeto do R previamente criado.
 
 .pull-left[
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt; ]
@@ -70,12 +180,12 @@ Para carregar o banco de dados da turma no R, siga os passos:
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt; 
 ---
-5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*Downloads"*,  selecione o arquivo e clique em **Open**.
+5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*data"*,  selecione o arquivo e clique em **Open**.
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt;
 
 ---
-6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, selecione e copie os código para a importação dos dados. Após isso **CLIQUE EM CANCEL**. 
+6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, selecione e copie o código para a importação dos dados. Após isso **CLIQUE EM CANCEL**. 
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"&gt;&lt;/img&gt;
 
@@ -85,7 +195,7 @@ Para carregar o banco de dados da turma no R, siga os passos:
 
 ```r
 library(readxl)
-dados_turmas &lt;- read_excel("C:/Users/Usuario/Downloads/dados_turmas.xlsx")
+dados_turmas &lt;- read_excel("data/dados_turmas.xlsx")
 View(dados_turmas)
 ```
 
@@ -94,21 +204,24 @@ View(dados_turmas)
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"&gt;&lt;/img&gt;
 
 ---
-### Tamanho da População `\((N)\)`  
+**Tamanho da População `\((N)\)`**
+
 O tamanho da população `\(N\)` é o número total dos elementos alvos da pesquisa. Muitas vezes não conhecemos esse valor. Em nosso exemplo, poderíamos entender como `\(N\)` o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
-### Tamanho da amostra `\((n)\)`  
+
+**Tamanho da amostra `\((n)\)`**
+
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - `\(n\)`) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 
 
 ```r
-library(tidyverse) # não esqueça de instalar o tidyverse para ter o glimpse
-glimpse(dados_turmas) # vislumbre, resumo rápido dos dados
+library(tidyverse) 
+glimpse(dados_turmas) 
 ```
 
 ```
-#&gt; Rows: 69
+#&gt; Rows: 70
 #&gt; Columns: 6
-#&gt; $ id         &lt;dbl&gt; 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,~
+#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ~
 #&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "~
 #&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "L", "CE", "CC", "C",~
 #&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "socialmente", "mais_~
@@ -140,7 +253,7 @@ tab
 #&gt; # A tibble: 2 x 2
 #&gt;   sexo     ni
 #&gt;   &lt;chr&gt; &lt;int&gt;
-#&gt; 1 F        26
+#&gt; 1 F        27
 #&gt; 2 M        43
 ```
 ]
@@ -156,7 +269,7 @@ No R, para facilitar o processo de contagem poderíamos ordenar os dados por sex
 
 ```r
 dados_turmas %&gt;% 
-  arrange(sexo) +
+  arrange(sexo) %&gt;% 
   View()
 ```
 
@@ -172,9 +285,9 @@ No Excel, primeiramente selecionamos os dados, clicamos em **Dados\Classificar**
 
 Então temos:
 
-`\(n_F = 17\)` e,
+`\(n_F = 27\)`
 
-`\(n_M = 32\)`
+`\(n_M = 43\)`
  
 Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes `\((k)\)` da variável cetegória é igual a `\(n\)`. 
 
@@ -185,12 +298,12 @@ $$
 Onde `\(k\)` é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
 
 $$
-\sum \limits_{i=1}^{k}{n_i} = 17+32=49
+\sum \limits_{i=1}^{k}{n_i} = 27+43=70
 $$
 
 ---
 
-### Frequência Relativa `\((f_i)\)` ou proporção
+**Frequência Relativa `\((f_i)\)`**
 
 É definida como a proporção de cada realização em relação ao **Total de observações** `\((n)\)`, ou seja:
 
@@ -202,7 +315,7 @@ Vamos, mais uma vez, utilizar o R para esses cálculos.
 .pull-left[
 
 ```r
-tab &lt;-dados_turmas %&gt;%
+tab &lt;- dados_turmas %&gt;%
         group_by(sexo) %&gt;% 
         summarise(ni=n()) %&gt;%      
 *       mutate(fi = ni/sum(ni))
@@ -213,8 +326,8 @@ tab
 #&gt; # A tibble: 2 x 3
 #&gt;   sexo     ni    fi
 #&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
-#&gt; 1 F        26 0.377
-#&gt; 2 M        43 0.623
+#&gt; 1 F        27 0.386
+#&gt; 2 M        43 0.614
 ```
 
 - `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna `\(n_i\)`, no caso a frequência relativa `\(f_i\)`.
@@ -223,7 +336,7 @@ tab
 
 .pull-right[
 Portanto:
-`\(f_F = \frac{17}{49}=0,347\)` e   `\(f_M = \frac{32}{49}=0,653\)`
+`\(f_F = \frac{27}{70}=0,386\)` e   `\(f_M = \frac{43}{70}=0,614\)`
 
 Assim, temos que a soma das frequências relativas sempre é igual a `\(1\)`: 
 
@@ -233,7 +346,7 @@ onde `\(k\)` é o número de categorias da variável `sexo`, ou seja, `\(2\)`.
 ]
 ---
 
-### Porcentagem de frequência `\((perc \text{ ou %})\)`
+**Porcentagem de frequência `\((perc \text{ ou %})\)`**
 
 Definida como o resultado da multiplicação da frequência relativa (proporção) por 100.
 
@@ -252,8 +365,8 @@ tab
 #&gt; # A tibble: 2 x 4
 #&gt;   sexo     ni    fi  perc
 #&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 F        26 0.377  37.7
-#&gt; 2 M        43 0.623  62.3
+#&gt; 1 F        27 0.386  38.6
+#&gt; 2 M        43 0.614  61.4
 ```
 
 **OBS**: A soma das Porcentagens de frequência é igual a `\(100\%\)`.
@@ -266,7 +379,7 @@ Essa etapa é a denominada de **Visualização de Dados**.
 class: middle, center, inverse
 
 # VISUALIZAÇÃO DE DADOS
-###(Variáveis Qualitativas)
+## (Variáveis Qualitativas)
 
 ---
 ## Visualização dos dados
@@ -378,11 +491,11 @@ tab
 #&gt; # A tibble: 5 x 4
 #&gt;   cor_cabelo    ni     fi  perc
 #&gt;   &lt;chr&gt;      &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 C              6 0.0870  8.70
-#&gt; 2 CC            12 0.174  17.4 
-#&gt; 3 CE            32 0.464  46.4 
-#&gt; 4 L              9 0.130  13.0 
-#&gt; 5 P             10 0.145  14.5
+#&gt; 1 C              6 0.0857  8.57
+#&gt; 2 CC            12 0.171  17.1 
+#&gt; 3 CE            33 0.471  47.1 
+#&gt; 4 L              9 0.129  12.9 
+#&gt; 5 P             10 0.143  14.3
 ```
 
 ---
@@ -516,62 +629,62 @@ View(tab)
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.714286 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3188406 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31.884058 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3285714 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32.857143 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2463768 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.637681 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2428571 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.285714 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0724638 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.246377 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.142857 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0434783 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.347826 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0428571 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.285714 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1014493 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.144927 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1000000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.000000 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0142857 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.428571 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0142857 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.428571 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0142857 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.428571 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0144928 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.449275 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0142857 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.428571 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -605,7 +718,7 @@ dados_turmas %&gt;%
 - Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
 
 
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`. Utilize `fill` para controlar a cor de preenchimento da caixa, e as opções `outlier.` para controlar tamanhos, formas, cores e preenchimentos dos outliers.
@@ -690,32 +803,32 @@ View(tab)
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.571429 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.142857 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.714286 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.714286 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1285714 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.857143 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -812,32 +925,32 @@ Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.571429 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.142857 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.714286 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.714286 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1285714 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.857143 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -930,37 +1043,37 @@ View(tab)
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.011122 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9966777 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.853724 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.142857 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.9933555 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.213010 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.1528239 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.033367 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.9900332 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.516684 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1285714 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4950166 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1018,50 +1131,50 @@ View(tab)
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.5,1.59] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.011122 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9966777 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0869565 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.695652 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.571429 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.59,1.67] &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1594203 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15.942029 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.853724 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2463768 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.637681 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.142857 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.9933555 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.714286 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.67,1.76] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3623188 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36.231884 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.213010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.6086957 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60.869565 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35.714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.1528239 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6142857 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61.428571 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.76,1.84] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2608696 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26.086956 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.033367 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.8695652 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 86.956522 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2571429 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.9900332 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8714286 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87.142857 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; (1.84,1.93] &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1304348 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.043478 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.516684 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1285714 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.857143 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4950166 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1.0000000 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 100.000000 &lt;/td&gt;
   &lt;/tr&gt;
