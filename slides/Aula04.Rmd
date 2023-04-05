@@ -36,10 +36,9 @@ https://youtu.be/is32jC4LRjA
 
 Um pacote é uma coleção de funções, exemplos e documentação. A funcionalidade de um pacote é frequentemente focada em uma metodologia estatística especial" (**Everitt & Hothorn**).
 
-```{r echo=FALSE, fig.cap="Pacotes no R são coleções de funções, exemoplos e documentações, os quais devem ser previamente instalados e alocados no ambiente por meio da função `library`.",fig.align='center',out.width = "550px"}
+```{r echo=FALSE, fig.cap="Pacotes no R são coleções de funções, exemplos e documentações, os quais devem ser previamente instalados e alocados no ambiente por meio da função `library`.",fig.align='center',out.width = "550px"}
 knitr::include_graphics("img/Fig08.png")
 ```
-
 
 ---
 ## Pacotes básicos
