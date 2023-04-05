@@ -45,7 +45,7 @@ https://youtu.be/is32jC4LRjA
 
 Um pacote é uma coleção de funções, exemplos e documentação. A funcionalidade de um pacote é frequentemente focada em uma metodologia estatística especial" (**Everitt &amp; Hothorn**).
 
-&lt;img src="img/Fig08.png" width="550px" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/Fig08.png" width="450px" style="display: block; margin: auto;" /&gt;
 Pacotes no R são coleções de funções, exemplos e documentações, os quais devem ser previamente instalados e alocados no ambiente por meio da função `library`.
 
 ---
@@ -59,8 +59,11 @@ Liste os pacotes carregados no ambiente com:
 ```
 
 ```
-#&gt; [1] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
-#&gt; [7] "base"
+#&gt;  [1] "readxl"    "agricolae" "forcats"   "stringr"  
+#&gt;  [5] "dplyr"     "purrr"     "readr"     "tidyr"    
+#&gt;  [9] "tibble"    "ggplot2"   "tidyverse" "MASS"     
+#&gt; [13] "stats"     "graphics"  "grDevices" "utils"    
+#&gt; [17] "datasets"  "methods"   "base"
 ```
 
 O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro `\([\;i\;]\)` apresentado entre colchetes **[i]**.
@@ -82,8 +85,11 @@ Agora, liste novamente os pacotes e observe a diferença no retorno da função.
 ```
 
 ```
-#&gt; [1] "MASS"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
-#&gt; [7] "methods"   "base"
+#&gt;  [1] "readxl"    "agricolae" "forcats"   "stringr"  
+#&gt;  [5] "dplyr"     "purrr"     "readr"     "tidyr"    
+#&gt;  [9] "tibble"    "ggplot2"   "tidyverse" "MASS"     
+#&gt; [13] "stats"     "graphics"  "grDevices" "utils"    
+#&gt; [17] "datasets"  "methods"   "base"
 ```
 
 Observe que o pacote `MASS` agora está no ambiente de trabalho. 
@@ -134,17 +140,17 @@ mtcars %&gt;%
 ```
 #&gt; Rows: 32
 #&gt; Columns: 11
-#&gt; $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8,~
-#&gt; $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8,~
-#&gt; $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 16~
-#&gt; $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180~
-#&gt; $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92,~
-#&gt; $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.~
-#&gt; $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18~
-#&gt; $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,~
-#&gt; $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0,~
-#&gt; $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3,~
-#&gt; $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,~
+#&gt; $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 1~
+#&gt; $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8~
+#&gt; $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 22~
+#&gt; $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62,~
+#&gt; $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3~
+#&gt; $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.~
+#&gt; $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20~
+#&gt; $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0~
+#&gt; $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0~
+#&gt; $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3~
+#&gt; $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3~
 ```
 
 O simbolo para operação de arquivos de dados é o pipe `%&gt;%` que pode ser criado a partir do atalho `CTRL + SHIFT + M`
@@ -224,12 +230,12 @@ glimpse(dados_turmas)
 ```
 #&gt; Rows: 76
 #&gt; Columns: 6
-#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ~
-#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M", "M",~
-#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "L", "CE", "CC", "C", "CC", "~
-#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "socialmente", "mais_social",~
-#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68, 1.76,~
-#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 19, 20,~
+#&gt; $ id         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ~
+#&gt; $ sexo       &lt;chr&gt; "F", "F", "F", "M", "M", "M", "~
+#&gt; $ cor_cabelo &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "~
+#&gt; $ GA         &lt;chr&gt; "mais_social", "nao_consome", "~
+#&gt; $ altura     &lt;dbl&gt; 1.68, 1.59, 1.50, 1.76, 1.60, 1~
+#&gt; $ idade_anos &lt;dbl&gt; 19, 20, 20, 23, 28, 19, 20, 20,~
 ```
 
 
