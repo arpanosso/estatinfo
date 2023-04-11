@@ -7,13 +7,12 @@ title: "Estatística e Informática"
 subtitle: "Aula 05 - Medidas Estatísticas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(26-05-2022)"
+date: "(13-04-2023)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      ratio: "16:9"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -26,7 +25,8 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
-# Medidas de Posição (Tendência Central)
+# Medidas de Posição 
+# (Tendência Central)
 
 ---
 ## Medidas de posição
@@ -38,8 +38,8 @@ Essas medidas, portanto, fornecem a posição da medida na reta real, ou seja, i
 1. Média:  
  - **Aritmética**
  - **Ponderada**
- - Geométrica (Apostila Apenas)
- - Harmônica (Apostila Apenas)
+ - Geométrica (Apostila)
+ - Harmônica (Apostila)
 
 2. Mediana 
 
@@ -69,7 +69,7 @@ A média amostral $\bar{x}$ é a estimativa mais **eficiente**, **imparcial** e 
 Onde $n$ é o tamanho da amostra.
 ---
 
-O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $49$ alunos (`idade_anos`). Observe que a média tem a mesma unidade de medida que a das observações individuais. 
+O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $79$ alunos (`idade_anos`). Observe que a média tem a mesma unidade de medida que a das observações individuais. 
 
 **Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
 
@@ -89,15 +89,10 @@ glimpse(dados_turmas)
 ### Cálculo da Média Aritmética 
 
 $$
-\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+20}{49} = 20,9184\text{ anos} 
+\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+19}{79} = 20,26582\text{ anos} 
 $$
 
 ```{r}
-x<-dados_turmas$idade_anos
-mean(x)
-
-# Ou
-
 dados_turmas %>% 
   pull(idade_anos) %>% 
   mean()
@@ -105,7 +100,7 @@ dados_turmas %>%
 
 ### Cálculo da Média Aritmética pela Frequência Relativa
 
-$\bar{x} = \sum_{i=1}^kf_ix_i = 18\cdot(0,16)+19\cdot(0,28)+ \cdots + 49(0,02) = 20,9184\;anos$
+$\bar{x} = \sum_{i=1}^kf_ix_i = 18\cdot(0,1392)+19\cdot(0,3544304	) + \cdots + 28(0.0253) = 20,26582\;anos$
 
 ---
 
@@ -124,12 +119,12 @@ kableExtra::kable(tab)
 ```
 
 ---
-**Hitograma e média para idade_anos**
+**Histograma e média para idade_anos**
 .pull-left[
 ```{r,plot13_1, eval=FALSE}
 dados_turmas %>% 
   ggplot(aes(x=idade_anos, y=..density..)) +
-  geom_histogram(bins=10, 
+  geom_histogram(bins=7, 
                  color="black", 
                  fill="gray")+
   geom_vline(xintercept = 20.9184, #<<
@@ -150,7 +145,7 @@ Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria
 
 ---
 
-**Hitograma e média para altura**
+**Histograma e média para altura**
 
 .pull-left[
 
@@ -163,7 +158,7 @@ dados_turmas %>%
 ```{r,plot13_2, eval=FALSE}
 dados_turmas %>% 
   ggplot(aes(x=altura, y=..density..)) +
-  geom_histogram(bins=6, 
+  geom_histogram(bins=5, 
                  color="black", 
                  fill="gray")+
   geom_vline(
@@ -171,7 +166,7 @@ dados_turmas %>%
     color="blue") #<<
 ```
 
-$\bar{x} = \frac{1,98+1,59+ \cdots+1,78}{49} =  1,7243\text{ m}$
+$\bar{x} = \frac{1,68 + 1,59 + \cdots+1,60}{79} =  1,7236\text{ m}$
 
 ]
 
@@ -185,6 +180,7 @@ Observe o histograma e a média para a variável `altura`, e compare sua simetri
 ---
 
 ## Média Ponderada
+
 Em algumas situações as observações têm graus de importância diferentes. Usa-se, então, a média ponderada:
 
 $$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i}$$
@@ -828,17 +824,17 @@ Nesses casos dizemos que a distribuição de frequência dos dados é **Simétri
 ---
 ```{r,message=FALSE,warning=FALSE,error=FALSE,echo=FALSE}
 dados %>% 
-  ggplot(aes(x=Arg,y=..count..)) +
+  ggplot(aes(x=Argila,y=..count..)) +
     geom_histogram(bins=15, 
                  color="black",fill="gray")+
   geom_vline(
     xintercept = 
-      c(dados %>%  pull(Arg) %>%  mean(),
-        dados %>%  pull(Arg) %>%  median()),
+      c(dados %>%  pull(Argila) %>%  mean(),
+        dados %>%  pull(Argila) %>%  median()),
     color=c("blue","red"))+
   annotate("text", x = 40, y = 100, label = 
-             paste("Média = ", dados %>%  pull(Arg) %>%  mean() %>% round(digits = 2),
-                   "\nMediana = ", dados %>%  pull(Arg) %>%  median() %>% round(digits = 2)))+
+             paste("Média = ", dados %>%  pull(Argila) %>%  mean() %>% round(digits = 2),
+                   "\nMediana = ", dados %>%  pull(Argila) %>%  median() %>% round(digits = 2)))+
   coord_cartesian(xlim=c(0,80))
 ```
 
