@@ -12,11 +12,21 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Estatística e Informática
+]
+.subtitle[
 ## Aula 05 - Medidas Estatísticas
+]
+.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
+]
+.institute[
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
+]
+.date[
 ### (13-04-2023)
+]
 
 ---
 
@@ -100,12 +110,12 @@ glimpse(dados_turmas)
 ```
 #&gt; Rows: 79
 #&gt; Columns: 6
-#&gt; $ id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13~
-#&gt; $ sexo        &lt;chr&gt; "F", "F", "F", "M", "M", "M", "M", "M", "~
-#&gt; $ cor_cabelo  &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "L", "CE", ~
-#&gt; $ grau_alcool &lt;chr&gt; "mais_social", "nao_consome", "socialment~
-#&gt; $ altura      &lt;dbl&gt; 1.68, 1.59, 1.50, 1.76, 1.60, 1.84, 1.88,~
-#&gt; $ idade_anos  &lt;dbl&gt; 19, 20, 20, 23, 28, 19, 20, 20, 19, 21, 2~
+#&gt; $ id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16~
+#&gt; $ sexo        &lt;chr&gt; "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M"~
+#&gt; $ cor_cabelo  &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "L", "CE", "CC", "C", "~
+#&gt; $ grau_alcool &lt;chr&gt; "mais_social", "nao_consome", "socialmente", "mais_so~
+#&gt; $ altura      &lt;dbl&gt; 1.68, 1.59, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68,~
+#&gt; $ idade_anos  &lt;dbl&gt; 19, 20, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 1~
 ```
 ---
 
@@ -723,12 +733,6 @@ sum(sum(X3^2) - sum(X3)^2/n)
 ```
 
 `\(SQD = 196,16 \;cm^2\)`
----
-No Excel temos:
-
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/sqd2.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-`\(SQD = 196,16 \;cm^2\)`
 
 ---
 
@@ -811,15 +815,15 @@ Agora, tomemos o vetor de desvios de `\(X3\)` em relação à sua média:
 &lt;/table&gt;
 Observe que não precisamos conhecer seus `\(n\)` elementos para conhecermos o vetor **Desvios**, basta conhecermos `\(n-1\)` elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero
 
-`\(\sum_{i=1}^nx_i=0\)`
+`\(\sum_{i=1}^n(x_i-\bar{x})=0\)`
 
 Portanto, qualquer elemento do vetor **Desvios** pode ser conhecido pelas somas dos demais elementos multiplicada por `\((-1)\)`, ou seja:
 
-`\(-8,4= - (-5,6+0,8+4,8+8,4)\)`
-`\(-5,6= - (-8,4+0,8+4,8+8,4)\)`
-`\(+0,8= - (-8,4-5,6+4,8+8,4)\)`
-`\(+4,8= - (-8,4-5,6+0,8+8,4)\)`
-`\(+8,4= - (-8,4-5,6+0,8+4,8)\)`
+`\(-8,4= - (-5,6+0,8+4,8+8,4)\)`  
+`\(-5,6= - (-8,4+0,8+4,8+8,4)\)`  
+`\(+0,8= - (-8,4-5,6+4,8+8,4)\)`  
+`\(+4,8= - (-8,4-5,6+0,8+8,4)\)`  
+`\(+8,4= - (-8,4-5,6+0,8+4,8)\)`  
 
 
 ---
@@ -833,13 +837,16 @@ $$
 Então essa estatística tem `\(n-1\)` graus de liberdade, levando para o cálculo da variância amostral, temos:
 
 
-`$$s^2 = \frac{\sum \limits_{i=1}^n (x_i-\bar{x})^2}{n-1}$$`
+`$$s^2 = \frac{\sum \limits_{i=1}^n(x_i-\bar{x})^2}{n-1}$$`
 
-ou, pela segunda fórmula da SQD:
 
-$$
-s^2 = \frac{\sum \limits_{i=1}^n x_i^2-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}
-$$
+
+ou, pela segunda fórmula da SQD
+
+
+`$$s^2 = \frac{ \sum_{i=1}^n{xi^2}-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}$$`
+
+
 A variância é a medida de dispersão que leva em conta todos as observações, definida como a média da soma de quadrados dos desvios (SQD) em relação à média aritmética: Para uma população, temos:
 
 `$$\sigma^2 = \frac{\sum \limits_{i=1}^N (x_i-\mu)^2}{N}$$`
@@ -961,14 +968,14 @@ Argila (%) coletados em uma área experimental de Latossolo, utilizado na produ�
 ---
 
 
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-28-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-27-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 Para a **Areia**, a *Média* foi maior do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais baixos** de areia. 
 
 Nesse caso dizemos que a distribuição de frequência é **Assimétrica Positiva**, ou seja, a média está sendo influenciada por amostras com altos valores de areia.
 ---
 
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-29-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-28-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 Observe que para o teor de **Silte** os valores de **Média** e **Mediana** foram semelhantes, existe um "pequena" diferença entre eles. 
 
@@ -976,7 +983,7 @@ Nesses casos dizemos que a distribuição de frequência dos dados é **Simétri
 
 
 ---
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-30-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-29-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 Para o teor de **Argila**, a *Média* foi menor do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais altos** de argila. 
 
@@ -1040,13 +1047,13 @@ dados_turmas %&gt;%
 
 .pull-left[
 Distribuição **Assimétrica Positiva** `\(g_1=4.82\)`
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .pull-right[
 Distribuição **Simétrica** `\(g_1=-0,00283\)`
-&lt;img src="Aula05_files/figure-html/unnamed-chunk-33-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula05_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1139,6 +1146,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

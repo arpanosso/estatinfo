@@ -586,14 +586,6 @@ sum(sum(X3^2) - sum(X3)^2/n)
 ```
 
 $SQD = 196,16 \;cm^2$
----
-No Excel temos:
-
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/sqd2.png")
-```
-
-$SQD = 196,16 \;cm^2$
 
 ---
 
@@ -639,15 +631,15 @@ tibble(Desvios) %>%
 ```
 Observe que não precisamos conhecer seus $n$ elementos para conhecermos o vetor **Desvios**, basta conhecermos $n-1$ elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero
 
-$\sum_{i=1}^nx_i=0$
+$\sum_{i=1}^n(x_i-\bar{x})=0$
 
 Portanto, qualquer elemento do vetor **Desvios** pode ser conhecido pelas somas dos demais elementos multiplicada por $(-1)$, ou seja:
 
-$-8,4= - (-5,6+0,8+4,8+8,4)$
-$-5,6= - (-8,4+0,8+4,8+8,4)$
-$+0,8= - (-8,4-5,6+4,8+8,4)$
-$+4,8= - (-8,4-5,6+0,8+8,4)$
-$+8,4= - (-8,4-5,6+0,8+4,8)$
+$-8,4= - (-5,6+0,8+4,8+8,4)$  
+$-5,6= - (-8,4+0,8+4,8+8,4)$  
+$+0,8= - (-8,4-5,6+4,8+8,4)$  
+$+4,8= - (-8,4-5,6+0,8+8,4)$  
+$+8,4= - (-8,4-5,6+0,8+4,8)$  
 
 
 ---
@@ -661,13 +653,16 @@ $$
 Então essa estatística tem $n-1$ graus de liberdade, levando para o cálculo da variância amostral, temos:
 
 
-$$s^2 = \frac{\sum \limits_{i=1}^n (x_i-\bar{x})^2}{n-1}$$
+$$s^2 = \frac{\sum \limits_{i=1}^n(x_i-\bar{x})^2}{n-1}$$
 
-ou, pela segunda fórmula da SQD:
 
-$$
-s^2 = \frac{\sum \limits_{i=1}^n x_i^2-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}
-$$
+
+ou, pela segunda fórmula da SQD
+
+
+$$s^2 = \frac{ \sum_{i=1}^n{xi^2}-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}$$
+
+
 A variância é a medida de dispersão que leva em conta todos as observações, definida como a média da soma de quadrados dos desvios (SQD) em relação à média aritmética: Para uma população, temos:
 
 $$\sigma^2 = \frac{\sum \limits_{i=1}^N (x_i-\mu)^2}{N}$$
