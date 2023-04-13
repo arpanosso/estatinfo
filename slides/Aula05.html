@@ -100,12 +100,12 @@ glimpse(dados_turmas)
 ```
 #&gt; Rows: 79
 #&gt; Columns: 6
-#&gt; $ id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,~
-#&gt; $ sexo        &lt;chr&gt; "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M", "M"~
-#&gt; $ cor_cabelo  &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "L", "CE", "CC", "C", "CC", ~
-#&gt; $ grau_alcool &lt;chr&gt; "mais_social", "nao_consome", "socialmente", "mais_social"~
-#&gt; $ altura      &lt;dbl&gt; 1.68, 1.59, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68, 1.76~
-#&gt; $ idade_anos  &lt;dbl&gt; 19, 20, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 19, 20~
+#&gt; $ id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13~
+#&gt; $ sexo        &lt;chr&gt; "F", "F", "F", "M", "M", "M", "M", "M", "~
+#&gt; $ cor_cabelo  &lt;chr&gt; "CC", "CE", "CE", "CE", "CC", "L", "CE", ~
+#&gt; $ grau_alcool &lt;chr&gt; "mais_social", "nao_consome", "socialment~
+#&gt; $ altura      &lt;dbl&gt; 1.68, 1.59, 1.50, 1.76, 1.60, 1.84, 1.88,~
+#&gt; $ idade_anos  &lt;dbl&gt; 19, 20, 20, 23, 28, 19, 20, 20, 19, 21, 2~
 ```
 ---
 
@@ -282,9 +282,12 @@ Onde `\(\lambda_i\)` é o peso associado à i-ésima observação. Assim, ele me
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/tab_broca.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"&gt;&lt;/img&gt;
 
 
-`$$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10} = \frac{1257,22}{113}=11,126%$$`
+`\(\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10}\)`
+
+`\(\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{1257,22}{113}=11,126%\)`
 
 No R:
+
 
 ```r
 pesos&lt;-c(12,40,4,2,6,18,21,10)
@@ -992,9 +995,7 @@ Este coeficiente indica se os desvios da média são maiores para um lado da dis
 
 O terceiro momento pode ser computado como:
 
-$$
-m_3 = \frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^3
-$$
+`\(m_3 = \frac{1}{n} \cdot \sum_{i=1}^n(x_i-\bar{x})^3\)`
 
 assim,
 

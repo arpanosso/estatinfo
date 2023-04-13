@@ -217,9 +217,12 @@ Onde $\lambda_i$ é o peso associado à i-ésima observação. Assim, ele mede a
 <img src="https://arpanosso.github.io/estatinfo/slides/img/tab_broca.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
 
 
-$$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10} = \frac{1257,22}{113}=11,126%$$
+$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10}$
+
+$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{1257,22}{113}=11,126%$
 
 No R:
+
 ```{r}
 pesos<-c(12,40,4,2,6,18,21,10)
 X <- c(9.1,14.57,3.2,2.89,8.74,11.7,10.10,7.15)
@@ -843,9 +846,7 @@ Este coeficiente indica se os desvios da média são maiores para um lado da dis
 
 O terceiro momento pode ser computado como:
 
-$$
-m_3 = \frac{1}{n}\sum_{i=1}^n(x_i-\bar{x})^3
-$$
+$m_3 = \frac{1}{n} \cdot \sum_{i=1}^n(x_i-\bar{x})^3$
 
 assim,
 
