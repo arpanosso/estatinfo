@@ -568,7 +568,7 @@ $S = \{H H, H T, T H, T T\}$.
 
 A título de exemplificação, vamos definir uma **variável aleatória $X$** que representa **a contagem do número de caras (H)** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
 
-```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png")
 ```
 
@@ -999,11 +999,11 @@ Observe que ao termo $P((A \cap B) \cup (A \cap C))$ podemos aplicar a lei de ac
 
 $$
 \begin{align}
-P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -[ P(A \cap B) + P(A \cap C) - \\ P((A \cap B) \cap (A \cap C) )]
+P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -[ P(A \cap B) + P(A \cap C)  \\ - P((A \cap B) \cap (A \cap C) )]
 \end{align}
 $$
 
----
+
 
 $$
 \begin{align}
@@ -1179,7 +1179,6 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 **NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, contudo, **não se devolve a bola para a urna** e realizá-se o segundo sorteio. Nessas condições o espaço amostral é reduzido de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral $\mho = \{ BB, BV, VB, VV\}$ serão dadas por:
 
---
 
 ```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/sem_reposicao.png")
