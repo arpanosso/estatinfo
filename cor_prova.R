@@ -1,7 +1,9 @@
 library(tidyverse)
 library(readxl)
-dados <- read_excel("C:/Users/Not. Unesp/Dropbox/Prova-01-2023/dados-2023.xls") %>%
+dados <- read_excel("data/dados-2023.xls") %>%
   janitor::clean_names()
+pot <- function(a,b) a^b
+
 A <- 5
 B <- 10
 C <- -8
@@ -14,7 +16,7 @@ corrige_string <- function( x ){
   eval(parse(text = x))
 }
 
-dados %>%
+dados <- dados %>%
   mutate(cor2a = stringr::str_replace_all(
     stringr::str_replace_all(
     stringr::str_replace_all(x2a,"mod","%%"), "div","%/%"),"rad","sqrt"),
@@ -28,7 +30,9 @@ dados %>%
         stringr::str_replace_all(x2c,"mod","%%"), "div","%/%"),"rad","sqrt")
     ) %>%
   mutate(
-    evaluate = sapply(cor2a, function(x) eval(parse(text = x)))
-    ) %>%
-  select(evaluate)
+    evaluateA = sapply(cor2a, function(x) eval(parse(text = x))),
+    evaluateB = sapply(cor2b, function(x) eval(parse(text = x))),
+    evaluateC = sapply(cor2c, function(x) eval(parse(text = x)))
+    )
 
+writexl::write_xlsx(dados,"data/dados.xlsx")
