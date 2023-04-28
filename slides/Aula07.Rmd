@@ -26,6 +26,8 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
+# Conceitos Básicos
+
 ---
 
 ### Conceitos Básicos
@@ -155,16 +157,13 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/ac/Pie
 ]
 
 .pull-right[
-
-  >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis".
-Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  $(H)$ ou Coroa $(T)$.
+  >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis". Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  $(H)$ ou Coroa $(T)$.
 Por assim definimos a Probabilidade de $H$ como:
-
-$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}$$
-
 ]
 
-
+$$
+P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}
+$$
 
 ---
 
@@ -172,7 +171,7 @@ $$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultad
 
 **1)** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair Cara, $P(H)$?
 
---
+
 
 $$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{0}{6} = 0$$
 
@@ -192,8 +191,7 @@ Chamamos esse tipo de **Evento Certo**.
 
 ###  Probabilidade de um Evento
 
->Assim, $P(E)$ é a probabilidade de um evento $E$, ou seja, é um número entre $0$ e $1$, quanto mais próximo a $1$, maior a chance de sua ocorrência. 
-A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
+>Assim, $P(E)$ é a probabilidade de um evento $E$, ou seja, é um número entre $0$ e $1$, quanto mais próximo a $1$, maior a chance de sua ocorrência.  A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
 
 Portanto, se $S$ consiste de $k$ eventos simples $\{ e_1, e_2, \cdots, e_k\}$ que são **igualmente prováveis**, a probabilidade de cada $e_i$ é $\frac{1}{k}$ se $E$ consiste de $m$ desses $k$ elementos, então temos:
 
@@ -213,9 +211,6 @@ $iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum_{i=1}^k P(
 ### Exemplos
 
 1) Descreva o espaço amostral e a probabilidade de sair pelo menos uma face cara no lançamento de uma moeda três vezes.
-
-
-
 
 ---
 
@@ -333,7 +328,6 @@ library(tidyverse)
 ```
 
 
-.pull-left[
 ```{r,tab_1,eval=FALSE}
 # Carregando pacotes
 library(tidyverse)
@@ -353,13 +347,11 @@ tibble(x)  %>%
   geom_hline(yintercept = 1/6,color="red")
 ```
 
+---
 
-] 
-
-.pull-right[
 ```{r,tab_1,echo=FALSE}
 ```
-]
+
 
 Observe que os valores de $f_i$ são diferentes, não houve a convergência para os valores de probabilidade $P(E) = 0,16667$, linha vermelha no gráfico.
 
@@ -367,7 +359,6 @@ Observe que os valores de $f_i$ são diferentes, não houve a convergência para
 
 Agora vamos aumentar o $n$ para  $1.000.000$, e observar a convergência para o valor de $1/6$, linha vermelha no gráfico.
 
-.pull-left[
 ```{r,tab_2,eval=FALSE}
 n <- 1e6 # 1000000 - 1 milhão
 x<-n |> 
@@ -385,12 +376,10 @@ tibble(x) |>
   geom_hline(yintercept = 1/6,color="red")
 ```
 
-]
 
-.pull-right[
+---
 ```{r,tab_2,echo=FALSE}
 ```
-]
 
 Quando $n \to \infty$ os valores de $f_i \to P(E) = 0,16667$.
 
@@ -471,7 +460,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ---
 
 #### Demonstração
-.pull-left[
+
 $A \cup B = A \cup (B \cap \bar{A})$
 
 Aplicando a função de probabilidade:
@@ -491,9 +480,7 @@ Aplicando a função de probabilidade:
 $P(B) = P(A \cap B) + P(B \cap \bar{A})$,
 
 
-]
-
-.pull-right[
+---
 
 Assim, temos:
 
@@ -506,8 +493,9 @@ $P(A \cup B) - P(A) =  P(B) -  P(A \cap B)$
 Finalmente, temos:
 
 $P(A \cup B) =  P(A)  + P(B) -  P(A \cap B)$
+
 como queríamos demonstrar.
-]
+
 
 ---
 
@@ -797,7 +785,9 @@ Em analogia à passagem anterior:
 $$P(D) = P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)$$
 Assim, podemos reescrever (i) como:
 
-$$P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)}$$ 
+$$
+P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)}
+$$ 
 
 O Teorema  de  Bayes expressa  uma  probabilidade condicional em termos de outras probabilidades condicionais e marginais. 
 
@@ -819,7 +809,9 @@ $$P(E_1 | D) = 0,3243$$
 Aplicando a mesma fórmula podemos calcular:
 
 
-$$P(E_2 | D) = \frac{0,05 \cdot 0,30}{ 0,02  (0,60) + 0,05 (0,30) + 0,10  (0,10)}$$ 
+$$
+P(E_2 | D) = \frac{0,05 \cdot 0,30}{ 0,02  (0,60) + 0,05 (0,30) + 0,10  (0,10)}
+$$ 
 
 
 $P(E_2 | D) = \frac{0,015}{ 0,037}$ 
@@ -829,14 +821,14 @@ $P(E_2 | D) = 0,4054$
 ---
 
 
-$$P(E_3 | D) = \frac{0,10 \cdot 0,10}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}$$ 
+$$
+P(E_3 | D) = \frac{0,10 \cdot 0,10}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}
+$$ 
 
 
 $P(E_3 | D) = \frac{0,01}{ 0,037}$
 
 $P(E_3 | D) = 0,2703$
-
-
 
 ---
 ### Exercícios

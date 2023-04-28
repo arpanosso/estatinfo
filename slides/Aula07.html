@@ -34,6 +34,8 @@ class: center, middle, inverse, title-slide
 
 class: middle, center, inverse
 
+# Conceitos Básicos
+
 ---
 
 ### Conceitos Básicos
@@ -152,16 +154,13 @@ Conclusões baseadas em dados empíricos, oriundos de uma observação experimen
 ]
 
 .pull-right[
-
-  &gt;"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis".
-Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  `\((H)\)` ou Coroa `\((T)\)`.
+  &gt;"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis". Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  `\((H)\)` ou Coroa `\((T)\)`.
 Por assim definimos a Probabilidade de `\(H\)` como:
-
-`$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}$$`
-
 ]
 
-
+$$
+P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}
+$$
 
 ---
 
@@ -169,7 +168,7 @@ Por assim definimos a Probabilidade de `\(H\)` como:
 
 **1)** No lançamento de um dado com os lados `\(\{1,2,3,4,5,6\}\)`, qual a probabilidade de cair Cara, `\(P(H)\)`?
 
---
+
 
 `$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{0}{6} = 0$$`
 
@@ -189,8 +188,7 @@ Chamamos esse tipo de **Evento Certo**.
 
 ###  Probabilidade de um Evento
 
-&gt;Assim, `\(P(E)\)` é a probabilidade de um evento `\(E\)`, ou seja, é um número entre `\(0\)` e `\(1\)`, quanto mais próximo a `\(1\)`, maior a chance de sua ocorrência. 
-A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
+&gt;Assim, `\(P(E)\)` é a probabilidade de um evento `\(E\)`, ou seja, é um número entre `\(0\)` e `\(1\)`, quanto mais próximo a `\(1\)`, maior a chance de sua ocorrência.  A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
 
 Portanto, se `\(S\)` consiste de `\(k\)` eventos simples `\(\{ e_1, e_2, \cdots, e_k\}\)` que são **igualmente prováveis**, a probabilidade de cada `\(e_i\)` é `\(\frac{1}{k}\)` se `\(E\)` consiste de `\(m\)` desses `\(k\)` elementos, então temos:
 
@@ -210,9 +208,6 @@ Portanto `\(P(.)\)` é denominada probabilidade se, e somente se:
 ### Exemplos
 
 1) Descreva o espaço amostral e a probabilidade de sair pelo menos uma face cara no lançamento de uma moeda três vezes.
-
-
-
 
 ---
 
@@ -324,7 +319,6 @@ Vamos definir `\(n\)` como o número de vezes que o experimento será realizado 
 
 
 
-.pull-left[
 
 ```r
 # Carregando pacotes
@@ -345,12 +339,10 @@ tibble(x)  %&gt;%
   geom_hline(yintercept = 1/6,color="red")
 ```
 
+---
 
-] 
-
-.pull-right[
 &lt;img src="Aula07_files/figure-html/tab_1-1.png" style="display: block; margin: auto;" /&gt;
-]
+
 
 Observe que os valores de `\(f_i\)` são diferentes, não houve a convergência para os valores de probabilidade `\(P(E) = 0,16667\)`, linha vermelha no gráfico.
 
@@ -358,7 +350,6 @@ Observe que os valores de `\(f_i\)` são diferentes, não houve a convergência 
 
 Agora vamos aumentar o `\(n\)` para  `\(1.000.000\)`, e observar a convergência para o valor de `\(1/6\)`, linha vermelha no gráfico.
 
-.pull-left[
 
 ```r
 n &lt;- 1e6 # 1000000 - 1 milhão
@@ -377,11 +368,9 @@ tibble(x) |&gt;
   geom_hline(yintercept = 1/6,color="red")
 ```
 
-]
 
-.pull-right[
+---
 &lt;img src="Aula07_files/figure-html/tab_2-1.png" style="display: block; margin: auto;" /&gt;
-]
 
 Quando `\(n \to \infty\)` os valores de `\(f_i \to P(E) = 0,16667\)`.
 
@@ -458,7 +447,7 @@ Se `\(A\)` e `\(B\)` forem dois eventos quaisquer, então, `\(P(A \cup B) = P(A)
 ---
 
 #### Demonstração
-.pull-left[
+
 `\(A \cup B = A \cup (B \cap \bar{A})\)`
 
 Aplicando a função de probabilidade:
@@ -478,9 +467,7 @@ Aplicando a função de probabilidade:
 `\(P(B) = P(A \cap B) + P(B \cap \bar{A})\)`,
 
 
-]
-
-.pull-right[
+---
 
 Assim, temos:
 
@@ -493,8 +480,9 @@ A partir de **(i)** e **(ii)** temos:
 Finalmente, temos:
 
 `\(P(A \cup B) =  P(A)  + P(B) -  P(A \cap B)\)`
+
 como queríamos demonstrar.
-]
+
 
 ---
 
@@ -778,7 +766,9 @@ Em analogia à passagem anterior:
 `$$P(D) = P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)$$`
 Assim, podemos reescrever (i) como:
 
-`$$P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)}$$` 
+$$
+P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)}
+$$ 
 
 O Teorema  de  Bayes expressa  uma  probabilidade condicional em termos de outras probabilidades condicionais e marginais. 
 
@@ -800,7 +790,9 @@ Portanto, para o exemplo temos que a probabilidade da pessoa escolhida ser prete
 Aplicando a mesma fórmula podemos calcular:
 
 
-`$$P(E_2 | D) = \frac{0,05 \cdot 0,30}{ 0,02  (0,60) + 0,05 (0,30) + 0,10  (0,10)}$$` 
+$$
+P(E_2 | D) = \frac{0,05 \cdot 0,30}{ 0,02  (0,60) + 0,05 (0,30) + 0,10  (0,10)}
+$$ 
 
 
 `\(P(E_2 | D) = \frac{0,015}{ 0,037}\)` 
@@ -810,14 +802,14 @@ Aplicando a mesma fórmula podemos calcular:
 ---
 
 
-`$$P(E_3 | D) = \frac{0,10 \cdot 0,10}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}$$` 
+$$
+P(E_3 | D) = \frac{0,10 \cdot 0,10}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}
+$$ 
 
 
 `\(P(E_3 | D) = \frac{0,01}{ 0,037}\)`
 
 `\(P(E_3 | D) = 0,2703\)`
-
-
 
 ---
 ### Exercícios
