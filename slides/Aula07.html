@@ -324,7 +324,7 @@ Vamos definir `\(n\)` como o número de vezes que o experimento será realizado 
 # Carregando pacotes
 library(tidyverse)
 n &lt;- 100
-x&lt;-n  %&gt;%  
+x &lt;- n  %&gt;%  
   runif(min=.5,max=6.5) %&gt;%  
   round()
 # Criando a tabela e posterior gráfico
@@ -353,16 +353,16 @@ Agora vamos aumentar o `\(n\)` para  `\(1.000.000\)`, e observar a convergência
 
 ```r
 n &lt;- 1e6 # 1000000 - 1 milhão
-x&lt;-n |&gt; 
-  runif(min=.5,max=6.5) |&gt; 
+x &lt;- n  %&gt;%  
+  runif(min=.5,max=6.5) %&gt;%  
   round()
 # Criando a tabela e posterior gráfico
-tibble(x) |&gt; 
-  group_by(x) |&gt; 
+tibble(x) %&gt;% 
+  group_by(x) %&gt;%  
   summarise(
     ni = n(),
     fi = ni/n
-  ) |&gt; 
+  ) %&gt;%  
   ggplot(aes(x=x,y=fi)) +
   geom_col(color="black",fill="lightblue") +
   geom_hline(yintercept = 1/6,color="red")
@@ -698,17 +698,19 @@ Podemos verificar:
 
 ---
 
-**INDEPENDÊNCIA**: Imagine uma urna contento `\(2\)` bolas brancas e `\(3\)` bolas vermelhas. Serão sorteados duas bolas **COM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, **devolve-se a bola para a urna** e realizá-se o segundo sorteio. Nessas condições o espaço amostral desse ensaio seguido de suas respectivas probabilidades de ocorrência, pode ser dado por: `\(\mho = \{ BB, BV, VB, VV\}\)`
+**INDEPENDÊNCIA**: Imagine uma urna contento `\(2\)` bolas brancas e `\(3\)` bolas vermelhas. Serão sorteados duas bolas **COM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, **devolve-se a bola para a urna** e realizá-se o segundo sorteio. Nessas condições o espaço amostral desse ensaio seguido de suas respectivas probabilidades de ocorrência, pode ser dado por: `\(S = \{ BB, BV, VB, VV\}\)`
 
-
+--
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/reposicao.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, contudo, **não se devolve a bola para a urna** e realizá-se o segundo sorteio. Nessas condições o espaço amostral é reduzido de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral `\(\mho = \{ BB, BV, VB, VV\}\)` serão dadas por:
+**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, contudo, **não se devolve a bola para a urna** e realizá-se o segundo sorteio. Nessas condições o espaço amostral é reduzido de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral `\(S = \{ BB, BV, VB, VV\}\)` serão dadas por:
 
+
+--
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/sem_reposicao.png" width="90%" style="display: block; margin: auto;" /&gt;
 
