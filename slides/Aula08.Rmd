@@ -8,13 +8,12 @@ title: "Estatística e Informática"
 subtitle: "Aula 08 - Variáveis Aleatórias"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(30-06-2022)"
+date: "(11-05-2023)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      ratio: "16:9"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -23,18 +22,9 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
-options(dplyr.print_min = 5, dplyr.print_max = 5)
+options
+library(tidyverse)
 ```
-
-## Fenômeno aleatório
-
-É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade (experimento aleatório). Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controla-los.
-
-## Variável aleatória (v.a.)
-
-É a função que associa os possíveis resultados experimentais a valores reais $\Re$. 
-
-Uma variável cujos valores referem-se a eventos aleatórios é chamada **variável aleatória**, seus valores dependem dos resultados de um experimento. Pode ser discreta ou contínua. 
 
 ---
 class: middle, center, inverse
@@ -50,6 +40,7 @@ Muitos experimentos produzem resultados não numéricos, portanto, antes de anal
 Considerando o cruzamento de organismos heterozigotos para o gene $A$, $Aa × Aa$, este conceito é ilustrado com um espaço amostral com $4$ resultados elementares, ou seja:
 
 $$S = \{AA,Aa,aA,aa\}$$
+---
 
 Agora vamos definir $X$, como nossa variável aleatória, que é o número de alelos dominantes $A$. Assim:
 
@@ -91,7 +82,7 @@ A distribuição de probabilidade mostra-nos como a probabilidade total $(1)$ é
 
 **Representação Gráfica**
 
-.pull-left[
+
 ```{r,plot_1,eval=FALSE}
 library(tidyverse)
 tibble(x=0:2,
@@ -100,12 +91,12 @@ tibble(x=0:2,
   geom_col(color="black",
            fill="gray")
 ```
-]
 
-.pull-right[
+---
+
+
 ```{r,plot_1,echo=FALSE}
 ```
-]
 
 ---
 class: middle, center, inverse
@@ -125,7 +116,7 @@ tibble(Genótipo=c("AA","Aa","aa"),
 ```
 Lembrando que a média pode ser calculada a partir da frequência relativa:
 
-$$\bar{x} = \sum \limits_{i=1}^k f_i(x_i)$$
+$$\bar{x} = \sum \limits_{i=1}^k f_i \cdot x_i$$
 
 Em que $k$ é o número associado ao evento aleatório $X = x_i$.
 
@@ -340,7 +331,7 @@ O modelo probabilístico da variável aleatória $X$, é a forma específica de 
 3. Distribuição de Poisson
 
 ---
-
+  
 class: middle, center, inverse
 
 # Distribuição de Bernoulli
@@ -358,9 +349,7 @@ Essa distribuição é caracterizada por uma única realização de um experimen
 
 a) testa-se um antibiótico em um indivíduo, a reação (v.a.) ou é positiva (S) ou é negativa (F);
 
-b) observa-se o sexo (v.a.)  de um animal recém-nascido ou é macho (F) ou é fêmea (S);
-
-c) uma planta é escolhida, ao acaso, em um pomar e observa-se se essa planta é doente (v.a.) (S) ou não (F).
+b) uma planta é escolhida, ao acaso, em um pomar e observa-se se essa planta é doente (v.a.) (S) ou não (F).
 
 Assim, para cada experimento, podemos definir uma variável aleatória $X$: o número de sucessos, que assume apenas dois valores, o valor $1$ se ocorre sucesso $(S)$ e o valor $0$ (zero) se ocorre fracasso $(F)$, sendo $P(S) = p$, $0 < p <1$, ou seja:
 
@@ -423,11 +412,9 @@ x <- 0:1
 px <- c(q,p)
 tibble(x,px) |> 
   ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="lightgray")
+  geom_col(color="black",
+           fill="lightgray")
 ```
-$E(X) = p = 0,7$  e 
-
-$Var(X) = p.q = 0,7 . 0,3 = 0,21$
 
 ]
 
@@ -436,6 +423,11 @@ $Var(X) = p.q = 0,7 . 0,3 = 0,21$
 ```{r,plot_2,echo=FALSE}
 ```
 ]
+
+$$E(X) = p = 0,7$$  
+
+
+$$Var(X) = p.q = 0,7 . 0,3 = 0,21$$
 
 ---
 
@@ -449,9 +441,11 @@ class: middle, center, inverse
 
 ### Definição
 
-Quando um número fixo $n$ de ensaios de Bernoulli são repetidos, supondo que as repetições sejam independentes com $P(S) = p$ em cada ensaio, a variável aleatória $X$ representa a contagem do número de sucessos em $n$ ensaios. 
+Quando um número fixo $n$ de ensaios de *Bernoulli* são repetidos, supondo que as repetições sejam *independentes* com $P(S) = p$ em cada ensaio, a variável aleatória $X$ representa a contagem (soma) do número de sucessos em $n$ ensaios. 
 
 Os possíveis valores de $X$ são os inteiros $0, 1, 2,..., n$. A distribuição de probabilidade de $X$ é chamada **DISTRIBUIÇÃO BINOMIAL* com $n$ ensaios e probabilidade de sucesso $p$. 
+
+---
 
 **Exemplo**: No lançamento de uma moeda, vamos definir como Sucesso o evento *cair a face cara*:
 
@@ -467,13 +461,13 @@ Há $2 × 2 × 2 = 8$ resultados possíveis, os quais estão relacionados nas co
 ---
 Uma característica interessante dos experimentos considerados é que estamos interessados apenas no número total de sucessos e não na ordem que eles ocorrem. Segue abaixo o diagrama de árvore das probabilidades binomiais no lançamento de 3 moedas, ou seja, $n=3$ e $P(S) = p$ e $P(F) = q$.
 
-```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_2.png")
 ```
 
 ---
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_3.png")
 ```
 
@@ -481,7 +475,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ### Obtenção das sequências
 
-Como os ensaios são independentes, com $P(S) =p$ e $P(F) = q$, os fatores: $1, 3, 3, 1$ são obtido por meio do **"teorema da expansão binomial“**:
+Como os ensaios são independentes, com $P(S) =p$ e $P(F) = q$, os fatores: $1, 3, 3, 1$ são obtido por meio do **"teorema da expansão binomial"**:
 
 $$(a+b)^n = {n \choose 0}a^n + {n \choose 1}a^{n-1}b + {n \choose 2}a^{n-2}b^2 + \dots + {n \choose n}b^n$$
 
@@ -508,7 +502,7 @@ Se $X$ é uma variável aleatória com distribuição Binomial ela apresenta:
 ---
 E se, ao invés de $3$ moedas, tivéssemos $4$ moedas?
 
-```{r,out.width = "75%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png")
 ```
 
@@ -536,7 +530,7 @@ n <- 4
 x <- 0:n
 p<-1/2
 px<-dbinom(x,n,p)
-tibble(x,px) |> 
+tibble(x,px) %>%  
   kableExtra::kable()
 ```
 ]
@@ -544,22 +538,12 @@ tibble(x,px) |>
 .pull-right[
 
 ```{r}
-tibble(x,px) |> 
+tibble(x,px) %>%  
   ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="gray")
+  geom_col(color="black",
+           fill="gray")
 ```
 ]
-
----
-
-No Excel, podemos utilizar a função `=DISTR.BINOM()`.
-
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_5.png")
-```
-
-Observe que o último argumento da função é o valor zero $0$, que representa que a probabilidade não deve ser acumulada até o valor $x$ passado no primeiro argumento.
-
 
 ---
 
@@ -606,14 +590,15 @@ tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+
+]
+
 ```{r,echo=FALSE}
 tibble(x,px) |> 
   tidyr::pivot_wider(names_from = x,
                      values_from = px)  |> 
   kableExtra::kable()
 ```
-]
-
 ---
 ### Exercícios
 
@@ -633,7 +618,7 @@ d) $0,9844$
 
 ---
 
-2) Uma urna contém bolas brancas e pretas na proporção 2 para 3. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de $0, 1, 2 e 3$ sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
+2) Uma urna contém bolas brancas e pretas na proporção $2$ para $3$. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de $0, 1, 2 e 3$ sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
 
 --
 
@@ -696,8 +681,8 @@ Ou seja, o número médio e a variância de ocorrências de eventos por unidade 
 **Exercícios 1)** Em uma população, seja $X$ o número de descendentes produzidos por família/geração. Assumindo que Média = $\lambda = 2$, qual a probabilidade de famílias com  $X= 4$ descendentes?
 
 --
-.pull-left[
-```{r,echo=FALSE}
+
+```{r,echo=FALSE,out.width="0%"}
 n <- 10
 x <- 0:n
 lambda <- 2
@@ -709,12 +694,10 @@ tibble(x,px) |>
   geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
   theme_bw()
 ```
-]
 
-.pull-right[
 $$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
 
-]
+
 
 ---
 **Exercício 2)** Suponha que o número de partículas alfa, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro $\lambda = 5$, isto é, a taxa média de ocorrência é de $5$ partículas a cada minuto. Calcule a probabilidade de haver mais de $2$ emissões em um minuto.
@@ -748,12 +731,14 @@ Se $P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}$, então:
 
 $P(x >2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}$
 
-$P(x >2 ) = 1 - [P(X=0) + P(X=1) + P(X=2)]$
 
-$P(x >2 ) = 1-[\frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}]=0,87535$
 
 
 ]
+
+$P(x >2 ) = 1 - [P(X=0) + P(X=1) + P(X=2)]$
+
+$P(x >2 ) = 1-[\frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}]=0,87535$
 
 ---
 
@@ -833,7 +818,7 @@ e **Variância**:
 
 $$Var(X) = n \cdot p$$
 ---
-**Exercício 5)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à vacina coronavac é de $0,001$, determinar a probabilidade de que, de $2000$ pessoas vacinadas, mais do que $4$ pessoas tenham reação negativa?
+**Exercício 5)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à uma vacina é de $0,001$, determinar a probabilidade de que, de $2000$ pessoas vacinadas, mais do que $4$ pessoas tenham reação negativa?
 
 --
 
