@@ -8,13 +8,12 @@ title: "Estatística e Informática"
 subtitle: "Aula 09 - Variáveis Aleatórias Contínuas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(07-07-2022)"
+date: "(18-05-2022)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      ratio: "16:9"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
