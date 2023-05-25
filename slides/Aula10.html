@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estatística e Informática</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Estatística e Informática
+]
+.subtitle[
+## Aula 10 - Estatística, Distribuição Amostral
+]
+.author[
+### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
+]
+.institute[
+### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
+]
+.date[
+### (01-06-2023)
+]
+
+---
+
+
+
+
+class: middle, center, inverse
+
+# Distribuições Amostral
+
+---
+
+## Parâmetro e Estatística
+
+**Parâmetro**: é uma medida usada para descrever uma característica da população.
+
+
+**Estatística** ou **Estimador**: é qualquer função de uma amostra aleatória (fórmula ou expressão), construída com o propósito de servir como instrumento para descrever alguma característica da amostra e para fazer *inferência* a respeito da característica na população.  
+
+
+Resumo | Parâmetro | Estatística
+:---|:---:|:---:  
+Média | `\(\mu\)` | `\(\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i\)`
+Variância | `\(\sigma^2\)`| `\(s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}\)`
+Proporção | `\(\pi\)` | `\(\hat{p}= \frac{X}{n}\)`
+Correlação | `\(\rho\)` | `\(r = \frac{\sum_{i=1}^n(x_1-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_1-\bar{x})^2(y_i-\bar{y})^2}}\)`
+---
+
+Toda **estatística**, sendo uma função de uma amostra aleatória `\(X_1, X_2, \cdots X_n\)`, é também uma variável aleatória e tem uma distribuição. 
+
+Assim, o comportamento da estatística pode ser descrito por alguma distribuição de probabilidade, agora denominada **distribuição amostral**. 
+
+Assim, cada **estatística** é uma variável aleatória e sua distribuição de probabilidade é chamada &lt;u&gt;distribuição amostral da estatística&lt;/u&gt;.
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle, center, inverse
+
+# Distribuições Amostral da Média
+
+---
+Seja a variável aleatória `\(X\)` que denota o tempo em dias de germinação de sementes de uma espécie vegetal, após o plantio. Considerando a população de todas sementes plantadas nesse experimento, suponha que `\(X\)` tem a distribuição de probabilidade apresentada abaixo. Uma amostra aleatória simples **COM REPOSIÇÃO** `\((X_1\)`, `\(X_2)\)` de `\(2\)` covas `\((n = 2)\)` é tomada nesta área. Qual a distribuição do tempo médio amostral em dias para a germinação?
+
+
+`\(x\)` | `\(0\)` | `\(1\)` | `\(2\)` | `\(3\)` 
+---|---|---|---|---
+`\(P(X)\)` | `\(0,20\)` | `\(0,40\)`| `\(0,30\)`| `\(0,10\)`
+
+
+---
+
+.pull-left[
+
+Distribuição de Probabilidade
+
+&lt;img src="Aula10_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+Calculando a Esperança de X: 
+
+`$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30\;dias$$`
+
+Calculando a Variância de X.
+
+`\(Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\;dias^2\)`
+
+Definimos a média a partir da tomada de duas amostras temos:
+
+`$$\bar{X} = \frac{X_1+X_2}{2}$$`
+]
+
+---
+
+De acordo com a definição de amostra aleatória simples com reposição, `\(X_1\)` e `\(X_2\)` são variáveis aleatórias independentes, assim, a distribuição conjunta pode ser obtida multiplicando-se as probabilidades marginais.
+
+
+`$$P(0 \cap 1) = P(0) \times P(1) = 0,2 \times 0,4 = 0,08$$`
+
+.pull-left[
+Tabela com os possíveis valores de médias `\(\bar{X}\)`, dados os valores de `\(X\)`.
+
+`\(X_1 / X_2\)` | 0 | 1 | 2 | 3 
+:---:|---|---|---|---
+**0** | 0,00 | 0,50 | 1,00 | 1,50
+**1** | 0,50 | 1,00 | 1,50 | 2,00
+**2** | 1,00 | 1,50 | 2,00 | 2,50
+**3** | 1,50 | 2,00 | 2,50 | 3,00
+ 
+]
+
+.pull-right[
+
+Tabela com a distribuição conjunta de `\(X_1\)` e `\(X_2\)`, ou seja, as probabilidades `\(P(\bar{X})\)`.
+
+`\(X_1 / X_2\)` | 0 | 1 | 2 | 3  | `\(\sum\)`
+:---:|---|---|---|---|---
+**0** | 0,04 | 0,08 | 0,06 | 0,02 | **0,2**
+**1** | 0,08 | 0,16 | 0,12 | 0,04 | **0,4**
+**2** | 0,06 | 0,12 | 0,09 | 0,03 | **0,3**
+**3** | 0,02 | 0,04 | 0,03 | 0,01 | **0,1**
+`\(\sum\)`| **0,2** | **0,4** | **0,3** | **0,1** | **1,00**
+]
+
+--
+
+&lt;/br&gt;
+---
+
+
+Distribuição de probabilidade de `\(\bar{X}\)`.
+
+`\(\bar{X}\)` | `\(0\)` | `\(0,5\)` | `\(1\)` | `\(1,5\)` | `\(2,0\)`  | `\(2,5\)` | `\(3,0\)`  
+---|---|---|---|---|---|---|---
+`\(P(\bar{X})\)` | `\(0,04\)` | `\(0,16\)`| `\(0,28\)`| `\(0,28\)` | `\(0,17\)` | `\(0,06\)` | `\(0,01\)` 
+
+&lt;img src="Aula10_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+#### Cálculo da Esperança e da Variância da Média do Número de dias para Germinação de `\(X\)` `\((n=2)\)`.
+
+`$$E(\bar{X}) = \sum \limits_{n=1}^k = \bar{x_i} \cdot P(\bar{x_i}) = 1,30 \;dias$$`
+
+`$$Var(\bar{X}) = E(\bar{X}^2) - [E(\bar{X})]^2$$`
+
+`$$Var(\bar{X}) = 2,095 - (1,3)^2$$`
+
+`$$Var(\bar{X}) = 0,405\;dias^2= \frac{\sigma^2}{n} = \frac{0,81}{2} = \frac{Var(X)}{n}$$`
+Se `\(X_1, X_2, \cdots, X_n\)` constitui uma amostra aleatória simples com reposição de uma população que tem média `\(\mu\)` e variância `\(\sigma^2\)`, então:
+
+`$$E(\bar{X}) = \mu$$`
+
+`$$Var(\bar{X}) = \frac{\sigma^2}{n}$$` 
+
+`$$DP(\bar{X}) = \frac{\sigma}{\sqrt{n}}$$`
+
+---
+
+## Observações importantes
+
+- O desvio padrão da média `\(DP(\bar{X})\)` e o erro padrão da média `\(s(m)\)` são termos equivalentes. 
+
+- O erro padrão da média é geralmente usado para evitar confusão com o desvio padrão `\((\sigma)\)` das observações.
+
+- O aumento do tamanho da amostra `\((n)\)` o  desvio padrão da distribuição da média diminui, portanto os valores de `\(\bar{X}\)` são mais próximos à `\(\mu\)`. 
+
+- Estima-se o erro padrão da média usando o tamanho da amostra `\((n)\)` e desvio padrão `\((s)\)` de uma única amostra de observações.
+
+- À medida que o tamanho da amostra aumenta temos uma estimativa mais precisa do desvio padrão paramétrico `\((\sigma)\)` da população. 
+
+- Em contraste, o erro padrão da média torna-se uma estimativa mais precisa da média paramétrica `\((\mu)\)`, pois o erro padrão da média diminui.
+
+---
+
+### Teorema Central do Limite 
+
+Se `\(\bar{X}\)` é a média de uma amostra aleatória simples com reposição, de tamanho `\(n\)`, de uma população **normal**, com média `\(\mu\)` e variância `\(\sigma^2\)`, sua distribuição é **normal**, com média `\(\mu\)` e variância `\(\frac{\sigma^2}{n}\)`.
+
+Assim, em uma amostra aleatória simples com reposição, de tamanho `\(n\)`, de uma população arbitrária, com média `\(\mu\)` e variância `\(\sigma^2\)`, a distribuição de `\(\bar{X}\)` quando `\(n\)` é grande é  **aproximadamente  normal**, com média `\(\mu\)` e variância `\(\frac{\sigma^2}{n}\)`.
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_2.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+---
+class: middle, inverse, center
+
+# Acesse o Link para simularmos essa amostragem. Aba "Distribuição Amostral  - Média"
+
+## https://arpanosso.shinyapps.io/estatinfo/
+
+---
+
+## Transformação normal padrão para cálculo das probabilidades
+
+Assim, podemos utilizar a tabela normal padrão para o cálculo das probabilidades associadas aos intervalos de `\(\bar{X}\)` a partir da transformação:
+
+`$$Z = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$$` 
+
+onde `\(\bar{X} \sim N(\mu, \frac{\sigma^2}{n})\)` e `\(n\)` é o tamanho da amostras aleatória simples tomada da população.
+
+[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
+
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Exercício
+
+Seja uma máquina de empacotar de soja, cujos pesos das sacas (em `\(kg\)`) seguem uma distribuição `\(N(50, 2)\)`. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de `\(100\)` sacas, observarmos uma média diferente de `\(50\;kg\)` em menos de `\(0,2828 \; kg\)`?
+
+--
+
+**Resposta:** 
+
+`\(P(50-0,2828 \leq \bar{X} \leq 50+0,2828 ) = 0,9545\)`
+
+---
+
+### Amostras sem reposição de populações finitas
+
+Supondo uma população com `\(N\)` elementos, se a amostragem for feita **SEM REPOSIÇÃO**, temos as esperança e a variância definidas como:
+
+.pull-left[
+**Esperança**
+
+`\(E(\bar{X}) = \mu\)`
+]
+
+.pull-right[
+**Variância**
+
+`\(Var(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}\)`
+
+]
+
+Observações, 
+
+`\(\mu = E(X)\)`, `\(\sigma^2 = Var(X)\)` e `\(\frac{N-n}{N-1}\)` é o fator de correção para populações finitas.
+
+A variância da média amostral com este tipo de amostragem é menor do que com reposição.
+
+Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio `\((\mu)\)`.
+
+No entanto, se a população for grande quando comparada com o tamanho da amostra `\((n)\)`, o fator de correção será próximo de 1 e, portanto:
+$$Var(\bar{X}) \approx \frac{\sigma}{n} $$
+---
+
+class: middle, center, inverse
+
+# Distribuições Amostral da Proporção
+
+---
+
+### Distribuição Amostral da Proporção
+
+Anteriormente, definimos `\(X\)` uma `\(v.a.\)` para cada ensaio de **Bernoulli**, com `\(P(S) = p\)`. 
+
+Neste contexto, considerando `\(n\)` ensaios independentes, `\(X_1, X_2, ... , X_n\)` constitui uma amostra *aleatória simples com reposição*. Como os resultados individuais são `\(0\)` (fracasso) ou `\(1\)` (sucesso), o número **TOTAL** de sucessos em `\(n\)` ensaios, é dado por:
+
+`$$T = \sum \limits_{i=1}^n X_i$$`
+
+Portanto, a proporção amostral de suscessos em `\(n\)` ensaios é dada por:
+
+`$$\bar{X} = \hat{p} = \frac{T}{n} = \frac{\sum \limits_{i=1}^n X_i}{n}$$`
+
+Observe que `\(T\)` tem distribuição binomial com parâmetros `\(n\)` e `\(p\)`, cuja esperança (média) é `\(n.p\)` e variância `\(n.p.q\)` ou `\(n.p.(1-p)\)`.
+
+---
+
+Então, para a proporção, temos:
+
+
+.pull-left[
+**Esperança**  
+`\(E(\hat{p}) = E\left( \frac{T}{n} \right)\)`
+
+`\(E(\hat{p}) = \frac{1}{n} E(T)\)`
+
+`\(E(\hat{p}) = \frac{1}{n} n.p\)`
+
+`\(E(\hat{p}) = p\)`
+]
+
+.pull-right[
+**Variância**  
+`\(Var(\hat{p}) = Var\left( \frac{T}{n} \right)\)`
+
+`\(Var(\hat{p}) = \frac{1}{n^2} Var(T)\)`
+
+`\(Var(\hat{p}) = \frac{1}{n^2} n.p.q\)`
+
+`\(Var(\hat{p}) = \frac{p.q}{n}\)`
+]
+
+Assim, pelo **Teorema Central Limite**, quando `\(n\)`  é grande, a proporção amostral `\(\hat{p}\)` de sucessos em `\(n\)` ensaios de **Bernoulli** tem distribuição aproximadamente normal com média `\(p\)` e variância `\(\frac{p.q}{n}\)`, assim, podemos definir a variável padronizada `\(Z\)` como:   
+
+`$$Z = \frac{\hat{p} - p}{\sqrt{\frac{p.q}{n}}} \text{   ou   } Z = \frac{T - n.p}{\sqrt{n.p.q}}$$`
+
+
+Com distribuição aproximadamente normal padrão `\(N(0,1)\)`.
+
+
+---
+
+### Exercício
+
+Em um ensaio experimental `\(625\)` covas foram semeadas com sementes comerciais provenientes de um lote com índice de germinação `\((p)\)` igual a `\(70\%\)`. 
+
+Qual a probabilidade de se encontrar mais de `\(72\%\)` das covas com plantas germinadas?
+
+
+--
+
+**Resposta:** 
+
+`\(P(T \geq 450) = P(\hat{p} \geq 0,72) = 0,1378\)`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
