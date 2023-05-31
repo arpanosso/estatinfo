@@ -12,21 +12,11 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # Estatística e Informática
-]
-.subtitle[
 ## Aula 10 - Estatística, Distribuição Amostral
-]
-.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
-]
-.institute[
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
-]
-.date[
 ### (01-06-2023)
-]
 
 ---
 
@@ -218,7 +208,7 @@ onde `\(\bar{X} \sim N(\mu, \frac{\sigma^2}{n})\)` e `\(n\)` é o tamanho da amo
 
 ### Exercício
 
-Seja uma máquina de empacotar de soja, cujos pesos das sacas (em `\(kg\)`) seguem uma distribuição `\(N(50, 2)\)`. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de `\(100\)` sacas, observarmos uma média diferente de `\(50\;kg\)` em menos de `\(0,2828 \; kg\)`?
+Seja uma máquina de empacotar soja, cujos pesos das sacas (em `\(kg\)`) seguem uma distribuição `\(N(50, 2)\)`. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de `\(100\)` sacas, observarmos uma média diferente de `\(50\;kg\)` em menos de `\(0,2828 \; kg\)`?
 
 --
 
@@ -245,15 +235,12 @@ Supondo uma população com `\(N\)` elementos, se a amostragem for feita **SEM R
 
 ]
 
+
 Observações, 
 
 `\(\mu = E(X)\)`, `\(\sigma^2 = Var(X)\)` e `\(\frac{N-n}{N-1}\)` é o fator de correção para populações finitas.
 
-A variância da média amostral com este tipo de amostragem é menor do que com reposição.
-
-Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio `\((\mu)\)`.
-
-No entanto, se a população for grande quando comparada com o tamanho da amostra `\((n)\)`, o fator de correção será próximo de 1 e, portanto:
+A variância da média amostral com este tipo de amostragem é menor do que com reposição. Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio `\((\mu)\)`. No entanto, se a população for grande quando comparada com o tamanho da amostra `\((n)\)`, o fator de correção será próximo de 1 e, portanto:
 $$Var(\bar{X}) \approx \frac{\sigma}{n} $$
 ---
 
@@ -373,19 +360,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

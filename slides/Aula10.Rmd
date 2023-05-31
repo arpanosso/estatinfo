@@ -226,7 +226,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ### Exercício
 
-Seja uma máquina de empacotar de soja, cujos pesos das sacas (em $kg$) seguem uma distribuição $N(50, 2)$. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de $100$ sacas, observarmos uma média diferente de $50\;kg$ em menos de $0,2828 \; kg$?
+Seja uma máquina de empacotar soja, cujos pesos das sacas (em $kg$) seguem uma distribuição $N(50, 2)$. Assim, se a máquina estiver regulada, qual a probabilidade de, colhendo-se uma amostra ao acaso de $100$ sacas, observarmos uma média diferente de $50\;kg$ em menos de $0,2828 \; kg$?
 
 --
 
@@ -253,15 +253,12 @@ $Var(\bar{X}) = \frac{\sigma^2}{n} \cdot \frac{N-n}{N-1}$
 
 ]
 
+
 Observações, 
 
 $\mu = E(X)$, $\sigma^2 = Var(X)$ e $\frac{N-n}{N-1}$ é o fator de correção para populações finitas.
 
-A variância da média amostral com este tipo de amostragem é menor do que com reposição.
-
-Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio $(\mu)$.
-
-No entanto, se a população for grande quando comparada com o tamanho da amostra $(n)$, o fator de correção será próximo de 1 e, portanto:
+A variância da média amostral com este tipo de amostragem é menor do que com reposição. Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio $(\mu)$. No entanto, se a população for grande quando comparada com o tamanho da amostra $(n)$, o fator de correção será próximo de 1 e, portanto:
 $$Var(\bar{X}) \approx \frac{\sigma}{n} $$
 ---
 
