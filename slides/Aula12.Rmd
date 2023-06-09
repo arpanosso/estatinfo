@@ -8,13 +8,12 @@ title: "Estatística e Informática"
 subtitle: "Aula 12 - Testes de Hipótese"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(28-07-2022)"
+date: "(08-06-20232)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      ratio: "16:9"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -77,7 +76,7 @@ Se $\bar{x}_a$ estiver próxima ou for superior à $500\;g$, **rejeita-se $H_0$ 
 
 Para aceitar ou rejeitar $H_0$, determina-se um valor $k$ (ponto) entre $500$ e $510 \;g$, chamado valor crítico, $\bar{x}_c$.
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_02.png")
 ```
 
@@ -97,7 +96,7 @@ Não Rejeita $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
 Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
 
 
-$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = nível de significância $(5\%, 1\% \text{ ou } 0,1\%)$.
+$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = **nível de significância** $(5\%, 1\% \text{ ou } 0,1\%)$.
 
 $\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **poder do teste** dado por $1-\beta$.
 
