@@ -8,7 +8,7 @@ title: "Estatística e Informática"
 subtitle: "Aula 12 - Testes de Hipótese"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(08-06-20232)"
+date: "(08-06-2023)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -52,7 +52,7 @@ Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técn
 
 **Hipótese nula $(H_0)$:** é a hipótese de igualdade entre o novo e o produto padrão, ou seja, a designação "hipótese nula" decorre da suposição que a diferença entre eles é nula ou zero.
 
-**Hipótese nula $(H_1)$:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
+**Hipótese alternativa $(H_1)$:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
 
 
 ```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
@@ -96,7 +96,7 @@ Não Rejeita $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
 Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
 
 
-$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = **nível de significância** $(5\%, 1\% \text{ ou } 0,1\%)$.
+$\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = **nível de significância** $(10\%, 5\% \text{ ou } 1\%)$.
 
 $\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **poder do teste** dado por $1-\beta$.
 

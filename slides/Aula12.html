@@ -12,21 +12,11 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # Estatística e Informática
-]
-.subtitle[
 ## Aula 12 - Testes de Hipótese
-]
-.author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
-]
-.institute[
 ### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
-]
-.date[
-### (08-06-20232)
-]
+### (08-06-2023)
 
 ---
 
@@ -60,7 +50,7 @@ Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técn
 
 **Hipótese nula `\((H_0)\)`:** é a hipótese de igualdade entre o novo e o produto padrão, ou seja, a designação "hipótese nula" decorre da suposição que a diferença entre eles é nula ou zero.
 
-**Hipótese nula `\((H_1)\)`:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
+**Hipótese alternativa `\((H_1)\)`:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
 
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_01.png" width="60%" style="display: block; margin: auto;" /&gt;
@@ -100,7 +90,7 @@ Não Rejeita `\(H_0\)` | Decisão correta | Erro tipo II (perdas potenciais)
 Rejeitar `\(H_0\)` | Erro tipo I (perdas reais) | Decisão Correta
 
 
-`\(\alpha = P \text{(erro tipo I)}\)` = `\(P\)`(Rejeitar `\(H_0|H_0\)` é verdadeira) = **nível de significância** `\((5\%, 1\% \text{ ou } 0,1\%)\)`.
+`\(\alpha = P \text{(erro tipo I)}\)` = `\(P\)`(Rejeitar `\(H_0|H_0\)` é verdadeira) = **nível de significância** `\((10\%, 5\% \text{ ou } 1\%)\)`.
 
 `\(\beta = P \text{(erro tipo II)}\)` = `\(P\)`(Não rejeitar `\(H_0|H_0\)` é falsa) = **poder do teste** dado por `\(1-\beta\)`.
 
@@ -524,19 +514,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
