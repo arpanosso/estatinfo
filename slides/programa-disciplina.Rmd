@@ -14,13 +14,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-.pull-left[
-
-<img src="https://arpanosso.github.io/estatinfo/slides/img/foto-cv.jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 50%"></img>
-
-]
-
-.pull-right[
 
 **ALAN RODRIGO PANOSSO**  
 
@@ -31,7 +24,7 @@ Departamento de Engenharia e Ciências Exatas
 E-mail: <alan.panosso@unesp.br>   
 
 Tel: (16) 3209-7210  
-]
+
 
 **Formação**
 
@@ -43,13 +36,14 @@ $^{[3]}$ Doutor em Agronomia (Produção Vegetal) pelo programa de Pós-Graudaç
 
 $^{[4]}$ Pós-Doutorado em Agronomia (Ciência do Solo) pela FCAV/Unesp Jaboticabal (2011 - 2013).
 
-Fonte: [https://www.fcav.unesp.br/#!/alan](https://www.fcav.unesp.br/#!/alan)
+$^{[5]}$ Livre Docente (Experimentação Agrícola) pelo Departamento de Engenharia e Ciências Exatas da FCAV/Unesp Jaboticabal (2023).
+
+https://www.fcav.unesp.br/#!/alan
 
 ---
 
 ## Ementa
 
-- Noções de programação
 - Introdução
 - Estatística Descritiva
 - Ditribuições de Probabilidade
@@ -72,52 +66,67 @@ Fonte: [https://www.fcav.unesp.br/#!/alan](https://www.fcav.unesp.br/#!/alan)
 
 ## Avaliação 
 
-Serão  realizados **02  Provas** ( $P1$ e $P2$) e serão atribuídas listas de exercícios que deverão ser entregues no **Google Classroom**. Ao final da disciplina as listas serão utilizadas para compor a nota da **Listas Semanais** $LS$. 
+Serão  realizados **02  Provas** ( $P1$ e $P2$). 
 
 A  nota  de  aproveitamento da disciplina será  a  média  ponderada  das notas dos trabalhos e listas, dada por:
 
 $$
-\text{Nota Final} = \frac{LS+3 \cdot P1 + 4 \cdot P2}{8}
+\text{Nota Final} = \frac{2 \cdot P1 + 3 \cdot P2}{5}
 $$
 
-onde: $P1$ = Nota da 1ª prova; $P2$ = Nota do 2ª Prova; $LS$ = Nota das listas de exercícios entregues durante a disciplina.
+onde: $P1$ = Nota da 1ª prova; $P2$ = Nota do 2ª Prova
 
 ---
 
 | Dia	| Semana	| Conteúdo |  
 |:--- | :---: | :---:|
-| 09/03/2023	| 1 | Apresentação da Disciplina e Noções de Programação | 
-| 16/03/2023	| 2 | Introdução à Estatística	
-| 23/03/2023	| 3 | Medidas estatísticas	
-|30/03/2023	| 4 | Probabilidade	
-|06/04/2023	| 5 | Variáveis aleatórias discretas	
-|13/04/2023	| 6 | Variáveis aleatórias contínuas	
-|**20/04/2023**	| **7** | **Prova 01** 
-|27/04/2023	| 8 | Estatística e distribuição amostral	
-|04/05/2023	| 9 | Estimação	
-|11/05/2023	| 10 | Testes de hipóteses	
-|18/05/2023	| 11 | Comparação de parâmetros de duas populações 	
-|25/05/2023 | 12 | XLVIII SECITAP
-|01/06/2023	| 13 | Correlação e regressão	
-|**15/06/2023**	| **14** | **Prova 02** $\leftarrow$		
-|**22/06/2023**	| **15** | **Prova Substitutiva**	$\leftarrow$	
-|**29/06/2023**	| **16** | **Período de Recuperação**	$\leftarrow$	
+| 29/02/2024	| 1 | Apresentação da Disciplina 
+| 07/03/2024	| 2 | Introdução à Estatística	
+| 14/03/2024	| 3 | Medidas Estatísticas	
+| 21/03/2024	| 4 | Probabilidade	
+| 28/03/2024	| 5 | Probabilidade		
+| 04/04/2024	| 6 | Variáveis Aleatórias Discretas	
+| 11/04/2024	| 7 | Variáveis Aleatórias Contínuas	
+|**18/04/2024**	| **8** | **Prova 01** $\leftarrow$
+| 25/04/2024	| 9 | Estatística e Distribuição Amostral	
+| 02/05/2024	| 10 | Estimação	
+| 09/05/2024	| 11 | Testes de Hipóteses	
+| 16/05/2024	| 12 | Comparação de Parâmetros 	
+| 23/05/2024 | 13 | XLIX SECITAP
+| 06/06/2024	| 14 | Correlação e Regressão	
+|**13/06/2024**	| **15** | **Prova 02** $\leftarrow$		
+|**20/06/2024**	| **16** | **Prova Substitutiva**	$\leftarrow$	
+|**27/06/2024**	| **17** | **Período de Recuperação**	$\leftarrow$	
 
 ---
+# Material Didático
 
+## 01 - Acesse:
+
+
+#### https://www.fcav.unesp.br/alan
+
+## 02 - Selecione 
+
+### Material Didático
+
+## 03 - Selecione 
+
+### Estatística e Informática
+
+
+---
 ## Metodologia de Ensino
 
 - Aulas teóricas expositivas.
 
-- Vídeos de aula teóricas de anos anteriores serão disponibilizadas (**Google Classroom**).
+- Vídeos de aulas teóricas de anos anteriores serão disponibilizadOs.
 
-- Serão utilizados vídeos gravados pelo professor disponíveis no YouTube <https://www.youtube.com/channel/UCCJBXRV7CbfkcyaIixp0CqQ>
-
-- Resolução de listas de exercícios (**Google Classroom**).  
+- Resolução de listas de exercícios.  
 
 - Apostila didática [Baixar Apostila](https://www.fcav.unesp.br/Home/departamentos/cienciasexatas/alanrodrigopanosso/apostila_bioestatistica_2019.pdf)
 
-- Material Didático: [Link](https://www.fcav.unesp.br/#!/departamentos/ciencias-exatas/docentes/alan-rodrigo-panosso/material-didatico/estataistica-e-informatica/)
+- Material Didático: [Link](https://www.fcav.unesp.br/#!/departamentos/ciencias-exatas/docentes/alan-rodrigo-panosso/material-didatico/estatistica-e-informatica/)
 
 - Consulta a livros.
 
@@ -140,15 +149,15 @@ BATSCHELET, E. **Introdução à matemática para biocientistas**.  São Paulo: 
 class: middle, center
 
 ## Ferramentas de trabalho
+### Calculadora Científica Cassio  *fs-82MS*
 
 ![](img/calculadora.png)
 
-Calculadora Científica Cassio  *fs-82MS*
- 
+
 ---
 class: middle, center
 
-# Linguagem Computacional de Alto Nível
+# Linguagem Computacional
 
 ![](img/R_logo.png)
  
