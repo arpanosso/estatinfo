@@ -1364,3 +1364,97 @@ cat(round(vt,2), " m/s")
 ```
 
 
+---
+## Projetos no R
+
+No **RStudio** podemos criar projetos, que é uma pasta no seu computador ondes estarão todos os arquivos relativos para execução de trabalho, onde serão armazenados, os dados, os scripts das análises, os exercícios resolvidos e eventuais relatórios.
+
+Recomenda-se que seja criada uma pasta em seu computador onde todas os projetos serão armazenados.
+
+  + Abra o `Windows Explorer` ![](img/winIcon.png) e clique duas vezes no Drive `C:/`.
+
+![](img/win_c.png)
+
+---
+
++ Clique em `Início` e Selecione `Nova Pasta` ![](img/novapastaicon.png).
+
+![](img/novaPasta_dir.png)
+ 
+  + Atribua o nome `Projetos R` para a nova pasta. Nesta pasta serão salvos todos os projetos do R criados em seu computador.
+ 
+---
+## RStudio - Criando um Novo Projeto
+
+ +  Para criar um projeto, clique em `New Project...` no `Menu File`. 
+ 
+ + Na caixa de diálogo que aparecerá, clique em `New Directory` para criar o projeto em uma nova pasta ou `Existing Directory` para criar em uma pasta existente.
+
++ No caso do presente exercício vamos clicar em `New Directory` e posteriormente clique em `New Project`.
+
+![](img/novos_projetos.png)
+
+---
+
++ No campo `Directory Name:` atribua o nome de seu **novo projeto** (`Estatistica-Informatica`, no exemplo).  
++ Clique em `Browse...` e selecione a pasta `C:/Projetos R`, previamente criada.
+
+![](img/novos_projetos_dir.png)
+---
+
+Criando um projeto, o RStudio criará na pasta escolhida um arquivo `nome-do-projeto.Rproj`. Você pode usar esse arquivo para iniciar o RStudio já com o respectivo projeto aberto.
+
+Quando um projeto estiver aberto no RStudio, o seu nome aparecerá no canto superior direito da tela. Na aba `Files`, aparecerão todos os arquivos contidos no projeto.
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/rstudio1.png")
+```
+
+---
+
+Você pode criar livremente novas pastas dentro da pasta do projeto. Por padrão, o R sempre começará a procurar arquivos na pasta raiz do projeto (é a pasta que contem o nome-do-projeto.Rproj).
+
+Uma maneira fácil de navegar entre projetos é utilizar o menu disponibilizado quando clicamos no nome do projeto. Veja a figura a seguir:
+
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/rstudio2.png")
+```
+
++ Agora, na aba `Files` clique no botão `New Folder` e crie a pasta `data` (dados em inglês), odne serão adicionados todas as bases de dados para serm carregadas futuramente em nosso projeto.  
+
+---
+
+# Entrada de Dados no R
+
+Antes de realizarmos a entrada de dados no R, vamos conhecer alguns conceitos básicos de estatística...
+
+
+```{r, echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("img/data-import.png")
+```
+
+---
+## O Estudo da Estatística
+
+- Estatística é fundamental para o avanço do conhecimento científico, uma vez que a essência da Ciência é a observação e que o seu objetivo básico é a inferência, destacando-se nas áreas da *Saúde*, *Farmaceuticas*, *Melhoramento* (animal e vegetal), *Produção de alimentos* e demais *áreas científicas*.
+
+
+- Os conhecimentos estatísticos são fundamentais para análise e interpretações das informações coletadas *em campo*.
+
+
+- Várias técnicas de análises estatísticas ajudam o pesquisador a **confirmar as hipóteses** à respeito de um fenômeno de interesse.
+
+---
+
+##  Ciclo do Data-Science
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/data-science.png")
+```
+
+Principais etapas de uma análise de dados
+
+--
+
+- Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
