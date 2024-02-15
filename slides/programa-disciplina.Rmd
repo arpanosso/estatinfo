@@ -166,7 +166,7 @@ class: middle, center
 ##  Instalação do R e do RStudio
 
 ![](img/video01.png)
-Acesse o vídeo: [LINK](https://drive.google.com/file/d/1kWZPMo7_mvmr_G45uPZxknlLVu3UzyAL/view?usp=sharing)
+Acesse o vídeo: [LINK](https://drive.google.com/file/d/1jE2sHYyr_SLYTU1QapHFZmqR0z3hgCAB/view?usp=sharing)
 
 ---
 
@@ -175,4 +175,12 @@ Acesse o vídeo: [LINK](https://drive.google.com/file/d/1kWZPMo7_mvmr_G45uPZxknl
 ![](img/video02.png)
 
 
-Acesse o vídeo: [LINK](https://drive.google.com/file/d/1mmJRLW11TkKZT2SsGonrDt46sD5aPRqj/view?usp=sharing)
+Acesse o vídeo: [LINK](https://drive.google.com/file/d/1Ycf3_iaaIH54DSf6-cxbqBfIyAtQqWrc/view?usp=sharing)
+
+---
+## Algumas Funções no RStudio
+
+![](img/video03.png)
+
+
+Acesse o vídeo: [LINK](https://drive.google.com/file/d/1kAoKIladRS7Z-KB6_nA5fTRkBkVoTQeW/view?usp=sharing)
