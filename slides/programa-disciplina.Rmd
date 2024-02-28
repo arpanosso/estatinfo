@@ -1,10 +1,10 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula01.html")
+# pagedown::chrome_print("slides/programa-disciplina.html")
 title: "Estatística e Informática"
 subtitle: "Apresentação da disciplina"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+institute: "Departamento Ciências Exatas FCAV/UNESP"
 date: "29-02-2024"
 output:
   xaringan::moon_reader:
@@ -42,7 +42,35 @@ https://www.fcav.unesp.br/#!/alan
 
 ---
 
-## Ementa
+## Material Didático
+
+#### 01 - Acesse: https://www.fcav.unesp.br/alan .
+
+![](img/app01.png)
+---
+
+## Material Didático
+
+##### 02 - Selecione **Material Didático** no menu lateral.
+
+![](img/app02.png)
+
+---
+
+##### 03 - Selecione **Estatística e Informática** .
+
+![](img/app03.png)
+
+
+---
+
+#### Material Didático
+
+Você terá acesso à página da disciplina com todo o material que será utilizado durante o curso, como apresentações de slides, apostilas, tabelas, listas, vídeos e calendário com as aulas programadas, inclusive os dias das avaliações.
+
+![](img/app04.png)
+---
+## Ementa da disciplina
 
 - Introdução
 - Estatística Descritiva
@@ -66,7 +94,7 @@ https://www.fcav.unesp.br/#!/alan
 
 ## Avaliação 
 
-Serão  realizados **02  Provas** ( $P1$ e $P2$). 
+Serão  realizados **02  Provas** ( $P1$ e $P2$ ). 
 
 A  nota  de  aproveitamento da disciplina será  a  média  ponderada  das notas dos trabalhos e listas, dada por:
 
@@ -74,7 +102,11 @@ $$
 \text{Nota Final} = \frac{2 \cdot P1 + 3 \cdot P2}{5}
 $$
 
-onde: $P1$ = Nota da 1ª prova; $P2$ = Nota do 2ª Prova
+onde: 
+
+$P1$ = Nota da 1ª prova; 
+
+$P2$ = Nota do 2ª Prova
 
 ---
 
@@ -99,23 +131,7 @@ onde: $P1$ = Nota da 1ª prova; $P2$ = Nota do 2ª Prova
 |**27/06/2024**	| **17** | **Período de Recuperação**	$\leftarrow$	
 
 ---
-# Material Didático
 
-## 01 - Acesse:
-
-
-#### https://www.fcav.unesp.br/alan
-
-## 02 - Selecione 
-
-### Material Didático
-
-## 03 - Selecione 
-
-### Estatística e Informática
-
-
----
 ## Metodologia de Ensino
 
 - Aulas teóricas expositivas.
