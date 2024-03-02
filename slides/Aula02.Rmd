@@ -4,10 +4,10 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
-subtitle: "Aula 02 - Introdução (Conceitos Básicos)"
+subtitle: "Aula 02 - Introdução à Estatística"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "23-03-2023"
+institute: "Departamento de Ciências Exatas FCAV/UNESP"
+date: "07-03-2024"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -27,6 +27,8 @@ class: middle, center, inverse
 # INTRODUÇÃO
 
 ## Modelos Matemáticos 
+
+---
 
 ### Modelos Determinísticos: 
 
@@ -62,8 +64,7 @@ df %>%
   labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Deterministico",
        fill="",linetype="")+
   annotate(geom = "text",x=3,y=30,label = 'bold("aceleração = 2 m/s²")',
-            parse = TRUE) +
-   theme_grafico
+            parse = TRUE) 
 ```
 
 $$Dados = Modelo$$

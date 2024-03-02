@@ -16,16 +16,16 @@ class: center, middle, inverse, title-slide
 # Estatística e Informática
 ]
 .subtitle[
-## Aula 02 - Introdução (Conceitos Básicos)
+## Aula 02 - Introdução à Estatística
 ]
 .author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ]
 .institute[
-### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
+### Departamento de Ciências Exatas FCAV/UNESP
 ]
 .date[
-### 23-03-2023
+### 07-03-2024
 ]
 
 ---
@@ -36,96 +36,9 @@ class: middle, center, inverse
 
 # INTRODUÇÃO
 
----
-
-## Projetos no R
-
-No **RStudio** podemos criar projetos, que é uma pasta no seu computador ondes estarão todos os arquivos relativos para execução de trabalho, onde serão armazenados, os dados, os scripts das análises, os exercícios resolvidos e eventuais relatórios.
-
-Recomenda-se que seja criada uma pasta em seu computador onde todas os projetos serão armazenados.
-
-  + Abra o `Windows Explorer` ![](img/winIcon.png) e clique duas vezes no Drive `C:/`.
-
-![](img/win_c.png)
-
----
-
-+ Clique em `Início` e Selecione `Nova Pasta` ![](img/novapastaicon.png).
-
-![](img/novaPasta_dir.png)
- 
-  + Atribua o nome `Projetos R` para a nova pasta. Nesta pasta serão salvos todos os projetos do R criados em seu computador.
- 
----
-## RStudio - Criando um Novo Projeto
-
- +  Para criar um projeto, clique em `New Project...` no `Menu File`. 
- 
- + Na caixa de diálogo que aparecerá, clique em `New Directory` para criar o projeto em uma nova pasta ou `Existing Directory` para criar em uma pasta existente.
-
-+ No caso do presente exercício vamos clicar em `New Directory` e posteriormente clique em `New Project`.
-
-![](img/novos_projetos.png)
-
----
-
-+ No campo `Directory Name:` atribua o nome de seu **novo projeto** (`Estatistica-Informatica`, no exemplo).  
-+ Clique em `Browse...` e selecione a pasta `C:/Projetos R`, previamente criada.
-
-![](img/novos_projetos_dir.png)
----
-
-Criando um projeto, o RStudio criará na pasta escolhida um arquivo `nome-do-projeto.Rproj`. Você pode usar esse arquivo para iniciar o RStudio já com o respectivo projeto aberto.
-
-Quando um projeto estiver aberto no RStudio, o seu nome aparecerá no canto superior direito da tela. Na aba `Files`, aparecerão todos os arquivos contidos no projeto.
-
-&lt;img src="img/rstudio1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-Você pode criar livremente novas pastas dentro da pasta do projeto. Por padrão, o R sempre começará a procurar arquivos na pasta raiz do projeto (é a pasta que contem o nome-do-projeto.Rproj).
-
-Uma maneira fácil de navegar entre projetos é utilizar o menu disponibilizado quando clicamos no nome do projeto. Veja a figura a seguir:
-
-
-&lt;img src="img/rstudio2.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-+ Agora, na aba `Files` clique no botão `New Folder` e crie a pasta `data` (dados em inglês), odne serão adicionados todas as bases de dados para serm carregadas futuramente em nosso projeto.  
-
----
-
-# Entrada de Dados no R
-
-Antes de realizarmos a entrada de dados no R, vamos conhecer alguns conceitos básicos de estatística...
-
-
-&lt;img src="img/data-import.png" width="50%" style="display: block; margin: auto;" /&gt;
-
----
-## O Estudo da Estatística
-
-- Estatística é fundamental para o avanço do conhecimento científico, uma vez que a essência da Ciência é a observação e que o seu objetivo básico é a inferência, destacando-se nas áreas da *Saúde*, *Farmaceuticas*, *Melhoramento* (animal e vegetal), *Produção de alimentos* e demais *áreas científicas*.
-
-
-- Os conhecimentos estatísticos são fundamentais para análise e interpretações das informações coletadas *em campo*.
-
-
-- Várias técnicas de análises estatísticas ajudam o pesquisador a **confirmar as hipóteses** à respeito de um fenômeno de interesse.
-
----
-
-##  Ciclo do Data-Science
-
-&lt;img src="img/data-science.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-Principais etapas de uma análise de dados
-
---
-
-- Todo fenômeno pode ser melhor investigado quando formulado um modelo matemático, que podem ser **determinísticos** ou **estocásticos** (*probabilísticos*). 
-
----
 ## Modelos Matemáticos 
+
+---
 
 ### Modelos Determinísticos: 
 
@@ -143,7 +56,7 @@ Exemplo de mecânica clássica, astronomia, termodinâmica, circuítos elétrico
 
 ---
 
-&lt;img src="Aula02_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula02_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 
 `$$Dados = Modelo$$`
 
@@ -161,7 +74,7 @@ Para um grande número de situação na natureza, o modelo matemático determin�
 
 ---
 
-&lt;img src="Aula02_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula02_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 `$$Dados = Modelo + Ruído$$`
 ---
 
@@ -251,16 +164,16 @@ head(dados_turmas, n=7)
 ```
 
 ```
-## # A tibble: 7 x 6
-##      id sexo  cor_cabelo GA          altura idade_anos
+## # A tibble: 7 × 6
+##      id sexo  cor_cabelo grau_alcool altura idade_anos
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;
 ## 1     1 F     CC         mais_social   1.68         19
 ## 2     2 F     CE         nao_consome   1.59         20
-## 3     3 F     CC         pouco         1.7          49
-## 4     4 F     CE         socialmente   1.5          20
-## 5     5 M     CE         mais_social   1.76         23
-## 6     6 M     CC         pouco         1.6          28
-## 7     7 M     L          nao_consome   1.84         19
+## 3     3 F     CE         socialmente   1.5          20
+## 4     4 M     CE         mais_social   1.76         23
+## 5     5 M     CC         pouco         1.6          28
+## 6     6 M     L          nao_consome   1.84         19
+## 7     7 M     CE         pouco         1.88         20
 ```
 
 ---
