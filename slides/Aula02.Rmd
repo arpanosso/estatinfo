@@ -152,7 +152,7 @@ Considerados o material básico da estatística, são os valores observados de u
 - Tempo de reabilitação de doentes após determinados tratamentos.
 - Número de produtos defeituosos em lotes oriundos de uma linha de montagem.
 - Peso e alturas de plantas de uma determinada variedade após aplicação de um trato cultural.
-- Número de insetos vivos após a aplicação de um defensivo.
+
 
 --
 
