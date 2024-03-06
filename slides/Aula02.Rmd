@@ -4,10 +4,10 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística e Informática"
-subtitle: "Aula 02 - Introdução (Conceitos Básicos)"
+subtitle: "Aula 02 - Introdução à Estatística"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "23-03-2023"
+institute: "Departamento de Ciências Exatas FCAV/UNESP"
+date: "07-03-2024"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -27,6 +27,8 @@ class: middle, center, inverse
 # INTRODUÇÃO
 
 ## Modelos Matemáticos 
+
+---
 
 ### Modelos Determinísticos: 
 
@@ -62,8 +64,7 @@ df %>%
   labs(x="Massa (kg)",y="Forca (N)",title = "Modelo Deterministico",
        fill="",linetype="")+
   annotate(geom = "text",x=3,y=30,label = 'bold("aceleração = 2 m/s²")',
-            parse = TRUE) +
-   theme_grafico
+            parse = TRUE) 
 ```
 
 $$Dados = Modelo$$
@@ -151,7 +152,7 @@ Considerados o material básico da estatística, são os valores observados de u
 - Tempo de reabilitação de doentes após determinados tratamentos.
 - Número de produtos defeituosos em lotes oriundos de uma linha de montagem.
 - Peso e alturas de plantas de uma determinada variedade após aplicação de um trato cultural.
-- Número de insetos vivos após a aplicação de um defensivo.
+
 
 --
 
@@ -303,9 +304,44 @@ class: middle, center, inverse
 
 # Ferramental
 
-## Calculadora e o R
+## Calculadora Científica
+
+
+
+
+---
+### Limpeza da Memória da Calculadora
+
+
+![](img/calculadora01.png)
+---
+### Acesso do modo Estatístico (SD)
+
+![](img/calculadora02.png)
+---
+### Exemplo de entrada de dados
+
+Entrar com os valores $3.25$, $1.25$, $3.20$ e $2.30$
+
+![](img/calculadora03.png)
+
+---
+### Número total de elementos na memória 
+![](img/calculadora04.png)
 ---
 
+### A somatória de todos os elementos $(\sum x)$
+![](img/calculadora05.png)
+---
+### A somatória do quadrado de todos os elementos $(\sum x^2)$
+![](img/calculadora06.png)
+---
+### Média dos valores da memória $(\bar{x})$
+![](img/calculadora07.png)
+---
+### Desvio padrão amostral de todos os elementos $(s)$ ou $\sigma_x$ 
+![](img/calculadora08.png)
+---
 #### 1) Utilizando a Calculadora Científica e o R, monte as expressões para resolver as equações:
 
 $$\begin{align*} & a)\; log_5 125 \\
