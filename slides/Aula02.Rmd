@@ -142,7 +142,7 @@ Utilizada nas etapas iniciais dos trabalhos, se refere à maneira de representar
 
 Considerados o material básico da estatística, são os valores observados de uma característica de interesse de cada amostra, é o registro da característica de interesse. 
 
---
+---
 
 **Exemplos**
 
