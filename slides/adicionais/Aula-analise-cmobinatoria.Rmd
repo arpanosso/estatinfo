@@ -1,0 +1,588 @@
+---
+# Para transformar em PDF, usar: 
+# pagedown::chrome_print("slides/Aula03.html")
+# imagens https://www.pexels.com/pt-br/
+# gifs https://giphy.com/
+title: "Estatística e Informática"
+subtitle: "Aula 03 - Somatória, Análise combinatória e Probabilidade"
+author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
+institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+date: "(30-03-2023)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+```
+class: middle, center, inverse
+
+# SOMATÓRIA
+
+---
+
+**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas do nosso alfaveto latino $X$, $Y$, $Z.$
+
+O conjunto de dados terá o tamanho $n$, que representa o número de elementos que ele contém. Em outras palavras, $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
+
+Os valores específicos assumidos por tais variáveis serão representados pelas letras minúsculas $x$, $y$ e $z$, respectivamente, seguidas de um índice $i$ que representa a posição daquele valor específico dentro do conjunto de dados. 
+
+Assim, para distinguir um valor do outro, utilizamos esse índice  $i$, que pode ser entendido como uma *variável auxiliar*, utilizada para contagem, que se inicia na posição $1$ e termina na última posição, $n$, abrangendo todo o seu conjunto de dados.
+
+Assim temos:
+
+$\text{Altura}: X = \{x_1, x_2, ..., x_n\}, \text{ com  }i = 1,2,..,n.$
+
+$\text{Idade}: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).$
+
+$\text{Peso}: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).$
+
+Nessa notação um valor típico da variável *Altura*, será designado por $x_i$ e o valor final por $x_n$. 
+
+---
+
+**Somatória**: Ao realizar a análise de uma variável quantitativa é necessário somarmos todos os seus valores valores. 
+
+Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
+
+Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega sigma maiúscula $\Sigma$:
+
+Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses $5$ valores:
+
+$x_1 + x_2 + x_3 + x_4 + x_5$
+
+será representada pela notação:
+
+$\sum\limits_{i=1}^{n}{x_i}$ ou $\sum_{i=1}^{n}{x_i}$
+
+onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos $5$ valores  de $X$.
+
+---
+
+Dado duas variáveis  $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+.pull-left[
+$\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24$
+]
+
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+X <- c(3,0,5,9,7)
+sum(X)
+```
+]
+
+Ao invés da soma ser com os índices $i$ de 1 a $n$, podemos ter, por exemplo:
+.pull-left[
+
+$\sum\limits_{i=2}^{4}{y_i} = 3+9+1 = 13$
+]
+
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+Y <- c(2,3,9,1,2)
+sum(Y[2:4])
+```
+]
+
+.pull-left[
+Observe que:
+
+$\sum\limits_{i=1}^{n}{x_i}^2 \neq \left( \sum\limits_{i=1}^{n}{x_i} \right)^2$
+
+uma vez que:
+
+$3^2+0^2+5^2+9^2+7^2 \neq  (3+0+5+9+7)^2$
+
+$9+0+25+81+49 \neq  (24)^2$
+
+$164 \neq  576$
+]
+
+.pull-right[
+
+
+```{r, echo=TRUE, eval=FALSE}
+sum(X^2)
+sum(X)^2
+```
+]
+
+---
+Qual a somatória do produto entre as variáveis $X$ e $Y$:
+
+Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+$\sum\limits_{i=1}^{n}{x_iy_i}$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= x_1 \cdot y_1 + x_2 \cdot y_2 + x_3 \cdot y_3 + x_4 \cdot y_4 + x_5 \cdot y_5$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot (2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot(1) + 7 \cdot(2)$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
+
+
+```{r, echo=TRUE, eval=FALSE}
+sum(X*Y)
+```
+
+---
+
+**Propriedades da Somatória**
+    
+**i)** A somatória de uma constante $(k)$ é igual ao produto  $n \cdot k$.
+
+$\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k$
+
+---
+
+**ii)** A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
+
+$\sum\limits_{i=1}^{n}{k \cdot x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
+
+---
+
+**iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)$
+
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)$
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)}=(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)$
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}$
+
+---
+
+## Exercícios
+
+1) Calcular: $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+
+
+2) Dado a média sendo: 
+
+$\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+Provar que:
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
+
+---
+
+### Resposta
+
+1) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{ k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = k \cdot \sum\limits_{i=1}^{n}{x_i} + n \cdot k$
+
+---
+
+### Resposta
+
+2) Dado: $\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$, 
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}$
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}$
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
+
+---
+
+class: middle, center, inverse
+
+# Probabilidade
+
+---
+
+A probabilidade é uma função $P()$ que atribuí valores numéricos a um determinado **evento aleatório (E)**. **Exemplo**: No lançamento de um dado, podemos definir como evento, sair um número menor que $3$.
+
+  + $E=\{1,2\}$, $m = 2$ elementos em $E$.
+
+Assim, a probabilidade é uma medida numérica de "quão provável" é a ocorrência do evento na excução do ensaio, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
+
+A determinação da probabilidade de um evento depende da natureza do experimento e do espaço amostral associado. **Espaço amostral** é o conjunto de todos os  possíveis resultados de um fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo, representado pela letra grega ômega $\Omega$ ou pelo $S$. **Exemplo**: No lançamento de um dado, temos como espaço amostral:
+
+ + $S = \{1,2,3,4,5,6\}$ com $k = 6$ elementos em $S$.
+
+Portanto o cálculo da probabilidade do exemplo implica na razão:
+
+$$
+P(E) = \frac{m}{k} = \frac{\text{nº elementos em m}}{\text{nº de elementos em S}}
+$$
+
+
+---
+
+**Exemplo**
+
+Imaginemos uma situação prática onde temos um rebanho com $100$ animais contendo $20$ indivíduos diagnosticados com tuberculose bovina (*Mycobacterium bovis*). 
+
+<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 35%"></img>
+
+Qual a probabilidade de, em uma amostragem aleatória simples (sem reposição) de tamanho $n = 3$, selecionarmos, $2$ animais doentes?  
+
+$E_1 = \{D,D,S\}$  
+$E_2 = \{D,S,D\}$  
+$E_3 = \{S,D,D\}$  
+
+Assim a chance de obtermos $2$ doentes em uma amostra de $3$ animais será:
+
+$P(E)=P(E_1)+P(E_2)+P(E_3)$
+---
+
+Observando esses possiveis resultados, podemos atribuir os valores para cada um desses eventos.
+
+$P(E_1)=P(D).P(D).P(S)$  
+
+Veja que a chance de coletarmos um animal doente é de $20$ em $100$ na primeira amostragem, ou seja $P(D) = \frac{20}{100}$. Na segunda amostragem, o espaço amostral diminuiu pois um animal foi coletado sem reposição, então a chance de amostrarmos outro animal doente será $P(D)=\frac{19}{99}$ e consequentemente, a chance de coletarmos o terceiro animal sadio (não doente para tuberculose) será $P(S) = \frac{80}{98}$, portanto:
+
+$P(E_1)=\frac{20}{100}.\frac{19}{99}.\frac{80}{98}$, 
+
+em analogia, podemos aplicar o mesmo procedimento para os demais eventos.
+
+$P(E_2)=\frac{20}{100}.\frac{80}{99}.\frac{19}{98}$, e 
+
+$P(E_3)=\frac{80}{100}.\frac{20}{99}.\frac{19}{98}$, 
+
+Aplicando a propriedade comutativa da multiplicação temos:
+
+
+$P(E)=\frac{20}{100}.\frac{19}{99}.\frac{80}{98}+\frac{20}{100}.\frac{80}{99}.\frac{19}{98}+\frac{80}{100}.\frac{20}{99}.\frac{19}{98} = 3\left( \frac{20.19.80}{100.99.98}\right) = 0,094\text{ ou 9,4%}$
+
+---
+
+Podemos simular esse experimento em R: Vamos, inicialmente, definir o rebanho.
+
+```{r,echo=TRUE}
+rebanho <- rep(c("S","D"), c(80,20) )
+table(rebanho)
+```
+
+Agora vamos definir o tamanho da amostra $n = 3$ e o número de vezes que vamos repetir o ensaio (amostrar 3 animais) um milhão de vezes, por exemplo.
+
+```{r,echo=TRUE}
+n<-3
+N <- 1e6
+```
+
+Próximo passo é definir uma variável que ira receber a a amostra de $3$ animais e outra que vai receber a contagem do número de doentes nessa amostra.
+
+```{r,echo=TRUE}
+amostra <- 0
+doentes_na_amostra <- 0
+```
+
+---
+Usando a função `sample()` com o argumento `replace=FALSE` para amostragem de `n` animais no rebanho.
+
+
+```{r,echo=TRUE}
+amostra <- sample(rebanho, n, replace = FALSE)
+amostra
+```
+
+Agora vamos contar o número de doentes na amostra usando o operador relacional `==`
+
+```{r,echo=TRUE}
+amostra == "D"
+sum(amostra == "D")
+```
+
+Podemos, então, colocar essa lógica dentro de um loop, e executar esse ensaio `N` vezes.
+
+
+```{r,echo=TRUE}
+for(i in 1:N){
+  amostra <- sample(rebanho, n, replace = FALSE)
+  doentes_na_amostra[i] <- sum(amostra == "D")
+}
+```
+
+---
+
+Finalmente podemos calcular o número de vezes que observamos $0,1,2,\;e\;3$ doentes na amostra.
+
+```{r,echo=TRUE}
+table(doentes_na_amostra)
+```
+
+E calcular a probabilidade
+
+```{r,echo=TRUE}
+table(doentes_na_amostra)/N
+```
+
+
+---
+## Probabilidade e Análise Combinatória
+
+A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número $5$ sair no lançamento de um dado. Ou no lançamento de 4 moedas, sair pelo menos uma face **Cara**.
+
+.pull-left[
+<img src="https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?cs=srgb&dl=pexels-pixabay-37534.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>
+]
+
+.pull-right[
+<img src="https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?cs=srgb&dl=pexels-pixabay-210600.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>
+]
+
+
+A partir disso, a probabilidade é determinada pela razão entre o número de eventos possíveis e o número de eventos favoráveis, sendo apresentada pela seguinte expressão:
+
+$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}}$$
+
+onde $P(E)$ é a probabilidade de ocorrência do evento $E$.
+
+---
+
+Assim, para respondermos a questão da amostragens de animais doentes, precisaremos calcular:
+
+$$
+\text{nº de resultados favoráveis}
+$$ 
+
+> de quantas maneiras poderemos escolher $2$ animais de um total de $20$ doentes e $1$ do total de $80$ animais sadios?
+
+$$
+\text{nº total de resultados possíveis}
+$$
+
+ > de quantas maneiras poderemos escolher $3$ animais (independentemente de serem sadios ou doentes) em um total de $100$ animais.
+
+---
+
+## Análise Combinatória
+
+Portanto, para calcularmos a probabilidade do evento (escolher $2$ animais doentes e $1$ sadio), faz-se necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (*Permutações*, *Arranjos* e *Combinações*).
+
+### Princípio Fundamental da Contagem
+
+O princípio fundamental da contagem, também chamado de princípio multiplicativo, postula que:
+
+ >“quando um evento é composto por $n$ etapas sucessivas e **independentes**, de tal modo que as possibilidades da primeira etapa é $x$ e as possibilidades da segunda etapa é $y$, o número total de possibilidades do evento ocorrer é dado pelo produto $x \cdot y$”.
+
+Em resumo, no princípio fundamental da contagem, multiplica-se o número de opções independentes entre as escolhas que lhe são apresentadas.
+
+---
+
+**Exemplos**
+
+1) Em um restaurante, há $5$ aperitivos no *menu*, $10$ entradas principais e $4$ sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
+
+--
+
+2) De quantas maneiras podemos ordenar os $10$ algarismos numéricos $X =\{0,1,...9 \}$ ? Em outras palavras quantos números de 10 dígitos podem ser formados?
+
+--
+
+3) Quantos códigos numéricos de $5$ caractéres são possíveis se:  
+(a) não há restrições?  
+(b) o primeiro dígito não pode ser $0$?  
+(c) nenhuma repetição é permitida?  
+(d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
+
+--
+
+4) No métodos de invasão de contas chamado Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)) o computador testa combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média $435$ milhões senhas por segundo:    
+
+  a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior?  
+
+  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com $9$ dígitos?  
+
+---
+**Exemplos - Respostas**
+
+```{r,eval=TRUE, echo=TRUE}
+5*10*4 # 1
+```
+
+
+```{r,eval=TRUE, echo=TRUE}
+factorial(10) # 2
+```
+
+```{r,eval=TRUE, echo=TRUE}
+10^5 # 3a
+9*10^4 # 3b
+factorial(10)/factorial(10-5)# 3c
+95^5 # 3d
+```
+
+
+---
+**Exemplos - Respostas**
+  4)   
+
+```{r,eval=TRUE, echo=TRUE}
+95^5/435e6 # 4a
+95^9/435e6 # 4a
+95^9/435e6/3600/24/365 # 4a
+```
+
+---
+## Permutações
+
+Quando estamos preocupados em responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos $n$ objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
+
+Dado o conjunto de letras $L=\{a, b, c\}$, de quantas maneiras podemos permutá-las?
+
+--
+
+${a,b,c}$     
+${a,c,b}$  
+${b,a,c}$     
+${b,c,a}$  
+${c,a,b}$     
+${c,b,a}$  
+
+--
+
+Equivale em colocar os elementos dentro de caixas com $n$ compartimentos em alguma ordenação. 
+
+E como consequência do princípio da multiplicação, as possibilidades de inserção dentro  de uma caixa são multiplicadas pelas possibilidades da caixa seguinte, e assim sucessivamente:
+
+---
+
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
+```
+
+$$n! = n \cdot (n-1) \cdot (n-2) \cdots (2) \cdot (1)$$
+$$3! = 3 \cdot (3-1) \cdot(3-2) = 3 \cdot 2 \cdot 1 = 6$$
+
+---
+## Arranjos
+
+O arranjo é uma extensão do conceito de permutação de modo que, se temos $n$ elementos e vamos tomar $r$ amostras desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+
+```{r,out.width = "100%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png")
+```
+
+
+$$
+A^n_r= \frac{n!}{(n-r)!}
+$$
+
+---
+
+## Combinações 
+
+Semelhante aos arranjo, nas **Combinações** temos $n$ elementos e vamos amostrar $r$ elementos $(0<r<n)$, e estamos interessados em contar de quantas maneiras poderemos **combinar** os $r$ elementos amostrados, nesse caso **a ordem** com a qual os elementos são amostrados **NÃO IMPORTA** para a contagem.
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png")
+```
+
+Assim, teremos que descontar dos Arranjos de $r$ elementos as permutações desses $r$ elementos, para isso, basta dividirmos os Arranjos por $r!$ ou seja:
+
+$$
+C^n_r={r \choose x}
+$$
+
+---
+
+Voltando ao exemplo do rebanho composto por $100$ animais, onde temos $20$ indivíduos doentes, vamos calcular a probabilidade de em uma amostra de $3$ animais selecionarmos $2$ animais doentes e $1$ animal sadio:
+
+#### $\text{nº de resultados favoráveis}$
+
+Ou seja, de quantas maneiras poderemos escolher $2$ animais do total de $20$ doentes e $1$ dos $80$ sadios?
+
+$$C^{20}_2 \cdot C^{80}_1 = {20 \choose 2} \cdot {80 \choose 1}$$
+
+$$C^{20}_2 \cdot C^{80}_1  = \frac{20!}{2!(20-2)!} \cdot \frac{80!}{1!(80-1)!}$$
+
+$$C^{20}_2 \cdot C^{80}_3  = 190 \cdot 80$$
+
+$$C^{20}_2 \cdot C^{80}_3  = 15200$$
+---
+
+#### $\text{nº total de resultados possíveis}$
+
+Devemos calcular agora de quantas maneiras poderemos escolher $3$ animais (independente de serem doentes ou não) em um total de $100$ animais.
+
+$C^{100}_3 = {100 \choose 3}$
+
+$C^{100}_3 = \frac{100!}{3!(100-3)!}$
+
+$C^{100}_3  = 161700$
+
+Finalmente, a probabilidade do evento, amostrar $2$ indivíduos doentes e $1$ sadio será:
+
+$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15200}{161700}=0,094 \text{ ou } 9,40\%$$
+
+Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de $3$ animais tomarmos:
+
+a) nenhum animal doente (todos sadios).  
+b) 01 doente e 02 sadios.  
+c) 02 doentes e 01 sadios.  
+d) todos doentes.
+
+---
+
+**Distribuição de Probabilidade**
+
+Essa fórmula que acabamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
+
+Considere uma população com $N$ objetos nos quais $M$ são classificados como do tipo $A$ e $N−M$ são classificados como do tipo $B$. Tomamos uma amostra ao acaso, **sem reposição** e não ordenada de $r$ objetos. Seja $X$ a variável que conta o número de objetos classificados como do tipo $A$ na amostra. Então a distribuição de probabilidade de $X$ será dada por:
+
+$$P(X = x) = \frac{ {M \choose x} \cdot { {N-M} \choose {r - x} } } { {N \choose r}}$$
+Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
+
+```{r,echo=TRUE,eval=FALSE}
+N = 100 # Número total de elementos na população
+M = 20 # número total de elementos de interesse (doentes) na população
+r = 3 # tamanho da amostra.
+x=0:r # os possiveis valores de doentes na amostra.
+px<-dhyper(x,M,N-M,r) # função dadistribuição hipergeométrica
+barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.65),
+        xlab="nº de doentes",ylab="P(X=x)",
+        main="X~Hgeo(20,100,3)")
+text(1:length(x),px+.05,round(px*100,2))
+```
+
+---
+## Distribuição Hipergeométrica
+
+
+.pull-left[
+```{r}
+N = 100 # número total de elementos
+M = 20 # número total de elementos de interesse (doentes)
+r = 3 # tamamho da amostra
+x=0:r # os possiveis valores de doentes na amostra
+px<-dhyper(x,M,N-M,r) # função que faz a distribuição hipergeométrica
+barplot(px,names=x,col="lightblue",las=1,ylim=c(0,0.65),
+        xlab="nº de doentes ",ylab="P(X=x)",main="X~Hgeo(20,100,3)")
+text(seq(.7, length(x)+1, 1.2),px+.05,round(px,3))
+```
+]
+
+.pull-right[
+```{r}
+tibble::tibble(x,px)
+```
+
+**OBS**: O número de doentes da amostra de $3$ animais pode variar de $0$ a $3$, ao conjunto dessas possibilidades denominamos espaço amostral $(S)$, com a soma de suas probabilidades igual a $1$:
+
+$\sum \limits_{x=0}^r P(x_i) = 1$
+
+]
