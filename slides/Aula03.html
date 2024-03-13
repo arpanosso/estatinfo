@@ -32,8 +32,15 @@ class: center, middle, inverse, title-slide
 
 
 
+class: middle, center, inverse
+
+## Distribuição de frequência de uma variável
 
 
+
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
 ## Distribuição de frequência de uma variável
 
 Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
@@ -55,7 +62,17 @@ Em nosso exemplo, poderíamos entender como `\(N\)` o número de todos os alunos
 
 **Tamanho da amostra `\((n)\)`**
 
-É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - `\(n\)`) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
+É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. 
+
+O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - `\(n\)`) e colunas (Columns - variáveis).
+
+Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
+
+
+---
+
+&lt;img src="img/R_logo.png" width="10%" style="display: block; margin: auto auto auto 0;" /&gt;
+
 
 
 ```r
@@ -67,12 +84,12 @@ glimpse(dados_turmas)
 ```
 #&gt; Rows: 44
 #&gt; Columns: 6
-#&gt; $ id          [3m[38;5;246m&lt;dbl&gt;[39m[23m 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,…
-#&gt; $ sexo        [3m[38;5;246m&lt;chr&gt;[39m[23m "F", "F", "F", "F", "M", "M", "M",…
-#&gt; $ cor_cabelo  [3m[38;5;246m&lt;chr&gt;[39m[23m "CC", "CE", "CC", "CE", "CE", "CC"…
-#&gt; $ grau_alcool [3m[38;5;246m&lt;dbl&gt;[39m[23m 4, 1, 2, 3, 4, 2, 1, 2, 2, 4, 3, 3…
-#&gt; $ altura      [3m[38;5;246m&lt;dbl&gt;[39m[23m 1.68, 1.59, 1.70, 1.50, 1.76, 1.60…
-#&gt; $ idade_anos  [3m[38;5;246m&lt;dbl&gt;[39m[23m 19, 20, 49, 20, 23, 28, 19, 20, 20…
+#&gt; $ id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
+#&gt; $ sexo        &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M"…
+#&gt; $ cor_cabelo  &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "CC", "CE", "CC", "C",…
+#&gt; $ cons_alcool &lt;dbl&gt; 4, 1, 2, 3, 4, 2, 1, 2, 2, 4, 3, 3, 3, 2, 3, 2, 3, 3, 3, 4…
+#&gt; $ altura      &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68…
+#&gt; $ idade_anos  &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 19…
 ```
 
 
@@ -83,66 +100,20 @@ Construir uma tabela de frequências para a variável `sexo` contendo as frequê
 
 Após isso, realizar a visualização de dados com gráficos de Colunas, Barras e Setores (Pizza ou *Pie*).
 
-Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%&gt;%`) feito com o atalho `CTRL + SHIFT + M`. Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias de `sexo`
-
-
-
-```r
-tab &lt;- dados_turmas %&gt;%
-*       group_by(sexo) %&gt;%
-*       summarise(ni=n())
-```
 
 ---
-
-- `group_by()` a grupa as categorias da variável `sexo`.
-- `summarise()` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
-
-
-```r
-tab
-```
-
-```
-#&gt; # A tibble: 2 × 2
-#&gt;   sexo     ni
-#&gt;   &lt;chr&gt; &lt;int&gt;
-#&gt; 1 F        15
-#&gt; 2 M        29
-```
-
-
----
-
-
-```r
-dados_turmas %&gt;% 
-  arrange(sexo) 
-```
-
-```
-#&gt; # A tibble: 44 × 6
-#&gt;      id sexo  cor_cabelo grau_alcool altura idade_anos
-#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-#&gt; 1     1 F     CC                   4   1.68         19
-#&gt; 2     2 F     CE                   1   1.59         20
-#&gt; 3     3 F     CC                   2   1.7          49
-#&gt; 4     4 F     CE                   3   1.5          20
-#&gt; 5    16 F     CE                   2   1.65         20
-#&gt; # ℹ 39 more rows
-```
----
-
 ### Frequência Absoluta `\((n_i)\)`
 
 É definida como o número de observações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
 
-Então temos:
+Então, consideramos `\(1\)` para `\(F\)` e `\(2\)` para `\(M\)`, temos:
 
-`\(n_F = 30\)`
+`\(n_1 = 15\)`
 
-`\(n_M = 48\)`
- 
+`\(n_2 = 29\)`
+
+
+---
 Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes `\((k)\)` da variável cetegória é igual a `\(n\)`. 
 
 $$
@@ -152,7 +123,7 @@ $$
 Onde `\(k\)` é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
 
 $$
-\sum \limits_{i=1}^{k}{n_i} = 30+48=78
+\sum \limits_{i=1}^{k}{n_i} = n_1+n_2=15+29=44
 $$
 
 ---
@@ -164,45 +135,23 @@ $$
 $$
 f_i = \frac{n_i}{n}
 $$
-Vamos, mais uma vez, utilizar o R para esses cálculos.
-
-
-
-```r
-dados_turmas %&gt;%
-  group_by(sexo) %&gt;% 
-  summarise(ni=n()) %&gt;%      
-* mutate(fi = ni/sum(ni))
-```
-
-```
-#&gt; # A tibble: 2 × 3
-#&gt;   sexo     ni    fi
-#&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
-#&gt; 1 F        15 0.341
-#&gt; 2 M        29 0.659
-```
-
-`mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna `\(n_i\)`, no caso a frequência relativa `\(f_i\)`.
-
----
 
 Portanto temos que, 
 
 $$
-f_F = \frac{30}{78}=0,385
+f_1 = \frac{15}{44}=0,3409
 $$ 
 
 e   
 
 $$
-f_M = \frac{48}{78}=0,615
+f_2 = \frac{29}{55}=0,6591
 $$
-
+---
 Assim, temos que a soma das frequências relativas sempre será igual a `\(1\)`: 
 
 $$
-\sum \limits_{i=1}^{k} f_i = 1
+\sum \limits_{i=1}^{k} f_i=f_1+f_2 = 0,3409+0,6591 = 1
 $$
 
 onde `\(k\)` é o número de categorias da variável `sexo`, ou seja, `\(2\)`, nesse caso.
@@ -214,13 +163,26 @@ onde `\(k\)` é o número de categorias da variável `sexo`, ou seja, `\(2\)`, n
 Definida como o resultado da multiplicação da frequência relativa (proporção) por `\(100\)`.
 
 
+`$$perc_1 = f_1 \times 100 = 0,3409 \times 100 = 34,09\% \\
+perc_2 = f_2 \times 100 = 0,6591 \times 100 = 65,91\%$$`
+
+---
+
+Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%&gt;%`), cujo atalho é `CTRL + SHIFT + M`. 
+
+Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
+
+- `group_by()` agrupa as categorias da variável `sexo`.
+- `summarise()` cria o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
+- `mutate()` é a função utilizada para calcular `\(f_i\)` e suas respectivas procentagens `\(prec_i\)` a partir da coluna `\(_i\)`.
+
 
 ```r
 dados_turmas %&gt;%
   group_by(sexo) %&gt;% 
-  summarise(ni=n()) %&gt;% # Frequência Absoluta
-  mutate(fi = ni/sum(ni),# Frequência Relativa
-*        perc = fi*100)
+  summarise(ni=n()) %&gt;% # frequência Absoluta
+  mutate(fi = ni/sum(ni),# frequência Relativa
+         perc = fi*100) # porcentage m de frequência
 ```
 
 ```
@@ -230,6 +192,8 @@ dados_turmas %&gt;%
 #&gt; 1 F        15 0.341  34.1
 #&gt; 2 M        29 0.659  65.9
 ```
+
+---
 
 A partir da tabela de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
 
@@ -246,7 +210,7 @@ class: middle, center, inverse
 
 Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos os gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
 
-Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. Observe que os gráficos serão construídos a partir do objeto `tab` anteriormente definido. 
+Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. 
 
 O ggplot funciona na forma de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
 
@@ -287,8 +251,8 @@ dados_turmas %&gt;%
   mutate(fi = ni/sum(ni),
          perc = fi*100) %&gt;% 
   ggplot(aes(x=fi,y=sexo)) + 
-* geom_col(fill="aquamarine4",
-*          color="black")
+  geom_col(fill="aquamarine4",
+           color="black") 
 ```
 - o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra e o argumento `color="black"` permite a alteração da cor o contorno das barras. 
 
@@ -302,7 +266,11 @@ Outras cores são possíveis tente algumas [das cores no R](http://www.stat.colu
 
 ### Gráfico de Setores para Sexo
 
-Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categoras da variável em uma circunferência.
+Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categorias da variável em uma circunferência.
+
+- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
+
+- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
 
 
 ```r
@@ -312,13 +280,10 @@ dados_turmas %&gt;%
   mutate(fi = ni/sum(ni),
          perc = fi*100) %&gt;% 
   ggplot(aes(x="",y=fi, fill=sexo)) + 
-* geom_bar(stat="identity") +
-* coord_polar("y", start=0) +
-* theme_void()
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) + 
+  theme_void() 
 ```
-- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
-
-- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
 
 ---
 
@@ -350,6 +315,36 @@ dados_turmas %&gt;%
 
 ---
 
+### Treemap
+
+É uma técnica de visualização de dados que exibe hierarquias utilizando retângulos aninhados. 
+
+Cada retângulo representa uma hierarquia de dados e é subdividido em retângulos menores que representam subcategorias.
+
+Treemaps pode responder perguntas sobre os dados como: "Quais são as proporções de categorias para o total?"
+
+---
+
+
+```r
+library(treemapify)
+dados_turmas %&gt;%
+  group_by(sexo) %&gt;% 
+  summarise(ni=n()) %&gt;% 
+  mutate(fi = ni/sum(ni),
+         perc = fi*100) %&gt;%
+  ggplot(aes(area = perc, fill = sexo)) +
+  geom_treemap() +
+  geom_treemap_text(
+    aes(label = paste(sexo, 
+                      paste0(round(perc, 2), "%"), sep = "\n")), 
+    colour = "black") +
+  theme(legend.position = "none") 
+```
+
+---
+&lt;img src="Aula03_files/figure-html/plot3_5-1.png" style="display: block; margin: auto;" /&gt;
+---
 ## Tabela de Frequência para a variável Cor de cabelo
 
 
@@ -418,7 +413,6 @@ dados_turmas %&gt;%
   scale_fill_manual(values = c("salmon4",
                                "burlywood4",
                                "orange4",
-                               "gold2",
                                "black"))+
   theme_minimal()
 ```
@@ -472,11 +466,37 @@ dados_turmas %&gt;%
 
 &lt;img src="Aula03_files/figure-html/plot6_1-1.png" style="display: block; margin: auto;" /&gt;
 
+
+---
+#### Treemap para cor dos cabelos
+
+
+```r
+library(treemapify)
+dados_turmas %&gt;%
+  group_by(cor_cabelo) %&gt;% 
+  summarise(ni=n()) %&gt;% 
+  mutate(fi = ni/sum(ni),
+         perc = fi*100) %&gt;%
+  arrange(ni) %&gt;% 
+  ggplot(aes(area = perc, fill = cor_cabelo)) +
+  geom_treemap() +
+  geom_treemap_text(
+    aes(label = paste(cor_cabelo, 
+                      paste0(round(perc, 2), "%"), sep = "\n")), 
+    colour = "black") +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("salmon4",
+                               "burlywood4",
+                               "orange4",
+                               "darkgray"))
+```
+
 ---
 class: middle, center, inverse
 
 # VISUALIZAÇÃO DE DADOS
-###(Variáveis Quantitativas)
+## (Variáveis Quantitativas)
 
 ---
 ## Tabela de frequência e visualização para Idade em anos (discreta)
@@ -487,12 +507,11 @@ Pra a variável `idade_anos` vamos criar a tabela de frequência;
 
 
 ```r
-tab &lt;-dados_turmas %&gt;%
-        group_by(idade_anos) %&gt;% 
-        summarise(ni=n()) %&gt;%      
-        mutate(fi = ni/sum(ni),    
-             perc = fi*100)    
-View(tab)
+dados_turmas %&gt;%
+  group_by(idade_anos) %&gt;% 
+  summarise(ni=n()) %&gt;%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100)    
 ```
 
 
@@ -513,81 +532,14 @@ View(tab)
 |         49|  1| 0.0227273|  2.272727|
 
 ---
-## Gráfico Boxplot
-
-Conhecido como gráfico dos `\(5\)` números representa um resumo dos valores *mínimo*, *primeiro quartil*, *mediana*, *terceiro quartil* e *máximo* de uma variável. É  construído a partir de `geom_boxplot()`. 
-
-Observe que dentro da função `ggplot()` não é necessário passar o `x`, somente é atribuído a `y` a variável discreta `idade_anos`.
-
-
-```r
-dados_turmas %&gt;% 
-  ggplot(aes(y=idade_anos)) +
-  geom_boxplot()
-```
-
----
-
-&lt;img src="Aula03_files/figure-html/plot7-1.png" style="display: block; margin: auto;" /&gt;
-
----
-- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a **amplitude interquartil** (IIQ). 
-- No meio da caixa há uma linha que exibe a **mediana**, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
-- Pontos visuais que exibem observações são aqueles que cairam em mais do que `\(1,5\)` vezes o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
-- Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
-
-
-&lt;img src="Aula03_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
-
----
-
-Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`. Utilize `fill` para controlar a cor de preenchimento da caixa, e as opções `outlier.` para controlar tamanhos, formas, cores e preenchimentos dos outliers.
-
-
-```r
-dados_turmas %&gt;% 
-  ggplot(aes(x=idade_anos)) +
-  geom_boxplot(fill="orange",
-               outlier.size = 4,
-               outlier.shape = 21,
-               outlier.color = "red",
-               outlier.fill = "gray"
-               )+
-* coord_cartesian(ylim=c(-1,1))+
-  theme_classic()
-```
-
----
-
-&lt;img src="Aula03_files/figure-html/plot8-1.png" style="display: block; margin: auto;" /&gt;
-
----
-
-Outra alternativa para exibir a distribuição de uma variável quantitativa, no exemplo `altura`, é desmembrá-la por uma variável categórica aqui no boxplot.
-
-
-```r
-dados_turmas %&gt;% 
-  ggplot(aes(y=altura, 
-*            fill=sexo)) +
-  geom_boxplot()
-```
-
-Para fazer isso basta passarmos como preenchimento o nome da variável categórica, no exemplo, `sexo`.
-
----
-
-&lt;img src="Aula03_files/figure-html/plot9-1.png" style="display: block; margin: auto;" /&gt;
-
----
 
 ## Tabela de frequência para variável Altura (Quantitativa Contínua)
 
-Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função de distribuição acumulada`. 
+Quando a variável quantitativa for contínua, recomenda-se a utilização dos gráficos `histograma`  e `Função de distribuição acumulada`. 
 
 Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, os valores de uma variável contínua não se repetem, mesmo que isso aparentemente ocorra na base de dados. 
 
-Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurarmos uma variável contínua, temos apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
+Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurar uma variável contínua, obtém-se apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
 
 ---
 
@@ -595,15 +547,14 @@ Para exemplificar, vamos criar `\(5\)` classes de alturas a partir da função `
 
 
 ```r
-tab &lt;-dados_turmas %&gt;%
+dados_turmas %&gt;%
   mutate(
 *   classes_altura = cut(altura,5)
-    ) %&gt;% 
+  ) %&gt;% 
   group_by(classes_altura) %&gt;% 
   summarise(ni=n()) %&gt;%      
   mutate(fi = ni/sum(ni),    
          perc = fi*100)    
-View(tab)
 ```
 
 
@@ -623,13 +574,14 @@ Para melhor entendermos como a função `cut()` funciona, será necessário conh
 
 `$$\Delta = Máximo - Mínimo$$`
 
-Para os dados de altura temos, `\(\Delta = 1,93\;m-1,50\;m = 0,43 \;m\)`
+Para os dados de altura temos, `\(\Delta = 1,91\;m-1,50\;m = 0,41 \;m\)`
 
 No R podemos calcular a amplitude total com as funções do pacote `base`, para isso devemos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
 
 
 ```r
-altura &lt;- dados_turmas$altura
+altura &lt;- dados_turmas %&gt;% 
+  pull(altura)
 ```
 
 Agora vamos encontrar o máximo e o mínimo e calcular a diferença.
@@ -663,7 +615,7 @@ k &lt;- 5
 `$$\Delta_i = \frac{\Delta}{k}$$`
 Para os dados de altura:
 
-`\(\Delta_i = \frac{\Delta}{k} = \frac{0.43\;m}{5} = 0,086 \;m\)`
+`\(\Delta_i = \frac{\Delta}{k} = \frac{0.41\;m}{5} = 0,082 \;m\)`
 
 ---
 Assim, temos
@@ -688,10 +640,9 @@ limites
 ```
 #&gt; [1] 1.500 1.582 1.664 1.746 1.828 1.910
 ```
-
 ---
 
-Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
+Obervem que foi essa a metodologia utilizada pela função `cut()` para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
 
 
 |classes_altura | ni|        fi|      perc|
@@ -764,7 +715,7 @@ Agora vamos atualizar a tabela com o valor de densidade de frequência, dado por
 
 
 ```r
-tab &lt;-dados_turmas %&gt;%
+dados_turmas %&gt;%
   mutate(
     classes_altura = cut(altura,5)
     ) %&gt;% 
@@ -773,7 +724,6 @@ tab &lt;-dados_turmas %&gt;%
   mutate(fi = ni/sum(ni),    
          perc = fi*100,
 *        di=fi/Di)
-View(tab)
 ```
 
 ---
@@ -789,7 +739,7 @@ View(tab)
 
 ---
 
-## Medidas de Frequências Acumuladas
+## Medidas  Acumuladas
 
 As medidas acumuladas são interessantes para compor algumas vizualizações:
 
@@ -801,7 +751,7 @@ As medidas acumuladas são interessantes para compor algumas vizualizações:
 
 
 ```r
-tab &lt;-dados_turmas %&gt;%
+dados_turmas %&gt;%
   mutate(
     classes_altura = cut(altura,5)
     ) %&gt;% 
@@ -813,7 +763,6 @@ tab &lt;-dados_turmas %&gt;%
 *        Ni = cumsum(ni),
 *        Fi = cumsum(fi),
 *        Perc = cumsum(perc))
-View(tab)
 ```
 
 ---
@@ -848,7 +797,6 @@ dados_turmas %&gt;%
                  fill="gray") +
 * geom_freqpoly(breaks=limites,color="red")
 ```
-Observe que o histograma foi construído com as frequências absolutas `\((n_i)\)`, ou seja, `y=..count..`.
 
 ---
 
@@ -929,7 +877,7 @@ dados_turmas %&gt;%
 ---
 class: middle, center, inverse
 
-## Prática: Instalação de Pacotes no R
+## Prática para Casa: Instalação de Pacotes no R
 
 ![](img/pacotes_r.png)
 
@@ -956,11 +904,10 @@ Liste os pacotes carregados no ambiente com:
 ```
 
 ```
-#&gt;  [1] "lubridate" "forcats"   "stringr"   "dplyr"    
-#&gt;  [5] "purrr"     "readr"     "tidyr"     "tibble"   
-#&gt;  [9] "ggplot2"   "tidyverse" "stats"     "graphics" 
-#&gt; [13] "grDevices" "utils"     "datasets"  "methods"  
-#&gt; [17] "base"
+#&gt;  [1] "treemapify" "lubridate"  "forcats"    "stringr"    "dplyr"     
+#&gt;  [6] "purrr"      "readr"      "tidyr"      "tibble"     "ggplot2"   
+#&gt; [11] "tidyverse"  "stats"      "graphics"   "grDevices"  "utils"     
+#&gt; [16] "datasets"   "methods"    "base"
 ```
 
 O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro `\([\;i\;]\)` apresentado entre colchetes **[i]**.
@@ -983,11 +930,10 @@ Agora, liste novamente os pacotes e observe a diferença no retorno da função.
 ```
 
 ```
-#&gt;  [1] "MASS"      "lubridate" "forcats"   "stringr"  
-#&gt;  [5] "dplyr"     "purrr"     "readr"     "tidyr"    
-#&gt;  [9] "tibble"    "ggplot2"   "tidyverse" "stats"    
-#&gt; [13] "graphics"  "grDevices" "utils"     "datasets" 
-#&gt; [17] "methods"   "base"
+#&gt;  [1] "MASS"       "treemapify" "lubridate"  "forcats"    "stringr"   
+#&gt;  [6] "dplyr"      "purrr"      "readr"      "tidyr"      "tibble"    
+#&gt; [11] "ggplot2"    "tidyverse"  "stats"      "graphics"   "grDevices" 
+#&gt; [16] "utils"      "datasets"   "methods"    "base"
 ```
 
 Observe que o pacote `MASS` agora está no ambiente de trabalho. 
@@ -1038,17 +984,17 @@ mtcars %&gt;%
 ```
 #&gt; Rows: 32
 #&gt; Columns: 11
-#&gt; $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3,…
-#&gt; $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8,…
-#&gt; $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0,…
-#&gt; $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95,…
-#&gt; $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21,…
-#&gt; $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460,…
-#&gt; $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22,…
-#&gt; $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0,…
-#&gt; $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-#&gt; $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3,…
-#&gt; $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3,…
+#&gt; $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8,…
+#&gt; $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8,…
+#&gt; $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 16…
+#&gt; $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180…
+#&gt; $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92,…
+#&gt; $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.…
+#&gt; $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18…
+#&gt; $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,…
+#&gt; $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0,…
+#&gt; $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3,…
+#&gt; $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,…
 ```
 
 O simbolo para operação de arquivos de dados é o pipe `%&gt;%` que pode ser criado a partir do atalho `CTRL + SHIFT + M`

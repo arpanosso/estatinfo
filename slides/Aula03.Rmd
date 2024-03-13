@@ -16,6 +16,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -23,8 +24,25 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
 options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
+class: middle, center, inverse
+
+## Distribuição de frequência de uma variável
 
 
+
+```{r, echo=FALSE}
+library(tidyverse)
+idade <- rnorm(1000,22,3.5)
+as_tibble(idade) %>% 
+  ggplot(aes(x=idade,y=..density..)) + 
+  geom_histogram(bins = 10, color="black",
+                 fill="gray") +
+  theme_bw() +
+  labs(x="Idade (anos)", y="Densidade")
+
+```
+
+---
 ## Distribuição de frequência de uma variável
 
 Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
@@ -46,7 +64,19 @@ Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da 
 
 **Tamanho da amostra $(n)$**
 
-É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
+É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. 
+
+O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis).
+
+Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
+
+
+---
+
+```{r, echo=FALSE, out.width="10%", fig.align='left'}
+knitr::include_graphics("img/R_logo.png")
+```
+
 
 ```{r}
 library(tidyverse) 
@@ -62,43 +92,20 @@ Construir uma tabela de frequências para a variável `sexo` contendo as frequê
 
 Após isso, realizar a visualização de dados com gráficos de Colunas, Barras e Setores (Pizza ou *Pie*).
 
-Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%>%`) feito com o atalho `CTRL + SHIFT + M`. Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias de `sexo`
-
-
-```{r}
-tab <- dados_turmas %>%
-        group_by(sexo) %>% #<<
-        summarise(ni=n()) #<<
-```
 
 ---
-
-- `group_by()` a grupa as categorias da variável `sexo`.
-- `summarise()` vai criar o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
-
-```{r}
-tab
-```
-
-
----
-
-```{r, eval=TRUE}
-dados_turmas %>% 
-  arrange(sexo) 
-```
----
-
 ### Frequência Absoluta $(n_i)$
 
 É definida como o número de observações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
 
-Então temos:
+Então, consideramos $1$ para $F$ e $2$ para $M$, temos:
 
-$n_F = 30$
+$n_1 = 15$
 
-$n_M = 48$
- 
+$n_2 = 29$
+
+
+---
 Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes $(k)$ da variável cetegória é igual a $n$. 
 
 $$
@@ -108,7 +115,7 @@ $$
 Onde $k$ é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
 
 $$
-\sum \limits_{i=1}^{k}{n_i} = 30+48=78
+\sum \limits_{i=1}^{k}{n_i} = n_1+n_2=15+29=44
 $$
 
 ---
@@ -120,36 +127,23 @@ $$
 $$
 f_i = \frac{n_i}{n}
 $$
-Vamos, mais uma vez, utilizar o R para esses cálculos.
-
-
-```{r, echo = TRUE, eval=TRUE}
-dados_turmas %>%
-  group_by(sexo) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni)) #<<   
-```
-
-`mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna $n_i$, no caso a frequência relativa $f_i$.
-
----
 
 Portanto temos que, 
 
 $$
-f_F = \frac{30}{78}=0,385
+f_1 = \frac{15}{44}=0,3409
 $$ 
 
 e   
 
 $$
-f_M = \frac{48}{78}=0,615
+f_2 = \frac{29}{55}=0,6591
 $$
-
+---
 Assim, temos que a soma das frequências relativas sempre será igual a $1$: 
 
 $$
-\sum \limits_{i=1}^{k} f_i = 1
+\sum \limits_{i=1}^{k} f_i=f_1+f_2 = 0,3409+0,6591 = 1
 $$
 
 onde $k$ é o número de categorias da variável `sexo`, ou seja, $2$, nesse caso.
@@ -161,13 +155,28 @@ onde $k$ é o número de categorias da variável `sexo`, ou seja, $2$, nesse cas
 Definida como o resultado da multiplicação da frequência relativa (proporção) por $100$.
 
 
+$$perc_1 = f_1 \times 100 = 0,3409 \times 100 = 34,09\% \\
+perc_2 = f_2 \times 100 = 0,6591 \times 100 = 65,91\%$$
+
+---
+
+Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%>%`), cujo atalho é `CTRL + SHIFT + M`. 
+
+Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
+
+- `group_by()` agrupa as categorias da variável `sexo`.
+- `summarise()` cria o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
+- `mutate()` é a função utilizada para calcular $f_i$ e suas respectivas procentagens $prec_i$ a partir da coluna $_i$.
+
 ```{r}
 dados_turmas %>%
   group_by(sexo) %>% 
-  summarise(ni=n()) %>% # Frequência Absoluta
-  mutate(fi = ni/sum(ni),# Frequência Relativa
-         perc = fi*100) #<<
+  summarise(ni=n()) %>% # frequência Absoluta
+  mutate(fi = ni/sum(ni),# frequência Relativa
+         perc = fi*100) # porcentage m de frequência
 ```
+
+---
 
 A partir da tabela de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
 
@@ -184,7 +193,7 @@ class: middle, center, inverse
 
 Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos os gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
 
-Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. Observe que os gráficos serão construídos a partir do objeto `tab` anteriormente definido. 
+Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. 
 
 O ggplot funciona na forma de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
 
@@ -224,8 +233,8 @@ dados_turmas %>%
   mutate(fi = ni/sum(ni),
          perc = fi*100) %>% 
   ggplot(aes(x=fi,y=sexo)) + 
-  geom_col(fill="aquamarine4", #<< 
-           color="black") #<<
+  geom_col(fill="aquamarine4",
+           color="black") 
 ```
 - o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra e o argumento `color="black"` permite a alteração da cor o contorno das barras. 
 
@@ -240,7 +249,11 @@ Outras cores são possíveis tente algumas [das cores no R](http://www.stat.colu
 
 ### Gráfico de Setores para Sexo
 
-Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categoras da variável em uma circunferência.
+Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categorias da variável em uma circunferência.
+
+- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
+
+- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
 
 ```{r, plot3, eval=FALSE}
 dados_turmas %>%
@@ -249,13 +262,10 @@ dados_turmas %>%
   mutate(fi = ni/sum(ni),
          perc = fi*100) %>% 
   ggplot(aes(x="",y=fi, fill=sexo)) + 
-  geom_bar(stat="identity") + #<<
-  coord_polar("y", start=0) + #<<
-  theme_void() #<<
+  geom_bar(stat="identity") +
+  coord_polar("y", start=0) + 
+  theme_void() 
 ```
-- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
-
-- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
 
 ---
 
@@ -288,6 +298,36 @@ dados_turmas %>%
 
 ---
 
+### Treemap
+
+É uma técnica de visualização de dados que exibe hierarquias utilizando retângulos aninhados. 
+
+Cada retângulo representa uma hierarquia de dados e é subdividido em retângulos menores que representam subcategorias.
+
+Treemaps pode responder perguntas sobre os dados como: "Quais são as proporções de categorias para o total?"
+
+---
+
+```{r, plot3_5, eval=FALSE}
+library(treemapify)
+dados_turmas %>%
+  group_by(sexo) %>% 
+  summarise(ni=n()) %>% 
+  mutate(fi = ni/sum(ni),
+         perc = fi*100) %>%
+  ggplot(aes(area = perc, fill = sexo)) +
+  geom_treemap() +
+  geom_treemap_text(
+    aes(label = paste(sexo, 
+                      paste0(round(perc, 2), "%"), sep = "\n")), 
+    colour = "black") +
+  theme(legend.position = "none") 
+```
+
+---
+```{r, plot3_5, echo = FALSE}
+```
+---
 ## Tabela de Frequência para a variável Cor de cabelo
 
 
@@ -344,7 +384,6 @@ dados_turmas %>%
   scale_fill_manual(values = c("salmon4",
                                "burlywood4",
                                "orange4",
-                               "gold2",
                                "black"))+
   theme_minimal()
 ```
@@ -399,11 +438,36 @@ dados_turmas %>%
 ```{r, plot6_1, echo = FALSE}
 ```
 
+
+---
+#### Treemap para cor dos cabelos
+
+```{r, plot6_5, eval=FALSE}
+library(treemapify)
+dados_turmas %>%
+  group_by(cor_cabelo) %>% 
+  summarise(ni=n()) %>% 
+  mutate(fi = ni/sum(ni),
+         perc = fi*100) %>%
+  arrange(ni) %>% 
+  ggplot(aes(area = perc, fill = cor_cabelo)) +
+  geom_treemap() +
+  geom_treemap_text(
+    aes(label = paste(cor_cabelo, 
+                      paste0(round(perc, 2), "%"), sep = "\n")), 
+    colour = "black") +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("salmon4",
+                               "burlywood4",
+                               "orange4",
+                               "darkgray"))
+```
+
 ---
 class: middle, center, inverse
 
 # VISUALIZAÇÃO DE DADOS
-###(Variáveis Quantitativas)
+## (Variáveis Quantitativas)
 
 ---
 ## Tabela de frequência e visualização para Idade em anos (discreta)
@@ -413,12 +477,11 @@ Quando a variável  for quantitativa discreta, os mesmos gráficos de variáveis
 Pra a variável `idade_anos` vamos criar a tabela de frequência;
 
 ```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
-        group_by(idade_anos) %>% 
-        summarise(ni=n()) %>%      
-        mutate(fi = ni/sum(ni),    
-             perc = fi*100)    
-View(tab)
+dados_turmas %>%
+  group_by(idade_anos) %>% 
+  summarise(ni=n()) %>%      
+  mutate(fi = ni/sum(ni),    
+         perc = fi*100)    
 ```
 
 
@@ -434,101 +497,29 @@ kableExtra::kable(tab)
 ```
 
 ---
-## Gráfico Boxplot
-
-Conhecido como gráfico dos $5$ números representa um resumo dos valores *mínimo*, *primeiro quartil*, *mediana*, *terceiro quartil* e *máximo* de uma variável. É  construído a partir de `geom_boxplot()`. 
-
-Observe que dentro da função `ggplot()` não é necessário passar o `x`, somente é atribuído a `y` a variável discreta `idade_anos`.
-
-```{r, plot7, eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(y=idade_anos)) +
-  geom_boxplot()
-```
-
----
-
-```{r,plot7,echo=FALSE}
-```
-
----
-- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a **amplitude interquartil** (IIQ). 
-- No meio da caixa há uma linha que exibe a **mediana**, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
-- Pontos visuais que exibem observações são aqueles que cairam em mais do que $1,5$ vezes o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
-- Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
-
-
-```{r, echo=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=altura)) +
-  geom_boxplot(fill="lightgray")+theme_minimal()+
-  coord_cartesian(ylim=c(-1,1))
-```
-
----
-
-Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`. Utilize `fill` para controlar a cor de preenchimento da caixa, e as opções `outlier.` para controlar tamanhos, formas, cores e preenchimentos dos outliers.
-
-```{r, plot8, eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=idade_anos)) +
-  geom_boxplot(fill="orange",
-               outlier.size = 4,
-               outlier.shape = 21,
-               outlier.color = "red",
-               outlier.fill = "gray"
-               )+
-  coord_cartesian(ylim=c(-1,1))+ #<<
-  theme_classic()
-```
-
----
-
-```{r,plot8,echo=FALSE}
-```
-
----
-
-Outra alternativa para exibir a distribuição de uma variável quantitativa, no exemplo `altura`, é desmembrá-la por uma variável categórica aqui no boxplot.
-
-```{r, plot9, eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(y=altura, 
-             fill=sexo)) + #<<
-  geom_boxplot()
-```
-
-Para fazer isso basta passarmos como preenchimento o nome da variável categórica, no exemplo, `sexo`.
-
----
-
-```{r,plot9,echo=FALSE}
-```
-
----
 
 ## Tabela de frequência para variável Altura (Quantitativa Contínua)
 
-Quando a variável quantitativa for contínua, recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função de distribuição acumulada`. 
+Quando a variável quantitativa for contínua, recomenda-se a utilização dos gráficos `histograma`  e `Função de distribuição acumulada`. 
 
 Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, os valores de uma variável contínua não se repetem, mesmo que isso aparentemente ocorra na base de dados. 
 
-Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurarmos uma variável contínua, temos apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
+Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurar uma variável contínua, obtém-se apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
 
 ---
 
 Para exemplificar, vamos criar $5$ classes de alturas a partir da função `cut()`.
 
 ```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
+dados_turmas %>%
   mutate(
     classes_altura = cut(altura,5) #<<
-    ) %>% 
+  ) %>% 
   group_by(classes_altura) %>% 
   summarise(ni=n()) %>%      
   mutate(fi = ni/sum(ni),    
          perc = fi*100)    
-View(tab)
+
 ```
 
 ```{r,echo=FALSE}
@@ -551,12 +542,13 @@ Para melhor entendermos como a função `cut()` funciona, será necessário conh
 
 $$\Delta = Máximo - Mínimo$$
 
-Para os dados de altura temos, $\Delta = 1,93\;m-1,50\;m = 0,43 \;m$
+Para os dados de altura temos, $\Delta = 1,91\;m-1,50\;m = 0,41 \;m$
 
 No R podemos calcular a amplitude total com as funções do pacote `base`, para isso devemos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
 
 ```{r,eval=TRUE}
-altura <- dados_turmas$altura
+altura <- dados_turmas %>% 
+  pull(altura)
 ```
 
 Agora vamos encontrar o máximo e o mínimo e calcular a diferença.
@@ -584,7 +576,7 @@ k <- 5
 $$\Delta_i = \frac{\Delta}{k}$$
 Para os dados de altura:
 
-$\Delta_i = \frac{\Delta}{k} = \frac{0.43\;m}{5} = 0,086 \;m$
+$\Delta_i = \frac{\Delta}{k} = \frac{0.41\;m}{5} = 0,082 \;m$
 
 ---
 Assim, temos
@@ -599,10 +591,9 @@ Cada um dos $5$ intervalos terá uma amplitude de $0,086$ m. Ou seja, o cálculo
 limites <- min(altura)+ 0:k * Di
 limites
 ```
-
 ---
 
-Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
+Obervem que foi essa a metodologia utilizada pela função `cut()` para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
 
 ```{r,echo=FALSE}
 kableExtra::kable(tab)
@@ -666,7 +657,7 @@ Agora vamos atualizar a tabela com o valor de densidade de frequência, dado por
 $$d_i=\frac{f_i}{\Delta_i}$$
 
 ```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
+dados_turmas %>%
   mutate(
     classes_altura = cut(altura,5)
     ) %>% 
@@ -675,7 +666,6 @@ tab <-dados_turmas %>%
   mutate(fi = ni/sum(ni),    
          perc = fi*100,
          di=fi/Di) #<<
-View(tab)
 ```
 
 ---
@@ -695,7 +685,7 @@ kableExtra::kable(tab)
 
 ---
 
-## Medidas de Frequências Acumuladas
+## Medidas  Acumuladas
 
 As medidas acumuladas são interessantes para compor algumas vizualizações:
 
@@ -706,7 +696,7 @@ $F_i$: Frequência Relativa Acumulada.
 $Perc$: Porcentagem de Frequência Acumulada.
 
 ```{r, echo = TRUE, eval=FALSE}
-tab <-dados_turmas %>%
+dados_turmas %>%
   mutate(
     classes_altura = cut(altura,5)
     ) %>% 
@@ -718,7 +708,6 @@ tab <-dados_turmas %>%
          Ni = cumsum(ni), #<<
          Fi = cumsum(fi), #<<
          Perc = cumsum(perc)) #<<
-View(tab)
 ```
 
 ---
@@ -760,7 +749,6 @@ dados_turmas %>%
                  fill="gray") +
   geom_freqpoly(breaks=limites,color="red") #<<
 ```
-Observe que o histograma foi construído com as frequências absolutas $(n_i)$, ou seja, `y=..count..`.
 
 ---
 
@@ -842,7 +830,7 @@ dados_turmas %>%
 ---
 class: middle, center, inverse
 
-## Prática: Instalação de Pacotes no R
+## Prática para Casa: Instalação de Pacotes no R
 
 ![](img/pacotes_r.png)
 

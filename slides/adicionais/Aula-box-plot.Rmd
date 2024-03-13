@@ -1,0 +1,79 @@
+---
+title: "Untitled"
+author: "Panosso AR"
+date: "2024-03-13"
+output: ioslides_presentation
+---
+
+## Gráfico Boxplot
+
+Conhecido como gráfico dos $5$ números representa um resumo dos valores *mínimo*, *primeiro quartil*, *mediana*, *terceiro quartil* e *máximo* de uma variável. 
+
+É  construído a partir de `geom_boxplot()`. 
+
+Observe que dentro da função `ggplot()` não é necessário passar o `x`, somente é atribuído a `y` a variável discreta `altura`.
+
+```{r, plot7, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(y=altura)) +
+  geom_boxplot()
+```
+
+---
+
+```{r,plot7,echo=FALSE}
+```
+
+---
+- O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a **amplitude interquartil** (IIQ). 
+- No meio da caixa há uma linha que exibe a **mediana**, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
+- Pontos visuais que exibem observações são aqueles que cairam em mais do que $1,5$ vezes o IIQ de cada limite da caixa. Esses pontos fora da curva, denominados **outliers** são incomuns, então são plotados individualmente.
+- Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
+
+
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura)) +
+  geom_boxplot(fill="lightgray")+theme_minimal()+
+  coord_cartesian(ylim=c(-1,1))
+```
+
+---
+
+Suas coordenadas podem ser transpostas trocando `y` por `x` no código anterior e o tamanho da caixa, nesse caso, pode ser controlado por `coord_cartesian(ylim=c(-1,1))`. Utilize `fill` para controlar a cor de preenchimento da caixa, e as opções `outlier.` para controlar tamanhos, formas, cores e preenchimentos dos outliers.
+
+```{r, plot8, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos)) +
+  geom_boxplot(fill="orange",
+               outlier.size = 4,
+               outlier.shape = 21,
+               outlier.color = "red",
+               outlier.fill = "gray"
+               )+
+  coord_cartesian(ylim=c(-1,1))+ #<<
+  theme_classic()
+```
+
+---
+
+```{r,plot8,echo=FALSE}
+```
+
+---
+
+Outra alternativa para exibir a distribuição de uma variável quantitativa, `altura`, é construir o gráfico para cada categoria de uma variável qualitativa, `sexo`, por exemplo.
+
+Para fazer isso basta passarmos como preenchimento o nome da variável categórica, no exemplo, `sexo`.
+
+```{r, plot9, eval=FALSE}
+dados_turmas %>% 
+  ggplot(aes(y=altura, 
+             fill=sexo)) + #<<
+  geom_boxplot()
+```
+
+---
+
+```{r,plot9,echo=FALSE}
+```
