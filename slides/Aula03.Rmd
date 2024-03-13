@@ -48,8 +48,9 @@ Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da 
 
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 
-```{r,eval=FALSE, echo=FALSE}
+```{r}
 library(tidyverse) 
+dados_turmas <- readxl::read_xlsx("../data/dados_turmas.xlsx")
 glimpse(dados_turmas) 
 ```
 

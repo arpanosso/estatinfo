@@ -58,6 +58,22 @@ Em nosso exemplo, poderíamos entender como `\(N\)` o número de todos os alunos
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - `\(n\)`) e colunas (Columns - variáveis). Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
 
 
+```r
+library(tidyverse) 
+dados_turmas &lt;- readxl::read_xlsx("../data/dados_turmas.xlsx")
+glimpse(dados_turmas) 
+```
+
+```
+#&gt; Rows: 44
+#&gt; Columns: 6
+#&gt; $ id          [3m[38;5;246m&lt;dbl&gt;[39m[23m 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,…
+#&gt; $ sexo        [3m[38;5;246m&lt;chr&gt;[39m[23m "F", "F", "F", "F", "M", "M", "M",…
+#&gt; $ cor_cabelo  [3m[38;5;246m&lt;chr&gt;[39m[23m "CC", "CE", "CC", "CE", "CE", "CC"…
+#&gt; $ grau_alcool [3m[38;5;246m&lt;dbl&gt;[39m[23m 4, 1, 2, 3, 4, 2, 1, 2, 2, 4, 3, 3…
+#&gt; $ altura      [3m[38;5;246m&lt;dbl&gt;[39m[23m 1.68, 1.59, 1.70, 1.50, 1.76, 1.60…
+#&gt; $ idade_anos  [3m[38;5;246m&lt;dbl&gt;[39m[23m 19, 20, 49, 20, 23, 28, 19, 20, 20…
+```
 
 
 ---
@@ -91,8 +107,8 @@ tab
 #&gt; # A tibble: 2 × 2
 #&gt;   sexo     ni
 #&gt;   &lt;chr&gt; &lt;int&gt;
-#&gt; 1 F        31
-#&gt; 2 M        48
+#&gt; 1 F        15
+#&gt; 2 M        29
 ```
 
 
@@ -105,15 +121,15 @@ dados_turmas %&gt;%
 ```
 
 ```
-#&gt; # A tibble: 79 × 6
+#&gt; # A tibble: 44 × 6
 #&gt;      id sexo  cor_cabelo grau_alcool altura idade_anos
-#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;
-#&gt; 1     1 F     CC         mais_social   1.68         19
-#&gt; 2     2 F     CE         nao_consome   1.59         20
-#&gt; 3     3 F     CE         socialmente   1.5          20
-#&gt; 4    15 F     CE         pouco         1.65         20
-#&gt; 5    16 F     CC         socialmente   1.58         19
-#&gt; # ℹ 74 more rows
+#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+#&gt; 1     1 F     CC                   4   1.68         19
+#&gt; 2     2 F     CE                   1   1.59         20
+#&gt; 3     3 F     CC                   2   1.7          49
+#&gt; 4     4 F     CE                   3   1.5          20
+#&gt; 5    16 F     CE                   2   1.65         20
+#&gt; # ℹ 39 more rows
 ```
 ---
 
@@ -163,8 +179,8 @@ dados_turmas %&gt;%
 #&gt; # A tibble: 2 × 3
 #&gt;   sexo     ni    fi
 #&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;
-#&gt; 1 F        31 0.392
-#&gt; 2 M        48 0.608
+#&gt; 1 F        15 0.341
+#&gt; 2 M        29 0.659
 ```
 
 `mutate()` permitirá criarmos mais uma coluna na nossa tabela de resumo a partir da coluna `\(n_i\)`, no caso a frequência relativa `\(f_i\)`.
@@ -211,8 +227,8 @@ dados_turmas %&gt;%
 #&gt; # A tibble: 2 × 4
 #&gt;   sexo     ni    fi  perc
 #&gt;   &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 F        31 0.392  39.2
-#&gt; 2 M        48 0.608  60.8
+#&gt; 1 F        15 0.341  34.1
+#&gt; 2 M        29 0.659  65.9
 ```
 
 A partir da tabela de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
@@ -349,14 +365,13 @@ dados_turmas %&gt;%
 ```
 
 ```
-#&gt; # A tibble: 5 × 4
+#&gt; # A tibble: 4 × 4
 #&gt;   cor_cabelo    ni     fi  perc
 #&gt;   &lt;chr&gt;      &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 C              6 0.0759  7.59
-#&gt; 2 CC            14 0.177  17.7 
-#&gt; 3 CE            37 0.468  46.8 
-#&gt; 4 L              9 0.114  11.4 
-#&gt; 5 P             13 0.165  16.5
+#&gt; 1 C              6 0.136  13.6 
+#&gt; 2 CC             8 0.182  18.2 
+#&gt; 3 CE            29 0.659  65.9 
+#&gt; 4 P              1 0.0227  2.27
 ```
 
 ---
@@ -486,16 +501,16 @@ View(tab)
 
 | idade_anos| ni|        fi|      perc|
 |----------:|--:|---------:|---------:|
-|         18| 11| 0.1392405| 13.924051|
-|         19| 28| 0.3544304| 35.443038|
-|         20| 18| 0.2278481| 22.784810|
-|         21|  5| 0.0632911|  6.329114|
-|         22|  3| 0.0379747|  3.797468|
-|         23|  8| 0.1012658| 10.126582|
-|         24|  2| 0.0253165|  2.531646|
-|         25|  1| 0.0126582|  1.265823|
-|         27|  1| 0.0126582|  1.265823|
-|         28|  2| 0.0253165|  2.531646|
+|         18|  6| 0.1363636| 13.636364|
+|         19| 14| 0.3181818| 31.818182|
+|         20|  9| 0.2045455| 20.454545|
+|         21|  3| 0.0681818|  6.818182|
+|         22|  3| 0.0681818|  6.818182|
+|         23|  5| 0.1136364| 11.363636|
+|         24|  1| 0.0227273|  2.272727|
+|         27|  1| 0.0227273|  2.272727|
+|         28|  1| 0.0227273|  2.272727|
+|         49|  1| 0.0227273|  2.272727|
 
 ---
 ## Gráfico Boxplot
@@ -522,7 +537,7 @@ dados_turmas %&gt;%
 - Uma linha que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um valor incomum.
 
 
-&lt;img src="Aula03_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -592,13 +607,13 @@ View(tab)
 ```
 
 
-|classes_altura | ni|        fi|     perc|
-|:--------------|--:|---------:|--------:|
-|(1.5,1.59]     |  7| 0.0886076|  8.86076|
-|(1.59,1.67]    | 15| 0.1898734| 18.98734|
-|(1.67,1.76]    | 28| 0.3544304| 35.44304|
-|(1.76,1.84]    | 19| 0.2405063| 24.05063|
-|(1.84,1.93]    | 10| 0.1265823| 12.65823|
+|classes_altura | ni|        fi|      perc|
+|:--------------|--:|---------:|---------:|
+|(1.5,1.58]     |  4| 0.0909091|  9.090909|
+|(1.58,1.66]    |  7| 0.1590909| 15.909091|
+|(1.66,1.75]    | 12| 0.2727273| 27.272727|
+|(1.75,1.83]    | 14| 0.3181818| 31.818182|
+|(1.83,1.91]    |  7| 0.1590909| 15.909091|
 
 ---
 
@@ -626,7 +641,7 @@ D
 ```
 
 ```
-#&gt; [1] 0.43
+#&gt; [1] 0.41
 ```
 
 ---
@@ -660,7 +675,7 @@ Di
 ```
 
 ```
-#&gt; [1] 0.086
+#&gt; [1] 0.082
 ```
 Cada um dos `\(5\)` intervalos terá uma amplitude de `\(0,086\)` m. Ou seja, o cálculo dos  limites das classes é feito a partir da adição ao valor Mínimo o valor de `\(\Delta_i\)` `\(k\)` vezes:
 
@@ -671,7 +686,7 @@ limites
 ```
 
 ```
-#&gt; [1] 1.500 1.586 1.672 1.758 1.844 1.930
+#&gt; [1] 1.500 1.582 1.664 1.746 1.828 1.910
 ```
 
 ---
@@ -679,16 +694,16 @@ limites
 Obervem que foi essa a metodologia qua a função `cut()` utilizou para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
 
 
-|classes_altura | ni|        fi|     perc|
-|:--------------|--:|---------:|--------:|
-|(1.5,1.59]     |  7| 0.0886076|  8.86076|
-|(1.59,1.67]    | 15| 0.1898734| 18.98734|
-|(1.67,1.76]    | 28| 0.3544304| 35.44304|
-|(1.76,1.84]    | 19| 0.2405063| 24.05063|
-|(1.84,1.93]    | 10| 0.1265823| 12.65823|
+|classes_altura | ni|        fi|      perc|
+|:--------------|--:|---------:|---------:|
+|(1.5,1.58]     |  4| 0.0909091|  9.090909|
+|(1.58,1.66]    |  7| 0.1590909| 15.909091|
+|(1.66,1.75]    | 12| 0.2727273| 27.272727|
+|(1.75,1.83]    | 14| 0.3181818| 31.818182|
+|(1.83,1.91]    |  7| 0.1590909| 15.909091|
 
 ```
-#&gt; [1] 1.500 1.586 1.672 1.758 1.844 1.930
+#&gt; [1] 1.500 1.582 1.664 1.746 1.828 1.910
 ```
 
 
@@ -764,13 +779,13 @@ View(tab)
 ---
 
 
-|classes_altura | ni|        fi|     perc|       di|
-|:--------------|--:|---------:|--------:|--------:|
-|(1.5,1.59]     |  7| 0.0886076|  8.86076| 1.030321|
-|(1.59,1.67]    | 15| 0.1898734| 18.98734| 2.207830|
-|(1.67,1.76]    | 28| 0.3544304| 35.44304| 4.121283|
-|(1.76,1.84]    | 19| 0.2405063| 24.05063| 2.796585|
-|(1.84,1.93]    | 10| 0.1265823| 12.65823| 1.471887|
+|classes_altura | ni|        fi|      perc|       di|
+|:--------------|--:|---------:|---------:|--------:|
+|(1.5,1.58]     |  4| 0.0909091|  9.090909| 1.108648|
+|(1.58,1.66]    |  7| 0.1590909| 15.909091| 1.940133|
+|(1.66,1.75]    | 12| 0.2727273| 27.272727| 3.325942|
+|(1.75,1.83]    | 14| 0.3181818| 31.818182| 3.880266|
+|(1.83,1.91]    |  7| 0.1590909| 15.909091| 1.940133|
 
 ---
 
@@ -806,13 +821,13 @@ View(tab)
 # Tabela de Frequência para Altura
 
 
-|classes_altura | ni|        fi|     perc|       di| Ni|        Fi|      Perc|
-|:--------------|--:|---------:|--------:|--------:|--:|---------:|---------:|
-|(1.5,1.59]     |  7| 0.0886076|  8.86076| 1.030321|  7| 0.0886076|   8.86076|
-|(1.59,1.67]    | 15| 0.1898734| 18.98734| 2.207830| 22| 0.2784810|  27.84810|
-|(1.67,1.76]    | 28| 0.3544304| 35.44304| 4.121283| 50| 0.6329114|  63.29114|
-|(1.76,1.84]    | 19| 0.2405063| 24.05063| 2.796585| 69| 0.8734177|  87.34177|
-|(1.84,1.93]    | 10| 0.1265823| 12.65823| 1.471887| 79| 1.0000000| 100.00000|
+|classes_altura | ni|        fi|      perc|       di| Ni|        Fi|       Perc|
+|:--------------|--:|---------:|---------:|--------:|--:|---------:|----------:|
+|(1.5,1.58]     |  4| 0.0909091|  9.090909| 1.108648|  4| 0.0909091|   9.090909|
+|(1.58,1.66]    |  7| 0.1590909| 15.909091| 1.940133| 11| 0.2500000|  25.000000|
+|(1.66,1.75]    | 12| 0.2727273| 27.272727| 3.325942| 23| 0.5227273|  52.272727|
+|(1.75,1.83]    | 14| 0.3181818| 31.818182| 3.880266| 37| 0.8409091|  84.090909|
+|(1.83,1.91]    |  7| 0.1590909| 15.909091| 1.940133| 44| 1.0000000| 100.000000|
 
 ---
 
@@ -941,11 +956,11 @@ Liste os pacotes carregados no ambiente com:
 ```
 
 ```
-#&gt;  [1] "readxl"    "agricolae" "lubridate" "forcats"  
-#&gt;  [5] "stringr"   "dplyr"     "purrr"     "readr"    
-#&gt;  [9] "tidyr"     "tibble"    "ggplot2"   "tidyverse"
-#&gt; [13] "MASS"      "stats"     "graphics"  "grDevices"
-#&gt; [17] "utils"     "datasets"  "methods"   "base"
+#&gt;  [1] "lubridate" "forcats"   "stringr"   "dplyr"    
+#&gt;  [5] "purrr"     "readr"     "tidyr"     "tibble"   
+#&gt;  [9] "ggplot2"   "tidyverse" "stats"     "graphics" 
+#&gt; [13] "grDevices" "utils"     "datasets"  "methods"  
+#&gt; [17] "base"
 ```
 
 O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro `\([\;i\;]\)` apresentado entre colchetes **[i]**.
@@ -968,11 +983,11 @@ Agora, liste novamente os pacotes e observe a diferença no retorno da função.
 ```
 
 ```
-#&gt;  [1] "readxl"    "agricolae" "lubridate" "forcats"  
-#&gt;  [5] "stringr"   "dplyr"     "purrr"     "readr"    
-#&gt;  [9] "tidyr"     "tibble"    "ggplot2"   "tidyverse"
-#&gt; [13] "MASS"      "stats"     "graphics"  "grDevices"
-#&gt; [17] "utils"     "datasets"  "methods"   "base"
+#&gt;  [1] "MASS"      "lubridate" "forcats"   "stringr"  
+#&gt;  [5] "dplyr"     "purrr"     "readr"     "tidyr"    
+#&gt;  [9] "tibble"    "ggplot2"   "tidyverse" "stats"    
+#&gt; [13] "graphics"  "grDevices" "utils"     "datasets" 
+#&gt; [17] "methods"   "base"
 ```
 
 Observe que o pacote `MASS` agora está no ambiente de trabalho. 
@@ -1023,17 +1038,17 @@ mtcars %&gt;%
 ```
 #&gt; Rows: 32
 #&gt; Columns: 11
-#&gt; $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4,…
-#&gt; $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8,…
-#&gt; $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0…
-#&gt; $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, …
-#&gt; $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69,…
-#&gt; $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570…
-#&gt; $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84…
-#&gt; $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0,…
-#&gt; $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-#&gt; $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3,…
-#&gt; $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4,…
+#&gt; $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3,…
+#&gt; $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8,…
+#&gt; $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0,…
+#&gt; $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95,…
+#&gt; $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21,…
+#&gt; $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460,…
+#&gt; $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22,…
+#&gt; $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0,…
+#&gt; $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+#&gt; $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3,…
+#&gt; $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3,…
 ```
 
 O simbolo para operação de arquivos de dados é o pipe `%&gt;%` que pode ser criado a partir do atalho `CTRL + SHIFT + M`
