@@ -41,7 +41,7 @@ class: middle, center, inverse
 &lt;img src="Aula03_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-## Distribuição de frequência de uma variável
+### Distribuição de frequência de uma variável
 
 Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
 
@@ -52,7 +52,7 @@ Nesse sentido, o objetivo dessa aula será apresentar as principais formas e vis
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"&gt;&lt;/img&gt;
 
 
-
+![](img/exemplo_dados_2.png)
 ---
 **Tamanho da População `\((N)\)`**
 
@@ -172,7 +172,7 @@ Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas opera�
 
 Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
 
-- `group_by()` agrupa as categorias da variável `sexo`.
+- `group_by()` agrupa a variável `sexo` por suas diferentes categorias.
 - `summarise()` cria o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
 - `mutate()` é a função utilizada para calcular `\(f_i\)` e suas respectivas procentagens `\(prec_i\)` a partir da coluna `\(_i\)`.
 
@@ -290,7 +290,7 @@ dados_turmas %&gt;%
 &lt;img src="Aula03_files/figure-html/plot3-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-#### Vamos Adicionar os valores de `\(fi\)` no gráfico
+#### Adicionando os valores de `\(fi\)` no gráfico
 
 
 ```r
@@ -343,7 +343,9 @@ dados_turmas %&gt;%
 ```
 
 ---
-&lt;img src="Aula03_files/figure-html/plot3_5-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="Aula03_files/figure-html/plot3_51-1.png" style="display: block; margin: auto;" /&gt;
+
 ---
 ## Tabela de Frequência para a variável Cor de cabelo
 
@@ -410,10 +412,7 @@ dados_turmas %&gt;%
   ggplot(aes(x=fi, y=cor_cabelo,
              fill=cor_cabelo)) + 
   geom_col(color="black")+
-  scale_fill_manual(values = c("salmon4",
-                               "burlywood4",
-                               "orange4",
-                               "black"))+
+  scale_fill_viridis_d() + # &lt;&lt;
   theme_minimal()
 ```
 - utilize a função `scale_fill_manual()` para alterar as cores dos preenchimentos, se necessário.
@@ -434,37 +433,13 @@ dados_turmas %&gt;%
              fill=cor_cabelo)) + 
   geom_bar(stat="identity",color="black") +
   coord_polar("y", start=0) +
+  scale_fill_viridis_d() + # &lt;&lt;
   theme_void()
 ```
 
 ---
 
 &lt;img src="Aula03_files/figure-html/plot6-1.png" style="display: block; margin: auto;" /&gt;
-
----
-
-#### Vamos Adicionar os valores de `\(perc\)` no gráfico
-
-
-```r
-dados_turmas %&gt;%
-* group_by(cor_cabelo) %&gt;%
-  summarise(ni=n()) %&gt;%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100) %&gt;%
-  ggplot(aes(x="",y=fi, fill=cor_cabelo)) +
-  geom_bar(stat="identity") +
-  coord_polar("y", start=0) +
-  theme_void() +
-  geom_text(
-    aes(
-*     label=paste0(round(perc), "%")),
-*     position=position_stack(vjust = 0.5))
-```
-
----
-
-&lt;img src="Aula03_files/figure-html/plot6_1-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -485,13 +460,12 @@ dados_turmas %&gt;%
     aes(label = paste(cor_cabelo, 
                       paste0(round(perc, 2), "%"), sep = "\n")), 
     colour = "black") +
-  theme(legend.position = "none") +
-  scale_fill_manual(values = c("salmon4",
-                               "burlywood4",
-                               "orange4",
-                               "darkgray"))
+  theme(legend.position = "none")
 ```
 
+---
+
+&lt;img src="Aula03_files/figure-html/plot6_5-1.png" style="display: block; margin: auto;" /&gt;
 ---
 class: middle, center, inverse
 
@@ -513,23 +487,80 @@ dados_turmas %&gt;%
   mutate(fi = ni/sum(ni),    
          perc = fi*100)    
 ```
-
-
 ---
 
-
-| idade_anos| ni|        fi|      perc|
-|----------:|--:|---------:|---------:|
-|         18|  6| 0.1363636| 13.636364|
-|         19| 14| 0.3181818| 31.818182|
-|         20|  9| 0.2045455| 20.454545|
-|         21|  3| 0.0681818|  6.818182|
-|         22|  3| 0.0681818|  6.818182|
-|         23|  5| 0.1136364| 11.363636|
-|         24|  1| 0.0227273|  2.272727|
-|         27|  1| 0.0227273|  2.272727|
-|         28|  1| 0.0227273|  2.272727|
-|         49|  1| 0.0227273|  2.272727|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; idade_anos &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1363636 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.636364 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3181818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2045455 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.454545 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0681818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0681818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1136364 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.363636 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -558,13 +589,48 @@ dados_turmas %&gt;%
 ```
 
 
-|classes_altura | ni|        fi|      perc|
-|:--------------|--:|---------:|---------:|
-|(1.5,1.58]     |  4| 0.0909091|  9.090909|
-|(1.58,1.66]    |  7| 0.1590909| 15.909091|
-|(1.66,1.75]    | 12| 0.2727273| 27.272727|
-|(1.75,1.83]    | 14| 0.3181818| 31.818182|
-|(1.83,1.91]    |  7| 0.1590909| 15.909091|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; classes_altura &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.090909 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2727273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3181818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -644,14 +710,48 @@ limites
 
 Obervem que foi essa a metodologia utilizada pela função `cut()` para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
 
-
-|classes_altura | ni|        fi|      perc|
-|:--------------|--:|---------:|---------:|
-|(1.5,1.58]     |  4| 0.0909091|  9.090909|
-|(1.58,1.66]    |  7| 0.1590909| 15.909091|
-|(1.66,1.75]    | 12| 0.2727273| 27.272727|
-|(1.75,1.83]    | 14| 0.3181818| 31.818182|
-|(1.83,1.91]    |  7| 0.1590909| 15.909091|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; classes_altura &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.090909 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2727273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3181818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ```
 #&gt; [1] 1.500 1.582 1.664 1.746 1.828 1.910
@@ -728,14 +828,54 @@ dados_turmas %&gt;%
 
 ---
 
-
-|classes_altura | ni|        fi|      perc|       di|
-|:--------------|--:|---------:|---------:|--------:|
-|(1.5,1.58]     |  4| 0.0909091|  9.090909| 1.108648|
-|(1.58,1.66]    |  7| 0.1590909| 15.909091| 1.940133|
-|(1.66,1.75]    | 12| 0.2727273| 27.272727| 3.325942|
-|(1.75,1.83]    | 14| 0.3181818| 31.818182| 3.880266|
-|(1.83,1.91]    |  7| 0.1590909| 15.909091| 1.940133|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; classes_altura &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; di &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.090909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.108648 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.940133 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2727273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27.272727 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.325942 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3181818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.818182 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.880266 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.940133 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -769,14 +909,72 @@ dados_turmas %&gt;%
 
 # Tabela de Frequência para Altura
 
-
-|classes_altura | ni|        fi|      perc|       di| Ni|        Fi|       Perc|
-|:--------------|--:|---------:|---------:|--------:|--:|---------:|----------:|
-|(1.5,1.58]     |  4| 0.0909091|  9.090909| 1.108648|  4| 0.0909091|   9.090909|
-|(1.58,1.66]    |  7| 0.1590909| 15.909091| 1.940133| 11| 0.2500000|  25.000000|
-|(1.66,1.75]    | 12| 0.2727273| 27.272727| 3.325942| 23| 0.5227273|  52.272727|
-|(1.75,1.83]    | 14| 0.3181818| 31.818182| 3.880266| 37| 0.8409091|  84.090909|
-|(1.83,1.91]    |  7| 0.1590909| 15.909091| 1.940133| 44| 1.0000000| 100.000000|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; classes_altura &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; di &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Perc &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.5,1.58] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.090909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.108648 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.090909 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.58,1.66] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.940133 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2500000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25.000000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.66,1.75] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2727273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27.272727 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.325942 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.5227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 52.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.75,1.83] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3181818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.818182 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.880266 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8409091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 84.090909 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (1.83,1.91] &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1590909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.909091 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.940133 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0000000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100.000000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -904,10 +1102,10 @@ Liste os pacotes carregados no ambiente com:
 ```
 
 ```
-#&gt;  [1] "treemapify" "lubridate"  "forcats"    "stringr"    "dplyr"     
-#&gt;  [6] "purrr"      "readr"      "tidyr"      "tibble"     "ggplot2"   
-#&gt; [11] "tidyverse"  "stats"      "graphics"   "grDevices"  "utils"     
-#&gt; [16] "datasets"   "methods"    "base"
+#&gt;  [1] "treemapify" "patchwork"  "lubridate"  "forcats"    "stringr"   
+#&gt;  [6] "dplyr"      "purrr"      "readr"      "tidyr"      "tibble"    
+#&gt; [11] "ggplot2"    "tidyverse"  "stats"      "graphics"   "grDevices" 
+#&gt; [16] "utils"      "datasets"   "methods"    "base"
 ```
 
 O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro `\([\;i\;]\)` apresentado entre colchetes **[i]**.
@@ -930,10 +1128,10 @@ Agora, liste novamente os pacotes e observe a diferença no retorno da função.
 ```
 
 ```
-#&gt;  [1] "MASS"       "treemapify" "lubridate"  "forcats"    "stringr"   
-#&gt;  [6] "dplyr"      "purrr"      "readr"      "tidyr"      "tibble"    
-#&gt; [11] "ggplot2"    "tidyverse"  "stats"      "graphics"   "grDevices" 
-#&gt; [16] "utils"      "datasets"   "methods"    "base"
+#&gt;  [1] "MASS"       "treemapify" "patchwork"  "lubridate"  "forcats"   
+#&gt;  [6] "stringr"    "dplyr"      "purrr"      "readr"      "tidyr"     
+#&gt; [11] "tibble"     "ggplot2"    "tidyverse"  "stats"      "graphics"  
+#&gt; [16] "grDevices"  "utils"      "datasets"   "methods"    "base"
 ```
 
 Observe que o pacote `MASS` agora está no ambiente de trabalho. 

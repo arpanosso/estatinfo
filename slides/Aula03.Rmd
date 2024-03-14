@@ -16,7 +16,6 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-    
 ---
 
 ```{r setup, include=FALSE}
@@ -32,18 +31,46 @@ class: middle, center, inverse
 
 ```{r, echo=FALSE}
 library(tidyverse)
-idade <- rnorm(1000,22,3.5)
-as_tibble(idade) %>% 
+library(patchwork)
+idade <- rnorm(500,22,3.5)
+altura <- rnorm(100,1.72,0.05)
+peso <- rbinom(1000,50,.2) + 55
+pas <- rnorm(100, 119, 8.2)
+
+plt1 <- as_tibble(idade) %>% 
   ggplot(aes(x=idade,y=..density..)) + 
   geom_histogram(bins = 10, color="black",
                  fill="gray") +
   theme_bw() +
   labs(x="Idade (anos)", y="Densidade")
 
+plt2 <- as_tibble(altura) %>% 
+  ggplot(aes(x=altura,y=..density..)) + 
+  geom_histogram(bins = 10, color="black",
+                 fill="aquamarine4") +
+  theme_bw() +
+  labs(x="altura (m)", y="Densidade")
+
+plt3 <- as_tibble(peso) %>% 
+  ggplot(aes(x=peso,y=..density..)) + 
+  geom_histogram(bins = 10, color="black",
+                 fill="orange3") +
+  theme_bw() +
+  labs(x="Peso (g)", y="Densidade")
+
+
+plt4 <- as_tibble(pas) %>% 
+  ggplot(aes(x=pas,y=..density..)) + 
+  geom_histogram(bins = 10, color="black",
+                 fill="red") +
+  theme_bw() +
+  labs(x="Pressão arterial sistólica (mm Hg)", y="Densidade")
+(plt1|plt2)/(plt3|plt4)
+
 ```
 
 ---
-## Distribuição de frequência de uma variável
+### Distribuição de frequência de uma variável
 
 Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
 
@@ -54,7 +81,7 @@ Nesse sentido, o objetivo dessa aula será apresentar as principais formas e vis
 <img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"></img>
 
 
-
+![](img/exemplo_dados_2.png)
 ---
 **Tamanho da População $(N)$**
 
@@ -164,7 +191,7 @@ Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas opera�
 
 Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
 
-- `group_by()` agrupa as categorias da variável `sexo`.
+- `group_by()` agrupa a variável `sexo` por suas diferentes categorias.
 - `summarise()` cria o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
 - `mutate()` é a função utilizada para calcular $f_i$ e suas respectivas procentagens $prec_i$ a partir da coluna $_i$.
 
@@ -273,7 +300,7 @@ dados_turmas %>%
 ```
 
 ---
-#### Vamos Adicionar os valores de $fi$ no gráfico
+#### Adicionando os valores de $fi$ no gráfico
 
 ```{r, plot3_1, eval=FALSE}
 dados_turmas %>%
@@ -308,7 +335,7 @@ Treemaps pode responder perguntas sobre os dados como: "Quais são as proporçõ
 
 ---
 
-```{r, plot3_5, eval=FALSE}
+```{r, plot3_51, eval=FALSE}
 library(treemapify)
 dados_turmas %>%
   group_by(sexo) %>% 
@@ -325,8 +352,10 @@ dados_turmas %>%
 ```
 
 ---
-```{r, plot3_5, echo = FALSE}
+
+```{r, plot3_51, echo = FALSE}
 ```
+
 ---
 ## Tabela de Frequência para a variável Cor de cabelo
 
@@ -381,10 +410,7 @@ dados_turmas %>%
   ggplot(aes(x=fi, y=cor_cabelo,
              fill=cor_cabelo)) + 
   geom_col(color="black")+
-  scale_fill_manual(values = c("salmon4",
-                               "burlywood4",
-                               "orange4",
-                               "black"))+
+  scale_fill_viridis_d() + # <<
   theme_minimal()
 ```
 - utilize a função `scale_fill_manual()` para alterar as cores dos preenchimentos, se necessário.
@@ -405,37 +431,13 @@ dados_turmas %>%
              fill=cor_cabelo)) + 
   geom_bar(stat="identity",color="black") +
   coord_polar("y", start=0) +
+  scale_fill_viridis_d() + # <<
   theme_void()
 ```
 
 ---
 
 ```{r, plot6, echo = FALSE}
-```
-
----
-
-#### Vamos Adicionar os valores de $perc$ no gráfico
-
-```{r, plot6_1, eval=FALSE}
-dados_turmas %>%
-  group_by(cor_cabelo) %>% #<< 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100) %>%
-  ggplot(aes(x="",y=fi, fill=cor_cabelo)) +
-  geom_bar(stat="identity") +
-  coord_polar("y", start=0) +
-  theme_void() +
-  geom_text(
-    aes(
-      label=paste0(round(perc), "%")), #<<
-      position=position_stack(vjust = 0.5)) #<<
-```
-
----
-
-```{r, plot6_1, echo = FALSE}
 ```
 
 
@@ -456,13 +458,13 @@ dados_turmas %>%
     aes(label = paste(cor_cabelo, 
                       paste0(round(perc, 2), "%"), sep = "\n")), 
     colour = "black") +
-  theme(legend.position = "none") +
-  scale_fill_manual(values = c("salmon4",
-                               "burlywood4",
-                               "orange4",
-                               "darkgray"))
+  theme(legend.position = "none")
 ```
 
+---
+
+```{r, plot6_5, echo = FALSE}
+```
 ---
 class: middle, center, inverse
 
@@ -483,8 +485,6 @@ dados_turmas %>%
   mutate(fi = ni/sum(ni),    
          perc = fi*100)    
 ```
-
-
 ---
 
 ```{r,echo=FALSE}
@@ -521,6 +521,7 @@ dados_turmas %>%
          perc = fi*100)    
 
 ```
+
 
 ```{r,echo=FALSE}
 tab <- dados_turmas %>%
