@@ -51,11 +51,11 @@ Nessa notação um valor típico da variável *Altura*, será designado por $x_i
 
 ---
 
-**Somatória**: Ao realizar a análise de uma variável quantitativa é necessário somarmos todos os seus valores valores. 
+**Somatória**: Ao realizar a análise de uma variável quantitativa é necessário somar todos os seus valores. 
 
-Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
+Essa operação é frenquetemente utilizada na estatística, assim, utiliza-se uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
 
-Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega sigma maiúscula $\Sigma$:
+Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega *sigma* maiúscula $\Sigma$:
 
 Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses $5$ valores:
 
@@ -219,6 +219,7 @@ $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{
 $\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
 
 ---
+class: middle, center, inverse
 
 # Medidas de Posição 
 # (Tendência Central)
@@ -302,7 +303,7 @@ $$
 ```{r,eval=FALSE}
 dados_turmas %>% 
   summarise(
-    media = round(mean(idade_anos),5)
+    media = mean(idade_anos)
   )
 ```
 
@@ -325,7 +326,7 @@ $$
 
 ---
 
-### Cálculo da Média Aritmética pela Frequência Relativa
+### Tabela de frequência para idade
 
 ```{r,echo=FALSE}
 tab<-dados_turmas %>%
@@ -555,6 +556,14 @@ tibble(x) %>%
 ```
 
 ---
+
+class: center, middle, inverse
+
+# Medidas Separatrizes
+## (Quantis)
+
+---
+
 **QUANTIS**  
 
 É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 

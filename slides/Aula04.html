@@ -60,11 +60,11 @@ Nessa notação um valor típico da variável *Altura*, será designado por `\(x
 
 ---
 
-**Somatória**: Ao realizar a análise de uma variável quantitativa é necessário somarmos todos os seus valores valores. 
+**Somatória**: Ao realizar a análise de uma variável quantitativa é necessário somar todos os seus valores. 
 
-Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
+Essa operação é frenquetemente utilizada na estatística, assim, utiliza-se uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
 
-Portanto, dado a variável `\(X\)` a soma de todos seus valores será notada pela letra grega sigma maiúscula `\(\Sigma\)`:
+Portanto, dado a variável `\(X\)` a soma de todos seus valores será notada pela letra grega *sigma* maiúscula `\(\Sigma\)`:
 
 Dados `\(X = \{x_1, x_2, x_3, x_4, x_5\}\)`, a soma desses `\(5\)` valores:
 
@@ -232,6 +232,7 @@ Provar que:
 `\(\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0\)`
 
 ---
+class: middle, center, inverse
 
 # Medidas de Posição 
 # (Tendência Central)
@@ -328,15 +329,23 @@ $$
 ```r
 dados_turmas %&gt;% 
   summarise(
-    media = round(mean(idade_anos),5)
+    media = mean(idade_anos)
   )
 ```
 
 
-
-|    media|
-|--------:|
-| 21.04545|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; media &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 21.04545 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 $$
 `\begin{align}
@@ -348,21 +357,80 @@ $$
 
 ---
 
-### Cálculo da Média Aritmética pela Frequência Relativa
+### Tabela de frequência para idade
 
-
-| idade_anos| ni|        fi|      perc|
-|----------:|--:|---------:|---------:|
-|         18|  6| 0.1363636| 13.636364|
-|         19| 14| 0.3181818| 31.818182|
-|         20|  9| 0.2045455| 20.454545|
-|         21|  3| 0.0681818|  6.818182|
-|         22|  3| 0.0681818|  6.818182|
-|         23|  5| 0.1136364| 11.363636|
-|         24|  1| 0.0227273|  2.272727|
-|         27|  1| 0.0227273|  2.272727|
-|         28|  1| 0.0227273|  2.272727|
-|         49|  1| 0.0227273|  2.272727|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; idade_anos &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1363636 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.636364 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3181818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2045455 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20.454545 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0681818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0681818 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.818182 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1136364 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.363636 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 
 ---
@@ -566,6 +634,14 @@ Outra forma de definir a moda como uma medida de concentração relativamente gr
 &lt;img src="Aula04_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
+
+class: center, middle, inverse
+
+# Medidas Separatrizes
+## (Quantis)
+
+---
+
 **QUANTIS**  
 
 É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
@@ -634,24 +710,72 @@ As medidas de variação medem o grau com que os dados tendem a se distribuir em
 
 Dados o conjunto de `\(4\)` amostras da mesma variável (altura de planta em *cm*), calcule a média e a Amplitude total de cada amostra.
 
-
-| X1| X2|   X3|   X4|
-|--:|--:|----:|----:|
-|  9|  7|  0.6|  0.6|
-|  9|  8|  3.4|  9.0|
-|  9|  9|  9.8|  9.0|
-|  9| 10| 13.8|  9.0|
-|  9| 11| 17.4| 17.4|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; X4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
 Tabela de Médias 
 
 
-
-| media_X1| media_X2| media_X3| media_X4|
-|--------:|--------:|--------:|--------:|
-|        9|        9|        9|        9|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; media_X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media_X4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -660,10 +784,24 @@ Tabela de Amplitudes
 `\((\Delta = Máximo - Mínimo)\)`
 
 
-
-| Delta_X1| Delta_X2| Delta_X3| Delta_X4|
-|--------:|--------:|--------:|--------:|
-|        0|        4|     16.8|     16.8|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Delta_X4 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -680,14 +818,36 @@ Para resolvermos o problema da amplitude consideramos os desvios ou erros `\((e_
 
 Para os dados da amostra 3 `\((X3)\)` temos:
 
-
-|   X3| Desvios|
-|----:|-------:|
-|  0.6|    -8.4|
-|  3.4|    -5.6|
-|  9.8|     0.8|
-| 13.8|     4.8|
-| 17.4|     8.4|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -799,14 +959,30 @@ Matematicamente, graus de liberdade é o número de dimensões do domínio de um
 
 Tomemos como exemplo a amostra X3:
 
-
-|   X3|
-|----:|
-|  0.6|
-|  3.4|
-|  9.8|
-| 13.8|
-| 17.4|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 A média da amostra é dada pela soma dos valores dividido por `\(n\)`, ou seja, não existe qualquer restrição nesse cálculo pois, matematicamente, precisaremos de `\(n\)` elementos conhecidos para conhecer todo o vetor de dados `\(X3\)`.
 
@@ -816,14 +992,30 @@ A média da amostra é dada pela soma dos valores dividido por `\(n\)`, ou seja,
 
 Agora, tomemos o vetor de desvios de `\(X3\)` em relação à sua média:
 
-
-| Desvios|
-|-------:|
-|    -8.4|
-|    -5.6|
-|     0.8|
-|     4.8|
-|     8.4|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 Observe que não precisamos conhecer seus `\(n\)` elementos para conhecermos o vetor **Desvios**, basta conhecermos `\(n-1\)` elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero
 
 `\(\sum_{i=1}^n(x_i-\bar{x})=0\)`
