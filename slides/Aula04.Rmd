@@ -69,6 +69,18 @@ onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa
 
 ---
 
+#### Utilização da Função Frequência da Calculadora Científica:
+
+Limpe a memória da calculadora e entre com os dados $\{18, 18, 20, 20, 18, 19, 19, 20, 18, 20\}$. Organizando-os em tabela de frequência, temos:  
+
+Idade| $n_i$  | $f_i$
+:---|:---: | :--:   
+18 | 4  | 0,4
+19 | 2  | 0,2
+20 | 4  | 0,4
+
+![](img/calculadora09.png)
+---
 Dado duas variáveis  $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
 
 .pull-left[
@@ -229,7 +241,7 @@ Essas medidas, portanto, fornecem a posição da medida na reta real $(\Re)$ , o
 3. Moda
 
 ---
-### Média Populacional
+**Média Populacional**
 
 Para a população, a média é definida como:
 
@@ -240,7 +252,7 @@ Para a população, a média é definida como:
 Onde $N$ é o tamanho da população (e geralmente não a conhecemos). 
 
 
-### Média amostral
+**Média amostral**
 
 É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da somatória dos valores das observações dessa variável. 
 
@@ -253,7 +265,7 @@ Onde $n$ é o tamanho da amostra.
 
 ---
 
-O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $79$ alunos (`idade_anos`). Observe que a média tem a mesma unidade de medida que a das observações individuais. 
+O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $44$ alunos (`idade_anos`). Observe que a média tem a mesma unidade de medida que a das observações individuais. 
 
 **Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
 
@@ -284,7 +296,7 @@ glimpse(dados_turmas)
 ### Cálculo da Média Aritmética 
 
 $$
-\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+19}{79} = 20,26582\text{ anos} 
+\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+23}{44} = 21,04545\text{ anos} 
 $$
 
 ```{r,eval=FALSE}
@@ -306,8 +318,8 @@ kableExtra::kable(tab)
 $$
 \begin{align}
 \bar{x} & = \sum_{i=1}^kf_i \cdot x_i \\
-\bar{x} & = 18\cdot(0,1392)+19\cdot(0,3544304	) + \cdots + 28(0,0253165) \\
-\bar{x} & = 20,26582\;anos
+\bar{x} & = 18\cdot(0,1363)+19\cdot(0,3181818	) + \cdots + 49(0,0227273) \\
+\bar{x} & = 21,04545\;anos
 \end{align}
 $$
 
@@ -335,7 +347,7 @@ dados_turmas %>%
   geom_histogram(bins=7, 
                  color="black", 
                  fill="gray")+
-  geom_vline(xintercept = 20.9184, #<<
+  geom_vline(xintercept = 21, #<<
              color="blue") #<<
 ```
 
@@ -369,12 +381,12 @@ dados_turmas %>%
                  color="black", 
                  fill="gray")+
   geom_vline(
-    xintercept = 1.7242, 
+    xintercept = 1.7257, 
     color="blue") 
 ```
 
 $$
-\bar{x} = \frac{1,68 + 1,59 + \cdots+1,60}{79} =  1,7236\text{ m}
+\bar{x} = \frac{1,68 + 1,59 + \cdots+1,80}{44} =  1,7257\text{ m}
 $$
 
 
@@ -400,15 +412,13 @@ Onde $\lambda_i$ é o peso associado à i-ésima observação. Assim, ele mede a
 <img src="https://arpanosso.github.io/estatinfo/slides/img/tab_broca.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
 
 
-$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10}$
-
-$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{1257,22}{113}=11,126%$
+$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+4\cdot(3,20)}{12+40+4}=12,58\%$
 
 No R:
 
 ```{r}
-pesos<-c(12,40,4,2,6,18,21,10)
-X <- c(9.1,14.57,3.2,2.89,8.74,11.7,10.10,7.15)
+pesos<-c(12,40,4)
+X <- c(9.1,14.57,3.2)
 weighted.mean(X, pesos)
 ```
 
