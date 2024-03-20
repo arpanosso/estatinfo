@@ -1,0 +1,1125 @@
+---
+# Para transformar em PDF, usar: 
+# pagedown::chrome_print("slides/Aula04.html")
+# imagens https://www.pexels.com/pt-br/
+# gifs https://giphy.com/
+title: "Estatística e Informática"
+subtitle: "Aula 04 - Medidas Estatísticas"
+author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
+institute: "Departamento de Ciências Exatas FCAV/UNESP"
+date: "(21-03-2024)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+options(dplyr.print_min = 5, dplyr.print_max = 5)
+```
+class: middle, center, inverse
+
+
+
+# SOMATÓRIA
+
+---
+
+**Conjunto de dados**: Nessa notação, a variável numérica de interesse (altura, idade ou peso, por exemplo) será representada pelas letras maiúsculas do nosso alfaveto latino $X$, $Y$, $Z.$
+
+O conjunto de dados terá o tamanho $n$, que representa o número de elementos que ele contém. Em outras palavras, $n$ representa o tamanho da amostra, o **número de observações** ou de **realizações** da variável.
+
+Os valores específicos assumidos por tais variáveis serão representados pelas letras minúsculas $x$, $y$ e $z$, respectivamente, seguidas de um índice $i$ que representa a posição daquele valor específico dentro do conjunto de dados. 
+
+Assim, para distinguir um valor do outro, utilizamos esse índice  $i$, que pode ser entendido como uma *variável auxiliar*, utilizada para contagem, que se inicia na posição $1$ e termina na última posição, $n$, abrangendo todo o seu conjunto de dados.
+
+Assim temos:
+
+$\text{Altura}: X = \{x_1, x_2, ..., x_n\}, \text{ com  }i = 1,2,..,n.$
+
+$\text{Idade}: Y = \{y_1, y_2, ..., y_n\}, (i = 1,2,..,n).$
+
+$\text{Peso}: Z = \{z_1, z_2, ..., z_n\}, (i = 1,2,..,n).$
+
+Nessa notação um valor típico da variável *Altura*, será designado por $x_i$ e o valor final por $x_n$. 
+
+---
+
+**Somatória**: Ao realizar a análise de uma variável quantitativa é necessário somarmos todos os seus valores valores. 
+
+Essa operação é frenquetemente utilizada na estatística, assim, utilizaremos uma notação compacta para representar a soma de todos os valores de uma variável de interesse. 
+
+Portanto, dado a variável $X$ a soma de todos seus valores será notada pela letra grega sigma maiúscula $\Sigma$:
+
+Dados $X = \{x_1, x_2, x_3, x_4, x_5\}$, a soma desses $5$ valores:
+
+$x_1 + x_2 + x_3 + x_4 + x_5$
+
+será representada pela notação:
+
+$\sum\limits_{i=1}^{n}{x_i}$ ou $\sum_{i=1}^{n}{x_i}$
+
+onde $i$ atua como o índice, ou seja, a cada *iteração* ele muda e representa um dos $5$ valores  de $X$.
+
+---
+
+Dado duas variáveis  $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+.pull-left[
+$\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24$
+]
+
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+X <- c(3,0,5,9,7)
+sum(X)
+```
+]
+
+Ao invés da soma ser com os índices $i$ de 1 a $n$, podemos ter, por exemplo:
+.pull-left[
+
+$\sum\limits_{i=2}^{4}{y_i} = 3+9+1 = 13$
+]
+
+.pull-right[
+
+```{r, echo=TRUE, eval=FALSE}
+Y <- c(2,3,9,1,2)
+sum(Y[2:4])
+```
+]
+
+.pull-left[
+Observe que:
+
+$\sum\limits_{i=1}^{n}{x_i}^2 \neq \left( \sum\limits_{i=1}^{n}{x_i} \right)^2$
+
+uma vez que:
+
+$3^2+0^2+5^2+9^2+7^2 \neq  (3+0+5+9+7)^2$
+
+$9+0+25+81+49 \neq  (24)^2$
+
+$164 \neq  576$
+]
+
+.pull-right[
+
+
+```{r, echo=TRUE, eval=FALSE}
+sum(X^2)
+sum(X)^2
+```
+]
+
+---
+Qual a somatória do produto entre as variáveis $X$ e $Y$:
+
+Dado $X = \{3,0,5,9,7\}$ e $Y = \{2,3,9,1,2\}$, calcular:
+
+$\sum\limits_{i=1}^{n}{x_iy_i}$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= x_1 \cdot y_1 + x_2 \cdot y_2 + x_3 \cdot y_3 + x_4 \cdot y_4 + x_5 \cdot y_5$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 3 \cdot (2) + 0\cdot( 3) + 5 \cdot(9) + 9 \cdot(1) + 7 \cdot(2)$
+
+$\sum\limits_{i=1}^{n}{x_i y_i}= 6 + 0 + 45 + 9 + 14 = 74$
+
+
+```{r, echo=TRUE, eval=FALSE}
+sum(X*Y)
+```
+
+---
+
+**Propriedades da Somatória**
+    
+**i)** A somatória de uma constante $(k)$ é igual ao produto  $n \cdot k$.
+
+$\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k$
+
+---
+
+**ii)** A somatória dos produtos de uma constante $k$ e uma variável $X$ é igual ao produto da constante pela soma dos valores da variável.
+
+$\sum\limits_{i=1}^{n}{k \cdot x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}$ 
+
+---
+
+**iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)$
+
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)$
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)}=(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)$
+
+$\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}$
+
+---
+
+## Exercícios
+
+1) Calcular: $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+
+
+2) Dado a média sendo: 
+
+$\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+Provar que:
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}=0$
+
+---
+
+### Resposta
+
+1) Calcular, portanto $\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?$
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{ k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{k \cdot x_i} + \sum\limits_{i=1}^{n}k$
+
+$\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = k \cdot \sum\limits_{i=1}^{n}{x_i} + n \cdot k$
+
+---
+
+### Resposta
+
+2) Dado: $\bar{x} = \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$, 
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}}$
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}}$
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n}$
+
+$\sum\limits_{i=1}^{n}{(x_i-\bar{x})}= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} =0$
+
+---
+
+# Medidas de Posição 
+# (Tendência Central)
+
+---
+## Medidas de posição
+
+São respostas breves e rápidas que sintetizam a informação não de uma forma de completa descrição dos dados ou eventual modelagem. 
+
+Essas medidas, portanto, fornecem a posição da medida na reta real $(\Re)$ , ou seja, informa sobre a posição de um conjunto de dados. As principais medidas são: 
+
+1. Média:  
+ - **Aritmética**
+ - **Ponderada**
+ - Geométrica (Apostila)
+ - Harmônica (Apostila)
+
+2. Mediana 
+
+3. Moda
+
+---
+### Média Populacional
+
+Para a população, a média é definida como:
+
+ $$
+ \mu = \frac{\sum \limits_{i=1}^N x_i} {N}, \text{com } i=1,2,...,N.
+ $$
+ 
+Onde $N$ é o tamanho da população (e geralmente não a conhecemos). 
+
+
+### Média amostral
+
+É a mais utilizada das medidas de posição. A média aritmética de um conjunto de $n$ observações da variável aleatória $X$, é o quociente da divisão por $n$ da somatória dos valores das observações dessa variável. 
+
+A média amostral $\bar{x}$ é a estimativa mais **eficiente**, **imparcial** e **consistente** da média da população $\mu$. 
+ 
+ $$
+   \bar{x} = \frac{\sum \limits_{i=1}^nx_i} {n}, \text{com} \; i=1,2,...,n.
+ $$
+Onde $n$ é o tamanho da amostra.
+
+---
+
+O exemplo a seguir apresentará o cálculo da média amostral da idade em anos de $79$ alunos (`idade_anos`). Observe que a média tem a mesma unidade de medida que a das observações individuais. 
+
+**Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
+
+```{r,message=FALSE,error=FALSE,warning=FALSE}
+# Carregando pacotes
+library(tidyverse)
+library(readxl)
+```
+
+Lendo o banco de dados no R
+
+```{r,echo=FALSE}
+dados_turmas <- read_excel("../data/dados_turmas.xlsx")
+```
+
+
+```{r,eval=FALSE}
+dados_turmas <- read_excel("data/dados_turmas.xlsx")
+```
+
+
+```{r,message=FALSE,error=FALSE,warning=FALSE}
+# Resumo rápido dos dados
+glimpse(dados_turmas)
+```
+---
+
+### Cálculo da Média Aritmética 
+
+$$
+\bar{x} = \frac{\sum_{i=1}^nx_i}{n} = \frac{19+20+ \cdots+19}{79} = 20,26582\text{ anos} 
+$$
+
+```{r,eval=FALSE}
+dados_turmas %>% 
+  summarise(
+    media = round(mean(idade_anos),5)
+  )
+```
+
+
+```{r,echo=FALSE}
+tab<-dados_turmas %>% 
+  summarise(
+    media = round(mean(idade_anos),5)
+  )  
+kableExtra::kable(tab)
+```
+
+$$
+\begin{align}
+\bar{x} & = \sum_{i=1}^kf_i \cdot x_i \\
+\bar{x} & = 18\cdot(0,1392)+19\cdot(0,3544304	) + \cdots + 28(0,0253165) \\
+\bar{x} & = 20,26582\;anos
+\end{align}
+$$
+
+---
+
+### Cálculo da Média Aritmética pela Frequência Relativa
+
+```{r,echo=FALSE}
+tab<-dados_turmas %>%
+        group_by(idade_anos) %>% 
+        summarise(ni=n()) %>%      
+        mutate(fi = ni/sum(ni),    
+             perc = fi*100)  
+kableExtra::kable(tab)
+```
+
+
+---
+**Histograma e média para idade_anos**
+
+
+```{r,,echo=FALSE, out.width="50%"}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos, y=..density..)) +
+  geom_histogram(bins=7, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(xintercept = 20.9184, #<<
+             color="blue") #<<
+```
+
+Se os dados são plotados como um histograma a média é o centro de gravidade do gráfico (linha azul). 
+
+Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria horizontalmente com o ponto de apoio em $\bar{x}$. 
+
+
+
+
+---
+
+**Histograma e média para altura**
+
+
+```{r}
+dados_turmas %>% 
+  pull(altura) %>% 
+  mean()
+```
+
+
+```{r, echo=FALSE,out.width="40%"}
+k <- 5
+Di <- diff(range(dados_turmas %>% pull(altura)))/k
+limites <- min(dados_turmas %>% pull(altura))+ 0:k * Di
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=5, 
+                 breaks = limites,
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+    xintercept = 1.7242, 
+    color="blue") 
+```
+
+$$
+\bar{x} = \frac{1,68 + 1,59 + \cdots+1,60}{79} =  1,7236\text{ m}
+$$
+
+
+
+
+Observe o histograma e a média para a variável `altura`, e compare sua simetria com o histograma da variável `idade_anos`.
+---
+
+## Média Ponderada
+
+Em algumas situações as observações têm graus de importância diferentes. Usa-se, então, a média ponderada:
+
+$$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i}$$
+
+Onde $\lambda_i$ é o peso associado à i-ésima observação. Assim, ele mede a importância relativa dessa i-ésima observação em relação às demais.
+---
+
+**Exemplo**: Calcular a intensidade média de infestação do complexo "Broca-podridão" da cana-de-açúcar, larva de lepidóptera (*Diatraea saccharalis*) em plantas jovens associado à infecção por fungos, causando a podridão vermelha (*Colletotrichum falcatum*), em $8$ variedades plantadas em uma propriedade rural.
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/broca_podridao.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+---
+<img src="https://arpanosso.github.io/estatinfo/slides/img/tab_broca.png" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
+
+
+$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{12\cdot(9,10)+40\cdot(14,57)+...+10\cdot(7,15)}{12+40+\cdots+10}$
+
+$\bar{x}_P = \frac{\sum\limits_{i=1}^{n}x_i \cdot \lambda_i}{\sum\limits_{i=1}^{n}\lambda_i} = \frac{1257,22}{113}=11,126%$
+
+No R:
+
+```{r}
+pesos<-c(12,40,4,2,6,18,21,10)
+X <- c(9.1,14.57,3.2,2.89,8.74,11.7,10.10,7.15)
+weighted.mean(X, pesos)
+```
+
+
+---
+## Mediana
+
+É o valor que ocupa a posição central do conjunto de dados ordenados $(X' \text{ ou } X_o)$ que pode ser denotada por $Md$. 
+
+Assim, antes de encontrar ou calcular a mediana as observações são ordenadas do menor para o maior valor.
+
+o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número de observações é grande.
+
+A mediana será encontrada ou calculada em função do número de observações $n$ presentes na base de dados, se acaso $n$ for *par* ou *ímpar*:
+
+Se $n$ é ímpar: $Md = Xo_{\left(\frac{n+1}{2}\right)}$
+
+Se $n$ é par: $Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$
+---
+
+**Exemplo 1**:  
+
+Dado $X=\{50, 60, 20, 50, 30, 90, 70\}$, teremos a sua versão ordenada $X_0$ dada por:
+
+$X_o=\{20, 30, 50, 50, 60, 70 ,90 \}$, então,
+
+$n=7$, ímpar.
+
+$Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50$
+
+
+No R:
+```{r}
+X=c(20, 30, 50, 50, 60, 70 ,90)
+median(X)
+```
+Observe que a unidade da mediana é a mesma dos dados originais.
+
+---
+
+### Media e Mediana
+
+Em uma distribuição simétrica (como a da variável `altura`), a mediana amostral também é uma estimativa imparcial e consistente de média populacional $\mu$, contudo não é tão eficiente como a média amostral $\bar{x}$.
+
+
+
+```{r}
+dados_turmas %>% 
+  pull(altura) %>% 
+  median()
+```
+
+
+```{r, echo=FALSE,out.width="40%"}
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = c(1.7242,1.74), #<<
+    color=c("blue","red")) #<<
+```
+
+
+---
+
+**Exemplo 2**: Calcular a média e a mediana dos dados de salário (nº salário mínimos), que diz respeito à uma amostra de $6$ colaboradores de uma empresa.
+
+$$S=\{ 5, 2, 3, 6, 10, 9\}$$
+$n=6$, par.
+
+$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: $So=\{ 2, 3, 5, 6, 9, 10\}$, então a mediana será dada por:
+
+$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}$.
+
+A média será dada por:
+
+$\bar{x}= \frac{2+3+5+6+9+10}{6} = 5,83 \text{ salários mínimos}$
+
+
+---
+
+Imagine que, ao invés de $10$, o novo valor de ganho do 5º colaborador da amostra seja $100$, calcule a média e a mediana novamente para essa variável: 
+
+$$
+S=\{ 5, 2, 3, 6, 100, 9\}
+$$
+$n=6$, par.
+
+$$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2}$$
+
+Assim, para os dados de salários temos:
+
+Vetor ordenado: $So=\{ 2, 3, 5, 6, 9, 100\}$, então a mediana será dada por:
+
+$Md = \frac{ Xo_{\left(\frac{n}{2} \right) } + Xo_{\left(\frac{n}{2} +1\right) } }{2} = \frac{ Xo_{\left(3 \right) } + Xo_{\left(4\right) } }{2}= \frac{ 5 + 6}{2} = 5,5 \text{ salários mínimos}$.
+
+A média será dada por:
+
+$\bar{x}= \frac{2+3+5+6+9+100}{6} = 20,83 \text{ salários mínimos}$
+
+Concluímos, então, que a mediana não é afetada por observações muito grandes ou muito pequenas, enquanto que a presença de tais extremos tem um significante efeito sobre a média.
+
+---
+
+## Moda
+
+
+A moda é comumente definida como a medição que ocorre com mais frequência em um conjunto de dados.
+
+Para os dados de `idade_anos` o valor mais presente do conjunto de dados é $19$ anos.
+
+Portanto, podemos ter distribuições com mais de um valor mais frequente (plurimodal), ou mesmo sem moda (amodal).
+
+
+
+
+---
+
+Outra forma de definir a moda como uma medida de concentração relativamente grande, pois algumas distribuições de frequência podem ter mais de um ponto de concentração, embora essas concentrações possam não conter, precisamente, as mesmas frequências.
+
+```{r, out.width="50%", echo=FALSE}
+x<-c(6, 7, 7, 8, 8, 8, 8, 8, 8, 9, 9, 10, 11, 
+     12, 12, 12, 12, 12, 13, 13, 14)
+tibble(x) %>% 
+  ggplot(aes(x=x,y=..density..)) +
+  geom_histogram(bins = 9,
+                 color="black",
+                 fill="lightgray")
+```
+
+---
+**QUANTIS**  
+
+É a extensão da noção de mediana, ou seja, são observações que dividem o conjunto ordenado de dados. 
+
+- Os Quantis de ordem $25$, $50$, $75$ são chamados **Quartis** (Q1, Q2, Q3).  Naturalmente, Q2 = mediana (Md). 
+
+- Os **Decis** são os quantis de ordem $10$, $20$, ..., $90$  (D1, D2, ..., D9)
+
+- Os **Percentis** são os quantis de ordem $1$, $2$, ..., $99$ (P1, P2, ..., P99).
+
+
+No R, ele podem ser encontrados por meio da função `quantile()` que tem como argumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor desejado.
+
+```{r}
+dados_turmas %>% 
+  summarise(
+    q1=quantile(altura, 0.25),
+    q2=quantile(altura, 0.50),
+    q3=quantile(altura, 0.75),
+  )
+```
+
+---
+
+## Histograma da variável altura de alunos
+
+```{r,plot14,echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura,y=..density..)) +
+  geom_histogram(bins=6,
+                 breaks=limites,
+                 col="black",
+                 fill="gray") +
+  geom_vline(xintercept=c(1.65,1.74,1.78), #<<
+             color="red",lwd=1,
+             linetype=2)+ 
+  theme_bw()
+```
+
+
+
+---
+class: middle, center, inverse
+
+# Medidas de Dispersão 
+# (Variabilidade)
+
+---
+
+**Medidas de Dispersão**: 
+
+O resumo de um conjunto de dados, por meio de uma única medida representativa de posição central, esconde toda informação sobre a variabilidade do conjunto de valores. 
+
+As medidas de variação medem o grau com que os dados tendem a se distribuir em torno de um valor central. 
+
+- Amplitude total
+- Variância 
+- Desvio Padrão
+- Erro Padrão da Média 
+- Coeficiente de Variação
+
+**Coeficientes de formas de distribuição**:
+- Coeficiente de Assimetria
+- Coeficiente de Curtose 
+
+---
+
+**Exemplo**:
+
+Dados o conjunto de $4$ amostras da mesma variável (altura de planta em *cm*), calcule a média e a Amplitude total de cada amostra.
+
+```{r,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  kableExtra::kable()
+```
+
+---
+
+Tabela de Médias 
+
+
+```{r,,plot15,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  summarise( 
+    media_X1 = mean(X1),
+    media_X2 = mean(X2),
+    media_X3 = mean(X3),
+    media_X4 = mean(X4)
+  )%>% 
+  kableExtra::kable()
+```
+
+---
+
+Tabela de Amplitudes 
+
+$(\Delta = Máximo - Mínimo)$
+
+
+```{r,plot16,echo=FALSE}
+X1<-c(9,9,9,9,9)
+X2<-c(7,8,9,10,11)
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+X4<-c(0.6,9,9,9,17.4)
+tibble(X1,X2,X3,X4) %>% 
+  summarise( 
+    Delta_X1 = diff(range(X1)),
+    Delta_X2 = diff(range(X2)),
+    Delta_X3 = diff(range(X3)),
+    Delta_X4 = diff(range(X4))
+  )%>% 
+  kableExtra::kable()
+```
+
+---
+
+- Apesar das amostras apresentarem o mesmo valor médio, a terceira $(X3)$ e quarta $(X4)$ amostras são as mais dispersas. 
+
+- As amostras $X3$ e $X4$, apesar do mesmo valor de média e amplitude, são bem distintas. Isso corre pois a Amplitude leva em consideração apenas **dois** valores do conjunto de dados, o conveniente seria considerar uma medida que utiliza-se todas as observações.
+
+---
+## Desvios ou erros $(e_i)$
+
+Para resolvermos o problema da amplitude consideramos os desvios ou erros $(e_i)$'s de cada observação em relação a um ponto de referência, no caso, a média aritmética do conjunto de dados, portanto, os desvios de cada observação é dado por:
+
+$$e_i = x_i - \bar{x}$$
+
+Para os dados da amostra 3 $(X3)$ temos:
+
+```{r,echo=FALSE}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+Desvios <- X3-mean(X3)
+tibble(X3,Desvios) %>% 
+  kableExtra::kable()
+```
+
+---
+
+Como demonstrado anteriormente, a somatória dos erros $e_i$ é sempre igual a zero:
+$$
+\begin{align}
+\sum\limits_{i=1}^{n}{(x_i-\bar{x})} &= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{\bar{x}} \\
+\sum\limits_{i=1}^{n}{(x_i-\bar{x})} &= \sum\limits_{i=1}^{n}{x_i}-n \cdot {\bar{x}} \\
+\sum\limits_{i=1}^{n}{(x_i-\bar{x})} &= \sum\limits_{i=1}^{n}{x_i}-n \cdot \frac{\sum\limits_{i=1}^{n}{x_i}}{n} \\
+\sum\limits_{i=1}^{n}{(x_i-\bar{x})} &= \sum\limits_{i=1}^{n}{x_i}-\sum\limits_{i=1}^{n}{x_i} \\
+\sum\limits_{i=1}^{n}{(x_i-\bar{x})} &= 0
+\end{align}
+$$
+
+
+
+---
+## Soma dos Quadrados dos Desvios (SDQ)
+
+Para evitar a inconveniência da somatória dos desvios ser igual a zero, para qualquer conjunto de dados, elevamos ao quadrado cada um dos valores de desvios $e_i$. 
+  
+$$e_i^2 = (x_i - \bar{x})^2$$
+
+e temos
+
+$$
+SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2
+$$
+
+A $SQD$ leva, também, a unidade dos dados ao quadrado e pode ser calculada no R:
+
+```{r}
+X3 <- c(0.6, 3.4, 9.8, 13.8, 17.4)
+sum((X3 - mean(X3))^2)
+```
+
+
+$SQD = 196,16 \;cm^2$
+---
+
+## Manipulação Algébrica da SQD:
+
+.pull-left[
+$SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2$
+$SQD = \sum \limits_{i=1}^n(x_i^2 - 2x_i \bar{x} + \bar{x}^2)$
+$SQD = \sum \limits_{i=1}^nx_i^2 - \sum \limits_{i=1}^n2x_i \bar{x} + \sum \limits_{i=1}^n \bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i  + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2\bar{x}\sum \limits_{i=1}^nx_i \times \frac{n}{n}  + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\frac{\sum \limits_{i=1}^nx_i}{n}  + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}\bar{x} + n\bar{x}^2$
+]
+
+.pull-right[
+
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - 2n\bar{x}^2 + n\bar{x}^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 - n\bar{x}^2$  
+$SQD = \sum \limits_{i=1}^nx_i^2 -n \left( \frac{\sum \limits_{i=1}^nx_i}{n} \right)^2$
+$SQD = \sum \limits_{i=1}^nx_i^2 -  n\frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n^2}$
+$SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}$
+]
+
+---
+
+Assim, temos outra fórmula para o cálculo da soma dos quadrados dos desvios
+
+
+$$SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}$$
+Essa fórmula é mais eficiente e simples do que a anterior pois não passa pelo cálculo dos desvios individuais.
+
+No R:
+
+```{r}
+n <- length(X3)
+sum(sum(X3^2) - sum(X3)^2/n)
+```
+
+$SQD = 196,16 \;cm^2$
+
+---
+
+## Variância amostral $(s^2)$
+
+Agora podemos definir a mais importante medida de variabilidade, a variância. 
+
+Ela será a soma de quadrado dos desvios, dividida pelos seus **graus de liberdade (GL) ** ( $DF$ do inglês - *degrees of freedom*).
+
+Ou seja:
+
+$$s^2 = \frac{SQD}{GL}$$
+
+---
+
+**Grau de liberdade** é o número de observações independentes de uma estatística, após aplicada uma restrição. Ou seja, número de maneiras independentes pelas quais um sistema dinâmico pode se mover, sem violar qualquer restrição imposta a ele. Em outras palavras, o número de graus de liberdade pode ser definido como o número mínimo de coordenadas independentes que podem especificar a posição do sistema completamente.
+
+Matematicamente, graus de liberdade é o número de dimensões do domínio de um vetor aleatório, ou essencialmente o número de componentes "livres" (**quantos componentes precisam ser conhecidos antes que o vetor seja totalmente determinado**).
+
+---
+
+Tomemos como exemplo a amostra X3:
+
+```{r,echo=FALSE}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+tibble(X3) %>% 
+  kableExtra::kable()
+```
+
+A média da amostra é dada pela soma dos valores dividido por $n$, ou seja, não existe qualquer restrição nesse cálculo pois, matematicamente, precisaremos de $n$ elementos conhecidos para conhecer todo o vetor de dados $X3$.
+
+$\bar{x} = \frac{0,6+3,4+9,8+13,8+17,4}{n} = 9\;cm$
+
+---
+
+Agora, tomemos o vetor de desvios de $X3$ em relação à sua média:
+
+```{r,echo=FALSE}
+X3<-c(0.6,3.4,9.8,13.8,17.4)
+Desvios <- X3-mean(X3)
+tibble(Desvios) %>% 
+  kableExtra::kable()
+```
+Observe que não precisamos conhecer seus $n$ elementos para conhecermos o vetor **Desvios**, basta conhecermos $n-1$ elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero
+
+$\sum_{i=1}^n(x_i-\bar{x})=0$
+
+Portanto, qualquer elemento do vetor **Desvios** pode ser conhecido pelas somas dos demais elementos multiplicada por $(-1)$, ou seja:
+
+$-8,4= - (-5,6+0,8+4,8+8,4)$  
+$-5,6= - (-8,4+0,8+4,8+8,4)$  
+$+0,8= - (-8,4-5,6+4,8+8,4)$  
+$+4,8= - (-8,4-5,6+0,8+8,4)$  
+$+8,4= - (-8,4-5,6+0,8+4,8)$  
+
+
+---
+
+Lembrando que:
+
+$$
+SQD = \sum_{i=1}^n (x_i-\bar{x})^2
+$$
+
+Então essa estatística tem $n-1$ graus de liberdade, levando para o cálculo da variância amostral, temos:
+
+
+$$s^2 = \frac{\sum \limits_{i=1}^n(x_i-\bar{x})^2}{n-1}$$
+
+
+
+ou, pela segunda fórmula da SQD
+
+
+$$s^2 = \frac{ \sum_{i=1}^n{xi^2}-\frac{\left(\sum_{i=1}^nx_i\right)^2}{n}}{n-1}$$
+
+
+A variância é a medida de dispersão que leva em conta todos as observações, definida como a média da soma de quadrados dos desvios (SQD) em relação à média aritmética: Para uma população, temos:
+
+$$\sigma^2 = \frac{\sum \limits_{i=1}^N (x_i-\mu)^2}{N}$$
+
+---
+Para os dados de $X3$, podemos calcular a variância como:
+
+No R:
+
+```{r}
+var(X3)
+```
+
+$SQD = 49,04 \;cm^2$
+
+---
+
+## Desvio Padrão
+
+A *variância* apresenta a unidade dos dados quadrática, o que dificulta a sua comparação e interpretação. Portanto, podemos tomar a raiz quadrada da variância, que é denominada **desvio padrão amostral** (quando calculado a partir da variância amostral): 
+
+$$
+s=\sqrt{s^2}
+$$  
+
+Para a população temos: $\sigma=\sqrt{\sigma^2}$
+
+A vantagem dessa estatística é que ela apresenta a mesma unidade dos dados originais.
+
+No R:
+```{r}
+sd(X3)
+```
+
+---
+## Erro padrão da média $[s(m)]$
+
+Ao tomarmos uma amostragens da mesma população, tendo essas amostras individuais com tamanho $(n)$, obteremos diversas estimativas da média, distintas entre si. A partir dessas diversas estimativas da média, podemos estimar a variância, considerando os desvios de cada média, em relação à média de todas as amostras. Temos, portanto, uma estimativa da variância média, denominadas **erro padrão da média**.
+
+Essa medida fornece a ideia de precisão da estimativa da média, ou seja, quanto *menor* ela for, **maior** a precisão terá a estimativa da média. E deve ser calculada como:
+
+$$s(m) = \frac{s}{\sqrt{n}}$$
+
+Portanto, o aumento de $n$, implica na diminuição no valor de $s(m)$ e aumento da precisão da estimativa da média amostral.
+
+```{r}
+sd(X3)/sqrt(length(X3))
+```
+
+$s(m) = 3,132 \;cm$
+---
+## Coeficiente de Variação (CV)
+
+Expressa percentualmente o desvio padrão por unidade de média, observe que a média e o desvio padrão apresentam a mesma unidade, portanto, o coeficiente de variação é um número adimensional.
+
+$$CV = 100 \cdot \frac{s}{\bar{x}}$$
+
+é interpretado como a variabilidade dos dados em relação à média.
+
+**Exemplo**: Suponha dois grupos de indivíduos, um deles com idades $\{3,1,5\}$ anos e no outro, têm idades ${55,57,53}$ anos. No primeiro grupo, a média de idade é $3$ anos e no segundo grupo $\bar{x}=55\;anos$ ambos com $s=2\;anos$. Onde o desvio padrão é mais importante? Por quê?
+
+```{r}
+cv <- function(x) 100*sd(x)/mean(x)
+g2<-c(55,57,53)
+cv(g2)
+```
+
+---
+
+Para Grupo 1
+
+$$
+CV = 100 \cdot \frac{2}{3} = 66,67\%
+$$
+Para Grupo 2
+
+$$
+CV = 100 \cdot \frac{2}{55} = 3,63\%
+$$
+Assim, desvios de $2$ anos são muito mais importantes para o primeiro grupo que para o segundo, isto é, a dispersão dos dados em torno da média é muito grande no primeiro grupo. 
+
+Deste modo, o $CV$ pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados, e variáveis.
+
+---
+class: middle, center, inverse
+
+# Medidas de Forma de Distribuição
+
+---
+
+## Introdução
+
+Observe a distribuição de frequência das variáveis teores de Areia, Silte e
+Argila (%) coletados em uma área experimental de Latossolo, utilizado na produção de cana-de-açúcar na região de Jaboticabal-SP:
+
+<img src="https://arpanosso.github.io/estatinfo/slides/img/distribuicoes.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"></img>
+
+
+---
+
+
+```{r,message=FALSE,warning=FALSE,error=FALSE,echo=FALSE, out.width="60%"}
+dados <- read.table("../data/transectos.txt",h=TRUE)
+dados %>% 
+  ggplot(aes(x=Areia,y=..count..)) +
+    geom_histogram(bins=15, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = 
+      c(dados %>%  pull(Areia) %>%  mean(),
+        dados %>%  pull(Areia) %>%  median()),
+    color=c("blue","red"))+
+  annotate("text", x = 40, y = 100, label = 
+             paste("Média = ", dados %>%  pull(Areia) %>%  mean() %>% round(digits = 2),
+                   "\nMediana = ", dados %>%  pull(Areia) %>%  median() %>% round(digits = 2)))+
+  coord_cartesian(xlim=c(0,80))
+```
+
+Para a **Areia**, a *Média* foi maior do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais baixos** de areia. 
+
+Nesse caso dizemos que a distribuição de frequência é **Assimétrica Positiva**, ou seja, a média está sendo influenciada por amostras com altos valores de areia.
+---
+
+```{r,message=FALSE,warning=FALSE,error=FALSE,echo=FALSE, out.width="60%"}
+dados %>% 
+  ggplot(aes(x=Silte,y=..count..)) +
+    geom_histogram(bins=15, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = 
+      c(dados %>%  pull(Silte) %>%  mean(),
+        dados %>%  pull(Silte) %>%  median()),
+    color=c("blue","red"))+
+  annotate("text", x = 40, y = 100, label = 
+             paste("Média = ", dados %>%  pull(Silte) %>%  mean() %>% round(digits = 2),
+                   "\nMediana = ", dados %>%  pull(Silte) %>%  median() %>% round(digits = 2)))+
+  coord_cartesian(xlim=c(0,50))
+```
+
+Observe que para o teor de **Silte** os valores de **Média** e **Mediana** foram semelhantes, existe um "pequena" diferença entre eles. 
+
+Nesses casos dizemos que a distribuição de frequência dos dados é **Simétrica**, ou seja, observações discrepantes (valores altos, ou baixos), não foram observadas.
+
+
+---
+```{r,message=FALSE,warning=FALSE,error=FALSE,echo=FALSE, out.width="60%"}
+dados %>% 
+  ggplot(aes(x=Argila,y=..count..)) +
+    geom_histogram(bins=15, 
+                 color="black",fill="gray")+
+  geom_vline(
+    xintercept = 
+      c(dados %>%  pull(Argila) %>%  mean(),
+        dados %>%  pull(Argila) %>%  median()),
+    color=c("blue","red"))+
+  annotate("text", x = 40, y = 100, label = 
+             paste("Média = ", dados %>%  pull(Argila) %>%  mean() %>% round(digits = 2),
+                   "\nMediana = ", dados %>%  pull(Argila) %>%  median() %>% round(digits = 2)))+
+  coord_cartesian(xlim=c(30,80))
+```
+
+Para o teor de **Argila**, a *Média* foi menor do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais altos** de argila. 
+
+Nesse caso dizemos que a distribuição de frequência é **Assimétrica Negativa**, ou seja, a média está sendo influenciada por amostras com baixos valores de argila.
+
+---
+
+## Coeficiente de Assimetria (Skewness – G1)
+
+A interpretação da diferença entre a média e a mediana é, muitas vezes, subjetiva, então, utilizamos esse coeficiente para resumir a assimetria das observações. 
+
+Este coeficiente indica se os desvios da média são maiores para um lado da distribuição do que para o outro. 
+
+É formalmente definido a partir do terceiro momento da média (OBS: a variância é o segundo momento *m2* e a média o primeiro momento *m1*).
+
+
+O terceiro momento pode ser computado como:
+
+$m_3 = \frac{1}{n} \cdot \sum_{i=1}^n(x_i-\bar{x})^3$
+
+assim,
+
+$$
+G_1=\frac{m_3}{m_2\sqrt{m_2}}=\frac{m_3}{s^3}
+$$
+
+---
+Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
+
+$$g_1 = \frac{n}{(n-1)(n-2)}\frac{\sum_{i=1}^n(x_i-\bar{x})^3}{s^3}$$
+
+No R, vamos utilizar a função `skewness()` do pacote `{agricolae}` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
+
+```{r}
+library(agricolae)
+dados_turmas %>% 
+  summarise(
+    g1_idade = skewness(idade_anos),
+    g1_altura = skewness(altura)
+  )
+```
+
+---
+
+- Se as observações apresentam distribuição simétrica, $g_1=0$, ou próximas a $0$ (**ALTURA**).
+
+- As observações apresentam **assimetria positiva** $(g_1 > 0)$ se o histograma apresenta uma influência dos valores mais altos, maiores que a média e a mediana (**IDADE_ANOS**).
+
+- As observações apresentam **assimetria negativa** $(g_1 < 0)$ se o histograma apresenta uma influência dos valores mais baixos, menores que a média e a mediana.
+
+
+---
+
+.pull-left[
+Distribuição **Assimétrica Positiva** $g_1=4.82$
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=idade_anos, y=..density..)) +
+  geom_histogram(bins=10, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(xintercept = 20.9184, #<<
+             color="blue") #<<
+```
+]
+
+
+.pull-right[
+Distribuição **Simétrica** $g_1=-0,00283$
+```{r, echo=FALSE}
+dados_turmas %>% 
+  ggplot(aes(x=altura, y=..density..)) +
+  geom_histogram(bins=6, 
+                 color="black", 
+                 fill="gray")+
+  geom_vline(
+    xintercept = c(1.7242), #<<
+    color=c("blue")) #<<
+```
+]
+
+---
+
+### Coeficiente de Curtose (Kurtosis – G2)
+
+Indica o grau de achatamento de uma distribuição, é a medida do peso das  caudas da distribuição. É formalmente definido a partir do quarto momento.
+
+$$G_2 = \frac{m_4}{s_4} -3\text{, sendo: } m_4=\frac{\sum_{i=1}^N(x_i-\bar{x})^4}{n} \text{, onde } s_4=Var(X)^2$$
+
+A estimativa do Coeficiente de Curtose é dada por $(g_2)$:
+
+$$g_2 = n(n+1) \frac{\frac{\sum \limits_{i=1}^n(x_1-\bar{x})^4}{s^4}}{(n-1)(n-2)(n-3)}-3\frac{(n-1)^2}{(n-2)(n-3)}$$
+---
+
+No R podemos calcular o coeficiente de curtose a partir da função `kurtosis` do pacote `{agricolae}`
+
+```{r}
+library(agricolae)
+dados_turmas %>% 
+  summarise(
+    g2_idade = kurtosis(idade_anos),
+    g2_altura = kurtosis(altura)
+  )
+```
+---
+Se as observações seguem uma distribuição **normal**, o próximas à normal, então o coeficiente de curtose é próximo a zero:
+$g_2 = 0$, nesse caso a distribuição é denominada **mesocúrtica**.
+
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/mesocurtica.png")
+```
+---
+Se o coeficiente de curtose é positivo, $g_2 > 0$, nesse caso o peso das caudas é baixo,  distribuição é denominada **leptocúrtica**.
+
+Se o coeficiente de curtose é negativo, $g_2 < 0$, nesse caso o peso das caudas é alto,  distribuição é denominada **platicúrtica**.
+
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/lepto_plati.png")
+```
+
