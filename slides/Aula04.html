@@ -92,36 +92,33 @@ Idade| `\(n_i\)`  | `\(f_i\)`
 ---
 Dado duas variáveis  `\(X = \{3,0,5,9,7\}\)` e `\(Y = \{2,3,9,1,2\}\)`, calcular:
 
-.pull-left[
-`\(\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24\)`
-]
 
-.pull-right[
+`\(\sum\limits_{i=1}^{n}{x_i} = 3+0+5+9+7 = 24\)`
+
+
+
 
 
 ```r
 X &lt;- c(3,0,5,9,7)
 sum(X)
 ```
-]
+
 
 Ao invés da soma ser com os índices `\(i\)` de 1 a `\(n\)`, podemos ter, por exemplo:
-.pull-left[
+
 
 `\(\sum\limits_{i=2}^{4}{y_i} = 3+9+1 = 13\)`
-]
 
-.pull-right[
 
 
 ```r
 Y &lt;- c(2,3,9,1,2)
 sum(Y[2:4])
 ```
-]
 
-.pull-left[
-Observe que:
+
+---
 
 `\(\sum\limits_{i=1}^{n}{x_i}^2 \neq \left( \sum\limits_{i=1}^{n}{x_i} \right)^2\)`
 
@@ -132,9 +129,7 @@ uma vez que:
 `\(9+0+25+81+49 \neq  (24)^2\)`
 
 `\(164 \neq  576\)`
-]
 
-.pull-right[
 
 
 
@@ -142,7 +137,6 @@ uma vez que:
 sum(X^2)
 sum(X)^2
 ```
-]
 
 ---
 Qual a somatória do produto entre as variáveis `\(X\)` e `\(Y\)`:
@@ -169,26 +163,20 @@ sum(X*Y)
     
 **i)** A somatória de uma constante `\((k)\)` é igual ao produto  `\(n \cdot k\)`.
 
-`\(\sum_{i=1}^{n}{k}= k + k + \cdots + k = n \cdot k\)`
+`\(\begin{aligned} \sum \limits_{i=1}^{n}{k} &amp;= k + k + \cdots + k \\ &amp;= n \cdot k\end{aligned}\)`
 
 ---
 
 **ii)** A somatória dos produtos de uma constante `\(k\)` e uma variável `\(X\)` é igual ao produto da constante pela soma dos valores da variável.
 
-`\(\sum\limits_{i=1}^{n}{k \cdot x_i} = k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n = k \cdot  (x_1 + x_2+ \cdots + x_n) = k \sum\limits_{i=1}^{n}{x_i}\)` 
+`\(\begin{aligned} \sum\limits_{i=1}^{n}{k \cdot x_i} &amp;= k \cdot x_1 + k \cdot x_2 + \cdots + k \cdot x_n \\ &amp;= k \cdot  (x_1 + x_2+ \cdots + x_n) \\ &amp;= k \sum\limits_{i=1}^{n}{x_i} \end{aligned}\)` 
 
 ---
 
 **iii)** A somatória da soma de duas variáveis é igual à adição das somatórias individuais dessas duas variáveis:
 
-`\(\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)\)`
 
-
-`\(\sum\limits_{i=1}^{n}{(x_i+y_i)} = (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n)\)`
-
-`\(\sum\limits_{i=1}^{n}{(x_i+y_i)}=(x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n)\)`
-
-`\(\sum\limits_{i=1}^{n}{(x_i+y_i)} = \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i}\)`
+`\(\begin{aligned} \sum\limits_{i=1}^{n}{(x_i+y_i)} &amp;= (x_1 + y_1 + x_2 + y_2 + \cdots + x_n + y_n) \\ &amp;= (x_1 + x_2 + \cdots + x_n) + (y_1 + y_2 + \cdots + y_n) \\ &amp;= \sum\limits_{i=1}^{n}{x_i} + \sum\limits_{i=1}^{n}{y_i} \end{aligned}\)`
 
 ---
 
@@ -209,7 +197,8 @@ Provar que:
 
 ### Resposta
 
-1) Calcular, portanto `\(\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?\)`
+1) 
+`\(\sum\limits_{i=1}^{n}{(k \cdot x_i+k)}=?\)`
 
 `\(\sum\limits_{i=1}^{n}{(k \cdot x_i+k)} = \sum\limits_{i=1}^{n}{ k \cdot x_i} + \sum\limits_{i=1}^{n}k\)`
 
@@ -288,21 +277,10 @@ O exemplo a seguir apresentará o cálculo da média amostral da idade em anos d
 # Carregando pacotes
 library(tidyverse)
 library(readxl)
-```
 
-Lendo o banco de dados no R
+# Lendo o banco de dados no R
+dados_turmas &lt;- read_excel("../data/dados_turmas.xlsx")
 
-
-
-
-
-```r
-dados_turmas &lt;- read_excel("data/dados_turmas.xlsx")
-```
-
-
-
-```r
 # Resumo rápido dos dados
 glimpse(dados_turmas)
 ```
@@ -333,19 +311,13 @@ dados_turmas %&gt;%
   )
 ```
 
+```
+#&gt; # A tibble: 1 × 1
+#&gt;   media
+#&gt;   &lt;dbl&gt;
+#&gt; 1  21.0
+```
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; media &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 21.04545 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 
 $$
 `\begin{align}
@@ -437,15 +409,11 @@ $$
 **Histograma e média para idade_anos**
 
 
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-12-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 Se os dados são plotados como um histograma a média é o centro de gravidade do gráfico (linha azul). 
 
 Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria horizontalmente com o ponto de apoio em `\(\bar{x}\)`. 
-
-
-
-
 ---
 
 **Histograma e média para altura**
@@ -463,7 +431,7 @@ dados_turmas %&gt;%
 ```
 
 
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-14-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-10-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 $$
 \bar{x} = \frac{1,68 + 1,59 + \cdots+1,80}{44} =  1,7257\text{ m}
@@ -484,7 +452,7 @@ Em algumas situações as observações têm graus de importância diferentes. U
 Onde `\(\lambda_i\)` é o peso associado à i-ésima observação. Assim, ele mede a importância relativa dessa i-ésima observação em relação às demais.
 ---
 
-**Exemplo**: Calcular a intensidade média de infestação do complexo "Broca-podridão" da cana-de-açúcar, larva de lepidóptera (*Diatraea saccharalis*) em plantas jovens associado à infecção por fungos, causando a podridão vermelha (*Colletotrichum falcatum*), em `\(8\)` variedades plantadas em uma propriedade rural.
+**Exemplo**: Calcular a intensidade média de infestação do complexo "Broca-podridão" da cana-de-açúcar, larva de lepidóptera (*Diatraea saccharalis*) em plantas jovens associado à infecção por fungos, causando a podridão vermelha (*Colletotrichum falcatum*), em `\(3\)` variedades plantadas em uma área de produção.
 
 &lt;img src="https://arpanosso.github.io/estatinfo/slides/img/broca_podridao.png" style=" display: block; margin-left: auto; margin-right: auto;width: 80%"&gt;&lt;/img&gt;
 
@@ -517,7 +485,7 @@ Assim, antes de encontrar ou calcular a mediana as observações são ordenadas 
 
 o valor da mediana é precedido e seguido pelo mesmo  número de observações. E a mediana amostral é a melhor estimativa da mediana populacional quando o número de observações é grande.
 
-A mediana será encontrada ou calculada em função do número de observações `\(n\)` presentes na base de dados, se acaso `\(n\)` for *par* ou *ímpar*:
+A mediana será encontrada ou calculada em função do número de observações `\(n\)` presentes na base de dados, se acaso `\(n\)` for *ímpar* ou *par*:
 
 Se `\(n\)` é ímpar: `\(Md = Xo_{\left(\frac{n+1}{2}\right)}\)`
 
@@ -567,7 +535,7 @@ dados_turmas %&gt;%
 ```
 
 
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-18-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-14-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -631,7 +599,7 @@ Portanto, podemos ter distribuições com mais de um valor mais frequente (pluri
 
 Outra forma de definir a moda como uma medida de concentração relativamente grande, pois algumas distribuições de frequência podem ter mais de um ponto de concentração, embora essas concentrações possam não conter, precisamente, as mesmas frequências.
 
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-15-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1171,14 +1139,14 @@ Argila (%) coletados em uma área experimental de Latossolo, utilizado na produ�
 ---
 
 
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-31-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-27-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 Para a **Areia**, a *Média* foi maior do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais baixos** de areia. 
 
 Nesse caso dizemos que a distribuição de frequência é **Assimétrica Positiva**, ou seja, a média está sendo influenciada por amostras com altos valores de areia.
 ---
 
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-32-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-28-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 Observe que para o teor de **Silte** os valores de **Média** e **Mediana** foram semelhantes, existe um "pequena" diferença entre eles. 
 
@@ -1186,7 +1154,7 @@ Nesses casos dizemos que a distribuição de frequência dos dados é **Simétri
 
 
 ---
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-33-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-29-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 Para o teor de **Argila**, a *Média* foi menor do que a *Mediana*, uma vez que a distribuição de frequência dessa variável indicou **uma maior concentração de observações nas classes de valores mais altos** de argila. 
 
@@ -1250,13 +1218,13 @@ dados_turmas %&gt;%
 
 .pull-left[
 Distribuição **Assimétrica Positiva** `\(g_1=4.82\)`
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-35-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .pull-right[
 Distribuição **Simétrica** `\(g_1=-0,00283\)`
-&lt;img src="Aula04_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula04_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
