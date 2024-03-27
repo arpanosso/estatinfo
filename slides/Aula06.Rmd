@@ -38,9 +38,10 @@ Na prática, os experimentos não são precisamente repetíveis, mesmo sob condi
 
 Um **experimento aleatório** pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes.
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png")
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
+knitr::include_graphics("img/exp_aleatorios.png")
 ```
+
 ---
 
 **Fenômeno aleatório:** É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade, portanto é proveniente de um **experimento aleatório**. 
