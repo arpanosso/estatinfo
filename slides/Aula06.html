@@ -32,9 +32,10 @@ class: center, middle, inverse, title-slide
 
 
 
+
 class: middle, center, inverse
 
-# Conceitos Básicos
+# Definições Iniciais
 
 ---
 
@@ -44,11 +45,13 @@ Fazer ou observar alguma coisa sob certas condições, resultando em algum estad
 
 Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
 
+
+&lt;img src="img/exp_aleatorios.png" width="85%" style="display: block; margin: auto;" /&gt;
+
 ### Experimento aleatório
 
 Pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes.
 
-&lt;img src="img/exp_aleatorios.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -73,10 +76,10 @@ Ganho de peso bovino
 
 ---
 
-
-### Espaço amostral ou Universo `\((S)\)`
+### Espaço amostral `\((S)\)`
 
 É o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra Ômega `\(\Omega\)` ou pelo `\(S\)`.   
+
 Assim, no lançamento de um dado, o espaço amostral é:
 
 `$$S = \{1, 2, 3, 4, 5, 6\}$$`
@@ -111,7 +114,6 @@ a) sair um número par:
 R: `\(E_1 = \{2, 4, 6\}\)`
 
 
-
 b) sair um número menor que `\(3\)`:  
 
 R: `\(E_2 = \{x| x&lt; 3 \} = \{1, 2\}\)` 
@@ -138,7 +140,7 @@ A determinação das probabilidade de um evento depende da natureza do experimen
 Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
 `\(S = \{H H, H T, T H, T T\}\)`.
 
-A título de exemplificação, vamos definir uma **variável aleatória `\(X\)`** que representa **a contagem do número de caras (H)** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
+A título de exemplificação, vamos definir uma **variável aleatória `\(X\)`** que representa **a contagem do número de caras (H)** no lançamento de duas moedas, ou no lançamento de uma moeda duas vezes, temos:
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png" width="70%" style="display: block; margin: auto;" /&gt;
 
@@ -158,14 +160,16 @@ Conclusões baseadas em dados empíricos, oriundos de uma observação experimen
 **Definição de Laplace de Probabilidade**
 .pull-left[
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg" alt="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia" width="40%" /&gt;
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg" alt="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia" width="50%" /&gt;
 &lt;p class="caption"&gt;Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia&lt;/p&gt;
 &lt;/div&gt;
   
 ]
 
 .pull-right[
-  &gt;"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis". Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  `\((H)\)` ou Coroa `\((T)\)`.
+  &gt;"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis". 
+  
+  Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  `\((H)\)` ou Coroa `\((T)\)`.
 Por assim definimos a Probabilidade de `\(H\)` como:
 ]
 
@@ -252,7 +256,7 @@ Podemos escrever:
 
 Empregando a propriedade `\(2\)` e `\(3\)`, temos:
 
-`\(P(U) = P(A)+P(\bar{A})\)`  
+`\(P(S) = P(A)+P(\bar{A})\)`  
 
 `\(1 = P(A)+P(\bar{A})\)`  
 
@@ -490,9 +494,6 @@ Finalmente, temos:
 
 `\(P(A \cup B) =  P(A)  + P(B) -  P(A \cap B)\)`
 
-como queríamos demonstrar.
-
-
 ---
 
 #### Teorema 4
@@ -505,8 +506,6 @@ P(A \cup B \cup C) = P(A)+P(B)+P(C) - P(A \cap B) - \\
   P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)
 \end{align}`
 $$
-
-
 ---
 
 #### Resposta

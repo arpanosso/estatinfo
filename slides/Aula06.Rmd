@@ -24,9 +24,10 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
 options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
+
 class: middle, center, inverse
 
-# Conceitos Básicos
+# Definições Iniciais
 
 ---
 
@@ -36,13 +37,15 @@ Fazer ou observar alguma coisa sob certas condições, resultando em algum estad
 
 Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
 
-### Experimento aleatório
-
-Pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes.
 
 ```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("img/exp_aleatorios.png")
 ```
+
+### Experimento aleatório
+
+Pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes.
+
 
 ---
 
@@ -73,10 +76,10 @@ knitr::include_graphics("https://images.pexels.com/photos/3214973/pexels-photo-3
 
 ---
 
-
-### Espaço amostral ou Universo $(S)$
+### Espaço amostral $(S)$
 
 É o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra Ômega $\Omega$ ou pelo $S$.   
+
 Assim, no lançamento de um dado, o espaço amostral é:
 
 $$S = \{1, 2, 3, 4, 5, 6\}$$
@@ -113,7 +116,6 @@ a) sair um número par:
 R: $E_1 = \{2, 4, 6\}$
 
 
-
 b) sair um número menor que $3$:  
 
 R: $E_2 = \{x| x< 3 \} = \{1, 2\}$ 
@@ -140,7 +142,7 @@ A determinação das probabilidade de um evento depende da natureza do experimen
 Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
 $S = \{H H, H T, T H, T T\}$.
 
-A título de exemplificação, vamos definir uma **variável aleatória $X$** que representa **a contagem do número de caras (H)** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
+A título de exemplificação, vamos definir uma **variável aleatória $X$** que representa **a contagem do número de caras (H)** no lançamento de duas moedas, ou no lançamento de uma moeda duas vezes, temos:
 
 ```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png")
@@ -161,14 +163,16 @@ Conclusões baseadas em dados empíricos, oriundos de uma observação experimen
 
 **Definição de Laplace de Probabilidade**
 .pull-left[
-```{r,out.width = "40%",fig.cap="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia",fig.align = 'center',echo=FALSE}
+```{r,out.width = "50%",fig.cap="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg")
 ```
   
 ]
 
 .pull-right[
-  >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis". Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  $(H)$ ou Coroa $(T)$.
+  >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis". 
+  
+  Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  $(H)$ ou Coroa $(T)$.
 Por assim definimos a Probabilidade de $H$ como:
 ]
 
@@ -255,7 +259,7 @@ $S = A \cup \bar{A}, \forall A$,
 
 Empregando a propriedade $2$ e $3$, temos:
 
-$P(U) = P(A)+P(\bar{A})$  
+$P(S) = P(A)+P(\bar{A})$  
 
 $1 = P(A)+P(\bar{A})$  
 
@@ -503,9 +507,6 @@ Finalmente, temos:
 
 $P(A \cup B) =  P(A)  + P(B) -  P(A \cap B)$
 
-como queríamos demonstrar.
-
-
 ---
 
 #### Teorema 4
@@ -518,8 +519,6 @@ P(A \cup B \cup C) = P(A)+P(B)+P(C) - P(A \cap B) - \\
   P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)
 \end{align}
 $$
-
-
 ---
 
 #### Resposta
