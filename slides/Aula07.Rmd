@@ -1,14 +1,14 @@
 ---
 # Para transformar em PDF, usar: 
-# pagedown::chrome_print("slides/Aula07html")
+# pagedown::chrome_print("slides/Aula08.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 07 - Probabilidade Parte II"
+subtitle: "Aula 07 - Variáveis Aleatórias Discretas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(04-05-2023)"
+date: "(11-04-2024)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -22,843 +22,822 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
-options(dplyr.print_min = 5, dplyr.print_max = 5)
-```
-class: middle, center, inverse
-
-# Conceitos Básicos
-
----
-
-### Conceitos Básicos
-
-**Experimentos**: fazer ou observar alguma coisa sob certas condições, resultando em algum estado final de acontecimentos ou resultados.
-
-Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
-
-Um **experimento aleatório** pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apresenta resultados diferentes.
-
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp.png")
-```
----
-
-**Fenômeno aleatório:** É a situação ou acontecimento cujos resultados não podem ser previstos com certeza, pois envolve a eventualidade, portanto é proveniente de um **experimento aleatório**. 
-
-Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controlá-los.
-
-.pull-left[
-Germinação de sementes de milho
-```{r,out.width = "60%",fig.cap="",fig.align = 'left',echo=FALSE}
-knitr::include_graphics("https://images.pexels.com/photos/1459331/pexels-photo-1459331.jpeg?cs=srgb&dl=pexels-livier-garcia-1459331.jpg&fm=jpg")
-```
-
-Produção de cana-de-açúcar (TCH)
-```{r,out.width = "60%",fig.cap="",fig.align = 'left',echo=FALSE}
-knitr::include_graphics("https://images.pexels.com/photos/7457175/pexels-photo-7457175.jpeg?cs=srgb&dl=pexels-kindel-media-7457175.jpg&fm=jpg")
-```
-]
-
-.pull-right[
-Ganho de peso bovino
-```{r,out.width = "55%",fig.cap="",fig.align = 'left',echo=FALSE}
-knitr::include_graphics("https://images.pexels.com/photos/3214973/pexels-photo-3214973.jpeg?cs=srgb&dl=pexels-alex-azabache-3214973.jpg&fm=jpg")
-```
-]
-
----
-
-
-**Espaço amostral ou Universo $(U)$**: é o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra Ômega $\Omega$ ou pelo $S$, . 
-
-Assim, no lançamento de um dado, o espaço amostral é:
-
-$$S = \{1, 2, 3, 4, 5, 6\}$$
-
-No lançamento de uma moeda, o espaço amostral é:
-
-$$S = \{H, T\}$$
-Onde $H$ representa Cara e $T$ representa Coroa.
-
----
-
-No lançamento de duas moedas o espaço amostral é:
-
-$$S = \{HH, HT,TH,TT\}$$
-
-**Evento simples, ponto amostral ou evento elementar $(e)$**: É cada resultado possível, ou seja, é o conjunto de resultados possíveis. Assim, para o lançamento de duas modeas,  temos: 
-
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/duas_modeas.png")
-```
-
----
-
-**Evento (E)**: Qualquer subconjunto do espaço amostral. 
-
-Assim, para o lançamento de um dado,  temos os eventos:
-
-a) sair um número par: 
-
-R: $E_1 = \{2, 4, 6\}$
-
-
-
-b) sair um número menor que $3$:  
-
-R: $E_2 = \{x| x< 3 \} = \{1, 2\}$ 
-
-
-
-c) sair um número menor que $3$ ou primo:  
-
-R: $E = \{x| x< 3 \text{ ou } x = \text{ primo }\} = \{ 1,2,3,5\}$
-
----
-
-### Probabilidade de um evento - $P(E)$
-
-A probabilidade é uma função $P(.)$ que atribuí valores numéricos a um determinado evento $(E)$. 
-
-É uma medida numérica de **"quão provável"** é a ocorrência do evento na excussão do experimento, é a proporção de vezes que o evento é esperado ocorrer, quando o experimento é repetido sob idênticas condições.
-
-A determinação das probabilidade de um evento depende da natureza do experimento e do espaço amostral associado.
-
----
-
-Supondo o lançamento de duas moedas "não viciadas" (honestas). Temos o espaço amostral:
-$S = \{H H, H T, T H, T T\}$.
-
-A título de exemplificação, vamos definir uma **variável aleatória $X$** que representa **a contagem do número de caras (H)** no lançamento de duas moedas, ou no lançamenteo de uma moeda duas vezes, temos:
-
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exp_prob.png")
-```
-
-Ao conjunto $\{x| P(X=x)\}$ denominamos função de probabilidade da variável aleatória X.
-
----
-class: middle, center, inverse
-
-# Probabilidade como Resultados Elementares Igualmente Prováveis 
-
----
-
-### Resultados elementares igualmente prováveis 
-
-Conclusões baseadas em dados empíricos, oriundos de uma observação experimental, são encerradas com incerteza que é expressa em termos de probabilidade. Assim, a atribuição é baseada nas características teóricas da realização do fenômeno.
-
-**Definição de Laplace de Probabilidade**
-.pull-left[
-```{r,out.width = "40%",fig.cap="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg")
-```
-  
-]
-
-.pull-right[
-  >"Quociente do número de casos favoráveis sobre o número de casos igualmente possíveis". Ao jogarmos uma moeda honesta (**"não viciada"**), não podemos afirmar que cairá Cara  $(H)$ ou Coroa $(T)$.
-Por assim definimos a Probabilidade de $H$ como:
-]
-
-$$
-P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}
-$$
-
----
-
-### Exemplos 
-
-**1)** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair Cara, $P(H)$?
-
-
-
-$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{0}{6} = 0$$
-
-Chamamos esse tipo de **Evento Impossível**.
-
-
-
-**2)** No lançamento de um dado com os lados $\{1,2,3,4,5,6\}$, qual a probabilidade de cair um número entre $1$ e $6$?
-
-
-
-$$P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{6}{6}=1$$
-
-Chamamos esse tipo de **Evento Certo**.
-
----
-
-###  Probabilidade de um Evento
-
->Assim, $P(E)$ é a probabilidade de um evento $E$, ou seja, é um número entre $0$ e $1$, quanto mais próximo a $1$, maior a chance de sua ocorrência.  A proporção de vezes que um evento simples pode ocorrer pode ser determinada sem executar o experimento. 
-
-Portanto, se $S$ consiste de $k$ eventos simples $\{ e_1, e_2, \cdots, e_k\}$ que são **igualmente prováveis**, a probabilidade de cada $e_i$ é $\frac{1}{k}$ se $E$ consiste de $m$ desses $k$ elementos, então temos:
-
-$$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }S} = \frac{m}{k},$$
----
-
-Portanto $P(.)$ é denominada probabilidade se, e somente se: 
-
-$i) \;0 \le P(E) \le 1, \forall E \subset S$.
-
-$ii) \;P(S)= 1$, assim como, $P(\phi)=0$
-
-$iii) P(E_1 \cup E_2 \cup \cdots \cup E_k) = P(\cup_{i=1}^kE_i)= \sum_{i=1}^k P(E_i)$ com os eventos $E_i$ **disjuntos (mutuamente excludentes)**.
-
----
-
-### Exemplos
-
-1) Descreva o espaço amostral e a probabilidade de sair pelo menos uma face cara no lançamento de uma moeda três vezes.
-
----
-
-### Teorema 1
-
-Se $\phi$ for espaço amostral vazio:
-
-$$P(\phi)=0$$
-
-**Demonstração**:
-
-Para qualquer evento $A$, podemos escrever:
-
-$A = A \cup \phi$, com $A$ e $\phi$ disjuntos, apresentado na propriedade (iii), temos:
-
-$P(A)=P(A)+P(\phi)$, como conclusão imediata, temos:
-
-$P(\phi)=0$, mas se $P(A)=0$, não é verdadeiro que $A=\phi$, existem situações que atribuiremos $P(E)=0$ para um evento que pode ocorrer.
-
----
-
-### Teorema 2
-
-Se $\bar{A}$ for o evento complementar de $A$, então: 
-
-$$P(\bar{A}) = 1 - P(A)$$
-
-**Demonstração**:
-
-Podemos escrever:
-
-$S = A \cup \bar{A}, \forall A$,
-
-Empregando a propriedade $2$ e $3$, temos:
-
-$P(U) = P(A)+P(\bar{A})$  
-
-$1 = P(A)+P(\bar{A})$  
-
-$P(A) = 1-P(\bar{A})$, assim,  $P(\bar{A}) = 1-P(A)$
-
-Essa propriedade é importante, pois, muitas vezes é mais simples calcularmos a $P(\bar{A})$ do que $P(A)$.
-
----
-
-### Propriedade da multiplicação (E)
-
-Dados dois eventos $A$ e $B$ de interesse, qual a probabilidade de ocorrência de ambos? Se esses eventos são **independentes**, a probabilidade de ocorrência de ambos é dada por:
-
-$$P(A \cap B) = P(A) \cdot P(B)$$
-**Exemplo**: Jogamos duas moedas, honestas, qual a probabilidade de ambas as faces serem cara $(H)$.
-
-$P(H \cap H) = P(H) \cdot P(H)$
-
-$P(H \cap H) = \frac{1}{2} \cdot \frac{1}{2}$
-
-$P(H \cap H) = \frac{1}{4}$
-
-```{r,out.width = "20%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/prob_01.png")
-```
-
----
-
-### Propriedade da adição (OU)
-
-Se os eventos $A$ e $B$ são **disjuntos**, ou seja: 
-
-$A \cap B = \phi$
-
-$P(A \cup B) = P(A) + P(B)$
-
-**Exemplo**: Jogamos um dado, qual a probabilidade de sair $5$ ou $6$ ?
-
-$P(5 \cup 6) = P(5)+P(6)$
-
-$P(5 \cup 6) = \frac{1}{6} + \frac{1}{6}$
-
-$P(5 \cup 6) = \frac{1}{3}$
-
----
-
-class: middle, center, inverse
-
-# Probabilidade e Frequência Relativa 
-
----
-
-### Probabilidade e Frequência Relativa 
-
-Outra maneira de atribuição de probabilidade é por meio da repetição do experimento várias vezes para obtermos informações à respeito da frequência de ocorrência dos diferentes resultados. 
-
-Se um experimento é repetido $n$ vezes a frequência relativa $(f_i)$ de um evento $E$ em $n$ ensaios é:
-
-
-$$f_n(E)=\frac{\text{nº vezes que E ocorre em n ensaios} }{n}$$
-
-Se as condições dos experimentos não mudam, quando o número $n$ de vezes que o ensaio é realizado tende ao infinito a frequência relativa tende a se estabilizar em um valor numérico único, a **probabilidade do Evento E**.
-
-
-$$\lim_{ n \to \infty } f_n(E) = P(E)$$
-
-Se jogarmos um dado não viciado, muitas vezes e contarmos as vezes que cada lado sai, o valor da frequência relativa de cada tenderá a $\frac{1}{6} = 0,1667$.
-
-```{r,out.width = "15%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://images.pexels.com/photos/979722/pexels-photo-979722.jpeg?cs=srgb&dl=pexels-jonathan-petersson-979722.jpg&fm=jpg")
-```
-
----
-
-Vamos definir $n$ como o número de vezes que o experimento será realizado $(100)$. Depois disso, vamos simular o lançamento de $n$ dados e calcular a frequência de cada elemento.
-
-```{r,echo=FALSE,message=FALSE,error=FALSE}
+options
 library(tidyverse)
 ```
 
-
-```{r,tab_1,eval=FALSE}
-# Carregando pacotes
-library(tidyverse)
-n <- 100
-x <- n  %>%  
-  runif(min=.5,max=6.5) %>%  
-  round()
-# Criando a tabela e posterior gráfico
-tibble(x)  %>%  
-  group_by(x)  %>%  
-  summarise(
-    ni = n(),
-    fi = ni/n
-  ) %>% 
-  ggplot(aes(x=x,y=fi)) +
-  geom_col(color="black",fill="lightblue") +
-  geom_hline(yintercept = 1/6,color="red")
-```
-
 ---
-
-```{r,tab_1,echo=FALSE}
-```
-
-
-Observe que os valores de $f_i$ são diferentes, não houve a convergência para os valores de probabilidade $P(E) = 0,16667$, linha vermelha no gráfico.
-
----
-
-Agora vamos aumentar o $n$ para  $1.000.000$, e observar a convergência para o valor de $1/6$, linha vermelha no gráfico.
-
-```{r,tab_2,eval=FALSE}
-n <- 1e6 # 1000000 - 1 milhão
-x <- n  %>%  
-  runif(min=.5,max=6.5) %>%  
-  round()
-# Criando a tabela e posterior gráfico
-tibble(x) %>% 
-  group_by(x) %>%  
-  summarise(
-    ni = n(),
-    fi = ni/n
-  ) %>%  
-  ggplot(aes(x=x,y=fi)) +
-  geom_col(color="black",fill="lightblue") +
-  geom_hline(yintercept = 1/6,color="red")
-```
-
-
----
-```{r,tab_2,echo=FALSE}
-```
-
-Quando $n \to \infty$ os valores de $f_i \to P(E) = 0,16667$.
-
----
-
-**Exemplo**
-
-Dada a seguinte tabela, referente ao sexo $(F, M)$ e a cor do cabelo (*Ruivos* e *Não Ruivos*) de crianças em uma escola:
-
-
- | Ruivo $(R)$ | Não Ruivo $(\bar{R})$ | TOTAL
----|:---:|:---:|:---:|---:
-**Feminino $(F)$** | 4  | 26 | **30**
-**Masculino $(\bar{F})$** | 17 | 13 | **30** 
-**TOTAL** | **21** | **39** | **60**
-
-Ao selecionarmos um aluno ao acaso, pergunta-se:
-
-a) Qual a probabilidade do estudante ser *Ruivo*:
-
-
-
-**R**: $P(Ruivo ) = \frac{21}{60} = 0,35$
-
-
-
-b) Qual a probabilidade do estudante ser do sexo *Feminino*?
-
-
-
-**R**: $P(Feminino) = \frac{30}{60} = 0,50$
-
-
-
-c) Qual a probabilidade do estudante ser do sexo *Feminino* **e** *Ruivo*?
-
-
-
-**R**: $P(Feminino \cap Ruivo) = \frac{4}{60} = 0,06667$
-
-
----
-
-#### c) Qual a probabilidade do estudante ser do sexo *Feminino* **ou** *Ruivo*?
-
-
-Observe que existe uma região de intersecção entre esses conjuntos, então para calcularmos $P(F \cup R)$ devemos somar $P(F)$ com $P(R)$ e subtraírmos uma vez $P(F \cap R)$.
-
-
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_13.png")
-```
-
-
-**R**: $P(F \cup R) = P(F)  +P(R) - P(F \cap R) =\frac{21}{60} + \frac{30}{60} -\frac{4}{60} = \frac{47}{60} = 0,7833$
-
----
-
-### Regra de Adição da Probabilidade
-
-No exemplo anterior é simples verificar que somamos duas vezes a interseção dos conjuntos na parcela $P(F) + F(R)$, ou seja, os indivíduos que são do sexo feminino e ruivos $P(F \cap R)$, por isso precisamos descontar $1$ vez essa probabilidade da soma.
-
-Então temos a regra da adição da probabilidade:
-
-$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
----
-
-#### Teorema 3
-
-Se $A$ e $B$ forem dois eventos quaisquer, então, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$:
-
-**Demonstração**: A ideia principal dessa demonstração é decompor $A \cup B$ e $B$ em dois eventos disjuntos, e em seguida aplicar a propriedade 3 da definição de probabilidade.
-
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_14.png")
-```
-
----
-
-#### Demonstração
-
-$A \cup B = A \cup (B \cap \bar{A})$
-
-Aplicando a função de probabilidade:
-
-$P(A \cup B) = P(A) + P(B \cap \bar{A})$,
-
-Assim, temos que:
-
-$P(B \cap \bar{A}) =P(A \cup B) - P(A)$  **(i)**
-
-Agora podemos definir $B$ como a reunião de dois conjuntos disjuntos.
-
-$B = (A \cap B) \cup (B \cap \bar{A})$
-
-Aplicando a função de probabilidade:
-
-$P(B) = P(A \cap B) + P(B \cap \bar{A})$,
-
-
----
-
-Assim, temos:
-
-$P(B \cap \bar{A}) = P(B) -  P(A \cap B)$ **(ii)**
-
-A partir de **(i)** e **(ii)** temos:
-
-$P(A \cup B) - P(A) =  P(B) -  P(A \cap B)$
-
-Finalmente, temos:
-
-$P(A \cup B) =  P(A)  + P(B) -  P(A \cap B)$
-
-como queríamos demonstrar.
-
-
----
-
-#### Teorema 4
-
-Demonstrar que:
-
-$$
-\begin{align}
-P(A \cup B \cup C) = P(A)+P(B)+P(C) - P(A \cap B) - \\ 
-  P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)
-\end{align}
-$$
-
-
----
-
-#### Resposta
-
-Inicialmente vamos definir: $D = B \cup C$ (i)
-
-Então,
-
-$P(A \cup D)$
-
-Pela lei da adição de probabilidade:
-
-$P(A \cup D) = P(A) + P(D) - P(A \cap D)$ (ii)
-
-Subistituindo (i) em (ii), temos:
-
-$P(A \cup D) = P(A) + P(B \cup C) - P(A \cap (B \cup C))$
-
-Ao termo $P(B \cup C)$ podemos aplicar a lei de adição e temos:
-
-$P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) - P(A \cap (B \cup C))$
-
-Agora devemos aplicar a Primeira lei Distributiva ao termo $A \cap (B \cup C)$ e temos:
-
-$P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) - P((A \cap B) \cup (A \cap C))$
-
-
----
-
-Observe que ao termo $P((A \cap B) \cup (A \cap C))$ podemos aplicar a lei de acidção de probabilidades:
-
-$$
-\begin{align}
-P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -[ P(A \cap B) + P(A \cap C)  \\ - P((A \cap B) \cap (A \cap C) )]
-\end{align}
-$$
-
-
-
-$$
-\begin{align}
-P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -[ P(A \cap B) + P(A \cap C)  \\ - P((A \cap B) \cap (A \cap C) )]
-\end{align}
-$$
-
-Temos então que:
-
-$$
-\begin{align}
-P(A \cup D) = P(A) + P(B) + P(C) - P(B \cap C) -P(A \cap B) - P(A \cap C) \\  - P(A \cap B \cap C )
-\end{align}
-$$
-
-como queríamos demonstrar.
-
----
-
-### Exercícios 
-
-1) Considere um experimento e os eventos $A$ e $B$ tais que:
-
-$P(A) = 1/2$, $P(B) = 1/3$ e $P(A \cap B) = 1/4$
-
-Responda:
-
-a) Qual o probabilidade de $A$ não ocorrer?  
-b) Qual a probabilidade de $B$ não ocorrer?  
-c) Qual a probabilidade de $A$ ou $B$ ocorrer?  
-d) Qual a probabilidade de $A$ não ocorrer e $B$ não ocorrer?  
-e) Qual a probabilidade de $A$ não ocorrer ou $B$ não ocorrer?  
-f) Qual a probabilidade que ocorra apenas o $B$, e não ocorra o $A$?  
-
----
-
-#### Respostas
-
-a) = 1/2  
-
-b) = 2/3  
-
-c) = 7/12
-
-d) = 5/12  
-
-e) = 3/4 
-
-f) = 1/12
-
----
-
 class: middle, center, inverse
 
-# Probabilidade Condicional e Independência 
-
----
-### Probabilidade Condicional 
-
-Voltando aos dados referentes ao sexo e a cor do cabelo de crianças em uma escola:
-
-
- | Ruivo $(R)$ | Não Ruivo $(\bar{R})$ | TOTAL
----|:---:|:---:|:---:|---:
-**Feminino $(F)$** | 4  | 26 | **30**
-**Masculino $(\bar{F})$** | 17 | 13 | **30** 
-**TOTAL** | **21** | **39** | **60**
-
-Agora, sabendo que foi sorteado uma aluna $(F)$, qual a probabilidade dessa aluna ser ruiva $(R)$?
-
-$$P(R|F) = \frac{4}{30} = 0,1333$$
-
-Lê-se: **"a probabilidade de R dado F"**.
-
-
-Observe que a informação prévia *"...foi sorteado um aluno do sexo Feminino..."*, restringiu o espaço amostral de $60$ aluno para $30$ meninas, como base para a divisão da quantidade de $(F \cap R) = 4$.
+# Variáveis Aleatórias Discretas
 
 ---
 
-### Probabilidade Condicional 
+### Variável Aleatória Discreta
 
-Assim, para dois eventos quaisquer $A$ e $B$, sendo $P(B)>0$, definimos a probabilidade condicional de $A$ dado que $B$ ocorreu, temos:
+Muitos experimentos produzem resultados não numéricos, portanto, antes de analisá-los é conveniente transformar seus resultados em números. Para isso devemos associar a cada resultado elementar $(e_i)$ do espaço amostral $(S)$ um número real, o que é feito por meio de uma regra ou função denominada variável aleatória.
 
-$$P(A|B) = \frac{P(A \cap B)}{P(B)} (i)$$
+Considerando o cruzamento de organismos heterozigotos para o gene $A$, $Aa × Aa$, este conceito é ilustrado com um espaço amostral com $4$ resultados elementares, ou seja:
 
-Em analogia, sendo $P(A)>0$, definimos a probabilidade condicional de $B$ dado $A$ como:
-
-$$P(B|A) = \frac{P(A \cap B)}{P(A)} (ii)$$
-
-Observe que o termo $(A \cap B)$ está presente em **(i)** e **(ii)**, então, podemos isolá-lo e igualar as duas expressões e, portanto, definimos a **Regra do Produto de Probabilidade**:
-
-$$P(A \cap B) = P(A) \cdot P(B|A) = P(B) \cdot P(A|B)$$
+$$S = \{AA,Aa,aA,aa\}$$
 ---
 
-### Independência entre eventos.
-
-Dizemos que dois eventos $A$ e $B$ são independentes se a ocorrência de $A$ não depende da ocorrência de $B$ e vice-versa. Nessas condições: 
-
-
-$$
-\begin{align}
-P(A|B) = P(A) \\
-P(B|A) = P(B)
-\end{align}
-$$
-
-Ou seja, 
-
-$$P( A \cap B) = P(A) \cdot P(B)$$
----
-
-**Exemplo** 
-
-Voltando aos dados referentes ao sexo e a cor do cabelo de crianças em uma escola:, verificar se esses eventos são independentes.
-
-
- | Ruivo $(R)$ | Não Ruivo $(\bar{R})$ | TOTAL
----|:---:|:---:|:---:|---:
-**Feminino $(F)$** | 4  | 26 | **30**
-**Masculino $(\bar{F})$** | 17 | 13 | **30** 
-**TOTAL** | **21** | **39** | **60**
-
-Na independência, a $P(F)$ deve ser igual à $P(F|R)$ e vice- versa.
-
-Podemos verificar:
-
-$P(F) = P(F|R)$
-
-$P(F) = \frac{P(F \cap R)}{P(R)}$
-
-$\frac{30}{60} = \frac{4/60}{21/60}$
-
-$0,50 = 0,19$ FALSO, então concluímos que os eventos **NÃO SÃO INDEPENDENTES**, ou seja a cordo do cabelo depende do sexo.
-
----
-
-**Exemplo** 
-
-Agora, teste a independência para a seguinte condição:
-
-
- | Ruivo $(R)$ | Não Ruivo $(\bar{R})$ | TOTAL
----|:---:|:---:|:---:|---:
-**Feminino $(F)$** | 15  | 18 | **33**
-**Masculino $(\bar{F})$** | 11 | 13 | **24** 
-**TOTAL** | **26** | **31** | **57**
-
-Na independência, a $P(F)$ deve ser igual à $P(F|R)$ e vice-versa.
-
-
-Podemos verificar:
-
-$P(F) = P(F|R)$
-
-$P(F) = \frac{P(F \cap R)}{P(R)}$
-
-$\frac{33}{57} = \frac{15/57}{26/57}$
-
-$0,58 = 0,58$ VERDADEIRO, então concluímos que os eventos **SÃO INDEPENDENTES**, ou seja, a cor do cabelo não depende do sexo.
-
----
-
-**INDEPENDÊNCIA**: Imagine uma urna contento $2$ bolas brancas e $3$ bolas vermelhas. Serão sorteados duas bolas **COM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, **devolve-se a bola para a urna** e realizá-se o segundo sorteio. Nessas condições o espaço amostral desse ensaio seguido de suas respectivas probabilidades de ocorrência, pode ser dado por: $S = \{ BB, BV, VB, VV\}$
-
---
-
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/reposicao.png")
-```
-
-
----
-
-**NÃO INDEPENDÊNCIA** Na mesma situação anterior onde serão sorteadas duas bolas, mas agora **SEM REPOSIÇÃO**, ou seja, sorteiá-se a primeira bola, anotá-se sua cor, contudo, **não se devolve a bola para a urna** e realizá-se o segundo sorteio. Nessas condições o espaço amostral é reduzido de um sorteio para outro e as probabilidades de ocorrência associadas ao espaço amostral $S = \{ BB, BV, VB, VV\}$ serão dadas por:
-
-
---
-
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/sem_reposicao.png")
-```
-
----
-
-class: middle, center, inverse
-
-# Teorema de Bayes
-
----
-#### Teorema de Bayes 
-
-Considere a incidência de uma doença em um rebanho  em diferentes faixas etárias: *jovens*, *adultos* e *idosos*, $E_1$, $E_2$ e $E_3$, respectivamente.
+Agora vamos definir $X$, como nossa variável aleatória, que é o número de alelos dominantes $A$. Assim:
 
 ```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/Bayes.png")
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png")
 ```
-Sabe-se que $P(E_1) = 0,60$, $P(E_2) = 0,30$ e $P(E_3) = 0,10$, além disso, é conhecido que as incidências da doença nas diferentes faixas etárias são:
+
+Note que para ser discreta, a variável aleatória (v.a.) deve assumir valores em um conjunto finito ou infinito, porém contável.
+
+---
+class: middle, center, inverse
+
+# Distribuição de Probabilidade
+
+---
+
+### Distribuição de Probabilidade
+
+É uma relação dos distintos valores $x_i$ da variável aleatória $X$ junto às suas respectivas probabilidades $P(x_i)$, com:
+
+
+$$\sum \limits_{i=1}^nP(x_i) = 1$$
+
+em que: $P(x_i)$ é chamada função de probabilidade, que a cada valor de $x_i$ associa sua probabilidade de ocorrência.
+
+
+#### Exemplo:
+
+Voltemos ao cruzamento de dois organismos heterozigotos para o gene $A$, temos:
+
+Genótipos | AA | Aa | aa | ** $\Sigma$ **
+:---|:---:|:---:|:---:|---:
+$X=x_i$ | $2$ | $1$ |  $0$ | -
+$P(X=x_i)$ | $1/4$ | $1/2$| $1/4$| $1$
+
+A distribuição de probabilidade mostra-nos como a probabilidade total $(1)$ é distribuída de acordo com os diferentes valores da variável aleatória $X$.
+
+---
+
+**Representação Gráfica**
+
+
+```{r,plot_1,eval=FALSE}
+library(tidyverse)
+tibble(x=0:2,
+       px = c(1/4, 1/2, 1/4) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",
+           fill="gray")
+```
+
+---
+
+
+```{r,plot_1,echo=FALSE}
+```
+
+---
+class: middle, center, inverse
+
+# Esperança Matemática
+
+---
+
+Seja uma população finita de $n$ indivíduos, e o evento $E$  denotado pelo número de alelos dominantes $A$. Calcule a frequência relativa para cada categoria.
+
+
+```{r,echo=FALSE}
+tibble(Genótipo=c("AA","Aa","aa"),
+       x=2:0,
+       px = c(1/4, 1/2, 1/4) ) |> 
+  kableExtra::kable()
+```
+Lembrando que a média pode ser calculada a partir da frequência relativa:
+
+$$\bar{x} = \sum \limits_{i=1}^k f_i \cdot x_i$$
+
+Em que $k$ é o número associado ao evento aleatório $X = x_i$.
+
+Agora, pergunta-se: qual o número médio de genes $A$ esperado?
+
+
+$$\bar{x} = \sum \limits_{i=1}^k f_i(x_i) = \frac{n_1}{n}(x_1)+\frac{n_2}{n}(x_2)+\frac{n_3}{n}(x_3)$$
+$$\bar{x} =  \frac{1}{4}(0)+\frac{1}{2}(1)+\frac{1}{4}(2) = 0+\frac{1}{2}+\frac{1}{2} = 1$$
+---
+
+Considerando um modelo de população infinita $(n \to \infty)$ as frequências relativas $n_i/n$ $(i = 1, 2, 3)$ podem se aproximar de limites que são probabilidades $P(X = x_i) = P(x_i)$, onde: $x_i = \{2, 1, 0\}$, e se aproximará de um limite que é chamado **ESPERANÇA DE X** (isto é, o número esperado de genes $A$ em uma população infinita). O resultado pode ser generalizado na seguinte definição:
+
+
+
+$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i)$$
+**Definição**: A média de uma *v.a.* $X$ ou de sua distribuição de probabilidade, também chamada **valor esperado** ou **esperança matemática** ou simplesmente **esperança de $X$**, **E(X)**, é definida como:
+
+$$E(X) = \mu$$
+
+assim:
+
+$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 0. \frac{1}{4} + 1.\frac{1}{2}+ 2.\frac{1}{4} = 1$$
+---
+
+class: middle, center, inverse
+
+# Variância de uma Variável Aleatória
+
+---
+
+### Definição
+
+A variância de uma v.a. $X$ ou a medida de dispersão de sua distribuição de probabilidade, representada por $\sigma^2_X$, é definida por: 
+
+$$\sigma^2 = Var(X) = E[(X - \mu)^2]$$
+
+Podendo ser calculada de dois modos:
+
+$$E[(X - \mu)^2] = \sum_{i=1}^k(x_i - \mu)^{2} . P(x_i)$$
+
+#### ou
+
+$$E[(X - \mu)^2] = E(X^2) - \mu^2 = \sum_{i=1}^n x_i^2 . P(x_i) - [E(X)]^2$$
+
+---
+
+### Exemplo
+
+Qual a variância da distribuição de probabilidade da variáel $X$ (número de alelos dominantes) a partir do cruzamento de dois organismos heterozigotos $Aa \times Aa$.
+
+```{r,echo=FALSE}
+tibble(Genótipo=c("AA","Aa","aa"),
+       x=2:0,
+       px = c("1/4", "1/2", "1/4") ) |> 
+  kableExtra::kable()
+```
+
+Lembrado que a média $\bar{x} = 1$
+
+$$
+Var(X) \begin{cases}
+  E[(X - \mu)^2] = (0-1)^2.\frac{1}{4} + (1-1)^2.\frac{1}{2} +(2-1)^2.\frac{1}{4} = \frac{1}{2}
+ \\\
+E[(X - \mu)^2] = E(X^2) - \mu^2 = \sum_{i=1}^k x_i.P(x_i) - [E(X)]^2 \\\
+E[(X - \mu)^2] =\left( 0^2\frac{1}{4} + 1^2\frac{1}{2} + 2^2\frac{1}{4} \right) - 1^2 =\frac{1}{2}+1-1= \frac{1}{2}
+\end{cases}
+$$
+---
+
+### Propriedades da Variância
+
+Dado a variável aleatória $X$ e a constante $k$ as propriedades das variâncias são:
+
+$i) Var(X)$ não pode ser um número negativo;
+
+$ii) Var(X + k) = Var(X)$;
+
+$iii) Var(k \cdot X) = k^2Var(x)$
+
+$iv) Var(k+k \cdot X) = k^2Var(x)$
+
+---
+
+### Prova da propriedade **(ii)**
+
+Para demonstrar essa propriedade, vamos consider uma variável $Y$ , definida por $(X+k)$ e agora podemos definir a variância de $Y$:
+
+
+$Var(Y) = E[(Y - \mu_Y)^2] = \sum_{i=1}^k(y_i - \mu_y)^{2} . P(y_i)$
+
+$Var(Y) = \sum_{i=1}^n([x_i+k] - \mu_{[X+k]})^{2} . P([x_i + k])$
+
+$Var(Y) = \sum_{i=1}^n(x_i+k - \mu_{x} - k)^{2} . P(x_i)$
+
+$Var(Y) = \sum_{i=1}^n(x_i - \mu_{x} )^{2} . P(x_i) = Var(X)$
+
+---
+
+### Prova da propriedade **(iii)**
+
+Para demonstrar essa propriedade, vamos consider uma variável $Y$ , definida por $(kX)$ e agora podemos definir a variância de $Y$:
+
+
+$Var(Y) = E[(Y - \mu_Y)^2] = \sum_{i=1}^k(y_i - \mu_y)^{2} . P(y_i)$
+
+$Var(Y) = \sum_{i=1}^n([kx_i] - \mu_{[kX]})^{2} . P(kx_i)$
+
+$Var(Y) = \sum_{i=1}^n(kx_i - k\mu_{[X]})^{2} . P(x_i)$
+
+$Var(Y) = \sum_{i=1}^n(k[x_i - \mu_{X}])^{2} . P(x_i)$
+
+$Var(Y) = \sum_{i=1}^nk^2(x_i - \mu_{X})^{2} . P(x_i)$
+
+$Var(Y) = k^2\sum_{i=1}^n(x_i - \mu_{X})^{2} . P(x_i)$
+
+$Var(Y) = k^2\sum_{i=1}^n(x_i - \mu_{X})^{2} . P(x_i)$
+
+$Var(Y) = k^2Var(X)$
+
+---
+
+### Demonstração no R
+
+```{r}
+X<- 0:2
+px<-c(1/4,1/2,1/4)
+
+# Esperança
+E_X <- sum(X*px)
+E_X
+
+# Variância
+Var_X <- sum(X^2*px) - E_X^2
+Var_X
+```
+
+---
+
+Dado $k = 5$, temos agora duas variáveis $Y = X+k$ e $Z = k.X$.
+
+1) Pelas propriedades da variância sabemos que:
+
+$Var(Y) = Var(X) = 0,5$
+
+Prova:
+
+```{r}
+k <- 5
+Y <- k+X
+Var_Y = sum(Y^2*px) - (sum(Y*px))^2
+Var_Y
+```
+
+2) Pelas propriedades da variância sabemos que:
+
+$Var(Z) = k^2Var(X) = 5^2.0,5 = 12,5$
+
+Prova:
+```{r}
+Z <- k*X
+Var_Z = sum(Z^2*px) - (sum(Z*px))^2
+Var_Z
+```
+
+---
+
+### Exercício 
+
+Um revendedor de produtos agropecuários recebe de vários laboratórios certo tipo de antibiótico, que tem custo diferenciado. Levando-se em conta a proporção fornecida e o preço apresentado por cada laboratório, pode-se considerar que o custo de uma dose de antibiótico em reais, escolhida ao acaso, é uma variável aleatória $C$. Admitindo a seguinte distribuição de probabilidade para $C$:
+
+$c_i$ | $1,00$ | $1,10$ | $1,20$ | $1,30$ | $1,40$
+:---|:---:|:---:|:---:|:---:|:---:
+$P(c_i)$| $0,20$ | $0,30$ | $0,20$ | $0,20$ | $0,10$ 
+
+
+a) Determinar a esperança (média) e a variância da variável aleatória $C$:
+
+b) Supondo que o revendedor venda cada um desses antibióticos acrescentando $50\%$ sobre o custo, além de um adicional de `R$` $0,10$ pelo frete, calcular a média e a variância da nova variável aleatória preço de revenda $R$.
+
+---
+
+### Resposta
+
+a)   
+$E(C) = 1,17$ reais
+
+$Var(C) = 0,016$ reais²
+
+
+b)  
+
+$E(R) = 1,855$ reais
+
+$Var(R) = 0,036$ reais²
+
+---
+
+class: middle, center, inverse
+
+# Distribuições Teóricas de Probabilidade de Variáveis Aleatórias Discretas
+
+---
+
+### Definição
+
+O modelo probabilístico da variável aleatória $X$, é a forma específica de função de distribuição de probabilidade que reflete o comportamento de $X$.
+
+1. Distribuição de Bernoulli
+
+2. Distribuição Binomial 
+
+3. Distribuição de Poisson
+
+---
+  
+class: middle, center, inverse
+
+# Distribuição de Bernoulli
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/bernoulli_1.png")
+```
+
+---
+### Distribuição de Bernoulli
+
+Essa distribuição é caracterizada por uma única realização de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** e **Fracasso (F)**.
+
+**Exemplos**: 
+
+a) testa-se um antibiótico em um indivíduo, a reação (v.a.) ou é positiva (S) ou é negativa (F);
+
+b) uma planta é escolhida, ao acaso, em um pomar e observa-se se essa planta é doente (v.a.) (S) ou não (F).
+
+Assim, para cada experimento, podemos definir uma variável aleatória $X$: o número de sucessos, que assume apenas dois valores, o valor $1$ se ocorre sucesso $(S)$ e o valor $0$ (zero) se ocorre fracasso $(F)$, sendo $P(S) = p$, $0 < p <1$, ou seja:
+
+
+$$
+X \begin{cases}
+0(F) \\\
+1(S)
+\end{cases}
+$$
+
+com $P(X=1) = p$ e $P(X=0) = 1-p = q$
+
+---
+
+### Definição
+
+Nestas condições, a variável aleatória $X$ tem a função de probabilidade
+
+$X$ | $P(X)$
+:---: | :---:
+1 | p 
+0 | q
+
+Com função de probabilidade dada por:
+
+$$P(X=x) = p^x \cdot q^{1-x}$$
 .pull-left[
-$P(D|E_1)=0,02$  
-$P(D|E_2)=0,05$  
-$P(D|E_3)=0,10$  
-Toma-se  um  animal desse rebanho  ao  acaso  e  verificamos que ele está doente.
+#### Esperança
+$E(X) = \sum x_i P(x_i)$
+
+$E(X) = 0(q) + 1(p)$
+
+$E(X) = p$
 ]
+
 .pull-right[
-   Qual  a probabilidade do animal escolhida pertencer à faixa etária $E_1$, ou seja ?
-$$P(E_1|D) = ?$$
+#### Variância
+
+$Var(X) = E(X^2) - [E(X)]^2$
+
+$Var(X) = (0^2.q + 1^2.p) - p^2$
+
+$Var(X) = p - p^2$
+
+$Var(X) = p(1 - p) = p.q$
+]
+
+---
+### Exemplo
+
+.pull-left[
+
+Dado $p =0,7$, construa a distribuição de probabilidade dessa variável e calcule a esperança e a variância dessa distribuição.
+
+```{r,plot_2,eval=FALSE}
+p <- 0.7
+q <- 1-p
+x <- 0:1
+px <- c(q,p)
+tibble(x,px) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",
+           fill="lightgray")
+```
+
+]
+
+.pull-right[
+
+```{r,plot_2,echo=FALSE}
+```
+]
+
+$$E(X) = p = 0,7$$  
+
+
+$$Var(X) = p.q = 0,7 . 0,3 = 0,21$$
+
+---
+
+class: middle, center, inverse
+
+# Distribuição Binomial
+
+---
+
+## Distribuição Binomial
+
+### Definição
+
+Quando um número fixo $n$ de ensaios de *Bernoulli* são repetidos, supondo que as repetições sejam *independentes* com $P(S) = p$ em cada ensaio, a variável aleatória $X$ representa a contagem (soma) do número de sucessos em $n$ ensaios. 
+
+Os possíveis valores de $X$ são os inteiros $0, 1, 2,..., n$. A distribuição de probabilidade de $X$ é chamada **DISTRIBUIÇÃO BINOMIAL* com $n$ ensaios e probabilidade de sucesso $p$. 
+
+---
+
+**Exemplo**: No lançamento de uma moeda, vamos definir como Sucesso o evento *cair a face cara*:
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_1.png")
+```
+
+
+
+Para deduzir uma fórmula para $P(X = x)$, consideremos o lançamento de $3$ moedas ( $n = 3$ ensaios), cada um dos quais podendo resultar em $S$ (H - cara) ou $F$ (T - coroa). 
+Há $2 × 2 × 2 = 8$ resultados possíveis, os quais estão relacionados nas colunas de acordo com o número de sucessos $(S)$:
+
+---
+Uma característica interessante dos experimentos considerados é que estamos interessados apenas no número total de sucessos e não na ordem que eles ocorrem. Segue abaixo o diagrama de árvore das probabilidades binomiais no lançamento de 3 moedas, ou seja, $n=3$ e $P(S) = p$ e $P(F) = q$.
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_2.png")
+```
+
+---
+
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_3.png")
+```
+
+---
+
+### Obtenção das sequências
+
+Como os ensaios são independentes, com $P(S) =p$ e $P(F) = q$, os fatores: $1, 3, 3, 1$ são obtido por meio do **"teorema da expansão binomial"**:
+
+$$(a+b)^n = {n \choose 0}a^n + {n \choose 1}a^{n-1}b + {n \choose 2}a^{n-2}b^2 + \dots + {n \choose n}b^n$$
+
+### Função de Distribuição Binomial
+
+Assim, a função de distribuição binomial é:
+
+$$P(X=x) = {n \choose x}p^x \cdot q^{n-x}$$
+
+### Denotação
+
+$$b(n,p) \text{ onde } \sum \limits_{i=0}^n b(n,p) = 1$$
+
+---
+
+Se $X$ é uma variável aleatória com distribuição Binomial ela apresenta:
+ 
+**Esperança**:  $E(X) = n \cdot p$ e **Variância**: $Var(X) = n \cdot p \cdot q$ (demonstração está aos 39min do vídeo abaixo).
+
+<iframe width="853" height="480" src="https://www.youtube.com/embed/tNRN89z0TYw?t=2356" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link para o vídeo](https://youtu.be/tNRN89z0TYw?t=2356)
+
+---
+E se, ao invés de $3$ moedas, tivéssemos $4$ moedas?
+
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png")
+```
+
+Qual a probabilidade do número de caras ser igual ao número de coroas?
+
+**R**: Dado que a moeda é honesta, ou seja, $P(H) = \frac{1}{2}$, temos que o $x=2$ e $n=4$, aplicando a função de probabilidade Binomial $b(4,\frac{1}{2})$:
+
+$P(X=x) = {n \choose x}p^x \cdot q^{n-x}$
+
+$P(X=2) = {4 \choose 2} \left(\frac{1}{2}\right)^2 \cdot \left(\frac{1}{2}\right)^{2-2} = 0,375$
+---
+
+No R podemos utilizar a função `dbinon()` com os argumentos $x$, $n$ e $p$ a probabilidade de sucesso.
+.pull-left[
+```{r,eval=FALSE}
+n <- 4
+x <- 0:n
+p<-1/2
+px<-dbinom(x,n,p)
+tibble(x,px)
+```
+
+```{r,echo=FALSE}
+n <- 4
+x <- 0:n
+p<-1/2
+px<-dbinom(x,n,p)
+tibble(x,px) %>%  
+  kableExtra::kable()
+```
+]
+
+.pull-right[
+
+```{r}
+tibble(x,px) %>%  
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",
+           fill="gray")
+```
 ]
 
 ---
 
-Aplicando a expressão da probabilidade condicional, temos que:
+### Estudo do parâmetro $p$
 
-$$P(E_1 | D) = \frac{P(E_1 \cap D)}{P(D)} \;\;\;\;\;(i)$$ 
+A distribuição binomial é **simétrica** se o valor de $p$ em um histograma tem o mesmo valor de $q$ em outro, as probabilidades são exatamente as mesmas, mas dispostas de forma invertida. 
 
-Assim, podemos isolar $P(E_1 \cap D)$ em (i):
+A propriedade geral da distribuição binomial: quando $p$ e $q$ são alternados, a distribuição de probabilidades é invertida, então:
 
-$P(E_1 \cap D) = P(E_1|D) \cdot P(D)$, da mesma forma que: 
-
-$P(E_1 \cap D) = P(D|E_1) \cdot P(E_1)$
-
-Assim, podemos reescrever (i) como:
-
-$$P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D)}$$ 
-
-O evento Doente $(D)$ pode se escrito como a reunião de 3 eventos disjuntos, ou seja:
-
-$$D = (E_1 \cap D) \cup (E_2 \cap D) \cup (E_3 \cap D)$$
-Aplicando a função de probabilidade temos:
-
-$$P(D) = P(E_1 \cap D) + P(E_2 \cap D) + P(E_3 \cap D)$$
+$$b(x,n,p) = b(n-x,n,1-p)$$
 
 ---
+.pull-left[
+```{r,echo=FALSE}
+n <- 5
+x <- 0:n
+p<-.7
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.7)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
 
-Em analogia à passagem anterior:
-
-$$P(D) = P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)$$
-Assim, podemos reescrever (i) como:
-
-$$
-P(E_1 | D) = \frac{P(D|E_1) \cdot P(E_1)}{P(D|E_1) \cdot P(E_1) + P(D|E_2) \cdot P(E_2) + P(D|E_3) \cdot P(E_3)}
-$$ 
-
-O Teorema  de  Bayes expressa  uma  probabilidade condicional em termos de outras probabilidades condicionais e marginais. 
-
-Essas probabilidades podem ser teoricamente deduzidas a partir de um modelo representado pelo  espaço  amostral  em  que  esses  eventos  são  definidos, pela expressão:
-
-
-$$P(E_i | D) = \frac{P(D|E_i) \cdot P(E_i)}{ \sum \limits_{j=1}^k P(D|E_j) \cdot P(E_j)}$$ 
-
----
-
-Portanto, para o exemplo temos que a probabilidade da pessoa escolhida ser pretencente à faixa etária $E_1$, dado que ele é $D$ é:
-
-$$P(E_1 | D) = \frac{0,02 \cdot 0,60}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}$$ 
-
-$$P(E_1 | D) = \frac{0,012}{ 0,037}$$ 
-
-$$P(E_1 | D) = 0,3243$$ 
-
-Aplicando a mesma fórmula podemos calcular:
+```{r,echo=FALSE}
+tibble(x,px) |> 
+  tidyr::pivot_wider(names_from = x,
+                     values_from = px)  |> 
+  kableExtra::kable()
+```
 
 
-$$
-P(E_2 | D) = \frac{0,05 \cdot 0,30}{ 0,02  (0,60) + 0,05 (0,30) + 0,10  (0,10)}
-$$ 
+]
+
+.pull-right[
+```{r,echo=FALSE}
+n <- 5
+x <- 0:n
+p<-1-p
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.3)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
 
 
-$P(E_2 | D) = \frac{0,015}{ 0,037}$ 
+]
 
-$P(E_2 | D) = 0,4054$
-
----
-
-
-$$
-P(E_3 | D) = \frac{0,10 \cdot 0,10}{ 0,02  (0,60) + 0,05  (0,30) + 0,10  (0,10)}
-$$ 
-
-
-$P(E_3 | D) = \frac{0,01}{ 0,037}$
-
-$P(E_3 | D) = 0,2703$
-
+```{r,echo=FALSE}
+tibble(x,px) |> 
+  tidyr::pivot_wider(names_from = x,
+                     values_from = px)  |> 
+  kableExtra::kable()
+```
 ---
 ### Exercícios
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7.png")
+1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada $6$ vezes. Achar a probabilidade de obter cara:  
+ a) exatamente $3$ vezes;  
+ b) no máximo $3$ vezes;  
+ c) pelo menos $3$ vezes;  
+ d) pelo menos $1$ vez.  
+
+--
+
+### Respostas
+a) $0,3125$  
+b) $0,6562$  
+c) $0,6562$  
+d) $0,9844$  
+
+---
+
+2) Uma urna contém bolas brancas e pretas na proporção $2$ para $3$. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de $0, 1, 2 e 3$ sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
+
+--
+
+### Respostas
+$E(X) = 1,2$ 
+$Var(X) = 0,72$
+
+---
+3) Uma urna contém $52$ bolas sendo $13$ brancas e $39$ pretas.  
+ a) Qual a probabilidade de se tirarem $6$ bolas brancas, uma a uma, retornando a bola à urna após cada retirada?  
+ b) Calcule a esperança e a variância dessa distribuição de probabilidade.  
+ c) Nas mesmas condições da questão anterior, qual a probabilidade de se terem 5 brancas e 1 preta? 
+
+--
+
+### Respostas
+a) $0,0002441$;  
+b) $E(X) = 1,5$ e $Var(X) = 1,125$;  
+c) $0,0043945$
+
+---
+
+class: middle, center, inverse
+
+# Distribuição de Poisson
+
+---
+### Distribuição de Poisson
+
+O comportamento de variáveis aleatórias, as quais representam o número de ocorrências de eventos em um intervalo de tempo ou no espaço (superfície ou volume), pode ser descrito pela chamada distribuição de **Poisson**, cuja função de probabilidade é:
+
+### Função de Distribuição Poisson é:
+
+$$P(X=x) = \frac{e^{-\lambda} \lambda^x}{x!}$$
+
+Onde $e = 2,71828$ e $\lambda$ é o parâmetro da distribuição que representa o número médio (taxa) de ocorrências do evento por unidade de tempo ou espaço.
+
+### Denotação
+
+$$X \sim Po(\lambda) \text{ , onde } \sum \limits_{x=0}^\infty Po(\lambda) = 1$$
+---
+
+### Definição 
+
+A variável aleatória $X$ com distribuição de Poisson apresenta:
+
+**Esperança**: 
+
+$$E(X) = \lambda$$ 
+
+e **Variância**: 
+
+$$Var(X) = \lambda$$
+
+Ou seja, o número médio e a variância de ocorrências de eventos por unidade de tempo (ou espaço) são iguais $(\lambda)$ e constantes ao longo do tempo (ou espaço).
+
+---
+
+
+**Exercícios 1)** Em uma população, seja $X$ o número de descendentes produzidos por família/geração. Assumindo que Média = $\lambda = 2$, qual a probabilidade de famílias com  $X= 4$ descendentes?
+
+--
+
+```{r,echo=FALSE,out.width="0%"}
+n <- 10
+x <- 0:n
+lambda <- 2
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x==4,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+
+$$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
+
+
+
+---
+**Exercício 2)** Suponha que o número de partículas alfa, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro $\lambda = 5$, isto é, a taxa média de ocorrência é de $5$ partículas a cada minuto. Calcule a probabilidade de haver mais de $2$ emissões em um minuto.
+
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
 ```
 
 ---
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_1.png")
+.pull-left[
+```{r,echo=FALSE}
+n <- 20
+x <- 0:n
+lambda <- 5
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x>2,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+]
+
+.pull-right[
+Assim temos que:
+
+Se $P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}$, então:
+
+$P(x >2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}$
+
+
+
+
+]
+
+$P(x >2 ) = 1 - [P(X=0) + P(X=1) + P(X=2)]$
+
+$P(x >2 ) = 1-[\frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}]=0,87535$
+
+---
+
+**Exercício 3)** Calcule a probabilidade da emissão de até $4$ partículas em $2$ minutos. 
+
+
+
+.pull-left[
+```{r,echo=FALSE}
+n <- 20
+x <- 0:n
+lambda <- 5*2
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x<=4,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+]
+
+.pull-right[
+Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distribuição de Poisson, mas com o valor de parâmetro ajustado de forma conveniente. 
+
+Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: $\lambda'= 2 \times 5 = 10$ partículas em dois min.
+
+
+$$P(X \le 4) = 0,029252$$
+]
+
+---
+**Exercício 4)** Supondo que o número médio de bactérias por litro de água purificada é $2$, qual é a probabilidade que $5$ ou mais bactérias sejam encontradas em uma amostra de $3$ litros de água?
+--
+.pull-left[
+```{r,echo=FALSE}
+n <- 20
+x <- 0:n
+lambda <- 3*2
+px <- dpois(x,lambda)
+tibble(x,px) |>
+  mutate(px2 = ifelse(x>=5,px,0) ) |> 
+  ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="lightblue") +
+  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
+  theme_bw()
+```
+]
+
+.pull-right[
+Se o volume é alterado a variável aleatória mantém a mesma distribuição de Poisson, se o volume for de $3$ litros, teremos que o número de bactérias observado terá distribuição: $\lambda'= 3 \times 2 = 6$ bactérias por litro.
+
+$$P(X \ge 5) =1 - \sum_{i=0}^5 \frac{e^{-\lambda}\lambda^x}{x!} = 0,7149$$
+]
+
+---
+
+### Distribuição de Poisson como aproximação da Distribuição Binomial
+
+Algumas vezes, no uso da distribuição binomial, ocorre que $n$ é muito grande e $p$ é muito pequeno, de modo que $q$ é próximo de $1$. Em tais casos, o cálculo torna-se muito difícil. Pode-se, então, fazer uma aproximação da distribuição Binomial pela Poisson.
+
+Função de Distribuição: 
+
+$$b(n,p) \sim \frac{e^{-n.p}(n.p)^x}{x!}$$
+
+A aproximação é boa, se $n \cdot p = \lambda \le 7$.
+
+Nestas condições, a variável aleatória $X$ com distribuição Binominal aproximada pela  Poisson apresenta:
+
+A variável aleatória $X$ com distribuição de Poisson apresenta:
+
+**Esperança**: 
+
+$$E(X) = n \cdot p$$ 
+
+e **Variância**: 
+
+$$Var(X) = n \cdot p$$
+---
+**Exercício 5)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à uma vacina é de $0,001$, determinar a probabilidade de que, de $2000$ pessoas vacinadas, mais do que $4$ pessoas tenham reação negativa?
+
+--
+
+$n \times p = \lambda =2000 \times 0,001 = 2$
+
+$P(X > 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)$
+
+$P(X > 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)=0,0526$
+
+```{r}
+n <- 2000 
+lambda <- n*0.001
+1-ppois(4,lambda)
 ```
 
 ---
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_2.png")
-```
+### Apêndice - Processo e Poisson
 
----
+<iframe width="853" height="480" src="https://www.youtube.com/embed/cEq38h7SzDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_3.png")
-```
-
----
-
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_4.png")
-```
+[Link do vídeo](https://www.youtube.com/watch?v=cEq38h7SzDI)
