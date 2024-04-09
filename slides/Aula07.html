@@ -42,14 +42,16 @@ class: middle, center, inverse
 
 ### Variável Aleatória Discreta
 
-Muitos experimentos produzem resultados não numéricos, portanto, antes de analisá-los é conveniente transformar seus resultados em números. Para isso devemos associar a cada resultado elementar `\((e_i)\)` do espaço amostral `\((S)\)` um número real, o que é feito por meio de uma regra ou função denominada variável aleatória.
+Muitos experimentos  produzem resultados não numéricos, portanto, antes de analisá-los é conveniente transformar seus resultados em números. 
 
-Considerando o cruzamento de organismos heterozigotos para o gene `\(A\)`, `\(Aa × Aa\)`, este conceito é ilustrado com um espaço amostral com `\(4\)` resultados elementares, ou seja:
+Para isso deve-se associar a cada resultado elementar `\((e_i)\)` do espaço amostral `\((S)\)` um número real, o que é feito por meio de uma regra ou função denominada **variável aleatória (v.a.)**.
+
+**Exemplo** Considerando o cruzamento de dois organismos heterozigotos para o gene `\(A\)`, `\(Aa \times Aa\)`, os possíveis resultados são ilustrados em um espaço amostral com `\(4\)` resultados elementares, ou seja:
 
 `$$S = \{AA,Aa,aA,aa\}$$`
 ---
 
-Agora vamos definir `\(X\)`, como nossa variável aleatória, que é o número de alelos dominantes `\(A\)`. Assim:
+Agora defini-se `\(X\)`, como a variável aleatória, que é o número de alelos dominantes `\(A\)`. Tem-se:
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png" width="50%" style="display: block; margin: auto;" /&gt;
 
@@ -69,12 +71,12 @@ class: middle, center, inverse
 
 `$$\sum \limits_{i=1}^nP(x_i) = 1$$`
 
-em que: `\(P(x_i)\)` é chamada função de probabilidade, que a cada valor de `\(x_i\)` associa sua probabilidade de ocorrência.
+em que: `\(P(x_i)\)` é chamada função de probabilidade, que a cada valor de `\(x_i\)` associa a sua respectiva probabilidade de ocorrência.
 
 
 #### Exemplo:
 
-Voltemos ao cruzamento de dois organismos heterozigotos para o gene `\(A\)`, temos:
+No cruzamento de dois organismos heterozigotos para o gene `\(A\)`, temos:
 
 Genótipos | AA | Aa | aa | ** `\(\Sigma\)` **
 :---|:---:|:---:|:---:|---:
@@ -123,7 +125,10 @@ Lembrando que a média pode ser calculada a partir da frequência relativa:
 
 `$$\bar{x} = \sum \limits_{i=1}^k f_i \cdot x_i$$`
 
-Em que `\(k\)` é o número associado ao evento aleatório `\(X = x_i\)`.
+Em que `\(k\)` é o número de elementos no espaço amostral associado ao evento aleatório `\(X = x_i\)`.
+
+
+---
 
 Agora, pergunta-se: qual o número médio de genes `\(A\)` esperado?
 
@@ -137,13 +142,29 @@ Considerando um modelo de população infinita `\((n \to \infty)\)` as frequênc
 
 
 `$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i)$$`
-**Definição**: A média de uma *v.a.* `\(X\)` ou de sua distribuição de probabilidade, também chamada **valor esperado** ou **esperança matemática** ou simplesmente **esperança de `\(X\)`**, **E(X)**, é definida como:
+**Definição**: A média de uma *v.a.* `\(X\)` ou de sua distribuição de probabilidade, também chamada **valor esperado** ou **esperança matemática** ou simplesmente **esperança de `\(X\)`**, será definida como:
 
 `$$E(X) = \mu$$`
 
 assim:
 
 `$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 0. \frac{1}{4} + 1.\frac{1}{2}+ 2.\frac{1}{4} = 1$$`
+
+---
+
+### Propriedades da Esperança
+
+Dado a variável aleatória `\(X\)` e a constante `\(k\)` as propriedades da esperança matemática são:
+
+`\(i) E(k) = k\)`;
+
+`\(ii) E(kX) = K \times E(X)\)`;
+
+`\(iii) E(X+k) = E(X) + k\)`
+
+`\(iv) E(k+k \cdot X) = k + k \times E(X)\)`
+
+
 ---
 
 class: middle, center, inverse
@@ -158,7 +179,7 @@ A variância de uma v.a. `\(X\)` ou a medida de dispersão de sua distribuição
 
 `$$\sigma^2 = Var(X) = E[(X - \mu)^2]$$`
 
-Podendo ser calculada de dois modos:
+Podendo ser calculada como:
 
 `$$E[(X - \mu)^2] = \sum_{i=1}^k(x_i - \mu)^{2} . P(x_i)$$`
 
@@ -170,7 +191,7 @@ Podendo ser calculada de dois modos:
 
 ### Exemplo
 
-Qual a variância da distribuição de probabilidade da variáel `\(X\)` (número de alelos dominantes) a partir do cruzamento de dois organismos heterozigotos `\(Aa \times Aa\)`.
+Qual a variância da distribuição de probabilidade da variável `\(X\)` (número de alelos dominantes) a partir do cruzamento de dois organismos heterozigotos `\(Aa \times Aa\)`.
 
 
 |Genótipo |  x|px  |
@@ -358,7 +379,6 @@ O modelo probabilístico da variável aleatória `\(X\)`, é a forma específica
 
 ---
   
-class: middle, center, inverse
 
 # Distribuição de Bernoulli
 
@@ -367,7 +387,7 @@ class: middle, center, inverse
 ---
 ### Distribuição de Bernoulli
 
-Essa distribuição é caracterizada por uma única realização de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** e **Fracasso (F)**.
+Essa distribuição é caracterizada por uma única realização de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** ou **Fracasso (F)**.
 
 **Exemplos**: 
 
@@ -511,11 +531,7 @@ Assim, a função de distribuição binomial é:
 
 Se `\(X\)` é uma variável aleatória com distribuição Binomial ela apresenta:
  
-**Esperança**:  `\(E(X) = n \cdot p\)` e **Variância**: `\(Var(X) = n \cdot p \cdot q\)` (demonstração está aos 39min do vídeo abaixo).
-
-&lt;iframe width="853" height="480" src="https://www.youtube.com/embed/tNRN89z0TYw?t=2356" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
-[Link para o vídeo](https://youtu.be/tNRN89z0TYw?t=2356)
+**Esperança**:  `\(E(X) = n \cdot p\)` e **Variância**: `\(Var(X) = n \cdot p \cdot q\)`
 
 ---
 E se, ao invés de `\(3\)` moedas, tivéssemos `\(4\)` moedas?
@@ -524,11 +540,22 @@ E se, ao invés de `\(3\)` moedas, tivéssemos `\(4\)` moedas?
 
 Qual a probabilidade do número de caras ser igual ao número de coroas?
 
-**R**: Dado que a moeda é honesta, ou seja, `\(P(H) = \frac{1}{2}\)`, temos que o `\(x=2\)` e `\(n=4\)`, aplicando a função de probabilidade Binomial `\(b(4,\frac{1}{2})\)`:
+**R**: Dado que a moeda é honesta, ou seja, `\(P(H) = \frac{1}{2}\)`, temos que o `\(x=2\)` e `\(n=4\)`, aplicando a função de probabilidade Binomial `\(b(4;0.5)\)`:
 
 `\(P(X=x) = {n \choose x}p^x \cdot q^{n-x}\)`
 
-`\(P(X=2) = {4 \choose 2} \left(\frac{1}{2}\right)^2 \cdot \left(\frac{1}{2}\right)^{2-2} = 0,375\)`
+`\(P(X=2) = {4 \choose 2} \left(\frac{1}{2}\right)^2 \cdot \left(\frac{1}{2}\right)^{4-2}  = 0,375\)`
+---
+
+class: middle, center
+
+**Montando a fórmula na calculadora científica**
+
+
+![](img/calculadora10.png)
+
+
+
 ---
 
 No R podemos utilizar a função `dbinon()` com os argumentos `\(x\)`, `\(n\)` e `\(p\)` a probabilidade de sucesso.
@@ -567,7 +594,7 @@ tibble(x,px) %&gt;%
 
 ---
 
-### Estudo do parâmetro `\(p\)`
+### Estudo do parâmetro (p)
 
 A distribuição binomial é **simétrica** se o valor de `\(p\)` em um histograma tem o mesmo valor de `\(q\)` em outro, as probabilidades são exatamente as mesmas, mas dispostas de forma invertida. 
 
@@ -616,7 +643,7 @@ d) `\(0,9844\)`
 
 ---
 
-2) Uma urna contém bolas brancas e pretas na proporção `\(2\)` para `\(3\)`. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de `\(0, 1, 2 e 3\)` sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
+2) Uma urna contém bolas brancas e pretas na proporção `\(2\)` para `\(3\)`. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada à urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de `\(0, 1, 2 e 3\)` sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
 
 --
 
@@ -646,7 +673,7 @@ class: middle, center, inverse
 ---
 ### Distribuição de Poisson
 
-O comportamento de variáveis aleatórias, as quais representam o número de ocorrências de eventos em um intervalo de tempo ou no espaço (superfície ou volume), pode ser descrito pela chamada distribuição de **Poisson**, cuja função de probabilidade é:
+O comportamento de variáveis aleatórias, as quais representam o número de ocorrências de eventos em um intervalo de tempo ou no espaço, pode ser descrito pela chamada distribuição de **Poisson**, cuja função de probabilidade é:
 
 ### Função de Distribuição Poisson é:
 
@@ -678,16 +705,24 @@ Ou seja, o número médio e a variância de ocorrências de eventos por unidade 
 
 **Exercícios 1)** Em uma população, seja `\(X\)` o número de descendentes produzidos por família/geração. Assumindo que Média = `\(\lambda = 2\)`, qual a probabilidade de famílias com  `\(X= 4\)` descendentes?
 
---
 
 &lt;img src="Aula07_files/figure-html/unnamed-chunk-19-1.png" width="0%" style="display: block; margin: auto;" /&gt;
 
 `$$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$`
 
+---
 
+class: middle, center
+
+**Montando a fórmula na calculadora científica**
+
+
+![](img/calculadora11.png)
 
 ---
-**Exercício 2)** Suponha que o número de partículas alfa, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro `\(\lambda = 5\)`, isto é, a taxa média de ocorrência é de `\(5\)` partículas a cada minuto. Calcule a probabilidade de haver mais de `\(2\)` emissões em um minuto.
+**Exercício 2)** Suponha que o número de partículas *alfa*, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro `\(\lambda = 5\)`, isto é, a taxa média de emissão é de `\(5\)` partículas a cada minuto. 
+
+a) Calcule a probabilidade de haver mais de `\(2\)` emissões em um minuto.
 
 
 &lt;img src="https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif" width="60%" style="display: block; margin: auto;" /&gt;
@@ -705,9 +740,6 @@ Se `\(P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}\)`, ent�
 
 `\(P(x &gt;2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}\)`
 
-
-
-
 ]
 
 `\(P(x &gt;2 ) = 1 - [P(X=0) + P(X=1) + P(X=2)]\)`
@@ -716,7 +748,7 @@ Se `\(P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}\)`, ent�
 
 ---
 
-**Exercício 3)** Calcule a probabilidade da emissão de até `\(4\)` partículas em `\(2\)` minutos. 
+b) Calcule a probabilidade da emissão de até `\(4\)` partículas em `\(2\)` minutos. 
 
 
 
@@ -725,16 +757,17 @@ Se `\(P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}\)`, ent�
 ]
 
 .pull-right[
+
 Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distribuição de Poisson, mas com o valor de parâmetro ajustado de forma conveniente. 
 
-Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: `\(\lambda'= 2 \times 5 = 10\)` partículas em dois min.
+Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: `\(\lambda'= 2 \times 5 = 10\)` partículas em dois minutos.
 
 
 `$$P(X \le 4) = 0,029252$$`
 ]
 
 ---
-**Exercício 4)** Supondo que o número médio de bactérias por litro de água purificada é `\(2\)`, qual é a probabilidade que `\(5\)` ou mais bactérias sejam encontradas em uma amostra de `\(3\)` litros de água?
+**Exercício 3)** Supondo que o número médio de bactérias por litro de água purificada é `\(2\)`, qual é a probabilidade que `\(5\)` ou mais bactérias sejam encontradas em uma amostra de `\(3\)` litros de água?
 --
 .pull-left[
 &lt;img src="Aula07_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
@@ -743,7 +776,7 @@ Por exemplo, se o período de tempo considerado para o exemplo anterior for de d
 .pull-right[
 Se o volume é alterado a variável aleatória mantém a mesma distribuição de Poisson, se o volume for de `\(3\)` litros, teremos que o número de bactérias observado terá distribuição: `\(\lambda'= 3 \times 2 = 6\)` bactérias por litro.
 
-`$$P(X \ge 5) =1 - \sum_{i=0}^5 \frac{e^{-\lambda}\lambda^x}{x!} = 0,7149$$`
+`$$P(X \ge 5) =1 - \sum_{i=0}^4 \frac{e^{-\lambda}\lambda^x}{x!} = 0,7149$$`
 ]
 
 ---
@@ -760,7 +793,6 @@ A aproximação é boa, se `\(n \cdot p = \lambda \le 7\)`.
 
 Nestas condições, a variável aleatória `\(X\)` com distribuição Binominal aproximada pela  Poisson apresenta:
 
-A variável aleatória `\(X\)` com distribuição de Poisson apresenta:
 
 **Esperança**: 
 
@@ -770,7 +802,7 @@ e **Variância**:
 
 `$$Var(X) = n \cdot p$$`
 ---
-**Exercício 5)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à uma vacina é de `\(0,001\)`, determinar a probabilidade de que, de `\(2000\)` pessoas vacinadas, mais do que `\(4\)` pessoas tenham reação negativa?
+**Exercício 4)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à uma vacina é de `\(0,001\)`, determinar a probabilidade de que, de `\(2000\)` pessoas vacinadas, mais do que `\(4\)` pessoas tenham reação negativa?
 
 --
 
@@ -791,13 +823,7 @@ lambda &lt;- n*0.001
 #&gt; [1] 0.05265302
 ```
 
----
 
-### Apêndice - Processo e Poisson
-
-&lt;iframe width="853" height="480" src="https://www.youtube.com/embed/cEq38h7SzDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
-[Link do vídeo](https://www.youtube.com/watch?v=cEq38h7SzDI)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
