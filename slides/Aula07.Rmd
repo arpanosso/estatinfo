@@ -26,12 +26,6 @@ options
 library(tidyverse)
 ```
 
----
-class: middle, center, inverse
-
-# Variáveis Aleatórias Discretas
-
----
 
 ### Variável Aleatória Discreta
 
@@ -631,8 +625,11 @@ tibble(x,px) |>
 
 1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada $6$ vezes. Achar a probabilidade de obter cara:  
  a) exatamente $3$ vezes;  
+ 
  b) no máximo $3$ vezes;  
+ 
  c) pelo menos $3$ vezes;  
+ 
  d) pelo menos $1$ vez.  
 
 --
@@ -645,23 +642,75 @@ d) $0,9844$
 
 ---
 
-2) Uma urna contém bolas brancas e pretas na proporção $2$ para $3$. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada à urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de $0, 1, 2 e 3$ sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
+2) Uma urna contém bolas brancas e pretas na proporção $2$ para $3$. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada à urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. 
 
---
+Achar a probabilidade de $0, 1, 2 e 3$ sucessos. 
 
-### Respostas
-$E(X) = 1,2$ 
+Calcule a esperança e a variância dessa distribuição de probabilidade.
+
+---
+
+**Respostas**
+
+$P(S) = p = \frac{2}{5}$ e, portanto, $P(F) = q = \frac{3}{5}$ 
+
+```{r,echo=FALSE,out.width="50%",out.height="50%"}
+n <- 3
+x <- 0:n
+p<-2/5
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.3)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r,echo=FALSE}
+tibble(x,px) %>%  
+    tidyr::pivot_wider(names_from = x,
+                     values_from = px) %>% 
+  kableExtra::kable()
+```
+
+
+$E(X) = 1,2$   
 $Var(X) = 0,72$
 
 ---
-3) Uma urna contém $52$ bolas sendo $13$ brancas e $39$ pretas.  
+3) Uma urna contém $52$ bolas sendo $13$ brancas e $39$ pretas.
+
  a) Qual a probabilidade de se tirarem $6$ bolas brancas, uma a uma, retornando a bola à urna após cada retirada?  
+ 
+ 
  b) Calcule a esperança e a variância dessa distribuição de probabilidade.  
- c) Nas mesmas condições da questão anterior, qual a probabilidade de se terem 5 brancas e 1 preta? 
+ 
+ c) Nas mesmas condições da questão anterior, qual a probabilidade de se terem $5$ brancas e $1$ preta? 
 
---
+---
 
-### Respostas
+**Respostas**
+
+$P(S) = p = \frac{13}{52}$ e, portanto, $P(F) = q = \frac{39}{52}$ 
+
+```{r,echo=FALSE,out.width="40%",out.height="40%"}
+n <- 6
+x <- 0:n
+p<-13/52
+px<-dbinom(x,n,p)
+tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
+  geom_col(color="black",fill="gray")+
+  labs(title = "b(5,0.25)")+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r,echo=FALSE}
+tibble(x,px) %>%  
+    tidyr::pivot_wider(names_from = x,
+                     values_from = px) %>% 
+  kableExtra::kable()
+```
+
+
 a) $0,0002441$;  
 b) $E(X) = 1,5$ e $Var(X) = 1,125$;  
 c) $0,0043945$
@@ -705,10 +754,11 @@ Ou seja, o número médio e a variância de ocorrências de eventos por unidade 
 ---
 
 
-**Exercícios 1)** Em uma população, seja $X$ o número de descendentes produzidos por família/geração. Assumindo que Média = $\lambda = 2$, qual a probabilidade de famílias com  $X= 4$ descendentes?
+**Exercício 1)** Em uma população, seja $X$ o número de descendentes produzidos por família/geração. Assumindo que Média = $\lambda = 2$, pergunta-se:
 
+Qual a probabilidade de, em um sorteio ao acaso, selecionar-se um família com  $X= 4$ descendentes?
 
-```{r,echo=FALSE,out.width="0%"}
+```{r,echo=FALSE,out.width="60%"}
 n <- 10
 x <- 0:n
 lambda <- 2
@@ -720,15 +770,17 @@ tibble(x,px) |>
   geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
   theme_bw()
 ```
-
-$$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
-
 ---
 
 class: middle, center
 
-**Montando a fórmula na calculadora científica**
 
+
+$$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
+
+
+
+**Montando a fórmula na calculadora científica**
 
 ![](img/calculadora11.png)
 
@@ -797,7 +849,7 @@ tibble(x,px) |>
 
 Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distribuição de Poisson, mas com o valor de parâmetro ajustado de forma conveniente. 
 
-Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: $\lambda'= 2 \times 5 = 10$ partículas em dois minutos.
+Por exemplo, se o período de tempo considerado para o exemplo anterior for de $2$ minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: $\lambda'= 2 \times 5 = 10$ partículas em dois minutos.
 
 
 $$P(X \le 4) = 0,029252$$
@@ -831,7 +883,9 @@ $$P(X \ge 5) =1 - \sum_{i=0}^4 \frac{e^{-\lambda}\lambda^x}{x!} = 0,7149$$
 
 ### Distribuição de Poisson como aproximação da Distribuição Binomial
 
-Algumas vezes, no uso da distribuição binomial, ocorre que $n$ é muito grande e $p$ é muito pequeno, de modo que $q$ é próximo de $1$. Em tais casos, o cálculo torna-se muito difícil. Pode-se, então, fazer uma aproximação da distribuição Binomial pela Poisson.
+Algumas vezes, no uso da distribuição binomial, ocorre que $n$ é muito grande e $p$ é muito pequeno, de modo que $q$ é próximo de $1$. Em tais casos, o cálculo torna-se muito difícil. Pode-se, então, fazer uma aproximação da distribuição Binomial pela Poisson, por meio de:
+
+$$\lambda = n \cdot p$$
 
 Função de Distribuição: 
 
@@ -842,13 +896,10 @@ A aproximação é boa, se $n \cdot p = \lambda \le 7$.
 Nestas condições, a variável aleatória $X$ com distribuição Binominal aproximada pela  Poisson apresenta:
 
 
-**Esperança**: 
+**Esperança**: $E(X) = n \cdot p$ 
 
-$$E(X) = n \cdot p$$ 
+**Variância**: $Var(X) = n \cdot p$
 
-e **Variância**: 
-
-$$Var(X) = n \cdot p$$
 ---
 **Exercício 4)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à uma vacina é de $0,001$, determinar a probabilidade de que, de $2000$ pessoas vacinadas, mais do que $4$ pessoas tenham reação negativa?
 
