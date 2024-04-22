@@ -35,7 +35,7 @@ class: center, middle, inverse, title-slide
 
 class: middle, center, inverse
 
-# Distribuições teóricas de probabilidades de variáveis aleatórias Contínuas 
+# Distribuições teóricas de probabilidades de Variáveis Aleatórias Contínuas 
 
 ---
 
@@ -142,25 +142,17 @@ Ou seja, com um número suficientemente grande de observações, diminuindo-se o
 Como a probabilidade é interpretada como a frequência relativa de um evento em uma longa série de ensaios independentes, a curva obtida como a forma limite dos histogramas `\((c)\)` representa a maneira pela qual a probabilidade total `\((1)\)` é distribuída em relação à amplitude dos possíveis valores da v.a. `\(X\)`. 
 
 A função matemática `\(f(x)\)`, cujo gráfico produz tal curva é chamada **função densidade de probabilidade** `\((f.d.p.)\)` da v.a. contínua `\(X\)`.
+]
 
 **PROPRIEDADES**  
 - a área total sob a curva é igual a `\(1\)` ;
-- `\((a \le X \le b)\)` = área sob a curva entre os pontos `\(a\)` e `\(b\)` ;
+- `\(P(a \le X \le b)\)` = área sob a curva entre os pontos `\(a\)` e `\(b\)`;
 - `\(f(x) \ge 0\)` (não negativa) ;
 - `\(P(X = x_i ) = 0\)`.  
 
-]
----
-
-
-```
-#&gt; NULL
-```
-
-
 ---
 .pull-left[
-&lt;img src="Aula08_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula08_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -198,7 +190,7 @@ Uma v.a. `\(X\)` tem distribuição normal com parâmetros `\(\mu\)` e `\(\sigma
 
 Onde:
 
-`$$E(X) = \mu \text{ e } Var(X) = \sigma^2$$`
+**i) ** `\(E(X) = \mu \text{ e } Var(X) = \sigma^2\)`;
 
 **ii)** `\(f(x) \to 0\)` quando `\(x \to \pm \infty\)`;
 
@@ -277,11 +269,11 @@ onde `\(X \sim N(\mu, \sigma^2)\)`
 
 Se `\(X \sim N(\mu, \sigma^2)\)`, então a variável aleatória `\(Z\)` definida terá uma distribuição `\(N(0, 1)\)`.
 
-### Esperança
+### Esperança:
 
 `$$E(Z) = 0$$`
 
-### Variância
+### Variância:
 
 `$$Var(Z) = 1$$`
 
@@ -400,6 +392,7 @@ pnorm(1.73) - pnorm(0.47)
 
 #### Suponha que `\(X \sim N(3, 16)\)`, calcular: `\(P(2 \le X \le 5)\)` 
 
+--
 
 `\(P(2 \le X \le 5) = P(\frac{2-3}{4} \le \frac{X}{4} \le \frac{5-3}{4}) = P(-0,25 \le Z \le 0,5)\)`
 
