@@ -373,7 +373,7 @@ Outro vídeo bastante interessante do **Khan Academy Brasil** apresentando uma e
 [Link do vídeo](https://www.youtube.com/watch?v=BFu8smEp-Cc)
 
 ---
-### Aplicação
+### Exemplo 1
 
 A figura abaixo ilustra a probabilidade fornecida pela tabela, ou seja, 
 
@@ -409,9 +409,7 @@ por simetria:
 pnorm(-1.73)
 ```
 
-ou seja:
-
-$P( Z \ge 1,73) = P( Z \le -1,73) = 0,5 - P(0 \le Z \le 1,73) = 0,5 -0,4582 = 0,0418$
+$$\begin{aligned} P( Z \ge 1,73) &= P( Z \le -1,73) \\ &= 0,5 - P(0 \le Z \le 1,73) \\& = 0,5 -0,4582 \\ &= 0,0418 \end{aligned}$$
 
 ---
 
@@ -444,7 +442,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 pnorm(1.73) - pnorm(0.47)
 ```
 
-$P(0,47 \le Z \le 1,73) = P(0 \le Z \le 1,73) P(0 \le Z \le 0,47) = 0,4582 - 0,1808 = 0,2774$
+$$\begin{aligned}P(0,47 \le Z \le 1,73) &= P(0 \le Z \le 1,73)  - P(0 \le Z \le 0,47) \\ &= 0,4582 - 0,1808 = 0,2774\end{aligned}$$
 
 ---
 
@@ -452,12 +450,13 @@ $P(0,47 \le Z \le 1,73) = P(0 \le Z \le 1,73) P(0 \le Z \le 0,47) = 0,4582 - 0,1
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_14.png")
 ```
 ---
+## Exemplo 2
 
-#### Suponha que $X \sim N(3, 16)$, calcular: $P(2 \le X \le 5)$ 
+Suponha que a variável aleatório $X \sim N(3, 16)$, calcular: $P(2 \le X \le 5)$ 
 
 --
 
-$P(2 \le X \le 5) = P(\frac{2-3}{4} \le \frac{X}{4} \le \frac{5-3}{4}) = P(-0,25 \le Z \le 0,5)$
+$P(2 \le X \le 5) = P(\frac{2-3}{4} \le \frac{X-\mu}{\sigma} \le \frac{5-3}{4}) = P(-0,25 \le Z \le 0,5)$
 
 $P(-0,25 \le Z \le 0,5) = P(-0,25 \le Z \le 0) + P(0 < Z \le 0,5)$
 
@@ -474,7 +473,7 @@ pnorm(5,3,4) - pnorm(2,3,4)
 
 ---
 
-# Exercício 
+## Exemplo 3
 
 Sabendo-se que os pesos à desmama $(X)$ de $10.000$ bezerros de um rebanho são distribuídos normalmente, com média $(\mu = 170\;kg)$ e desvio padrão $( \sigma = 5\;kg)$, pergunta-se:
 
@@ -518,20 +517,20 @@ $$
 $$
 
 $$
- P(170 \leq X \leq x) = 0,30
+ P(170 \leq X \leq x_c) = 0,30
 $$
 $$
- P(170 \leq X \leq x) = P\left( \frac{170-170}{5} \leq \frac{X - \mu}{\sigma} \leq \frac{x_c-170}{5} \right) = 30
+ P(170 \leq X \leq x) = P\left( \frac{170-170}{5} \leq \frac{X - \mu}{\sigma} \leq \frac{x_c-170}{5} \right) = 0,30
 $$
 
 $$
-P\left( 0 \leq Z \leq \frac{x_c-170}{5} \right) = 30
+P\left( 0 \leq Z \leq \frac{x_c-170}{5} \right) = 0,30
 $$
 
 Obervando a tabela
 
 $$
-P\left( 0 \leq Z \leq 0,84 \right) = 30
+P\left( 0 \leq Z \leq 0,84 \right) = 0,30
 $$
 Então,
 
@@ -562,7 +561,7 @@ Se $X$ tem distribuição binomial $b(n, p)$, onde $n$ é grande e $p$ não é m
 $$Z = \frac{X -np}{\sqrt{(np(1-p))} }$$
 que é aproximadamente $N(0,1)$.
 
-$$P(a \le X \le b) = \sum_{x=a}^b {n \choose x}p^x(1-p)^{n-x} \cong P\left( \frac{a-np}{\sqrt{np(1-p)}} \le Z \le \frac{b-np}{\sqrt{np(1-p)}} \right)$$
+$P(a \le X \le b) = \sum_{x=a}^b {n \choose x}p^x(1-p)^{n-x} \cong P\left( \frac{a-np}{\sqrt{np(1-p)}} \le Z \le \frac{b-np}{\sqrt{np(1-p)}} \right)$
 
 ```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_17.png")
@@ -583,10 +582,15 @@ A distribuição normal pode ser recomendada para aproximar probabilidades binom
 
 
 ---
+## Exemplo 4
+Supondo que $X \sim b(15; 0,4)$, calcule a probabilidade:
 
-#### Supondo que $X \sim b(15, 0,4)$, calcule a probabilidade:
+
 $P(7 \le X \le 10)$, por meio da aproximação normal à binomial.
 
+---
+
+Resposta:
 
 $$P(7 \le X \le 10) = P \left( \frac{(\frac{7-0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \le Z \le \frac{(\frac{10+0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \right)$$
 
