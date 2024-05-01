@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ]
 .institute[
-### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
+### Departamento e Ciências Exatas FCAV/UNESP
 ]
 .date[
 ### (02-05-2024)
@@ -99,12 +99,13 @@ Calculando a Esperança de X:
 
 Calculando a Variância de X.
 
-`\(Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\;dias^2\)`
+`$$\begin{aligned} Var(X) &amp;= \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2 \\ Var(X) &amp;= 0,81\;dias^2 \end{aligned}$$`
+
+]
 
 Definimos a média a partir da tomada de duas amostras temos:
 
 `$$\bar{X} = \frac{X_1+X_2}{2}$$`
-]
 
 ---
 
@@ -196,7 +197,129 @@ Se `\(\bar{X}\)` é a média de uma amostra aleatória simples com reposição, 
 Assim, em uma amostra aleatória simples com reposição, de tamanho `\(n\)`, de uma população arbitrária, com média `\(\mu\)` e variância `\(\sigma^2\)`, a distribuição de `\(\bar{X}\)` quando `\(n\)` é grande é  **aproximadamente  normal**, com média `\(\mu\)` e variância `\(\frac{\sigma^2}{n}\)`.
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_2.png" width="35%" style="display: block; margin: auto;" /&gt;
+---
+### Indução do conceito a partir do R
 
+#### Simulação de ume população não normal.
+
+
+```r
+set.seed(7355608)
+x &lt;- rep(1:10,
+                 c(800,700,200,350,120,
+                   500,1200,800,800,800)
+                 )
+```
+
+---
+#### Cálculo da esperança de X: `\(E(X) = \mu\)`.
+
+```r
+mean(x)
+```
+
+```
+#&gt; [1] 6.028708
+```
+
+#### Cálculo da variância de X: `\(Var(X) = \sigma^2\)`.
+
+```r
+var(x)
+```
+
+```
+#&gt; [1] 9.397804
+```
+
+---
+
+#### Distribuição de probabilidade.
+
+```r
+hist(x, probability = TRUE)
+```
+
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+#### Definindo o tamanho da amostra `\(n\)`.
+
+```r
+n &lt;- 5
+```
+
+#### Realizar uma amostragem aleatória simples, com reposição, de tamanho `\(n\)` e calcular a média e variância dessa amostra.
+
+```r
+amostra &lt;- sample(x,n,replace = TRUE)
+mean(amostra)
+```
+
+```
+#&gt; [1] 5.4
+```
+
+```r
+var(amostra)
+```
+
+```
+#&gt; [1] 9.3
+```
+
+
+---
+#### Realizar `\(k\)` amostragens de tamanho `\(n\)`, calcular as respectivas médias, construir a distribuição de probabilidade dessas médias com os cálculos da `\(E[\bar{X}]\)` e da `\(Var(\bar{X})\)`.
+
+
+```r
+k &lt;- 10000
+vetor_medias &lt;- 0
+for(i in 1:k) vetor_medias[i] &lt;- mean(sample(x,n,replace=TRUE))
+```
+
+#### Cálculo da esperança de X: `\(E(\bar{X}) = \mu\)`.
+
+```r
+mean(vetor_medias)
+```
+
+```
+#&gt; [1] 6.02868
+```
+
+#### Cálculo da variância de X: `\(Var(\bar{X}) = \frac{\sigma^2}{n}\)`.
+
+```r
+var(vetor_medias)
+```
+
+```
+#&gt; [1] 1.902184
+```
+
+
+```r
+hist(vetor_medias,xlim=c(0,10), probability = TRUE);box()
+```
+
+---
+
+### n = 5
+
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### n = 15
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### n = 50
+
+&lt;img src="Aula09_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
 ---
 class: middle, inverse, center
 
@@ -257,7 +380,7 @@ Observações,
 `\(\mu = E(X)\)`, `\(\sigma^2 = Var(X)\)` e `\(\frac{N-n}{N-1}\)` é o fator de correção para populações finitas.
 
 A variância da média amostral com este tipo de amostragem é menor do que com reposição. Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio `\((\mu)\)`. No entanto, se a população for grande quando comparada com o tamanho da amostra `\((n)\)`, o fator de correção será próximo de 1 e, portanto:
-$$Var(\bar{X}) \approx \frac{\sigma}{n} $$
+$$Var(\bar{X}) \approx \frac{\sigma^2}{n} $$
 ---
 
 class: middle, center, inverse
@@ -328,7 +451,7 @@ Qual a probabilidade de se encontrar mais de `\(72\%\)` das covas com plantas ge
 
 **Resposta:** 
 
-`\(P(T \geq 450) = P(\hat{p} \geq 0,72) = 0,1378\)`
+`\(P(T \geq 450) = P(\hat{p} \geq 0,72) = P(Z \geq 1,09) = 0,13786\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

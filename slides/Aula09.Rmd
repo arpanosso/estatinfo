@@ -7,7 +7,7 @@
 title: "Estatística e Informática"
 subtitle: "Aula 09 - Estatística, Distribuição Amostral"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+institute: "Departamento e Ciências Exatas FCAV/UNESP"
 date: "(02-05-2024)"
 encoding: "UTF-8"
 output:
@@ -99,12 +99,13 @@ $$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 1,30\;dias$$
 
 Calculando a Variância de X.
 
-$Var(X) = \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2= 0,81\;dias^2$
+$$\begin{aligned} Var(X) &= \sum \limits_{i=1}^k x_i^2 \cdot P(x_i) - [E(X)]^2 \\ Var(X) &= 0,81\;dias^2 \end{aligned}$$
+
+]
 
 Definimos a média a partir da tomada de duas amostras temos:
 
 $$\bar{X} = \frac{X_1+X_2}{2}$$
-]
 
 ---
 
@@ -202,7 +203,104 @@ Assim, em uma amostra aleatória simples com reposição, de tamanho $n$, de uma
 ```{r,out.width = "35%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/amostra_2.png")
 ```
+---
+### Indução do conceito a partir do R
 
+#### Simulação de ume população não normal.
+
+```{r}
+set.seed(7355608)
+x <- rep(1:10,
+                 c(800,700,200,350,120,
+                   500,1200,800,800,800)
+                 )
+```
+
+---
+#### Cálculo da esperança de X: $E(X) = \mu$.
+```{r}
+mean(x)
+```
+
+#### Cálculo da variância de X: $Var(X) = \sigma^2$.
+```{r}
+var(x)
+```
+
+---
+
+#### Distribuição de probabilidade.
+```{r}
+hist(x, probability = TRUE)
+```
+
+
+---
+#### Definindo o tamanho da amostra $n$.
+```{r}
+n <- 5
+```
+
+#### Realizar uma amostragem aleatória simples, com reposição, de tamanho $n$ e calcular a média e variância dessa amostra.
+```{r}
+amostra <- sample(x,n,replace = TRUE)
+mean(amostra)
+var(amostra)
+```
+
+
+---
+#### Realizar $k$ amostragens de tamanho $n$, calcular as respectivas médias, construir a distribuição de probabilidade dessas médias com os cálculos da $E[\bar{X}]$ e da $Var(\bar{X})$.
+
+```{r}
+k <- 10000
+vetor_medias <- 0
+for(i in 1:k) vetor_medias[i] <- mean(sample(x,n,replace=TRUE))
+```
+
+#### Cálculo da esperança de X: $E(\bar{X}) = \mu$.
+```{r}
+mean(vetor_medias)
+```
+
+#### Cálculo da variância de X: $Var(\bar{X}) = \frac{\sigma^2}{n}$.
+```{r}
+var(vetor_medias)
+```
+
+```{r,eval=FALSE}
+hist(vetor_medias,xlim=c(0,10), probability = TRUE);box()
+```
+
+---
+
+### n = 5
+
+```{r, echo=FALSE}
+hist(vetor_medias,xlim=c(0,10), probability = TRUE);box()
+```
+
+---
+### n = 15
+```{r,echo=FALSE}
+n <- 15
+k <- 10000
+vetor_medias <- 0
+for(i in 1:k) vetor_medias[i] <- mean(sample(x,n,replace=TRUE))
+hist(vetor_medias,xlim=c(0,10),col="darkgray", probability = TRUE);box()
+```
+
+---
+
+### n = 50
+
+```{r,echo=FALSE}
+n <- 50
+k <- 10000
+vetor_medias <- 0
+for(i in 1:k) vetor_medias[i] <- mean(sample(x,n,replace=TRUE))
+hist(vetor_medias,xlim=c(0,10),col="aquamarine4", probability = TRUE);box()
+```
 ---
 class: middle, inverse, center
 
@@ -265,7 +363,7 @@ Observações,
 $\mu = E(X)$, $\sigma^2 = Var(X)$ e $\frac{N-n}{N-1}$ é o fator de correção para populações finitas.
 
 A variância da média amostral com este tipo de amostragem é menor do que com reposição. Assim, amostragem sem reposição é mais eficiente do que a com reposição para estimar o valor médio $(\mu)$. No entanto, se a população for grande quando comparada com o tamanho da amostra $(n)$, o fator de correção será próximo de 1 e, portanto:
-$$Var(\bar{X}) \approx \frac{\sigma}{n} $$
+$$Var(\bar{X}) \approx \frac{\sigma^2}{n} $$
 ---
 
 class: middle, center, inverse
@@ -336,4 +434,4 @@ Qual a probabilidade de se encontrar mais de $72\%$ das covas com plantas germin
 
 **Resposta:** 
 
-$P(T \geq 450) = P(\hat{p} \geq 0,72) = 0,1378$
+$P(T \geq 450) = P(\hat{p} \geq 0,72) = P(Z \geq 1,09) = 0,13786$
