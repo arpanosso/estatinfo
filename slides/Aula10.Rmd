@@ -336,7 +336,7 @@ class: middle, center, inverse
 
 Fazendo uso do fato que, para $n$ grande, a distribuição binomial pode ser aproximada com a normal:
 
-$$Z = \frac{x - n.p}{\sqrt{n.p.q}} = \frac{\hat{p}-p}{\sqrt{\frac{\hat{p} \hat{q}}{n}}}$$
+$$Z = \frac{x - n.p}{\sqrt{n.p.q}} = \frac{\hat{p}-p}{\sqrt{\frac{\hat{p} \hat{q}}{n}}} \tilde{ }N(0,1)$$
 
 Temos:
 
