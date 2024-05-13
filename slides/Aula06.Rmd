@@ -7,7 +7,7 @@
 title: "Estatística e Informática"
 subtitle: "Aula 06 - Probabilidade Parte II"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
+institute: "Departamento de Ciências Exatas FCAV/UNESP"
 date: "(04-04-2024)"
 encoding: "UTF-8"
 output:
