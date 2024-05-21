@@ -75,7 +75,9 @@ A Precisão mede quão próximas estimativas individuais estão umas das outras,
 
 ## Propriedades de um bom estimador
 
-**1) Consistência**: é uma propriedade por meio da qual a acurácia de uma estimativa aumenta quando o tamanho da amostra aumenta. Assim dado um parâmetro populacional `\(\theta\)` e sendo `\(\hat{\theta}\)`  o estimador desse parâmetro. As condições suficientes para um estimador ser consistente são:
+**1) Consistência**: é uma propriedade por meio da qual a acurácia de uma estimativa aumenta quando o tamanho da amostra aumenta. Assim dado um parâmetro populacional `\(\theta\)` e sendo `\(\hat{\theta}\)`  o estimador desse parâmetro. 
+
+As condições suficientes para um estimador ser consistente são:
 
 `$$\lim_{n \to \infty}E(\hat{\theta}) = \theta$$`
 
@@ -330,7 +332,7 @@ class: middle, center, inverse
 
 Fazendo uso do fato que, para `\(n\)` grande, a distribuição binomial pode ser aproximada com a normal:
 
-`$$Z = \frac{x - n.p}{\sqrt{n.p.q}} = \frac{\hat{p}-p}{\sqrt{\frac{\hat{p} \hat{q}}{n}}}$$`
+`$$Z = \frac{x - n.p}{\sqrt{n.p.q}} = \frac{\hat{p}-p}{\sqrt{\frac{\hat{p} \hat{q}}{n}}} \tilde{ }N(0,1)$$`
 
 Temos:
 
