@@ -5,7 +5,7 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 12 - Testes de Hipótese"
+subtitle: "Aula 11 - Testes de Hipótese"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Ciências Exatas FCAV/UNESP"
 date: "(23-05-2024)"
