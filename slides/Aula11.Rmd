@@ -73,7 +73,7 @@ Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técn
 **Hipótese alternativa $(H_1)$:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
 
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_01.png")
 ```
 
@@ -122,13 +122,13 @@ $\beta = P \text{(erro tipo II)}$ = $P$(Não rejeitar $H_0|H_0$ é falsa) = **po
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "110%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_03.png")
 ```
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "110%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_04.png")
 ```
 ---
@@ -169,21 +169,21 @@ class: middle, center, inverse
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "120%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_08.png")
 ```
 
 ---
 
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "120%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_09.png")
 ```
 
 ---
 
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "140%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_10.png")
 ```
 
@@ -191,13 +191,13 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 [Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "120%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
 ```
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "120%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_11.png")
 ```
 
@@ -209,7 +209,7 @@ class: middle, center, inverse
 
 ---
 
-```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "110%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_12.png")
 ```
 ---
@@ -231,19 +231,21 @@ class: middle, center, inverse
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "120%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_14.png")
 ```
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "110%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_15.png")
 ```
 
 ---
 
-**Exemplo 4**. As especificações de uma dada droga veterinária exigem $23,2$ g de álcool etílico. Uma amostra de $10$ análises do produto apresentou um teor médio de álcool de $23,5$ g com desvio padrão de $0,24$ g. Pode-se concluir ao nível de significância de $1\%$ que o produto satisfaz as condições exigidas $(\mu = 23,2 \text{ g })$ ?
+**Exemplo 4**. As especificações de um dado medicamento veterinário exigem $23,2$ g de álcool etílico em sua composição. Uma amostra de $10$ análises do produto apresentou um teor médio de álcool de $23,5$ g com desvio padrão de $0,24$ g. 
+
+Com base nessa amostra, pode-se concluir, ao nível de significância de $1\%$, que o produto satisfaz as condições exigidas $(\mu = 23,2 \text{ g })$ ?
 
 ---
 
@@ -255,7 +257,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 
 ---
 
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "130%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_16.png")
 ```
 
