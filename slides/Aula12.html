@@ -101,6 +101,8 @@ F1 precisamos calcular:
 
 Assim, `\(RC = \{0 &lt; F &lt; 0,205 \text{ ou }  F &gt; 3,97 \}\)`
 
+---
+
 Entretanto, o procedimento que se usa na prática é calcular `\(F\)` utilizando sempre a maior variância no numerador `\(s_1^2 &gt; s^2_2\)` portanto `\(F &gt; 1\)`, e considerar o ponto crítico `\(F_{2(\alpha;\;n1-1,\; n2-1)}\)`.
 
 **Amostra:** Colhidas amostras aleatórias `\(n_1\)` e  `\(n_2\)`, calcula-se `\(s^2_1\)` e `\(s^2_2\)` com `\((s^2_1 &gt; s^2_2)\)`, então:
@@ -108,12 +110,6 @@ Entretanto, o procedimento que se usa na prática é calcular `\(F\)` utilizando
 `$$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$`
 
 **Conclusão:** Se `\(F_{obs} \in RC\)`, **rejeita-se** `\(H_0\)`, no caso contrário, **não se rejeita** `\(H_0\)`.
-
----
-
-[Tabela - Distribuição F-Snedecor](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaFSnedecor.pdf) 
-
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_18.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -125,6 +121,8 @@ Entretanto, o procedimento que se usa na prática é calcular `\(F\)` utilizando
 **R2:** | `\(2,30\)`   | `\(2,15\)`   | `\(2,00\)`   | `\(1,28\)`   | `\(2,15\)`   | `\(2,20\)`   | `\(1,91\)`   | `\(2,06\)`
 
 Ao nível de `\(5\%\)`, as variâncias dos ganhos de pesos raças diferem entre si?
+
+---
 
 
 ```r
@@ -138,8 +136,7 @@ var.test(r1,r2)
 #&gt; 	F test to compare two variances
 #&gt; 
 #&gt; data:  r1 and r2
-#&gt; F = 1.0362, num df = 7, denom df = 7,
-#&gt; p-value = 0.9638
+#&gt; F = 1.0362, num df = 7, denom df = 7, p-value = 0.9638
 #&gt; alternative hypothesis: true ratio of variances is not equal to 1
 #&gt; 95 percent confidence interval:
 #&gt;  0.2074474 5.1756306
@@ -175,7 +172,7 @@ A estatística do teste: `\(\frac{s_{r1}^2}{s_{r2}^2} = \frac{0,10433}{0,10068} 
 
 ---
 `\(F_{c(0,05; 7, 7)} = 3,79\)` assim, `\(RC = \{  F &gt; 3,79 \}\)`
-&lt;img src="Aula12_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula12_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 
 
 Como `\(F_{obs} \notin RC\)` não se rejeita `\(H_0\)`, ou seja, as variâncias são estatisticamente iguais ao nível de 5% de significância, ou seja, as variâncias dos ganhos de peso das raças são homocedásticas.
@@ -184,7 +181,7 @@ Como `\(F_{obs} \notin RC\)` não se rejeita `\(H_0\)`, ou seja, as variâncias 
 
 ### Comparação de duas médias de populações normais: amostras independentes
 
-A análise da hipótese da igualdade de variâncias é crucial para o uso do teste `\(t\)`, na comparação de duas médias, apresentado a seguir.
+A análise da hipótese da igualdade de variâncias é crucial para o uso do teste *t*, na comparação de duas médias, apresentado a seguir.
 
 Com o objetivo de se comparar duas populações examinaremos a situação na qual os dados estão na forma de realizações de amostras aleatórias de tamanhos `\(n_1\)` e `\(n_2\)`, selecionadas, respectivamente, das populações `\(1\)` e `\(2\)`. 
 
@@ -224,6 +221,8 @@ Assim, `\(t = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} 
 **R2:** | `\(2,30\)`   | `\(2,15\)`   | `\(2,00\)`   | `\(1,28\)`   | `\(2,15\)`   | `\(2,20\)`   | `\(1,91\)`   | `\(2,06\)`
 
 Ao nível de `\(5\%\)`, as médias dos ganhos de pesos raças diferem entre si?
+
+---
 
 
 ```r
@@ -278,8 +277,12 @@ Portanto,
 
 ---
 
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png" width="100%" style="display: block; margin: auto;" /&gt;
+
 Para a construção da **região crítica** do teste: `\(t_c(14; 0,05) = -1,761\)` assim, a região crítica é `\(RC = \{ t \le -1,76131\}\)`
 
+
+---
 **Conclusão**: Como `\(t_{obs} \notin RC\)`, não rejeita-se `\(H_0\)`, não há evidências de que a raça 1 apresenta maior ganho de peso que a raça 2.
 
 &lt;img src="Aula12_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;

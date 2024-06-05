@@ -95,6 +95,8 @@ $F1_{(0,95;\;5,\; 7)} = \frac{1}{F_{(0,05;\;7,\; 5)}}=\frac{1}{4,88} = 0,205$
 
 Assim, $RC = \{0 < F < 0,205 \text{ ou }  F > 3,97 \}$
 
+---
+
 Entretanto, o procedimento que se usa na prática é calcular $F$ utilizando sempre a maior variância no numerador $s_1^2 > s^2_2$ portanto $F > 1$, e considerar o ponto crítico $F_{2(\alpha;\;n1-1,\; n2-1)}$.
 
 **Amostra:** Colhidas amostras aleatórias $n_1$ e  $n_2$, calcula-se $s^2_1$ e $s^2_2$ com $(s^2_1 > s^2_2)$, então:
@@ -102,14 +104,6 @@ Entretanto, o procedimento que se usa na prática é calcular $F$ utilizando sem
 $$F_{obs} = \frac{s^2_1}{s^2_2} \sim F_{(n_1-1;n_2-1)}$$
 
 **Conclusão:** Se $F_{obs} \in RC$, **rejeita-se** $H_0$, no caso contrário, **não se rejeita** $H_0$.
-
----
-
-[Tabela - Distribuição F-Snedecor](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaFSnedecor.pdf) 
-
-```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_18.png")
-```
 
 ---
 
@@ -121,6 +115,8 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 **R2:** | $2,30$   | $2,15$   | $2,00$   | $1,28$   | $2,15$   | $2,20$   | $1,91$   | $2,06$
 
 Ao nível de $5\%$, as variâncias dos ganhos de pesos raças diferem entre si?
+
+---
 
 ```{r}
 r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
@@ -171,7 +167,7 @@ Como $F_{obs} \notin RC$ não se rejeita $H_0$, ou seja, as variâncias são est
 
 ### Comparação de duas médias de populações normais: amostras independentes
 
-A análise da hipótese da igualdade de variâncias é crucial para o uso do teste $t$, na comparação de duas médias, apresentado a seguir.
+A análise da hipótese da igualdade de variâncias é crucial para o uso do teste *t*, na comparação de duas médias, apresentado a seguir.
 
 Com o objetivo de se comparar duas populações examinaremos a situação na qual os dados estão na forma de realizações de amostras aleatórias de tamanhos $n_1$ e $n_2$, selecionadas, respectivamente, das populações $1$ e $2$. 
 
@@ -212,6 +208,8 @@ Assim, $t = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \s
 
 Ao nível de $5\%$, as médias dos ganhos de pesos raças diferem entre si?
 
+---
+
 ```{r}
 r1<-c(2.30,2.10,1.91,1.20,1.93,1.88,1.95,2.10)
 r2<-c(2.30,2.15,2.00,1.28,2.15,2.20,1.91,2.06)
@@ -250,8 +248,14 @@ $t_{obs} = \frac{(\bar{X} - \bar{Y})}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} = \
 
 ---
 
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_05.png")
+```
+
 Para a construção da **região crítica** do teste: $t_c(14; 0,05) = -1,761$ assim, a região crítica é $RC = \{ t \le -1,76131\}$
 
+
+---
 **Conclusão**: Como $t_{obs} \notin RC$, não rejeita-se $H_0$, não há evidências de que a raça 1 apresenta maior ganho de peso que a raça 2.
 
 ```{r,echo=FALSE}
