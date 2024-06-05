@@ -72,13 +72,26 @@ $F_{(1-\alpha;\;n_1-1,\; n_2-1)} = \frac{1}{F_{(\alpha;\;n_2-1,\; n_1-1)}}$, ass
 
 ---
 
-#### Exemplo
+#### Exemplo: Construir a regição crítica para o caso abaixo:
 
-Se $n_1 - 1= 5$ e $n_2-1 = 7$
+Se $n_1 - 1= 5$ e $n_2-1 = 7$ dado $\alpha = 10\%$
 
-$F2_{(0,05;\;5,\; 7)} = 3,97$
+
+
+$F2_{(0,05;\;5,\; 7)} = 3,97$ olhamos na tabela
+
+---
+[Tabela - Distribuição F-Snedecor](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaFSnedecor.pdf) 
+
+![](img/testeH_18.png)
+
+---
+
+F1 precisamos calcular:
 
 $F1_{(0,95;\;5,\; 7)} = \frac{1}{F_{(0,05;\;7,\; 5)}}=\frac{1}{4,88} = 0,205$
+
+
 
 Assim, $RC = \{0 < F < 0,205 \text{ ou }  F > 3,97 \}$
 

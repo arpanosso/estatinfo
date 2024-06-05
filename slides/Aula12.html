@@ -78,13 +78,26 @@ Se `\(\alpha = 10\%\)`, pode-se, utilizando a Tabela da distribuição `\(F\)`, 
 
 ---
 
-#### Exemplo
+#### Exemplo: Construir a regição crítica para o caso abaixo:
 
-Se `\(n_1 - 1= 5\)` e `\(n_2-1 = 7\)`
+Se `\(n_1 - 1= 5\)` e `\(n_2-1 = 7\)` dado `\(\alpha = 10\%\)`
 
-`\(F2_{(0,05;\;5,\; 7)} = 3,97\)`
+
+
+`\(F2_{(0,05;\;5,\; 7)} = 3,97\)` olhamos na tabela
+
+---
+[Tabela - Distribuição F-Snedecor](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaFSnedecor.pdf) 
+
+![](img/testeH_18.png)
+
+---
+
+F1 precisamos calcular:
 
 `\(F1_{(0,95;\;5,\; 7)} = \frac{1}{F_{(0,05;\;7,\; 5)}}=\frac{1}{4,88} = 0,205\)`
+
+
 
 Assim, `\(RC = \{0 &lt; F &lt; 0,205 \text{ ou }  F &gt; 3,97 \}\)`
 
@@ -125,8 +138,7 @@ var.test(r1,r2)
 #&gt; 	F test to compare two variances
 #&gt; 
 #&gt; data:  r1 and r2
-#&gt; F = 1.0362, num df = 7, denom df = 7,
-#&gt; p-value = 0.9638
+#&gt; F = 1.0362, num df = 7, denom df = 7, p-value = 0.9638
 #&gt; alternative hypothesis: true ratio of variances is not equal to 1
 #&gt; 95 percent confidence interval:
 #&gt;  0.2074474 5.1756306
