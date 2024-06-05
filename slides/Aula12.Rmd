@@ -61,7 +61,7 @@ $F = \frac{s^2_1}{s^2_2} \sim F(n_1-1, n_2-1)$
 
 Fixado $\alpha$, os pontos críticos serão $F_1$ e $F_2$ da distribuição $F$, tais que:
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+```{r,out.width = "80%",fig.cap="",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_17.png")
 ```
 
