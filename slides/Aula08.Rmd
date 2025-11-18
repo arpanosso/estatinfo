@@ -5,10 +5,10 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística e Informática"
-subtitle: "Aula 08 - Variáveis Aleatórias"
+subtitle: "Aula 08 - Variáveis Aleatórias Contínuas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Engenharia e Ciências Exatas FCAV/UNESP"
-date: "(11-05-2023)"
+institute: "Departamento de Ciências Exatas FCAV/UNESP"
+date: "(25-04-2024)"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -22,822 +22,589 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
-options
-library(tidyverse)
+options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 
----
 class: middle, center, inverse
 
-# Variáveis Aleatórias Discretas
+# Distribuições teóricas de probabilidades de Variáveis Aleatórias Contínuas 
 
 ---
 
-### Variável Aleatória Discreta
+## Seríamos capazes de medir, com precisão:
 
-Muitos experimentos produzem resultados não numéricos, portanto, antes de analisá-los é conveniente transformar seus resultados em números. Para isso devemos associar a cada resultado elementar $(e_i)$ do espaço amostral $(S)$ um número real, o que é feito por meio de uma regra ou função denominada variável aleatória.
+--
+**Extensão total da bacia hidrográfica do rio Amazonas?**
 
-Considerando o cruzamento de organismos heterozigotos para o gene $A$, $Aa × Aa$, este conceito é ilustrado com um espaço amostral com $4$ resultados elementares, ou seja:
-
-$$S = \{AA,Aa,aA,aa\}$$
----
-
-Agora vamos definir $X$, como nossa variável aleatória, que é o número de alelos dominantes $A$. Assim:
-
-```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png")
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_1.png")
 ```
 
-Note que para ser discreta, a variável aleatória (v.a.) deve assumir valores em um conjunto finito ou infinito, porém contável.
-
----
-class: middle, center, inverse
-
-# Distribuição de Probabilidade
-
 ---
 
-### Distribuição de Probabilidade
+**Sistema nefrálgico, seríamos capazes de medir com exatidão o volume total desse sistema?**
 
-É uma relação dos distintos valores $x_i$ da variável aleatória $X$ junto às suas respectivas probabilidades $P(x_i)$, com:
-
-
-$$\sum \limits_{i=1}^nP(x_i) = 1$$
-
-em que: $P(x_i)$ é chamada função de probabilidade, que a cada valor de $x_i$ associa sua probabilidade de ocorrência.
-
-
-#### Exemplo:
-
-Voltemos ao cruzamento de dois organismos heterozigotos para o gene $A$, temos:
-
-Genótipos | AA | Aa | aa | ** $\Sigma$ **
-:---|:---:|:---:|:---:|---:
-$X=x_i$ | $2$ | $1$ |  $0$ | -
-$P(X=x_i)$ | $1/4$ | $1/2$| $1/4$| $1$
-
-A distribuição de probabilidade mostra-nos como a probabilidade total $(1)$ é distribuída de acordo com os diferentes valores da variável aleatória $X$.
-
----
-
-**Representação Gráfica**
-
-
-```{r,plot_1,eval=FALSE}
-library(tidyverse)
-tibble(x=0:2,
-       px = c(1/4, 1/2, 1/4) ) |> 
-  ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",
-           fill="gray")
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_2.png")
 ```
 
 ---
 
 
-```{r,plot_1,echo=FALSE}
+**Superfície específica de um agregado do solo?**
+
+```{r,out.width = "65%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_3.png")
 ```
 
----
-class: middle, center, inverse
-
-# Esperança Matemática
 
 ---
+**O comprimento e volume total de poros na casca de um ovo de galinha?**
 
-Seja uma população finita de $n$ indivíduos, e o evento $E$  denotado pelo número de alelos dominantes $A$. Calcule a frequência relativa para cada categoria.
+.pull-left[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_4.png")
+```
+]
+
+.pull-right[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/vac_5.png")
+```
+]
+
+---
+
+## Variável Quantitativa 
+
+é aquela que apresenta como possíveis realizações (valores) números resultantes de uma contagem ou mensuração, podendo ser:
+
+### Contínua
+
+- Os possíveis valores formam um intervalo de números reais e que resultam, normalmente, de uma mensuração. Exemplos: peso, altura, produção de leite, pressão arterial, teor de nitrogênio no solo ou na planta. 
+
+Essencialmente, dizemos que $X$ é uma variável aleatória contínua, se $X$ puder tomar todos os valores em algum intervalo:
+     $$a \leq x \leq b$$
+onde  $a$ e $b$ podem ser $- \infty$ e $+ \infty,$ respectivamente.
+
+---
+
+### Variável Aleatória Contínua 
+
+Sendo resultado de um processo de mensuração, o seu valor pode ser pensado como pertencendo a um intervalo ao redor do valor efetivamente observado. Por exemplo:
+
+.pull-left[
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://images.pexels.com/photos/5063385/pexels-photo-5063385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+```
+]
+
+.pull-right[
+
+Quando dizemos que a altura de uma criança é $125$, estamos medindo sua altura usando como unidade de medida o $cm$, e portanto o valor observado é, na realidade, um valor entre $124,5$ cm e $125,5$ cm, por exemplo.
+]
 
 
+---
+class: center,inverse
+
+Um vídeo bastante interessante do **Khan Academy Brasil** apresentando a diferença entre as variáveis aleatórias discreta e contínuas, segue abaixo:
+
+
+<iframe width="718" height="404" src="https://www.youtube.com/embed/wc6qIyg3Iqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[Link do vídeo](https://www.youtube.com/watch?v=wc6qIyg3Iqo)
+
+[Narrador - Ciência Todo Dia](https://www.youtube.com/user/cienciatododia)
+
+
+---
+
+### Variável Aleatória Contínua 
+
+Relembrando o conceito do histograma a respeito da densidade de frequência $(di)$
+
+
+.pull-left[
+```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/salario_hit.png")
+```
+]
+
+.pull-right[
+A altura do retângulo em cada intervalo de classe $(\Delta_i)$ é proporcional à densidade de frequência $(fi/\Delta_i)$ do intervalo, de modo que a área do retângulo seja igual $Delta_i \times \frac{fi}{\Delta_i} = fi$. 
+
+Ou seja, com um número suficientemente grande de observações, diminuindo-se os intervalos de classe, o histograma tende ficar cada vez menos irregular, até aproximar da forma de uma curva bem mais suave.
+]
+
+---
+
+.pull-left[
 ```{r,echo=FALSE}
-tibble(Genótipo=c("AA","Aa","aa"),
-       x=2:0,
-       px = c(1/4, 1/2, 1/4) ) |> 
-  kableExtra::kable()
-```
-Lembrando que a média pode ser calculada a partir da frequência relativa:
-
-$$\bar{x} = \sum \limits_{i=1}^k f_i \cdot x_i$$
-
-Em que $k$ é o número associado ao evento aleatório $X = x_i$.
-
-Agora, pergunta-se: qual o número médio de genes $A$ esperado?
-
-
-$$\bar{x} = \sum \limits_{i=1}^k f_i(x_i) = \frac{n_1}{n}(x_1)+\frac{n_2}{n}(x_2)+\frac{n_3}{n}(x_3)$$
-$$\bar{x} =  \frac{1}{4}(0)+\frac{1}{2}(1)+\frac{1}{4}(2) = 0+\frac{1}{2}+\frac{1}{2} = 1$$
----
-
-Considerando um modelo de população infinita $(n \to \infty)$ as frequências relativas $n_i/n$ $(i = 1, 2, 3)$ podem se aproximar de limites que são probabilidades $P(X = x_i) = P(x_i)$, onde: $x_i = \{2, 1, 0\}$, e se aproximará de um limite que é chamado **ESPERANÇA DE X** (isto é, o número esperado de genes $A$ em uma população infinita). O resultado pode ser generalizado na seguinte definição:
-
-
-
-$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i)$$
-**Definição**: A média de uma *v.a.* $X$ ou de sua distribuição de probabilidade, também chamada **valor esperado** ou **esperança matemática** ou simplesmente **esperança de $X$**, **E(X)**, é definida como:
-
-$$E(X) = \mu$$
-
-assim:
-
-$$E(X) = \sum \limits_{i=1}^k x_i \cdot P(x_i) = 0. \frac{1}{4} + 1.\frac{1}{2}+ 2.\frac{1}{4} = 1$$
----
-
-class: middle, center, inverse
-
-# Variância de uma Variável Aleatória
-
----
-
-### Definição
-
-A variância de uma v.a. $X$ ou a medida de dispersão de sua distribuição de probabilidade, representada por $\sigma^2_X$, é definida por: 
-
-$$\sigma^2 = Var(X) = E[(X - \mu)^2]$$
-
-Podendo ser calculada de dois modos:
-
-$$E[(X - \mu)^2] = \sum_{i=1}^k(x_i - \mu)^{2} . P(x_i)$$
-
-#### ou
-
-$$E[(X - \mu)^2] = E(X^2) - \mu^2 = \sum_{i=1}^n x_i^2 . P(x_i) - [E(X)]^2$$
-
----
-
-### Exemplo
-
-Qual a variância da distribuição de probabilidade da variáel $X$ (número de alelos dominantes) a partir do cruzamento de dois organismos heterozigotos $Aa \times Aa$.
-
-```{r,echo=FALSE}
-tibble(Genótipo=c("AA","Aa","aa"),
-       x=2:0,
-       px = c("1/4", "1/2", "1/4") ) |> 
-  kableExtra::kable()
-```
-
-Lembrado que a média $\bar{x} = 1$
-
-$$
-Var(X) \begin{cases}
-  E[(X - \mu)^2] = (0-1)^2.\frac{1}{4} + (1-1)^2.\frac{1}{2} +(2-1)^2.\frac{1}{4} = \frac{1}{2}
- \\\
-E[(X - \mu)^2] = E(X^2) - \mu^2 = \sum_{i=1}^k x_i.P(x_i) - [E(X)]^2 \\\
-E[(X - \mu)^2] =\left( 0^2\frac{1}{4} + 1^2\frac{1}{2} + 2^2\frac{1}{4} \right) - 1^2 =\frac{1}{2}+1-1= \frac{1}{2}
-\end{cases}
-$$
----
-
-### Propriedades da Variância
-
-Dado a variável aleatória $X$ e a constante $k$ as propriedades das variâncias são:
-
-$i) Var(X)$ não pode ser um número negativo;
-
-$ii) Var(X + k) = Var(X)$;
-
-$iii) Var(k \cdot X) = k^2Var(x)$
-
-$iv) Var(k+k \cdot X) = k^2Var(x)$
-
----
-
-### Prova da propriedade **(ii)**
-
-Para demonstrar essa propriedade, vamos consider uma variável $Y$ , definida por $(X+k)$ e agora podemos definir a variância de $Y$:
-
-
-$Var(Y) = E[(Y - \mu_Y)^2] = \sum_{i=1}^k(y_i - \mu_y)^{2} . P(y_i)$
-
-$Var(Y) = \sum_{i=1}^n([x_i+k] - \mu_{[X+k]})^{2} . P([x_i + k])$
-
-$Var(Y) = \sum_{i=1}^n(x_i+k - \mu_{x} - k)^{2} . P(x_i)$
-
-$Var(Y) = \sum_{i=1}^n(x_i - \mu_{x} )^{2} . P(x_i) = Var(X)$
-
----
-
-### Prova da propriedade **(iii)**
-
-Para demonstrar essa propriedade, vamos consider uma variável $Y$ , definida por $(kX)$ e agora podemos definir a variância de $Y$:
-
-
-$Var(Y) = E[(Y - \mu_Y)^2] = \sum_{i=1}^k(y_i - \mu_y)^{2} . P(y_i)$
-
-$Var(Y) = \sum_{i=1}^n([kx_i] - \mu_{[kX]})^{2} . P(kx_i)$
-
-$Var(Y) = \sum_{i=1}^n(kx_i - k\mu_{[X]})^{2} . P(x_i)$
-
-$Var(Y) = \sum_{i=1}^n(k[x_i - \mu_{X}])^{2} . P(x_i)$
-
-$Var(Y) = \sum_{i=1}^nk^2(x_i - \mu_{X})^{2} . P(x_i)$
-
-$Var(Y) = k^2\sum_{i=1}^n(x_i - \mu_{X})^{2} . P(x_i)$
-
-$Var(Y) = k^2\sum_{i=1}^n(x_i - \mu_{X})^{2} . P(x_i)$
-
-$Var(Y) = k^2Var(X)$
-
----
-
-### Demonstração no R
-
-```{r}
-X<- 0:2
-px<-c(1/4,1/2,1/4)
-
-# Esperança
-E_X <- sum(X*px)
-E_X
-
-# Variância
-Var_X <- sum(X^2*px) - E_X^2
-Var_X
-```
-
----
-
-Dado $k = 5$, temos agora duas variáveis $Y = X+k$ e $Z = k.X$.
-
-1) Pelas propriedades da variância sabemos que:
-
-$Var(Y) = Var(X) = 0,5$
-
-Prova:
-
-```{r}
-k <- 5
-Y <- k+X
-Var_Y = sum(Y^2*px) - (sum(Y*px))^2
-Var_Y
-```
-
-2) Pelas propriedades da variância sabemos que:
-
-$Var(Z) = k^2Var(X) = 5^2.0,5 = 12,5$
-
-Prova:
-```{r}
-Z <- k*X
-Var_Z = sum(Z^2*px) - (sum(Z*px))^2
-Var_Z
-```
-
----
-
-### Exercício 
-
-Um revendedor de produtos agropecuários recebe de vários laboratórios certo tipo de antibiótico, que tem custo diferenciado. Levando-se em conta a proporção fornecida e o preço apresentado por cada laboratório, pode-se considerar que o custo de uma dose de antibiótico em reais, escolhida ao acaso, é uma variável aleatória $C$. Admitindo a seguinte distribuição de probabilidade para $C$:
-
-$c_i$ | $1,00$ | $1,10$ | $1,20$ | $1,30$ | $1,40$
-:---|:---:|:---:|:---:|:---:|:---:
-$P(c_i)$| $0,20$ | $0,30$ | $0,20$ | $0,20$ | $0,10$ 
-
-
-a) Determinar a esperança (média) e a variância da variável aleatória $C$:
-
-b) Supondo que o revendedor venda cada um desses antibióticos acrescentando $50\%$ sobre o custo, além de um adicional de `R$` $0,10$ pelo frete, calcular a média e a variância da nova variável aleatória preço de revenda $R$.
-
----
-
-### Resposta
-
-a)   
-$E(C) = 1,17$ reais
-
-$Var(C) = 0,016$ reais²
-
-
-b)  
-
-$E(R) = 1,855$ reais
-
-$Var(R) = 0,036$ reais²
-
----
-
-class: middle, center, inverse
-
-# Distribuições Teóricas de Probabilidade de Variáveis Aleatórias Discretas
-
----
-
-### Definição
-
-O modelo probabilístico da variável aleatória $X$, é a forma específica de função de distribuição de probabilidade que reflete o comportamento de $X$.
-
-1. Distribuição de Bernoulli
-
-2. Distribuição Binomial 
-
-3. Distribuição de Poisson
-
----
+library(tidyverse)
+library(patchwork)
+library(cowplot)
+
+fun_g <- function(n){
+  di <- 1/n*5
+  x<-seq(-4,4,di)
+  densidade <- dnorm(x)
+  tibble(x,densidade) |>
+    ggplot(aes(x=x,y=densidade))+
+    geom_col(color="black",fill="white")+
+    labs(x="(X)",
+         y="di")
+}
+g1<- fun_g(n=5)
+g2<- fun_g(n=30)
+g3<- fun_g(n=1000)
+g1<-g1 +
+  draw_label(label = "a)",x=-4,y=0.4)
   
-class: middle, center, inverse
+g2<-g2 +
+  draw_label(label = "b)",x=-4,y=0.4) 
+  
+g3<-g3 +
+  draw_label(label = "c)",x=-4,y=0.4)
 
-# Distribuição de Bernoulli
-
-```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/bernoulli_1.png")
+g1/g2/g3
 ```
+]
+
+.pull-right[
+Como a probabilidade é interpretada como a frequência relativa de um evento em uma longa série de ensaios independentes, a curva obtida como a forma limite dos histogramas $(c)$ representa a maneira pela qual a probabilidade total $(1)$ é distribuída em relação à amplitude dos possíveis valores da v.a. $X$. 
+
+A função matemática $f(x)$, cujo gráfico produz tal curva é chamada **função densidade de probabilidade** $(f.d.p.)$ da v.a. contínua $X$.
+]
+
+**PROPRIEDADES**  
+- a área total sob a curva é igual a $1$ ;
+- $P(a \le X \le b)$ = área sob a curva entre os pontos $a$ e $b$;
+- $f(x) \ge 0$ (não negativa) ;
+- $P(X = x_i ) = 0$.  
 
 ---
-### Distribuição de Bernoulli
+.pull-left[
+```{r,echo=FALSE}
+n=1000
+di <- 1/n*5
+x<-seq(-4,4,di)
+densidade <- dnorm(x)
+g4<-tibble(x,densidade) |>
+  mutate(
+    densidade2 = if_else(x>-2 & x< -1, densidade,0)
+  ) |>
+  ggplot(aes(x=x,y=densidade))+
+  geom_col(color="white",fill="white")+
+  geom_col(aes(x=x,y=densidade2),color="gray") +
+  labs(x="(X)",
+       y="di")+
+  theme_bw()+
+  stat_function(fun = \(x) dnorm(x), color="black", lwd =1.2 )
+g4 +
+  draw_label(label = "f(x)",x=1,y=.3) +
+  draw_label(label = expression(paste("P(",a <= X, "" <= b,")")),
+             x=-2,y=.15)
 
-Essa distribuição é caracterizada por uma única realização de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** e **Fracasso (F)**.
+```
+]
 
-**Exemplos**: 
+.pull-right[
 
-a) testa-se um antibiótico em um indivíduo, a reação (v.a.) ou é positiva (S) ou é negativa (F);
+Estando $f(x)$ de uma variável aleatória contínua $X$ especificada, o problema de se calcular $P(a \le X \le b)$ vem a ser o cálculo da área sob a curva.
 
-b) uma planta é escolhida, ao acaso, em um pomar e observa-se se essa planta é doente (v.a.) (S) ou não (F).
+$$P(a \le X \le b) = \int_a^bf(x)dx$$
+onde:
+]
 
-Assim, para cada experimento, podemos definir uma variável aleatória $X$: o número de sucessos, que assume apenas dois valores, o valor $1$ se ocorre sucesso $(S)$ e o valor $0$ (zero) se ocorre fracasso $(F)$, sendo $P(S) = p$, $0 < p <1$, ou seja:
 
 
-$$
-X \begin{cases}
-0(F) \\\
-1(S)
-\end{cases}
-$$
+$$P(a \le X \le B) = P(a \le X<B) = P(a<X \le B) = P(a<X<B)$$
+---
 
-com $P(X=1) = p$ e $P(X=0) = 1-p = q$
+class: middle, center, inverse
+
+# Distribuições Normal
 
 ---
 
 ### Definição
 
-Nestas condições, a variável aleatória $X$ tem a função de probabilidade
+Uma v.a. $X$ tem distribuição normal com parâmetros $\mu$ e $\sigma^2$, $-\infty < \mu < +\infty$ e $0 < \sigma^2 < \infty$, e sua $f.d.p.$ dada por:
 
-$X$ | $P(X)$
-:---: | :---:
-1 | p 
-0 | q
-
-Com função de probabilidade dada por:
-
-$$P(X=x) = p^x \cdot q^{1-x}$$
-.pull-left[
-#### Esperança
-$E(X) = \sum x_i P(x_i)$
-
-$E(X) = 0(q) + 1(p)$
-
-$E(X) = p$
-]
-
-.pull-right[
-#### Variância
-
-$Var(X) = E(X^2) - [E(X)]^2$
-
-$Var(X) = (0^2.q + 1^2.p) - p^2$
-
-$Var(X) = p - p^2$
-
-$Var(X) = p(1 - p) = p.q$
-]
-
----
-### Exemplo
-
-.pull-left[
-
-Dado $p =0,7$, construa a distribuição de probabilidade dessa variável e calcule a esperança e a variância dessa distribuição.
-
-```{r,plot_2,eval=FALSE}
-p <- 0.7
-q <- 1-p
-x <- 0:1
-px <- c(q,p)
-tibble(x,px) |> 
-  ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",
-           fill="lightgray")
-```
-
-]
-
-.pull-right[
-
-```{r,plot_2,echo=FALSE}
-```
-]
-
-$$E(X) = p = 0,7$$  
-
-
-$$Var(X) = p.q = 0,7 . 0,3 = 0,21$$
-
----
-
-class: middle, center, inverse
-
-# Distribuição Binomial
-
----
-
-## Distribuição Binomial
-
-### Definição
-
-Quando um número fixo $n$ de ensaios de *Bernoulli* são repetidos, supondo que as repetições sejam *independentes* com $P(S) = p$ em cada ensaio, a variável aleatória $X$ representa a contagem (soma) do número de sucessos em $n$ ensaios. 
-
-Os possíveis valores de $X$ são os inteiros $0, 1, 2,..., n$. A distribuição de probabilidade de $X$ é chamada **DISTRIBUIÇÃO BINOMIAL* com $n$ ensaios e probabilidade de sucesso $p$. 
-
----
-
-**Exemplo**: No lançamento de uma moeda, vamos definir como Sucesso o evento *cair a face cara*:
+$$f(x) = \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}} , -\infty < x < +\infty$$
 
 ```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_1.png")
-```
-
-
-
-Para deduzir uma fórmula para $P(X = x)$, consideremos o lançamento de $3$ moedas ( $n = 3$ ensaios), cada um dos quais podendo resultar em $S$ (H - cara) ou $F$ (T - coroa). 
-Há $2 × 2 × 2 = 8$ resultados possíveis, os quais estão relacionados nas colunas de acordo com o número de sucessos $(S)$:
-
----
-Uma característica interessante dos experimentos considerados é que estamos interessados apenas no número total de sucessos e não na ordem que eles ocorrem. Segue abaixo o diagrama de árvore das probabilidades binomiais no lançamento de 3 moedas, ou seja, $n=3$ e $P(S) = p$ e $P(F) = q$.
-
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_2.png")
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_1.png")
 ```
 
 ---
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_3.png")
+### Propriedades
+
+**i)** Os parâmetros $\mu$ e $\sigma^2$ representam, respectivamente, a média e a variância da distribuição, isto é:
+
+Onde:
+
+**i) ** $E(X) = \mu \text{ e } Var(X) = \sigma^2$;
+
+**ii)** $f(x) \to 0$ quando $x \to \pm \infty$;
+
+**iii)** $\mu - \sigma$ e $\mu + \sigma$ são os pontos de inflexão de $f(x)$;
+
+**iv)** $x=\mu$ é o ponto de máximo de $f(x)$ e o valor máximo é $\frac{1}{\sigma \sqrt{2 \pi} }$;
+
+**v)** $f(x)$ é simétrica ao redor de $x = \mu$, isto é, $f(\mu + x) = f(\mu -x)$, para todo $-\infty < x < + \infty$;
+
+**vi)** média = moda = mediana.
+
+---
+
+
+$$X \sim N(\mu; \sigma^2)$$
+
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_2.png")
 ```
 
 ---
 
-### Obtenção das sequências
+### Interpretando Parâmetros
 
-Como os ensaios são independentes, com $P(S) =p$ e $P(F) = q$, os fatores: $1, 3, 3, 1$ são obtido por meio do **"teorema da expansão binomial"**:
+Duas distribuições normais com diferentes médias, mas com o mesmo desvio padrão $(\sigma)$
 
-$$(a+b)^n = {n \choose 0}a^n + {n \choose 1}a^{n-1}b + {n \choose 2}a^{n-2}b^2 + \dots + {n \choose n}b^n$$
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_3.png")
+```
 
-### Função de Distribuição Binomial
+Três distribuições normais com médias iguais, mas com diferentes desvios padrões
 
-Assim, a função de distribuição binomial é:
+```{r,out.width = "50%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_4.png")
+```
 
-$$P(X=x) = {n \choose x}p^x \cdot q^{n-x}$$
+---
+
+class: middle, inverse, center
+
+
+# Acesse o Link para estudarmos os parâmetros da distribuição normal
+
+## https://arpanosso.shinyapps.io/estatinfo/
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_5.png")
+```
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_6.png")
+```
+
+---
+
+class: middle, inverse, center
+
+# Ditribuição Normal Padrão (normal padronizada)
+
+---
+
+### Definição
+
+A particular distribuição normal com $\mu = 0$ e $\sigma^2 = 1$. Coincidindo com os parâmetros da variável $Z$:
+
+$$Z = \frac{X - \mu}{\sigma}$$ 
+
+onde $X \sim N(\mu, \sigma^2)$
+
+
+### Função de densidade de probabilidade:
+
+$$f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{\frac{-z^2}{2}}, - \infty < z < + \infty$$
 
 ### Denotação
 
-$$b(n,p) \text{ onde } \sum \limits_{i=0}^n b(n,p) = 1$$
+$$Z \sim N(0,1)$$
+---
+
+## Esperança e Variância
+
+Se $X \sim N(\mu, \sigma^2)$, então a variável aleatória $Z$ definida terá uma distribuição $N(0, 1)$.
+
+### Esperança:
+
+$$E(Z) = 0$$
+
+### Variância:
+
+$$Var(Z) = 1$$
 
 ---
 
-Se $X$ é uma variável aleatória com distribuição Binomial ela apresenta:
- 
-**Esperança**:  $E(X) = n \cdot p$ e **Variância**: $Var(X) = n \cdot p \cdot q$ (demonstração está aos 39min do vídeo abaixo).
+A vantagem de se usar a variável $Z$ é que as áreas, ou as probabilidades, associadas à distribuição normal padronizada são tabeladas. Assim, distribuição normal padrão é fundamental para o cálculo de probabilidades relativas a uma distribuição normal qualquer.
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/tNRN89z0TYw?t=2356" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_7.png")
+```
 
-[Link para o vídeo](https://youtu.be/tNRN89z0TYw?t=2356)
 
 ---
-E se, ao invés de $3$ moedas, tivéssemos $4$ moedas?
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/binomial_4.png")
+### Distribuição Normal Padrão
+
+[Tabela - Normal Padrão](https://github.com/arpanosso/estatinfo/raw/master/docs/TabelaNormalPadrao.pdf) 
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_8.png")
 ```
 
-Qual a probabilidade do número de caras ser igual ao número de coroas?
+---
+class: center,inverse
 
-**R**: Dado que a moeda é honesta, ou seja, $P(H) = \frac{1}{2}$, temos que o $x=2$ e $n=4$, aplicando a função de probabilidade Binomial $b(4,\frac{1}{2})$:
+Outro vídeo bastante interessante do **Khan Academy Brasil** apresentando uma explicação sobre as ditribuição normal e a normal padrão:
 
-$P(X=x) = {n \choose x}p^x \cdot q^{n-x}$
+<iframe width="718" height="404" src="https://www.youtube.com/embed/BFu8smEp-Cc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-$P(X=2) = {4 \choose 2} \left(\frac{1}{2}\right)^2 \cdot \left(\frac{1}{2}\right)^{2-2} = 0,375$
+[Link do vídeo](https://www.youtube.com/watch?v=BFu8smEp-Cc)
+
+---
+### Exemplo 1
+
+A figura abaixo ilustra a probabilidade fornecida pela tabela, ou seja, 
+
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_9.png")
+```
 ---
 
-No R podemos utilizar a função `dbinon()` com os argumentos $x$, $n$ e $p$ a probabilidade de sucesso.
-.pull-left[
-```{r,eval=FALSE}
-n <- 4
-x <- 0:n
-p<-1/2
-px<-dbinom(x,n,p)
-tibble(x,px)
-```
+### a) $P(-1,73 \le Z \le 0)$
 
-```{r,echo=FALSE}
-n <- 4
-x <- 0:n
-p<-1/2
-px<-dbinom(x,n,p)
-tibble(x,px) %>%  
-  kableExtra::kable()
-```
-]
-
-.pull-right[
 
 ```{r}
-tibble(x,px) %>%  
-  ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",
-           fill="gray")
-```
-]
-
----
-
-### Estudo do parâmetro $p$
-
-A distribuição binomial é **simétrica** se o valor de $p$ em um histograma tem o mesmo valor de $q$ em outro, as probabilidades são exatamente as mesmas, mas dispostas de forma invertida. 
-
-A propriedade geral da distribuição binomial: quando $p$ e $q$ são alternados, a distribuição de probabilidades é invertida, então:
-
-$$b(x,n,p) = b(n-x,n,1-p)$$
-
----
-.pull-left[
-```{r,echo=FALSE}
-n <- 5
-x <- 0:n
-p<-.7
-px<-dbinom(x,n,p)
-tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="gray")+
-  labs(title = "b(5,0.7)")+
-  theme(plot.title = element_text(hjust = 0.5))
+0.5 - pnorm(-1.73)
 ```
 
-```{r,echo=FALSE}
-tibble(x,px) |> 
-  tidyr::pivot_wider(names_from = x,
-                     values_from = px)  |> 
-  kableExtra::kable()
-```
-
-
-]
-
-.pull-right[
-```{r,echo=FALSE}
-n <- 5
-x <- 0:n
-p<-1-p
-px<-dbinom(x,n,p)
-tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="gray")+
-  labs(title = "b(5,0.3)")+
-  theme(plot.title = element_text(hjust = 0.5))
-```
-
-
-]
-
-```{r,echo=FALSE}
-tibble(x,px) |> 
-  tidyr::pivot_wider(names_from = x,
-                     values_from = px)  |> 
-  kableExtra::kable()
-```
----
-### Exercícios
-
-1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada $6$ vezes. Achar a probabilidade de obter cara:  
- a) exatamente $3$ vezes;  
- b) no máximo $3$ vezes;  
- c) pelo menos $3$ vezes;  
- d) pelo menos $1$ vez.  
-
---
-
-### Respostas
-a) $0,3125$  
-b) $0,6562$  
-c) $0,6562$  
-d) $0,9844$  
-
----
-
-2) Uma urna contém bolas brancas e pretas na proporção $2$ para $3$. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada a urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. Achar a probabilidade de $0, 1, 2 e 3$ sucessos. Calcule a esperança e a variância dessa distribuição de probabilidade.
-
---
-
-### Respostas
-$E(X) = 1,2$ 
-$Var(X) = 0,72$
-
----
-3) Uma urna contém $52$ bolas sendo $13$ brancas e $39$ pretas.  
- a) Qual a probabilidade de se tirarem $6$ bolas brancas, uma a uma, retornando a bola à urna após cada retirada?  
- b) Calcule a esperança e a variância dessa distribuição de probabilidade.  
- c) Nas mesmas condições da questão anterior, qual a probabilidade de se terem 5 brancas e 1 preta? 
-
---
-
-### Respostas
-a) $0,0002441$;  
-b) $E(X) = 1,5$ e $Var(X) = 1,125$;  
-c) $0,0043945$
-
----
-
-class: middle, center, inverse
-
-# Distribuição de Poisson
-
----
-### Distribuição de Poisson
-
-O comportamento de variáveis aleatórias, as quais representam o número de ocorrências de eventos em um intervalo de tempo ou no espaço (superfície ou volume), pode ser descrito pela chamada distribuição de **Poisson**, cuja função de probabilidade é:
-
-### Função de Distribuição Poisson é:
-
-$$P(X=x) = \frac{e^{-\lambda} \lambda^x}{x!}$$
-
-Onde $e = 2,71828$ e $\lambda$ é o parâmetro da distribuição que representa o número médio (taxa) de ocorrências do evento por unidade de tempo ou espaço.
-
-### Denotação
-
-$$X \sim Po(\lambda) \text{ , onde } \sum \limits_{x=0}^\infty Po(\lambda) = 1$$
----
-
-### Definição 
-
-A variável aleatória $X$ com distribuição de Poisson apresenta:
-
-**Esperança**: 
-
-$$E(X) = \lambda$$ 
-
-e **Variância**: 
-
-$$Var(X) = \lambda$$
-
-Ou seja, o número médio e a variância de ocorrências de eventos por unidade de tempo (ou espaço) são iguais $(\lambda)$ e constantes ao longo do tempo (ou espaço).
-
----
-
-
-**Exercícios 1)** Em uma população, seja $X$ o número de descendentes produzidos por família/geração. Assumindo que Média = $\lambda = 2$, qual a probabilidade de famílias com  $X= 4$ descendentes?
-
---
-
-```{r,echo=FALSE,out.width="0%"}
-n <- 10
-x <- 0:n
-lambda <- 2
-px <- dpois(x,lambda)
-tibble(x,px) |>
-  mutate(px2 = ifelse(x==4,px,0) ) |> 
-  ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="lightblue") +
-  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
-  theme_bw()
-```
-
-$$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
-
-
-
----
-**Exercício 2)** Suponha que o número de partículas alfa, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro $\lambda = 5$, isto é, a taxa média de ocorrência é de $5$ partículas a cada minuto. Calcule a probabilidade de haver mais de $2$ emissões em um minuto.
-
-
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
+```{r,out.width = "70%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_10.png")
 ```
 
 ---
 
-.pull-left[
-```{r,echo=FALSE}
-n <- 20
-x <- 0:n
-lambda <- 5
-px <- dpois(x,lambda)
-tibble(x,px) |>
-  mutate(px2 = ifelse(x>2,px,0) ) |> 
-  ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="lightblue") +
-  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
-  theme_bw()
+#### b) $P( Z \ge 1,73)$
+
+#### c) $P( Z \le -1,73)$
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_11.png")
 ```
-]
 
-.pull-right[
-Assim temos que:
-
-Se $P(S) = \sum \limits_{i=1}^\infty \frac{e^{-\lambda}\lambda^x}{x!}$, então:
-
-$P(x >2 ) = 1 - \sum \limits_{i=0}^2\frac{e^{-\lambda}\lambda^x}{x!}$
-
-
-
-
-]
-
-$P(x >2 ) = 1 - [P(X=0) + P(X=1) + P(X=2)]$
-
-$P(x >2 ) = 1-[\frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}]=0,87535$
-
----
-
-**Exercício 3)** Calcule a probabilidade da emissão de até $4$ partículas em $2$ minutos. 
-
-
-
-.pull-left[
-```{r,echo=FALSE}
-n <- 20
-x <- 0:n
-lambda <- 5*2
-px <- dpois(x,lambda)
-tibble(x,px) |>
-  mutate(px2 = ifelse(x<=4,px,0) ) |> 
-  ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="lightblue") +
-  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
-  theme_bw()
-```
-]
-
-.pull-right[
-Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distribuição de Poisson, mas com o valor de parâmetro ajustado de forma conveniente. 
-
-Por exemplo, se o período de tempo considerado para o exemplo anterior for de dois minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: $\lambda'= 2 \times 5 = 10$ partículas em dois min.
-
-
-$$P(X \le 4) = 0,029252$$
-]
-
----
-**Exercício 4)** Supondo que o número médio de bactérias por litro de água purificada é $2$, qual é a probabilidade que $5$ ou mais bactérias sejam encontradas em uma amostra de $3$ litros de água?
---
-.pull-left[
-```{r,echo=FALSE}
-n <- 20
-x <- 0:n
-lambda <- 3*2
-px <- dpois(x,lambda)
-tibble(x,px) |>
-  mutate(px2 = ifelse(x>=5,px,0) ) |> 
-  ggplot(aes(x=x,y=px)) +
-  geom_col(color="black",fill="lightblue") +
-  geom_col(aes(x=x,y=px2),color="red",fill="yellow") +
-  theme_bw()
-```
-]
-
-.pull-right[
-Se o volume é alterado a variável aleatória mantém a mesma distribuição de Poisson, se o volume for de $3$ litros, teremos que o número de bactérias observado terá distribuição: $\lambda'= 3 \times 2 = 6$ bactérias por litro.
-
-$$P(X \ge 5) =1 - \sum_{i=0}^5 \frac{e^{-\lambda}\lambda^x}{x!} = 0,7149$$
-]
-
----
-
-### Distribuição de Poisson como aproximação da Distribuição Binomial
-
-Algumas vezes, no uso da distribuição binomial, ocorre que $n$ é muito grande e $p$ é muito pequeno, de modo que $q$ é próximo de $1$. Em tais casos, o cálculo torna-se muito difícil. Pode-se, então, fazer uma aproximação da distribuição Binomial pela Poisson.
-
-Função de Distribuição: 
-
-$$b(n,p) \sim \frac{e^{-n.p}(n.p)^x}{x!}$$
-
-A aproximação é boa, se $n \cdot p = \lambda \le 7$.
-
-Nestas condições, a variável aleatória $X$ com distribuição Binominal aproximada pela  Poisson apresenta:
-
-A variável aleatória $X$ com distribuição de Poisson apresenta:
-
-**Esperança**: 
-
-$$E(X) = n \cdot p$$ 
-
-e **Variância**: 
-
-$$Var(X) = n \cdot p$$
----
-**Exercício 5)** Sabendo-se que a probabilidade de um ser humano ter reação negativa à uma vacina é de $0,001$, determinar a probabilidade de que, de $2000$ pessoas vacinadas, mais do que $4$ pessoas tenham reação negativa?
-
---
-
-$n \times p = \lambda =2000 \times 0,001 = 2$
-
-$P(X > 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)$
-
-$P(X > 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)=0,0526$
+por simetria:
 
 ```{r}
-n <- 2000 
-lambda <- n*0.001
-1-ppois(4,lambda)
+pnorm(-1.73)
+```
+
+$$\begin{aligned} P( Z \ge 1,73) &= P( Z \le -1,73) \\ &= 0,5 - P(0 \le Z \le 1,73) \\& = 0,5 -0,4582 \\ &= 0,0418 \end{aligned}$$
+
+---
+
+#### d) $P(Z \le 1,73)$
+
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_12.png")
+```
+
+
+```{r}
+pnorm(1.73)
+```
+
+$P( Z \le 1,73) = 0,5 + P(0 \le Z \le 1,73) = 0,5 +0,4582 = 0,9582$
+
+
+---
+
+#### e) $P(0,47 \le Z \le 1,73)$
+
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_13.png")
+```
+
+
+```{r}
+pnorm(1.73) - pnorm(0.47)
+```
+
+$$\begin{aligned}P(0,47 \le Z \le 1,73) &= P(0 \le Z \le 1,73)  - P(0 \le Z \le 0,47) \\ &= 0,4582 - 0,1808 = 0,2774\end{aligned}$$
+
+---
+
+```{r,out.width = "90%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_14.png")
+```
+---
+## Exemplo 2
+
+Suponha que a variável aleatório $X \sim N(3, 16)$, calcular: $P(2 \le X \le 5)$ 
+
+--
+
+$P(2 \le X \le 5) = P(\frac{2-3}{4} \le \frac{X-\mu}{\sigma} \le \frac{5-3}{4}) = P(-0,25 \le Z \le 0,5)$
+
+$P(-0,25 \le Z \le 0,5) = P(-0,25 \le Z \le 0) + P(0 < Z \le 0,5)$
+
+$P(-0,25 \le Z \le 0,5) = 0,0987 + 0,1915 = 0,2902$ ou seja, 
+
+$P(2 \le X \le 5) = 0,2902$
+
+No R:
+
+```{r}
+pnorm(5,3,4) - pnorm(2,3,4)
+```
+
+
+---
+
+## Exemplo 3
+
+Sabendo-se que os pesos à desmama $(X)$ de $10.000$ bezerros de um rebanho são distribuídos normalmente, com média $(\mu = 170\;kg)$ e desvio padrão $( \sigma = 5\;kg)$, pergunta-se:
+
+
+**a)** qual é o número esperado de bezerros com peso superior a $165$ kg?  
+
+--
+
+Solução:
+
+$$
+P(X \geq 165) = P\left( \frac{X -\mu}{\sigma} > \frac{165-170}{5}\right) = P(Z \geq -1)
+$$
+
+$$
+P(Z \geq -1) = P(-1 \leq Z \leq 0 ) + P(Z \geq 0) = P(0 \leq Z \leq 1 ) + 0,50
+$$
+
+$$
+P(Z \geq -1) = 0,3413 + 0,50 = 0,8413
+$$
+Portanto, o número esperado é $10.000 \times 0,8413 = 8413$ bezerros.
+
+No R:
+
+```{r}
+trunc(10000 * (1 - pnorm(165,170,5)))
 ```
 
 ---
 
-### Apêndice - Processo e Poisson
+**b)** que peso $(x_c)$ deve atingir um bezerro para que ele supere $80\%$ dos pesos à desmama desse rebanho?
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/cEq38h7SzDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+--
 
-[Link do vídeo](https://www.youtube.com/watch?v=cEq38h7SzDI)
+$$
+P(X \leq 170) + P(170 \leq X \leq x_c) = 0,80
+$$
+$$
+0,50 + P(170 \leq X \leq x_c) = 0,80
+$$
+
+$$
+ P(170 \leq X \leq x_c) = 0,30
+$$
+$$
+ P(170 \leq X \leq x) = P\left( \frac{170-170}{5} \leq \frac{X - \mu}{\sigma} \leq \frac{x_c-170}{5} \right) = 0,30
+$$
+
+$$
+P\left( 0 \leq Z \leq \frac{x_c-170}{5} \right) = 0,30
+$$
+
+Obervando a tabela
+
+$$
+P\left( 0 \leq Z \leq 0,84 \right) = 0,30
+$$
+Então,
+
+$$
+\frac{x_c-170}{5} = 0,84 \rightarrow x_c =174,2 \;kg 
+$$
+
+---
+
+No R:
+
+```{r}
+qnorm(0.80,170,5)
+```
+
+---
+
+class: middle, inverse, center
+
+# Aproximação Normal à Binomial
+
+---
+
+#### Definição
+
+Se $X$ tem distribuição binomial $b(n, p)$, onde $n$ é grande e $p$ não é muito próximo de $0$ ou $1$, a distribuição da variável padronizada ficará:
+
+$$Z = \frac{X -np}{\sqrt{(np(1-p))} }$$
+que é aproximadamente $N(0,1)$.
+
+$P(a \le X \le b) = \sum_{x=a}^b {n \choose x}p^x(1-p)^{n-x} \cong P\left( \frac{a-np}{\sqrt{np(1-p)}} \le Z \le \frac{b-np}{\sqrt{np(1-p)}} \right)$
+
+```{r,out.width = "40%",fig.cap="",fig.align = 'center',echo=FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/hist_17.png")
+```
+
+---
+
+### Correção da continuidade
+
+Tendo em vista que uma distribuição discreta (binomial) é aproximada por uma 
+contínua (normal), a melhor aproximação é obtida calculando:
+
+$$P(a \le X \le b) = P \left( \frac{(\frac{a-0,5}{n})-p}{\sqrt{\frac{p(1-p)}{n}}} \le Z \le \frac{(\frac{b+0,5}{n})-p}{\sqrt{\frac{p(1-p)}{n}}} \right)$$
+
+A distribuição normal pode ser recomendada para aproximar probabilidades binomiais, contanto que $p$ seja próximo de $0,5$. Quando $p$ é muito pequeno e $n$ é grande, a distribuição de **Poisson** é mais apropriada. 
+
+**Regra prática:** $n$ pode ser assumido como "suficientemente" grande para se usar a distribuição normal, quando:  $np(1-p) \ge 3$ sendo que a aproximação melhora com o crescimento de $n$.
+
+
+---
+## Exemplo 4
+Supondo que $X \sim b(15; 0,4)$, calcule a probabilidade:
+
+
+$P(7 \le X \le 10)$, por meio da aproximação normal à binomial.
+
+---
+
+Resposta:
+
+$$P(7 \le X \le 10) = P \left( \frac{(\frac{7-0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \le Z \le \frac{(\frac{10+0,50}{15})-0,40}{\sqrt{\frac{0,40(1-0,40)}{15}}} \right)$$
+
+$$P(0,263 \le Z \le 2,368) = 0,49111 - 0,10194 = 0,389$$
+
+no R:
+
+```{r}
+pnorm(2.368) - pnorm(0.263)
+```
+
+ou
+
+```{r}
+pbinom(11,15,0.4) - pbinom(6,15,0.4)
+```
+
