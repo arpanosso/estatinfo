@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ]
 .institute[
-### Departamento de Engenharia e Ciências Exatas FCAV/UNESP
+### Departamento de Ciências Exatas FCAV/UNESP
 ]
 .date[
 ### (11-04-2024)
@@ -85,7 +85,7 @@ A distribuição de probabilidade mostra-nos como a probabilidade total `\((1)\)
 
 
 
-```r
+``` r
 library(tidyverse)
 tibble(x=0:2,
        px = c(1/4, 1/2, 1/4) ) |&gt; 
@@ -261,7 +261,7 @@ Para demonstrar essa propriedade, vamos consider uma variável `\(Y\)` , definid
 ### Demonstração no R
 
 
-```r
+``` r
 X&lt;- 0:2
 px&lt;-c(1/4,1/2,1/4)
 
@@ -274,7 +274,7 @@ E_X
 #&gt; [1] 1
 ```
 
-```r
+``` r
 # Variância
 Var_X &lt;- sum(X^2*px) - E_X^2
 Var_X
@@ -295,7 +295,7 @@ Dado `\(k = 5\)`, temos agora duas variáveis `\(Y = X+k\)` e `\(Z = k.X\)`.
 Prova:
 
 
-```r
+``` r
 k &lt;- 5
 Y &lt;- k+X
 Var_Y = sum(Y^2*px) - (sum(Y*px))^2
@@ -312,7 +312,7 @@ Var_Y
 
 Prova:
 
-```r
+``` r
 Z &lt;- k*X
 Var_Z = sum(Z^2*px) - (sum(Z*px))^2
 Var_Z
@@ -444,7 +444,7 @@ Com função de probabilidade dada por:
 Dado `\(p =0,7\)`, construa a distribuição de probabilidade dessa variável e calcule a esperança e a variância dessa distribuição.
 
 
-```r
+``` r
 p &lt;- 0.7
 q &lt;- 1-p
 x &lt;- 0:1
@@ -555,7 +555,7 @@ class: middle, center
 No R podemos utilizar a função `dbinon()` com os argumentos `\(x\)`, `\(n\)` e `\(p\)` a probabilidade de sucesso.
 .pull-left[
 
-```r
+``` r
 n &lt;- 4
 x &lt;- 0:n
 p&lt;-1/2
@@ -576,7 +576,7 @@ tibble(x,px)
 .pull-right[
 
 
-```r
+``` r
 tibble(x,px) %&gt;%  
   ggplot(aes(x=x,y=px)) +
   geom_col(color="black",
@@ -842,7 +842,7 @@ Nestas condições, a variável aleatória `\(X\)` com distribuição Binominal 
 `\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)=0,0526\)`
 
 
-```r
+``` r
 n &lt;- 2000 
 lambda &lt;- n*0.001
 1-ppois(4,lambda)
@@ -857,9 +857,9 @@ lambda &lt;- n*0.001
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
