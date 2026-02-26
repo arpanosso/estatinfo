@@ -3,11 +3,13 @@
 # pagedown::chrome_print("slides/Aula02.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
-title: "Estatística e Informática"
-subtitle: "Aula 02 - Introdução à Estatística"
+
+title: "Estatística & Estatística e Informática"
+subtitle: "Introdução à Estatística"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Ciências Exatas FCAV/UNESP"
-date: "07-03-2024"
+institute: "Departamento Ciências Exatas"
+date: "05 e 06 de março de 2026 \n
+CURSOS: Agronomia e Administração \n"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -81,8 +83,8 @@ Para um grande número de situação na natureza, o modelo matemático determin�
 
 **Exemplo:** em fenômenos meteorológicos, não podemos determinar qual será a precipitação em uma determinada região como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa do ar podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
 
----
 
+---
 ```{r,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
 set.seed(1235)
 df<- tibble(
@@ -102,10 +104,40 @@ df %>%
    theme_grafico
 ```
 $$Dados = Modelo + Ruído$$
+
+---
+
+### Outros exemplos de fenômenos estocásticos (probabilísticos)
+
+
+.pull-left[
+- Tempo gasto em "Telas"
+<img src="https://media1.tenor.com/m/4InIAd6CIjsAAAAC/smartphone-scroll.gif" height="140">
+
+- Padrão de Consumo
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGVreTlqZGtmcGJ1aDJpMHVwNWh3OHUwMTY4eWN6c2oxdzJkN240aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Gj90IwH371xBHjXAqy/giphy.gif" height="190">
+]
+
+.pull-right[
+- Produtividade de uma cultura
+<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjRpMWRvbWIwaTJhYWpqdHR1aGtta3hmdmNuNDVqaDhvbzQzenVheSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/txCo7WXCwZpmM/giphy.gif" height="160">
+
+- Ganho de peso de bovinos
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2t6aGNyY2VkdGozMWMzMWJib3IzanBmOHpxeWljd3lqZnF5cGZ3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PQR35jBsAEVPxSMkYj/giphy.gif" height="230">
+]
+
+---
+
+#Padrão do emissão de Gases estufa
+
+<img src="https://media1.tenor.com/m/m_83nF24ZcMAAAAC/nasa-nasa-gifs.gif" height="480">
+
 ---
 
 
-    A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
+## Importância e Uso da Estatística
+
+> A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
 
 --
 ##### Estatística Descritiva

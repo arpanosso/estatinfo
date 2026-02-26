@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Estatística e Informática</title>
+    <title>Estatística &amp; Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,19 +13,20 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Estatística e Informática
+# Estatística &amp; Estatística e Informática
 ]
 .subtitle[
-## Aula 02 - Introdução à Estatística
+## Introdução à Estatística
 ]
 .author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ]
 .institute[
-### Departamento de Ciências Exatas FCAV/UNESP
+### Departamento Ciências Exatas
 ]
 .date[
-### 07-03-2024
+### <p>05 e 06 de março de 2026
+CURSOS: Agronomia e Administração</p>
 ]
 
 ---
@@ -72,14 +73,44 @@ Para um grande número de situação na natureza, o modelo matemático determin�
 
 **Exemplo:** em fenômenos meteorológicos, não podemos determinar qual será a precipitação em uma determinada região como resultado de uma tempestade. Observações como temperatura, pressão, velocidade do vento e umidade relativa do ar podem fornecer um prognóstico geral da chuva (fraca, média ou forte) entretanto, não tornam possível predizer quanta chuva cairá.
 
----
 
+---
 &lt;img src="Aula02_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 `$$Dados = Modelo + Ruído$$`
+
+---
+
+### Outros exemplos de fenômenos estocásticos (probabilísticos)
+
+
+.pull-left[
+- Tempo gasto em "Telas"
+&lt;img src="https://media1.tenor.com/m/4InIAd6CIjsAAAAC/smartphone-scroll.gif" height="140"&gt;
+
+- Padrão de Consumo
+&lt;img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGVreTlqZGtmcGJ1aDJpMHVwNWh3OHUwMTY4eWN6c2oxdzJkN240aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Gj90IwH371xBHjXAqy/giphy.gif" height="190"&gt;
+]
+
+.pull-right[
+- Produtividade de uma cultura
+&lt;img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjRpMWRvbWIwaTJhYWpqdHR1aGtta3hmdmNuNDVqaDhvbzQzenVheSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/txCo7WXCwZpmM/giphy.gif" height="160"&gt;
+
+- Ganho de peso de bovinos
+&lt;img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2t6aGNyY2VkdGozMWMzMWJib3IzanBmOHpxeWljd3lqZnF5cGZ3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PQR35jBsAEVPxSMkYj/giphy.gif" height="230"&gt;
+]
+
+---
+
+#Padrão do emissão de Gases estufa
+
+&lt;img src="https://media1.tenor.com/m/m_83nF24ZcMAAAAC/nasa-nasa-gifs.gif" height="480"&gt;
+
 ---
 
 
-    A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
+## Importância e Uso da Estatística
+
+&gt; A Estatística é fundamental na análise de dados provenientes de quaisquer processos onde exista variabilidade, estando interessada nos métodos e processos quantitativos que servem para a *coleta, organização, resumo, apresentação e análise desses dados*, bem como na **obtenção de conclusões válidas e na tomada de decisões** a partir de tais análises. Podendo ser dividida em três áreas:
 
 --
 ##### Estatística Descritiva
@@ -155,7 +186,7 @@ Onde:
 
 
 
-```r
+``` r
 # Lendo o Banco de dados
 dados_turmas&lt;-readr::read_rds("../data/dados_turmas.rds")
 
@@ -346,7 +377,7 @@ Entrar com os valores `\(3.25\)`, `\(1.25\)`, `\(3.20\)` e `\(2.30\)`
 ### Resolução no R  
 #### Exercício 01
 
-```r
+``` r
 # 1.a
 log(125,5)
 ```
@@ -355,7 +386,7 @@ log(125,5)
 ## [1] 3
 ```
 
-```r
+``` r
 # 1.b
 2*sin(45*pi/180)
 ```
@@ -364,7 +395,7 @@ log(125,5)
 ## [1] 1.414214
 ```
 
-```r
+``` r
 # 1.c
 1/(sqrt(2*pi))
 ```
@@ -373,7 +404,7 @@ log(125,5)
 ## [1] 0.3989423
 ```
 
-```r
+``` r
 # 1.d
 1/(sqrt(2*pi+1))
 ```
@@ -388,7 +419,7 @@ log(125,5)
 #### Exercício 02
 
 
-```r
+``` r
 # Definindo dados X
 X = c(6,8,7)
 
@@ -400,7 +431,7 @@ sum(X)
 ## [1] 21
 ```
 
-```r
+``` r
 # 2.b
 mean(X)
 ```
@@ -409,7 +440,7 @@ mean(X)
 ## [1] 7
 ```
 
-```r
+``` r
 # 2.c
 sum(X)^2/((3-1)*(3-2))
 ```
@@ -422,9 +453,9 @@ sum(X)^2/((3-1)*(3-2))
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
