@@ -1,0 +1,150 @@
+---
+title: "Análise - Dados das Turmas de 2026"
+author: "Alan Rodrigo Panosso"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE, 
+                      error = FALSE, 
+                      warning = FALSE)
+```
+
+### Carregando pacotes
+```{r}
+library(tidyverse)
+```
+
+### Carregando o banco de dados 
+```{r}
+data_set <- readxl::read_xlsx("../data/dados-turmas-2026.xlsx")
+glimpse(data_set)
+```
+
+```{r}
+data_set |> 
+  ggplot2::ggplot(ggplot2::aes(x = forcats::fct_infreq(curso))) +
+  ggplot2::geom_bar(fill = "steelblue", color = "black") +
+  ggplot2::geom_text(stat = "count", ggplot2::aes(label =  ggplot2::after_stat(count)),
+            vjust = -0.5, size = 4) +
+  ggplot2::labs(
+    x = "Curso",
+    y = "Frequencia Absoluta"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(axis.text.x =  ggplot2::element_text(angle = 30, hjust = 1))
+```
+
+
+```{r}
+data_set |> 
+  group_by(curso) |> 
+  summarise(
+    n = n(),
+    .groups = "drop"
+  ) |> 
+  mutate(
+    Freq_Relativa = n/sum(n),
+    porc     = round(Freq_Relativa,2),
+    rotulo   = paste0(curso, "\n", round(porc,2), "%")
+  ) |> 
+  ggplot(aes(x = "", y = porc, fill = curso)) +
+  geom_col(width = 1, color = "white") +
+  scale_fill_manual(values = c("orange","lightblue")) +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(porc*100, "%")),
+            position = position_stack(vjust = 0.5), size = 3.5) +
+  labs(
+    title = "Proporção de Alunos por Curso",
+    fill  = "Curso"
+  ) +
+  theme_void()
+
+```
+
+```{r}
+data_set |> 
+  ggplot2::ggplot(ggplot2::aes(x = forcats::fct_infreq(time_futebol),
+                               fill=time_futebol)) +
+  ggplot2::geom_bar(color = "black") +
+  ggplot2::geom_text(stat = "count", ggplot2::aes(label =  ggplot2::after_stat(count)),
+            vjust = -0.5, size = 4) +
+  ggplot2::labs(
+    x = "Sexo",
+    y = "Frequencia Absoluta"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(axis.text.x =  ggplot2::element_text(angle = 30, hjust = 1)) + 
+  facet_wrap(~sexo)
+```
+
+```{r}
+data_set |> 
+  ggplot(aes(x=horas_de_estudo, y=..density..,fill=sexo)) +
+  geom_histogram(color="black") +
+  theme_minimal() +
+  facet_wrap(~sexo)
+
+```
+```{r}
+data_set |> 
+  group_by(sexo) |> 
+  summarise(
+    media_hora_estudo = mean(horas_de_estudo),
+    desvio_pad  = sd(horas_de_estudo)
+  )
+```
+
+```{r}
+data_set |> 
+  ggplot(aes(y=horas_de_estudo, fill=sexo)) +
+  geom_boxplot(color="black") +
+  theme_minimal()
+
+```
+```{r}
+data_set |> 
+  group_by(sexo, horas_atividade_fisica) |> 
+  summarise(
+    atividade = n()
+  ) |> 
+  ggplot(aes(y=horas_atividade_fisica, x = atividade)) +
+  geom_col() +
+  facet_wrap(~sexo)
+```
+```{r}
+# Ordem lógica das categorias
+ordem_atividade <- c(
+  "Nenhuma",
+  "Menos de 1 hora por semana",
+  "1 a 2 horas por semana",
+  "3 a 5 horas por semana",
+  "Mais de 5 horas por semana"
+)
+
+cores_sexo <- c("Feminino" = "#E07B8A", "Masculino" = "#5B8DB8")
+
+data_set |>
+  mutate(horas_atividade_fisica = factor(horas_atividade_fisica, levels = ordem_atividade)) |>
+  ggplot(aes(x = horas_atividade_fisica, fill = sexo)) +
+  geom_bar() +
+  facet_wrap(~sexo) +
+  scale_fill_manual(values = cores_sexo) +
+  scale_x_discrete(labels = scales::label_wrap(15)) +
+  labs(
+    title = "Horas de Atividade Física por Sexo",
+    x = "Horas de Atividade Física",
+    y = "Frequência",
+    fill = "Sexo"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    legend.position  = "none",        # legenda dispensável com facet
+    strip.text       = element_text(face = "bold", size = 13),
+    axis.text.x      = element_text(angle = 30, hjust = 1, size = 9),
+    panel.grid.major.x = element_blank()
+  )
+```
+
