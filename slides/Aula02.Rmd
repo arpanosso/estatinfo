@@ -184,7 +184,8 @@ Assim, podemos concluir que...
 #### Coleta informações
 
 - Entrevista estruturada com produtores rurais sobre uso de fertilizantes.  
-- *Medição direta em campo*, como teor de carbono no solo em diferentes áreas.- *Experimento controlado*, comparando produtividade sob diferentes doses de nitrogênio.  
+- *Medição direta em campo*, como teor de carbono no solo em diferentes áreas.  
+- *Experimento controlado*, comparando produtividade sob diferentes doses de nitrogênio.  
 - Uso de *sensores automáticos*, registrando temperatura e umidade a cada hora.  
 - Extração de *dados secundários*, como séries históricas do Instituto Brasileiro de Geografia e Estatística (IBGE).  
 - **Aplicação de questionário** a alunos para levantar horas de estudo por semana. Ferramenta aplicada na primeira semana de aula.
@@ -215,6 +216,8 @@ Após essa etapa, os dados deixam de ser uma lista desestruturada e passam a ter
 
 **Horas de estudo por semana (variável quantitativa)**
 
+- O resumo é feito com medidas de posição e dispersão.
+
 ```{r, echo=FALSE}
 library(tidyverse)
 data_set <- readxl::read_xlsx("../data/dados-turmas-2026.xlsx")
@@ -239,7 +242,7 @@ Isso permite descrever tendência central e dispersão em poucas medidas.
 
 **Curso dos alunos (variável qualitativa)**
 
-O resumo é feito por frequências:
+- O resumo é feito por frequências:
 
 ```{r}
 data_set |> 
@@ -255,9 +258,10 @@ data_set |>
 ```
 
 
-Aqui não faz sentido calcular média; o resumo adequado é por proporções.
+**OBS**: Aqui não faz sentido calcular média, o resumo adequado é por proporções.
 ---
-#### Apresentação 
+
+#### Apresentação (visualização)
 
 É a etapa em que os dados já organizados e resumidos são exibidos de forma visual ou tabular, para facilitar a comunicação e a interpretação.
 
@@ -374,12 +378,12 @@ Etapa em que se aplicam métodos estatísticos para responder a uma pergunta de 
 
 **EXEMPLO**
 
-> **Pergunta**: o tempo médio de estudo é diferente entre os cursos?
+> **Pergunta**: o tempo médio de estudo é diferente entre os sexos?
 
 Temos:
 
-- Variável quantitativa: horas de estudo por semana.
-- Variável qualitativa: sexo.
+- Variável quantitativa: **horas de estudo por semana**.
+- Variável qualitativa: **sexo**.
 
 ---
 
@@ -433,23 +437,37 @@ data_set |>
   facet_wrap(~curso)
 ```
 
+
+---
+
+```{r}
+data_set |> 
+  ggplot(aes(y=horas_de_estudo, x=curso,fill=curso)) +
+  geom_boxplot(color="black") +
+  theme_classic() + 
+  scale_fill_manual(values = c("orange2","lightblue"))+
+  facet_wrap(~sexo)
+```
+
+A análise continua ...
+
 ---
 ## Estatística
 
 Para compreender esse ciclo, a Estatística é estruturada em três grandes áreas:
 
-**Estatística Descritiva**: envolve organização, resumo e apresentação dos dados.
+I - **Estatística Descritiva**: envolve organização, resumo e apresentação dos dados.
 
-**Probabilidade**: fornece a base teórica para modelar a incerteza e o comportamento aleatório.
+II - **Probabilidade**: fornece a base teórica para modelar a incerteza e o comportamento aleatório.
 
-**Inferência Estatística**: utiliza a probabilidade para tirar conclusões sobre a população com base em uma amostra (estimação e testes de hipóteses).
+III - **Inferência Estatística**: utiliza a probabilidade para tirar conclusões sobre a população com base em uma amostra (estimação e testes de hipóteses).
 
 A Descritiva descreve os dados observados; a Probabilidade modela o acaso; a Inferência permite generalizar resultados.
 
 ---
 class: middle, center, inverse
 
-# ESTATÍSTICA DESCRITIVA
+# I - ESTATÍSTICA DESCRITIVA
 
 ---
 ## Estatística Descritiva
