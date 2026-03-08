@@ -102,10 +102,8 @@ $$
 N = 35188
 $$
 
-Maiores informações, acesso o Painel:  
-### [Somos UNESP](https://app.powerbi.com/view?r=eyJrIjoiMzM4YjhhOGMtMDQyNS00Y2VhLTk2ZDAtZThkMTU3ZWVhNTE0IiwidCI6ImZlODc4N2JjLWM5MTQtNDY2NS04NTQ3LTI2OGUxNWNiMGQ5YSJ9)
+Maiores informações, acesso o Painel [Somos UNESP](https://app.powerbi.com/view?r=eyJrIjoiMzM4YjhhOGMtMDQyNS00Y2VhLTk2ZDAtZThkMTU3ZWVhNTE0IiwidCI6ImZlODc4N2JjLWM5MTQtNDY2NS04NTQ3LTI2OGUxNWNiMGQ5YSJ9)
 
----
 
 ![](img/portal-somos-2026.png)
 
@@ -120,18 +118,17 @@ Em nosso exemplo é o número de alunos que responderam ao formulário.
 $$
 n =91
 $$
-Utilizando uma linguagem computacional como o R, podemos obter esse valor com os códigos apresentados abaixo:
+
 
 ```{r, echo=FALSE, out.width="10%", fig.align='left'}
-knitr::include_graphics("img/R_logo.png")
+# knitr::include_graphics("imgs/R_logo.png")
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 library(tidyverse)
 library(readxl)
 dados_turmas_2026 <- read_xlsx("../data/dados-turmas-2026.xlsx")
-nrow(dados_turmas_2026)
 ```
 
 
@@ -156,13 +153,13 @@ $n_1 = 33$
 $n_2 = 58$
 
 ```{r, echo=FALSE, out.width="10%", fig.align='left'}
-knitr::include_graphics("img/R_logo.png")
+# knitr::include_graphics("img/R_logo.png")
 ```
 
 
-```{r}
-dados_turmas_2026 |> 
-  count(sexo)
+```{r, echo=FALSE}
+# dados_turmas_2026 |> 
+#   count(sexo)
 ```
 
 
@@ -200,16 +197,15 @@ Portanto temos que:
 - Para categoria $Feminino$:
 
 $$
-f_1 = \frac{33}{91}=0,3626
+f_1 = \frac{33}{91}=0{,}3626
 $$ 
 
 - Para categoria $Masculino$  
 
 $$
-f_2 = \frac{58}{91}=0,6373
+f_2 = \frac{58}{91}=0{,}6373
 $$
 ---
-
 
 Observe que a somatória das frequências relativas sempre será igual a $1$: 
 
@@ -244,58 +240,55 @@ $$
 \end{aligned}
 $$
 
----
+A partir das tabelas de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
+
+Essa etapa é a denominada de **Apresentação - Visualização de Dados**. 
 
 
 ```{r, echo=FALSE, out.width="10%", fig.align='left'}
-knitr::include_graphics("img/R_logo.png")
+# knitr::include_graphics("img/R_logo.png")
 ```
 
 
-Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`|>`), cujo atalho é `CTRL + SHIFT + M`. 
-
-- `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
-- `group_by()` agrupa a variável `sexo` por suas diferentes categorias.
-- `summarise()` cria o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
-- `mutate()` é a função utilizada para calcular $f_i$ e suas respectivas procentagens $prec_i$ a partir da coluna $_i$.
-
-```{r}
-dados_turmas_2026  |> 
-  group_by(sexo) |>  
-  summarise(ni=n()
-            )  |>  
-  mutate(fi = ni/sum(ni),
-         perc = fi*100) 
+```{r, echo=FALSE}
+# 
+# Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`|>`), cujo atalho é `CTRL + SHIFT + M`. 
+# 
+# - `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
+# - `group_by()` agrupa a variável `sexo` por suas diferentes categorias.
+# - `summarise()` cria o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
+# - `mutate()` é a função utilizada para calcular $f_i$ e suas respectivas procentagens $prec_i$ a partir da coluna $_i$.
+# 
+# dados_turmas_2026  |> 
+#   group_by(sexo) |>  
+#   summarise(ni=n()
+#             )  |>  
+#   mutate(fi = ni/sum(ni),
+#          perc = fi*100) 
 ```
 
----
-
-A partir da tabela de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
-
-Essa etapa é a denominada de **Visualização de Dados**. 
 
 ---
 class: middle, center, inverse
 
-# VISUALIZAÇÃO DE DADOS
+# APRESENTAÇÃO - VISUALIZAÇÃO DE DADOS
 ## (Variáveis Qualitativas)
 
 ---
-## Visualização dos dados
 
-Os tipos de gráficos podem variar de acordo com o tipo de variável, geralmente, para as variáveis qualitativas utilizamos os gráficos de `Barras`, `Colunas` ou de `Setores (Pizza ou Pie)`. 
+## Apresentação - Visualização dos dados
 
-Para isso, vamos utilizar a funções do pacote `ggplot2` que é carregado junto com o pacote `tidyverse`. 
+Os tipos de gráficos variam de acordo com o tipo de variável, geralmente, para as **variáveis qualitativas** utilizamos os gráficos de:
 
-O ggplot funciona na forma de camadas represetações gráficas e de formatações, que são adicionadas de acordo com a necessidade do usuário por meio do operador de adição `+` digitado ao final da cada linha.
+- Barras;
+- Colunas; 
+- Setores (Pizza). 
 
 ---
 
-**Gráfico de Colunas para Sexo**
+### Gráfico de Colunas para variável sexo
 
-Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
-
-```{r, plot1, eval=FALSE}
+```{r, plot1, echo=FALSE}
 dados_turmas_2026 |>
   group_by(sexo) |> 
   summarise(ni=n()) |> 
@@ -309,20 +302,14 @@ dados_turmas_2026 |>
   theme_minimal()
 ```
 
----
-
-### Gráfico de Colunas para Sexo
-
-```{r, plot1, echo = FALSE}
-```
 
 ---
 
-### Gráfico de Barras para Sexo
+### Gráfico de Barras para variável sexo
 
 Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias.
 
-```{r, plot2, eval=FALSE}
+```{r, plot2, echo=FALSE}
 dados_turmas_2026 |>
   group_by(sexo) |> 
   summarise(ni=n()) |> 
@@ -336,22 +323,10 @@ dados_turmas_2026 |>
 
 ---
 
-```{r, plot2, echo = FALSE}
-```
 
-Outras cores são possíveis tente algumas [das cores no R](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
+### Gráfico de Setores para variável sexo
 
----
-
-### Gráfico de Setores para Sexo
-
-Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele representa cada valor de frequência relativa das diferentes categorias da variável em uma circunferência.
-
-- A função `geom_bar()` associada à `coord_polar()` permite a transformação do gráfico de barras no gráfico de pizza.
-
-- A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
-
-```{r, plot3, eval=FALSE}
+```{r, plot3, echo=FALSE}
 dados_turmas_2026 |> 
   group_by(sexo) |> 
   summarise(
@@ -378,29 +353,24 @@ dados_turmas_2026 |>
 
 ---
 
-```{r, plot3, echo = FALSE}
-```
-
-
----
 ## Tabela de Frequência para a variável Cor de cabelo
-
 
 Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. 
 
-```{r, eval=TRUE}
-dados_turmas_2026 |>
+```{r, eval=TRUE, echo=FALSE}
+tab <- dados_turmas_2026 |>
   group_by(cor_cabelo) |> #<< 
   summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100)      
+kableExtra::kable(tab)
 ```
 
 ---
 
 ### Gráfico de Colunas para Cor de cabelo
 
-```{r, plot4, eval=FALSE}
+```{r, plot4, echo=FALSE}
 dados_turmas_2026 |>
   group_by(cor_cabelo) |> #<< 
   summarise(ni=n()) |>      
@@ -409,25 +379,23 @@ dados_turmas_2026 |>
   ggplot(aes(x=cor_cabelo,y=fi,
              fill=cor_cabelo)) + #<<
   geom_col(color="black")+
+  scale_fill_manual(
+    values = c(
+      "Loiro" = "orange",
+      "Castanho Claro" = "brown1",
+      "Castanho Escuro" = "brown4",
+      "Preto" = "black"
+    )
+  )+
   theme_bw() #<<
 ```
 
-- ao passarmos o argumento `fill=cor_cabelo` dentro da função `aes()` estamos pedindo o mapeamento das cores de cabelo a partir de cores de preeenchimento diferentes.
-
-- `aes()` representa a estética do gráfico, ou seja, quem é x, quem é y e quem deve ser mapeado.
-
-- a função `theme_bw()` muda o padrão de cores e de linhas do gráfico. Existem outros padrões como `theme_classic`, `theme_minimal` entre outros.
-
----
-
-```{r, plot4, echo = FALSE}
-```
 
 ---
 
 ### Gráfico de Barras para Cor de cabelo
 
-```{r, plot5, eval=FALSE}
+```{r, plot5, echo=FALSE}
 dados_turmas_2026 |>
   group_by(cor_cabelo) |> #<< 
   summarise(ni=n()) |>      
@@ -436,18 +404,21 @@ dados_turmas_2026 |>
   ggplot(aes(x=fi, y=cor_cabelo,
              fill=cor_cabelo)) + 
   geom_col(color="black")+
-  scale_fill_viridis_d() + # <<
-  theme_minimal()
+  scale_fill_manual(
+    values = c(
+      "Loiro" = "orange",
+      "Castanho Claro" = "brown1",
+      "Castanho Escuro" = "brown4",
+      "Preto" = "black"
+    )) +
+      theme_minimal()
 ```
-- utilize a função `scale_fill_manual()` para alterar as cores dos preenchimentos, se necessário.
 
----
-```{r, plot5, echo = FALSE}
-```
+
 ---
 ### Gráfico de Setores para cor_cabelo
 
-```{r, plot6, eval=FALSE}
+```{r, plot6, echo=FALSE}
 dados_turmas_2026 |> 
   group_by(cor_cabelo) |> 
   summarise(
@@ -461,9 +432,16 @@ dados_turmas_2026 |>
   ) |> 
   ggplot(aes(x = "", y = porc, fill = cor_cabelo)) +
   geom_col(width = 1, color = "white") +
-    coord_polar(theta = "y") +
+  coord_polar(theta = "y") +
   geom_text(aes(label = paste0(porc*100, "%")),
             position = position_stack(vjust = 0.5), size = 6.5) +
+  scale_fill_manual(
+    values = c(
+      "Loiro" = "orange",
+      "Castanho Claro" = "brown1",
+      "Castanho Escuro" = "brown4",
+      "Preto" = "darkgray"
+    )) +
   labs(
     title = "Proporção de Alunos por Cor do Cabelo",
     fill  = "cor_cabelo"
@@ -473,42 +451,25 @@ dados_turmas_2026 |>
 
 ---
 
-```{r, plot6, echo = FALSE}
-```
+## Apresentação - Visualização dos dados
 
----
-class: middle, center, inverse
+**Variável Altura (Quantitativa Contínua)**
 
-# VISUALIZAÇÃO DE DADOS
-## (Variáveis Quantitativas)
+Quando a variável quantitativa, construímos a tabela de frequência, podemos utilizar intervalos de classes e os principais gráficos são:
 
----
-
-## Tabela de frequência para 
-
-### Variável Altura (Quantitativa Contínua)
-
-Quando a variável quantitativa for contínua, recomenda-se a utilização dos gráficos `histograma`  e `Função de distribuição acumulada`. 
+- histograma; 
+- boxplot; 
+- Distribuição acumulada 
 
 Devemos, inicialmente construir a tabela de frequência da variável `altura`. Porém, os valores de uma variável contínua não se repetem, mesmo que isso aparentemente ocorra na base de dados. 
 
-Em teoria suas realizações podem assumir qualquer valor dentro da reta dos números reais, portanto, ao mensurar uma variável contínua, obtém-se apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
+Em teoria suas observações podem assumir qualquer valor dentro da reta dos números $\mathbb{R}$, portanto, ao mensurar uma variável contínua, obtém-se apenas uma aproximação de seu verdadeiro valor dada pelo instrumento de medida.
 
 ---
 
-Para exemplificar, vamos criar $5$ classes de alturas a partir da função `cut()`.
+### Tabela de frequência
 
-```{r, echo = TRUE, eval=FALSE}
-dados_turmas_2026 |>
-  mutate(
-    classes_altura = cut(altura,5) #<<
-  ) |> 
-  group_by(classes_altura) |> 
-  summarise(ni=n()) |>      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100)    
-
-```
+Para exemplificar, vamos criar uma tabela de frequência com $k = 5$ classes de alturas.
 
 
 ```{r,echo=FALSE}
@@ -523,11 +484,13 @@ tab <- dados_turmas_2026 |>
 kableExtra::kable(tab)
 ```
 
+Agora vamos construir o histograma
+
 ---
 
-### Amplitude Total
+### Amplitude Total $\Delta$
 
-Para melhor entendermos como a função `cut()` funciona, será necessário conhecermos mais algumas medidas para a construção do histograma. Vamos iniciar com a Amplitude total $(\Delta)$, definida como a diferença entre o valor máximo menos o valor mínimo da variável.
+Vamos iniciar com a Amplitude total $(\Delta)$, definida como a diferença entre o valor máximo menos o valor mínimo da variável.
 
 $$\Delta = Máximo - Mínimo$$
 
