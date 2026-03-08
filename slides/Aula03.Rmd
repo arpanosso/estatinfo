@@ -3,11 +3,11 @@
 # pagedown::chrome_print("slides/Aula03.html")
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
-title: "Estatística e Informática"
-subtitle: "Aula 03 - Distribuição de Frequência"
+title: "Estatística & Estatística e Informática"
+subtitle: "Medidas Estatísticas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Ciências Exatas FCAV/UNESP"
-date: "(14-03-2024)"
+institute: "Departamento Ciências Exatas"
+date: "12 e 13 de março de 2026"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -20,14 +20,17 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo=TRUE, message = FALSE, warning = FALSE, comment = "#>", fig.align = "center")
+knitr::opts_chunk$set(echo=TRUE, 
+                      message = FALSE, 
+                      error= FALSE, 
+                      warning = FALSE, 
+                      comment = "#>", 
+                      fig.align = "center")
 options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 class: middle, center, inverse
 
-## Distribuição de frequência de uma variável
-
-
+# Distribuição de Frequência
 
 ```{r, echo=FALSE}
 library(tidyverse)
@@ -37,21 +40,21 @@ altura <- rnorm(100,1.72,0.05)
 peso <- rbinom(1000,50,.2) + 55
 pas <- rnorm(100, 119, 8.2)
 
-plt1 <- as_tibble(idade) %>% 
+plt1 <- as_tibble(idade) |> 
   ggplot(aes(x=idade,y=..density..)) + 
   geom_histogram(bins = 10, color="black",
                  fill="gray") +
   theme_bw() +
   labs(x="Idade (anos)", y="Densidade")
 
-plt2 <- as_tibble(altura) %>% 
+plt2 <- as_tibble(altura) |> 
   ggplot(aes(x=altura,y=..density..)) + 
   geom_histogram(bins = 10, color="black",
                  fill="aquamarine4") +
   theme_bw() +
   labs(x="altura (m)", y="Densidade")
 
-plt3 <- as_tibble(peso) %>% 
+plt3 <- as_tibble(peso) |> 
   ggplot(aes(x=peso,y=..density..)) + 
   geom_histogram(bins = 10, color="black",
                  fill="orange3") +
@@ -59,13 +62,15 @@ plt3 <- as_tibble(peso) %>%
   labs(x="Peso (g)", y="Densidade")
 
 
-plt4 <- as_tibble(pas) %>% 
+plt4 <- as_tibble(pas) |> 
   ggplot(aes(x=pas,y=..density..)) + 
   geom_histogram(bins = 10, color="black",
                  fill="red") +
   theme_bw() +
   labs(x="Pressão arterial sistólica (mm Hg)", y="Densidade")
 (plt1|plt2)/(plt3|plt4)
+library(tidyverse)
+data_set <- readxl::read_xlsx("../data/dados-turmas-2026.xlsx")
 
 ```
 
@@ -74,31 +79,48 @@ plt4 <- as_tibble(pas) %>%
 
 Quando analisamos uma variável aleatória (qualitativa ou quantitativa), deve-se conhecer a distribuição de frequência dessa variável por meio de suas possíveis realizações (observações). 
 
-Nesse sentido, o objetivo dessa aula será apresentar as principais formas e visualização gráfica de variáveis quali e quantitativas. 
+Assim, o objetivo dessa aula será apresentar as principais formas e visualização gráfica de variáveis quali e quantitativas. 
 
-**Exemplo:** Considerando os [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) amostrados das turmas de Estatísticas temos:
+**Exemplo:** Considerando os [dados-turmas-2026.xlsx](https://raw.githubusercontent.com/arpanosso/estatinfo/refs/heads/master/data/dados-turmas-2026.xlsx) amostrados das turmas de Estatísticas temos:
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/exemplo_dados.png" style=" display: block; margin-left: auto; margin-right: auto;width: 65%"></img>
+Podemos organiza-los da seguinte forma: [dados-turmas-2026.pdf](https://raw.githubusercontent.com/arpanosso/estatinfo/refs/heads/master/docs/dados-turmas-2026.pdf)
 
+![](img/dados-turmas-2026.png)
 
-![](img/exemplo_dados_2.png)
 ---
 **Tamanho da População $(N)$**
 
 O tamanho da população $N$ é o número total dos elementos alvos da pesquisa. Muitas vezes não conhecemos esse valor. 
 
-Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos da Unesp que estão no segundo ano de sua graduação.
+
+$$
+N = \text{tamanho da população (desconhecido)}
+$$
+Em nosso exemplo, poderíamos entender como $N$ o número de todos os alunos de graduação da Unesp-FCAV.
+
+$$
+N = 35188
+$$
+
+Maiores informações, acesso o Painel:  
+### [Somos UNESP](https://app.powerbi.com/view?r=eyJrIjoiMzM4YjhhOGMtMDQyNS00Y2VhLTk2ZDAtZThkMTU3ZWVhNTE0IiwidCI6ImZlODc4N2JjLWM5MTQtNDY2NS04NTQ3LTI2OGUxNWNiMGQ5YSJ9)
+
+---
+
+![](img/portal-somos-2026.png)
+
+---
 
 **Tamanho da amostra $(n)$**
 
 É o número total de registros de sua base de dados, ou seja o número total de elementos amostrados da população. 
 
-O comando `glimpse` permite que veriquemos o tamanho do banco de dados em linhas (Rows - $n$) e colunas (Columns - variáveis).
+Em nosso exemplo é o número de alunos que responderam ao formulário.
 
-Onde `chr`  representa variáveis do tipo **strings**, ou seja textos e `dbl` representa variáveis numéricas.
-
-
----
+$$
+n =91
+$$
+Utilizando uma linguagem computacional como o R, podemos obter esse valor com os códigos apresentados abaixo:
 
 ```{r, echo=FALSE, out.width="10%", fig.align='left'}
 knitr::include_graphics("img/R_logo.png")
@@ -106,43 +128,60 @@ knitr::include_graphics("img/R_logo.png")
 
 
 ```{r}
-library(tidyverse) 
-dados_turmas <- readxl::read_xlsx("../data/dados_turmas.xlsx")
-glimpse(dados_turmas) 
+library(tidyverse)
+library(readxl)
+dados_turmas_2026 <- read_xlsx("../data/dados-turmas-2026.xlsx")
+nrow(dados_turmas_2026)
 ```
 
 
 ---
-### Exemplo da base de dados das turmas 
+### Variável sexo (qualitativa nominal)
 
-Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas $(n_i)$, as frequências relativas $(f_i)$ e a porcentagem $(perc)$ para as categoria existentes. 
+Agora Construir uma tabela de frequências para a variável `sexo` contendo as frequências absolutas $(n_i)$, as frequências relativas $(f_i)$ e a porcentagem de frequência $(perc)$ para as categorias $Feminino$ e $Masculino$. 
 
-Após isso, realizar a visualização de dados com gráficos de Colunas, Barras e Setores (Pizza ou *Pie*).
+Agora podemos definir o número de categorias dessa variável como $k$, ou seja, nesse caso:
 
+$$ k = 2$$
 
 ---
 ### Frequência Absoluta $(n_i)$
 
-É definida como o número de observações no conjunto de dados pertencentes à uma categoria ou classe da variável em estudo.
+É definida como o número de observações no conjunto de dados pertencentes à uma categoria/classe da variável em estudo.
 
-Então, consideramos $1$ para $F$ e $2$ para $M$, temos:
+Então, consideramos $n_1$ para sexo $Feminino$ e $n_2$ para sexo $Masculino$, temos:
 
-$n_1 = 15$
+$n_1 = 33$
 
-$n_2 = 29$
+$n_2 = 58$
+
+```{r, echo=FALSE, out.width="10%", fig.align='left'}
+knitr::include_graphics("img/R_logo.png")
+```
+
+
+```{r}
+dados_turmas_2026 |> 
+  count(sexo)
+```
+
 
 
 ---
-Assim temos a primeira regra da análise de nossa base de dados, a soma da frequência absoluta das classes $(k)$ da variável cetegória é igual a $n$. 
+Observe que a somatória da frequência absoluta das classes $(k)$ da variável cetegória é igual a $n$. 
 
 $$
 \sum \limits_{i=1}^{k}{n_i} = n
 $$
 
-Onde $k$ é o número de categorias da variável em questão, no caso do `sexo`, temos duas categorias (M e F).
+sendo $k$ é o número de categorias.
 
 $$
-\sum \limits_{i=1}^{k}{n_i} = n_1+n_2=15+29=44
+\begin{aligned}
+\sum_{i=1}^{k} n_i &= n_1 + n_2 \\
+                   &= 33 + 58 \\
+                   &= 91
+\end{aligned}
 $$
 
 ---
@@ -155,52 +194,78 @@ $$
 f_i = \frac{n_i}{n}
 $$
 
-Portanto temos que, 
+Portanto temos que:
+
+
+- Para categoria $Feminino$:
 
 $$
-f_1 = \frac{15}{44}=0,3409
+f_1 = \frac{33}{91}=0,3626
 $$ 
 
-e   
+- Para categoria $Masculino$  
 
 $$
-f_2 = \frac{29}{55}=0,6591
+f_2 = \frac{58}{91}=0,6373
 $$
 ---
-Assim, temos que a soma das frequências relativas sempre será igual a $1$: 
+
+
+Observe que a somatória das frequências relativas sempre será igual a $1$: 
 
 $$
-\sum \limits_{i=1}^{k} f_i=f_1+f_2 = 0,3409+0,6591 = 1
+\begin{aligned}
+\sum_{i=1}^{k} f_i &= f_1 + f_2 \\
+                   &= 0{,}3626 + 0{,}6373 \\
+                   &= 1
+\end{aligned}
 $$
 
-onde $k$ é o número de categorias da variável `sexo`, ou seja, $2$, nesse caso.
+sendo $k$, o número de categorias da variável `sexo`.
 
 ---
 
-**Porcentagem de frequência $(perc \text{ ou %})$**
+**Porcentagem de frequência $(perc \text{, %})$**
 
 Definida como o resultado da multiplicação da frequência relativa (proporção) por $100$.
 
 
-$$perc_1 = f_1 \times 100 = 0,3409 \times 100 = 34,09\% \\
-perc_2 = f_2 \times 100 = 0,6591 \times 100 = 65,91\%$$
+$$perc_1 = f_1 \times 100 = 0{,}3626 \times 100 = 36{,}26\% \\
+perc_2 = f_2 \times 100 = 0{,}6373 \times 100 = 63{,}73\%$$
+
+
+De maneira análoga, a somatória das porcentagens sempre será igual a $100$: 
+
+$$
+\begin{aligned}
+\sum_{i=1}^{k} f_i &= perc_1 + perc_2 \\
+                   &= 36{,}26 + 63{,}73 \\
+                   &= 100
+\end{aligned}
+$$
 
 ---
 
-Para essa tarefa, vamos utilizar o R. Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`%>%`), cujo atalho é `CTRL + SHIFT + M`. 
 
-Vamos utilizar a função `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
+```{r, echo=FALSE, out.width="10%", fig.align='left'}
+knitr::include_graphics("img/R_logo.png")
+```
 
+
+Precisaremos, então, fazer algumas operações nos dados das turmas e vamos usar o operador `PIPE` (`|>`), cujo atalho é `CTRL + SHIFT + M`. 
+
+- `n()` para contar cada ocorrência das diferentes categorias da variável  `sexo`.
 - `group_by()` agrupa a variável `sexo` por suas diferentes categorias.
 - `summarise()` cria o resumo dos dados, ou seja, contará o valor de cada categoria usando a função `n()` e salvará na coluna `ni`.
 - `mutate()` é a função utilizada para calcular $f_i$ e suas respectivas procentagens $prec_i$ a partir da coluna $_i$.
 
 ```{r}
-dados_turmas %>%
-  group_by(sexo) %>% 
-  summarise(ni=n()) %>% # frequência Absoluta
-  mutate(fi = ni/sum(ni),# frequência Relativa
-         perc = fi*100) # porcentage m de frequência
+dados_turmas_2026  |> 
+  group_by(sexo) |>  
+  summarise(ni=n()
+            )  |>  
+  mutate(fi = ni/sum(ni),
+         perc = fi*100) 
 ```
 
 ---
@@ -231,13 +296,17 @@ O ggplot funciona na forma de camadas represetações gráficas e de formataçõ
 Deve ser utilizado para variáveis categóricas (qualitativas ordinais ou nominais).
 
 ```{r, plot1, eval=FALSE}
-dados_turmas %>%
-  group_by(sexo) %>% 
-  summarise(ni=n()) %>% 
+dados_turmas_2026 |>
+  group_by(sexo) |> 
+  summarise(ni=n()) |> 
   mutate(fi = ni/sum(ni),
-         perc = fi*100) %>% 
+         perc = fi*100) |> 
   ggplot(aes(x=sexo, y=fi)) + 
-  geom_col()
+  geom_col(
+    fill="lightblue",
+    color="black"
+  )+
+  theme_minimal()
 ```
 
 ---
@@ -254,16 +323,16 @@ dados_turmas %>%
 Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilita a leitura do nome das categorias.
 
 ```{r, plot2, eval=FALSE}
-dados_turmas %>%
-  group_by(sexo) %>% 
-  summarise(ni=n()) %>% 
+dados_turmas_2026 |>
+  group_by(sexo) |> 
+  summarise(ni=n()) |> 
   mutate(fi = ni/sum(ni),
-         perc = fi*100) %>% 
+         perc = fi*100) |> 
   ggplot(aes(x=fi,y=sexo)) + 
-  geom_col(fill="aquamarine4",
-           color="black") 
+  geom_col(fill="orange4",
+           color="black") +
+  theme_classic()
 ```
-- o argumento `fill = "aquamarine4"` permite que possamos alterar a cor do preenchimeto (*fill*) da barra e o argumento `color="black"` permite a alteração da cor o contorno das barras. 
 
 ---
 
@@ -283,15 +352,28 @@ Também conhecido como gráfico de Pizza (ou torta em inglês - *pie*), ele repr
 - A função `theme_void()` retira elementos como linhas e nomes e números da representação gráfica.
 
 ```{r, plot3, eval=FALSE}
-dados_turmas %>%
-  group_by(sexo) %>% 
-  summarise(ni=n()) %>% 
-  mutate(fi = ni/sum(ni),
-         perc = fi*100) %>% 
-  ggplot(aes(x="",y=fi, fill=sexo)) + 
-  geom_bar(stat="identity") +
-  coord_polar("y", start=0) + 
-  theme_void() 
+dados_turmas_2026 |> 
+  group_by(sexo) |> 
+  summarise(
+    n = n(),
+    .groups = "drop"
+  ) |> 
+  mutate(
+    Freq_Relativa = n/sum(n),
+    porc     = round(Freq_Relativa,2),
+    rotulo   = paste0(sexo, "\n", round(porc,2), "%")
+  ) |> 
+  ggplot(aes(x = "", y = porc, fill = sexo)) +
+  geom_col(width = 1, color = "white") +
+  scale_fill_manual(values = c("orange","lightblue")) +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(porc*100, "%")),
+            position = position_stack(vjust = 0.5), size = 6.5) +
+  labs(
+    title = "Proporção de Alunos por Sexo",
+    fill  = "Sexo"
+  ) +
+  theme_void()
 ```
 
 ---
@@ -299,62 +381,6 @@ dados_turmas %>%
 ```{r, plot3, echo = FALSE}
 ```
 
----
-#### Adicionando os valores de $fi$ no gráfico
-
-```{r, plot3_1, eval=FALSE}
-dados_turmas %>%
-  group_by(sexo) %>% 
-  summarise(ni=n()) %>% 
-  mutate(fi = ni/sum(ni),
-         perc = fi*100) %>%
-  ggplot(aes(x="",y=fi, fill=sexo)) +
-  geom_bar(stat="identity") +
-  coord_polar("y", start=0) +
-  theme_void() +
-  geom_text(
-    aes(
-      label=paste0(round(perc), "%")), #<<
-      position=position_stack(vjust = 0.5)) #<<
-```
-
----
-
-```{r, plot3_1, echo = FALSE}
-```
-
----
-
-### Treemap
-
-É uma técnica de visualização de dados que exibe hierarquias utilizando retângulos aninhados. 
-
-Cada retângulo representa uma hierarquia de dados e é subdividido em retângulos menores que representam subcategorias.
-
-Treemaps pode responder perguntas sobre os dados como: "Quais são as proporções de categorias para o total?"
-
----
-
-```{r, plot3_51, eval=FALSE}
-library(treemapify)
-dados_turmas %>%
-  group_by(sexo) %>% 
-  summarise(ni=n()) %>% 
-  mutate(fi = ni/sum(ni),
-         perc = fi*100) %>%
-  ggplot(aes(area = perc, fill = sexo)) +
-  geom_treemap() +
-  geom_treemap_text(
-    aes(label = paste(sexo, 
-                      paste0(round(perc, 2), "%"), sep = "\n")), 
-    colour = "black") +
-  theme(legend.position = "none") 
-```
-
----
-
-```{r, plot3_51, echo = FALSE}
-```
 
 ---
 ## Tabela de Frequência para a variável Cor de cabelo
@@ -363,9 +389,9 @@ dados_turmas %>%
 Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. 
 
 ```{r, eval=TRUE}
-dados_turmas %>%
-  group_by(cor_cabelo) %>% #<< 
-  summarise(ni=n()) %>%      
+dados_turmas_2026 |>
+  group_by(cor_cabelo) |> #<< 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100)      
 ```
@@ -375,11 +401,11 @@ dados_turmas %>%
 ### Gráfico de Colunas para Cor de cabelo
 
 ```{r, plot4, eval=FALSE}
-dados_turmas %>%
-  group_by(cor_cabelo) %>% #<< 
-  summarise(ni=n()) %>%      
+dados_turmas_2026 |>
+  group_by(cor_cabelo) |> #<< 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
-         perc = fi*100) %>% 
+         perc = fi*100) |> 
   ggplot(aes(x=cor_cabelo,y=fi,
              fill=cor_cabelo)) + #<<
   geom_col(color="black")+
@@ -402,11 +428,11 @@ dados_turmas %>%
 ### Gráfico de Barras para Cor de cabelo
 
 ```{r, plot5, eval=FALSE}
-dados_turmas %>%
-  group_by(cor_cabelo) %>% #<< 
-  summarise(ni=n()) %>%      
+dados_turmas_2026 |>
+  group_by(cor_cabelo) |> #<< 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
-         perc = fi*100) %>% 
+         perc = fi*100) |> 
   ggplot(aes(x=fi, y=cor_cabelo,
              fill=cor_cabelo)) + 
   geom_col(color="black")+
@@ -422,16 +448,26 @@ dados_turmas %>%
 ### Gráfico de Setores para cor_cabelo
 
 ```{r, plot6, eval=FALSE}
-dados_turmas %>%
-  group_by(cor_cabelo) %>% #<< 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100) %>% 
-  ggplot(aes(x="", y=fi, 
-             fill=cor_cabelo)) + 
-  geom_bar(stat="identity",color="black") +
-  coord_polar("y", start=0) +
-  scale_fill_viridis_d() + # <<
+dados_turmas_2026 |> 
+  group_by(cor_cabelo) |> 
+  summarise(
+    n = n(),
+    .groups = "drop"
+  ) |> 
+  mutate(
+    Freq_Relativa = n/sum(n),
+    porc     = round(Freq_Relativa,2),
+    rotulo   = paste0(cor_cabelo, "\n", round(porc,2), "%")
+  ) |> 
+  ggplot(aes(x = "", y = porc, fill = cor_cabelo)) +
+  geom_col(width = 1, color = "white") +
+    coord_polar(theta = "y") +
+  geom_text(aes(label = paste0(porc*100, "%")),
+            position = position_stack(vjust = 0.5), size = 6.5) +
+  labs(
+    title = "Proporção de Alunos por Cor do Cabelo",
+    fill  = "cor_cabelo"
+  ) +
   theme_void()
 ```
 
@@ -440,31 +476,6 @@ dados_turmas %>%
 ```{r, plot6, echo = FALSE}
 ```
 
-
----
-#### Treemap para cor dos cabelos
-
-```{r, plot6_5, eval=FALSE}
-library(treemapify)
-dados_turmas %>%
-  group_by(cor_cabelo) %>% 
-  summarise(ni=n()) %>% 
-  mutate(fi = ni/sum(ni),
-         perc = fi*100) %>%
-  arrange(ni) %>% 
-  ggplot(aes(area = perc, fill = cor_cabelo)) +
-  geom_treemap() +
-  geom_treemap_text(
-    aes(label = paste(cor_cabelo, 
-                      paste0(round(perc, 2), "%"), sep = "\n")), 
-    colour = "black") +
-  theme(legend.position = "none")
-```
-
----
-
-```{r, plot6_5, echo = FALSE}
-```
 ---
 class: middle, center, inverse
 
@@ -472,33 +483,10 @@ class: middle, center, inverse
 ## (Variáveis Quantitativas)
 
 ---
-## Tabela de frequência e visualização para Idade em anos (discreta)
 
-Quando a variável  for quantitativa discreta, os mesmos gráficos de variáveis qualitativas podem ser utilizados. Porém, também recomendamos a utilização dos gráficos `boxplot`, `histograma` e `Função distribuição acumulada`.
+## Tabela de frequência para 
 
-Pra a variável `idade_anos` vamos criar a tabela de frequência;
-
-```{r, echo = TRUE, eval=FALSE}
-dados_turmas %>%
-  group_by(idade_anos) %>% 
-  summarise(ni=n()) %>%      
-  mutate(fi = ni/sum(ni),    
-         perc = fi*100)    
-```
----
-
-```{r,echo=FALSE}
-tab<-dados_turmas %>%
-        group_by(idade_anos) %>% 
-        summarise(ni=n()) %>%      
-        mutate(fi = ni/sum(ni),    
-             perc = fi*100)  
-kableExtra::kable(tab)
-```
-
----
-
-## Tabela de frequência para variável Altura (Quantitativa Contínua)
+### Variável Altura (Quantitativa Contínua)
 
 Quando a variável quantitativa for contínua, recomenda-se a utilização dos gráficos `histograma`  e `Função de distribuição acumulada`. 
 
@@ -511,12 +499,12 @@ Em teoria suas realizações podem assumir qualquer valor dentro da reta dos nú
 Para exemplificar, vamos criar $5$ classes de alturas a partir da função `cut()`.
 
 ```{r, echo = TRUE, eval=FALSE}
-dados_turmas %>%
+dados_turmas_2026 |>
   mutate(
     classes_altura = cut(altura,5) #<<
-  ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
+  ) |> 
+  group_by(classes_altura) |> 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100)    
 
@@ -524,12 +512,12 @@ dados_turmas %>%
 
 
 ```{r,echo=FALSE}
-tab <- dados_turmas %>%
+tab <- dados_turmas_2026 |>
   mutate(
     classes_altura = cut(altura,5) 
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
+    ) |> 
+  group_by(classes_altura) |> 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100)  
 kableExtra::kable(tab)
@@ -543,32 +531,18 @@ Para melhor entendermos como a função `cut()` funciona, será necessário conh
 
 $$\Delta = Máximo - Mínimo$$
 
-Para os dados de altura temos, $\Delta = 1,91\;m-1,50\;m = 0,41 \;m$
+Para os dados de altura temos, $\Delta = 197-155 = 42 \;\text{cm}$
 
-No R podemos calcular a amplitude total com as funções do pacote `base`, para isso devemos, primeiramente, extrair de `dados_turmas` a variável (coluna) `altura` por meio do operador de acesso de listas `$`.
-
-```{r,eval=TRUE}
-altura <- dados_turmas %>% 
-  pull(altura)
-```
-
-Agora vamos encontrar o máximo e o mínimo e calcular a diferença.
-
-```{r,eval=TRUE}
-D <- max(altura) - min(altura)
-D
-```
 
 ---
+
 ### Número de intervalos de classes $(k)$ 
 
-Definiremos $k$ como sendo o número de **sub-intervalos** da Amplitude Total. Uma boa representação apresenta um $k$ **NUNCA** inferior a $5$ ou superior a $15$, pois com um pequeno número de classes, perde-se informação, e com um grande número de classes, o objetivo de resumir os dados fica prejudicado.
+Definiremos $k$ como sendo o número de **sub-intervalos** da Amplitude Total. Uma boa representação apresenta um $k$. 
 
+**NUNCA** inferior a $5$ ou superior a $15$, pois com um pequeno número de classes, perde-se informação, e com um grande número de classes, o objetivo de resumir os dados fica prejudicado.
 
-```{r, eval=TRUE}
-k <- 5
-```
-
+--
 
 ### Amplitude de classe $(\Delta_i)$
 
@@ -577,29 +551,30 @@ k <- 5
 $$\Delta_i = \frac{\Delta}{k}$$
 Para os dados de altura:
 
-$\Delta_i = \frac{\Delta}{k} = \frac{0.41\;m}{5} = 0,082 \;m$
+$$\Delta_i = \frac{\Delta}{k} = \frac{42}{5} = 8{,}4 \;cm$$
 
 ---
-Assim, temos
+Assim, temos que cada um dos $5$ intervalos terá uma amplitude de $8{,}4$ cm. Ou seja, o cálculo dos  limites das classes é feito a partir da adição ao valor Mínimo o valor de $\Delta_i$ um número de $k$ vezes. LI = Limite Inferior da Classe e LS = limite Superior da Classe
 
-```{r,eval=TRUE}
-Di = D/k
-Di
-```
-Cada um dos $5$ intervalos terá uma amplitude de $0,086$ m. Ou seja, o cálculo dos  limites das classes é feito a partir da adição ao valor Mínimo o valor de $\Delta_i$ $k$ vezes:
+- Classe 1:
 
-```{r}
-limites <- min(altura)+ 0:k * Di
-limites
-```
----
+LI = $Mínimo = 155$  e LS = $Mínimo \times \Delta_i = 155 \times (8{,}4) = 163{,}4$
 
-Obervem que foi essa a metodologia utilizada pela função `cut()` para calcular os limites de classes, e essa é a metodologia clássica para lidar com dados contínuos e os agrupar em classes.
+- Classe 2:
 
-```{r,echo=FALSE}
-kableExtra::kable(tab)
-limites
-```
+LI = LS anterior = $163{,}4$ e LS = $Mínimo \times 2\Delta_i = 155 \times 2\dot(8{,}4) = 171{,}8$
+
+- Classe 3:
+
+LI = $171{,}8$  LS = $Mínimo \times 3\Delta_i = 155 \times 3\dot(8{,}4) = 180{,}2$
+
+- Classe 4:
+
+LI = $180{,}2$  e LS = $Mínimo \times 4\Delta_i = 155 \times 4\dot(8{,}4) = 188{,}6$
+
+- Classe 5:
+
+LI = $188{,}6$ e LS = $Mínimo \times 2\Delta_i = 155 \times 2\dot(8{,}4) = 197$
 
 
 ---
@@ -608,7 +583,12 @@ limites
 A partir da tabela anterior, pode-se construir o gráfico de frequência de cada classe de valor de altura, denominado **Histograma**. 
 
 ```{r,plot10,eval=FALSE}
-dados_turmas %>% 
+k=5
+Di = 8.4
+altura <- dados_turmas_2026 |> pull(altura)
+limites <- min(altura)+ 0:k * Di
+limites
+dados_turmas_2026 |> 
   ggplot(aes(x=altura,y=..count..))+ #<<
   geom_histogram(breaks = limites,
                  color="black",
@@ -634,7 +614,7 @@ Ao longo de nosso curso, vamos estudar que a frequência relativa $f_i$ é uma e
 Então, para construção do histograma, sugere-se usar no eixo das ordenadas os valores de $fi / \Delta_i$ (denominado densidade de frequência), ou seja, da medida que indica qual a concentração por unidade da variável.
 
 ```{r,plot11,eval=FALSE}
-dados_turmas %>% 
+dados_turmas_2026 |> 
   ggplot(aes(x=altura,y=..density..))+ #<<
   geom_histogram(breaks = limites,
                  color="black",
@@ -658,12 +638,12 @@ Agora vamos atualizar a tabela com o valor de densidade de frequência, dado por
 $$d_i=\frac{f_i}{\Delta_i}$$
 
 ```{r, echo = TRUE, eval=FALSE}
-dados_turmas %>%
+dados_turmas_2026 |>
   mutate(
     classes_altura = cut(altura,5)
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
+    ) |> 
+  group_by(classes_altura) |> 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100,
          di=fi/Di) #<<
@@ -672,12 +652,12 @@ dados_turmas %>%
 ---
 
 ```{r,echo=FALSE}
-tab <- dados_turmas %>%
+tab <- dados_turmas_2026 |>
   mutate(
     classes_altura = cut(altura,5) 
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
+    ) |> 
+  group_by(classes_altura) |> 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100,
          di=fi/Di)  
@@ -697,12 +677,12 @@ $F_i$: Frequência Relativa Acumulada.
 $Perc$: Porcentagem de Frequência Acumulada.
 
 ```{r, echo = TRUE, eval=FALSE}
-dados_turmas %>%
+dados_turmas_2026 |>
   mutate(
     classes_altura = cut(altura,5)
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
+    ) |> 
+  group_by(classes_altura) |> 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100,
          di=fi/Di,
@@ -716,12 +696,12 @@ dados_turmas %>%
 # Tabela de Frequência para Altura
 
 ```{r,echo=FALSE}
-tab <- dados_turmas %>%
+tab <- dados_turmas_2026 |>
   mutate(
     classes_altura = cut(altura,5) 
-    ) %>% 
-  group_by(classes_altura) %>% 
-  summarise(ni=n()) %>%      
+    ) |> 
+  group_by(classes_altura) |> 
+  summarise(ni=n()) |>      
   mutate(fi = ni/sum(ni),    
          perc = fi*100,
          di=fi/Di,
@@ -743,7 +723,7 @@ Para se obter as interseções do polígono com o eixo horizontal, cria-se em ca
 No R:
 
 ```{r,plot12,eval=FALSE}
-dados_turmas %>% 
+dados_turmas_2026 |> 
   ggplot(aes(x=altura, y=..count..))+ #<<
   geom_histogram(breaks = limites,
                  color="black",
@@ -765,7 +745,7 @@ dados_turmas %>%
 Calcula e desenha a estimativa da densidade, que é uma versão suavizada do histograma. Esta é uma alternativa útil para dados contínuos que vêm de uma distribuição suave subjacente. 
 
 ```{r,plot12_1,eval=FALSE}
-dados_turmas %>% 
+dados_turmas_2026 |> 
   ggplot(aes(x=altura,y=..density..))+ #<<
   geom_histogram(breaks = limites,
                  color="black",
@@ -800,7 +780,7 @@ Para uma variável aleatória contínua (`altura`):
 $\int \limits_{- \infty }^x f(x_i) dx$
 
 ```{r,plot13,eval=FALSE}
-dados_turmas %>% 
+dados_turmas_2026 |> 
   ggplot(aes(x=altura))+ 
   stat_ecdf(geom = "line",color="red")#<<
 ```
@@ -819,8 +799,8 @@ No caso da variável aleatória discreta (`idade_anos`):
 $F(x) = \sum \limits_{x_i<x} f(x_i)$
 
 ```{r,plot14,eval=FALSE}
-dados_turmas %>% 
-  ggplot(aes(x=idade_anos))+ #<<
+dados_turmas_2026 |> 
+  ggplot(aes(x=idade))+ #<<
   stat_ecdf(geom = "line",color="red")
 ```
 
@@ -828,147 +808,158 @@ dados_turmas %>%
 ```{r,plot14,echo=FALSE}
 ```
 
+
 ---
 class: middle, center, inverse
 
-## Prática para Casa: Instalação de Pacotes no R
+## Medidas de Posição
 
-![](img/pacotes_r.png)
-
-[Link do Video](https://drive.google.com/drive/u/0/folders/1O-sGhicXs6unUY_y1JW8yKSHm76VVMCX)
-
----
-**Pacote em R**
-
-Um pacote é uma coleção de funções, exemplos e documentação. A funcionalidade de um pacote é frequentemente focada em uma metodologia estatística especial" (**Everitt & Hothorn**).
+___
 
 
-![](img/fig08.png)
-
-Pacotes no R são coleções de funções, exemplos e documentações, que devem ser previamente instalados e alocados no ambiente pela função `library`.
-
----
-## Pacotes básicos
-
-Liste os pacotes carregados no ambiente com:
-
-```{r}
-(.packages())
-```
-
-O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro $[\;i\;]$ apresentado entre colchetes **[i]**.
-
-Carregue um pacote chamando a função `library`.
-
-```{r,message=FALSE}
-library(MASS)
-```
 
 
----
+<!-- --- -->
+<!-- class: middle, center, inverse -->
 
-Agora, liste novamente os pacotes e observe a diferença no retorno da função.
+<!-- ## Prática para Casa: Instalação de Pacotes no R -->
 
-```{r}
-(.packages())
-```
+<!-- ![](img/pacotes_r.png) -->
 
-Observe que o pacote `MASS` agora está no ambiente de trabalho. 
+<!-- [Link do Video](https://drive.google.com/drive/u/0/folders/1O-sGhicXs6unUY_y1JW8yKSHm76VVMCX) -->
 
+<!-- --- -->
+<!-- **Pacote em R** -->
 
----
-
-### Instalando pacotes
-
-Para a realização de procedimentos estatístico e manipulação de arquivos durante o curso, serão necessários vários pacotes que não fazem parte do `base` do R, que deverão ser instalados.
-
-**Utilizando a opção** `Packages\Install\nome do pacote`
-
-```{r echo=FALSE, fig.cap="",fig.align='center',out.width = "450px"}
-knitr::include_graphics("img/install_pac.png")
-```
+<!-- Um pacote é uma coleção de funções, exemplos e documentação. A funcionalidade de um pacote é frequentemente focada em uma metodologia estatística especial" (**Everitt & Hothorn**). -->
 
 
-Instale os pacotes:  
- 
- * `tidyverse`   
- * `agricolae`  
+<!-- ![](img/fig08.png) -->
 
----
-Os pacotes também podem ser instalados a partir das linhas de comandos:
+<!-- Pacotes no R são coleções de funções, exemplos e documentações, que devem ser previamente instalados e alocados no ambiente pela função `library`. -->
 
-```{r,eval=FALSE}
-install.packages("tidyverse")
-install.packages("agricolae")
-```
+<!-- --- -->
+<!-- ## Pacotes básicos -->
+
+<!-- Liste os pacotes carregados no ambiente com: -->
+
+<!-- ```{r} -->
+<!-- (.packages()) -->
+<!-- ``` -->
+
+<!-- O retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro $[\;i\;]$ apresentado entre colchetes **[i]**. -->
+
+<!-- Carregue um pacote chamando a função `library`. -->
+
+<!-- ```{r,message=FALSE} -->
+<!-- library(MASS) -->
+<!-- ``` -->
 
 
-Agora podemos carregar esses pacotes em nosso ambiente de trabalho.
+<!-- --- -->
 
-```{r,message=FALSE,error=FALSE}
-library(tidyverse)
-library(agricolae)
-```
+<!-- Agora, liste novamente os pacotes e observe a diferença no retorno da função. -->
 
-Vamos agora criar uma "Pipe Line" para visualização de um banco de dados
+<!-- ```{r} -->
+<!-- (.packages()) -->
+<!-- ``` -->
 
-```{r,message=FALSE,error=FALSE}
-mtcars %>% 
-  glimpse()
-```
+<!-- Observe que o pacote `MASS` agora está no ambiente de trabalho.  -->
 
-O simbolo para operação de arquivos de dados é o pipe `%>%` que pode ser criado a partir do atalho `CTRL + SHIFT + M`
 
----
+<!-- --- -->
 
-## Carregando os dados no R
-Para carregar o banco de dados da turma no R, siga os passos:  
-1.Faça o Download dos [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).    
+<!-- ### Instalando pacotes -->
 
-2.Salve em uma pasta `data` dentro de um projeto do R previamente criado.
+<!-- Para a realização de procedimentos estatístico e manipulação de arquivos durante o curso, serão necessários vários pacotes que não fazem parte do `base` do R, que deverão ser instalados. -->
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 85%"></img> 
+<!-- **Utilizando a opção** `Packages\Install\nome do pacote` -->
 
----
+<!-- ```{r echo=FALSE, fig.cap="",fig.align='center',out.width = "450px"} -->
+<!-- knitr::include_graphics("img/install_pac.png") -->
+<!-- ``` -->
 
-3.Na aba **Environment** do RStudio selecione **Import Dataset/From Excel...** como apresentado abaixo.
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ]
+<!-- Instale os pacotes:   -->
 
----
+<!--  * `tidyverse`    -->
+<!--  * `agricolae`   -->
 
-4.Selecione **Browse** (destacado em vermelho no canto direito superior).
+<!-- --- -->
+<!-- Os pacotes também podem ser instalados a partir das linhas de comandos: -->
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> 
+<!-- ```{r,eval=FALSE} -->
+<!-- install.packages("tidyverse") -->
+<!-- install.packages("agricolae") -->
+<!-- ``` -->
 
----
 
-5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*data"*,  selecione o arquivo e clique em **Open**.
+<!-- Agora podemos carregar esses pacotes em nosso ambiente de trabalho. -->
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
+<!-- ```{r,message=FALSE,error=FALSE} -->
+<!-- library(tidyverse) -->
+<!-- library(agricolae) -->
+<!-- ``` -->
 
----
-6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, **selecione e copie o código** para a importação dos dados. Após isso **CLIQUE EM CANCEL**. 
+<!-- Vamos agora criar uma "Pipe Line" para visualização de um banco de dados -->
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>
+<!-- ```{r,message=FALSE,error=FALSE} -->
+<!-- mtcars |>  -->
+<!--   glimpse() -->
+<!-- ``` -->
 
----
+<!-- O simbolo para operação de arquivos de dados é o pipe `|>` que pode ser criado a partir do atalho `CTRL + SHIFT + M` -->
 
-7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções da aba **Packages/Install** ou com o comando `install.packages("readxl")`.
+<!-- --- -->
 
-```{r, eval=FALSE}
-library(readxl)
-dados_turmas <- read_excel("data/dados_turmas.xlsx")
-View(dados_turmas)
-```
+<!-- ## Carregando os dados no R -->
+<!-- Para carregar o banco de dados da turma no R, siga os passos:   -->
+<!-- 1.Faça o Download dos [dados_turmas.xlsx](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx).     -->
 
-```{r,echo=FALSE}
-`%>%` <- magrittr::`%>%`
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(readxl)
-dados_turmas <- read_excel("../data/dados_turmas.xlsx")
-```
+<!-- 2.Salve em uma pasta `data` dentro de um projeto do R previamente criado. -->
 
-<img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img>
+<!-- <img src="https://arpanosso.github.io/estatinfo/slides/img/download_.png" style=" display: block; margin-left: auto; margin-right: auto;width: 85%"></img>  -->
+
+<!-- --- -->
+
+<!-- 3.Na aba **Environment** do RStudio selecione **Import Dataset/From Excel...** como apresentado abaixo. -->
+
+<!-- <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> ] -->
+
+<!-- --- -->
+
+<!-- 4.Selecione **Browse** (destacado em vermelho no canto direito superior). -->
+
+<!-- <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r1.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img>  -->
+
+<!-- --- -->
+
+<!-- 5.Na próxima janela busque o arquivo da base de dados **dados_turmas.xlsx** que salvamos na pasta "*data"*,  selecione o arquivo e clique em **Open**. -->
+
+<!-- <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r2.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> -->
+
+<!-- --- -->
+<!-- 6.Na janela serão apresentados os dados, **NÃO CLIQUE EM IMPORT**, ao invés disso, **selecione e copie o código** para a importação dos dados. Após isso **CLIQUE EM CANCEL**.  -->
+
+<!-- <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r3.png" style=" display: block; margin-left: auto; margin-right: auto;width: 95%"></img> -->
+
+<!-- --- -->
+
+<!-- 7.Cole o código no seu script do R e o execute. Os dados serão salvos no objeto `dados_turmas`. Se necessário, instale o pacote `readxl` com as opções da aba **Packages/Install** ou com o comando `install.packages("readxl")`. -->
+
+<!-- ```{r, eval=FALSE} -->
+<!-- library(readxl) -->
+<!-- dados_turmas <- read_excel("data/dados_turmas.xlsx") -->
+<!-- View(dados_turmas) -->
+<!-- ``` -->
+
+<!-- ```{r,echo=FALSE} -->
+<!-- `|>` <- magrittr::`|>` -->
+<!-- library(dplyr) -->
+<!-- library(tidyr) -->
+<!-- library(ggplot2) -->
+<!-- library(readxl) -->
+<!-- dados_turmas <- read_excel("../data/dados_turmas.xlsx") -->
+<!-- ``` -->
+
+<!-- <img src="https://arpanosso.github.io/estatinfo/slides/img/importa_r4.png" style=" display: block; margin-left: auto; margin-right: auto;width: 60%"></img> -->

@@ -99,7 +99,7 @@ Dado duas variáveis  `\(X = \{3,0,5,9,7\}\)` e `\(Y = \{2,3,9,1,2\}\)`, calcula
 
 
 
-```r
+``` r
 X &lt;- c(3,0,5,9,7)
 sum(X)
 ```
@@ -112,7 +112,7 @@ Ao invés da soma ser com os índices `\(i\)` de 1 a `\(n\)`, podemos ter, por e
 
 
 
-```r
+``` r
 Y &lt;- c(2,3,9,1,2)
 sum(Y[2:4])
 ```
@@ -133,7 +133,7 @@ uma vez que:
 
 
 
-```r
+``` r
 sum(X^2)
 sum(X)^2
 ```
@@ -153,7 +153,7 @@ Dado `\(X = \{3,0,5,9,7\}\)` e `\(Y = \{2,3,9,1,2\}\)`, calcular:
 
 
 
-```r
+``` r
 sum(X*Y)
 ```
 
@@ -273,7 +273,7 @@ O exemplo a seguir apresentará o cálculo da média amostral da idade em anos d
 **Exemplo**: Para os dados de `idade_anos`, da base de [Dados](https://arpanosso.github.io/estatinfo/data/dados_turmas.xlsx) da turma os valores de média.
 
 
-```r
+``` r
 # Carregando pacotes
 library(tidyverse)
 library(readxl)
@@ -288,12 +288,12 @@ glimpse(dados_turmas)
 ```
 #&gt; Rows: 44
 #&gt; Columns: 6
-#&gt; $ id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…
-#&gt; $ sexo        &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M"…
-#&gt; $ cor_cabelo  &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "CC", "CE", "CC", "C",…
-#&gt; $ cons_alcool &lt;dbl&gt; 4, 1, 2, 3, 4, 2, 1, 2, 2, 4, 3, 3, 3, 2, 3, 2, 3, 3, 3, 4…
-#&gt; $ altura      &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68…
-#&gt; $ idade_anos  &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 19…
+#&gt; $ id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, …
+#&gt; $ sexo        &lt;chr&gt; "F", "F", "F", "F", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", …
+#&gt; $ cor_cabelo  &lt;chr&gt; "CC", "CE", "CC", "CE", "CE", "CC", "CC", "CE", "CC", "C", "CC", "CE", "CC"…
+#&gt; $ cons_alcool &lt;dbl&gt; 4, 1, 2, 3, 4, 2, 1, 2, 2, 4, 3, 3, 3, 2, 3, 2, 3, 3, 3, 4, 3, 3, 1, 1, 3, …
+#&gt; $ altura      &lt;dbl&gt; 1.68, 1.59, 1.70, 1.50, 1.76, 1.60, 1.84, 1.88, 1.90, 1.68, 1.76, 1.91, 1.6…
+#&gt; $ idade_anos  &lt;dbl&gt; 19, 20, 49, 20, 23, 28, 19, 20, 20, 19, 21, 21, 21, 18, 19, 20, 19, 19, 18,…
 ```
 ---
 
@@ -304,7 +304,7 @@ $$
 $$
 
 
-```r
+``` r
 dados_turmas %&gt;% 
   summarise(
     media = mean(idade_anos)
@@ -331,78 +331,19 @@ $$
 
 ### Tabela de frequência para idade
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; idade_anos &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ni &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; fi &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; perc &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1363636 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.636364 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.3181818 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31.818182 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2045455 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20.454545 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0681818 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.818182 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0681818 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.818182 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.1136364 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11.363636 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.0227273 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.272727 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| idade_anos| ni|        fi|      perc|
+|----------:|--:|---------:|---------:|
+|         18|  6| 0.1363636| 13.636364|
+|         19| 14| 0.3181818| 31.818182|
+|         20|  9| 0.2045455| 20.454545|
+|         21|  3| 0.0681818|  6.818182|
+|         22|  3| 0.0681818|  6.818182|
+|         23|  5| 0.1136364| 11.363636|
+|         24|  1| 0.0227273|  2.272727|
+|         27|  1| 0.0227273|  2.272727|
+|         28|  1| 0.0227273|  2.272727|
+|         49|  1| 0.0227273|  2.272727|
 
 
 ---
@@ -420,7 +361,7 @@ Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria
 
 
 
-```r
+``` r
 dados_turmas %&gt;% 
   pull(altura) %&gt;% 
   mean()
@@ -465,7 +406,7 @@ Onde `\(\lambda_i\)` é o peso associado à i-ésima observação. Assim, ele me
 No R:
 
 
-```r
+``` r
 pesos&lt;-c(12,40,4)
 X &lt;- c(9.1,14.57,3.2)
 weighted.mean(X, pesos)
@@ -505,7 +446,7 @@ Dado `\(X=\{50, 60, 20, 50, 30, 90, 70\}\)`, teremos a sua versão ordenada `\(X
 
 No R:
 
-```r
+``` r
 X=c(20, 30, 50, 50, 60, 70 ,90)
 median(X)
 ```
@@ -524,7 +465,7 @@ Em uma distribuição simétrica (como a da variável `altura`), a mediana amost
 
 
 
-```r
+``` r
 dados_turmas %&gt;% 
   pull(altura) %&gt;% 
   median()
@@ -624,7 +565,7 @@ class: center, middle, inverse
 No R, ele podem ser encontrados por meio da função `quantile()` que tem como argumento o vetor de dados e a proporção dos dados acumulada até o respectivo valor desejado.
 
 
-```r
+``` r
 dados_turmas %&gt;% 
   summarise(
     q1=quantile(altura, 0.25),
@@ -678,72 +619,24 @@ As medidas de variação medem o grau com que os dados tendem a se distribuir em
 
 Dados o conjunto de `\(4\)` amostras da mesma variável (altura de planta em *cm*), calcule a média e a Amplitude total de cada amostra.
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| X1| X2|   X3|   X4|
+|--:|--:|----:|----:|
+|  9|  7|  0.6|  0.6|
+|  9|  8|  3.4|  9.0|
+|  9|  9|  9.8|  9.0|
+|  9| 10| 13.8|  9.0|
+|  9| 11| 17.4| 17.4|
 
 ---
 
 Tabela de Médias 
 
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; media_X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; media_X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| media_X1| media_X2| media_X3| media_X4|
+|--------:|--------:|--------:|--------:|
+|        9|        9|        9|        9|
 
 ---
 
@@ -752,24 +645,10 @@ Tabela de Amplitudes
 `\((\Delta = Máximo - Mínimo)\)`
 
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Delta_X4 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| Delta_X1| Delta_X2| Delta_X3| Delta_X4|
+|--------:|--------:|--------:|--------:|
+|        0|        4|     16.8|     16.8|
 
 ---
 
@@ -786,36 +665,14 @@ Para resolvermos o problema da amplitude consideramos os desvios ou erros `\((e_
 
 Para os dados da amostra 3 `\((X3)\)` temos:
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|   X3| Desvios|
+|----:|-------:|
+|  0.6|    -8.4|
+|  3.4|    -5.6|
+|  9.8|     0.8|
+| 13.8|     4.8|
+| 17.4|     8.4|
 
 ---
 
@@ -848,7 +705,7 @@ $$
 A `\(SQD\)` leva, também, a unidade dos dados ao quadrado e pode ser calculada no R:
 
 
-```r
+``` r
 X3 &lt;- c(0.6, 3.4, 9.8, 13.8, 17.4)
 sum((X3 - mean(X3))^2)
 ```
@@ -894,7 +751,7 @@ Essa fórmula é mais eficiente e simples do que a anterior pois não passa pelo
 No R:
 
 
-```r
+``` r
 n &lt;- length(X3)
 sum(sum(X3^2) - sum(X3)^2/n)
 ```
@@ -927,30 +784,14 @@ Matematicamente, graus de liberdade é o número de dimensões do domínio de um
 
 Tomemos como exemplo a amostra X3:
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; X3 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 9.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 13.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 17.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|   X3|
+|----:|
+|  0.6|
+|  3.4|
+|  9.8|
+| 13.8|
+| 17.4|
 
 A média da amostra é dada pela soma dos valores dividido por `\(n\)`, ou seja, não existe qualquer restrição nesse cálculo pois, matematicamente, precisaremos de `\(n\)` elementos conhecidos para conhecer todo o vetor de dados `\(X3\)`.
 
@@ -960,30 +801,14 @@ A média da amostra é dada pela soma dos valores dividido por `\(n\)`, ou seja,
 
 Agora, tomemos o vetor de desvios de `\(X3\)` em relação à sua média:
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Desvios &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; -8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; -5.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 8.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+| Desvios|
+|-------:|
+|    -8.4|
+|    -5.6|
+|     0.8|
+|     4.8|
+|     8.4|
 Observe que não precisamos conhecer seus `\(n\)` elementos para conhecermos o vetor **Desvios**, basta conhecermos `\(n-1\)` elementos. Isso acontece porque sabemos, de antemão, que a soma dos desvios é igual a zero
 
 `\(\sum_{i=1}^n(x_i-\bar{x})=0\)`
@@ -1028,7 +853,7 @@ Para os dados de `\(X3\)`, podemos calcular a variância como:
 No R:
 
 
-```r
+``` r
 var(X3)
 ```
 
@@ -1054,7 +879,7 @@ A vantagem dessa estatística é que ela apresenta a mesma unidade dos dados ori
 
 No R:
 
-```r
+``` r
 sd(X3)
 ```
 
@@ -1074,7 +899,7 @@ Essa medida fornece a ideia de precisão da estimativa da média, ou seja, quant
 Portanto, o aumento de `\(n\)`, implica na diminuição no valor de `\(s(m)\)` e aumento da precisão da estimativa da média amostral.
 
 
-```r
+``` r
 sd(X3)/sqrt(length(X3))
 ```
 
@@ -1095,7 +920,7 @@ Expressa percentualmente o desvio padrão por unidade de média, observe que a m
 **Exemplo**: Suponha dois grupos de indivíduos, um deles com idades `\(\{3,1,5\}\)` anos e no outro, têm idades `\({55,57,53}\)` anos. No primeiro grupo, a média de idade é `\(3\)` anos e no segundo grupo `\(\bar{x}=55\;anos\)` ambos com `\(s=2\;anos\)`. Onde o desvio padrão é mais importante? Por quê?
 
 
-```r
+``` r
 cv &lt;- function(x) 100*sd(x)/mean(x)
 g2&lt;-c(55,57,53)
 cv(g2)
@@ -1189,7 +1014,7 @@ Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
 No R, vamos utilizar a função `skewness()` do pacote `{agricolae}` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
 
 
-```r
+``` r
 library(agricolae)
 dados_turmas %&gt;% 
   summarise(
@@ -1243,7 +1068,7 @@ A estimativa do Coeficiente de Curtose é dada por `\((g_2)\)`:
 No R podemos calcular o coeficiente de curtose a partir da função `kurtosis` do pacote `{agricolae}`
 
 
-```r
+``` r
 library(agricolae)
 dados_turmas %&gt;% 
   summarise(
@@ -1274,9 +1099,9 @@ Se o coeficiente de curtose é negativo, `\(g_2 &lt; 0\)`, nesse caso o peso das
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
