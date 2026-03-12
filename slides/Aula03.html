@@ -324,11 +324,22 @@ De maneira análoga, a somatória das porcentagens sempre será igual a `\(100\)
 
 $$
 `\begin{aligned}
-\sum_{i=1}^{k} f_i &amp;= perc_1 + perc_2 \\
+\sum_{i=1}^{k} perc_i &amp;= perc_1 + perc_2 \\
                    &amp;= 36{,}26 + 63{,}73 \\
                    &amp;= 100
 \end{aligned}`
 $$
+
+
+---
+Assim, temos a tabela de frequência da variávies **sexo (Qualitativa)**
+
+
+|sexo      | ni|        fi|     perc|
+|:---------|--:|---------:|--------:|
+|Feminino  | 33| 0.3626374| 36.26374|
+|Masculino | 58| 0.6373626| 63.73626|
+
 
 A partir das tabelas de frequência, poderemos criar representações gráficas que nos auxiliarão na apresentação e interpretação do comportamento dos dados.
 
@@ -383,7 +394,9 @@ Semelhante ao gráfico de colunas, contudo, com as barras na horizontal, facilit
 
 ## Tabela de Frequência para a variável Cor de cabelo
 
-Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representação gráfica. 
+Construir a tabela de frequência para variável `cor_cabelo`. 
+
+--
 
 
 |cor_cabelo      | ni|        fi|     perc|
@@ -414,7 +427,7 @@ Vamos, mais uma vez, utilizar o R para conseguirmos as tabelas e a representaç�
 
 ---
 
-## Apresentação - Visualização dos dados
+## Tabela de Frequência e Visualização dos dados
 
 **Variável Altura (Quantitativa Contínua)**
 
@@ -687,7 +700,7 @@ $$
 **Histograma e média para idade_anos**
 
 
-&lt;img src="Aula03_files/figure-html/unnamed-chunk-14-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-15-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 Se os dados são plotados como um histograma a média é o centro de gravidade do gráfico (linha azul). 
 
@@ -700,7 +713,7 @@ Ou seja, se o histograma fosse feito de um material sólido, ele se equilibraria
 
 
 
-&lt;img src="Aula03_files/figure-html/unnamed-chunk-16-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Aula03_files/figure-html/unnamed-chunk-17-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 $$
 \bar{x} = \frac{155 + 155 + \cdots+197}{91} =  172,5\text{ cm}
@@ -759,18 +772,6 @@ Dado `\(X=\{50, 60, 20, 50, 30, 90, 70\}\)`, teremos a sua versão ordenada `\(X
 
 `\(Md = Xo_{\left(\frac{n+1}{2}\right)} = Xo_{\left(\frac{7+1}{2}\right)} =Xo_{4} = 50\)`
 
-
-No R:
-
-``` r
-X=c(20, 30, 50, 50, 60, 70 ,90)
-median(X)
-```
-
-```
-#&gt; [1] 50
-```
-Observe que a unidade da mediana é a mesma dos dados originais.
 
 ---
 
@@ -836,7 +837,7 @@ Concluímos, então, que a mediana não é afetada por observações muito grand
 
 A moda é comumente definida como a medição que ocorre com mais frequência em um conjunto de dados.
 
-Para os dados de `idade_anos` o valor mais presente do conjunto de dados é `\(19\)` anos.
+Para os dados de `idade` o valor mais presente do conjunto de dados é `\(19\)` anos.
 
 Portanto, podemos ter distribuições com mais de um valor mais frequente (plurimodal), ou mesmo sem moda (amodal).
 
@@ -986,19 +987,6 @@ $$
 SQD = \sum \limits_{i=1}^n(x_i - \bar{x})^2
 $$
 
-A `\(SQD\)` leva, também, a unidade dos dados ao quadrado e pode ser calculada no R:
-
-
-``` r
-X3 &lt;- c(0.6, 3.4, 9.8, 13.8, 17.4)
-sum((X3 - mean(X3))^2)
-```
-
-```
-#&gt; [1] 196.16
-```
-
-
 `\(SQD = 196,16 \;cm^2\)`
 ---
 
@@ -1028,21 +1016,9 @@ sum((X3 - mean(X3))^2)
 
 Assim, temos outra fórmula para o cálculo da soma dos quadrados dos desvios
 
-
 `$$SQD = \sum \limits_{i=1}^nx_i^2 -  \frac{\left(\sum\limits_{i=1}^nx_i \right)^2}{n}$$`
 Essa fórmula é mais eficiente e simples do que a anterior pois não passa pelo cálculo dos desvios individuais.
 
-No R:
-
-
-``` r
-n &lt;- length(X3)
-sum(sum(X3^2) - sum(X3)^2/n)
-```
-
-```
-#&gt; [1] 196.16
-```
 
 `\(SQD = 196,16 \;cm^2\)`
 
@@ -1134,18 +1110,8 @@ A variância é a medida de dispersão que leva em conta todos as observações,
 ---
 Para os dados de `\(X3\)`, podemos calcular a variância como:
 
-No R:
 
-
-``` r
-var(X3)
-```
-
-```
-#&gt; [1] 49.04
-```
-
-`\(SQD = 49,04 \;cm^2\)`
+`\(s^2 = 49,04 \;cm^2\)`
 
 ---
 
@@ -1161,15 +1127,7 @@ Para a população temos: `\(\sigma=\sqrt{\sigma^2}\)`
 
 A vantagem dessa estatística é que ela apresenta a mesma unidade dos dados originais.
 
-No R:
 
-``` r
-sd(X3)
-```
-
-```
-#&gt; [1] 7.002857
-```
 
 ---
 ## Erro padrão da média `\([s(m)]\)`
@@ -1182,17 +1140,9 @@ Essa medida fornece a ideia de precisão da estimativa da média, ou seja, quant
 
 Portanto, o aumento de `\(n\)`, implica na diminuição no valor de `\(s(m)\)` e aumento da precisão da estimativa da média amostral.
 
-
-``` r
-sd(X3)/sqrt(length(X3))
-```
-
-```
-#&gt; [1] 3.131773
-```
-
 `\(s(m) = 3,132 \;cm\)`
 ---
+
 ## Coeficiente de Variação (CV)
 
 Expressa percentualmente o desvio padrão por unidade de média, observe que a média e o desvio padrão apresentam a mesma unidade, portanto, o coeficiente de variação é um número adimensional.
@@ -1203,16 +1153,6 @@ Expressa percentualmente o desvio padrão por unidade de média, observe que a m
 
 **Exemplo**: Suponha dois grupos de indivíduos, um deles com idades `\(\{3,1,5\}\)` anos e no outro, têm idades `\({55,57,53}\)` anos. No primeiro grupo, a média de idade é `\(3\)` anos e no segundo grupo `\(\bar{x}=55\;anos\)` ambos com `\(s=2\;anos\)`. Onde o desvio padrão é mais importante? Por quê?
 
-
-``` r
-cv &lt;- function(x) 100*sd(x)/mean(x)
-g2&lt;-c(55,57,53)
-cv(g2)
-```
-
-```
-#&gt; [1] 3.636364
-```
 
 ---
 
@@ -1229,8 +1169,9 @@ $$
 Assim, desvios de `\(2\)` anos são muito mais importantes para o primeiro grupo que para o segundo, isto é, a dispersão dos dados em torno da média é muito grande no primeiro grupo. 
 
 Deste modo, o `\(CV\)` pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados, e variáveis.
-
 ---
+
+# FIM
 
 &lt;!-- ## Histograma e Polígono de Frequência --&gt;
 
