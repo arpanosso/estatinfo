@@ -25,7 +25,6 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 ```
 
 
----
 class: middle, center, inverse
 
 # Medidas de Posição
@@ -127,7 +126,7 @@ $$
 
 
 ---
-**Histograma e média para idade_anos**
+**Histograma e média para idade**
 
 
 ```{r,,echo=FALSE, out.width="50%"}
@@ -681,14 +680,6 @@ Assim, desvios de $2$ anos são muito mais importantes para o primeiro grupo que
 
 Deste modo, o $CV$ pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados, e variáveis.
 
----
-
-class: middle, center, inverse
-
-# Medidas de Posição 
-# (Tendência Central)
-
-
 
 ---
 class: middle, center, inverse
@@ -798,15 +789,16 @@ Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
 
 $$g_1 = \frac{n}{(n-1)(n-2)}\frac{\sum_{i=1}^n(x_i-\bar{x})^3}{s^3}$$
 
-No R, vamos utilizar a função `skewness()` do pacote `{agricolae}` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
 
-```{r}
+```{r, echo=FALSE}
+# No R, vamos utilizar a função `skewness()` do pacote `{agricolae}` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
 library(agricolae)
 dados_turmas_2026 %>% 
   summarise(
     g1_idade = skewness(idade),
     g1_altura = skewness(altura)
-  )
+  ) |> 
+  kableExtra::kable()
 ```
 
 ---
@@ -859,17 +851,16 @@ $$G_2 = \frac{m_4}{s_4} -3\text{, sendo: } m_4=\frac{\sum_{i=1}^N(x_i-\bar{x})^4
 A estimativa do Coeficiente de Curtose é dada por $(g_2)$:
 
 $$g_2 = n(n+1) \frac{\frac{\sum \limits_{i=1}^n(x_1-\bar{x})^4}{s^4}}{(n-1)(n-2)(n-3)}-3\frac{(n-1)^2}{(n-2)(n-3)}$$
----
 
-No R podemos calcular o coeficiente de curtose a partir da função `kurtosis` do pacote `{agricolae}`
-
-```{r}
+```{r, echo=FALSE}
+# No R podemos calcular o coeficiente de curtose a partir da função `kurtosis` do pacote `{agricolae}`
 library(agricolae)
 dados_turmas_2026 %>% 
   summarise(
     g2_idade = kurtosis(idade),
     g2_altura = kurtosis(altura)
-  )
+  ) |> 
+  kableExtra::kable()
 ```
 ---
 Se as observações seguem uma distribuição **normal**, o próximas à normal, então o coeficiente de curtose é próximo a zero:

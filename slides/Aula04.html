@@ -34,7 +34,6 @@ class: center, middle, inverse, title-slide
 
 
 
----
 class: middle, center, inverse
 
 # Medidas de Posição
@@ -133,7 +132,7 @@ $$
 
 
 ---
-**Histograma e média para idade_anos**
+**Histograma e média para idade**
 
 
 &lt;img src="Aula04_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
@@ -606,14 +605,6 @@ Assim, desvios de `\(2\)` anos são muito mais importantes para o primeiro grupo
 
 Deste modo, o `\(CV\)` pode ser usado como um índice de variabilidade, sendo que sua grande utilidade é permitir a comparação das variabilidades de diferentes conjuntos de dados, e variáveis.
 
----
-
-class: middle, center, inverse
-
-# Medidas de Posição 
-# (Tendência Central)
-
-
 
 ---
 class: middle, center, inverse
@@ -680,24 +671,11 @@ Usualmente, o Coeficiente de Assimetria pode ser estimado pela fórmula:
 
 `$$g_1 = \frac{n}{(n-1)(n-2)}\frac{\sum_{i=1}^n(x_i-\bar{x})^3}{s^3}$$`
 
-No R, vamos utilizar a função `skewness()` do pacote `{agricolae}` para calcular o coeficiente de assimetria para as variáveis `altura` e `idade_anos`.
 
 
-``` r
-library(agricolae)
-dados_turmas_2026 %&gt;% 
-  summarise(
-    g1_idade = skewness(idade),
-    g1_altura = skewness(altura)
-  )
-```
-
-```
-#&gt; # A tibble: 1 × 2
-#&gt;   g1_idade g1_altura
-#&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1     4.09     0.271
-```
+| g1_idade| g1_altura|
+|--------:|---------:|
+| 4.089068|   0.27118|
 
 ---
 
@@ -732,26 +710,11 @@ Indica o grau de achatamento de uma distribuição, é a medida do peso das  cau
 A estimativa do Coeficiente de Curtose é dada por `\((g_2)\)`:
 
 `$$g_2 = n(n+1) \frac{\frac{\sum \limits_{i=1}^n(x_1-\bar{x})^4}{s^4}}{(n-1)(n-2)(n-3)}-3\frac{(n-1)^2}{(n-2)(n-3)}$$`
----
-
-No R podemos calcular o coeficiente de curtose a partir da função `kurtosis` do pacote `{agricolae}`
 
 
-``` r
-library(agricolae)
-dados_turmas_2026 %&gt;% 
-  summarise(
-    g2_idade = kurtosis(idade),
-    g2_altura = kurtosis(altura)
-  )
-```
-
-```
-#&gt; # A tibble: 1 × 2
-#&gt;   g2_idade g2_altura
-#&gt;      &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1     22.2    -0.140
-```
+| g2_idade|  g2_altura|
+|--------:|----------:|
+| 22.17032| -0.1400652|
 ---
 Se as observações seguem uma distribuição **normal**, o próximas à normal, então o coeficiente de curtose é próximo a zero:
 `\(g_2 = 0\)`, nesse caso a distribuição é denominada **mesocúrtica**.
