@@ -4,7 +4,7 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 title: "Estatística & Estatística e Informática"
-subtitle: "Medidas Estatísticas"
+subtitle: "Distribuição de Frequência"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento Ciências Exatas"
 date: "12 e 13 de março de 2026"
