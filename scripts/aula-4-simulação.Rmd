@@ -1,0 +1,120 @@
+---
+title: "Simulação - Aula 4"
+author: "Panosso, AR"
+date: "2026-03-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      error = FALSE,
+                      message = FALSE)
+```
+
+
+Carregando Pacotes
+```{r}
+library(tidyverse)
+```
+
+Simulando uma população
+```{r}
+set.seed(1235)
+population <- rnorm(100000, mean = 50, sd=3)
+
+population |> 
+  as_tibble() |> 
+  ggplot(aes(x=value)) +
+  geom_histogram(color="black", fill="lightblue") +
+  theme_bw()
+```
+
+```{r}
+mean(population)
+var(population)
+sd(population)
+```
+
+Amostragem
+
+```{r}
+medias <- vector()
+s_n <- s_n_1 <- vector()
+for(i in 1:100){
+  my_sample <- sample(population, 10, replace = TRUE)
+  medias[i] <- mean(my_sample)
+  s_n[i] <- (sum(my_sample^2) - (sum(my_sample))^2/length(my_sample))/length(my_sample)
+  s_n_1[i] <- (sum(my_sample^2) - (sum(my_sample))^2/length(my_sample))/(length(my_sample)-1)
+}
+
+medias |> 
+  as_tibble() |> 
+  ggplot(aes(x=value)) +
+  geom_histogram(color="black", fill="lightblue") +
+  theme_bw()
+```
+
+
+```{r}
+mean(s_n)
+var(population)
+mean(s_n_1)
+
+tibble(
+  medias,
+  s_n,
+  s_n_1
+) |> 
+  ggplot(aes(x=medias, y=s_n)) +
+  geom_point() +
+  geom_vline(xintercept = mean(population)) +
+  geom_hline(yintercept = var(population)) +
+  xlim(40,60)+
+  ylim(0,50)
+
+```
+
+```{r}
+tibble(
+  medias,
+  s_n,
+  s_n_1
+) |> 
+  ggplot(aes(x=medias, y=s_n_1)) +
+  geom_point() +
+  geom_vline(xintercept = mean(population)) +
+  geom_hline(yintercept = var(population)) +
+  xlim(40,60)+
+  ylim(0,50)
+```
+
+```{r}
+library(tidyverse)
+
+dados <- c(23,32,16,19,17,19,32,34,26,28, 
+28,21,28,27,24,34,24,20,33,29, 
+33,38,32,40,24,27,33,26,45,30,
+28,29,34,15,36,20,31,29,29,16, 
+34,39,30,20,41,18,24,15,20,32)
+
+dados[order(dados)]
+
+
+table(dados) |> max()
+
+dados |> 
+  tibble::as_tibble() |> 
+  summarise(
+    Média = mean(value),
+    Mediana = median(value),
+    `Desvio Padrão` = sd(value),
+    CV = 100*`Desvio Padrão`/Média
+  ) 
+
+diff(range(dados))
+
+length(dados[dados>= 20])/length(dados)
+
+```
+
