@@ -5,7 +5,7 @@
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
 title: "Estatística & Estatística e Informática"
-subtitle: "Probabilidade - Parte I"
+subtitle: "Probabilidade - Conceitos Básicos"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento de Ciências Exatas"
 date: "26 e 27 de março de 2026"
@@ -27,12 +27,12 @@ options(dplyr.print_min = 5, dplyr.print_max = 5)
 
 class: middle, center, inverse
 
-# ANÁLISE COMBINATÓRIA E MÉTODOS DE NUMERAÇÃO
+# PROBABILIDADE
 
 ---
-## Probabilidade e Análise Combinatória
+## Probabilidade 
 
-A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número $5$ sair no lançamento de um dado. Ou no lançamento de $4$ moedas, sair pelo menos uma face **Cara - H**.
+A Probabilidade permite analisar ou calcular as chances de obter determinado resultado diante de um experimento que dizemos aleatório. Por exemplo, qual a chance do número $5$ sair no lançamento de um dado, ou no lançamento de $4$ moedas, sair pelo menos uma face **Cara - H**.
 
 .pull-left[
 <img src="https://images.pexels.com/photos/37534/cube-six-gambling-play-37534.jpeg?cs=srgb&dl=pexels-pixabay-37534.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>]
@@ -53,7 +53,7 @@ onde $P(E)$ é a probabilidade de ocorrência do evento $E$.
 
 Um rebanho é composto por $100$ animais, temos $20$ indivíduos doentes e $80$ sadios. 
 
-<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 55%"></img>
+<img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&dl=pexels-pixabay-162801.jpg&fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"></img>
 
 > Qual a probabilidade de, em uma amostra aleatória simples de $5$ animais, selecionarmos $2$ animais doentes e $3$ animais sadios?
 
@@ -67,17 +67,32 @@ Para respondermos essa questão precisaremos calcular:
 
 Ou seja, de quantas maneiras poderemos escolher $2$ animais em animais $20$ doentes e $3$ animais em $80$ animais sadios.
 
---
+
 
 #### $\text{nº total de resultados possíveis}$
 
-De quantas maneiras poderemos escolher 5 animais (independentemente de serem sadios ou doentes) em um total de 100 animais.
+De quantas maneiras poderemos escolher $5$ animais (independentemente de serem sadios ou doentes) em um total de $100$ animais.
 
 ---
 
-## Análise Combinatória
+## Análise Combinatória e Métodos de Numeração
 
-Portanto, para calcularmos a probabilidade do evento (escolher 2 animais doentes e 3 sadios), faz-se necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (Permutações, Arranjos e Combinações).
+Portanto, para calcularmos a probabilidade do evento será necessário relembrarmos os conceitos de métodos de numeração e análise combinatória (Permutações, Arranjos e Combinações).
+
+
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXlwbnBoZTJqMmFjNGtqenBuNWs0aG9vejliMDBhZmozbGo5dzFkZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bG5rDPx76wHMZtsXmr/giphy.gif" style=" display: block; margin-left: auto; margin-right: auto;width: 45%"></img>
+
+---
+
+
+class: middle, center
+
+# Conceitos Básicos  
+
+## Análise Combinatória e Métodos de Numeração
+
+---
+
 
 ### Princípio Fundamental da Contagem
 
@@ -91,24 +106,104 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 **Exemplos**
 
-1. Em um restaurante, há 5 aperitivos no menu, 10 entradas principais e 4 sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
+1- Em um restaurante, há $5$ aperitivos no menu, $10$ pratos principais e $4$ sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
 
-2. Quantos códigos numéricos de 5 caractéres são possíveis se:  
-(a) não há restrições?  
-(b) o primeiro dígito não pode ser $0$?  
-(c) nenhuma repetição é permitida?  
-(d) além de números você pode utilizar todas as letras do teclado (maiúsculas e minúsculas - 52 ao todo) e mais 33 símbolos especiais e sem qualquer restrição quanto à repetição.
+--
 
-3. Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Levando-se em consideração que um programa espião pode testar em média 435 milhões senhas por segundo:   
+**Resposta:**
+
+Dado X o número de refeições que podem ser solicitadas temos:
+
+$$X = 5 \times 10 \times 4 = 200$$
+
+---
+class: middle
+
+2- Considere a formação de códigos de identificação para funcionários de uma empresa.
+Cada código possui exatamente $5$ caracteres.  
+
+Determine quantos códigos distintos podem ser formados em cada situação:
+
+  (a) Utilizando apenas dígitos numéricos (0–9), sem qualquer restrição.   
+  
+  (b) Utilizando apenas dígitos numéricos (0–9), sendo que o primeiro dígito não pode ser 0.   
+  
+  (c) Utilizando apenas dígitos numéricos (0–9), sem repetição de dígitos.   
+  
+  (d) Utilizando um conjunto ampliado de caracteres composto por:
+
+* $10$ dígitos (0–9),
+* $52$ letras (maiúsculas e minúsculas),
+* $33$ símbolos especiais,
+
+sem qualquer restrição quanto à repetição.
+
+---
+
+a-
+
+$X = 10 \times 10 \times 10 \times 10 \times 10 = 10^5 = 100.000$
+
+--
+
+b- 
+
+
+$X = 9 \times 10 \times 10 \times 10 \times 10 = 9 \times 10^4 = 90.000$
+
+
+--
+
+c- 
+
+$X = 10 \times 9 \times 8 \times 7 \times 6 = 9 \times 10^4 = 30.240$
+
+
+--
+
+d) 
+
+Sabendo que o o número de caracteres disponíveis é $10+52+33=95$, então:
+
+$X = 95 \times 95 \times 95 \times 95 \times 95 = 95^5 = 7.737.809.375$
+
+
+---
+
+3- Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Suponha que um programa seja capaz de testar, em média, $435$ milhões de senhas por segundo:   
 
   a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
 
-  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com 9 dígitos?
+  b. qual o tempo máximo em dias ele levaria para decodificar uma senha composta na condição (d) do exercício anterior, mas com $9$ dígitos?
+
+---
+
+a-
+
+$T = \frac{X}{435.000.000} =\frac{7.737.809.375}{435.000.000} = 17,79 \text{ s}$
+
+--
+
+b-
+
+
+No caso o número de senhas será dado por $X = 95^9 = 630,25 \times 10^{15}$
+
+
+Em segundos: $T = \frac{X}{435.000.000} =\frac{630,25 \times 10^{15}}{435.000.000} = 1.448.849.218 \text{ s}$
+
+
+Em dias: $T = \frac{1.448.849.218}{3600 \times 24} =  16769.09 \text{ dias}$
+
+
+Em anos: $T = \frac{16769.09}{365.5} =  45,95 \text{ anos}$
 
 ---
 ## Permutações
 
-Quando estamos preocupados em responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. Digamos que temos $n$ objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
+Quando estamos preocupados em responder "de quantas maneiras um evento pode ocorrer", utilizamos o conceito de permutação para essa tarefa. 
+
+Digamos que temos $n$ objetos diferentes, de quantas maneiras podemos **dispor** (**permutar**) esses objetos? 
 
 Dado o conjunto de letras $L=\{a, b, c\}$, de quantas maneiras podemos permutá-las?
 
@@ -129,77 +224,120 @@ E como consequência do princípio da multiplicação, as possibilidades de inse
 
 ---
 
-## Permutações
+## Diagrama da Permutação
 
-```{r,out.width = "70%",fig.cap="",fig.align = 'center'}
+```{r,out.width = "70%",fig.cap="",fig.align = 'center', echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_permuta.png")
 ```
 
 $$n! = n \cdot (n-1) \cdot (n-2) \cdots (2) \cdot (1)$$
 $$3! = 3 \cdot (3-1) \cdot(3-2) = 3 \cdot 2 \cdot 1 = 6$$
+---
 
-Exemplos:
+**Exemplos**:
 
-1. Quantos números de 7 algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7?
+4- Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos $1,2,3,4,5,6,7$?
 
-2. Quantos números de 7 algarismos **distintos** podem ser formados com os algarismos 1,2,3,4,5,6 e 7 de modo que em todos os números formados, o algarismo 6 seja imediatamente seguido pelo algarismo 7?
+5- Quantos números de $7$ algarismos **distintos** podem ser formados com os algarismos $1,2,3,4,5,6,7$ de modo que em todos os números formados, o algarismo $6$ seja imediatamente seguido pelo algarismo $7$?
 
-3. Três (03) chineses, 04 americanos e 05 italianos serão dispostos em fila (dispostos em linha reta, respeitando o distanciamento social e todos usando máscaras) de modo que as pessoas da mesma nacionalidade estejam sempre juntas. De quantas maneiras a fila poderá ser formada, de modo que o primeiro da fila sempre seja um italiano?
+6- Considere um grupo de $12$ torcedores, todos distintos, distribuídos conforme o time para o qual torcem:
+
+$3$ torcedores do Santos (S);  
+$4$ torcedores do Palmeiras (P);  
+$5$ torcedores do Corinthians (C).  
+
+Esses torcedores serão dispostos em uma fila, de modo que torcedores do mesmo time permaneçam consecutivos. Determine o número de disposições lineares possíveis, sabendo que o primeiro bloco da fila deve ser formado pelos torcedores do Santos.
+
+7-Considere um baralho padrão com $52$ cartas distintas, qual o número de maneiras de embaralhar completamente esse baralho?
+
+
+---
+
+4-  
+$X = n! = 7! = 5400$
+
+5-  
+$X = n! = 6! = 720$
+
+6-  
+
+$X = \text{S x P x C + S x C x P} = 3!\times4!\times5!+3!\times5!\times4! = 34560$
+
+7-  
+$X = 52! = 8,05 \times 10^{67}$
+
+Se você embaralhasse $1$ vez por segundo desde o início do universo (~
+$10^{17}$ segundos), teria feito cerca de $10^{17}$ embaralhamentos — infinitamente menor que $10^{67}$.
+
+Mesmo que toda a população da Terra (~
+$8×10^9$) embaralhasse cartas sem parar, $1$ vez por segundo, ainda assim:
+
+$$8×109×1017=8×1026$$
+
+→ ainda ridiculamente menor que 
+$10^{67}}$
+.
+É tão grande que:
+A chance de dois embaralhamentos aleatórios resultarem na mesma ordem é praticamente zero na prática.
 
 ---
 ## Arranjos
 
-O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ e vamos tomar $r$ elementos desses $n$ (sempre com $0<r<n$), de quantas maneiras poderemos **dispor** os $r$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+O arranjo é uma extensão do conceito de fatorial de modo que, se temos $n$ e vamos tomar $x$ elementos desses $n$ (sempre com $0<x<n$), de quantas maneiras poderemos **dispor** os $x$ elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
+```{r,out.width = "100%",fig.cap="",fig.align = 'center', echo = FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png")
 ```
 
 
-$A^n_p= \frac{n!}{(n-r)!}$
+$$A^n_x= \frac{n!}{(n-x)!}$$
 
---
+---
 
-1) A senha de uma conta bancária é formada de 6 números ou de 4 números dentre os números de 0 a 9, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
+8- A senha da sua conta bancária pode ser formada de $6$ números ou de $4$ números dentre os números de $0$ a $9$, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
 
-Quantas senhas podem ser formadas no banco do Banco do Brasil, que utiliza 6 números, e no banco Santander que utiliza 4 números, seguindo o conselho dos gerentes?
+Quantas senhas podem ser formadas em um banco $6$ números, e em um banco que utiliza $4$ números, seguindo o conselho dos gerentes?
 
-2) Quantos números de 4 algarismos podemos formar com os dígitos 1, 2, 3, 4 e 5 de modo que haja pelo menos dois dígitos iguais?
+9- Quantos números de $4$ algarismos podemos formar com os dígitos $1, 2, 3, 4, 5$ de modo que haja pelo menos dois dígitos iguais?
 
 ---
 
 ## Combinações 
 
-Semelhante aos arranjo, nas **Combinações** temos $n$ elementos e vamos amostrar $r$ elementos $(0<r<n)$, e estamos interessados em contar de quantas maneiras poderemos **combinar** os $r$ elementos amostrados, nesse caso **a ordem** com a qual os elementos são amostrados **NÃO IMPORTA** para a contagem.
+Semelhante aos arranjo, nas **Combinações** temos $n$ elementos e vamos amostrar $x$ elementos $(0<x<n)$, e estamos interessados em contar de quantas maneiras poderemos **combinar** os $x$ elementos amostrados, nesse caso **a ordem** com a qual os elementos são amostrados **NÃO IMPORTA** para a contagem.
 
-```{r,out.width = "50%",fig.cap="",fig.align = 'center'}
+---
+
+```{r,out.width = "60%",fig.cap="",fig.align = 'center', echo=FALSE}
 knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png")
 ```
 
-Assim, teremos que descontar dos Arranjos de $r$ elementos as permutações desses $r$ elementos, para isso, basta dividirmos os Arranjos por $r!$ ou seja $C^n_r={r \choose x}$.
+Assim, para calcularmos essa combinação, será necessário descontar dos Arranjos de $x$ elementos as permutações desses mesmos $x$ elementos, para isso, basta dividirmos os Arranjos por $x!$ ou seja:
+
+$$C^n_x={n \choose x} = \frac{n!}{x!(n-x)!}$$
 
 ---
 
 ## Combinações
 
-Voltando para o exemplo do rebanho composto por 100 animais, onde temos 20 indivíduos doentes e 80 sadios, vamos calcular a probabilidade de em uma amostra de 5 animais selecionarmos 2 animais doentes e 3 animais sadios:
+Voltando para o exemplo do rebanho composto por $100$ animais, onde temos $20$ indivíduos doentes e $80$ sadios, vamos calcular a probabilidade de em uma amostra de $5$ animais selecionarmos $2$ animais doentes e $3$ animais sadios:
 
 #### $\text{nº de resultados favoráveis}$
 
-Ou seja, de quantas maneiras poderemos escolher 2 animais do total de 20 doentes e 3 animais dos 80 sadios
+Ou seja, de quantas maneiras poderemos escolher $2$ animais do total de $20$ doentes e $3$ animais dos $80$ sadios
 
-$C^{20}_2 \cdot C^{80}_3 = {20 \choose 2} \cdot {80 \choose 3}$
+$C^{20}_2 \cdot C^{80}_3 = {20 \choose 2} \times {80 \choose 3}$
 
-$C^{20}_2 \cdot C^{80}_3  = \frac{20!}{2!(20-2)!} \cdot \frac{80!}{3!(80-3)!}$
+$C^{20}_2 \cdot C^{80}_3  = \frac{20!}{2!(20-2)!} \times \frac{80!}{3!(80-3)!}$
 
-$C^{20}_2 \cdot C^{80}_3  = 190 \cdot 82160$
+$C^{20}_2 \cdot C^{80}_3  = 190 \times 82160$
 
 $C^{20}_2 \cdot C^{80}_3  = 15610400$
 ---
 
 #### $\text{nº total de resultados possíveis}$
 
-Devemos calcular agora de quantas maneiras poderemos escolher 5 animais (independente de serem sadios ou doentes) em um total de 100 animais.
+Devemos calcular agora de quantas maneiras poderemos escolher $5$ animais (independente de serem sadios ou doentes) em um total de $100$ animais.
 
 $C^{100}_5 = {100 \choose 5}$
 
@@ -207,11 +345,13 @@ $C^{100}_5 = \frac{100!}{5!(100-5)!}$
 
 $C^{100}_5  = 75287520$
 
-Finalmente, a probabilidade do evento, amostrar 2 indivíduos doentes e 3 sadios será:
+---
+
+Finalmente, a probabilidade do evento, amostrar $2$ indivíduos doentes e $3$ sadios será:
 
 $$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{15610400}{75287520}=0,20734 \text{ ou } 20,73\%$$
 
-Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de 5 animais tomarmos:
+Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de $5$ animais tomarmos:
 
 a) nenhum animal doente (todos sadios).  
 b) 01 doente e 04 sadios.  
@@ -223,14 +363,14 @@ e) todos doentes.
 
 ## Distribuição de Probabilidade 
 
-Essa fórmula que acbamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
+Essa fórmula que acabamos de encontrar decreve uma ditribuição discreta de probabilidade, conhecida na estatística como  **Distribuição Hipergeométrica**. 
 
 Considere uma população com $N$ objetos nos quais $M$ são classificados como do tipo $A$ e $N−M$ são classificados como do tipo $B$. Tomamos uma amostra ao acaso, sem reposição e não ordenada de $r$ objetos. Seja $X$ a variável que conta o número de objetos classificados como do tipo $A$ na amostra. Então a distribuição de probabilidade de $X$ será dada por:
 
 $$P(X = x) = \frac{ {M \choose x} \cdot { {N-M} \choose {r - x} } } { {N \choose r}}$$
 Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
 
-```{r,echo=TRUE,eval=FALSE}
+```{r,echo=TRUE,eval=FALSE,echo=FALSE}
 N = 100 # Número total de elementos na população
 M = 20 # número total de elementos de interesse (doentes) na população
 r = 5 # tamanho da amostra.
@@ -243,11 +383,11 @@ text(1:length(x),px+.05,round(px*100,2))
 
 ---
 class: middle, center
-## Distribuição Hipergeométrica
+#### Distribuição Hipergeométrica
 
 
 .pull-left[
-```{r}
+```{r,echo=FALSE}
 N = 100 # número total de elementos
 M = 20 # número total de elementos de interesse (doentes)
 r = 5 # tamamho da amostra
@@ -260,26 +400,19 @@ text(seq(.7, length(x)+1, 1.2),px+.05,round(px,2))
 ]
 
 .pull-right[
-```{r}
-tibble::tibble(x,px)
+```{r, echo=FALSE}
+tibble::tibble(x,px) 
 ```
-
-**OBS**: O número de doentes da amostra de 5 animais pode variar de 0 a 5, ao conjunto dessas possibilidades denominamos espaço amostral (letras $\Omega$ ou $S$), com a soma de suas probabilidades é sempre igual a $1$:
-
-$\sum \limits_{x=0}^r P(x_i) = 1$
 
 ]
 
----
-No Excel, temos:
+**OBS**: O número de doentes da amostra de $5$ animais pode variar de $0$ a $5$, denominado espaço amostral ($\Omega$ ou $S$), com a soma de suas probabilidades igual a $1$:
 
+$\sum \limits_{x=0}^r P(x_i) = 1$
 
-```{r,out.width = "100%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://arpanosso.github.io/estatinfo/slides/img/distri_hyper.png")
-```
 
 ---
-class: middle, center, inverse
+class: middle, center
 
 # Conceitos Básicos  
 
