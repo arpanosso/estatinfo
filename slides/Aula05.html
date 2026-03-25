@@ -268,7 +268,7 @@ Esses torcedores serão dispostos em uma fila, de modo que torcedores do mesmo t
 6-  
 
 `\(X = \text{S x P x C + S x C x P} = 3!\times4!\times5!+3!\times5!\times4! = 34560\)`
-
+---
 7-  
 `\(X = 52! = 8,05 \times 10^{67}\)`
 
@@ -278,20 +278,25 @@ Se você embaralhasse `\(1\)` vez por segundo desde o início do universo (~
 Mesmo que toda a população da Terra (~
 `\(8×10^9\)`) embaralhasse cartas sem parar, `\(1\)` vez por segundo, ainda assim:
 
-`$$8×109×1017=8×1026$$`
+`$$8×10^9×10^{17}=8×10^{26}$$`
 
-→ ainda ridiculamente menor que 
-`\(10^{67}}\)`
-.
+→ ainda muito menor que `\(10^{67}\)`.
+
 É tão grande que:
-A chance de dois embaralhamentos aleatórios resultarem na mesma ordem é praticamente zero na prática.
+
+A chance de dois embaralhamentos aleatórios resultarem na mesma ordem é praticamente zero.
+---
+class: middle, center, inverse
+![](img/chatGPT-52-fact.png)
 
 ---
 ## Arranjos
 
-O arranjo é uma extensão do conceito de fatorial de modo que, se temos `\(n\)` e vamos tomar `\(x\)` elementos desses `\(n\)` (sempre com `\(0&lt;x&lt;n\)`), de quantas maneiras poderemos **dispor** os `\(x\)` elementos amostrados? Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+O arranjo é uma extensão do conceito de fatorial de modo que, se temos `\(n\)` e vamos tomar `\(x\)` elementos desses `\(n\)` (sempre com `\(0&lt;x&lt;n\)`), de quantas maneiras poderemos **dispor** os `\(x\)` elementos amostrados? É uma amostragem seguida de uma permutação com os `\(x\)` elementos escolhidos.
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png" width="100%" style="display: block; margin: auto;" /&gt;
+Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** para a contagem.
+
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_arranjo.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 `$$A^n_x= \frac{n!}{(n-x)!}$$`
@@ -302,27 +307,56 @@ O arranjo é uma extensão do conceito de fatorial de modo que, se temos `\(n\)`
 
 Quantas senhas podem ser formadas em um banco `\(6\)` números, e em um banco que utiliza `\(4\)` números, seguindo o conselho dos gerentes?
 
-9- Quantos números de `\(4\)` algarismos podemos formar com os dígitos `\(1, 2, 3, 4, 5\)` de modo que haja pelo menos dois dígitos iguais?
+9- Quantos números de `\(3\)` algarismos podemos formar com os dígitos `\(1, 2, 3, 4, 5, 6\)` de modo que haja pelo menos dois dígitos iguais?
 
+---
+8 -
+
+`$$A^n_x= \frac{n!}{(n-x)!}= \frac{10!}{(10-6)!} = \frac{10.9.8.7.6.5.4!}{4!} = 151200$$`
+`$$A^n_x= \frac{n!}{(n-x)!}= \frac{10!}{(10-4)!} = \frac{10.9.8.7.6!}{6!} = 5040$$`
+9 - 
+`$$A^n_x= \frac{n!}{(n-x)!}= \frac{6!}{(6-3)!} = \frac{6.5.4.3!}{3!} = 120$$`
 ---
 
 ## Combinações 
 
 Semelhante aos arranjo, nas **Combinações** temos `\(n\)` elementos e vamos amostrar `\(x\)` elementos `\((0&lt;x&lt;n)\)`, e estamos interessados em contar de quantas maneiras poderemos **combinar** os `\(x\)` elementos amostrados, nesse caso **a ordem** com a qual os elementos são amostrados **NÃO IMPORTA** para a contagem.
 
+![](img/chat-comb.png)
+
 ---
 
-&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://arpanosso.github.io/estatinfo/slides/img/caixa_combin.png" width="100%" style="display: block; margin: auto;" /&gt;
 
-Assim, para calcularmos essa combinação, será necessário descontar dos Arranjos de `\(x\)` elementos as permutações desses mesmos `\(x\)` elementos, para isso, basta dividirmos os Arranjos por `\(x!\)` ou seja:
+
+Assim, para calcularmos essa combinação, será necessário descontar dos Arranjos de `\(x\)` elementos as permutações desses mesmos `\(x\)` elementos, para isso, basta dividirmos os Arranjos por `\(x!\)`:
+
+---
+Portanto:
+
+`$$C^n_x=\frac{A^n_x}{x!}$$`
+
+`$$C^n_x=\frac{\frac{n!}{(n-x)!}}{x!}$$`
+`$$C^n_x=\frac{n!}{(n-x)!} \cdot \frac{1}{x!}$$`
+
+`$$C^n_x= \frac{n!}{x!(n-x)!}$$`
+Essa forma é tão corriqueira que adotamos a seguinte denotação para a Combinação:
 
 `$$C^n_x={n \choose x} = \frac{n!}{x!(n-x)!}$$`
+---
+
+![](img/per-arr-com-calculadora.png)
 
 ---
 
-## Combinações
+### Exemplo
 
 Voltando para o exemplo do rebanho composto por `\(100\)` animais, onde temos `\(20\)` indivíduos doentes e `\(80\)` sadios, vamos calcular a probabilidade de em uma amostra de `\(5\)` animais selecionarmos `\(2\)` animais doentes e `\(3\)` animais sadios:
+
+&lt;img src="https://images.pexels.com/photos/162801/cows-dairy-cows-milk-food-162801.jpeg?cs=srgb&amp;dl=pexels-pixabay-162801.jpg&amp;fm=jpg" style=" display: block; margin-left: auto; margin-right: auto;width: 40%"&gt;&lt;/img&gt;
+
+`$$P(E) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}}$$`
+---
 
 #### `\(\text{nº de resultados favoráveis}\)`
 
@@ -356,9 +390,9 @@ Finalmente, a probabilidade do evento, amostrar `\(2\)` indivíduos doentes e `\
 Agora que temos uma fórmula, podemos calcular a probabilidade de na amostragem de `\(5\)` animais tomarmos:
 
 a) nenhum animal doente (todos sadios).  
-b) 01 doente e 04 sadios.  
-c) 02 doentes e 03 sadios.  
-d) 03 doentes e 01 sadio.  
+b) `\(01\)` doente e `\(04\)` sadios.  
+c) `\(02\)` doentes e `\(03\)` sadios.  
+d) `\(03\)` doentes e `\(01\)` sadio.  
 e) todos doentes.
 
 ---
@@ -370,7 +404,7 @@ Essa fórmula que acabamos de encontrar decreve uma ditribuição discreta de pr
 Considere uma população com `\(N\)` objetos nos quais `\(M\)` são classificados como do tipo `\(A\)` e `\(N−M\)` são classificados como do tipo `\(B\)`. Tomamos uma amostra ao acaso, sem reposição e não ordenada de `\(r\)` objetos. Seja `\(X\)` a variável que conta o número de objetos classificados como do tipo `\(A\)` na amostra. Então a distribuição de probabilidade de `\(X\)` será dada por:
 
 `$$P(X = x) = \frac{ {M \choose x} \cdot { {N-M} \choose {r - x} } } { {N \choose r}}$$`
-Assim, vamos construir essa distribuição no R para termos todas as probabilidades.
+Assim, vamos construir essa distribuição probabilidades.
 
 
 
