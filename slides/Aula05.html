@@ -102,7 +102,8 @@ class: middle, center
 ---
 
 
-### Princípio Fundamental da Contagem
+
+#### Princípio Multiplicativo
 
 O princípio fundamental da contagem, também chamado de princípio multiplicativo, postula que:
 
@@ -112,7 +113,7 @@ Em resumo, no princípio fundamental da contagem, multiplica-se o número de op�
 
 ---
 
-**Exemplos**
+**Exemplo**
 
 1- Em um restaurante, há `\(5\)` aperitivos no menu, `\(10\)` pratos principais e `\(4\)` sobremesas. De quantas maneiras uma refeição pode ser solicitada se um aperitivo, um prato principal e uma sobremesa forem escolhidos?
 
@@ -124,10 +125,38 @@ Dado X o número de refeições que podem ser solicitadas temos:
 
 `$$X = 5 \times 10 \times 4 = 200$$`
 
+
+---
+#### Princípio Aditivo
+
+&gt; quando um evento pode ocorrer por meio de `\(n\)` alternativas **mutuamente exclusivas**, de tal modo que a primeira pode ocorrer de `\(x\)` maneiras e a segunda de `\(y\)` maneiras, o número total de possibilidades do evento ocorrer é dado pela soma `\(x+y\)`.
+
+Em resumo, no princípio aditivo, somam-se as possibilidades quando as escolhas não podem ocorrer simultaneamente (ou uma, ou outra).
+
+---
+
+**Exemplo**
+
+2- Uma pessoa possui:
+
+`\(10\)` pares de sapatos,  
+`\(3\)` bermudas,  
+`\(5\)` calças,  
+`\(8\)` camisetas.  
+
+Para montar um look, ela escolhe:
+
+`\(1\)` par de sapatos,
+`\(1\)` camiseta,
+e ou `\(1\)` bermuda ou `\(1\)` calça (não é permitido usar ambos simultaneamente).
+
+Pergunta:
+De quantas maneiras distintas essa pessoa pode montar um look completo?
+
 ---
 class: middle
 
-2- Considere a formação de códigos de identificação para funcionários de uma empresa.
+3- Considere a formação de códigos de identificação para funcionários de uma empresa.
 Cada código possui exatamente `\(5\)` caracteres.  
 
 Determine quantos códigos distintos podem ser formados em cada situação:
@@ -164,7 +193,7 @@ b-
 
 c- 
 
-`\(X = 10 \times 9 \times 8 \times 7 \times 6 = 9 \times 10^4 = 30.240\)`
+`\(X = 10 \times 9 \times 8 \times 7 \times 6 = 30.240\)`
 
 
 --
@@ -178,7 +207,7 @@ Sabendo que o o número de caracteres disponíveis é `\(10+52+33=95\)`, então:
 
 ---
 
-3- Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Suponha que um programa seja capaz de testar, em média, `\(435\)` milhões de senhas por segundo:   
+4- Um dos métodos utilizados para roubo de senhas e invasão de contas é o método de Ataque de Força-bruta ([Brute-force attack](https://en.wikipedia.org/wiki/Brute-force_attack)). Nessa técnica são testadas combinações de números, letras e caracteres especiais até que a senha seja descoberta. Suponha que um programa seja capaz de testar, em média, `\(435\)` milhões de senhas por segundo:   
 
   a. qual o tempo máximo em segundos ele levaria para decodificar uma senha composta na condição (d) do exercício anterior? 
 
@@ -242,11 +271,11 @@ E como consequência do princípio da multiplicação, as possibilidades de inse
 
 **Exemplos**:
 
-4- Quantos números de `\(7\)` algarismos **distintos** podem ser formados com os algarismos `\(1,2,3,4,5,6,7\)`?
+5- Quantos números de `\(7\)` algarismos **distintos** podem ser formados com os algarismos `\(1,2,3,4,5,6,7\)`?
 
-5- Quantos números de `\(7\)` algarismos **distintos** podem ser formados com os algarismos `\(1,2,3,4,5,6,7\)` de modo que em todos os números formados, o algarismo `\(6\)` seja imediatamente seguido pelo algarismo `\(7\)`?
+6- Quantos números de `\(7\)` algarismos **distintos** podem ser formados com os algarismos `\(1,2,3,4,5,6,7\)` de modo que em todos os números formados, o algarismo `\(6\)` seja imediatamente seguido pelo algarismo `\(7\)`?
 
-6- Considere um grupo de `\(12\)` torcedores, todos distintos, distribuídos conforme o time para o qual torcem:
+7- Considere um grupo de `\(12\)` torcedores, todos distintos, distribuídos conforme o time para o qual torcem:
 
 `\(3\)` torcedores do Santos (S);  
 `\(4\)` torcedores do Palmeiras (P);  
@@ -254,22 +283,22 @@ E como consequência do princípio da multiplicação, as possibilidades de inse
 
 Esses torcedores serão dispostos em uma fila, de modo que torcedores do mesmo time permaneçam consecutivos. Determine o número de disposições lineares possíveis, sabendo que o primeiro bloco da fila deve ser formado pelos torcedores do Santos.
 
-7-Considere um baralho padrão com `\(52\)` cartas distintas, qual o número de maneiras de embaralhar completamente esse baralho?
+8-Considere um baralho padrão com `\(52\)` cartas distintas, qual o número de maneiras de embaralhar completamente esse baralho?
 
 
 ---
 
-4-  
+5-  
 `\(X = n! = 7! = 5400\)`
 
-5-  
+6-  
 `\(X = n! = 6! = 720\)`
 
-6-  
+7-  
 
 `\(X = \text{S x P x C + S x C x P} = 3!\times4!\times5!+3!\times5!\times4! = 34560\)`
 ---
-7-  
+8-  
 `\(X = 52! = 8,05 \times 10^{67}\)`
 
 Se você embaralhasse `\(1\)` vez por segundo desde o início do universo (~
@@ -303,18 +332,18 @@ Nesse caso, **a ordem** com a qual os elementos serão dispostos **IMPORTA** par
 
 ---
 
-8- A senha da sua conta bancária pode ser formada de `\(6\)` números ou de `\(4\)` números dentre os números de `\(0\)` a `\(9\)`, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
+9- A senha da sua conta bancária pode ser formada de `\(6\)` números ou de `\(4\)` números dentre os números de `\(0\)` a `\(9\)`, dependendo do banco. Os gerentes sempre aconselham utilizar todos os números distintos (sem repetição),
 
 Quantas senhas podem ser formadas em um banco `\(6\)` números, e em um banco que utiliza `\(4\)` números, seguindo o conselho dos gerentes?
 
-9- Quantos números de `\(3\)` algarismos podemos formar com os dígitos `\(1, 2, 3, 4, 5, 6\)` de modo que haja pelo menos dois dígitos iguais?
+10- Quantos números de `\(3\)` algarismos podemos formar com os dígitos `\(1, 2, 3, 4, 5, 6\)` de modo que haja pelo menos dois dígitos iguais?
 
 ---
-8 -
+9 -
 
 `$$A^n_x= \frac{n!}{(n-x)!}= \frac{10!}{(10-6)!} = \frac{10.9.8.7.6.5.4!}{4!} = 151200$$`
 `$$A^n_x= \frac{n!}{(n-x)!}= \frac{10!}{(10-4)!} = \frac{10.9.8.7.6!}{6!} = 5040$$`
-9 - 
+10 - 
 `$$A^n_x= \frac{n!}{(n-x)!}= \frac{6!}{(6-3)!} = \frac{6.5.4.3!}{3!} = 120$$`
 ---
 
@@ -578,7 +607,7 @@ de forma análoga, se `\(x \notin A\)` implica que `\(x \notin B\)`
 **Exemplo**
 
 `$$\{1, 2, 3\} = \{3, 1, 2\} = \{1, 2, 2, 3\}$$`
-**OBS:** O número de elementos do conjunto não é considerado para a aoperação de igualdade entre eles.
+**OBS:** O número de elementos do conjunto não é considerado para a operação de igualdade entre eles.
 
 ---
 
@@ -587,7 +616,7 @@ de forma análoga, se `\(x \notin A\)` implica que `\(x \notin B\)`
 Notação: `\(U\)` ou `\(\mho\)`:
 
 `$$U \supset A \supset \phi, \forall  A$$`
-&gt; Lê-se: O universo contém o conjunto A, que por sua vez contém o conjunto vazio, qualquer que seja o conjunto A
+&gt; Lê-se: O universo contém o conjunto A, que por sua vez contém o conjunto vazio, qualquer que seja o conjunto A.
 
 **Conjunto potência** ou **conjunto das partes**: Seja `\(A\)` um conjunto finito, define-se o conjunto das partes de `\(A\)` ou conjunto potência como sendo o conjunto cujos elementos são todos os possíveis subconjuntos formados com os elementos de `\(A\)`:
 
