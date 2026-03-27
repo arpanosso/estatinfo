@@ -4,11 +4,11 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
-title: "Estatística e Informática"
-subtitle: "Aula 06 - Probabilidade Parte II"
+title: "Estatística & Estatística e Informática"
+subtitle: "Probabilidade - Parte II"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Ciências Exatas FCAV/UNESP"
-date: "(04-04-2024)"
+institute: "Departamento Ciências Exatas"
+date: "09 e 10 de abril de 2026"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -162,6 +162,9 @@ class: middle, center, inverse
 Conclusões baseadas em dados empíricos, oriundos de uma observação experimental, são encerradas com incerteza que é expressa em termos de probabilidade. Assim, a atribuição é baseada nas características teóricas da realização do fenômeno.
 
 **Definição de Laplace de Probabilidade**
+$$
+P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}
+$$
 .pull-left[
 ```{r,out.width = "50%",fig.cap="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia",fig.align = 'center',echo=FALSE}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg")
@@ -176,9 +179,6 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/ac/Pie
 Por assim definimos a Probabilidade de $H$ como:
 ]
 
-$$
-P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados possíveis}} = \frac{1}{2}
-$$
 
 ---
 
@@ -213,7 +213,7 @@ $$P(E) = \frac{\text{nº de elementos em E}}{\text{nº de elementos em }S} = \fr
 
 Portanto $P(.)$ é denominada probabilidade se, e somente se: 
 
-$i) \;0 \le P(E) \le 1, \forall E \subset S$.
+$i) \;0 \le P(E) \le 1, \forall\; E \subset S$.
 
 $ii) \;P(S)= 1$, assim como, $P(\phi)=0$
 
