@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Estatística &amp; Estatística e Informática
 ]
 .subtitle[
-## Probabilidade - Parte II
+## Probabilidade
 ]
 .author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
@@ -46,7 +46,7 @@ Fazer ou observar alguma coisa sob certas condições, resultando em algum estad
 Na prática, os experimentos não são precisamente repetíveis, mesmo sob condições supostamente idênticas.
 
 
-&lt;img src="img/exp_aleatorios.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/exp_aleatorios.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ### Experimento aleatório
 
@@ -62,8 +62,8 @@ Pode ser repetido inúmeras vezes e nas mesmas condições e, mesmo assim, apres
 Apesar do experimento ter sido realizado em condições supostamente controladas, existem fatores afetando os resultados, mas não se conhece ou não se sabe como controlá-los.
 
 .pull-left[
-Germinação de sementes de milho
-&lt;img src="https://images.pexels.com/photos/1459331/pexels-photo-1459331.jpeg?cs=srgb&amp;dl=pexels-livier-garcia-1459331.jpg&amp;fm=jpg" width="60%" style="display: block; margin: auto auto auto 0;" /&gt;
+Tempo em um restaurante
+&lt;img src="https://images.pexels.com/photos/28999499/pexels-photo-28999499.jpeg" width="60%" style="display: block; margin: auto auto auto 0;" /&gt;
 
 Produção de cana-de-açúcar (TCH)
 &lt;img src="https://images.pexels.com/photos/7457175/pexels-photo-7457175.jpeg?cs=srgb&amp;dl=pexels-kindel-media-7457175.jpg&amp;fm=jpg" width="60%" style="display: block; margin: auto auto auto 0;" /&gt;
@@ -80,14 +80,22 @@ Ganho de peso bovino
 
 É o conjunto de todos os resultados possíveis de um certo fenômeno aleatório, é o conjunto de todos os elementos que possuem a característica em estudo representada pela letra Ômega `\(\Omega\)` ou pelo `\(S\)`.   
 
-Assim, no lançamento de um dado, o espaço amostral é:
+ - No lançamento de um dado, o espaço amostral é:
 
 `$$S = \{1, 2, 3, 4, 5, 6\}$$`
 
-No lançamento de uma moeda, o espaço amostral é:
+ - No lançamento de uma moeda, o espaço amostral é:
 
 `$$S = \{H, T\}$$`
 Onde `\(H\)` representa Cara e `\(T\)` representa Coroa.
+
+- Produção de cana-de-açúcar (TCH)
+
+`$$S = \{x \in \mathbb{R} | x &gt; 0\}$$`
+
+- No tempo em um restaurante
+
+`$$S = \{t \in \mathbb{R} | t &gt; 0\}$$`
 
 ---
 
@@ -149,7 +157,7 @@ Ao conjunto `\(\{x| P(X=x)\}\)` denominamos função de probabilidade da variáv
 ---
 class: middle, center, inverse
 
-# Probabilidade: Resultados Elementares Igualmente Prováveis 
+# Resultados Elementares Igualmente Prováveis 
 
 ---
 
@@ -163,8 +171,8 @@ P(H) = \frac{\text{nº de resultados favoráveis}}{\text{nº total de resultados
 $$
 .pull-left[
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg" alt="Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia" width="50%" /&gt;
-&lt;p class="caption"&gt;Portrait of Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia&lt;/p&gt;
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Pierre-Simon_de_Laplace_by_Johann_Ernst_Heinsius_%281775%29.jpg" alt="Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia" width="50%" /&gt;
+&lt;p class="caption"&gt;Pierre-Simon Laplace by Johann Ernst Heinsius (1775). Fonte: Wikipedia&lt;/p&gt;
 &lt;/div&gt;
   
 ]
@@ -299,6 +307,7 @@ Se um experimento é repetido `\(n\)` vezes a frequência relativa `\((f_i)\)` d
 
 
 `$$f_n(E)=\frac{\text{nº vezes que E ocorre em n ensaios} }{n}$$`
+---
 
 Se as condições dos experimentos não mudam, quando o número `\(n\)` de vezes que o ensaio é realizado tende ao infinito a frequência relativa tende a se estabilizar em um valor numérico único, a **probabilidade do Evento E**.
 
@@ -307,7 +316,7 @@ Se as condições dos experimentos não mudam, quando o número `\(n\)` de vezes
 
 Se jogarmos um dado não viciado, muitas vezes e contarmos as vezes que cada lado sai, o valor da frequência relativa de cada tenderá a `\(\frac{1}{6} = 0,1667\)`.
 
-&lt;img src="https://images.pexels.com/photos/979722/pexels-photo-979722.jpeg?cs=srgb&amp;dl=pexels-jonathan-petersson-979722.jpg&amp;fm=jpg" width="15%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://images.pexels.com/photos/979722/pexels-photo-979722.jpeg?cs=srgb&amp;dl=pexels-jonathan-petersson-979722.jpg&amp;fm=jpg" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -388,40 +397,41 @@ Ao selecionarmos um aluno ao acaso, pergunta-se:
 
 a) Qual a probabilidade do estudante ser *Ruivo*:
 
+b) Qual a probabilidade do estudante ser do sexo *Feminino*?
 
+c) Qual a probabilidade do estudante ser do sexo *Feminino* **e** *Ruivo*?
+
+d) Qual a probabilidade do estudante ser do sexo *Feminino* **ou** *Ruivo*?
+
+---
+a) 
 
 **R**: `\(P(Ruivo ) = \frac{21}{60} = 0,35\)`
 
 
-
-b) Qual a probabilidade do estudante ser do sexo *Feminino*?
-
-
+b) 
 
 **R**: `\(P(Feminino) = \frac{30}{60} = 0,50\)`
 
 
-
-c) Qual a probabilidade do estudante ser do sexo *Feminino* **e** *Ruivo*?
-
-
+c) 
 
 **R**: `\(P(Feminino \cap Ruivo) = \frac{4}{60} = 0,06667\)`
-
-
 ---
 
-#### c) Qual a probabilidade do estudante ser do sexo *Feminino* **ou** *Ruivo*?
+#### d) Qual a probabilidade do estudante ser do sexo *Feminino* **ou** *Ruivo*?
 
 
-Observe que existe uma região de intersecção entre esses conjuntos, então para calcularmos `\(P(F \cup R)\)` devemos somar `\(P(F)\)` com `\(P(R)\)` e subtraírmos uma vez `\(P(F \cap R)\)`.
+**R**: Observe que existe uma região de intersecção entre esses conjuntos, então para calcularmos `\(P(F \cup R)\)` devemos somar `\(P(F)\)` com `\(P(R)\)` e subtraírmos uma vez `\(P(F \cap R)\)`.
 
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_13.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/venn_13.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 
-**R**: `\(P(F \cup R) = P(F)  +P(R) - P(F \cap R) =\frac{21}{60} + \frac{30}{60} -\frac{4}{60} = \frac{47}{60} = 0,7833\)`
+`$$P(F \cup R) = P(F)  +P(R) - P(F \cap R)$$`
+`$$P(F \cup R) = \frac{21}{60} + \frac{30}{60} -\frac{4}{60}$$`
 
+`$$P(F \cup R)= \frac{47}{60} = 0,7833$$`
 ---
 
 ### Regra de Adição da Probabilidade
@@ -566,17 +576,17 @@ f) Qual a probabilidade que ocorra apenas o `\(B\)`, e não ocorra o `\(A\)`?
 
 #### Respostas
 
-a) = 1/2  
+a) = `\(1/2\)`  
 
-b) = 2/3  
+b) = `\(2/3\)` 
 
-c) = 7/12
+c) = `\(7/12\)`
 
-d) = 5/12  
+d) = `\(5/12\)`  
 
-e) = 3/4 
+e) = `\(3/4\)` 
 
-f) = 1/12
+f) = `\(1/12\)`
 
 ---
 
