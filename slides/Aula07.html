@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Estatística e Informática</title>
+    <title>Estatística &amp; Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,19 +13,19 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Estatística e Informática
+# Estatística &amp; Estatística e Informática
 ]
 .subtitle[
-## Aula 07 - Variáveis Aleatórias Discretas
+## Variáveis Aleatórias Discretas
 ]
 .author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
 ]
 .institute[
-### Departamento de Ciências Exatas FCAV/UNESP
+### Departamento Ciências Exatas
 ]
 .date[
-### (11-04-2024)
+### 16 e 17 de abril de 2026
 ]
 
 ---
@@ -47,7 +47,7 @@ Para isso deve-se associar a cada resultado elementar `\((e_i)\)` do espaço amo
 
 Agora defini-se `\(X\)`, como a variável aleatória, que é o número de alelos dominantes `\(A\)`. Tem-se:
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/va_d_01.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 Note que para ser discreta, a variável aleatória (v.a.) deve assumir valores em um conjunto finito ou infinito, porém contável.
 
@@ -106,6 +106,8 @@ class: middle, center, inverse
 
 ---
 
+## Esperança Matemática
+
 Seja uma população finita de `\(n\)` indivíduos, e o evento `\(E\)`  denotado pelo número de alelos dominantes `\(A\)`. Calcule a frequência relativa para cada categoria.
 
 
@@ -152,11 +154,11 @@ Dado a variável aleatória `\(X\)` e a constante `\(k\)` as propriedades da esp
 
 `\(i) E(k) = k\)`;
 
-`\(ii) E(kX) = K \times E(X)\)`;
+`\(ii) E(kX) = K \cdot E(X)\)`;
 
 `\(iii) E(X+k) = E(X) + k\)`
 
-`\(iv) E(k+k \cdot X) = k + k \times E(X)\)`
+`\(iv) E(k+k \cdot X) = k + k \cdot E(X)\)`
 
 
 ---
@@ -198,9 +200,7 @@ Lembrado que a média `\(\bar{x} = 1\)`
 
 $$
 Var(X) \begin{cases}
-  E[(X - \mu)^2] = (0-1)^2.\frac{1}{4} + (1-1)^2.\frac{1}{2} +(2-1)^2.\frac{1}{4} = \frac{1}{2}
- \\\
-E[(X - \mu)^2] = E(X^2) - \mu^2 = \sum_{i=1}^k x_i.P(x_i) - [E(X)]^2 \\\
+E[(X - \mu)^2] =  \sum_{i=1}^k x_i.P(x_i) - [E(X)]^2 \\\
 E[(X - \mu)^2] =\left( 0^2\frac{1}{4} + 1^2\frac{1}{2} + 2^2\frac{1}{4} \right) - 1^2 =\frac{1}{2}+1-1= \frac{1}{2}
 \end{cases}
 $$

@@ -861,7 +861,7 @@ b) A e B serem independentes.
 knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/exercicio_aula7_2.png")
 ```
 ---
-3-Em uma turma de Estatística, temos $40\%$ de estudantes do sexo masculino. Entre eles, $20%$ não entregaram a lista de exercícios. Ao passo que entre os estudantes do sexo feminino, essa porcentagem foi de $50\%$. Qual a probabilidade de que um estudante selecionado ao acaso seja:   
+3-Em uma turma de Estatística, temos $40\%$ de estudantes do sexo masculino. Entre eles, $20\%$ não entregaram a lista de exercícios. Ao passo que entre os estudantes do sexo feminino, essa porcentagem foi de $50\%$. Qual a probabilidade de que um estudante selecionado ao acaso seja:   
 
 a) Do sexo masculino e não tenha entregado a lista de exercícios. 
 
@@ -869,7 +869,7 @@ b) Do sexo feminino, ou não tenha entregado a lista de exercícios.
 
 ---
 
-3-Em uma turma de Estatística, temos $40\%$ de estudantes do sexo masculino. Entre eles, $20%$ não entregaram a lista de exercícios. Ao passo que entre os estudantes do sexo feminino, essa porcentagem foi de $50\%$. Qual a probabilidade de que um estudante selecionado ao acaso seja:   
+3-Em uma turma de Estatística, temos $40\%$ de estudantes do sexo masculino. Entre eles, $20\%$ não entregaram a lista de exercícios. Ao passo que entre os estudantes do sexo feminino, essa porcentagem foi de $50\%$. Qual a probabilidade de que um estudante selecionado ao acaso seja:   
 
 a) Do sexo masculino e não tenha entregado a lista de exercícios.  
 **R:** $0,08$ ou $8\%$.
