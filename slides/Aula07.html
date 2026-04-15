@@ -741,6 +741,7 @@ Ou seja, o número médio e a variância de ocorrências de eventos por unidade 
 
 **Exercício 1)** Em uma empresa, seja `\(X\)` o número de acidentes de trabalho registrados por mês. Com base no histórico, a média é `\(\lambda=2\)` acidentes/mês. Pergunta-se: Qual a probabilidade de ocorrerem exatamente `\(X=4\)` acidentes em um determinado mês?
 
+--
 
 &lt;img src="Aula07_files/figure-html/unnamed-chunk-23-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ---
@@ -758,7 +759,7 @@ class: middle, center
 ![](img/calculadora11.png)
 
 ---
-**Exercício 2)** Durante uma onda de calor intensa no verão em uma cidade do interior de São Paulo, o número de internações hospitalares por problemas de saúde relacionados ao calor (insolação, desidratação grave, insuficiência renal) por dia é uma variável aleatória que segue um modelo de Poisson com parâmetro `\(\lambda=3\)`, isto é, a média histórica registrada é de `\(5\)` internações por dia nesses períodos.
+**Exercício 2)** Durante uma onda de calor intensa no verão em uma cidade do interior de São Paulo, o número de internações hospitalares por problemas de saúde relacionados ao calor (insolação, desidratação grave, insuficiência renal) por dia é uma variável aleatória que segue um modelo de Poisson com parâmetro `\(\lambda=5\)`, isto é, a média histórica registrada é de `\(5\)` internações por dia nesses períodos.
 
 a) Calcule a probabilidade de ocorrerem mais de `\(2\)` internações em um determinado dia de onda de calor.
 
@@ -845,9 +846,9 @@ Nestas condições, a variável aleatória `\(X\)` com distribuição Binominal 
 
 `\(n \times p = \lambda =2000 \times 0,001 = 2\)`
 
-`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)\)`
+`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum \limits_{x=0}^{4}Po(2)\)`
 
-`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum \limits_{i=0}^{4}Po(2)=0,0526\)`
+`\(P(X &gt; 4)= 1 - P(X \le 4) = 1 - \sum \limits_{x=0}^{4}Po(2)=0,0526\)`
 
 
 ``` r
