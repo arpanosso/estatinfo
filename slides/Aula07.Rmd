@@ -149,7 +149,7 @@ Dado a variável aleatória $X$ e a constante $k$ as propriedades da esperança 
 
 $i) E(k) = k$;
 
-$ii) E(kX) = K \cdot E(X)$;
+$ii) E(kX) = k \cdot E(X)$;
 
 $iii) E(X+k) = E(X) + k$
 
@@ -191,13 +191,11 @@ tibble(Genótipo=c("AA","Aa","aa"),
   kableExtra::kable()
 ```
 
-Lembrado que a média $\bar{x} = 1$
+Lembrado que: $E(X)=1$
 
 $$
-Var(X) \begin{cases}
 E[(X - \mu)^2] =  \sum_{i=1}^k x_i.P(x_i) - [E(X)]^2 \\\
 E[(X - \mu)^2] =\left( 0^2\frac{1}{4} + 1^2\frac{1}{2} + 2^2\frac{1}{4} \right) - 1^2 =\frac{1}{2}+1-1= \frac{1}{2}
-\end{cases}
 $$
 ---
 
@@ -357,11 +355,11 @@ knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/m
 ---
 ### Distribuição de Bernoulli
 
-Essa distribuição é caracterizada por uma única realização de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** ou **Fracasso (F)**.
+Essa distribuição é caracterizada por **uma única realização** de um experimento aleatório, onde há somente dois resultados possíveis, designados por: **Sucesso (S)** ou **Fracasso (F)**.
 
 **Exemplos**: 
 
-a) testa-se um antibiótico em um indivíduo, a reação (v.a.) ou é positiva (S) ou é negativa (F);
+a) Uma empresa aplica uma entrevista de seleção a um candidato. O resultado (variável aleatória) ou é aprovado (S) ou reprovado (F);
 
 b) uma planta é escolhida, ao acaso, em um pomar e observa-se se essa planta é doente (v.a.) (S) ou não (F).
 
@@ -383,7 +381,7 @@ com $P(X=1) = p$ e $P(X=0) = 1-p = q$
 
 Nestas condições, a variável aleatória $X$ tem a função de probabilidade
 
-$X$ | $P(X)$
+$X$ | $P(X=x)$
 :---: | :---:
 1 | p 
 0 | q
@@ -592,7 +590,7 @@ tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
 ```{r,echo=FALSE}
 tibble(x,px) |> 
   tidyr::pivot_wider(names_from = x,
-                     values_from = px)  |> 
+                     values_from = px)  |> t() |> 
   kableExtra::kable()
 ```
 
@@ -612,18 +610,19 @@ tibble(x,px) |>   ggplot(aes(x=x,y=px)) +
 ```
 
 
-]
-
 ```{r,echo=FALSE}
 tibble(x,px) |> 
   tidyr::pivot_wider(names_from = x,
-                     values_from = px)  |> 
+                     values_from = px)  |> t() |> 
   kableExtra::kable()
 ```
+
+]
 ---
 ### Exercícios
 
-1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada $6$ vezes. Achar a probabilidade de obter cara:  
+1) Seis moedas são jogadas uma vez (ou, o que representa a mesma coisa), uma moeda é jogada $6$ vezes. Achar a probabilidade de obter cara: 
+
  a) exatamente $3$ vezes;  
  
  b) no máximo $3$ vezes;  
@@ -644,7 +643,7 @@ d) $0,9844$
 
 2) Uma urna contém bolas brancas e pretas na proporção $2$ para $3$. Chamemos sucesso a probabilidade de tirar uma bola branca. Três bolas são tiradas separadamente e depois de cada tirada a bola é retornada à urna e completamente misturada com as outras, de tal modo que a probabilidade fundamental do sucesso permanece constante durante as tentativas. 
 
-Achar a probabilidade de $0, 1, 2 e 3$ sucessos. 
+Achar a probabilidade de $0, 1, 2$ e $3$ sucessos. 
 
 Calcule a esperança e a variância dessa distribuição de probabilidade.
 
@@ -754,9 +753,8 @@ Ou seja, o número médio e a variância de ocorrências de eventos por unidade 
 ---
 
 
-**Exercício 1)** Em uma população, seja $X$ o número de descendentes produzidos por família/geração. Assumindo que Média = $\lambda = 2$, pergunta-se:
+**Exercício 1)** Em uma empresa, seja $X$ o número de acidentes de trabalho registrados por mês. Com base no histórico, a média é $\lambda=2$ acidentes/mês. Pergunta-se: Qual a probabilidade de ocorrerem exatamente $X=4$ acidentes em um determinado mês?
 
-Qual a probabilidade de, em um sorteio ao acaso, selecionar-se um família com  $X= 4$ descendentes?
 
 ```{r,echo=FALSE,out.width="60%"}
 n <- 10
@@ -785,14 +783,12 @@ $$P(X=4) = \frac{e^{-2} \cdot 2^4}{4!} = 0,09022$$
 ![](img/calculadora11.png)
 
 ---
-**Exercício 2)** Suponha que o número de partículas *alfa*, emitidas por minuto seja uma variável aleatória segundo um modelo de Poisson com parâmetro $\lambda = 5$, isto é, a taxa média de emissão é de $5$ partículas a cada minuto. 
+**Exercício 2)** Durante uma onda de calor intensa no verão em uma cidade do interior de São Paulo, o número de internações hospitalares por problemas de saúde relacionados ao calor (insolação, desidratação grave, insuficiência renal) por dia é uma variável aleatória que segue um modelo de Poisson com parâmetro $\lambda=3$, isto é, a média histórica registrada é de $5$ internações por dia nesses períodos.
 
-a) Calcule a probabilidade de haver mais de $2$ emissões em um minuto.
+a) Calcule a probabilidade de ocorrerem mais de $2$ internações em um determinado dia de onda de calor.
 
 
-```{r,out.width = "60%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://media.giphy.com/media/3ov9jQWd5qhiUSPDri/giphy.gif")
-```
+
 
 ---
 
@@ -826,7 +822,7 @@ $P(x >2 ) = 1-[\frac{e^{-5}5^0}{0!} + \frac{e^{-5}5^1}{1!}+\frac{e^{-5}5^2}{2!}]
 
 ---
 
-b) Calcule a probabilidade da emissão de até $4$ partículas em $2$ minutos. 
+b) Calcule a probabilidade de ocorrerem até $4$ internações em $2$ dias consecutivos. 
 
 
 
@@ -849,7 +845,7 @@ tibble(x,px) |>
 
 Se o intervalo de tempo é alterado a variável aleatória mantém a mesma distribuição de Poisson, mas com o valor de parâmetro ajustado de forma conveniente. 
 
-Por exemplo, se o período de tempo considerado para o exemplo anterior for de $2$ minutos, teremos que o número de partículas emitidas em dois minutos terá distribuição: $\lambda'= 2 \times 5 = 10$ partículas em dois minutos.
+Por exemplo, se o período de tempo considerado para o exemplo anterior for de $2$ dias, teremos que o número de internações em dois dias terá distribuição: $\lambda'= 2 \times 5 = 10$ internações dois dias.
 
 
 $$P(X \le 4) = 0,029252$$
