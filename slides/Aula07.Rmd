@@ -878,6 +878,12 @@ $$P(X \ge 5) =1 - \sum_{i=0}^4 \frac{e^{-\lambda}\lambda^x}{x!} = 0,7149$$
 
 ---
 
+class: middle, center, inverse
+
+# Distribuição de Poisson como aproximação da Distribuição Binomial
+
+---
+
 ### Distribuição de Poisson como aproximação da Distribuição Binomial
 
 Algumas vezes, no uso da distribuição binomial, ocorre que $n$ é muito grande e $p$ é muito pequeno, de modo que $q$ é próximo de $1$. Em tais casos, o cálculo torna-se muito difícil. Pode-se, então, fazer uma aproximação da distribuição Binomial pela Poisson, por meio de:
