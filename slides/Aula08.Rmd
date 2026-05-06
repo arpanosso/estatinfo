@@ -4,11 +4,11 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
-title: "Estatística e Informática"
-subtitle: "Aula 08 - Variáveis Aleatórias Contínuas"
+title: "Estatística & Estatística e Informática"
+subtitle: "Variáveis Aleatórias Contínuas"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
-institute: "Departamento de Ciências Exatas FCAV/UNESP"
-date: "(25-04-2024)"
+institute: "Departamento Ciências Exatas"
+date: "07 e 08 de maio de 2026"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
