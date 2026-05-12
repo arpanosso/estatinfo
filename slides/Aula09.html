@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Estatística e Informática</title>
+    <title>Estatística &amp; Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,10 +13,10 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Estatística e Informática
+# Estatística &amp; Estatística e Informática
 ]
 .subtitle[
-## Aula 09 - Estatística, Distribuição Amostral
+## Estatísticas e Distribuição Amostral
 ]
 .author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
@@ -25,7 +25,7 @@ class: center, middle, inverse, title-slide
 ### Departamento e Ciências Exatas FCAV/UNESP
 ]
 .date[
-### (02-05-2024)
+### 14 e 15 de maio de 2026
 ]
 
 ---
@@ -203,7 +203,7 @@ Assim, em uma amostra aleatória simples com reposição, de tamanho `\(n\)`, de
 #### Simulação de ume população não normal.
 
 
-```r
+``` r
 set.seed(7355608)
 x &lt;- rep(1:10,
                  c(800,700,200,350,120,
@@ -214,7 +214,7 @@ x &lt;- rep(1:10,
 ---
 #### Cálculo da esperança de X: `\(E(X) = \mu\)`.
 
-```r
+``` r
 mean(x)
 ```
 
@@ -224,7 +224,7 @@ mean(x)
 
 #### Cálculo da variância de X: `\(Var(X) = \sigma^2\)`.
 
-```r
+``` r
 var(x)
 ```
 
@@ -236,7 +236,7 @@ var(x)
 
 #### Distribuição de probabilidade.
 
-```r
+``` r
 hist(x, probability = TRUE)
 ```
 
@@ -246,13 +246,13 @@ hist(x, probability = TRUE)
 ---
 #### Definindo o tamanho da amostra `\(n\)`.
 
-```r
+``` r
 n &lt;- 5
 ```
 
 #### Realizar uma amostragem aleatória simples, com reposição, de tamanho `\(n\)` e calcular a média e variância dessa amostra.
 
-```r
+``` r
 amostra &lt;- sample(x,n,replace = TRUE)
 mean(amostra)
 ```
@@ -261,7 +261,7 @@ mean(amostra)
 #&gt; [1] 5.4
 ```
 
-```r
+``` r
 var(amostra)
 ```
 
@@ -274,7 +274,7 @@ var(amostra)
 #### Realizar `\(k\)` amostragens de tamanho `\(n\)`, calcular as respectivas médias, construir a distribuição de probabilidade dessas médias com os cálculos da `\(E[\bar{X}]\)` e da `\(Var(\bar{X})\)`.
 
 
-```r
+``` r
 k &lt;- 10000
 vetor_medias &lt;- 0
 for(i in 1:k) vetor_medias[i] &lt;- mean(sample(x,n,replace=TRUE))
@@ -282,7 +282,7 @@ for(i in 1:k) vetor_medias[i] &lt;- mean(sample(x,n,replace=TRUE))
 
 #### Cálculo da esperança de X: `\(E(\bar{X}) = \mu\)`.
 
-```r
+``` r
 mean(vetor_medias)
 ```
 
@@ -292,7 +292,7 @@ mean(vetor_medias)
 
 #### Cálculo da variância de X: `\(Var(\bar{X}) = \frac{\sigma^2}{n}\)`.
 
-```r
+``` r
 var(vetor_medias)
 ```
 
@@ -301,7 +301,7 @@ var(vetor_medias)
 ```
 
 
-```r
+``` r
 hist(vetor_medias,xlim=c(0,10), probability = TRUE);box()
 ```
 
@@ -456,9 +456,9 @@ Qual a probabilidade de se encontrar mais de `\(72\%\)` das covas com plantas ge
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

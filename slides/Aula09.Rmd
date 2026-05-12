@@ -4,11 +4,11 @@
 # imagens https://www.pexels.com/pt-br/
 # gifs https://giphy.com/
 # https://www.ime.usp.br/~rfarias/simbolos.html
-title: "Estatística e Informática"
-subtitle: "Aula 09 - Estatística, Distribuição Amostral"
+title: "Estatística & Estatística e Informática"
+subtitle: "Estatísticas e Distribuição Amostral"
 author: "Alan Rodrigo Panosso <alan.panosso@unesp.br>"
 institute: "Departamento e Ciências Exatas FCAV/UNESP"
-date: "(02-05-2024)"
+date: "14 e 15 de maio de 2026"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
