@@ -51,7 +51,7 @@ Resumo | Parâmetro | Estatística
 ---|:---:|:---:
 Média | `\(\mu\)` | `\(\bar{x}=\frac{1}{n} \sum \limits_{i=1}^n x_i\)`
 Variância | `\(\sigma^2\)`| `\(s^2 = \frac{1}{n-1} \sum \limits_{i=1}^n {(x_i - \mu)^2}\)`
-Proporção | `\(\pi\)` | `\(\hat{p}= \frac{X}{n}\)`
+Proporção | `\(\pi\)` ou `\(p\)` | `\(\hat{p}= \frac{X}{n}\)`
 
 O valor numérico da estatística ou estimador de um parâmetro, calculado para uma amostra observada, é chamado de **estimativa desse parâmetro**.
 
@@ -64,15 +64,22 @@ A diferença entre estatística e estimativa é que a **estatística** é uma va
 A acurácia mede quão próximo o valor estimado está do valor real, ou seja, é a habilidade do estimador de estimar o valor real.
 
 
+![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTA5dG44NjI2dmFubjMxNzduNWk5M3JiZnk0OXZhMjVoMzh6MTlhbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2higF6P3xOhMY/giphy.gif)
+---
+
 ## Precisão  
 A Precisão mede quão próximas estimativas individuais estão umas das outras, ou seja é a habilidade do estimador de estimar valores similares de maneira consistente.
 
+&lt;img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2hoa2x6dGUxcWlpNjJvOXA5c3d5YmVuNmk1OTQ1dnpyMHN4MmdqZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4gjChPhgF6Q3IRh5Aj/giphy.gif" width="400"&gt;
+
 --
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/acuracia_precisao.png" width="100%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
+![](img/acuracia_precisao.png)
+---
 ## Propriedades de um bom estimador
 
 **1) Consistência**: é uma propriedade por meio da qual a acurácia de uma estimativa aumenta quando o tamanho da amostra aumenta. Assim dado um parâmetro populacional `\(\theta\)` e sendo `\(\hat{\theta}\)`  o estimador desse parâmetro. 
@@ -83,9 +90,10 @@ As condições suficientes para um estimador ser consistente são:
 
 `$$\lim_{n \to \infty}Var(\hat{\theta}) = 0$$`
 
-### Exemplo
+### Exemplos
 
-`$$E(\bar{X}) = \mu \text{ e } Var(\bar{X})= \frac{Var(X)}{n}$$`
+`$$E(\bar{X}) = \mu$$`
+`$$Var(\bar{X})= \frac{Var(X)}{n}$$`
 
 ---
 
@@ -147,7 +155,11 @@ class: middle, center, inverse
 
 esse procedimento não permite julgar qual a possível magnitude do erro que se está cometendo.
 
-**Exemplo**: O diâmetro a altura do peito de árvores de Eucalipto tem uma média de `\(105 \;cm\)`,
+**Exemplo**: 
+
+-- a média de ganho salarial dos funcionários da empresa X é de `R$` `\(5520{,}35\)`
+
+-O diâmetro a altura do peito de árvores de Eucalipto tem uma média de `\(105 \;cm\)`,
 
 ---
 
@@ -159,7 +171,14 @@ Essas estimativas indicam a sua precisão ou acurácia, por isto são preferíve
 
 A declaração da precisão de uma estimativa por intervalo denomina-se grau de confiança ou **nível de confiança**, daí a denominação de **Intervalo de Confiança**.
 
-**Exemplo**: O diâmetro a altura do peito de árvores de Eucalipto tem uma média de `\(105 \pm 0,05\;cm\)`,
+**Exemplo**: 
+
+
+- a média de ganho salarial dos funcionários da empresa X é de `R$` `\(5520{,}35 \pm 3.800\)`
+
+- O diâmetro a altura do peito de árvores de Eucalipto tem uma média de `\(105 \pm 0,05\;cm\)`;
+
+
 
 ---
 
@@ -169,13 +188,13 @@ class: middle, center, inverse
 
 ---
 
-### Estimativa por intervalo de confiança
+### Estimativa por Intervalo de Confiança
 
 Um intervalo de confiança para `\(\theta\)` é um intervalo construído a partir das observações da amostra, de modo que ele inclui o verdadeiro e desconhecido valor de `\(\theta\)`, **com uma específica e alta probabilidade** denotada por `\(1 - \alpha\)`, é tipicamente tomada como:
 
 `$$NC = P(a \le \theta \le b) = 1-\alpha$$`
 
-Então, o intervalo `\(] a, b [\)` é chamado intervalo com `\(100 \cdot (1 - \alpha)\%\)` de confiança para o parâmetro `\(\theta\)`, onde: `\(1 ‑ \alpha\)`  é  o **nível de confiança** associado ao intervalo `\(a\)` e `\(b\)` são os **limites de confiança**, inferior e superior, respectivamente, do intervalo.
+Então, o intervalo `\(] a, b [\)` é chamado intervalo com `\(100 \cdot (1 - \alpha)\%\)` de confiança para o parâmetro `\(\theta\)`, onde: `\(1 ‑ \alpha\)`  é  o **nível de confiança**, `\(\alpha\)` é denominado **nível de significância** associado ao intervalo e os valores `\(a\)` e `\(b\)` são os **limites de confiança**, inferior e superior, respectivamente, do intervalo.
 
 Onde temos a seguinte relação:
 
@@ -193,7 +212,7 @@ class: middle, center, inverse
 
 ---
 
-## Precisamos definir 4 casos:
+## Precisamos definir `\(4\)` casos:
 
 #### (a) Caso em que amostras são grandes `\((n \geq 30)\)` e `\(\sigma\)` conhecido;
 
@@ -214,12 +233,12 @@ O desenvolvimento de intervalos de confiança para `\(\mu\)` é baseado na distr
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_01.png" width="30%" style="display: block; margin: auto;" /&gt;
 onde:  
-`\(a = \bar{X} - z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}\)` e `\(b = \bar{x} + z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}\)`
+`\(a = \bar{X} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\)` e `\(b = \bar{x} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\)`
 
 $$
 `\begin{cases}
 \frac{\sigma}{\sqrt{n}} = \sigma_{\bar{X}} = \text{erro padrão da média} \\
-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} = \text{erro da estimativa da média} 
+z_{\alpha/2} \frac{\sigma}{\sqrt{n}} = \text{erro da estimativa da média} 
 \end{cases}`
 $$
 
@@ -247,16 +266,15 @@ Esta expressão, deve ser interpretada do seguinte modo: construídos todos os i
 
 Então, denotamos o intervalo de confiança como:
 
-`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$`
+`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\alpha/2} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\alpha/2} \frac{\sigma}{\sqrt{n}}[$$`
 
 ### Exemplo 
 
-Considerando uma amostra de `\(100\)` animais da raça Nelore, onde o peso médio a desmama é `\(171,70 \;kg\)`, encontre um IC de `\(95\%\)` para `\(\mu\)`, supondo que o desvio padrão da população `\((\sigma)\)` seja igual a `\(7,79\;kg\)`.
-
+Uma pesquisa analisou uma amostra de `\(100\)` microempreendedores individuais (MEIs) de um município, verificando que o faturamento médio diário é de `R$` `\(171{,}70\)`. Sabendo que o desvio padrão populacional é `\(\sigma\)` = `\(7{,}79\)`, construa um IC de `\(95\%\)` para o faturamento médio diário `\(\mu\)` de todos os MEIs do município.
 --
 
 $$IC(\mu;95\%) = ]171,70 \pm 1,96 \frac{7,79}{\sqrt{100}} $$
-`$$IC(\mu;95\%) = ]170,17\;kg; 173,23\;kg [$$`
+`$$IC(\mu;95\%) = ]170,17; 173,23[$$`
 ---
 
 ### (b) Caso em que amostras são grandes `\((n \geq 30)\)` e `\(\sigma\)` desconhecido.
@@ -264,7 +282,7 @@ $$IC(\mu;95\%) = ]171,70 \pm 1,96 \frac{7,79}{\sqrt{100}} $$
 Como `\(n\)` é grande, a substituição de `\(\sigma\)` pelo desvio padrão amostral `\((s)\)` não afeta apreciavelmente a estimativa de `\(IC\)`, assim, temos que:
 
 
-`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$`
+`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\alpha/2} \frac{s}{\sqrt{n}};\bar{x}+z_{\alpha/2} \frac{s}{\sqrt{n}}[$$`
 
 ---
 
@@ -272,7 +290,7 @@ Como `\(n\)` é grande, a substituição de `\(\sigma\)` pelo desvio padrão amo
 
 Se `\(X_1, X_2, \cdots, X_n\)` é uma amostra aleatória de uma população com distribuição normal `\(N (\mu, \sigma^2)\)`, a média amostral `\(\bar{X}\)` é exatamente distribuída como `\(N (\mu, \frac{\sigma^2}{n} )\)`. Sendo `\(\sigma\)` conhecido, o `\(IC (\mu : 1–\alpha)\)` é dado por:
 
-`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}[$$`
+`$$IC(\mu;1-\alpha) = ]\bar{x}-z_{\alpha/2} \frac{\sigma}{\sqrt{n}};\bar{x}+z_{\alpha/2} \frac{\sigma}{\sqrt{n}}[$$`
 
 ---
 
@@ -307,20 +325,77 @@ Var(t) = \frac{r}{r-2} = \frac{n-1}{n-3}\end{cases}$$`
 
 Pode-se concluir da distribuição `\(t\)`, que
 
-`$$P(-t_{\frac{\alpha}{2}} \le \frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}} \le +t_{\frac{\alpha}{2}}) = 1 - \alpha$$`
+`$$P(-t_{\alpha/2} \le \frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}} \le +t_{\alpha/2}) = 1 - \alpha$$`
 em que `\(t_{\alpha \\2}\)` é obtido na tabela da distribuição `\(t\)` com `\(r = n – 1\)` graus de liberdade, ou seja:
 
-`$$IC(\mu;1-\alpha) = ]\bar{x}-t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}};\bar{x}+t_{\frac{\alpha}{2}} \frac{s}{\sqrt{n}}[$$`
+`$$IC(\mu;1-\alpha) = ]\bar{x}-t_{\alpha/2} \frac{s}{\sqrt{n}};\bar{x}+t_{\alpha/2} \frac{s}{\sqrt{n}}[$$`
+---
+
+Comparação Distribição Normal Padrão e Distribuição t de Student
+
+`\(N(0,1)\)` - Azul  
+`\(t(1)\)` - Vermelho  
+
+&lt;img src="Aula10_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+Comparação Distribição Normal Padrão e Distribuição t de Student
+
+`\(N(0,1)\)` - Azul  
+`\(t(5)\)` - Vermelho  
+
+&lt;img src="Aula10_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+---
+
+Comparação Distribição Normal Padrão e Distribuição t de Student
+
+`\(N(0,1)\)` - Azul  
+`\(t(20)\)` - Vermelho  
+
+&lt;img src="Aula10_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
+Comparação Distribição Normal Padrão e Distribuição t de Student
+
+
+`\(N(0,1)\)` - Azul  
+`\(t(30)\)` - Vermelho  
+
+&lt;img src="Aula10_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+Comparação Distribição Normal Padrão e Distribuição t de Student
+
+
+`\(N(0,1)\)` - Azul  
+`\(t(50)\)` - Vermelho  
+
+&lt;img src="Aula10_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
 ### Exercício
 
-Uma amostra de `\(10\)` cães sofrendo de uma determinada doença apresentou um tempo de sobrevivência médio de `\(46,9\)` meses e o desvio padrão de `\(43,3\)` meses. Determinar os limites de confiança de `\(90\%\)` para `\(\mu\)`.
+Uma amostra de `\(10\)` talhões de cana-de-açúcar submetidos a um estresse hídrico severo apresentou uma produtividade média de `\(46{,}9\)` toneladas por hectare e desvio padrão de `\(43{,}3\)` t/ha. Determine os limites de confiança de `\(90\%\)` para `\(\mu\)`.
 
 --
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_06.png" width="80%" style="display: block; margin: auto;" /&gt;
+**Solução**
+
+média amostral `\(\bar{x} = 46{,}9\)`   
+desvio padrão amostral `\(s = 43{,}3\)`   
+nível de confiança `\(1-\alpha = 0{,}90\)`   
+graus de liberdade `\(r = n-1=9\)`  
+
+Olhando a tabela da distribuição t-Student temos: `\(t_{\alpha/2} = 1{,}833\)` 
+
+Portanto, os limites de confiança de `\(\mu\)` serão:
+
+`\(\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}} = 46{,}9\pm 1{,}833  \frac{43{,}3}{\sqrt{10}}\)`
+
+Assim: `\(IC(\mu:90\%) = ]21{,8}; 72[\)` t/ha
 
 ---
 
@@ -336,17 +411,17 @@ Fazendo uso do fato que, para `\(n\)` grande, a distribuição binomial pode ser
 
 Temos:
 
-`$$P \left(-z_{\frac{\alpha} {2}} \le \frac{x- np}{\sqrt{np(1-p)}} \le +z_{\frac{\alpha}{2}} \right) = 1 - \alpha$$`
+`$$P \left(-z_{\frac{\alpha} {2}} \le \frac{x- np}{\sqrt{np(1-p)}} \le +z_{\alpha/2} \right) = 1 - \alpha$$`
 
 Substituindo `\(p\)`, visto que é desconhecido, por seu estimador `\(\hat{p}\)`  dentro das raízes, obtêm-se:
 
-`$$IC(\hat{p};1-\alpha) = \left]\hat{p}-z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}};\hat{p}+z_{\frac{\alpha}{2}} \sqrt{\frac{\hat{p}\hat{q}}{n}} \right[$$`
+`$$IC(\hat{p};1-\alpha) = \left]\hat{p}-z_{\alpha/2} \sqrt{\frac{\hat{p}\hat{q}}{n}};\hat{p}+z_{\alpha/2} \sqrt{\frac{\hat{p}\hat{q}}{n}} \right[$$`
 
 ---
 
 ### Exemplo
 
-Suponha que em `\(n = 400\)` animais são administrados uma droga, obtendo  `\(X = 320\)` sucessos, ou seja, `\(80\%\)` dos animais melhoraram.  A partir destes dados, obtenha um `\(IC\)` para `\(p\)`, com `\(1 - \alpha = 0,90\)`.
+Em um ensaio de controle biológico, `\(n = 400\)` alagartas-do-cartucho (*Spodoptera frugiperda*), oram expostas ao agente *Bacillus thuringiensis*, observando-se mortalidade em `\(X = 320\)` insetos, correspondendo a `\(80\%\)` de eficácia.  Determine o `\(IC\)` para `\(p\)`, com `\(1 - \alpha = 0,90\)`.
 
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_07.png" width="85%" style="display: block; margin: auto;" /&gt;
@@ -354,10 +429,24 @@ Suponha que em `\(n = 400\)` animais são administrados uma droga, obtendo  `\(X
 ---
 
 ### Exemplo  
-Suponha que em `\(n = 400\)` animais doentes são administrados uma droga, obtendo  `\(X = 320\)` sucessos, ou seja, `\(80\%\)` dos animais melhoraram.  A partir destes dados, obtenha um `\(IC\)` para `\(p\)`, com `\(1 - \alpha = 0,90\)`.
+Em um ensaio de controle biológico, `\(n = 400\)` alagartas-do-cartucho (*Spodoptera frugiperda*), oram expostas ao agente *Bacillus thuringiensis*, observando-se mortalidade em `\(X = 320\)` insetos, correspondendo a `\(80\%\)` de eficácia.  Determine o `\(IC\)` para `\(p\)`, com `\(1 - \alpha = 0,90\)`.
 
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/ic_08.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+**Solução**
+
+estimativa da proporção `\(\hat{p} = 400/320 = 0{,}80\)`   
+estimativa do complementar `\(\hat{q} = 1- \hat{p} = 1-0{,}80=0{,}20\)`   
+nível de confiança `\(1-\alpha = 0{,}90\)`   
+
+Olhando a tabela da distribuição Normal Padrão temos:  
+`\(z_{\alpha/2} = 1{,}64\)` 
+
+Portanto, os limites de confiança de `\(p\)` serão:
+
+`\(\hat{p} \pm z_{\alpha/2} \sqrt{\frac{\hat{p}\hat{q}}{n}} = 1{,}64 \sqrt{\frac{0{,}80 \times0{,}20}{400}}\)`
+
+Assim: `\(IC(p:90\%) = ]0{,}767; 0{,}833[\)` t/ha
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
