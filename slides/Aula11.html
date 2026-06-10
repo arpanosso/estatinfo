@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Estatística e Informática</title>
+    <title>Estatística &amp; Estatística e Informática</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alan Rodrigo Panosso alan.panosso@unesp.br" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,10 +13,10 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Estatística e Informática
+# Estatística &amp; Estatística e Informática
 ]
 .subtitle[
-## Aula 11 - Testes de Hipótese
+## Testes de Hipótese
 ]
 .author[
 ### Alan Rodrigo Panosso <a href="mailto:alan.panosso@unesp.br" class="email">alan.panosso@unesp.br</a>
@@ -25,7 +25,7 @@ class: center, middle, inverse, title-slide
 ### Departamento de Ciências Exatas FCAV/UNESP
 ]
 .date[
-### (23-05-2024)
+### 11 e 12 de junho de 2026
 ]
 
 ---
@@ -48,14 +48,17 @@ class: middle, center, inverse
 Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
 
 ---
-**Exemplo 1**.  Uma suinocultura usa uma ração `\(A\)` que propicia, da desmama até a idade de abate, um ganho em peso de `\(500 g/dia/suíno\)` `\((\sigma = 25 g)\)`.  O fabricante de uma ração `\(B\)` afirma que nas mesmas condições, sua ração propicia um ganho de `\(510 g/dia/suíno\)` `\((\sigma = 25 g/dia/suíno)\)`. 
+**Exemplo 1**.  Uma empresa utiliza uma estratégia de marketing digital `\(A\)` que resulta em uma média de `\(500 vendas mensais\)` `\((\sigma = 25 \;vendas)\)`.  Uma agência de marketing afirma que sua nova estratégia `\(B\)` pode elevar esse número para `\(510\)` vendas mensais `\((\sigma = 25\; vendas)\)`. 
 
+&lt;img src = https://images.pexels.com/photos/7688102/pexels-photo-7688102.jpeg width="600"&gt;
+
+---
 
 &lt;img src="Aula11_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
-Considerando a amostra de `\(50\)` leitões, aos quais foi fornecida a nova ração `\((B)\)`, deve-se ou não adotar essa ração, admitindo-se como resultado um ganho em peso médio diário de `\(504 g/dia/suíno\)` `\(( \bar{X})\)`, fixando-se `\(\alpha= 5\%\)`.
+Considerando uma amostra de `\(50\)` períodos de veiculação da nova campanha de marketing `\((B)\)`, deve-se ou não adotar essa campanha, admitindo-se como resultado uma média de `\(504\)` vendas por período `\((\bar{X})\)`, fixando-se `\(\alpha=5\%\)`.
 
 &lt;img src="Aula11_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 ---
@@ -67,25 +70,28 @@ Utilizadas em experimentos comparativos, nos quais um novo produto ou nova técn
 
 **Hipótese alternativa `\((H_1)\)`:** deve ser tomada como verdadeira caso a hipótese da nulidade seja descartada.
 
+`$$\begin{cases}
+H_0 = \mu = 500 \text{ vendas mensais} \\
+H_1 = \mu = 510 \text{ vendas mensais}
+\end{cases}$$`
 
-&lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_01.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
 
 ---
 ### Estatística teste
 
-Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, `\(n = 50\)` ). Calcula-se a média amostral `\(\bar{x}_a\)` do, no exemplo, ganho de peso diário no período.
+Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, `\(n = 50\)` ). Calcula-se a média amostral `\(\bar{x}_a\)` do, no exemplo, número de vendas mensais.
 
-Se `\(\bar{x}_a\)` estiver próxima de `\(500\;g\)`, **não se deve rejeitar `\(H_0\)`**, e a **conclusão** será que a ração do tipo `\(B\)` é *estatisticamente* igual à ração do tipo `\(A\)`.
+Se `\(\bar{x}_a\)` estiver próxima de `\(500\)`, **não se deve rejeitar `\(H_0\)`**, e a **conclusão** será que a estratégia `\(B\)` é *estatisticamente* igual à estratégia `\(A\)`.
 
-Se `\(\bar{x}_a\)` estiver próxima ou for superior à `\(500\;g\)`, **rejeita-se `\(H_0\)` em favor a `\(H_1\)`** e a **conclusão**  será que a ração do tipo `\(B\)` é superior à do tipo `\(A\)`, tal resultado implica no fato de que a suinocultura poderá utilizá-la.
+Se `\(\bar{x}_a\)` estiver próxima ou for superior à `\(500\)`, **rejeita-se `\(H_0\)` em favor a `\(H_1\)`** e a **conclusão**  será que a estratégia `\(B\)` é superior à `\(A\)` quanto o número de ventas, tal resultado implica no fato de que a empresa poderá utilizá-la.
 
 ---
 
 ### Critério de decisão 
 
-Para aceitar ou rejeitar `\(H_0\)`, determina-se um valor `\(k\)` (ponto) entre `\(500\)` e `\(510 \;g\)`, chamado valor crítico, `\(\bar{x}_c\)`.
+Para aceitar ou rejeitar `\(H_0\)`, determina-se um valor `\(k\)` (ponto) entre `\(500\)` e `\(510\)`, chamado valor crítico, `\(\bar{x}_c\)`.
 
 &lt;img src="https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_02.png" width="100%" style="display: block; margin: auto;" /&gt;
 
@@ -93,16 +99,24 @@ O procedimento do teste, então, divide os possíveis valores da estatística te
 
 ---
 
-Por exemplo, se o verdadeiro valor do parâmetro `\(\mu\)` é `\(500\;g\)` e incorretamente concluímos que `\(\mu = 510\;g\)`, cometeremos um erro referido como **ERRO TIPO I (falso positivo)**. 
+Por exemplo, se o verdadeiro valor do parâmetro `\(\mu\)` é `\(500\; vendas\)` e incorretamente concluímos que `\(\mu = 510\;vendas\)`, cometeremos um erro referido como **ERRO TIPO I (falso positivo)**. 
 
-Por outro lado, se o verdadeiro valor de `\(\mu\)` é `\(510\;g\)` e incorretamente concluímos  que `\(\mu = 500 \;g\)`, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo)**.
+![](img/false_positive_hotdog.png)
+
+---
+
+Por outro lado, se o verdadeiro valor de `\(\mu\)` é `\(510\)` e incorretamente concluímos  que `\(\mu = 500\)`, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo)**.
+
+![](img/false_negative_hotdog.png)
 
 ---
 ## Erros tipo I e II
 
- | Situação específica | na População
+Situação específica na População
+
+
+*Conclusão do Teste* | `\(H_0\)` verdadeira | `\(H_0\)` falsa
 ---|---:|:---|
-Conclusão do Teste | `\(H_0\)` verdadeira | `\(H_0\)` falsa
 Não Rejeita `\(H_0\)` | Decisão correta | Erro tipo II (perdas potenciais)
 Rejeitar `\(H_0\)` | Erro tipo I (perdas reais) | Decisão Correta
 
@@ -224,9 +238,9 @@ Com base nessa amostra, pode-se concluir, ao nível de significância de `\(1\%\
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
