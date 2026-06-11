@@ -34,15 +34,15 @@ class: middle, center, inverse
 
 ## Teste de Hipótese
 
-**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado por evidências obtida de dados amostrais. 
+**Objetivo**: decidir se uma afirmação, em geral, sobre **parâmetros** de uma ou mais populações é, ou não verdadeira, apoiado por evidências obtidas de dados amostrais. 
 
 
 Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
 
 ---
-**Exemplo 1**.  Uma empresa utiliza uma estratégia de marketing digital $A$ que resulta em uma média de $500 vendas mensais$ $(\sigma = 25 \;vendas)$.  Uma agência de marketing afirma que sua nova estratégia $B$ pode elevar esse número para $510$ vendas mensais $(\sigma = 25\; vendas)$. 
+**Exemplo 1**.  Uma empresa utiliza uma estratégia de marketing digital $A$ que resulta em uma média de $500 vendas mensais$ $(\sigma = 25 \;vendas)$.  Uma agência de marketing afirma que sua nova estratégia $B$ pode elevar esse número para $510$ vendas mensais $(\sigma = 25\; vendas)$.  
 
-<img src = https://images.pexels.com/photos/7688102/pexels-photo-7688102.jpeg width="600">
+<img src = https://images.pexels.com/photos/7688102/pexels-photo-7688102.jpeg width="700">
 
 ---
 
@@ -217,7 +217,7 @@ Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, 
 
 Se $\bar{x}_a$ estiver próxima de $500$, **NÃO SE DEVE REJEITAR $H_0$**, e a **conclusão** será que a estratégia $B$ é *estatisticamente* igual à estratégia $A$.
 
-Se $\bar{x}_a$ estiver próxima ou for superior à $500$, **REJEITA-SE $H_0$ em favor a $H_1$**, ou seja, **toma-se $H_1$ como VERDADEIRA** e a **conclusão**  será que a estratégia $B$ é superior à $A$ quanto o número de ventas, tal resultado implica no fato de que a empresa poderá utilizá-la.
+Se $\bar{x}_a$ for superior à $500$, **REJEITA-SE $H_0$ em favor a $H_1$**, ou seja, **toma-se $H_1$ como VERDADEIRA** e a **conclusão**  será que a estratégia $B$ é superior à $A$ quanto o número de ventas, tal resultado implica no fato de que a empresa poderá utilizá-la.
 
 ---
 
@@ -234,7 +234,7 @@ O procedimento do teste, então, divide os possíveis valores da estatística te
 ---
 ### ERRO TIPO I - $\alpha$
 
-Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\; vendas$ e incorretamente concluímos que $\mu = 510\;vendas$, cometeremos um erro referido como **ERRO TIPO I (falso positivo)**. 
+Por exemplo, se o verdadeiro valor do parâmetro $\mu$ é $500\; vendas$ e incorretamente concluímos que $\mu = 510\;vendas$, cometeremos um erro referido como **ERRO TIPO I (falso positivo) ou \alpha**. 
 
 ![](img/false_positive_hotdog.png)
 
@@ -253,9 +253,56 @@ Situação específica na População
 
 CONCLUSÃO | $H_0$ VERDADEIRA | $H_0$ FALSA
 ---|:---:|:---:|
+Não Rejeitar $H_0$ | ■■■■■■■ | ■■■■■■■
+Rejeitar $H_0$ | ■■■■■■■ | ■■■■■■■
+
+---
+## Comparação dos Erros tipo I e II
+
+Situação específica na População
+
+
+CONCLUSÃO | $H_0$ VERDADEIRA | $H_0$ FALSA
+---|:---:|:---:|
+Não Rejeitar $H_0$ | Decisão correta | ■■■■■■■
+Rejeitar $H_0$ | ■■■■■■■ | ■■■■■■■
+
+---
+## Comparação dos Erros tipo I e II
+
+Situação específica na População
+
+
+CONCLUSÃO | $H_0$ VERDADEIRA | $H_0$ FALSA
+---|:---:|:---:|
+Não Rejeitar $H_0$ | Decisão correta | ■■■■■■■
+Rejeitar $H_0$ | Erro tipo I (perdas reais)  | ■■■■■■■
+
+---
+## Comparação dos Erros tipo I e II
+
+Situação específica na População
+
+
+CONCLUSÃO | $H_0$ VERDADEIRA | $H_0$ FALSA
+---|:---:|:---:|
+Não Rejeitar $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
+Rejeitar $H_0$ | Erro tipo I (perdas reais)  | ■■■■■■■
+
+---
+
+
+## Comparação dos Erros tipo I e II
+
+Situação específica na População
+
+
+CONCLUSÃO | $H_0$ VERDADEIRA | $H_0$ FALSA
+---|:---:|:---:|
 Não Rejeitar $H_0$ | Decisão correta | Erro tipo II (perdas potenciais)
 Rejeitar $H_0$ | Erro tipo I (perdas reais) | Decisão Correta
 
+--
 
 $\alpha = P \text{(erro tipo I)}$ = $P$(Rejeitar $H_0|H_0$ é verdadeira) = **nível de significância** $(10\%, 5\% \text{ ou } 1\%)$.
 
@@ -647,14 +694,29 @@ class: middle, center, inverse
 ---
 
 ```{r,out.width = "120%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_14.png")
+# knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_14.png")
+
 ```
 
----
+**Hipóteses**
+$$\begin{cases}
+H_0 : \mu = \mu_0 \\
+H_1 : \mu = \mu_0 \text{ ou } \left[\mu > \mu_0 \text{ ou } \mu < \mu_0\right] \text{ onde } \mu_0 \text{ é valor conhecido }
+\end{cases}$$
 
-```{r,out.width = "110%",fig.cap="",fig.align = 'center',echo=FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/arpanosso/estatinfo/master/slides/img/testeH_15.png")
-```
+**Estatística do teste**
+
+$$t = \frac{\bar{X}-\mu_0}{s/ \sqrt{n}}$$
+que tem distribuição t de Student com $n-1$ graus de liberdade $(t_{n-1})$
+
+$RC = \{t| t \leq -t_{\alpha/2} \text{ ou } t\geq t_{\alpha/2} \}$
+
+
+**Resultado da amostra**
+
+$$t_{obs} = \frac{\bar{x_a}-\mu_0}{s/ \sqrt{n}}$$
+**Análise do resultado**: se $z_{obs} \in RC$, **rejeita-se** $H_0$, caso contrário, **não se rejeita** $H_0$
+
 
 ---
 
