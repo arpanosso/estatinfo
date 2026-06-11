@@ -736,9 +736,9 @@ $$t_{obs} = \frac{\bar{x_a}-\mu_0}{s/ \sqrt{n}}$$
 
 ---
 
-**Exemplo 5**. As especificações de um dado medicamento exigem $23,2$ g de álcool etílico em sua composição. Uma amostra de $10$ análises do produto apresentou um teor médio de álcool de $23,5$ g com desvio padrão de $0,24$ g. 
+**Exemplo 5**. As especificações de um dado medicamento exigem $23{,}2$ g de álcool etílico em sua composição. Uma amostra de $10$ análises do produto apresentou um teor médio de álcool de $23{,}5$ g com desvio padrão de $0{,}24$ g. 
 
-Com base nessa amostra, pode-se concluir, ao nível de significância de $1\%$, que o produto satisfaz as condições exigidas $(\mu = 23,2 \text{ g })$ ?
+Com base nessa amostra, pode-se concluir, ao nível de significância de $1\%$, que o produto satisfaz as condições exigidas $(\mu = 23{,}2 \text{ g })$ ?
 
 ---
 
