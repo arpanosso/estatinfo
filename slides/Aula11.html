@@ -48,7 +48,7 @@ class: middle, center, inverse
 Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada para decidir se ela é verdadeira ou não, é o **Teste de Hipóteses**. 
 
 ---
-**Exemplo 1**.  Uma empresa utiliza uma estratégia de marketing digital `\(A\)` que resulta em uma média de `\(500 vendas mensais\)` `\((\sigma = 25 \;vendas)\)`.  Uma agência de marketing afirma que sua nova estratégia `\(B\)` pode elevar esse número para `\(510\)` vendas mensais `\((\sigma = 25\; vendas)\)`.  
+**Exemplo 1**.  Uma empresa utiliza uma estratégia de marketing digital `\(A\)` que resulta em uma média de `\(500\)` vendas mensais `\((\sigma = 25 \;vendas)\)`.  Uma agência de marketing afirma que sua nova estratégia `\(B\)` pode elevar esse número para `\(510\)` vendas mensais `\((\sigma = 25\; vendas)\)`.  
 
 &lt;img src = https://images.pexels.com/photos/7688102/pexels-photo-7688102.jpeg width="700"&gt;
 
@@ -58,7 +58,7 @@ Tal afirmação é o que se chama **Hipótese Estatística** e a regra usada par
 
 
 ---
-Considerando uma amostra de `\(50\)` períodos de veiculação da nova campanha de marketing `\((B)\)`, deve-se ou não adotar essa campanha, admitindo-se como resultado uma média de `\(504\)` vendas por período `\((\bar{X})\)`, fixando-se `\(\alpha=5\%\)`.
+Considerando uma amostra de `\(50\)` períodos de veiculação da nova campanha de marketing `\((B)\)`, deve-se ou não adotar essa campanha, admitindo-se como resultado uma média de `\(504\)` vendas por período `\((\bar{X})\)`, fixando-se `\(\alpha=5\%\)`. 
 
 &lt;img src="Aula11_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 ---
@@ -83,7 +83,7 @@ Para a tomada de decisão, deve-se extrair uma amostra aleatória (por exemplo, 
 
 Se `\(\bar{x}_a\)` estiver próxima de `\(500\)`, **NÃO SE DEVE REJEITAR `\(H_0\)`**, e a **conclusão** será que a estratégia `\(B\)` é *estatisticamente* igual à estratégia `\(A\)`.
 
-Se `\(\bar{x}_a\)` for superior à `\(500\)`, **REJEITA-SE `\(H_0\)` em favor a `\(H_1\)`**, ou seja, **toma-se `\(H_1\)` como VERDADEIRA** e a **conclusão**  será que a estratégia `\(B\)` é superior à `\(A\)` quanto o número de ventas, tal resultado implica no fato de que a empresa poderá utilizá-la.
+Se `\(\bar{x}_a\)` for próxima ou superior à `\(510\)`, **REJEITA-SE `\(H_0\)` em favor a `\(H_1\)`**, ou seja, **toma-se `\(H_1\)` como VERDADEIRA** e a **conclusão**  será que a estratégia `\(B\)` é superior à `\(A\)` quanto o número de ventas, tal resultado implica no fato de que a empresa poderá utilizá-la.
 
 ---
 
@@ -98,14 +98,18 @@ O procedimento do teste, então, divide os possíveis valores da estatística te
 ---
 ### ERRO TIPO I - `\(\alpha\)`
 
-Por exemplo, se o verdadeiro valor do parâmetro `\(\mu\)` é `\(500\; vendas\)` e incorretamente concluímos que `\(\mu = 510\;vendas\)`, cometeremos um erro referido como **ERRO TIPO I (falso positivo) ou \alpha**. 
+Por exemplo, se o verdadeiro valor do parâmetro `\(\mu\)` é `\(500\; vendas\)` e incorretamente concluímos que `\(\mu = 510\;vendas\)`, cometeremos um erro referido como **ERRO TIPO I (falso positivo) ou `\(\alpha\)`**. 
+
+--
 
 ![](img/false_positive_hotdog.png)
 
 ---
 ### ERRO TIPO II - `\(\beta\)`
 
-Por outro lado, se o verdadeiro valor de `\(\mu\)` é `\(510\)` e incorretamente concluímos  que `\(\mu = 500\)`, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo)**.
+Por outro lado, se o verdadeiro valor de `\(\mu\)` é `\(510\)` e incorretamente concluímos  que `\(\mu = 500\)`, cometeremos uma segunda espécie de erro, referido como **ERRO TIPO II (falso negativo) ou `\(\beta\)`**.
+
+--
 
 ![](img/false_negative_hotdog.png)
 
@@ -234,9 +238,14 @@ No **Exemplo 2**, o valor observado da estatística do teste é denominado de `\
 $$
 z_{obs} = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}
 $$
+
+
+
 $$
 z_{obs} = \frac{504-500}{25/\sqrt{50}}
 $$
+
+
 $$
 z_{obs} = 1{,}13
 $$
@@ -298,7 +307,7 @@ H_1 : \mu \neq 20 \text{ mg dm⁻³}
 `\(\mu_0 = 20\)`, `\(\sigma = 4\)` (conhecido), `\(n=25\)` e `\(\bar{x}=22\)`, portanto é um teste de média com variância conhecida.
 
 ---
-**Passo 3** - Fixe a probabilidade `\(\alpha\)` de cometer o **erro tipo I** e use este valor para construir a `\(RC\)` (região crítica do teste/região de regeição). Lembre-se que a `\(RC\)` é construída para a estatística definida no passo **(a)**, usando os valores hipotetizados por `\(H_0\)`;
+**Passo 3** - Fixe a probabilidade `\(\alpha\)` de cometer o **erro tipo I** e use este valor para construir a `\(RC\)` (região crítica do teste/região de rejeição). Lembre-se que a `\(RC\)` é construída para a estatística definida no passo **(a)**, usando os valores hipotetizados por `\(H_0\)`;
 
 --
 
@@ -307,6 +316,8 @@ Para `\(\alpha = 5\%\)` e `\(H_1 : \mu \neq 20 \text{ mg dm⁻³}\)` o teste é 
 $$
 z_c = \pm 1{,}96
 $$
+
+
 &lt;img src="Aula11_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
 `\(RC = \{z | z \leq -1{,}96 \text{ ou  } z \geq 1{,}96\}\)`
@@ -319,13 +330,18 @@ $$
 $$
 z_{obs} = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}
 $$
+
+
 $$
 z_{obs} = \frac{22-20}{4/\sqrt{25}}
 $$
+
+
 $$
 z_{obs} = 2{,}5
 $$
 ---
+
 **Passo 5** - Se o valor da estatística calculado com os dados da amostra não pertencer à `\(RC\)`, não rejeitamos `\(H_0\)`; caso contrário, rejeita-se `\(H_0\)`:
 --
 &lt;img src="Aula11_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
