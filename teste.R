@@ -1,6 +1,7 @@
 library(readxl)
 library(dplyr)
 library(openxlsx)
+library(tidyverse)
 
 # Pasta onde estão os arquivos
 pasta <- "c:/Users/p4Nn/Downloads/power-query/"
